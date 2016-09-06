@@ -166,7 +166,7 @@
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            Home
+            ホーム
           </a>
         </li>
       
@@ -176,7 +176,7 @@
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            Archives
+            アーカイブ
           </a>
         </li>
       
@@ -186,7 +186,7 @@
             
               <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
-            Tags
+            タグ
           </a>
         </li>
       
@@ -229,6 +229,115 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/06/java中string、StringBuffer和StringBuilder的区别/" itemprop="url">
+                  無題
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">投稿日</span>
+            <time itemprop="dateCreated" datetime="2016-09-06T16:25:53+08:00" content="2016-09-06">
+              2016-09-06
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#java中String、StringBuilder和StringBuffer的区别  </p>
+<p>  在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  </p>
+<p>  今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  </p>
+<ul>
+<li><strong>String字符串常量</strong>  </li>
+<li><strong>StringBuffer字符串变量(线程安全）</strong>  </li>
+<li><strong>StringBuilder字符串变量（非线程安全）</strong>  </li>
+</ul>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>所谓常量，即该对象的值已经被赋予了，不能再更改。若非要更改，则只能再重新创建另一个对象，在这个新创建的对象上再进行赋值。因此，每次在对String类型的对象进行改变的时候其实都等同于生成了一个新的String对象，然后将指针指向新的String对象，所以经常改变内容的字符串最好不要用String，因为每次生成对象都会对系统性能产生影响，特别当内存中无引用对象多了以后，JVM的GC就会开始工作，那速度是一定会相当慢的。  </p>
+<h3 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h3><p>所谓变量，即是可以随时变化的量。如果对StringBuffer对象进行改变，每次结果都会对StringBuffer对象进行操作，而不是生成新的对象。所以一般字符串要经常变化的话我推荐使用StringBuffer。  </p>
+<h3 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h3><p>StringBuilder和StringBuffer类功能基本相似，方法也差不多，主要区别在于StringBuffer类的方法是多线程安全的，而StringBuilder不是线程安全的，相比而言StringBuilder类会略微快一点。  </p>
+<p><strong>题外话:</strong>现在很多互联网公司面试java的面试官都喜欢问这样一个问题,</p>
+<blockquote>
+<p>请你谈谈StringBuffer和StringBuilder的区别。  </p>
+</blockquote>
+<p>大多数人肯定会直接说前者是线程安全的而后者是非线程安全的。其实这个时候才是面试官真正想问的，他会顺着你的回答又问你，那请你谈谈什么是线程…balabalabala。哈哈，要想顺利通过面试，所以对知识的了解还是全面点吧～！</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/09/写博客也是一种生活方式/" itemprop="url">
                   写博客也是一种生活方式
                 </a>
@@ -242,7 +351,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">投稿日</span>
             <time itemprop="dateCreated" datetime="2016-04-09T22:07:54+08:00" content="2016-04-09">
               2016-04-09
             </time>
@@ -369,7 +478,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">投稿日</span>
             <time itemprop="dateCreated" datetime="2016-03-31T12:59:31+08:00" content="2016-03-31">
               2016-03-31
             </time>
@@ -477,8 +586,8 @@ brew install git</code>  如何看你是否安装好git了呢？打开你的终�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">ポスト</span>
             </a>
           </div>
 
