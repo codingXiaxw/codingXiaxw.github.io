@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%90%8D%E7%A7%B0.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%9B%BE%E6%A0%87.png">
-<meta property="og:updated_time" content="2016-09-12T12:21:41.000Z">
+<meta property="og:updated_time" content="2016-09-12T12:40:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac用户如何将自己的代码上传至github托管">
 <meta name="twitter:description" content="楼主刚开始试着想将自己的代码上传至github上的时候真的是个小白，google上面到处搜到处找资源。后来云里雾里的成功上传后，发现网络上介绍的大致有两种方法，一种方法是通过git命令行，另一种方法是通过下载github客户端。两种方法都很简单，也许你觉得我接下来介绍的很繁琐，但这是详细的表现，下面将详细介绍通过git命令行来上传自己的代码。
@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -245,7 +245,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-04-09T22:07:54+08:00" content="Apr 9 2016">
               Apr 9 2016
             </time>
@@ -283,32 +283,26 @@
 <li><strong>git push origin master;</strong>(作用:将你的仓库推至github)<br>其实将你的代码上传至github上，按照这四个步骤便可以完成了，是不是很简单呢？  </li>
 </ol>
 <p><strong>请见详细步骤:</strong></p>
-<p>首先，你想使用git总得在网页上下载个git吧？打开终端，输入以下命令并回车:<br>  <code>ruby -e &quot;$(curl -fsSL   https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;   
-brew install git</code>  </p>
-<p>如何看你是否安装好git了呢？打开你的终端，并输入如下命令  </p>
-<p><code>git --version</code>  </p>
-<p>若出现类似下面的代码则代表你的git客户端安装成功。<br><code>zjcs-MacBook-Pro:zjc_HexoBlog zjc $ git --version 
-  git version 2.1.3.36.g8e36a6d</code>  </p>
+<p>首先，你想使用git总得在网页上下载个git吧？打开终端，输入以下命令并回车:  </p>
+<table width="100%"><tr><td bgcolor="black"><font color="ffffff">ruby -e “$(curl -fsSL   <a href="https://raw.githubusercontent.com/Homebrew/install/master/install" target="_blank" rel="external">https://raw.githubusercontent.com/Homebrew/install/master/install</a>)”<br>brew install git</font></td></tr></table><br>如何看你是否安装好git了呢？打开你的终端，并输入如下命令<br> <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git –version</font></td></tr></table><br>若出现类似下面的代码则代表你的git客户端安装成功。<br><table width="100%"><tr><td bgcolor="black"><font color="ffffff">zjcs-MacBook-Pro:zjc_HexoBlog zjc $ git –version<br>  git version 2.1.3.36.g8e36a6d</font></td></tr></table>   
+
 <p>  接下来分别通过下面两个步骤即可完成将你的代码上传至github上。  </p>
 <p>  1.克隆你github上面的项目到本地仓库，在命令行输入以下代码：git clone url 然后回车。 这时你就可以看到你的电脑上多了一个以你仓库命名的文件夹啦。（其中url指你github上面仓库的地址，点开你的仓库就可以看到你仓库的地址啦。）<br>  如我的仓库名称是: <img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%90%8D%E7%A7%B0.png" alt=""><br>  我的project仓库的地址是 <img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80.png" alt=""><br>  点击这个图标可以复制你仓库的url<br>  <img src="http://od2xrf8gr.bkt.clouddn.com/%E5%9B%BE%E6%A0%87.png" alt="">   </p>
-<p>  2.首先要将你想上传的代码文件夹拖至这个新出现的仓库文件夹，然后在命令行输入:  </p>
-<p>  <code>cd 你的仓库文件夹名称</code>  </p>
+<p>  2.首先要将你想上传的代码文件夹拖至这个新出现的仓库文件夹，然后在命令行输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">cd 你的仓库文件夹名称</font></td></tr></table></p>
 <p>  如我的就在命令行中输入:  </p>
-<p>  <code>cd projects</code>  </p>
+  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">cd projects</font></td></tr></table>
+
+
 <p>  这时你命令行中的目录就会出现在你的仓库目录下。  </p>
 <p>  接下来输入:  </p>
-  <pre>git add 你想上传的代码文件夹名称</pre>  
+   <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git add 你想上传的代码文件夹名称</font></td></tr></table>
 
-<p>  或者是输入:  </p>
-  <pre>git add .</pre>(add后面的‘.’代表你仓库中的所有内容)   
 
-  然后输入:  
+<p>  或者是输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git add .</font></td></tr></table><br>(add后面的‘.’代表你仓库中的所有内容)   </p>
+<p>  然后输入:  </p>
+   <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git commit -m “你想交代的内容”</font></td></tr></table>
 
-  <pre>git commit -m "你想交代的内容"</pre>  
-
-<p>  最后输入:  </p>
-  <pre>git push origin master</pre>  
-
+<p>  最后输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git push origin master</font></td></tr></table>  </p>
 <p>  一会儿后你就会在你github的仓库中看到你上传的代码文件夹啦。是不是都很简单呢！  </p>
 <p>  <strong>喜欢我吗？如果你喜欢我的文字，请关注我：</strong> </p>
 <ul>
@@ -402,10 +396,10 @@ brew install git</code>  </p>
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Ensemble
           </li>
         </ul>
       
@@ -421,8 +415,8 @@ brew install git</code>  </p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -482,11 +476,11 @@ brew install git</code>  </p>
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
