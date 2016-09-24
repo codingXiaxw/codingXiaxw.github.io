@@ -291,7 +291,7 @@
 <h3 id="2-继承javax-servlet-GenericServlet类"><a href="#2-继承javax-servlet-GenericServlet类" class="headerlink" title="2.继承javax.servlet.GenericServlet类"></a>2.继承javax.servlet.GenericServlet类</h3><p>有人会说，那我每次实现Servlet接口都要重写这5个方法岂不是很麻烦？那肯定麻烦！所以GenericServlet类派上用场了。  </p>
 <p>GenericServlet类实现了Servlet接口，所以在GenericServlet类中实现了Servlet接口中的5个抽象方法，另外在GenerecServlet类中还定义了自己的方法，将其作为我们要定义的xxxServlet类的父类，这样我们在自己定义的xxxServlet类中便可以不用<strong>全部</strong>实现Servlet接口中的方法。  </p>
 <p>GenericServlet类中的方法如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E5%85%A8%E9%83%A8%E6%96%B9%E6%B3%95.png" alt="">  </p>
-<p>由图可知，GenericServlet类除了实现Servlet接口中的四个方法外，还定义了getInitParameter()、getInitParameterName()、getServletName()、getServletContext()、不带参数的init()方法、log()方法等这些方法。这些自己定义的方法中，前面四个是ServletConfig接口中的方法，不带参数的init()方法跟Servlet接口中的init(ServletConfig config)方法要区别，在init()方法中，我们可以添加当xxxServlet被初始化的操作，此方法在初始化方法init(ServletConfig config)中被调用。  </p>
+<p>由图可知，GenericServlet类除了实现Servlet接口中的四个方法外，还定义了getInitParameter()返回Servlet的参数值、getInitParameterName()返回Servlet的参数名、getServletName()返回Servlet名、getServletContext()返回Servlet上下文、不带参数的init()、log()等方法。这些自己定义的方法中，前面四个是ServletConfig接口中的方法，不带参数的init()方法跟Servlet接口中的init(ServletConfig config)方法要区别，在init()方法中，我们可以添加当xxxServlet被初始化的操作，此方法在初始化方法init(ServletConfig config)中被调用。  </p>
 <p>另外不知道你们发现了没有，图中只有service()方法属于抽象方法，所以当我们定义的xxxServlet类去继承GenericServlet类时我们只需重写这一个方法即可，其他方法可重写可不重写。  </p>
 <h3 id="3-继承HttpServlet类"><a href="#3-继承HttpServlet类" class="headerlink" title="3.继承HttpServlet类"></a>3.继承HttpServlet类</h3><p>ddd</p>
 
