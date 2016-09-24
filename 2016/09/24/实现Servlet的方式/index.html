@@ -99,7 +99,8 @@
 
 例如客户端发出登录请求，或者输入注册请求，这些请求都应该由Servlet来完成处理。当然Servlet类需要我们自己来编写，每个Servlet类都必须实现jav">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png">
-<meta property="og:updated_time" content="2016-09-24T09:53:34.000Z">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E5%85%A8%E9%83%A8%E6%96%B9%E6%B3%95.png">
+<meta property="og:updated_time" content="2016-09-24T12:08:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实现Servlet的方式">
 <meta name="twitter:description" content="Servlet是什么?Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  
@@ -296,13 +297,19 @@
 <p>例如客户端发出登录请求，或者输入注册请求，这些请求都应该由Servlet来完成处理。当然Servlet类需要我们自己来编写，每个Servlet类都必须实现javax.servlet.Servlet接口。  </p>
 <h2 id="实现Servlet的方式"><a href="#实现Servlet的方式" class="headerlink" title="实现Servlet的方式"></a>实现Servlet的方式</h2><ol>
 <li>实现javax.servlet.Servlet接口;</li>
-<li>实现javax.servlet.GenericServlet类;</li>
-<li>实现javax.servlet.http.HttpServlet类;  </li>
+<li>继承javax.servlet.GenericServlet类;</li>
+<li>继承javax.servlet.http.HttpServlet类;  </li>
 </ol>
 <p>一般来说我们都选择实现HttpServlet类来完成我们的Servlet，但学习Servlet还要从javax.servlet.Servlet接口来学起。  </p>
 <h3 id="1-实现javax-servlet-Servlet接口"><a href="#1-实现javax-servlet-Servlet接口" class="headerlink" title="1.实现javax.servlet.Servlet接口"></a>1.实现javax.servlet.Servlet接口</h3><p>实现该接口的代码如下，需要实现该接口中的5个方法(各个方法的作用建注释)。  </p>
 <p>   <img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png" alt="">  </p>
-<h3 id="2-实现javax-servlet-GenericServlet类"><a href="#2-实现javax-servlet-GenericServlet类" class="headerlink" title="2.实现javax.servlet.GenericServlet类"></a>2.实现javax.servlet.GenericServlet类</h3>
+<h3 id="2-继承javax-servlet-GenericServlet类"><a href="#2-继承javax-servlet-GenericServlet类" class="headerlink" title="2.继承javax.servlet.GenericServlet类"></a>2.继承javax.servlet.GenericServlet类</h3><p>有人会说，那我每次实现Servlet接口都要重写这5个方法岂不是很麻烦？那肯定麻烦！所以GenericServlet类派上用场了。  </p>
+<p>GenericServlet类实现了Servlet接口，所以在GenericServlet类中实现了Servlet接口中的5个抽象方法，另外在GenerecServlet类中还定义了自己的方法，将其作为我们要定义的xxxServlet类的父类，这样我们在自己定义的xxxServlet类中便可以不用<strong>全部</strong>实现Servlet接口中的方法。  </p>
+<p>GenericServlet类中的方法如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E5%85%A8%E9%83%A8%E6%96%B9%E6%B3%95.png" alt="">  </p>
+<p>由图可知，GenericServlet类除了实现Servlet接口中的四个方法外，还定义了getInitParameter()、getInitParameterName()、getServletName()、getServletContext()、不带参数的init()方法、log()方法等这些方法。这些自己定义的方法中，前面四个是ServletConfig接口中的方法，不带参数的init()方法跟Servlet接口中的init(ServletConfig config)方法要区别，在init()方法中，我们可以添加当xxxServlet被初始化的操作，此方法在初始化方法init(ServletConfig config)中被调用。  </p>
+<p>另外不知道你们发现了没有，图中只有service()方法属于抽象方法，所以当我们定义的xxxServlet类去继承GenericServlet类时我们只需重写这一个方法即可，其他方法可重写可不重写。  </p>
+<h3 id="3-继承HttpServlet类"><a href="#3-继承HttpServlet类" class="headerlink" title="3.继承HttpServlet类"></a>3.继承HttpServlet类</h3><p>ddd</p>
+
       
     </div>
     
@@ -433,7 +440,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet是什么"><span class="nav-number">1.</span> <span class="nav-text">Servlet是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现Servlet的方式"><span class="nav-number">2.</span> <span class="nav-text">实现Servlet的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-实现javax-servlet-Servlet接口"><span class="nav-number">2.1.</span> <span class="nav-text">1.实现javax.servlet.Servlet接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-实现javax-servlet-GenericServlet类"><span class="nav-number">2.2.</span> <span class="nav-text">2.实现javax.servlet.GenericServlet类</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet是什么"><span class="nav-number">1.</span> <span class="nav-text">Servlet是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现Servlet的方式"><span class="nav-number">2.</span> <span class="nav-text">实现Servlet的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-实现javax-servlet-Servlet接口"><span class="nav-number">2.1.</span> <span class="nav-text">1.实现javax.servlet.Servlet接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-继承javax-servlet-GenericServlet类"><span class="nav-number">2.2.</span> <span class="nav-text">2.继承javax.servlet.GenericServlet类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-继承HttpServlet类"><span class="nav-number">2.3.</span> <span class="nav-text">3.继承HttpServlet类</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

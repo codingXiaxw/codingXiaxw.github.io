@@ -282,13 +282,19 @@
 <p>例如客户端发出登录请求，或者输入注册请求，这些请求都应该由Servlet来完成处理。当然Servlet类需要我们自己来编写，每个Servlet类都必须实现javax.servlet.Servlet接口。  </p>
 <h2 id="实现Servlet的方式"><a href="#实现Servlet的方式" class="headerlink" title="实现Servlet的方式"></a>实现Servlet的方式</h2><ol>
 <li>实现javax.servlet.Servlet接口;</li>
-<li>实现javax.servlet.GenericServlet类;</li>
-<li>实现javax.servlet.http.HttpServlet类;  </li>
+<li>继承javax.servlet.GenericServlet类;</li>
+<li>继承javax.servlet.http.HttpServlet类;  </li>
 </ol>
 <p>一般来说我们都选择实现HttpServlet类来完成我们的Servlet，但学习Servlet还要从javax.servlet.Servlet接口来学起。  </p>
 <h3 id="1-实现javax-servlet-Servlet接口"><a href="#1-实现javax-servlet-Servlet接口" class="headerlink" title="1.实现javax.servlet.Servlet接口"></a>1.实现javax.servlet.Servlet接口</h3><p>实现该接口的代码如下，需要实现该接口中的5个方法(各个方法的作用建注释)。  </p>
 <p>   <img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png" alt="">  </p>
-<h3 id="2-实现javax-servlet-GenericServlet类"><a href="#2-实现javax-servlet-GenericServlet类" class="headerlink" title="2.实现javax.servlet.GenericServlet类"></a>2.实现javax.servlet.GenericServlet类</h3>
+<h3 id="2-继承javax-servlet-GenericServlet类"><a href="#2-继承javax-servlet-GenericServlet类" class="headerlink" title="2.继承javax.servlet.GenericServlet类"></a>2.继承javax.servlet.GenericServlet类</h3><p>有人会说，那我每次实现Servlet接口都要重写这5个方法岂不是很麻烦？那肯定麻烦！所以GenericServlet类派上用场了。  </p>
+<p>GenericServlet类实现了Servlet接口，所以在GenericServlet类中实现了Servlet接口中的5个抽象方法，另外在GenerecServlet类中还定义了自己的方法，将其作为我们要定义的xxxServlet类的父类，这样我们在自己定义的xxxServlet类中便可以不用<strong>全部</strong>实现Servlet接口中的方法。  </p>
+<p>GenericServlet类中的方法如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E5%85%A8%E9%83%A8%E6%96%B9%E6%B3%95.png" alt="">  </p>
+<p>由图可知，GenericServlet类除了实现Servlet接口中的四个方法外，还定义了getInitParameter()、getInitParameterName()、getServletName()、getServletContext()、不带参数的init()方法、log()方法等这些方法。这些自己定义的方法中，前面四个是ServletConfig接口中的方法，不带参数的init()方法跟Servlet接口中的init(ServletConfig config)方法要区别，在init()方法中，我们可以添加当xxxServlet被初始化的操作，此方法在初始化方法init(ServletConfig config)中被调用。  </p>
+<p>另外不知道你们发现了没有，图中只有service()方法属于抽象方法，所以当我们定义的xxxServlet类去继承GenericServlet类时我们只需重写这一个方法即可，其他方法可重写可不重写。  </p>
+<h3 id="3-继承HttpServlet类"><a href="#3-继承HttpServlet类" class="headerlink" title="3.继承HttpServlet类"></a>3.继承HttpServlet类</h3><p>ddd</p>
+
           
         
       
@@ -410,8 +416,8 @@
 <p>这一年，开发进行的真的格外辛苦，从最开始立下的向Web开发的flag转战Android开发。这一年里，经常遇到调了几天几夜都还调不出来的bug，很是难受；看着书上那一串串乏味的代码和解说，真的很让人犯困；特别是当你的编程能力过了初级工程师的编程能力想要进阶的时候，看到那些源码真的让人很难受；很多时候想过放弃，但还是坚持了下来；因为当你完成一个功能而设计出一个app的时候，那种自豪感真的很让人兴奋。 </p>
 <p>而现在我又为什么不打算继续进阶Android了呢？我喜欢Google，当然也喜欢它的Android，但是学习也得为毕业以后的工作着想吧(毕业后就饿死了怎么办)。近几年来，Android市场确实太饱和，看了看近一年里一些IT大公司对Android工程师的要求，动不动就是要几年工作经验以上，我一个在校大学生哪来工作经验呢？在知乎看了很多人的回答，也询问了IT界前辈们的看法，最终还是决定捡起之前自己立下的flag，安心做一名Web后台开发者。毕竟网站肯定是经常是需要后台人员维护的，所以这个行业对于自己以后就业当然还是好一点。做就要做到最好，我会依旧保持自己对编程的热爱之情，向大牛发展，争取在2018年毕业之际顺利进入自己梦想的大公司(当然BAT是首选啊哈哈）。  </p>
 <p>人若没有理想，跟咸鱼有什么区别呢？  </p>
-<p>  <strong>喜欢我吗？如果你喜欢我的文字，请关注我：</strong> </p>
-<ul>
+<hr>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw的博客</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
@@ -537,8 +543,8 @@
 </ol>
 <p>另外，由图可知，从可见到不可见中间一定会经过部分不可见也就是一定会调用onPause()方法，而不能直接从可见跳到完全不可见，可见系统在Activity不可见的时候一定会调用onPause()方法;而当Activity由不可见到可见时，系统会通过顺序依次调用onStoped()–&gt;onRestart()–&gt;onStart()。  </p>
 <p>以上便是我对Android 中Activity生命周期的理解。  </p>
-<p><strong>喜欢我吗？如果你喜欢我的文字，请关注我：</strong> </p>
-<ul>
+<hr>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
 <li><p><a href="www.codingxiaxw.cn">博客:codingXiaxw的博客</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
@@ -655,8 +661,8 @@
 <p>请你谈谈StringBuffer和StringBuilder的区别。  </p>
 </blockquote>
 <p>大多数人肯定会直接说前者是线程安全的而后者是非线程安全的。其实这个时候才是面试官真正想问的，他会顺着你的回答又问你，那请你谈谈什么是线程…balabalabala。哈哈，要想顺利通过面试，所以对知识的了解还是全面点吧～！  </p>
-<p><strong>喜欢我吗？如果你喜欢我的文字，请关注我：</strong> </p>
-<ul>
+<hr>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw的博客</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
@@ -788,8 +794,8 @@
 
 <p>  最后输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git push origin master</font></td></tr></table>  </p>
 <p>  一会儿后你就会在你github的仓库中看到你上传的代码文件夹啦。是不是都很简单呢！  </p>
-<p>  <strong>喜欢我吗？如果你喜欢我的文字，请关注我：</strong> </p>
-<ul>
+<hr>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw的博客</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
