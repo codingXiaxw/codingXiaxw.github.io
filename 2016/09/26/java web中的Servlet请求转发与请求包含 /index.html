@@ -1,0 +1,588 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  
+格式首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  
+ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Web中的Servlet请求转发和请求包含">
+<meta property="og:url" content="http://yoursite.com/2016/09/26/java web中的Servlet请求转发与请求包含 /index.html">
+<meta property="og:site_name" content="codingXiaxw's blog">
+<meta property="og:description" content="为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  
+格式首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  
+ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91One.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABOne.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png">
+<meta property="og:updated_time" content="2016-09-26T13:30:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java Web中的Servlet请求转发和请求包含">
+<meta name="twitter:description" content="为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  
+格式首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  
+ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91One.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> Java Web中的Servlet请求转发和请求包含 | codingXiaxw's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">codingXiaxw's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Life is short,just coding.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java Web中的Servlet请求转发和请求包含
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-26T20:28:24+08:00" content="Sep 26 2016">
+              Sep 26 2016
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  </p>
+<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
+<p><code>ResquestDispatcher rd=request.getRequestDispatcher(&quot;/MyServlet&quot;);</code>  </p>
+<p>参数为被包含或被转发的目标Servlet路径。  </p>
+<p>若是请求转发，接下来输入<code>rd.forward(request,response);</code>  </p>
+<p>若是请求包含，接下来输入<code>rd.forward(request,response);</code>  </p>
+<p>即可完成我们的请求转发和请求包含。二者的区别为:  </p>
+<ul>
+<li>请求转发:由当前Servlet设置响应头(不能设置响应体)，下一个Servlet既可设置响应头也可设置响应体。  </li>
+<li>请求包含:当前Servlet和下一个Servlet共同完成相应头和响应体。  </li>
+</ul>
+<p>需要注意的是无论是请求转发还是请求包含，都在一个请求范围内，所以多个Servlet中使用的是同一个request和response。  </p>
+<h3 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h3><p>OneServlet代码如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91One.png" alt="">  </p>
+<p>TwoServlet代码如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png" alt="">  </p>
+<p>网页响应结果为:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E7%BB%93%E6%9E%9C.png" alt="">  </p>
+<p>由响应结果我们可以看到OneServlet中设置的响应体没有在网页中显示出来，只有TwoServlet中设置的响应体显示出来了。  </p>
+<h3 id="请求包含"><a href="#请求包含" class="headerlink" title="请求包含"></a>请求包含</h3><p>请求包含和请求转发中代码相比，只是在OneServlet中将forward()方法改为include()方法而已。  </p>
+<p>OneServlet中代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABOne.png" alt="">  </p>
+<p>TwoServlet中代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png" alt="">  </p>
+<p>网页响应结果为:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C.png" alt="">  </p>
+<p>从响应结果中我们可以看到在OneServlet和TwoServlet中设置的响应体都显示了出来。  </p>
+<h3 id="请求转发和重定向的区别"><a href="#请求转发和重定向的区别" class="headerlink" title="请求转发和重定向的区别"></a>请求转发和重定向的区别</h3><ol>
+<li>请求转发是一个请求一次响应，而重定向是两次请求两次响应。</li>
+<li>请求转发地址栏不变化，而重定向会显示后一个请求的地址。 </li>
+<li>请求转发智能转发到本项目其他Servlet，而重定向不只能重定向到本项目的其它Servlet，还能定向到其它项目。</li>
+<li>请求转发是服务器端行为，只需各处转发的Servlet路径，而重定向需要给出requestURI,即包含项目名。</li>
+<li>请求转发和重定向二者效率前者高，因为前者只发出一个请求。  </li>
+</ol>
+<p>既然请求转发和请求包含都是一个请求需要多个servlet协作完成，那么这些Servlet是如何传递数据的呢？见下文新概念。  </p>
+<h3 id="request域"><a href="#request域" class="headerlink" title="request域"></a>request域</h3><p>何为域？上一篇文章中提到对ServletContext域对象(详见<a href="http://codingxiaxw.cn/2016/09/24/%E5%AE%9E%E7%8E%B0Servlet%E7%9A%84%E6%96%B9%E5%BC%8F/" target="_blank" rel="external">Servlet的实现方式</a>)的介绍时已经说过域的功能，即具有能存数据和取数据的功能。  </p>
+<p>同一请求范围内使用request.setAttribute()来传值、使用request.getAttribute()方法来取值.即前一个Servlet使用request.setAttribute()来传值、后一个Servlet使用request.getAttribute()方法来取值。而当想清除request中的值时，调用request.removeAttribute()方法即可清除。如下图:</p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png" alt="">  </p>
+<p>上图中三大域对象的生命周期长度为:<code>request&lt;session&lt;application</code>  </p>
+<p><strong>扩展:</strong>&nbsp;&nbsp;注意上图中三个方法和请求参数方法的区别，请求参数是客户端传给服务器的，我们不能修改；而此处的setAttribute()是我们自己设置的属性与属性值。  </p>
+<hr>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<li><p><a href="codingxiaxw.cn">博客: codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博 @codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎 @码农xxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github @codingXiaxw</a> </li>
+</ul>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/24/java web实现Servlet的方式/" rel="next" title="Java Web中实现Servlet的方式">
+                <i class="fa fa-chevron-left"></i> Java Web中实现Servlet的方式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="codingXiaxw" />
+          <p class="site-author-name" itemprop="name">codingXiaxw</p>
+          <p class="site-description motion-element" itemprop="description">低调做人，高调做事。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#格式"><span class="nav-number">1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求转发"><span class="nav-number">2.</span> <span class="nav-text">请求转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求包含"><span class="nav-number">3.</span> <span class="nav-text">请求包含</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求转发和重定向的区别"><span class="nav-number">4.</span> <span class="nav-text">请求转发和重定向的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request域"><span class="nav-number">5.</span> <span class="nav-text">request域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number"></span> <span class="nav-text">联系</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">codingXiaxw</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
