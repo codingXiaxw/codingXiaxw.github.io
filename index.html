@@ -296,7 +296,15 @@
 <p>另外不知道你们发现了没有，图中只有service()方法属于抽象方法，所以当我们定义的xxxServlet类去继承GenericServlet类时我们只需重写这一个方法即可，其他方法可重写可不重写。  </p>
 <p>另外附上GenericServlet类的源代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E6%BA%90%E4%BB%A3%E7%A0%81.jpg" alt="">  </p>
 <p>代码中的xxxServlet类即是我们自己定义的servlet类。  </p>
-<p>附上<strong>对ServletContext的解释</strong>:<br>服务器会为每个应用创建一个ServletContext对象，一个应用只有一个ServletContext对象！我们可以在N多个Servlet中来获取这个唯一的对象，使用它可以给多个Servlet传递数据。  </p>
+<p>扩展:<strong>对ServletContext的解释</strong>:  </p>
+<p>服务器会为每个应用创建一个ServletContext对象，一个应用只有一个ServletContext对象！我们可以在N多个Servlet中来获取这个唯一的对象，使用它可以给多个Servlet传递数据。此对象在Tomcat(服务器)启动时就创建，在服务器关闭时就销毁。  </p>
+<p>ContextServlet是Java Web四大域对象(PageContext、ServletRequest、HttpSession、ServletContext)之一，域对象所具有的特点是:  </p>
+<ul>
+<li>能够存数据</li>
+<li>能够取数据  </li>
+</ul>
+<p>所有的域对象都有存取数据的功能，因为域对象内部有一个Map，用来存储数据，下面是ServletContext对象用来操作数据的方法:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/ServletContext%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95.png" alt="">  </p>
 <h3 id="3-继承HttpServlet类"><a href="#3-继承HttpServlet类" class="headerlink" title="3.继承HttpServlet类"></a>3.继承HttpServlet类</h3><p>HttpServlet类是我们用到次数最多的，也是最简单的。由类名可知，该类总是跟http协议相关的。  </p>
 <p>HttpServlet类中的方法如下图:<br><img src="http://od2xrf8gr.bkt.clouddn.com/httpservlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95.png" alt=""><br>方法中值得我们注意的有doGet()、doPost()、还有两个service()方法。其中doGet()和doPost()方法是需要我们重写的，我来解释下两个service()方法的区别。  </p>
 <p>估计你们从方法中的参数就知道他们的区别了吧，其中一个service()方法是Serlvet接口中的生命周期方法，另外一个是跟http协议有关的方法。二者方法的解释见下两站图的说明(图1中指出HttpServlet类是继承自GenderServlet类):<br><img src="http://od2xrf8gr.bkt.clouddn.com/httpServlet%E4%B8%AD%E5%AF%B9service%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%A3%E9%87%8A.png" alt=""><br>uml(时序图)如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt=""><br>图中405的含义是说服务器不支持客户端(即浏览器)用此种方法访问。因为HttpServlet类的源代码中的doGet()和doPost()方法体里面就是这样写的，你在定义的xxxservlet中如果不重新重写这两个方法就会出现405的响应状态码。接下来我们看看如何继承HttpServlet类:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0httpservlet%E7%B1%BB.png" alt=""><br>FServlet即为我们自己定义的servlet类，在doGet()方法和doPost()方法中即可写具体要进行的操作。  </p>
