@@ -97,7 +97,7 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png">
-<meta property="og:updated_time" content="2016-09-26T13:01:26.000Z">
+<meta property="og:updated_time" content="2016-09-26T13:05:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Servlet请求转发和请求包含">
 <meta name="twitter:description" content="为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  
@@ -284,9 +284,9 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
         <p>为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  </p>
 <h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
 <p><code>ResquestDispatcher rd=request.getRequestDispatcher(&quot;/MyServlet&quot;);</code>  </p>
-<p>参数为被包含或被转发的目标Servlet。  </p>
-<p>若是请求转发，接下来输入<code>rd.forward(request,response)</code>  </p>
-<p>若是请求包含，接下来输入<code>rd.forward(request,response)</code>  </p>
+<p>参数为被包含或被转发的目标Servlet路径。  </p>
+<p>若是请求转发，接下来输入<code>rd.forward(request,response);</code>  </p>
+<p>若是请求包含，接下来输入<code>rd.forward(request,response);</code>  </p>
 <p>即可完成我们的请求转发和请求包含。二者的区别为:  </p>
 <ul>
 <li>请求转发:由当前Servlet设置响应头(不能设置响应体)，下一个Servlet既可设置响应头也可设置响应体。  </li>
@@ -314,7 +314,17 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
 <p>同一请求范围内使用request.setAttribute()来传值、使用request.getAttribute()方法来取值.即前一个Servlet使用request.setAttribute()来传值、后一个Servlet使用request.getAttribute()方法来取值。而当想清除request中的值时，调用request.removeAttribute()方法即可清除。如下图:</p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png" alt="">  </p>
 <p>上图中三大域对象的生命周期长度为:<code>request&lt;session&lt;application</code>  </p>
-<p><strong>扩展:</strong>&nbsp;&nbsp;注意上图中三个方法和请求参数方法的区别，请求参数是客户端传给服务器的，我们不能修改；而此处的setAttribute()是我们自己设置的属性与属性值。</p>
+<p><strong>扩展:</strong>&nbsp;&nbsp;注意上图中三个方法和请求参数方法的区别，请求参数是客户端传给服务器的，我们不能修改；而此处的setAttribute()是我们自己设置的属性与属性值。  </p>
+<hr>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<li><p><a href="codingxiaxw.cn">博客: codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博 @codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎 @码农xxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github @codingXiaxw</a> </li>
+</ul>
 
       
     </div>
@@ -446,7 +456,7 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#格式"><span class="nav-number">1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求转发"><span class="nav-number">2.</span> <span class="nav-text">请求转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求包含"><span class="nav-number">3.</span> <span class="nav-text">请求包含</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求转发和重定向的区别"><span class="nav-number">4.</span> <span class="nav-text">请求转发和重定向的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request域"><span class="nav-number">5.</span> <span class="nav-text">request域</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#格式"><span class="nav-number">1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求转发"><span class="nav-number">2.</span> <span class="nav-text">请求转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求包含"><span class="nav-number">3.</span> <span class="nav-text">请求包含</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求转发和重定向的区别"><span class="nav-number">4.</span> <span class="nav-text">请求转发和重定向的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request域"><span class="nav-number">5.</span> <span class="nav-text">request域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number"></span> <span class="nav-text">联系</span></a></div>
             
           </div>
         </section>

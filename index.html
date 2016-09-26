@@ -276,9 +276,9 @@
             <p>为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  </p>
 <h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
 <p><code>ResquestDispatcher rd=request.getRequestDispatcher(&quot;/MyServlet&quot;);</code>  </p>
-<p>参数为被包含或被转发的目标Servlet。  </p>
-<p>若是请求转发，接下来输入<code>rd.forward(request,response)</code>  </p>
-<p>若是请求包含，接下来输入<code>rd.forward(request,response)</code>  </p>
+<p>参数为被包含或被转发的目标Servlet路径。  </p>
+<p>若是请求转发，接下来输入<code>rd.forward(request,response);</code>  </p>
+<p>若是请求包含，接下来输入<code>rd.forward(request,response);</code>  </p>
 <p>即可完成我们的请求转发和请求包含。二者的区别为:  </p>
 <ul>
 <li>请求转发:由当前Servlet设置响应头(不能设置响应体)，下一个Servlet既可设置响应头也可设置响应体。  </li>
@@ -306,7 +306,17 @@
 <p>同一请求范围内使用request.setAttribute()来传值、使用request.getAttribute()方法来取值.即前一个Servlet使用request.setAttribute()来传值、后一个Servlet使用request.getAttribute()方法来取值。而当想清除request中的值时，调用request.removeAttribute()方法即可清除。如下图:</p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png" alt="">  </p>
 <p>上图中三大域对象的生命周期长度为:<code>request&lt;session&lt;application</code>  </p>
-<p><strong>扩展:</strong>&nbsp;&nbsp;注意上图中三个方法和请求参数方法的区别，请求参数是客户端传给服务器的，我们不能修改；而此处的setAttribute()是我们自己设置的属性与属性值。</p>
+<p><strong>扩展:</strong>&nbsp;&nbsp;注意上图中三个方法和请求参数方法的区别，请求参数是客户端传给服务器的，我们不能修改；而此处的setAttribute()是我们自己设置的属性与属性值。  </p>
+<hr>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<li><p><a href="codingxiaxw.cn">博客: codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博 @codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎 @码农xxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github @codingXiaxw</a> </li>
+</ul>
 
           
         
