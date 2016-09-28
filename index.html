@@ -362,6 +362,138 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/27/java web学习笔记之session入门/" itemprop="url">
+                  Java Web学习笔记之session入门
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T23:52:46+08:00" content="Sep 27 2016">
+              Sep 27 2016
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-HttpSession概述"><a href="#1-HttpSession概述" class="headerlink" title="1.HttpSession概述"></a>1.HttpSession概述</h2><ul>
+<li>HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。</li>
+<li>HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。</li>
+<li>HttpSession底层依赖Cookie，或是URL重写。  </li>
+</ul>
+<h2 id="2-HttpSession的作用"><a href="#2-HttpSession的作用" class="headerlink" title="2.HttpSession的作用"></a>2.HttpSession的作用</h2><ul>
+<li>会话范围:会话范围是某个用户从首次访问服务器开始，到该用户关闭浏览器结束。(会话:一个用户对服务器的多次连贯性请求！所谓连贯请求，就是该用户多次请求 中间没有关闭浏览器)  </li>
+<li>服务器会为每个客户端创建一个session对象，session就好比客户在服务器端的账户，它们被服务器保存到一个Map中，这个Map被称之为session缓存。  <ul>
+<li>Servlet中得到session对象的方法为:HttpSession session=request.getSession();</li>
+<li>Jsp中得到session对象的方法:session是JSP内置对象之一，不用创建就可以直接使用。  </li>
+</ul>
+</li>
+<li>session域相关方法:  <ul>
+<li>void setAttribute(String name,Object value);</li>
+<li>Object getAttribute(String name);</li>
+<li>void removeAttribute(String name);  </li>
+</ul>
+</li>
+</ul>
+<h2 id="案例-演示保存用户登录信息"><a href="#案例-演示保存用户登录信息" class="headerlink" title="案例:演示保存用户登录信息"></a>案例:演示保存用户登录信息</h2><ul>
+<li>案例相关页面和Servlet:  <ul>
+<li>login.jsp:登录页面</li>
+<li>succ1.jsp:只有登录成功才能访问的页面</li>
+<li>LoginServlet:效验用户是否登录成功(这里随便判断的，以后学了数据库后可以判断该用户名和密码是否和数据库中的用户名和密码匹配)</li>
+</ul>
+</li>
+<li>各页面和Servlet内容:  <ul>
+<li>login.jsp:提供登录表单，提交表单请求至LoginServlet</li>
+<li>LoginServlet：获取请求参数，效验用户是否登录成功  <blockquote>
+<p>失败:保存错误信息到request域，转发到login.jsp。(login.jsp中显示request域中的错误信息)<br>成功:保存用户信息到sussion域中，重定向到succ1.jsp页面，显示session域中的用户信息。</p>
+</blockquote>
+</li>
+<li>succ1.jsp:从session域中获取用户信息，如果不存在，显示“您还没有登录”，存在则显示用户信息。  </li>
+</ul>
+</li>
+</ul>
+<h3 id="各页面代码如下"><a href="#各页面代码如下" class="headerlink" title="各页面代码如下:"></a>各页面代码如下:</h3><p><font align="center">login.jsp</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/login.png" alt="">  </p>
+<p><font align="center">LoginServlet.java</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/loginservlet.png" alt="">  </p>
+<p><font align="center">succ1.jsp</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/succ1.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/26/java web中的Servlet请求转发与请求包含 /" itemprop="url">
                   Java Web中的Servlet请求转发和请求包含
                 </a>
@@ -1288,7 +1420,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
