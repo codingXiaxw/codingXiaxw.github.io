@@ -166,7 +166,7 @@
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -176,7 +176,7 @@
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -242,7 +242,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-27T23:52:46+08:00" content="Sep 27 2016">
               Sep 27 2016
             </time>
@@ -311,7 +311,9 @@
 </ul>
 <h3 id="各页面代码如下"><a href="#各页面代码如下" class="headerlink" title="各页面代码如下:"></a>各页面代码如下:</h3><p><font align="center">login.jsp</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/login.png" alt="">  </p>
 <p><font align="center">LoginServlet.java</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/loginservlet.png" alt="">  </p>
-<p><font align="center">succ1.jsp</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/succ1.png" alt=""></p>
+<p><font align="center">succ1.jsp</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/succ1.png" alt="">  </p>
+<h2 id="3-HttpSession的原理"><a href="#3-HttpSession的原理" class="headerlink" title="3.HttpSession的原理"></a>3.HttpSession的原理</h2><p>1.每当客户端与服务器建议了一个会话，服务器就会为该客户端建立一个session对象，将session对象保存在服务器端的同时服务器还会给客户端发送一个带有sessionId的Cookie；2.当客户端在不关闭浏览器的情况下再次访问该服务器时，客户端就会通过这个sessionId来取出保存在服务器端相应session对象。3.当客户关闭了浏览器时，意味着与服务器断开连接然后会话session也随着就结束了，此时能识别存在服务器端的HttpSession对象的sessionId也就跟着丢失了。4.当再次打开浏览器时，就会重新建立新连接，服务器给过来的sessionId也是新的了。  </p>
+<p>这就好比你第一次去银行办卡，1.银行给你办了一张带有独特帐号的银行卡(sessionId)然后你回家了，你存在银行卡里的钱保存在银行里(相应的HttpSession对象)(对应上面的步骤1)；2.当你再次访问该银行取钱时，你首先要给银行你的带有独特帐号的银行卡(将sessionId给服务器),然后银行会给你要取的钱(获取相应的HttpSession对象)(对应上面的步骤2)。3.当你丢失了你的银行卡，而银行的工作人员又不小心在数据库中删除了你银行卡对应的帐号(对应上面的步骤3关闭浏览器)。4.这时当你再次返回该银行时，你就需要重新办一张银行卡(由于工作人员删除了你原先的帐号所以不能补办),并且新办理的银行卡会对应新的帐号(新的sessionId)。</p>
 
           
         
@@ -374,7 +376,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-27T23:50:53+08:00" content="Sep 27 2016">
               Sep 27 2016
             </time>
@@ -419,11 +421,11 @@
 </ul>
 </li>
 </ol>
-<h2 id="2-Cookie的用途"><a href="#2-Cookie的用途" class="headerlink" title="2.Cookie的用途"></a>2.Cookie的用途</h2><ol>
+<h2 id="2-Cookie的用途"><a href="#2-Cookie的用途" class="headerlink" title="2.Cookie的用途"></a>2.Cookie的用途</h2><ul>
 <li>服务器使用Cookie来跟踪客户端状态。</li>
 <li>保存购物车(购物车中的商品不能使用request域来保存，因为它是一个用户向服务器发送的多个请求信息)</li>
 <li>显示上次登录用户名(并记住密码)  </li>
-</ol>
+</ul>
 <h2 id="3-Java-Web中使用Cookie"><a href="#3-Java-Web中使用Cookie" class="headerlink" title="3.Java Web中使用Cookie"></a>3.Java Web中使用Cookie</h2><ul>
 <li>原始的方式:  <ul>
 <li>使用response发送Set-Cookie响应头。</li>
@@ -507,7 +509,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-26T20:28:24+08:00" content="Sep 26 2016">
               Sep 26 2016
             </time>
@@ -647,7 +649,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-24T17:21:07+08:00" content="Sep 24 2016">
               Sep 24 2016
             </time>
@@ -786,7 +788,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-12T19:23:54+08:00" content="Sep 12 2016">
               Sep 12 2016
             </time>
@@ -918,7 +920,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-07T15:11:29+08:00" content="Sep 7 2016">
               Sep 7 2016
             </time>
@@ -1045,7 +1047,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-06T16:25:53+08:00" content="Sep 6 2016">
               Sep 6 2016
             </time>
@@ -1163,7 +1165,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-04-09T22:07:54+08:00" content="Apr 9 2016">
               Apr 9 2016
             </time>
@@ -1296,7 +1298,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-03-31T12:59:31+08:00" content="Mar 31 2016">
               Mar 31 2016
             </time>
@@ -1421,7 +1423,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">9</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -1470,7 +1472,7 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

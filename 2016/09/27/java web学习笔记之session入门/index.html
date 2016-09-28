@@ -95,7 +95,7 @@ HttpSession底层">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/login.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/loginservlet.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/succ1.png">
-<meta property="og:updated_time" content="2016-09-28T06:41:24.000Z">
+<meta property="og:updated_time" content="2016-09-28T08:54:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Web学习笔记之session入门">
 <meta name="twitter:description" content="1.HttpSession概述
@@ -178,7 +178,7 @@ HttpSession底层">
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -188,7 +188,7 @@ HttpSession底层">
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -251,7 +251,7 @@ HttpSession底层">
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-27T23:52:46+08:00" content="Sep 27 2016">
               Sep 27 2016
             </time>
@@ -318,7 +318,9 @@ HttpSession底层">
 </ul>
 <h3 id="各页面代码如下"><a href="#各页面代码如下" class="headerlink" title="各页面代码如下:"></a>各页面代码如下:</h3><p><font align="center">login.jsp</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/login.png" alt="">  </p>
 <p><font align="center">LoginServlet.java</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/loginservlet.png" alt="">  </p>
-<p><font align="center">succ1.jsp</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/succ1.png" alt=""></p>
+<p><font align="center">succ1.jsp</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/succ1.png" alt="">  </p>
+<h2 id="3-HttpSession的原理"><a href="#3-HttpSession的原理" class="headerlink" title="3.HttpSession的原理"></a>3.HttpSession的原理</h2><p>1.每当客户端与服务器建议了一个会话，服务器就会为该客户端建立一个session对象，将session对象保存在服务器端的同时服务器还会给客户端发送一个带有sessionId的Cookie；2.当客户端在不关闭浏览器的情况下再次访问该服务器时，客户端就会通过这个sessionId来取出保存在服务器端相应session对象。3.当客户关闭了浏览器时，意味着与服务器断开连接然后会话session也随着就结束了，此时能识别存在服务器端的HttpSession对象的sessionId也就跟着丢失了。4.当再次打开浏览器时，就会重新建立新连接，服务器给过来的sessionId也是新的了。  </p>
+<p>这就好比你第一次去银行办卡，1.银行给你办了一张带有独特帐号的银行卡(sessionId)然后你回家了，你存在银行卡里的钱保存在银行里(相应的HttpSession对象)(对应上面的步骤1)；2.当你再次访问该银行取钱时，你首先要给银行你的带有独特帐号的银行卡(将sessionId给服务器),然后银行会给你要取的钱(获取相应的HttpSession对象)(对应上面的步骤2)。3.当你丢失了你的银行卡，而银行的工作人员又不小心在数据库中删除了你银行卡对应的帐号(对应上面的步骤3关闭浏览器)。4.这时当你再次返回该银行时，你就需要重新办一张银行卡(由于工作人员删除了你原先的帐号所以不能补办),并且新办理的银行卡会对应新的帐号(新的sessionId)。</p>
 
       
     </div>
@@ -397,10 +399,10 @@ HttpSession底层">
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -417,7 +419,7 @@ HttpSession底层">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">9</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -450,7 +452,7 @@ HttpSession底层">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HttpSession概述"><span class="nav-number">1.</span> <span class="nav-text">1.HttpSession概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HttpSession的作用"><span class="nav-number">2.</span> <span class="nav-text">2.HttpSession的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例-演示保存用户登录信息"><span class="nav-number">3.</span> <span class="nav-text">案例:演示保存用户登录信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各页面代码如下"><span class="nav-number">3.1.</span> <span class="nav-text">各页面代码如下:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HttpSession概述"><span class="nav-number">1.</span> <span class="nav-text">1.HttpSession概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HttpSession的作用"><span class="nav-number">2.</span> <span class="nav-text">2.HttpSession的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例-演示保存用户登录信息"><span class="nav-number">3.</span> <span class="nav-text">案例:演示保存用户登录信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各页面代码如下"><span class="nav-number">3.1.</span> <span class="nav-text">各页面代码如下:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-HttpSession的原理"><span class="nav-number">4.</span> <span class="nav-text">3.HttpSession的原理</span></a></li></ol></div>
             
           </div>
         </section>
@@ -477,7 +479,7 @@ HttpSession底层">
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
