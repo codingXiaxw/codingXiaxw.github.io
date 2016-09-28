@@ -95,7 +95,7 @@ HttpSession底层">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/login.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/loginservlet.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/succ1.png">
-<meta property="og:updated_time" content="2016-09-28T11:47:45.000Z">
+<meta property="og:updated_time" content="2016-09-28T12:40:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Web学习笔记之session入门">
 <meta name="twitter:description" content="1.HttpSession概述
@@ -338,7 +338,17 @@ HttpSession底层">
 <li>String getId():获取JSESSIONID。</li>
 <li>int getMaxInactiveInterval():获取session可以的最大不活动时间(秒),默认为30分钟，当session在30分钟内没有使用，哪么Tomcat会在session缓存中删掉这个session。</li>
 <li>void invalidate():让session失效。调用这个方法会被session失效，当session失效后，客户端再次请求，服务器会给客户端创建一个新的session，并在响应中创建一个新的JSESSIONID。</li>
-<li>boolean isNew():查看session是否为新。当客户端第一次请求时，服务器为客户端创建session，并把JSESSIONID存在Cookie中发给客户端，这时调用这个方法返回的就是新session；当再次发起请求时，JSESSIONID放在Cookie中作为请求头发给服务器，这时调用此方法，返回的就是false，即此session不是新的。</li>
+<li>boolean isNew():查看session是否为新。当客户端第一次请求时，服务器为客户端创建session，并把JSESSIONID存在Cookie中发给客户端，这时调用这个方法返回的就是新session；当再次发起请求时，JSESSIONID放在Cookie中作为请求头发给服务器，这时调用此方法，返回的就是false，即此session不是新的。  </li>
+</ul>
+<hr>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<li><p><a href="codingxiaxw.cn">博客:codingXiaxw的博客</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎@码农xxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a> </li>
 </ul>
 
       
@@ -471,7 +481,7 @@ HttpSession底层">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HttpSession概述"><span class="nav-number">1.</span> <span class="nav-text">1.HttpSession概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HttpSession的作用"><span class="nav-number">2.</span> <span class="nav-text">2.HttpSession的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-案例-演示保存用户登录信息"><span class="nav-number">3.</span> <span class="nav-text">3.案例:演示保存用户登录信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各页面代码如下"><span class="nav-number">3.1.</span> <span class="nav-text">各页面代码如下:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-HttpSession的原理-需要理解"><span class="nav-number">4.</span> <span class="nav-text">4.HttpSession的原理(需要理解)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初入HttpSession原理"><span class="nav-number">4.1.</span> <span class="nav-text">初入HttpSession原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入HttpSession原理"><span class="nav-number">4.2.</span> <span class="nav-text">深入HttpSession原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-HttpSession的其它方法"><span class="nav-number">5.</span> <span class="nav-text">5.HttpSession的其它方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HttpSession概述"><span class="nav-number">1.</span> <span class="nav-text">1.HttpSession概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HttpSession的作用"><span class="nav-number">2.</span> <span class="nav-text">2.HttpSession的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-案例-演示保存用户登录信息"><span class="nav-number">3.</span> <span class="nav-text">3.案例:演示保存用户登录信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各页面代码如下"><span class="nav-number">3.1.</span> <span class="nav-text">各页面代码如下:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-HttpSession的原理-需要理解"><span class="nav-number">4.</span> <span class="nav-text">4.HttpSession的原理(需要理解)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初入HttpSession原理"><span class="nav-number">4.1.</span> <span class="nav-text">初入HttpSession原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入HttpSession原理"><span class="nav-number">4.2.</span> <span class="nav-text">深入HttpSession原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-HttpSession的其它方法"><span class="nav-number">5.</span> <span class="nav-text">5.HttpSession的其它方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">6.</span> <span class="nav-text">联系</span></a></li></ol></div>
             
           </div>
         </section>
