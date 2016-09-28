@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="others," />
+  <meta name="keywords" content="Java Web," />
 
 
 
@@ -80,18 +80,25 @@
 
 
 
-<meta name="description" content="前言&amp;emsp;&amp;emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去搞开">
+<meta name="description" content="1.Http协议与Cookie(了解)
+Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。
+由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;  
+例如:response.addHea">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从Android开发转战Java Web">
-<meta property="og:url" content="http://codingxiaxw.cn/2016/09/12/新的开始/index.html">
+<meta property="og:title" content="Java Web学习笔记之Cookie入门">
+<meta property="og:url" content="http://codingxiaxw.cn/2016/09/27/java-web学习笔记之Cookie入门/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="前言&amp;emsp;&amp;emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去搞开">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%9D%8F%E7%AC%91.jpg">
-<meta property="og:updated_time" content="2016-09-28T14:12:44.000Z">
+<meta property="og:description" content="1.Http协议与Cookie(了解)
+Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。
+由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;  
+例如:response.addHea">
+<meta property="og:updated_time" content="2016-09-28T14:11:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从Android开发转战Java Web">
-<meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去搞开">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%9D%8F%E7%AC%91.jpg">
+<meta name="twitter:title" content="Java Web学习笔记之Cookie入门">
+<meta name="twitter:description" content="1.Http协议与Cookie(了解)
+Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。
+由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;  
+例如:response.addHea">
 
 
 
@@ -109,7 +116,7 @@
   };
 </script>
 
-  <title> 从Android开发转战Java Web | codingXiaxw's blog </title>
+  <title> Java Web学习笔记之Cookie入门 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -229,7 +236,7 @@
             
             
               
-                从Android开发转战Java Web
+                Java Web学习笔记之Cookie入门
               
             
           </h1>
@@ -241,8 +248,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-12T19:23:54+08:00" content="Sep 12 2016">
-              Sep 12 2016
+            <time itemprop="dateCreated" datetime="2016-09-27T23:50:53+08:00" content="Sep 27 2016">
+              Sep 27 2016
             </time>
           </span>
 
@@ -269,36 +276,46 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&emsp;&emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去搞开发吗)。<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%9D%8F%E7%AC%91.jpg" alt="">希望在接下来的日子里，能学有所得。 </p>
-<p>细数这一年来自己的经历:</p>
-<h2 id="1-开发过的app"><a href="#1-开发过的app" class="headerlink" title="1.开发过的app"></a>1.开发过的app</h2><ul>
-<li>计算器</li>
-<li>记事本</li>
-<li>智能聊天机器人</li>
-<li>天气预报</li>
-<li>2048小游戏</li>
-<li>知乎日报  </li>
+        <h2 id="1-Http协议与Cookie-了解"><a href="#1-Http协议与Cookie-了解" class="headerlink" title="1.Http协议与Cookie(了解)"></a>1.Http协议与Cookie(了解)</h2><ol>
+<li>Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。</li>
+<li>由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;  <blockquote>
+<p>例如:response.addHeader(“Set-Cookie”,”aaa=AAA”);<br>response.addHeader(“Set-Cookie”,”bbb=BBB”);</p>
+</blockquote>
+</li>
+<li>当浏览器请求服务器时，会把该服务器保存的Cookie随请求发送给服务器。浏览器归还Cookie的请求头:Cookie:aaa=AAA;bbb=BBB。多个键值对间用分号隔开。</li>
+<li>Http协议规定(为了不给浏览器太大压力)  <ul>
+<li>1个Cookie最大4KB</li>
+<li>1个服务器最多向1个浏览器保存20个Cookie</li>
+<li>1个浏览器最多可以保存300个Cookie  </li>
 </ul>
-<h2 id="2-学习过的网站"><a href="#2-学习过的网站" class="headerlink" title="2.学习过的网站"></a>2.学习过的网站</h2><ul>
-<li><a href="http://www.imooc.com/" target="_blank" rel="external">慕课网</a>  </li>
-<li><a href="http://www.jikexueyuan.com/" target="_blank" rel="external">极客学院</a>  </li>
-<li><a href="http://study.163.com/" target="_blank" rel="external">网易云课堂</a></li>
+</li>
+</ol>
+<h2 id="2-Cookie的用途"><a href="#2-Cookie的用途" class="headerlink" title="2.Cookie的用途"></a>2.Cookie的用途</h2><ul>
+<li>服务器使用Cookie来跟踪客户端状态。</li>
+<li>保存购物车(购物车中的商品不能使用request域来保存，因为它是一个用户向服务器发送的多个请求信息)</li>
+<li>显示上次登录用户名(并记住密码)  </li>
 </ul>
-<h2 id="3-看过的书籍"><a href="#3-看过的书籍" class="headerlink" title="3.看过的书籍"></a>3.看过的书籍</h2><p>有关java:  </p>
-<ul>
-<li>《java从入门到精通》  </li>
-<li>《java疯狂讲义》  </li>
+<h2 id="3-Java-Web中使用Cookie"><a href="#3-Java-Web中使用Cookie" class="headerlink" title="3.Java Web中使用Cookie"></a>3.Java Web中使用Cookie</h2><ul>
+<li>原始的方式:  <ul>
+<li>使用response发送Set-Cookie响应头。</li>
+<li>使用request获取请求头。</li>
 </ul>
-<p>有关Android：</p>
-<ul>
-<li>《第一行代码》</li>
-<li>《Android群英传》</li>
-<li>《Android开发艺术探索》  </li>
+</li>
+<li>便捷方式:<ul>
+<li>使用response.addCookie()方法向浏览器保存Cookie。</li>
+<li>使用request.getCookies()方法获取浏览器归还的Cookie，返回的对象为Cookie数组。若没有Cookie则返回NULL。  </li>
 </ul>
-<p>这一年，开发进行的真的格外辛苦，从最开始立下的向Web开发的flag转战Android开发。这一年里，经常遇到调了几天几夜都还调不出来的bug，很是难受；看着书上那一串串乏味的代码和解说，真的很让人犯困；特别是当你的编程能力过了初级工程师的编程能力想要进阶的时候，看到那些源码真的让人很难受；很多时候想过放弃，但还是坚持了下来；因为当你完成一个功能而设计出一个app的时候，那种自豪感真的很让人兴奋。 </p>
-<h3 id="做的好好的为什么要转？"><a href="#做的好好的为什么要转？" class="headerlink" title="做的好好的为什么要转？"></a>做的好好的为什么要转？</h3><p>纯属兴趣。  </p>
-<p>做就要做到最好，我会依旧保持自己对编程的热爱之情，向大牛发展，争取在2018年毕业之际顺利进入自己梦想的大公司(当然BAT是首选啊哈哈）。  </p>
-<p>人若没有理想，跟咸鱼有什么区别呢？  </p>
+</li>
+</ul>
+<h2 id="4-Cookie详解"><a href="#4-Cookie详解" class="headerlink" title="4.Cookie详解"></a>4.Cookie详解</h2><ol>
+<li>Cookie不只有name和value两个属性。</li>
+<li>Cookie的maxAge:指Cookie的最大生命，即Cookie可保存在客户端中的最大时长，以秒为单位。<ul>
+<li>maxAge&gt;0:浏览器会把Cookie保存到客户端硬盘上，有效时长为maxAge的值决定，例如:cookie.setMaxAge(60)表示这个Cookie会被浏览器保存到硬盘上60秒。</li>
+<li>maxAge&lt;0:Cookie只会在浏览器内存中存在，当用户关闭浏览器时浏览器进程结束，同时Cookie也就死亡了。</li>
+<li>maxAge=0:浏览器会马上删除这个Cookie。  </li>
+</ul>
+</li>
+</ol>
 <hr>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw的博客</a></p>
@@ -329,7 +346,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/others/" rel="tag">#others</a>
+            <a href="/tags/Java-Web/" rel="tag">#Java Web</a>
           
         </div>
       
@@ -338,16 +355,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/07/Android中Activity的生命周期/" rel="next" title="Android中Activity的生命周期">
-                <i class="fa fa-chevron-left"></i> Android中Activity的生命周期
+              <a href="/2016/09/26/java-web中的Servlet请求转发与请求包含/" rel="next" title="Java Web中的Servlet请求转发和请求包含">
+                <i class="fa fa-chevron-left"></i> Java Web中的Servlet请求转发和请求包含
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/24/java-web实现Servlet的方式/" rel="prev" title="Java Web中实现Servlet的方式">
-                Java Web中实现Servlet的方式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/28/java-web学习笔记之session入门/" rel="prev" title="Java Web学习笔记之session入门">
+                Java Web学习笔记之session入门 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -457,7 +474,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-开发过的app"><span class="nav-number">2.</span> <span class="nav-text">1.开发过的app</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-学习过的网站"><span class="nav-number">3.</span> <span class="nav-text">2.学习过的网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-看过的书籍"><span class="nav-number">4.</span> <span class="nav-text">3.看过的书籍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#做的好好的为什么要转？"><span class="nav-number">4.1.</span> <span class="nav-text">做的好好的为什么要转？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">5.</span> <span class="nav-text">联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Http协议与Cookie-了解"><span class="nav-number">1.</span> <span class="nav-text">1.Http协议与Cookie(了解)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Cookie的用途"><span class="nav-number">2.</span> <span class="nav-text">2.Cookie的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Java-Web中使用Cookie"><span class="nav-number">3.</span> <span class="nav-text">3.Java Web中使用Cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Cookie详解"><span class="nav-number">4.</span> <span class="nav-text">4.Cookie详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">5.</span> <span class="nav-text">联系</span></a></li></ol></div>
             
           </div>
         </section>
