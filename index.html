@@ -229,139 +229,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/28/Java Web学习笔记之Cookie入门 /" itemprop="url">
-                  Java Web学习笔记之Cookie入门
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-28T15:10:59+08:00" content="Sep 28 2016">
-              Sep 28 2016
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-Http协议与Cookie-了解"><a href="#1-Http协议与Cookie-了解" class="headerlink" title="1.Http协议与Cookie(了解)"></a>1.Http协议与Cookie(了解)</h2><ol>
-<li>Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。</li>
-<li>由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;  <blockquote>
-<p>例如:response.addHeader(“Set-Cookie”,”aaa=AAA”);response.addHeader(“Set-Cookie”,”bbb=BBB”);</p>
-</blockquote>
-</li>
-<li>当浏览器请求服务器时，会把该服务器保存的Cookie随请求发送给服务器。浏览器归还Cookie的请求头:Cookie:aaa=AAA;bbb=BBB。多个键值对间用分号隔开。</li>
-<li>Http协议规定(为了不给浏览器太大压力)  <ul>
-<li>1个Cookie最大4KB</li>
-<li>1个服务器最多向1个浏览器保存20个Cookie</li>
-<li>1个浏览器最多可以保存300个Cookie  </li>
-</ul>
-</li>
-</ol>
-<h2 id="2-Cookie的用途"><a href="#2-Cookie的用途" class="headerlink" title="2.Cookie的用途"></a>2.Cookie的用途</h2><ol>
-<li>服务器使用Cookie来跟踪客户端状态。</li>
-<li>保存购物车(购物车中的商品不能使用request域来保存，因为它是一个用户向服务器发送的多个请求信息)</li>
-<li>显示上次登录用户名(并记住密码)  </li>
-</ol>
-<h2 id="3-Java-Web中使用Cookie"><a href="#3-Java-Web中使用Cookie" class="headerlink" title="3.Java Web中使用Cookie"></a>3.Java Web中使用Cookie</h2><ul>
-<li>原始的方式:  <ul>
-<li>使用response发送Set-Cookie响应头。</li>
-<li>使用request获取请求头。</li>
-</ul>
-</li>
-<li>便捷方式:<ul>
-<li>使用response.addCookie()方法向浏览器保存Cookie。</li>
-<li>使用request.getCookies()方法获取浏览器归还的Cookie，返回的对象为Cookie数组。若没有Cookie则返回NULL。  </li>
-</ul>
-</li>
-</ul>
-<h2 id="4-Cookie详解"><a href="#4-Cookie详解" class="headerlink" title="4.Cookie详解"></a>4.Cookie详解</h2><ol>
-<li>Cookie不只有name和value两个属性。</li>
-<li>Cookie的maxAge:指Cookie的最大生命，即Cookie可保存在客户端中的最大时长，以秒为单位。<ul>
-<li>maxAge&gt;0:浏览器会把Cookie保存到客户端硬盘上，有效时长为maxAge的值决定，例如:cookie.setMaxAge(60)表示这个Cookie会被浏览器保存到硬盘上60秒。</li>
-<li>maxAge&lt;0:Cookie只会在浏览器内存中存在，当用户关闭浏览器时浏览器进程结束，同时Cookie也就死亡了。</li>
-<li>maxAge=0:浏览器会马上删除这个Cookie。</li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/09/27/java web学习笔记之session入门/" itemprop="url">
                   Java Web学习笔记之session入门
                 </a>
@@ -445,6 +312,139 @@
 <h3 id="各页面代码如下"><a href="#各页面代码如下" class="headerlink" title="各页面代码如下:"></a>各页面代码如下:</h3><p><font align="center">login.jsp</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/login.png" alt="">  </p>
 <p><font align="center">LoginServlet.java</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/loginservlet.png" alt="">  </p>
 <p><font align="center">succ1.jsp</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/succ1.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/27/java web学习笔记之Cookie入门/" itemprop="url">
+                  Java Web学习笔记之Cookie入门
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T23:50:53+08:00" content="Sep 27 2016">
+              Sep 27 2016
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-Http协议与Cookie-了解"><a href="#1-Http协议与Cookie-了解" class="headerlink" title="1.Http协议与Cookie(了解)"></a>1.Http协议与Cookie(了解)</h2><ol>
+<li>Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。</li>
+<li>由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;  <blockquote>
+<p>例如:response.addHeader(“Set-Cookie”,”aaa=AAA”);response.addHeader(“Set-Cookie”,”bbb=BBB”);</p>
+</blockquote>
+</li>
+<li>当浏览器请求服务器时，会把该服务器保存的Cookie随请求发送给服务器。浏览器归还Cookie的请求头:Cookie:aaa=AAA;bbb=BBB。多个键值对间用分号隔开。</li>
+<li>Http协议规定(为了不给浏览器太大压力)  <ul>
+<li>1个Cookie最大4KB</li>
+<li>1个服务器最多向1个浏览器保存20个Cookie</li>
+<li>1个浏览器最多可以保存300个Cookie  </li>
+</ul>
+</li>
+</ol>
+<h2 id="2-Cookie的用途"><a href="#2-Cookie的用途" class="headerlink" title="2.Cookie的用途"></a>2.Cookie的用途</h2><ol>
+<li>服务器使用Cookie来跟踪客户端状态。</li>
+<li>保存购物车(购物车中的商品不能使用request域来保存，因为它是一个用户向服务器发送的多个请求信息)</li>
+<li>显示上次登录用户名(并记住密码)  </li>
+</ol>
+<h2 id="3-Java-Web中使用Cookie"><a href="#3-Java-Web中使用Cookie" class="headerlink" title="3.Java Web中使用Cookie"></a>3.Java Web中使用Cookie</h2><ul>
+<li>原始的方式:  <ul>
+<li>使用response发送Set-Cookie响应头。</li>
+<li>使用request获取请求头。</li>
+</ul>
+</li>
+<li>便捷方式:<ul>
+<li>使用response.addCookie()方法向浏览器保存Cookie。</li>
+<li>使用request.getCookies()方法获取浏览器归还的Cookie，返回的对象为Cookie数组。若没有Cookie则返回NULL。  </li>
+</ul>
+</li>
+</ul>
+<h2 id="4-Cookie详解"><a href="#4-Cookie详解" class="headerlink" title="4.Cookie详解"></a>4.Cookie详解</h2><ol>
+<li>Cookie不只有name和value两个属性。</li>
+<li>Cookie的maxAge:指Cookie的最大生命，即Cookie可保存在客户端中的最大时长，以秒为单位。<ul>
+<li>maxAge&gt;0:浏览器会把Cookie保存到客户端硬盘上，有效时长为maxAge的值决定，例如:cookie.setMaxAge(60)表示这个Cookie会被浏览器保存到硬盘上60秒。</li>
+<li>maxAge&lt;0:Cookie只会在浏览器内存中存在，当用户关闭浏览器时浏览器进程结束，同时Cookie也就死亡了。</li>
+<li>maxAge=0:浏览器会马上删除这个Cookie。</li>
+</ul>
+</li>
+</ol>
 
           
         
