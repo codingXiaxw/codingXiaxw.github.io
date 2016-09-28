@@ -80,15 +80,25 @@
 
 
 
-<meta name="description" content="低调做人，高调做事。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="codingXiaxw's blog">
-<meta property="og:url" content="http://yoursite.com/archives/2016/04/index.html">
+<meta name="description" content="1.HttpSession概述
+HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。
+HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。
+HttpSession底层">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Web学习笔记之session入门">
+<meta property="og:url" content="http://yoursite.com/2016/09/27/java web学习笔记之session入门/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="低调做人，高调做事。">
+<meta property="og:description" content="1.HttpSession概述
+HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。
+HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。
+HttpSession底层">
+<meta property="og:updated_time" content="2016-09-28T06:19:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="codingXiaxw's blog">
-<meta name="twitter:description" content="低调做人，高调做事。">
+<meta name="twitter:title" content="Java Web学习笔记之session入门">
+<meta name="twitter:description" content="1.HttpSession概述
+HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。
+HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。
+HttpSession底层">
 
 
 
@@ -106,7 +116,7 @@
   };
 </script>
 
-  <title> Archiv | codingXiaxw's blog </title>
+  <title> Java Web学习笔记之session入门 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -127,7 +137,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -205,66 +215,132 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      Öhm..! Insgesamt 8 Artikel. Bleib dran.
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java Web学习笔记之session入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T23:52:46+08:00" content="Sep 27 2016">
+              Sep 27 2016
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <h2 id="1-HttpSession概述"><a href="#1-HttpSession概述" class="headerlink" title="1.HttpSession概述"></a>1.HttpSession概述</h2><ul>
+<li>HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。</li>
+<li>HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。</li>
+<li>HttpSession底层依赖Cookie，或是URL重写。  </li>
+</ul>
+<h2 id="2-HttpSession的作用"><a href="#2-HttpSession的作用" class="headerlink" title="2.HttpSession的作用"></a>2.HttpSession的作用</h2><ul>
+<li>会话范围:会话范围是某个用户从首次访问服务器开始，到该用户关闭浏览器结束。(会话:一个用户对服务器的多次连贯性请求！所谓连贯请求，就是该用户多次请求 中间没有关闭浏览器)  </li>
+<li>服务器会为每个客户端创建一个session对象，session就好比客户在服务器端的账户，它们被服务器保存到一个Map中，这个Map被称之为session缓存。  <ul>
+<li>Servlet中得到session对象的方法为:HttpSession session=request.getSession();</li>
+<li>Jsp中得到session对象的方法:session是JSP内置对象之一，不用创建就可以直接使用。  </li>
+</ul>
+</li>
+<li>session域相关方法:  <ul>
+<li>void setAttribute(String name,Object value);</li>
+<li>Object getAttribute(String name);</li>
+<li>void removeAttribute(String name); </li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/26/java web中的Servlet请求转发与请求包含 /" rel="next" title="Java Web中的Servlet请求转发和请求包含">
+                <i class="fa fa-chevron-left"></i> Java Web中的Servlet请求转发和请求包含
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
         </div>
       
-      
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/09/mac用户如何将自己的代码上传至github托管/" itemprop="url">
-              
-                <span itemprop="name">Mac用户如何将自己的代码上传至github托管</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-09T22:07:54+08:00"
-              content="Apr 9 2016" >
-          04-09
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -272,6 +348,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -291,8 +371,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -330,6 +419,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HttpSession概述"><span class="nav-number">1.</span> <span class="nav-text">1.HttpSession概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HttpSession的作用"><span class="nav-number">2.</span> <span class="nav-text">2.HttpSession的作用</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -426,11 +526,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   

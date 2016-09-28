@@ -229,6 +229,118 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/27/java web学习笔记之session入门/" itemprop="url">
+                  Java Web学习笔记之session入门
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T23:52:46+08:00" content="Sep 27 2016">
+              Sep 27 2016
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-HttpSession概述"><a href="#1-HttpSession概述" class="headerlink" title="1.HttpSession概述"></a>1.HttpSession概述</h2><ul>
+<li>HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。</li>
+<li>HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。</li>
+<li>HttpSession底层依赖Cookie，或是URL重写。  </li>
+</ul>
+<h2 id="2-HttpSession的作用"><a href="#2-HttpSession的作用" class="headerlink" title="2.HttpSession的作用"></a>2.HttpSession的作用</h2><ul>
+<li>会话范围:会话范围是某个用户从首次访问服务器开始，到该用户关闭浏览器结束。(会话:一个用户对服务器的多次连贯性请求！所谓连贯请求，就是该用户多次请求 中间没有关闭浏览器)  </li>
+<li>服务器会为每个客户端创建一个session对象，session就好比客户在服务器端的账户，它们被服务器保存到一个Map中，这个Map被称之为session缓存。  <ul>
+<li>Servlet中得到session对象的方法为:HttpSession session=request.getSession();</li>
+<li>Jsp中得到session对象的方法:session是JSP内置对象之一，不用创建就可以直接使用。  </li>
+</ul>
+</li>
+<li>session域相关方法:  <ul>
+<li>void setAttribute(String name,Object value);</li>
+<li>Object getAttribute(String name);</li>
+<li>void removeAttribute(String name); </li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/26/java web中的Servlet请求转发与请求包含 /" itemprop="url">
                   Java Web中的Servlet请求转发和请求包含
                 </a>
@@ -299,7 +411,10 @@
 <li>请求转发地址栏不变化，而重定向会显示后一个请求的地址。 </li>
 <li>请求转发智能转发到本项目其他Servlet，而重定向不只能重定向到本项目的其它Servlet，还能定向到其它项目。</li>
 <li>请求转发是服务器端行为，只需各处转发的Servlet路径，而重定向需要给出requestURI,即包含项目名。</li>
-<li>请求转发和重定向二者效率前者高，因为前者只发出一个请求。  </li>
+<li>请求转发和重定向二者效率前者高，因为前者只发出一个请求。  <blockquote>
+<p>很多时候我们需要地址栏发生变化，那时候必须使用重定向。<br>需要在下一个Servlet中获取到request域中的数据，必须用请求转发。  </p>
+</blockquote>
+</li>
 </ol>
 <p>既然请求转发和请求包含都是一个请求需要多个servlet协作完成，那么这些Servlet是如何传递数据的呢？见下文新概念。  </p>
 <h3 id="request域"><a href="#request域" class="headerlink" title="request域"></a>request域</h3><p>何为域？上一篇文章中提到对ServletContext域对象(详见<a href="http://codingxiaxw.cn/2016/09/24/%E5%AE%9E%E7%8E%B0Servlet%E7%9A%84%E6%96%B9%E5%BC%8F/" target="_blank" rel="external">Servlet的实现方式</a>)的介绍时已经说过域的功能，即具有能存数据和取数据的功能。  </p>
@@ -1152,7 +1267,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
