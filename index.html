@@ -229,118 +229,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/27/java web学习笔记之session入门/" itemprop="url">
-                  Java Web学习笔记之session入门
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-09-27T23:52:46+08:00" content="Sep 27 2016">
-              Sep 27 2016
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-HttpSession概述"><a href="#1-HttpSession概述" class="headerlink" title="1.HttpSession概述"></a>1.HttpSession概述</h2><ul>
-<li>HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。</li>
-<li>HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。</li>
-<li>HttpSession底层依赖Cookie，或是URL重写。  </li>
-</ul>
-<h2 id="2-HttpSession的作用"><a href="#2-HttpSession的作用" class="headerlink" title="2.HttpSession的作用"></a>2.HttpSession的作用</h2><ul>
-<li>会话范围:会话范围是某个用户从首次访问服务器开始，到该用户关闭浏览器结束。(会话:一个用户对服务器的多次连贯性请求！所谓连贯请求，就是该用户多次请求 中间没有关闭浏览器)  </li>
-<li>服务器会为每个客户端创建一个session对象，session就好比客户在服务器端的账户，它们被服务器保存到一个Map中，这个Map被称之为session缓存。  <ul>
-<li>Servlet中得到session对象的方法为:HttpSession session=request.getSession();</li>
-<li>Jsp中得到session对象的方法:session是JSP内置对象之一，不用创建就可以直接使用。  </li>
-</ul>
-</li>
-<li>session域相关方法:  <ul>
-<li>void setAttribute(String name,Object value);</li>
-<li>Object getAttribute(String name);</li>
-<li>void removeAttribute(String name); </li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/09/26/java web中的Servlet请求转发与请求包含 /" itemprop="url">
                   Java Web中的Servlet请求转发和请求包含
                 </a>
@@ -1267,7 +1155,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
