@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -55,6 +57,8 @@
     
     <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
+
+
 
 
 
@@ -92,7 +96,7 @@ String字">
   今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  
 
 String字">
-<meta property="og:updated_time" content="2016-09-28T14:11:42.000Z">
+<meta property="og:updated_time" content="2016-09-29T02:44:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中String、StringBuilder和StringBuffer的区别">
 <meta name="twitter:description" content="在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  
@@ -115,6 +119,11 @@ String字">
     }
   };
 </script>
+
+
+
+
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/09/06/java中string、StringBuffer和StringBuilder的区别/"/>
 
   <title> Java中String、StringBuilder和StringBuffer的区别 | codingXiaxw's blog </title>
 </head>
@@ -172,19 +181,9 @@ String字">
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            Archives
+            Startseite
           </a>
         </li>
       
@@ -192,9 +191,19 @@ String字">
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-about fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
           </a>
         </li>
       
@@ -202,7 +211,7 @@ String字">
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -235,7 +244,7 @@ String字">
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -257,7 +266,7 @@ String字">
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-06T16:25:53+08:00" content="Sep 6 2016">
               Sep 6 2016
             </time>
@@ -314,16 +323,18 @@ String字">
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
 
@@ -399,10 +410,10 @@ String字">
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -419,7 +430,7 @@ String字">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">9</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -429,7 +440,7 @@ String字">
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -446,9 +457,7 @@ String字">
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-        </div>
+        
 
       </section>
 
@@ -486,7 +495,7 @@ String字">
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
@@ -579,8 +588,10 @@ String字">
 
 
 
+
   
   
+
   
 
   

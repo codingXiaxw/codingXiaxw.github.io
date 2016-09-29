@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -55,6 +57,8 @@
     
     <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
+
+
 
 
 
@@ -95,7 +99,7 @@ HttpSession底层">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/login.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/loginservlet.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/succ1.png">
-<meta property="og:updated_time" content="2016-09-28T14:10:17.000Z">
+<meta property="og:updated_time" content="2016-09-29T02:44:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Web学习笔记之session入门">
 <meta name="twitter:description" content="1.HttpSession概述
@@ -119,6 +123,11 @@ HttpSession底层">
     }
   };
 </script>
+
+
+
+
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/09/28/java-web学习笔记之session入门/"/>
 
   <title> Java Web学习笔记之session入门 | codingXiaxw's blog </title>
 </head>
@@ -176,19 +185,9 @@ HttpSession底层">
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            Archives
+            Startseite
           </a>
         </li>
       
@@ -196,9 +195,19 @@ HttpSession底层">
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-about fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
           </a>
         </li>
       
@@ -206,7 +215,7 @@ HttpSession底层">
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -239,7 +248,7 @@ HttpSession底层">
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -261,7 +270,7 @@ HttpSession底层">
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-28T20:00:00+08:00" content="Sep 28 2016">
               Sep 28 2016
             </time>
@@ -363,16 +372,18 @@ HttpSession底层">
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
 
@@ -444,10 +455,10 @@ HttpSession底层">
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -464,7 +475,7 @@ HttpSession底层">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">9</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -474,7 +485,7 @@ HttpSession底层">
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -491,9 +502,7 @@ HttpSession底层">
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-        </div>
+        
 
       </section>
 
@@ -531,7 +540,7 @@ HttpSession底层">
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
@@ -624,8 +633,10 @@ HttpSession底层">
 
 
 
+
   
   
+
   
 
   

@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -55,6 +57,8 @@
     
     <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
+
+
 
 
 
@@ -106,7 +110,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/httpServlet%E4%B8%AD%E5%AF%B9service%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%A3%E9%87%8A.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0httpservlet%E7%B1%BB.png">
-<meta property="og:updated_time" content="2016-09-28T14:12:19.000Z">
+<meta property="og:updated_time" content="2016-09-29T02:44:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Web中实现Servlet的方式">
 <meta name="twitter:description" content="Servlet是什么?Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  
@@ -133,6 +137,11 @@
     }
   };
 </script>
+
+
+
+
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/09/24/java-web实现Servlet的方式/"/>
 
   <title> Java Web中实现Servlet的方式 | codingXiaxw's blog </title>
 </head>
@@ -190,19 +199,9 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            Archives
+            Startseite
           </a>
         </li>
       
@@ -210,9 +209,19 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-about fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
           </a>
         </li>
       
@@ -220,7 +229,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -253,7 +262,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -275,7 +284,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-24T17:21:07+08:00" content="Sep 24 2016">
               Sep 24 2016
             </time>
@@ -353,16 +362,18 @@
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
 
@@ -438,10 +449,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -458,7 +469,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">9</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -468,7 +479,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -485,9 +496,7 @@
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-        </div>
+        
 
       </section>
 
@@ -525,7 +534,7 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
@@ -618,8 +627,10 @@
 
 
 
+
   
   
+
   
 
   
