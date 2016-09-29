@@ -84,20 +84,17 @@
 
 
 
-<meta name="description" content="刚刚在stormzhang的一篇叫    android学到哪种程度可以去找工作中看到张哥提了这么一个观点如果我问你Android中Activity生命周期你还支支吾吾的那我就对你没什么兴趣了。吓得我赶紧在脑海中回顾了下有关activity生命周期的知识，便打算趁热打铁写下自己对activity生命周期的理解。    
-Activity形态Activity一个最大的特点就是拥有多种形态，它可以在多">
+<meta name="description" content="刚刚在stormzhang的一篇叫    android学到哪种程度可以去找工作中看到张哥提了这么一个观点如果我问你Android中Activity生命周期你还支支吾吾的那我就对你没什么兴趣了。吓得我赶紧在脑海中回顾了下有关activity生命周期的知识，便打算趁热打铁写下自己对activity生命周期的理解。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中Activity的生命周期">
 <meta property="og:url" content="http://codingxiaxw.cn/archives/2016/09/07/Android中Activity的生命周期/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="刚刚在stormzhang的一篇叫    android学到哪种程度可以去找工作中看到张哥提了这么一个观点如果我问你Android中Activity生命周期你还支支吾吾的那我就对你没什么兴趣了。吓得我赶紧在脑海中回顾了下有关activity生命周期的知识，便打算趁热打铁写下自己对activity生命周期的理解。    
-Activity形态Activity一个最大的特点就是拥有多种形态，它可以在多">
+<meta property="og:description" content="刚刚在stormzhang的一篇叫    android学到哪种程度可以去找工作中看到张哥提了这么一个观点如果我问你Android中Activity生命周期你还支支吾吾的那我就对你没什么兴趣了。吓得我赶紧在脑海中回顾了下有关activity生命周期的知识，便打算趁热打铁写下自己对activity生命周期的理解。">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/android%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png">
-<meta property="og:updated_time" content="2016-09-29T02:44:13.000Z">
+<meta property="og:updated_time" content="2016-09-29T03:45:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中Activity的生命周期">
-<meta name="twitter:description" content="刚刚在stormzhang的一篇叫    android学到哪种程度可以去找工作中看到张哥提了这么一个观点如果我问你Android中Activity生命周期你还支支吾吾的那我就对你没什么兴趣了。吓得我赶紧在脑海中回顾了下有关activity生命周期的知识，便打算趁热打铁写下自己对activity生命周期的理解。    
-Activity形态Activity一个最大的特点就是拥有多种形态，它可以在多">
+<meta name="twitter:description" content="刚刚在stormzhang的一篇叫    android学到哪种程度可以去找工作中看到张哥提了这么一个观点如果我问你Android中Activity生命周期你还支支吾吾的那我就对你没什么兴趣了。吓得我赶紧在脑海中回顾了下有关activity生命周期的知识，便打算趁热打铁写下自己对activity生命周期的理解。">
 <meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/android%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png">
 
 
@@ -292,6 +289,7 @@ Activity形态Activity一个最大的特点就是拥有多种形态，它可以�
 
       
         <p>刚刚在stormzhang的一篇叫    <strong><a href="http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&amp;mid=2650661665&amp;idx=1&amp;sn=8127335085ce285473eb5ba53663fc29&amp;scene=21#wechat_redirect" target="_blank" rel="external">android学到哪种程度可以去找工作</a></strong>中看到张哥提了这么一个观点<strong>如果我问你Android中Activity生命周期你还支支吾吾的那我就对你没什么兴趣了</strong>。吓得我赶紧在脑海中回顾了下有关activity生命周期的知识，便打算趁热打铁写下自己对activity生命周期的理解。    </p>
+<a id="more"></a>
 <h3 id="Activity形态"><a href="#Activity形态" class="headerlink" title="Activity形态"></a>Activity形态</h3><p>Activity一个最大的特点就是拥有多种形态，它可以在多种形态间进行切换，以此来控制自己的生命周期。    </p>
 <ul>
 <li><strong>Active/Running</strong><br>这时候，Activity处于Activity栈的最顶层，可见，并与用户进行交互。  </li>

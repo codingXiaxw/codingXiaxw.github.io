@@ -96,7 +96,7 @@ String字">
   今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  
 
 String字">
-<meta property="og:updated_time" content="2016-09-29T02:44:50.000Z">
+<meta property="og:updated_time" content="2016-09-29T03:46:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中String、StringBuilder和StringBuffer的区别">
 <meta name="twitter:description" content="在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  
@@ -300,7 +300,9 @@ String字">
 <ul>
 <li><strong>String字符串常量</strong>  </li>
 <li><strong>StringBuffer字符串变量(线程安全）</strong>  </li>
-<li><strong>StringBuilder字符串变量（非线程安全）</strong>  </li>
+<li><p><strong>StringBuilder字符串变量（非线程安全）</strong>  </p>
+<a id="more"></a>
+</li>
 </ul>
 <h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>所谓常量，即该对象的值已经被赋予了，不能再更改。若非要更改，则只能再重新创建另一个对象，在这个新创建的对象上再进行赋值。因此，每次在对String类型的对象进行改变的时候其实都等同于生成了一个新的String对象，然后将指针指向新的String对象，所以经常改变内容的字符串最好不要用String，因为每次生成对象都会对系统性能产生影响，特别当内存中无引用对象多了以后，JVM的GC就会开始工作，那速度是一定会相当慢的。  </p>
 <h3 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h3><p>所谓变量，即是可以随时变化的量。如果对StringBuffer对象进行改变，每次结果都会对StringBuffer对象进行操作，而不是生成新的对象。所以一般字符串要经常变化的话我推荐使用StringBuffer。  </p>

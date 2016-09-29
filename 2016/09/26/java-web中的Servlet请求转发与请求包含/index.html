@@ -101,7 +101,7 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png">
-<meta property="og:updated_time" content="2016-09-29T02:44:45.000Z">
+<meta property="og:updated_time" content="2016-09-29T03:46:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Web中的Servlet请求转发和请求包含">
 <meta name="twitter:description" content="为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  
@@ -304,6 +304,7 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
 <h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
 <p><code>ResquestDispatcher rd=request.getRequestDispatcher(&quot;/MyServlet&quot;);</code>  </p>
 <p>参数为被包含或被转发的目标Servlet路径。  </p>
+<a id="more"></a>
 <p>若是请求转发，接下来输入<code>rd.forward(request,response);</code>  </p>
 <p>若是请求包含，接下来输入<code>rd.include(request,response);</code>  </p>
 <p>即可完成我们的请求转发和请求包含。二者的区别为:  </p>
