@@ -84,37 +84,29 @@
 
 
 
-<meta name="description" content="Servlet是什么?Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  
-
-接受数据请求
-处理请求
-完成响应">
+<meta name="description" content="1.HttpSession概述
+HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。
+HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。
+HttpSession底层">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java Web中实现Servlet的方式">
-<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/09/24/java-web实现Servlet的方式/index.html">
+<meta property="og:title" content="Java Web学习笔记之session入门">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/09/27/java-web学习笔记之session入门/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="Servlet是什么?Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  
-
-接受数据请求
-处理请求
-完成响应">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E5%85%A8%E9%83%A8%E6%96%B9%E6%B3%95.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E6%BA%90%E4%BB%A3%E7%A0%81.jpg">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ServletContext%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/httpservlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/httpServlet%E4%B8%AD%E5%AF%B9service%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%A3%E9%87%8A.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0httpservlet%E7%B1%BB.png">
-<meta property="og:updated_time" content="2016-09-29T07:17:24.000Z">
+<meta property="og:description" content="1.HttpSession概述
+HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。
+HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。
+HttpSession底层">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/login.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/loginservlet.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/succ1.png">
+<meta property="og:updated_time" content="2016-09-29T07:17:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java Web中实现Servlet的方式">
-<meta name="twitter:description" content="Servlet是什么?Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  
-
-接受数据请求
-处理请求
-完成响应">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png">
+<meta name="twitter:title" content="Java Web学习笔记之session入门">
+<meta name="twitter:description" content="1.HttpSession概述
+HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。
+HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。
+HttpSession底层">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/login.png">
 
 
 
@@ -135,9 +127,9 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/09/24/java-web实现Servlet的方式/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/09/27/java-web学习笔记之session入门/"/>
 
-  <title> Java Web中实现Servlet的方式 | codingXiaxw's blog </title>
+  <title> Java Web学习笔记之session入门 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +259,7 @@
             
             
               
-                Java Web中实现Servlet的方式
+                Java Web学习笔记之session入门
               
             
           </h1>
@@ -279,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-24T17:21:07+08:00" content="Sep 24 2016">
-              Sep 24 2016
+            <time itemprop="dateCreated" datetime="2016-09-27T23:52:46+08:00" content="Sep 27 2016">
+              Sep 27 2016
             </time>
           </span>
 
@@ -326,44 +318,68 @@
       
 
       
-        <h2 id="Servlet是什么"><a href="#Servlet是什么" class="headerlink" title="Servlet是什么?"></a>Servlet是什么?</h2><p>Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  </p>
-<ul>
-<li>接受数据请求</li>
-<li>处理请求</li>
-<li><p>完成响应  </p>
-<a id="more"></a>
+        <h2 id="1-HttpSession概述"><a href="#1-HttpSession概述" class="headerlink" title="1.HttpSession概述"></a>1.HttpSession概述</h2><ul>
+<li>HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。</li>
+<li>HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。</li>
+<li><p>HttpSession底层依赖Cookie，或是URL重写。 </p>
+<a id="more"></a> 
 </li>
 </ul>
-<p>例如客户端发出登录请求，或者输入注册请求，这些请求都应该由Servlet来完成处理。当然Servlet类需要我们自己来编写，每个Servlet类都必须实现javax.servlet.Servlet接口。  </p>
-<h2 id="实现Servlet的方式-需要我们自己来写"><a href="#实现Servlet的方式-需要我们自己来写" class="headerlink" title="实现Servlet的方式(需要我们自己来写)"></a>实现Servlet的方式(需要我们自己来写)</h2><ol>
-<li>实现javax.servlet.Servlet接口;</li>
-<li>继承javax.servlet.GenericServlet类;</li>
-<li>继承javax.servlet.http.HttpServlet类;  </li>
-</ol>
-<p>一般来说我们都选择实现HttpServlet类来完成我们的Servlet，但学习Servlet还要从javax.servlet.Servlet接口来学起。  </p>
-<h3 id="1-实现javax-servlet-Servlet接口"><a href="#1-实现javax-servlet-Servlet接口" class="headerlink" title="1.实现javax.servlet.Servlet接口"></a>1.实现javax.servlet.Servlet接口</h3><p>实现该接口的代码如下，需要实现该接口中的5个方法(各个方法的作用见注释)。  </p>
-<p>   <img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png" alt="">  </p>
-<p>其中只有三个生命周期的方法是由服务器(例如我用的Tomcat)在认为需要调用的时候自动调用的(即我们自己是无法调用的)，另外的两个方法由我们自己需要的时候调用。   </p>
-<h3 id="2-继承javax-servlet-GenericServlet类"><a href="#2-继承javax-servlet-GenericServlet类" class="headerlink" title="2.继承javax.servlet.GenericServlet类"></a>2.继承javax.servlet.GenericServlet类</h3><p>有人会说，那我每次实现Servlet接口都要重写这5个方法岂不是很麻烦？那肯定麻烦！所以GenericServlet类派上用场了。  </p>
-<p>GenericServlet类实现了Servlet接口，所以在GenericServlet类中实现了Servlet接口中的5个抽象方法，另外在GenerecServlet类中还定义了自己的方法，将其作为我们要定义的xxxServlet类的父类，这样我们在自己定义的xxxServlet类中便可以不用<strong>全部</strong>实现Servlet接口中的方法。  </p>
-<p>GenericServlet类中的方法如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E5%85%A8%E9%83%A8%E6%96%B9%E6%B3%95.png" alt="">  </p>
-<p>由图可知，GenericServlet类除了实现Servlet接口中的四个方法外，还定义了getInitParameter()返回Servlet的参数值、getInitParameterNames()返回Servlet的参数名、getServletName()返回Servlet名、getServletContext()返回Servlet上下文、不带参数的init()、log()等方法。这些自己定义的方法中，前面四个是ServletConfig接口中的方法，不带参数的init()方法跟Servlet接口中的init(ServletConfig config)方法要区别，在init()方法中，我们可以添加当xxxServlet被初始化的操作，此方法在初始化方法init(ServletConfig config)中被调用(若是文字解析看不懂见下图GenericServlet源代码中注释)。  </p>
-<p>另外不知道你们发现了没有，图中只有service()方法属于抽象方法，所以当我们定义的xxxServlet类去继承GenericServlet类时我们只需重写这一个方法即可，其他方法可重写可不重写。  </p>
-<p>另外附上GenericServlet类的源代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E6%BA%90%E4%BB%A3%E7%A0%81.jpg" alt="">  </p>
-<p>代码中的xxxServlet类即是我们自己定义的servlet类。  </p>
-<p>扩展:<strong>对ServletContext的解释</strong>:  </p>
-<p>服务器会为每个应用创建一个ServletContext对象，一个应用只有一个ServletContext对象！我们可以在N多个Servlet中来获取这个唯一的对象，使用它可以给多个Servlet传递数据。此对象在Tomcat(服务器)启动时就创建，在服务器关闭时就销毁。  </p>
-<p>ContextServlet是Java Web四大域对象(PageContext、ServletRequest、HttpSession、ServletContext)之一，域对象所具有的特点是:  </p>
-<ul>
-<li>能够存数据</li>
-<li>能够取数据  </li>
+<h2 id="2-HttpSession的作用"><a href="#2-HttpSession的作用" class="headerlink" title="2.HttpSession的作用"></a>2.HttpSession的作用</h2><ul>
+<li>会话范围:会话范围是某个用户从首次访问服务器开始，到该用户关闭浏览器结束。(会话:一个用户对服务器的多次连贯性请求！所谓连贯请求，就是该用户多次请求 中间没有关闭浏览器)  </li>
+<li>服务器会为每个客户端创建一个session对象，session就好比客户在服务器端的账户，它们被服务器保存到一个Map中，这个Map被称之为session缓存。  <ul>
+<li>Servlet中得到session对象的方法为:HttpSession session=request.getSession();</li>
+<li>Jsp中得到session对象的方法:session是JSP内置对象之一，不用创建就可以直接使用。  </li>
 </ul>
-<p>所有的域对象都有存取数据的功能，因为域对象内部有一个Map，用来存储数据，下面是ServletContext对象用来操作数据的方法:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/ServletContext%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95.png" alt="">  </p>
-<h3 id="3-继承HttpServlet类"><a href="#3-继承HttpServlet类" class="headerlink" title="3.继承HttpServlet类"></a>3.继承HttpServlet类</h3><p>HttpServlet类是我们用到次数最多的，也是最简单的。由类名可知，该类总是跟http协议相关的。  </p>
-<p>HttpServlet类中的方法如下图:<br><img src="http://od2xrf8gr.bkt.clouddn.com/httpservlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95.png" alt=""><br>方法中值得我们注意的有doGet()、doPost()、还有两个service()方法。其中doGet()和doPost()方法是需要我们重写的，我来解释下两个service()方法的区别。  </p>
-<p>估计你们从方法中的参数就知道他们的区别了吧，其中一个service()方法是Serlvet接口中的生命周期方法，另外一个是跟http协议有关的方法。二者方法的解释见下两站图的说明(图1中指出HttpServlet类是继承自GenderServlet类):<br><img src="http://od2xrf8gr.bkt.clouddn.com/httpServlet%E4%B8%AD%E5%AF%B9service%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%A3%E9%87%8A.png" alt=""><br>uml(时序图)如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt=""><br>图中405的含义是说服务器不支持客户端(即浏览器)用此种方法访问。因为HttpServlet类的源代码中的doGet()和doPost()方法体里面就是这样写的，你在定义的xxxservlet中如果不重新重写这两个方法就会出现405的响应状态码。接下来我们看看如何继承HttpServlet类:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0httpservlet%E7%B1%BB.png" alt=""><br>FServlet即为我们自己定义的servlet类，在doGet()方法和doPost()方法中即可写具体要进行的操作。  </p>
-<p>如上三种方式便可实现我们自己定义的Servlet类。  </p>
+</li>
+<li>session域相关方法:  <ul>
+<li>void setAttribute(String name,Object value);</li>
+<li>Object getAttribute(String name);</li>
+<li>void removeAttribute(String name);  </li>
+</ul>
+</li>
+</ul>
+<h2 id="3-案例-演示保存用户登录信息"><a href="#3-案例-演示保存用户登录信息" class="headerlink" title="3.案例:演示保存用户登录信息"></a>3.案例:演示保存用户登录信息</h2><ul>
+<li>案例相关页面和Servlet:  <ul>
+<li>login.jsp:登录页面</li>
+<li>succ1.jsp:只有登录成功才能访问的页面</li>
+<li>LoginServlet:效验用户是否登录成功(这里随便判断的，以后学了数据库后可以根据该用户名和密码是否和数据库中的用户名和密码匹配来判断)</li>
+</ul>
+</li>
+<li>各页面和Servlet内容:  <ul>
+<li>login.jsp:提供登录表单，提交表单请求至LoginServlet</li>
+<li>LoginServlet：获取请求参数，效验用户是否登录成功  <blockquote>
+<p>失败:保存错误信息到request域，转发到login.jsp。(login.jsp中显示request域中的错误信息)<br>成功:保存用户信息到sussion域中，重定向到succ1.jsp页面，显示session域中的用户信息。</p>
+</blockquote>
+</li>
+<li>succ1.jsp:从session域中获取用户信息，如果不存在，显示“您还没有登录”，存在则显示用户信息。  </li>
+</ul>
+</li>
+</ul>
+<h3 id="各页面代码如下"><a href="#各页面代码如下" class="headerlink" title="各页面代码如下:"></a>各页面代码如下:</h3><p><font align="center">login.jsp</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/login.png" alt="">  </p>
+<p><font align="center">LoginServlet.java</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/loginservlet.png" alt="">  </p>
+<p><font align="center">succ1.jsp</font><br><img src="http://od2xrf8gr.bkt.clouddn.com/succ1.png" alt="">  </p>
+<h2 id="4-HttpSession的原理-需要理解"><a href="#4-HttpSession的原理-需要理解" class="headerlink" title="4.HttpSession的原理(需要理解)"></a>4.HttpSession的原理(需要理解)</h2><h3 id="初入HttpSession原理"><a href="#初入HttpSession原理" class="headerlink" title="初入HttpSession原理"></a>初入HttpSession原理</h3><blockquote>
+<p>1.每当客户端与服务器建立了一个会话，服务器就会为该客户端建立一个session对象，将session对象保存在服务器端的同时服务器还会给客户端发送一个带有JSESSIONID的Cookie(放在响应头中)；2.当客户端在不关闭浏览器的情况下再次访问该服务器时，客户端就会通过这个JSESSIONID来取出保存在服务器端相应session对象。3.当客户关闭了浏览器时，意味着与服务器断开连接然后会话session也随着就结束了，此时能识别存在服务器端的HttpSession对象的JSESSIONID也就跟着丢失了。4.但是此HttpSession对象依旧保存在服务器端。5.当再次打开浏览器时，就会重新建立新连接，服务器给过来的JSESSIONID也是新的了。  </p>
+<p>这就好比你第一次去银行办卡，1.银行给你办了一张带有独特帐号的银行卡(JSESSIONID)然后你回家了，你存在银行卡里的钱保存在银行里(相应的HttpSession对象)(对应上面的步骤1)；2.当你再次访问该银行取钱时，你首先要给银行你的带有独特帐号的银行卡(将JSESSIONID给服务器),然后银行会给你要取的钱(获取相应的HttpSession对象)(对应上面的步骤2)。3.当你丢失了你的银行卡，而银行的工作人员又不小心在数据库中删除了你银行卡对应的帐号(对应上面的步骤3关闭浏览器)。4.但是你的钱还保存在银行里(对应上面的步骤4)。5.这时当你再次返回该银行时，你就需要重新办一张银行卡(由于工作人员删除了你原先的帐号所以不能补办),并且新办理的银行卡会对应新的帐号(新的JSESSIONID)。  </p>
+</blockquote>
+<p>对于断开连接后保存在服务器端的HttpSession对象不会一直存在，它有它的生命时间，一般为30分钟，到达这个时间后服务器端就会将它删除。还有一种情况就是当客户端与服务器建立一个会话后，但是该客户却很长时间不对服务器发请求，当时间到达该session对象存活的时间后服务器也会删除该session对象。就比如你登录了淘宝的主页，然后你半天时间不去碰电脑，当你想起要去购物时，你点击一个超链接后服务器就会要求你重新登录，因为由于你长时间不给服务器发起请求，服务器就误认为这是一个没用的session，然后服务器就将它删了。  </p>
+<h3 id="深入HttpSession原理"><a href="#深入HttpSession原理" class="headerlink" title="深入HttpSession原理"></a>深入HttpSession原理</h3><p>首先纠正下上面的一句话，其实当客户端与服务器建立连接时，虽然会话是建立了但是服务器不会立刻建立HttpSession对象(因为对象在服务器端存活时间较长，所以服务器没那么傻)，只有当客户端请求的Servlet中调用了request.getSession()方法要求获取HttpSession对象时服务器才会创建；但是若请求的是jsp页面，则服务器会立刻创建HttpSession对象，因为jsp对应的Servlet类中已经默认调用了request.getSession()。  </p>
+<p>调用request.getSession()方法后服务器的做法  </p>
+<ul>
+<li>获取Cookie中的JSESSIONID，需要判断:  <ol>
+<li>如果JSESSIONID不存在，则创建session，把session保存起来并把新创建的JSESSIONID保存到Cookie中。</li>
+<li>如果JSESSIONID存在，通过JSESSIONID查找session对象，如果没有查找到，则创建session并保存起来，把新创建的JSESSIONID保存到Cookie中。</li>
+<li>如果JSESSIONID存在，通过JSESSIONID查找到了session对象，那么就不会再创建session对象了。  </li>
+</ol>
+</li>
+</ul>
+<h2 id="5-HttpSession的其它方法"><a href="#5-HttpSession的其它方法" class="headerlink" title="5.HttpSession的其它方法"></a>5.HttpSession的其它方法</h2><ul>
+<li>String getId():获取JSESSIONID。</li>
+<li>int getMaxInactiveInterval():获取session可以的最大不活动时间(秒),默认为30分钟，当session在30分钟内没有使用，哪么Tomcat会在session缓存中删掉这个session。</li>
+<li>void invalidate():让session失效。调用这个方法会被session失效，当session失效后，客户端再次请求，服务器会给客户端创建一个新的session，并在响应中创建一个新的JSESSIONID。</li>
+<li>boolean isNew():查看session是否为新。当客户端第一次请求时，服务器为客户端创建session，并把JSESSIONID存在Cookie中发给客户端，这时调用这个方法返回的就是新session；当再次发起请求时，JSESSIONID放在Cookie中作为请求头发给服务器，这时调用此方法，返回的就是false，即此session不是新的。  </li>
+</ul>
 <hr>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
@@ -421,17 +437,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/12/新的开始/" rel="next" title="从Android开发转战Java Web">
-                <i class="fa fa-chevron-left"></i> 从Android开发转战Java Web
+              <a href="/2016/09/27/java-web学习笔记之Cookie入门/" rel="next" title="Java Web学习笔记之Cookie入门">
+                <i class="fa fa-chevron-left"></i> Java Web学习笔记之Cookie入门
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/26/java-web中的Servlet请求转发与请求包含/" rel="prev" title="Java Web中的Servlet请求转发和请求包含">
-                Java Web中的Servlet请求转发和请求包含 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -574,7 +586,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet是什么"><span class="nav-number">1.</span> <span class="nav-text">Servlet是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现Servlet的方式-需要我们自己来写"><span class="nav-number">2.</span> <span class="nav-text">实现Servlet的方式(需要我们自己来写)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-实现javax-servlet-Servlet接口"><span class="nav-number">2.1.</span> <span class="nav-text">1.实现javax.servlet.Servlet接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-继承javax-servlet-GenericServlet类"><span class="nav-number">2.2.</span> <span class="nav-text">2.继承javax.servlet.GenericServlet类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-继承HttpServlet类"><span class="nav-number">2.3.</span> <span class="nav-text">3.继承HttpServlet类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">3.</span> <span class="nav-text">联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HttpSession概述"><span class="nav-number">1.</span> <span class="nav-text">1.HttpSession概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HttpSession的作用"><span class="nav-number">2.</span> <span class="nav-text">2.HttpSession的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-案例-演示保存用户登录信息"><span class="nav-number">3.</span> <span class="nav-text">3.案例:演示保存用户登录信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各页面代码如下"><span class="nav-number">3.1.</span> <span class="nav-text">各页面代码如下:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-HttpSession的原理-需要理解"><span class="nav-number">4.</span> <span class="nav-text">4.HttpSession的原理(需要理解)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初入HttpSession原理"><span class="nav-number">4.1.</span> <span class="nav-text">初入HttpSession原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入HttpSession原理"><span class="nav-number">4.2.</span> <span class="nav-text">深入HttpSession原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-HttpSession的其它方法"><span class="nav-number">5.</span> <span class="nav-text">5.HttpSession的其它方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">6.</span> <span class="nav-text">联系</span></a></li></ol></div>
             
           </div>
         </section>
