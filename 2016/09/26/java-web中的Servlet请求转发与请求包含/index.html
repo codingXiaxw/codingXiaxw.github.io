@@ -45,7 +45,11 @@
   
 
   
+    
+      
+    
 
+    
   
 
   
@@ -54,8 +58,16 @@
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -101,7 +113,7 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png">
-<meta property="og:updated_time" content="2016-09-29T07:17:59.000Z">
+<meta property="og:updated_time" content="2016-09-29T08:41:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Web中的Servlet请求转发和请求包含">
 <meta name="twitter:description" content="为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  
@@ -303,6 +315,8 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
           
 
           
+          
+          
 
           
           
@@ -321,12 +335,14 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
       
         <p>为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  </p>
 <h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
-<p><code>ResquestDispatcher rd=request.getRequestDispatcher(&quot;/MyServlet&quot;);</code>  </p>
-<p>参数为被包含或被转发的目标Servlet路径。  </p>
+<pre><code>ResquestDispatcher rd=request.getRequestDispatcher(&quot;/MyServlet&quot;);  
+</code></pre><p>参数为被包含或被转发的目标Servlet路径。  </p>
 <a id="more"></a>
-<p>若是请求转发，接下来输入<code>rd.forward(request,response);</code>  </p>
-<p>若是请求包含，接下来输入<code>rd.include(request,response);</code>  </p>
-<p>即可完成我们的请求转发和请求包含。二者的区别为:  </p>
+<p>若是请求转发，接下来输入  </p>
+<pre><code>rd.forward(request,response);  
+</code></pre><p>若是请求包含，接下来输入  </p>
+<pre><code>rd.include(request,response);  
+</code></pre><p>即可完成我们的请求转发和请求包含。二者的区别为:  </p>
 <ul>
 <li>请求转发:由当前Servlet设置响应头(不能设置响应体)，下一个Servlet既可设置响应头也可设置响应体。  </li>
 <li>请求包含:当前Servlet和下一个Servlet共同完成相应头和响应体。  </li>
@@ -355,8 +371,9 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
 <h3 id="request域"><a href="#request域" class="headerlink" title="request域"></a>request域</h3><p>何为域？上一篇文章中提到对ServletContext域对象(详见<a href="http://codingxiaxw.cn/2016/09/24/%E5%AE%9E%E7%8E%B0Servlet%E7%9A%84%E6%96%B9%E5%BC%8F/">Servlet的实现方式</a>)的介绍时已经说过域的功能，即具有能存数据和取数据的功能。  </p>
 <p>同一请求范围内使用request.setAttribute()来传值、使用request.getAttribute()方法来取值.即前一个Servlet使用request.setAttribute()来传值、后一个Servlet使用request.getAttribute()方法来取值。而当想清除request中的值时，调用request.removeAttribute()方法即可清除。如下图:</p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png" alt="">  </p>
-<p>上图中三大域对象的生命周期长度为:<code>request&lt;session&lt;application</code>  </p>
-<p><strong>扩展:</strong>&nbsp;&nbsp;注意上图中三个方法和请求参数方法的区别，请求参数是客户端传给服务器的，我们不能修改；而此处的setAttribute()是我们自己设置的属性与属性值。  </p>
+<p>上图中三大域对象的生命周期长度为:  </p>
+<pre><code>request&lt;session&lt;application  
+</code></pre><p><strong>扩展:</strong>&nbsp;&nbsp;注意上图中三个方法和请求参数方法的区别，请求参数是客户端传给服务器的，我们不能修改；而此处的setAttribute()是我们自己设置的属性与属性值。  </p>
 <hr>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
 <li><p><a href="codingxiaxw.cn">博客: codingXiaxw’s blog</a></p>
@@ -696,6 +713,8 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
   
 
   
+
+
 
 </body>
 </html>
