@@ -392,17 +392,9 @@
         
           <h2 id="1-Http协议与Cookie-了解"><a href="#1-Http协议与Cookie-了解" class="headerlink" title="1.Http协议与Cookie(了解)"></a>1.Http协议与Cookie(了解)</h2><ol>
 <li>Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。</li>
-<li>由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;  <blockquote>
+<li><p>由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;  </p>
+<blockquote>
 <p>例如:response.addHeader(“Set-Cookie”,”aaa=AAA”);<br>response.addHeader(“Set-Cookie”,”bbb=BBB”);</p>
-</blockquote>
-</li>
-<li>当浏览器请求服务器时，会把该服务器保存的Cookie随请求发送给服务器。浏览器归还Cookie的请求头:Cookie:aaa=AAA;bbb=BBB。多个键值对间用分号隔开。</li>
-<li><p>Http协议规定(为了不给浏览器太大压力)  </p>
-<ul>
-<li>1个Cookie最大4KB</li>
-<li>1个服务器最多向1个浏览器保存20个Cookie</li>
-<li>1个浏览器最多可以保存300个Cookie  </li>
-</ul>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/27/java-web学习笔记之Cookie入门/#more" rel="contents">
               阅读全文 &raquo;
