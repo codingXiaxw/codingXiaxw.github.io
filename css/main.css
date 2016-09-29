@@ -185,7 +185,7 @@ th {
 }
 body {
   position: relative;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 14px;
   line-height: 2;
   color: #555;
@@ -216,7 +216,7 @@ h6 {
   padding: 0;
   font-weight: bold;
   line-height: 1.5;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 h2,
 h3,
@@ -497,8 +497,8 @@ pre,
   margin: 20px 0;
   padding: 15px;
   font-size: 13px;
-  color: #eaeaea;
-  background: #000;
+  color: $highlight-foreground;
+  background: $highlight-background;
   line-height: 1.6;
 }
 pre,
@@ -515,7 +515,7 @@ code {
 }
 pre code {
   padding: 0;
-  color: #eaeaea;
+  color: $highlight-foreground;
   background: none;
   text-shadow: none;
 }
@@ -535,7 +535,7 @@ pre code {
 }
 .highlight figcaption {
   font-size: 1em;
-  color: #eaeaea;
+  color: $highlight-foreground;
   line-height: 1em;
   margin-bottom: 1em;
 }
@@ -549,10 +549,10 @@ pre code {
 }
 .highlight figcaption a {
   float: right;
-  color: #eaeaea;
+  color: $highlight-foreground;
 }
 .highlight figcaption a:hover {
-  border-bottom-color: #eaeaea;
+  border-bottom-color: $highlight-foreground;
 }
 .highlight .gutter pre {
   color: #666;
@@ -569,7 +569,7 @@ pre code {
   border: none;
 }
 pre .comment {
-  color: #969896;
+  color: $highlight-comment;
 }
 pre .variable,
 pre .attribute,
@@ -583,7 +583,7 @@ pre .html .doctype,
 pre .css .id,
 pre .css .class,
 pre .css .pseudo {
-  color: #d54e53;
+  color: $highlight-red;
 }
 pre .number,
 pre .preprocessor,
@@ -592,7 +592,7 @@ pre .literal,
 pre .params,
 pre .constant,
 pre .command {
-  color: #e78c45;
+  color: $highlight-orange;
 }
 pre .ruby .class .title,
 pre .css .rules .attribute,
@@ -605,11 +605,11 @@ pre .xml .cdata,
 pre .special,
 pre .number,
 pre .formula {
-  color: #b9ca4a;
+  color: $highlight-green;
 }
 pre .title,
 pre .css .hexcolor {
-  color: #70c0b1;
+  color: $highlight-aqua;
 }
 pre .function,
 pre .python .decorator,
@@ -619,11 +619,11 @@ pre .ruby .title .keyword,
 pre .perl .sub,
 pre .javascript .title,
 pre .coffeescript .title {
-  color: #7aa6da;
+  color: $highlight-blue;
 }
 pre .keyword,
 pre .javascript .function {
-  color: #c397d8;
+  color: $highlight-purple;
 }
 .full-image.full-image.full-image {
   border: none;
@@ -910,7 +910,7 @@ pre .javascript .function {
   line-height: 36px;
   font-size: 20px;
   font-weight: normal;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .site-subtitle {
   margin-top: 10px;
@@ -998,7 +998,7 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 @media (max-width: 767px) {
   .post-body {
@@ -1263,7 +1263,7 @@ pre .javascript .function {
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
   color: #999;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 12px;
   text-align: center;
 }
@@ -1390,121 +1390,6 @@ pre .javascript .function {
 .fancybox-close,
 .fancybox-close:hover {
   border: none;
-}
-#rewardButton {
-  cursor: pointer;
-  border: 0;
-  outline: 0;
-  border-radius: 100%;
-  padding: 0;
-  margin: 0;
-  letter-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-}
-#rewardButton span {
-  display: inline-block;
-  width: 80px;
-  height: 35px;
-  border-radius: 5px;
-  color: #fff;
-  font-weight: 400;
-  font-style: normal;
-  font-variant: normal;
-  font-stretch: normal;
-  font-size: 18px;
-  font-family: "Microsoft Yahei";
-  background: #f44336;
-}
-#rewardButton span:hover {
-  background: #f7877f;
-}
-#QR {
-  padding-top: 20px;
-}
-#QR a {
-  border: 0;
-}
-#QR img {
-  width: 180px;
-  max-width: 100%;
-  display: inline-block;
-  margin: 0.8em 2em 0 2em;
-}
-#wechat:hover p {
-  animation: roll 0.1s infinite linear;
-  -webkit-animation: roll 0.1s infinite linear;
-  -moz-animation: roll 0.1s infinite linear;
-}
-#alipay:hover p {
-  animation: roll 0.1s infinite linear;
-  -webkit-animation: roll 0.1s infinite linear;
-  -moz-animation: roll 0.1s infinite linear;
-}
-@-moz-keyframes roll {
-  from {
-    -webkit-transform: rotateZ(30deg);
-    -moz-transform: rotateZ(30deg);
-    -ms-transform: rotateZ(30deg);
-    -o-transform: rotateZ(30deg);
-    transform: rotateZ(30deg);
-  }
-  to {
-    -webkit-transform: rotateZ(-30deg);
-    -moz-transform: rotateZ(-30deg);
-    -ms-transform: rotateZ(-30deg);
-    -o-transform: rotateZ(-30deg);
-    transform: rotateZ(-30deg);
-  }
-}
-@-webkit-keyframes roll {
-  from {
-    -webkit-transform: rotateZ(30deg);
-    -moz-transform: rotateZ(30deg);
-    -ms-transform: rotateZ(30deg);
-    -o-transform: rotateZ(30deg);
-    transform: rotateZ(30deg);
-  }
-  to {
-    -webkit-transform: rotateZ(-30deg);
-    -moz-transform: rotateZ(-30deg);
-    -ms-transform: rotateZ(-30deg);
-    -o-transform: rotateZ(-30deg);
-    transform: rotateZ(-30deg);
-  }
-}
-@-o-keyframes roll {
-  from {
-    -webkit-transform: rotateZ(30deg);
-    -moz-transform: rotateZ(30deg);
-    -ms-transform: rotateZ(30deg);
-    -o-transform: rotateZ(30deg);
-    transform: rotateZ(30deg);
-  }
-  to {
-    -webkit-transform: rotateZ(-30deg);
-    -moz-transform: rotateZ(-30deg);
-    -ms-transform: rotateZ(-30deg);
-    -o-transform: rotateZ(-30deg);
-    transform: rotateZ(-30deg);
-  }
-}
-@keyframes roll {
-  from {
-    -webkit-transform: rotateZ(30deg);
-    -moz-transform: rotateZ(30deg);
-    -ms-transform: rotateZ(30deg);
-    -o-transform: rotateZ(30deg);
-    transform: rotateZ(30deg);
-  }
-  to {
-    -webkit-transform: rotateZ(-30deg);
-    -moz-transform: rotateZ(-30deg);
-    -ms-transform: rotateZ(-30deg);
-    -o-transform: rotateZ(-30deg);
-    transform: rotateZ(-30deg);
-  }
 }
 .sidebar {
   position: fixed;
@@ -1663,7 +1548,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5514ff;
+  background: #1dfe7d;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2159,13 +2044,6 @@ a.search-result {
 .page-pv .busuanzi-value {
   margin: 0 5px;
 }
-.site-uv {
-  margin-right: 10px;
-}
-.site-uv::after {
-  content: "|";
-  padding-left: 10px;
-}
 .use-motion .post {
   opacity: 0;
 }
@@ -2297,33 +2175,4 @@ a.search-result {
 }
 .header {
   background: url("http://7xrcp8.com1.z0.glb.clouddn.com/banner-large.png");
-}
-.app-header {
-  text-align: center;
-}
-.app-header .banner {
-  position: relative;
-  overflow: hidden;
-  z-index: -1024;
-  background-color: #f6f6f6;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.app-header .banner .placeholder {
-  padding-bottom: 33.3%;
-}
-.app-header .banner img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  opacity: 0;
-  transition: opacity 2s linear;
-}
-.app-header .banner img.loaded {
-  opacity: 1;
-}
-.app-header .banner .banner-small {
-  filter: blur(50px);
-  -webkit-filter: blur(25px);
 }
