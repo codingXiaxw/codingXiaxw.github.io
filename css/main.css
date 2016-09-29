@@ -1663,7 +1663,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b37917;
+  background: #5514ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2296,5 +2296,34 @@ a.search-result {
   display: inline-block;
 }
 .header {
-  background: url("http://7xkj6q.com1.z0.glb.clouddn.com/header_background.jpg");
+  background: url("http://7xrcp8.com1.z0.glb.clouddn.com/banner-large.png");
+}
+.app-header {
+  text-align: center;
+}
+.app-header .banner {
+  position: relative;
+  overflow: hidden;
+  z-index: -1024;
+  background-color: #f6f6f6;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.app-header .banner .placeholder {
+  padding-bottom: 33.3%;
+}
+.app-header .banner img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 2s linear;
+}
+.app-header .banner img.loaded {
+  opacity: 1;
+}
+.app-header .banner .banner-small {
+  filter: blur(50px);
+  -webkit-filter: blur(25px);
 }
