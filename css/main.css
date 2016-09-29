@@ -185,7 +185,7 @@ th {
 }
 body {
   position: relative;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 14px;
   line-height: 2;
   color: #555;
@@ -216,7 +216,7 @@ h6 {
   padding: 0;
   font-weight: bold;
   line-height: 1.5;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 h2,
 h3,
@@ -372,6 +372,19 @@ dd {
   margin-left: 10px;
   margin-right: 5px;
 }
+.highlight table,
+.gist table {
+  width: auto;
+}
+.highlight table td,
+.gist table td {
+  border: none;
+}
+.highlight a,
+.gist a {
+  color: #222 !important;
+  text-decoration: none !important;
+}
 .affix.affix.affix {
   position: fixed;
 }
@@ -416,7 +429,7 @@ table {
   border: 1px solid #ddd;
   font-size: 14px;
   table-layout: fixed;
-  word-wrap: break-all;
+  word-wrap: break-word;
 }
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -497,8 +510,8 @@ pre,
   margin: 20px 0;
   padding: 15px;
   font-size: 13px;
-  color: #4d4d4c;
-  background: #f7f7f7;
+  color: $highlight-foreground;
+  background: $highlight-background;
   line-height: 1.6;
 }
 pre,
@@ -515,7 +528,7 @@ code {
 }
 pre code {
   padding: 0;
-  color: #4d4d4c;
+  color: $highlight-foreground;
   background: none;
   text-shadow: none;
 }
@@ -534,8 +547,8 @@ pre code {
   padding: 0;
 }
 .highlight figcaption {
-  font-size: 1em;
-  color: #4d4d4c;
+  font-size: 0.85em;
+  color: $highlight-comment;
   line-height: 1em;
   margin-bottom: 1em;
 }
@@ -549,10 +562,6 @@ pre code {
 }
 .highlight figcaption a {
   float: right;
-  color: #4d4d4c;
-}
-.highlight figcaption a:hover {
-  border-bottom-color: #4d4d4c;
 }
 .highlight .gutter pre {
   color: #666;
@@ -562,14 +571,8 @@ pre code {
 .highlight .line {
   height: 20px;
 }
-.gist table {
-  width: auto;
-}
-.gist table td {
-  border: none;
-}
 pre .comment {
-  color: #8e908c;
+  color: $highlight-comment;
 }
 pre .variable,
 pre .attribute,
@@ -583,7 +586,7 @@ pre .html .doctype,
 pre .css .id,
 pre .css .class,
 pre .css .pseudo {
-  color: #c82829;
+  color: $highlight-red;
 }
 pre .number,
 pre .preprocessor,
@@ -592,7 +595,7 @@ pre .literal,
 pre .params,
 pre .constant,
 pre .command {
-  color: #f5871f;
+  color: $highlight-orange;
 }
 pre .ruby .class .title,
 pre .css .rules .attribute,
@@ -605,11 +608,11 @@ pre .xml .cdata,
 pre .special,
 pre .number,
 pre .formula {
-  color: #718c00;
+  color: $highlight-green;
 }
 pre .title,
 pre .css .hexcolor {
-  color: #3e999f;
+  color: $highlight-aqua;
 }
 pre .function,
 pre .python .decorator,
@@ -619,11 +622,11 @@ pre .ruby .title .keyword,
 pre .perl .sub,
 pre .javascript .title,
 pre .coffeescript .title {
-  color: #4271ae;
+  color: $highlight-blue;
 }
 pre .keyword,
 pre .javascript .function {
-  color: #8959a8;
+  color: $highlight-purple;
 }
 .full-image.full-image.full-image {
   border: none;
@@ -910,7 +913,7 @@ pre .javascript .function {
   line-height: 36px;
   font-size: 20px;
   font-weight: normal;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .site-subtitle {
   margin-top: 10px;
@@ -998,11 +1001,11 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 @media (max-width: 767px) {
   .post-body {
-    word-break: break-word;
+    word-break: break-all;
   }
 }
 .post-body .fancybox img {
@@ -1025,10 +1028,6 @@ pre .javascript .function {
   display: inline-block;
   font-size: 16px;
   -ms-transform: rotate(30deg);
-  -webkit-transform: rotate(30deg);
-  -moz-transform: rotate(30deg);
-  -ms-transform: rotate(30deg);
-  -o-transform: rotate(30deg);
   transform: rotate(30deg);
 }
 .posts-expand {
@@ -1216,7 +1215,6 @@ pre .javascript .function {
   font-size: 26px;
   text-align: center;
   word-break: break-word;
-  font-weight: 400;
 }
 @media (max-width: 767px) {
   .posts-expand .post-title {
@@ -1240,10 +1238,6 @@ pre .javascript .function {
   left: 0;
   background-color: #000;
   visibility: hidden;
-  -webkit-transform: scaleX(0);
-  -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
-  -o-transform: scaleX(0);
   transform: scaleX(0);
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
@@ -1251,10 +1245,6 @@ pre .javascript .function {
 }
 .posts-expand .post-title-link:hover::before {
   visibility: visible;
-  -webkit-transform: scaleX(1);
-  -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
-  -o-transform: scaleX(1);
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
@@ -1263,7 +1253,7 @@ pre .javascript .function {
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
   color: #999;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 12px;
   text-align: center;
 }
@@ -1463,28 +1453,24 @@ pre .javascript .function {
 .site-author-image {
   display: block;
   margin: 0 auto;
-  padding: 2px;
   max-width: 96px;
   height: auto;
   border: 2px solid #333;
+  padding: 2px;
 }
 .site-author-name {
   margin: 5px 0 0;
-  text-align: center;
   color: #f5f5f5;
-  font-weight: normal;
 }
 .site-description {
   margin-top: 5px;
-  text-align: center;
   font-size: 14px;
-  color: #999;
+  color: #555;
 }
 .site-state {
   overflow: hidden;
   line-height: 1.4;
   white-space: nowrap;
-  text-align: center;
 }
 .site-state-item {
   display: inline-block;
@@ -1548,7 +1534,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff87ec;
+  background: #0a0d29;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2044,13 +2030,6 @@ a.search-result {
 .page-pv .busuanzi-value {
   margin: 0 5px;
 }
-.site-uv {
-  margin-right: 10px;
-}
-.site-uv::after {
-  content: "|";
-  padding-left: 10px;
-}
 .use-motion .post {
   opacity: 0;
 }
@@ -2176,7 +2155,4 @@ a.search-result {
 }
 .site-search form {
   display: none;
-}
-.links-of-blogroll-inline .links-of-blogroll-item {
-  display: inline-block;
 }
