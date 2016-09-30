@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="Java Web," />
 
 
 
@@ -96,25 +96,44 @@
 
 
 
-<meta name="description" content="在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  
-  今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  
+<meta name="description" content="Java随机生成图片用Java语言生成一个带有字符串文本的图片总结来说只需要如下四步:
 
-String字">
+1.创建图片缓冲区
+2.设置图片缓冲区的宽高及保存图片的类型
+3.得到这个图片的绘制环境(拿到画笔)
+4.将图片保存起来
+
+代码如下:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java中String、StringBuilder和StringBuffer的区别">
-<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/09/06/java中string、StringBuffer和StringBuilder的区别/index.html">
+<meta property="og:title" content="Java随机生成图片与HTML表单中的验证码实现">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/09/30/Java随机生成图片与HTML表单中的验证码实现介绍/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  
-  今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  
+<meta property="og:description" content="Java随机生成图片用Java语言生成一个带有字符串文本的图片总结来说只需要如下四步:
 
-String字">
-<meta property="og:updated_time" content="2016-09-29T07:18:11.000Z">
+1.创建图片缓冲区
+2.设置图片缓冲区的宽高及保存图片的类型
+3.得到这个图片的绘制环境(拿到画笔)
+4.将图片保存起来
+
+代码如下:">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/verify1.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/verify2.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/verify3.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/verifyServlet.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/LoginServlet2.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/loginJsp.png">
+<meta property="og:updated_time" content="2016-09-30T12:55:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java中String、StringBuilder和StringBuffer的区别">
-<meta name="twitter:description" content="在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  
-  今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  
+<meta name="twitter:title" content="Java随机生成图片与HTML表单中的验证码实现">
+<meta name="twitter:description" content="Java随机生成图片用Java语言生成一个带有字符串文本的图片总结来说只需要如下四步:
 
-String字">
+1.创建图片缓冲区
+2.设置图片缓冲区的宽高及保存图片的类型
+3.得到这个图片的绘制环境(拿到画笔)
+4.将图片保存起来
+
+代码如下:">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/verify1.png">
 
 
 
@@ -135,9 +154,9 @@ String字">
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/09/06/java中string、StringBuffer和StringBuilder的区别/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/09/30/Java随机生成图片与HTML表单中的验证码实现介绍/"/>
 
-  <title> Java中String、StringBuilder和StringBuffer的区别 | codingXiaxw's blog </title>
+  <title> Java随机生成图片与HTML表单中的验证码实现 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +286,7 @@ String字">
             
             
               
-                Java中String、StringBuilder和StringBuffer的区别
+                Java随机生成图片与HTML表单中的验证码实现
               
             
           </h1>
@@ -279,8 +298,8 @@ String字">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-06T16:25:53+08:00" content="Sep 6 2016">
-              Sep 6 2016
+            <time itemprop="dateCreated" datetime="2016-09-30T18:21:28+08:00" content="Sep 30 2016">
+              Sep 30 2016
             </time>
           </span>
 
@@ -293,8 +312,8 @@ String字">
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
                   </a>
                 </span>
 
@@ -328,32 +347,51 @@ String字">
       
 
       
-        <p>  在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  </p>
-<p>  今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  </p>
+        <h2 id="Java随机生成图片"><a href="#Java随机生成图片" class="headerlink" title="Java随机生成图片"></a>Java随机生成图片</h2><p>用Java语言生成一个带有字符串文本的图片总结来说只需要如下四步:</p>
 <ul>
-<li><strong>String字符串常量</strong>  </li>
-<li><strong>StringBuffer字符串变量(线程安全）</strong>  </li>
-<li><p><strong>StringBuilder字符串变量（非线程安全）</strong>  </p>
-<a id="more"></a>
-</li>
+<li>1.创建图片缓冲区</li>
+<li>2.设置图片缓冲区的宽高及保存图片的类型</li>
+<li>3.得到这个图片的绘制环境(拿到画笔)</li>
+<li>4.将图片保存起来</li>
 </ul>
-<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>所谓常量，即该对象的值已经被赋予了，不能再更改。若非要更改，则只能再重新创建另一个对象，在这个新创建的对象上再进行赋值。因此，每次在对String类型的对象进行改变的时候其实都等同于生成了一个新的String对象，然后将指针指向新的String对象，所以经常改变内容的字符串最好不要用String，因为每次生成对象都会对系统性能产生影响，特别当内存中无引用对象多了以后，JVM的GC就会开始工作，那速度是一定会相当慢的。  </p>
-<h3 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h3><p>所谓变量，即是可以随时变化的量。如果对StringBuffer对象进行改变，每次结果都会对StringBuffer对象进行操作，而不是生成新的对象。所以一般字符串要经常变化的话我推荐使用StringBuffer。  </p>
-<h3 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h3><p>StringBuilder和StringBuffer类功能基本相似，方法也差不多，主要区别在于StringBuffer类的方法是多线程安全的，而StringBuilder不是线程安全的，相比而言StringBuilder类会略微快一点。  </p>
-<p><strong>题外话:</strong>现在很多互联网公司面试java的面试官都喜欢问这样一个问题,</p>
-<blockquote>
-<p>请你谈谈StringBuffer和StringBuilder的区别。  </p>
-</blockquote>
-<p>大多数人肯定会直接说前者是线程安全的而后者是非线程安全的。其实这个时候才是面试官真正想问的，他会顺着你的回答又问你，那请你谈谈什么是线程…balabalabala。哈哈，要想顺利通过面试，所以对知识的了解还是全面点吧～！  </p>
+<p>代码如下:<br><a id="more"></a></p>
+<pre><code>//第一、二步，传入参数为缓冲区宽、高、保存图片类型
+BufferedImage image=new BufferedImage(width1,height1,BufferedImage.TYPE_INT_RGB);
+
+//第三步，得到绘制环境(需要用到Graphics类)
+Graphics paint=image.getGraphics();
+paint.setColor(Color.WHITE);//设置画笔颜色为白色
+paint.fillRect(start,end,width2,height2);//绘制矩形并填充，将图片缓冲区的(start,end)坐标作为绘制图片的左上角坐标，绘制图片宽为width2、高为height2
+paint.setColor(Color.RED);//设置画笔颜色为红色
+paint.drawString(str,x,y);//设置需要绘制在图片上的文本，参数为字符串、字符串所在的x坐标和y坐标
+
+//第四步，将图片保存起来(需要用到ImageIO类)
+ImageIO.write(image,&quot;JPEG&quot;,out);//参数为图片缓冲区、图片类型、输出流  
+</code></pre><p>通过以上代码便可实现用java语言生成一个简易的带有字符串文本的图片，具体实现如下，首先在IDEA中创建VerifyCode.java类:<br>    <img src="http://od2xrf8gr.bkt.clouddn.com/verify1.png" alt=""><br>    <img src="http://od2xrf8gr.bkt.clouddn.com/verify2.png" alt=""><br>    <img src="http://od2xrf8gr.bkt.clouddn.com/verify3.png" alt="">  </p>
+<p>通过代码<code>VerifyCode vc=new VerifyCode();</code>创建VerifyCode对象后就可以调用上述所有方法便可以实现随机验证码的图片了。  </p>
+<h2 id="在HTML表单中实现验证码"><a href="#在HTML表单中实现验证码" class="headerlink" title="在HTML表单中实现验证码"></a>在HTML表单中实现验证码</h2><p>借用上篇<a href="">Java Web学习笔记之session入门</a>中的保存用户登录信息案例中的代码，新增:  </p>
+<ul>
+<li>VerifyServlet.java:生成图片，保存图片上的文本到session域中，将图片响应给客户端。</li>
+<li>LoginServlet.java中新增作用:判断用户输入的验证码是否正确，若正确则跳转至下一链接，若错误则保存错误信息到request域中，然后请求转发至login.jsp登录页面。  </li>
+</ul>
+<p>代码如下图:  </p>
+<div align="center">VerifyServlet.java</div>
+
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/verifyServlet.png" alt="">  </p>
+<div align="center">LoginServlet.java</div>  
+
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/LoginServlet2.png" alt="">  </p>
+<p><div align="center">login.jsp(用到了javascript语法来更换验证码)</div><br><img src="http://od2xrf8gr.bkt.clouddn.com/loginJsp.png" alt=""></p>
+<p>通过如上代码便可实现HTML中的验证码效果。</p>
 <hr>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
-<li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
+<li><p><a href="codingxiaxw.cn">博客: codingXiaxw’s blog</a></p>
 </li>
-<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博 @codingXiaxw</a></p>
 </li>
-<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎@codingXiaxw</a>  </p>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎 @codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a> </li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github @codingXiaxw</a> </li>
 </ul>
 
       
@@ -393,7 +431,7 @@ String字">
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag">#Java</a>
+            <a href="/tags/Java-Web/" rel="tag">#Java Web</a>
           
         </div>
       
@@ -402,17 +440,13 @@ String字">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/09/mac用户如何将自己的代码上传至github托管/" rel="next" title="Mac用户如何将自己的代码上传至github托管">
-                <i class="fa fa-chevron-left"></i> Mac用户如何将自己的代码上传至github托管
+              <a href="/2016/09/27/java-web学习笔记之session入门/" rel="next" title="Java Web学习笔记之session入门">
+                <i class="fa fa-chevron-left"></i> Java Web学习笔记之session入门
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/07/Android中Activity的生命周期/" rel="prev" title="Android中Activity的生命周期">
-                Android中Activity的生命周期 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -555,7 +589,7 @@ String字">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StringBuffer"><span class="nav-number">2.</span> <span class="nav-text">StringBuffer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StringBuilder"><span class="nav-number">3.</span> <span class="nav-text">StringBuilder</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number"></span> <span class="nav-text">联系</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java随机生成图片"><span class="nav-number">1.</span> <span class="nav-text">Java随机生成图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在HTML表单中实现验证码"><span class="nav-number">2.</span> <span class="nav-text">在HTML表单中实现验证码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">3.</span> <span class="nav-text">联系</span></a></li></ol></div>
             
           </div>
         </section>
