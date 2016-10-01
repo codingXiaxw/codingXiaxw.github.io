@@ -743,7 +743,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
       
         
           <p>为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  </p>
-<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
+<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
 <pre><code>ResquestDispatcher rd=request.getRequestDispatcher(&quot;/MyServlet&quot;);  
 </code></pre><p>参数为被包含或被转发的目标Servlet路径。  </p>
           <div class="post-more-link text-center">

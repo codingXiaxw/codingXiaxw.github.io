@@ -113,7 +113,7 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png">
-<meta property="og:updated_time" content="2016-10-01T10:51:49.000Z">
+<meta property="og:updated_time" content="2016-10-01T12:08:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Web中的Servlet请求转发和请求包含">
 <meta name="twitter:description" content="为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  
@@ -364,7 +364,7 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
 
       
         <p>为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  </p>
-<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
+<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
 <pre><code>ResquestDispatcher rd=request.getRequestDispatcher(&quot;/MyServlet&quot;);  
 </code></pre><p>参数为被包含或被转发的目标Servlet路径。  </p>
 <a id="more"></a>
@@ -378,16 +378,16 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
 <li>请求包含:当前Servlet和下一个Servlet共同完成相应头和响应体。  </li>
 </ul>
 <p>需要注意的是无论是请求转发还是请求包含，都在一个请求范围内，所以多个Servlet中使用的是同一个request和response。  </p>
-<h3 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h3><p>OneServlet代码如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91One.png" alt="">  </p>
+<h2 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h2><p>OneServlet代码如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91One.png" alt="">  </p>
 <p>TwoServlet代码如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png" alt="">  </p>
 <p>网页响应结果为:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E7%BB%93%E6%9E%9C.png" alt="">  </p>
 <p>由响应结果我们可以看到OneServlet中设置的响应体没有在网页中显示出来，只有TwoServlet中设置的响应体显示出来了。  </p>
-<h3 id="请求包含"><a href="#请求包含" class="headerlink" title="请求包含"></a>请求包含</h3><p>请求包含和请求转发中代码相比，只是在OneServlet中将forward()方法改为include()方法而已。  </p>
+<h2 id="请求包含"><a href="#请求包含" class="headerlink" title="请求包含"></a>请求包含</h2><p>请求包含和请求转发中代码相比，只是在OneServlet中将forward()方法改为include()方法而已。  </p>
 <p>OneServlet中代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABOne.png" alt="">  </p>
 <p>TwoServlet中代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png" alt="">  </p>
 <p>网页响应结果为:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C.png" alt="">  </p>
 <p>从响应结果中我们可以看到在OneServlet和TwoServlet中设置的响应体都显示了出来。  </p>
-<h3 id="请求转发和重定向的区别"><a href="#请求转发和重定向的区别" class="headerlink" title="请求转发和重定向的区别"></a>请求转发和重定向的区别</h3><ol>
+<h2 id="请求转发和重定向的区别"><a href="#请求转发和重定向的区别" class="headerlink" title="请求转发和重定向的区别"></a>请求转发和重定向的区别</h2><ol>
 <li>请求转发是一个请求一次响应，而重定向是两次请求两次响应。</li>
 <li>请求转发地址栏不变化，而重定向会显示后一个请求的地址。 </li>
 <li>请求转发智能转发到本项目其他Servlet，而重定向不只能重定向到本项目的其它Servlet，还能定向到其它项目。</li>
@@ -398,7 +398,7 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
 </li>
 </ol>
 <p>既然请求转发和请求包含都是一个请求需要多个servlet协作完成，那么这些Servlet是如何传递数据的呢？见下文新概念。  </p>
-<h3 id="request域"><a href="#request域" class="headerlink" title="request域"></a>request域</h3><p>何为域？上一篇文章中提到对ServletContext域对象(详见<a href="http://codingxiaxw.cn/2016/09/24/%E5%AE%9E%E7%8E%B0Servlet%E7%9A%84%E6%96%B9%E5%BC%8F/">Servlet的实现方式</a>)的介绍时已经说过域的功能，即具有能存数据和取数据的功能。  </p>
+<h2 id="request域"><a href="#request域" class="headerlink" title="request域"></a>request域</h2><p>何为域？上一篇文章中提到对ServletContext域对象(详见<a href="http://codingxiaxw.cn/2016/09/24/%E5%AE%9E%E7%8E%B0Servlet%E7%9A%84%E6%96%B9%E5%BC%8F/">Servlet的实现方式</a>)的介绍时已经说过域的功能，即具有能存数据和取数据的功能。  </p>
 <p>同一请求范围内使用request.setAttribute()来传值、使用request.getAttribute()方法来取值.即前一个Servlet使用request.setAttribute()来传值、后一个Servlet使用request.getAttribute()方法来取值。而当想清除request中的值时，调用request.removeAttribute()方法即可清除。如下图:</p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png" alt="">  </p>
 <p>上图中三大域对象的生命周期长度为:  </p>
@@ -618,7 +618,7 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;qu">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#格式"><span class="nav-number">1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求转发"><span class="nav-number">2.</span> <span class="nav-text">请求转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求包含"><span class="nav-number">3.</span> <span class="nav-text">请求包含</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求转发和重定向的区别"><span class="nav-number">4.</span> <span class="nav-text">请求转发和重定向的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request域"><span class="nav-number">5.</span> <span class="nav-text">request域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number"></span> <span class="nav-text">联系</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#格式"><span class="nav-number">1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求转发"><span class="nav-number">2.</span> <span class="nav-text">请求转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求包含"><span class="nav-number">3.</span> <span class="nav-text">请求包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求转发和重定向的区别"><span class="nav-number">4.</span> <span class="nav-text">请求转发和重定向的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#request域"><span class="nav-number">5.</span> <span class="nav-text">request域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">6.</span> <span class="nav-text">联系</span></a></li></ol></div>
             
           </div>
         </section>
