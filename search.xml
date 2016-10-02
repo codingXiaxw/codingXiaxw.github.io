@@ -4,6 +4,78 @@
   
     
     <entry>
+      <title><![CDATA[java学习笔记之反射机制]]></title>
+      <url>http://codingxiaxw.cn/archives/2016/10/02/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/</url>
+      <content type="html"><![CDATA[<h2 id="理论介绍"><a href="#理论介绍" class="headerlink" title="理论介绍"></a>理论介绍</h2><p>为了便于理解，在给出代码例子之前，首先用文字给大家说说关于”Java反射机制”的理论介绍。  </p>
+<p>Java反射是Java语言的一个很重要的特征，它使得Java具有了“动态性”。  </p>
+<a id="more"></a>
+<p>在Java运行时环境中，对于一个类，能否知道这个类有哪些属性和方法？对于任意一个对象，能否调用它的任意一个方法？答案是肯定的。这种动态获取类的信息以及动态调用对象的方法的功能来自于Java语言的反射(Reflection)机制。  </p>
+<p>Java反射机制主要提供了以下功能:  </p>
+<ul>
+<li>在运行时判断任意一个对象所属的类。</li>
+<li>在运行时构造任意一个类的对象。</li>
+<li>在运行时判断任意一个类所具有的成员变量和方法。</li>
+<li>在运行时调用任意一个对象的方法。  </li>
+</ul>
+<p>Reflection是Java被视为动态(或准动态)语言的一个关键性质。这个机制允许程序在运行时透过Reflection APIs取得任何一个已知名称的class的内部信息，包括modifiers(诸如public,static等等)、superclass(例如Object)、实现之interfaces(例如Serializable)，也包括fields和methods的所有信息，并可于运行时改变fields内容或调用methods。  </p>
+<p>一般而言，开发者社群说到动态语言，大致认同的一个定义是:“程序运行时，允许改变程序结构或变凉类型，这种语言成为动态语言”。从这个观点看，Java就不是动态语言。  </p>
+<p>尽管在这样的定义与分类下Java不是动态语言，它却有着一个非常突出的动态相关机制:Reflection。这个字的意思是“反射、映像、倒影”，用在Java身上指的是我们可以于运行时加载、探知、使用编译器件完全未知的classes。换句话说，Java程序可以加在一个运行时才得知名称的class，获悉其完整构造(但不包括methods定义)，并生成其对象实体、或对其fields设值、或唤起其methods。这种“看透class”的能力(the ability of the program to examine itselt)被称为introspection(内省、内观、反省)。Reflection和introspection是常被并提的两个术语。  </p>
+<p>在JDK中，主要由以下类来实现Java反射机制，这些类都位于java.lang.reflet包中:  </p>
+<ul>
+<li>Class类：代表一个类。</li>
+<li>field类：代表类的成员变量(成员变量也被称为类的属性)</li>
+<li>Method类：代表类的方法。</li>
+<li>Constructor类：代表类的构造方法。</li>
+<li>Array类：提供了动态创建数组，以及访问数组的元素的静态方法。  </li>
+</ul>
+<h3 id="获得Class对象"><a href="#获得Class对象" class="headerlink" title="获得Class对象"></a>获得Class对象</h3><p>Java中每个类被加载之后，系统就会为该类声称一个对应的Class对象，通过该Class对象就可以访问到JVM中的这个类。在Java程序中获得Class对象通常有如下三种方式。  </p>
+<ul>
+<li><p>1.使用Class类的forName(String clazzName)静态方法。该方法需要传入字符串参数，该字符串参数的值是某个类的全限定类名(必须包括完整包名)。  </p>
+<blockquote>
+<p>代码示例：Class clazz=Class.forName(“demo.Person”);”Demo”代表包名，”Person”代表类名。  </p>
+</blockquote>
+</li>
+<li><p>2.调用某个类的class属性来获取该类对应的Class对象，例如，Person.class将会返回Person类对应的Class对象。  </p>
+<blockquote>
+<p>代码示例：Class clazz=Person.class;  </p>
+</blockquote>
+</li>
+<li><p>3.调用某个对席那个的getClass()方法，该方法是java.lang.Object类中的一个方法，所以所有的Java对象都可以调用该方法，该方法将会返回该对象所属类对应的Class对象。  </p>
+<blockquote>
+<p>代码示例:Person person=new Person();<br>Class clazz=person.getClass();  </p>
+</blockquote>
+</li>
+</ul>
+<p>Class对象可以获得该类里的方法(由Method对象表示)、构造器(由Constructor对象表示)、成员变量(由Field)对象表示，这三个类都位于java.lang.reflect包下并实现了java.lang.reflect.Member接口。程序可以通过Method对象来执行对应的方法，通过Constructor对象来调用对应的构造器创建实例，能通过Field对象直接访问并修改对象的成员变量值。  </p>
+<h3 id="创建实例对象"><a href="#创建实例对象" class="headerlink" title="创建实例对象"></a>创建实例对象</h3><p>通过反射来生成实例对象有如下两种方式。  </p>
+<ul>
+<li><p>1.使用Class对象的newInstance()方法来创建该Class对应类的实例，这种方式要求该Class对象的对应类有默认构造器，而执行newInstance()时实际上是利用默认构造器来创建该类的实例。  </p>
+<blockquote>
+<p>代码示例:Class clazz=Person.class;<br>Object obj=clazz.newInstance();  </p>
+</blockquote>
+</li>
+<li><p>2.先使用Class对象获取指定的Constructor对象，再调用Constructor对象的newInstance()方法来创建该Class对象对应类的实例。通过这种方式可以选择使用指定的构造器来创建实例。  </p>
+<blockquote>
+<p>代码示例:Class clazz=Person.class;<br>Constructor constructor=clazz.getConstructor(String.class);<br>Object obj=constructor.newInstance();  </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><p>理论说了这么多，接下来给个很全的案例大家看，毕竟”Talk is cheap,show me your code”。相信看了这个案例你们就会掌握对Java的反射机制了，我这里参考的是CSDN上的一篇文章，就不重复造轮子了直接给链接你们去看他写的代码。<a href="http://blog.csdn.net/ljphhj/article/details/12858767" target="_blank" rel="external">一个例子让你了解Java反射机制</a>。</p>
+<hr>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p> If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">博客:codingXiaxw的博客</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a> </li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Java随机生成图片与HTML表单中的验证码实现]]></title>
       <url>http://codingxiaxw.cn/archives/2016/09/30/Java%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87%E4%B8%8EHTML%E8%A1%A8%E5%8D%95%E4%B8%AD%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E5%AE%9E%E7%8E%B0%E4%BB%8B%E7%BB%8D/</url>
       <content type="html"><![CDATA[<h2 id="Java随机生成图片"><a href="#Java随机生成图片" class="headerlink" title="Java随机生成图片"></a>Java随机生成图片</h2><p>用Java语言生成一个带有字符串文本的图片总结来说只需要如下四步:</p>
@@ -43,7 +115,8 @@ ImageIO.write(image,&quot;JPEG&quot;,out);//参数为图片缓冲区、图片类
 <p><div align="center">login.jsp(用到了javascript语法来更换验证码)</div><br><img src="http://od2xrf8gr.bkt.clouddn.com/loginJsp.png" alt=""></p>
 <p>通过如上代码便可实现HTML中的验证码效果。</p>
 <hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
 <li><p><a href="codingxiaxw.cn">博客: codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博 @codingXiaxw</a></p>
@@ -121,7 +194,8 @@ ImageIO.write(image,&quot;JPEG&quot;,out);//参数为图片缓冲区、图片类
 <li>boolean isNew():查看session是否为新。当客户端第一次请求时，服务器为客户端创建session，并把JSESSIONID存在Cookie中发给客户端，这时调用这个方法返回的就是新session；当再次发起请求时，JSESSIONID放在Cookie中作为请求头发给服务器，这时调用此方法，返回的就是false，即此session不是新的。  </li>
 </ul>
 <hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
@@ -180,7 +254,8 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 </li>
 </ol>
 <hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
@@ -237,7 +312,8 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 <pre><code>request&lt;session&lt;application  
 </code></pre><p><strong>扩展:</strong>&nbsp;&nbsp;注意上图中三个方法和请求参数方法的区别，请求参数是客户端传给服务器的，我们不能修改；而此处的setAttribute()是我们自己设置的属性与属性值。另外Servlet类中有上述三大域，而JSP中有四大域，多了一个pageContext域。  </p>
 <hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
 <li><p><a href="codingxiaxw.cn">博客: codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博 @codingXiaxw</a></p>
@@ -291,7 +367,8 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 <p>估计你们从方法中的参数就知道他们的区别了吧，其中一个service()方法是Serlvet接口中的生命周期方法，另外一个是跟http协议有关的方法。二者方法的解释见下两站图的说明(图1中指出HttpServlet类是继承自GenderServlet类):<br><img src="http://od2xrf8gr.bkt.clouddn.com/httpServlet%E4%B8%AD%E5%AF%B9service%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%A3%E9%87%8A.png" alt=""><br>uml(时序图)如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt=""><br>图中405的含义是说服务器不支持客户端(即浏览器)用此种方法访问。因为HttpServlet类的源代码中的doGet()和doPost()方法体里面就是这样写的，你在定义的xxxservlet中如果不重新重写这两个方法就会出现405的响应状态码。接下来我们看看如何继承HttpServlet类:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0httpservlet%E7%B1%BB.png" alt=""><br>FServlet即为我们自己定义的servlet类，在doGet()方法和doPost()方法中即可写具体要进行的操作。  </p>
 <p>如上三种方式便可实现我们自己定义的Servlet类。  </p>
 <hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
@@ -338,7 +415,8 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 <p>做就要做到最好，我会依旧保持自己对编程的热爱之情，向大牛发展，争取在2018年毕业之际顺利进入自己梦想的大公司(当然BAT是首选啊哈哈）。  </p>
 <p>人若没有理想，跟咸鱼有什么区别呢？  </p>
 <hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p> If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw的博客</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
@@ -379,7 +457,8 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 <p>另外，由图可知，从可见到不可见中间一定会经过部分不可见也就是一定会调用onPause()方法，而不能直接从可见跳到完全不可见，可见系统在Activity不可见的时候一定会调用onPause()方法;而当Activity由不可见到可见时，系统会通过顺序依次调用onStoped()–&gt;onRestart()–&gt;onStart()。  </p>
 <p>以上便是我对Android 中Activity生命周期的理解。  </p>
 <hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
 <li><p><a href="www.codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
@@ -412,7 +491,8 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 </blockquote>
 <p>大多数人肯定会直接说前者是线程安全的而后者是非线程安全的。其实这个时候才是面试官真正想问的，他会顺着你的回答又问你，那请你谈谈什么是线程…balabalabala。哈哈，要想顺利通过面试，所以对知识的了解还是全面点吧～！  </p>
 <hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
@@ -459,7 +539,8 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 <p>  最后输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git push origin master</font></td></tr></table>  </p>
 <p>  一会儿后你就会在你github的仓库中看到你上传的代码文件夹啦。是不是都很简单呢！  </p>
 <hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p> If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by clicking  these links.</p>
+<ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
@@ -485,7 +566,8 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 <h3 id="我的朋友们"><a href="#我的朋友们" class="headerlink" title="我的朋友们"></a>我的朋友们</h3><ul>
 <li><a href="http://blog.csdn.net/laymat?viewmode=contents" target="_blank" rel="external">方正浩（laymat）</a></li>
 </ul>
-<h3 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h3><ul>
+<h3 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h3><p> If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw的博客</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
