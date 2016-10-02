@@ -40,7 +40,7 @@
 <p>代码示例：Class clazz=Person.class;  </p>
 </blockquote>
 </li>
-<li><p>3.调用某个对席那个的getClass()方法，该方法是java.lang.Object类中的一个方法，所以所有的Java对象都可以调用该方法，该方法将会返回该对象所属类对应的Class对象。  </p>
+<li><p>3.调用某个对象的getClass()方法，该方法是java.lang.Object类中的一个方法，所以所有的Java对象都可以调用该方法，该方法将会返回该对象所属类对应的Class对象。  </p>
 <blockquote>
 <p>代码示例:Person person=new Person();<br>Class clazz=person.getClass();  </p>
 </blockquote>
