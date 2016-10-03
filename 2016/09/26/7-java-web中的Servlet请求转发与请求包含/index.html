@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java Web," />
 
 
 
@@ -96,15 +96,30 @@
 
 
 
-<meta name="description" content="Life is short,just coding.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="codingXiaxw's blog">
-<meta property="og:url" content="http://codingxiaxw.cn/archives/page/2/index.html">
+<meta name="description" content="为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  
+1.格式首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  
+ResquestDispatcher rd=request.getRequestDispatcher(&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Web中的Servlet请求转发和请求包含">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/09/26/7-java-web中的Servlet请求转发与请求包含/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="Life is short,just coding.">
+<meta property="og:description" content="为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  
+1.格式首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  
+ResquestDispatcher rd=request.getRequestDispatcher(&amp;">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91One.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABOne.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png">
+<meta property="og:updated_time" content="2016-10-03T06:49:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="codingXiaxw's blog">
-<meta name="twitter:description" content="Life is short,just coding.">
+<meta name="twitter:title" content="Java Web中的Servlet请求转发和请求包含">
+<meta name="twitter:description" content="为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  
+1.格式首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  
+ResquestDispatcher rd=request.getRequestDispatcher(&amp;">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91One.png">
 
 
 
@@ -125,9 +140,9 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/archives/page/2/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/09/26/7-java-web中的Servlet请求转发与请求包含/"/>
 
-  <title> codingXiaxw's blog </title>
+  <title> Java Web中的Servlet请求转发和请求包含 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -148,9 +163,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -260,9 +273,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -282,10 +295,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/04/09/2-mac用户如何将自己的代码上传至github托管/" itemprop="url">
-                  Mac用户如何将自己的代码上传至github托管
-                </a>
+                Java Web中的Servlet请求转发和请求包含
               
             
           </h1>
@@ -297,8 +307,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-09T22:07:54+08:00" content="Apr 9 2016">
-              Apr 9 2016
+            <time itemprop="dateCreated" datetime="2016-09-26T20:28:24+08:00" content="Sep 26 2016">
+              Sep 26 2016
             </time>
           </span>
 
@@ -311,8 +321,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mac-and-Github/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac and Github</span>
+                  <a href="/categories/Java-Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Java Web</span>
                   </a>
                 </span>
 
@@ -327,8 +337,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/09/2-mac用户如何将自己的代码上传至github托管/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/2-mac用户如何将自己的代码上传至github托管/" itemprop="commentsCount"></span>
+                <a href="/2016/09/26/7-java-web中的Servlet请求转发与请求包含/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/26/7-java-web中的Servlet请求转发与请求包含/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -353,170 +363,132 @@
       
 
       
-        
-          <p>  楼主刚开始试着想将自己的代码上传至github上的时候真的是个小白，google上面到处搜到处找资源。后来云里雾里的成功上传后，发现网络上介绍的大致有两种方法，一种方法是通过git命令行，另一种方法是通过下载github客户端。两种方法都很简单，也许你觉得我接下来介绍的很繁琐，但这是详细的表现，下面将详细介绍<strong>通过git命令行来上传自己的代码</strong>。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/09/2-mac用户如何将自己的代码上传至github托管/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+        <p>为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  </p>
+<h2 id="1-格式"><a href="#1-格式" class="headerlink" title="1.格式"></a>1.格式</h2><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
+<pre><code>ResquestDispatcher rd=request.getRequestDispatcher(&quot;/MyServlet&quot;);  
+</code></pre><p>参数为被包含或被转发的目标Servlet路径。  </p>
+<a id="more"></a>
+<p>若是请求转发，接下来输入  </p>
+<pre><code>rd.forward(request,response);  
+</code></pre><p>若是请求包含，接下来输入  </p>
+<pre><code>rd.include(request,response);  
+</code></pre><p>即可完成我们的请求转发和请求包含。二者的区别为:  </p>
+<ul>
+<li>请求转发:由当前Servlet设置响应头(不能设置响应体)，下一个Servlet既可设置响应头也可设置响应体。  </li>
+<li>请求包含:当前Servlet和下一个Servlet共同完成相应头和响应体。  </li>
+</ul>
+<p>需要注意的是无论是请求转发还是请求包含，都在一个请求范围内，所以多个Servlet中使用的是同一个request和response。  </p>
+<h2 id="2-请求转发"><a href="#2-请求转发" class="headerlink" title="2.请求转发"></a>2.请求转发</h2><p>OneServlet代码如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91One.png" alt="">  </p>
+<p>TwoServlet代码如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png" alt="">  </p>
+<p>网页响应结果为:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E7%BB%93%E6%9E%9C.png" alt="">  </p>
+<p>由响应结果我们可以看到OneServlet中设置的响应体没有在网页中显示出来，只有TwoServlet中设置的响应体显示出来了。  </p>
+<h2 id="3-请求包含"><a href="#3-请求包含" class="headerlink" title="3.请求包含"></a>3.请求包含</h2><p>请求包含和请求转发中代码相比，只是在OneServlet中将forward()方法改为include()方法而已。  </p>
+<p>OneServlet中代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABOne.png" alt="">  </p>
+<p>TwoServlet中代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png" alt="">  </p>
+<p>网页响应结果为:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C.png" alt="">  </p>
+<p>从响应结果中我们可以看到在OneServlet和TwoServlet中设置的响应体都显示了出来。  </p>
+<h2 id="4-请求转发和重定向的区别"><a href="#4-请求转发和重定向的区别" class="headerlink" title="4.请求转发和重定向的区别"></a>4.请求转发和重定向的区别</h2><ol>
+<li>请求转发是一个请求一次响应，而重定向是两次请求两次响应。</li>
+<li>请求转发地址栏不变化，而重定向会显示后一个请求的地址。 </li>
+<li>请求转发智能转发到本项目其他Servlet，而重定向不只能重定向到本项目的其它Servlet，还能定向到其它项目。</li>
+<li>请求转发是服务器端行为，只需各处转发的Servlet路径，而重定向需要给出requestURI,即包含项目名。</li>
+<li>请求转发和重定向二者效率前者高，因为前者只发出一个请求。  <blockquote>
+<p>很多时候我们需要地址栏发生变化，那时候必须使用重定向。<br>需要在下一个Servlet中获取到request域中的数据，必须用请求转发。  </p>
+</blockquote>
+</li>
+</ol>
+<p>既然请求转发和请求包含都是一个请求需要多个servlet协作完成，那么这些Servlet是如何传递数据的呢？见下文新概念。  </p>
+<h2 id="5-request域"><a href="#5-request域" class="headerlink" title="5.request域"></a>5.request域</h2><p>何为域？上一篇文章中提到对ServletContext域对象(详见<a href="http://codingxiaxw.cn/2016/09/24/%E5%AE%9E%E7%8E%B0Servlet%E7%9A%84%E6%96%B9%E5%BC%8F/">Servlet的实现方式</a>)的介绍时已经说过域的功能，即具有能存数据和取数据的功能。  </p>
+<p>同一请求范围内使用request.setAttribute()来传值、使用request.getAttribute()方法来取值.即前一个Servlet使用request.setAttribute()来传值、后一个Servlet使用request.getAttribute()方法来取值。而当想清除request中的值时，调用request.removeAttribute()方法即可清除。如下图:</p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png" alt="">  </p>
+<p>上图中三大域对象的生命周期长度为:  </p>
+<pre><code>request&lt;session&lt;application  
+</code></pre><p><strong>扩展:</strong>&nbsp;&nbsp;注意上图中三个方法和请求参数方法的区别，请求参数是客户端传给服务器的，我们不能修改；而此处的setAttribute()是我们自己设置的属性与属性值。另外Servlet类中有上述三大域，而JSP中有四大域，多了一个pageContext域。  </p>
+<hr>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">博客: codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博 @codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎 @codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github @codingXiaxw</a> </li>
+</ul>
+
       
     </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/31/1-写博客也是一种生活方式/" itemprop="url">
-                  写博客也是一种生活方式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-31T12:59:31+08:00" content="Mar 31 2016">
-              Mar 31 2016
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/diaries/" itemprop="url" rel="index">
-                    <span itemprop="name">diaries</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/31/1-写博客也是一种生活方式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/31/1-写博客也是一种生活方式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-
+            <a href="/tags/Java-Web/" rel="tag">#Java Web</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h1 id="emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-coding-is-a-style-of-life"><a href="#emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-coding-is-a-style-of-life" class="headerlink" title="&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;coding is a style of life."></a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;coding is a style of life.</h1><p>&emsp;&emsp;hello guys,I’m codingXiaxw,who decide to write my own blog while I’m coding.As far as I’m concerned, writing blog is also a part of life.Everytime I felt tired,I would stop coding to play macdown,and then writed my feelings and reviews in it.In this way can I deepen the knowledges in my brain and can also make me relaxing.<br>&emsp;&emsp;Welcome to <a href="https://codingxiaxw.cn">codingXiaxw’s</a> blog website!Thank for you coming,and thank for your support.They are the energy to encourage me to move forward.<br>Today I will begin my blog journey，and I will update it frequently.   </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/31/1-写博客也是一种生活方式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/24/6-java-web实现Servlet的方式/" rel="next" title="Java Web中实现Servlet的方式">
+                <i class="fa fa-chevron-left"></i> Java Web中实现Servlet的方式
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/27/8-java-web学习笔记之Cookie入门/" rel="prev" title="Java Web学习笔记之Cookie入门">
+                Java Web学习笔记之Cookie入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -524,6 +496,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/26/7-java-web中的Servlet请求转发与请求包含/"
+           data-title="Java Web中的Servlet请求转发和请求包含" data-url="http://codingxiaxw.cn/archives/2016/09/26/7-java-web中的Servlet请求转发与请求包含/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -543,8 +523,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
@@ -623,6 +612,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-格式"><span class="nav-number">1.</span> <span class="nav-text">1.格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-请求转发"><span class="nav-number">2.</span> <span class="nav-text">2.请求转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-请求包含"><span class="nav-number">3.</span> <span class="nav-text">3.请求包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-请求转发和重定向的区别"><span class="nav-number">4.</span> <span class="nav-text">4.请求转发和重定向的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-request域"><span class="nav-number">5.</span> <span class="nav-text">5.request域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">6.</span> <span class="nav-text">联系</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -719,6 +719,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

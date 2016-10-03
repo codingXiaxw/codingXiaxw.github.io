@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java Web," />
 
 
 
@@ -96,15 +96,37 @@
 
 
 
-<meta name="description" content="Life is short,just coding.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="codingXiaxw's blog">
-<meta property="og:url" content="http://codingxiaxw.cn/archives/page/2/index.html">
+<meta name="description" content="1.Servlet是什么?Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  
+
+接受数据请求
+处理请求
+完成响应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Web中实现Servlet的方式">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/09/24/6-java-web实现Servlet的方式/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="Life is short,just coding.">
+<meta property="og:description" content="1.Servlet是什么?Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  
+
+接受数据请求
+处理请求
+完成响应">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E5%85%A8%E9%83%A8%E6%96%B9%E6%B3%95.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E6%BA%90%E4%BB%A3%E7%A0%81.jpg">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ServletContext%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/httpservlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/httpServlet%E4%B8%AD%E5%AF%B9service%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%A3%E9%87%8A.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0httpservlet%E7%B1%BB.png">
+<meta property="og:updated_time" content="2016-10-03T06:47:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="codingXiaxw's blog">
-<meta name="twitter:description" content="Life is short,just coding.">
+<meta name="twitter:title" content="Java Web中实现Servlet的方式">
+<meta name="twitter:description" content="1.Servlet是什么?Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  
+
+接受数据请求
+处理请求
+完成响应">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png">
 
 
 
@@ -125,9 +147,9 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/archives/page/2/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/09/24/6-java-web实现Servlet的方式/"/>
 
-  <title> codingXiaxw's blog </title>
+  <title> Java Web中实现Servlet的方式 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -148,9 +170,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -260,9 +280,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -282,10 +302,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/04/09/2-mac用户如何将自己的代码上传至github托管/" itemprop="url">
-                  Mac用户如何将自己的代码上传至github托管
-                </a>
+                Java Web中实现Servlet的方式
               
             
           </h1>
@@ -297,8 +314,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-09T22:07:54+08:00" content="Apr 9 2016">
-              Apr 9 2016
+            <time itemprop="dateCreated" datetime="2016-09-24T17:21:07+08:00" content="Sep 24 2016">
+              Sep 24 2016
             </time>
           </span>
 
@@ -311,8 +328,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mac-and-Github/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac and Github</span>
+                  <a href="/categories/Java-Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Java Web</span>
                   </a>
                 </span>
 
@@ -327,8 +344,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/09/2-mac用户如何将自己的代码上传至github托管/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/2-mac用户如何将自己的代码上传至github托管/" itemprop="commentsCount"></span>
+                <a href="/2016/09/24/6-java-web实现Servlet的方式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/24/6-java-web实现Servlet的方式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -353,170 +370,142 @@
       
 
       
-        
-          <p>  楼主刚开始试着想将自己的代码上传至github上的时候真的是个小白，google上面到处搜到处找资源。后来云里雾里的成功上传后，发现网络上介绍的大致有两种方法，一种方法是通过git命令行，另一种方法是通过下载github客户端。两种方法都很简单，也许你觉得我接下来介绍的很繁琐，但这是详细的表现，下面将详细介绍<strong>通过git命令行来上传自己的代码</strong>。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/09/2-mac用户如何将自己的代码上传至github托管/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+        <h2 id="1-Servlet是什么"><a href="#1-Servlet是什么" class="headerlink" title="1.Servlet是什么?"></a>1.Servlet是什么?</h2><p>Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  </p>
+<ul>
+<li>接受数据请求</li>
+<li>处理请求</li>
+<li><p>完成响应  </p>
+<a id="more"></a>
+</li>
+</ul>
+<p>例如客户端发出登录请求，或者输入注册请求，这些请求都应该由Servlet来完成处理。当然Servlet类需要我们自己来编写，每个Servlet类都必须实现javax.servlet.Servlet接口。  </p>
+<h2 id="2-实现Servlet的方式-需要我们自己来写"><a href="#2-实现Servlet的方式-需要我们自己来写" class="headerlink" title="2.实现Servlet的方式(需要我们自己来写)"></a>2.实现Servlet的方式(需要我们自己来写)</h2><ol>
+<li>实现javax.servlet.Servlet接口;</li>
+<li>继承javax.servlet.GenericServlet类;</li>
+<li>继承javax.servlet.http.HttpServlet类;  </li>
+</ol>
+<p>一般来说我们都选择实现HttpServlet类来完成我们的Servlet，但学习Servlet还要从javax.servlet.Servlet接口来学起。  </p>
+<h3 id="2-1实现javax-servlet-Servlet接口"><a href="#2-1实现javax-servlet-Servlet接口" class="headerlink" title="2.1实现javax.servlet.Servlet接口"></a>2.1实现javax.servlet.Servlet接口</h3><p>实现该接口的代码如下，需要实现该接口中的5个方法(各个方法的作用见注释)。  </p>
+<p>   <img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png" alt="">  </p>
+<p>其中只有三个生命周期的方法是由服务器(例如我用的Tomcat)在认为需要调用的时候自动调用的(即我们自己是无法调用的)，另外的两个方法由我们自己需要的时候调用。   </p>
+<h3 id="2-2继承javax-servlet-GenericServlet类"><a href="#2-2继承javax-servlet-GenericServlet类" class="headerlink" title="2.2继承javax.servlet.GenericServlet类"></a>2.2继承javax.servlet.GenericServlet类</h3><p>有人会说，那我每次实现Servlet接口都要重写这5个方法岂不是很麻烦？那肯定麻烦！所以GenericServlet类派上用场了。  </p>
+<p>GenericServlet类实现了Servlet接口，所以在GenericServlet类中实现了Servlet接口中的5个抽象方法，另外在GenerecServlet类中还定义了自己的方法，将其作为我们要定义的xxxServlet类的父类，这样我们在自己定义的xxxServlet类中便可以不用<strong>全部</strong>实现Servlet接口中的方法。  </p>
+<p>GenericServlet类中的方法如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E5%85%A8%E9%83%A8%E6%96%B9%E6%B3%95.png" alt="">  </p>
+<p>由图可知，GenericServlet类除了实现Servlet接口中的四个方法外，还定义了getInitParameter()返回Servlet的参数值、getInitParameterNames()返回Servlet的参数名、getServletName()返回Servlet名、getServletContext()返回Servlet上下文、不带参数的init()、log()等方法。这些自己定义的方法中，前面四个是ServletConfig接口中的方法，不带参数的init()方法跟Servlet接口中的init(ServletConfig config)方法要区别，在init()方法中，我们可以添加当xxxServlet被初始化的操作，此方法在初始化方法init(ServletConfig config)中被调用(若是文字解析看不懂见下图GenericServlet源代码中注释)。  </p>
+<p>另外不知道你们发现了没有，图中只有service()方法属于抽象方法，所以当我们定义的xxxServlet类去继承GenericServlet类时我们只需重写这一个方法即可，其他方法可重写可不重写。  </p>
+<p>另外附上GenericServlet类的源代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/GenericServlet%E7%B1%BB%E6%BA%90%E4%BB%A3%E7%A0%81.jpg" alt="">  </p>
+<p>代码中的xxxServlet类即是我们自己定义的servlet类。  </p>
+<p>扩展:<strong>对ServletContext的解释</strong>:  </p>
+<p>服务器会为每个应用创建一个ServletContext对象，一个应用只有一个ServletContext对象！我们可以在N多个Servlet中来获取这个唯一的对象，使用它可以给多个Servlet传递数据。此对象在Tomcat(服务器)启动时就创建，在服务器关闭时就销毁。  </p>
+<p>ContextServlet是Java Web四大域对象(PageContext、ServletRequest、HttpSession、ServletContext)之一，域对象所具有的特点是:  </p>
+<ul>
+<li>能够存数据</li>
+<li>能够取数据  </li>
+</ul>
+<p>所有的域对象都有存取数据的功能，因为域对象内部有一个Map，用来存储数据，下面是ServletContext对象用来操作数据的方法:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/ServletContext%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95.png" alt="">  </p>
+<p>扩展:<strong>Servlet类三大域:</strong>  </p>
+<ul>
+<li>request:在Servlet中直接用，因为实现的doPost()方法中有request这个参数。</li>
+<li>session:在Servlet中通过<code>HttpSession session=request.getSession();</code>得到。</li>
+<li>application:在Servlet中通过<code>ServletContext application=this.getServletContext();</code>得到。</li>
+</ul>
+<p>扩展:<strong>JSP中四大域</strong></p>
+<ul>
+<li>page域:即9大内置对象中的pageContext，为PageContext的实例。注意:“page域”不同于9大内置对象中“page”。</li>
+<li>request域:即9大内置对象中的request，为HttpServletRequest的实例。</li>
+<li>session域:即9大内置对象中的session,为HttpSession的实例。</li>
+<li>application:即9大内置对象中的ServletContext的实例。</li>
+</ul>
+<h3 id="2-3-继承HttpServlet类"><a href="#2-3-继承HttpServlet类" class="headerlink" title="2.3.继承HttpServlet类"></a>2.3.继承HttpServlet类</h3><p>HttpServlet类是我们用到次数最多的，也是最简单的。由类名可知，该类总是跟http协议相关的。  </p>
+<p>HttpServlet类中的方法如下图:<br><img src="http://od2xrf8gr.bkt.clouddn.com/httpservlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95.png" alt=""><br>方法中值得我们注意的有doGet()、doPost()、还有两个service()方法。其中doGet()和doPost()方法是需要我们重写的，我来解释下两个service()方法的区别。  </p>
+<p>估计你们从方法中的参数就知道他们的区别了吧，其中一个service()方法是Serlvet接口中的生命周期方法，另外一个是跟http协议有关的方法。二者方法的解释见下两站图的说明(图1中指出HttpServlet类是继承自GenderServlet类):<br><img src="http://od2xrf8gr.bkt.clouddn.com/httpServlet%E4%B8%AD%E5%AF%B9service%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%A3%E9%87%8A.png" alt=""><br>uml(时序图)如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt=""><br>图中405的含义是说服务器不支持客户端(即浏览器)用此种方法访问。因为HttpServlet类的源代码中的doGet()和doPost()方法体里面就是这样写的，你在定义的xxxservlet中如果不重新重写这两个方法就会出现405的响应状态码。接下来我们看看如何继承HttpServlet类:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0httpservlet%E7%B1%BB.png" alt=""><br>FServlet即为我们自己定义的servlet类，在doGet()方法和doPost()方法中即可写具体要进行的操作。  </p>
+<p>如上三种方式便可实现我们自己定义的Servlet类。  </p>
+<hr>
+<h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a> </li>
+</ul>
+
       
     </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/31/1-写博客也是一种生活方式/" itemprop="url">
-                  写博客也是一种生活方式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-31T12:59:31+08:00" content="Mar 31 2016">
-              Mar 31 2016
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/diaries/" itemprop="url" rel="index">
-                    <span itemprop="name">diaries</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/31/1-写博客也是一种生活方式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/31/1-写博客也是一种生活方式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-
+            <a href="/tags/Java-Web/" rel="tag">#Java Web</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h1 id="emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-coding-is-a-style-of-life"><a href="#emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-emsp-coding-is-a-style-of-life" class="headerlink" title="&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;coding is a style of life."></a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;coding is a style of life.</h1><p>&emsp;&emsp;hello guys,I’m codingXiaxw,who decide to write my own blog while I’m coding.As far as I’m concerned, writing blog is also a part of life.Everytime I felt tired,I would stop coding to play macdown,and then writed my feelings and reviews in it.In this way can I deepen the knowledges in my brain and can also make me relaxing.<br>&emsp;&emsp;Welcome to <a href="https://codingxiaxw.cn">codingXiaxw’s</a> blog website!Thank for you coming,and thank for your support.They are the energy to encourage me to move forward.<br>Today I will begin my blog journey，and I will update it frequently.   </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/31/1-写博客也是一种生活方式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/12/5-新的开始/" rel="next" title="从Android开发转战Java Web">
+                <i class="fa fa-chevron-left"></i> 从Android开发转战Java Web
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/26/7-java-web中的Servlet请求转发与请求包含/" rel="prev" title="Java Web中的Servlet请求转发和请求包含">
+                Java Web中的Servlet请求转发和请求包含 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -524,6 +513,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/24/6-java-web实现Servlet的方式/"
+           data-title="Java Web中实现Servlet的方式" data-url="http://codingxiaxw.cn/archives/2016/09/24/6-java-web实现Servlet的方式/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -543,8 +540,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
@@ -623,6 +629,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Servlet是什么"><span class="nav-number">1.</span> <span class="nav-text">1.Servlet是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-实现Servlet的方式-需要我们自己来写"><span class="nav-number">2.</span> <span class="nav-text">2.实现Servlet的方式(需要我们自己来写)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1实现javax-servlet-Servlet接口"><span class="nav-number">2.1.</span> <span class="nav-text">2.1实现javax.servlet.Servlet接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2继承javax-servlet-GenericServlet类"><span class="nav-number">2.2.</span> <span class="nav-text">2.2继承javax.servlet.GenericServlet类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-继承HttpServlet类"><span class="nav-number">2.3.</span> <span class="nav-text">2.3.继承HttpServlet类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-联系"><span class="nav-number">3.</span> <span class="nav-text">3.联系</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -719,6 +736,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
