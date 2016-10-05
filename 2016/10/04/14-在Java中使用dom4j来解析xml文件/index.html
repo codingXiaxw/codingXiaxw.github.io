@@ -96,18 +96,12 @@
 
 
 
-<meta name="description" content="1.概述在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。  
-2.示例—解析xml文件首先我们需要创建一个文档，然后才能对其解析。  
-2.1xml文档&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
-&amp;lt;b">
+<meta name="description" content="1.概述在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Java中使用dom4j来解析及生成xml文件">
 <meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/04/14-在Java中使用dom4j来解析xml文件/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="1.概述在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。  
-2.示例—解析xml文件首先我们需要创建一个文档，然后才能对其解析。  
-2.1xml文档&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
-&amp;lt;b">
+<meta property="og:description" content="1.概述在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8list%E9%9B%86%E5%90%88%E6%96%B9%E6%B3%95%E6%9D%A5%E8%A7%A3%E6%9E%90xml%28%E5%B7%B2%E7%9F%A5%E5%B1%9E%E6%80%A7%29.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8D%E7%9F%A5%E9%81%93%E5%AD%90%E5%85%83%E7%B4%A0%20%E7%94%A8list%E9%81%8D%E5%8E%86xml%E5%85%83%E7%B4%A0.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E7%9F%A5%E9%81%93%E5%B1%9E%E6%80%A7%E4%BD%BF%E7%94%A8iterator.png">
@@ -115,13 +109,10 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E7%94%9F%E6%88%90xml%E6%96%87%E4%BB%B6.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C2.png">
-<meta property="og:updated_time" content="2016-10-05T08:38:49.000Z">
+<meta property="og:updated_time" content="2016-10-05T08:42:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Java中使用dom4j来解析及生成xml文件">
-<meta name="twitter:description" content="1.概述在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。  
-2.示例—解析xml文件首先我们需要创建一个文档，然后才能对其解析。  
-2.1xml文档&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
-&amp;lt;b">
+<meta name="twitter:description" content="1.概述在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。">
 <meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8list%E9%9B%86%E5%90%88%E6%96%B9%E6%B3%95%E6%9D%A5%E8%A7%A3%E6%9E%90xml%28%E5%B7%B2%E7%9F%A5%E5%B1%9E%E6%80%A7%29.png">
 
 
@@ -367,6 +358,7 @@
 
       
         <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。  </p>
+<a id="more"></a>
 <h2 id="2-示例—解析xml文件"><a href="#2-示例—解析xml文件" class="headerlink" title="2.示例—解析xml文件"></a>2.示例—解析xml文件</h2><p>首先我们需要创建一个文档，然后才能对其解析。  </p>
 <h3 id="2-1xml文档"><a href="#2-1xml文档" class="headerlink" title="2.1xml文档"></a>2.1xml文档</h3><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;books&gt;
@@ -388,7 +380,17 @@
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png" alt=""></p>
 <h2 id="3-示例—生成xml文件"><a href="#3-示例—生成xml文件" class="headerlink" title="3.示例—生成xml文件"></a>3.示例—生成xml文件</h2><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E7%94%9F%E6%88%90xml%E6%96%87%E4%BB%B6.png" alt="">  </p>
 <p>运行代码后在桌面的dom4j种即可看到如下内容:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C2.png" alt=""></p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C2.png" alt="">  </p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a> </li>
+</ul>
 
       
     </div>
@@ -589,7 +591,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-示例—解析xml文件"><span class="nav-number">2.</span> <span class="nav-text">2.示例—解析xml文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1xml文档"><span class="nav-number">2.1.</span> <span class="nav-text">2.1xml文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2示例一、使用List列表方式来解析xml"><span class="nav-number">2.2.</span> <span class="nav-text">2.2示例一、使用List列表方式来解析xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3示例二、使用迭代器Iterator来解析xml"><span class="nav-number">2.3.</span> <span class="nav-text">2.3示例二、使用迭代器Iterator来解析xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-示例—生成xml文件"><span class="nav-number">3.</span> <span class="nav-text">3.示例—生成xml文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-示例—解析xml文件"><span class="nav-number">2.</span> <span class="nav-text">2.示例—解析xml文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1xml文档"><span class="nav-number">2.1.</span> <span class="nav-text">2.1xml文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2示例一、使用List列表方式来解析xml"><span class="nav-number">2.2.</span> <span class="nav-text">2.2示例一、使用List列表方式来解析xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3示例二、使用迭代器Iterator来解析xml"><span class="nav-number">2.3.</span> <span class="nav-text">2.3示例二、使用迭代器Iterator来解析xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-示例—生成xml文件"><span class="nav-number">3.</span> <span class="nav-text">3.示例—生成xml文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
             
           </div>
         </section>
