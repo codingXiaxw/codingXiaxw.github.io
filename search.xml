@@ -30,6 +30,7 @@
 <h2 id="3-示例—生成xml文件"><a href="#3-示例—生成xml文件" class="headerlink" title="3.示例—生成xml文件"></a>3.示例—生成xml文件</h2><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E7%94%9F%E6%88%90xml%E6%96%87%E4%BB%B6.png" alt="">  </p>
 <p>运行代码后在桌面的dom4j种即可看到如下内容:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C2.png" alt="">  </p>
+<p><strong>说明:</strong>我这里用的是mac系统，文件路径是:/Users/codingBoy/Desktop/dom4j.xml，上图中的路径打错，这个才是正确的路径.</p>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
@@ -231,7 +232,7 @@ paint.drawString(str,x,y);//设置需要绘制在图片上的文本，参数为�
 
 //第四步，将图片保存起来(需要用到ImageIO类)
 ImageIO.write(image,&quot;JPEG&quot;,out);//参数为图片缓冲区、图片类型、输出流  
-</code></pre><p>通过以上代码便可实现用java语言生成一个简易的带有字符串文本的图片，具体实现如下，首先在IDEA中创建VerifyCode.java类:<br>    <img src="http://od2xrf8gr.bkt.clouddn.com/verify1.png" alt=""><br>    <img src="http://od2xrf8gr.bkt.clouddn.com/verify2.png" alt=""><br>    <img src="http://od2xrf8gr.bkt.clouddn.com/verify3.png" alt="">  </p>
+</code></pre><p>通过以上代码便可实现用java语言生成一个简易的带有字符串文本的图片，具体实现如下，首先在IDEA中创建VerifyCode.java类:<br>    <img src="http://od2xrf8gr.bkt.clouddn.com/verify1.png" alt=""><br>    有错误，请将g.drawStrig(sb.toString(),width/4,height-5);改为g.drawString(str,i*width/4,height-5);<br>    <img src="http://od2xrf8gr.bkt.clouddn.com/verify2.png" alt=""><br>    <img src="http://od2xrf8gr.bkt.clouddn.com/verify3.png" alt="">  </p>
 <p>通过代码<code>VerifyCode vc=new VerifyCode();</code>创建VerifyCode对象后就可以调用上述所有方法便可以实现随机验证码的图片了。  </p>
 <h2 id="在HTML表单中实现验证码"><a href="#在HTML表单中实现验证码" class="headerlink" title="在HTML表单中实现验证码"></a>在HTML表单中实现验证码</h2><p>借用上篇<a href="">Java Web学习笔记之session入门</a>中的保存用户登录信息案例中的代码，新增:  </p>
 <ul>
@@ -245,7 +246,7 @@ ImageIO.write(image,&quot;JPEG&quot;,out);//参数为图片缓冲区、图片类
 <div align="center">LoginServlet.java</div>  
 
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/LoginServlet2.png" alt="">  </p>
-<p><div align="center">login.jsp(用到了javascript语法来更换验证码)</div><br><img src="http://od2xrf8gr.bkt.clouddn.com/loginJsp.png" alt=""></p>
+<p><div align="center">login.jsp(用到了javascript语法来更换验证码)</div><br><img src="http://od2xrf8gr.bkt.clouddn.com/loginJsp.png" alt=""><br>10月8日更正:途中的js代码有错误，将”ducument”改为”document”。  </p>
 <p>通过如上代码便可实现HTML中的验证码效果。</p>
 <hr>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
