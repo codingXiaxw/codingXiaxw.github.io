@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java Web," />
+  <meta name="keywords" content="MySQL 数据库," />
 
 
 
@@ -96,19 +96,28 @@
 
 
 
-<meta name="description" content="1.概述EL，即Expression Language。在JavaWeb中属于JSP技术。  
-JSP中的表达式:Java脚本表达式&amp;lt;%=Java表达式%&amp;gt;;EL表达式${EL表达式}。">
+<meta name="description" content="1.SQL语句分类
+1.DDL(Data Definition Language):数据定义语言，用来定义数据库对象：库、表、列等。功能：创建、删除、修改库和表结构。
+2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。
+3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。
+4.DQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaWeb学习笔记之EL表达式">
-<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/03/12-EL表达式/index.html">
+<meta property="og:title" content="MySQL学习笔记(一)">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/09/15-SQL学习笔记/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="1.概述EL，即Expression Language。在JavaWeb中属于JSP技术。  
-JSP中的表达式:Java脚本表达式&amp;lt;%=Java表达式%&amp;gt;;EL表达式${EL表达式}。">
-<meta property="og:updated_time" content="2016-10-03T09:59:23.000Z">
+<meta property="og:description" content="1.SQL语句分类
+1.DDL(Data Definition Language):数据定义语言，用来定义数据库对象：库、表、列等。功能：创建、删除、修改库和表结构。
+2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。
+3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。
+4.DQ">
+<meta property="og:updated_time" content="2016-10-09T10:53:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaWeb学习笔记之EL表达式">
-<meta name="twitter:description" content="1.概述EL，即Expression Language。在JavaWeb中属于JSP技术。  
-JSP中的表达式:Java脚本表达式&amp;lt;%=Java表达式%&amp;gt;;EL表达式${EL表达式}。">
+<meta name="twitter:title" content="MySQL学习笔记(一)">
+<meta name="twitter:description" content="1.SQL语句分类
+1.DDL(Data Definition Language):数据定义语言，用来定义数据库对象：库、表、列等。功能：创建、删除、修改库和表结构。
+2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。
+3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。
+4.DQ">
 
 
 
@@ -129,9 +138,9 @@ JSP中的表达式:Java脚本表达式&amp;lt;%=Java表达式%&amp;gt;;EL表达�
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/03/12-EL表达式/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/09/15-SQL学习笔记/"/>
 
-  <title> JavaWeb学习笔记之EL表达式 | codingXiaxw's blog </title>
+  <title> MySQL学习笔记(一) | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -284,7 +293,7 @@ JSP中的表达式:Java脚本表达式&amp;lt;%=Java表达式%&amp;gt;;EL表达�
             
             
               
-                JavaWeb学习笔记之EL表达式
+                MySQL学习笔记(一)
               
             
           </h1>
@@ -296,8 +305,8 @@ JSP中的表达式:Java脚本表达式&amp;lt;%=Java表达式%&amp;gt;;EL表达�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-03T14:53:17+08:00" content="Oct 3 2016">
-              Oct 3 2016
+            <time itemprop="dateCreated" datetime="2016-10-09T18:03:55+08:00" content="Oct 9 2016">
+              Oct 9 2016
             </time>
           </span>
 
@@ -310,8 +319,8 @@ JSP中的表达式:Java脚本表达式&amp;lt;%=Java表达式%&amp;gt;;EL表达�
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/EL/" itemprop="url" rel="index">
-                    <span itemprop="name">EL</span>
+                  <a href="/categories/MySQL-数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL 数据库</span>
                   </a>
                 </span>
 
@@ -326,8 +335,8 @@ JSP中的表达式:Java脚本表达式&amp;lt;%=Java表达式%&amp;gt;;EL表达�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/03/12-EL表达式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/03/12-EL表达式/" itemprop="commentsCount"></span>
+                <a href="/2016/10/09/15-SQL学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/09/15-SQL学习笔记/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -352,84 +361,83 @@ JSP中的表达式:Java脚本表达式&amp;lt;%=Java表达式%&amp;gt;;EL表达�
       
 
       
-        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>EL，即Expression Language。在JavaWeb中属于JSP技术。  </p>
-<p>JSP中的表达式:Java脚本表达式<code>&lt;%=Java表达式%&gt;</code>;EL表达式<code>${EL表达式}</code>。  </p>
+        <h2 id="1-SQL语句分类"><a href="#1-SQL语句分类" class="headerlink" title="1.SQL语句分类"></a>1.SQL语句分类</h2><ul>
+<li>1.DDL(Data Definition Language):数据定义语言，用来定义数据库对象：库、表、列等。功能：创建、删除、修改库和表结构。</li>
+<li>2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。</li>
+<li>3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。</li>
+<li>4.DQL(Data Query Language):数据查询语言，用来查询记录。也是本章学习的重点。  </li>
+</ul>
 <a id="more"></a>
-<p>JavaWeb中最好不要在JSP中写JSP代码，所以用EL表达式来替代Java表达式。  </p>
-<h2 id="2-语法及用法"><a href="#2-语法及用法" class="headerlink" title="2.语法及用法"></a>2.语法及用法</h2><h3 id="2-1获取某个对象的值，并将其输出到页面上。"><a href="#2-1获取某个对象的值，并将其输出到页面上。" class="headerlink" title="2.1获取某个对象的值，并将其输出到页面上。"></a>2.1获取某个对象的值，并将其输出到页面上。</h3><ul>
-<li>1.点运算符:<code>${stu.name}</code>，即调用域中<code>stu</code>对应的对象的<code>name</code>的读属性<code>getName()</code>。但，若stu在4个域中没有绑定相应对象，那么就在网页上输出空字符串(即什么都不输出)。  </li>
-</ul>
-<p><code>${stu.name}</code>相当于:  </p>
-<pre><code>&lt;%  
-Student stu=pageContext.getAttribute(&quot;stu&quot;);  
-if(stu!=null) out.println(stu.getName());  
-%&gt;
-</code></pre><ul>
-<li>2.[]运算符:<code>${stu[&#39;name&#39;]}</code>或者<code>${stu[&quot;name&quot;]}</code>。与点运算符作用一样，但当索引或者名称不符合Java名称规范时(如，获取数组中的某个值)，只能用[]运算符。</li>
-<li>3.获取集合中的元素:List按照索引来获取元素:<code>${obj.list[1]}</code>，Map按照指定的key来获取元素:<code>${obj.map.key}</code>或者<code>${obj.map[&#39;key&#39;]}</code>。</li>
-</ul>
-<h3 id="2-2逻辑和数学运算"><a href="#2-2逻辑和数学运算" class="headerlink" title="2.2逻辑和数学运算"></a>2.2逻辑和数学运算</h3><ul>
-<li>1.empty运算符:判断一个对象是否为null或者””，是则返回true，否则返回false。也可以判断一个数组和集合，当数组或集合对象不是null，但对象中没有原素也返回true。</li>
-<li>2.数学运算符:<code>+-*/</code>。如<code>${i+1}</code></li>
-<li>3.三元运算符:<code>${表达式?T表达式:F表达式}</code>。如<code>${a&gt;1?a+1:a-1}</code></li>
-<li>4.不支持字符串连接。如<code>${str+str}</code>，这是错误的。</li>
-</ul>
-<h3 id="2-3、11个内置对象"><a href="#2-3、11个内置对象" class="headerlink" title="2.3、11个内置对象"></a>2.3、11个内置对象</h3><p>EL内置对象(或隐式对象)，即在EL表达式中可以直接调用的对象。总结起来就是有一个JSP对象，十个Map对象。</p>
+<h2 id="2-SQL语句详解"><a href="#2-SQL语句详解" class="headerlink" title="2.SQL语句详解"></a>2.SQL语句详解</h2><p>当然首先需要再命令行中输入<code>mysql -uroot -p</code>来进入mysql。注意:1.MySQL语法不区分大小写，但是建议在写关键字时用大写。2.每一条语句后面以分号结尾。  </p>
+<h3 id="2-1DDL-数据定义语言-语法"><a href="#2-1DDL-数据定义语言-语法" class="headerlink" title="2.1DDL(数据定义语言)语法"></a>2.1DDL(数据定义语言)语法</h3><p>该语言用来对数据库和表结构进行操作。  </p>
+<p><strong>对数据库的操作:</strong>  </p>
+<p>查看所有数据库:<code>SHOW DATABASES;</code>  </p>
+<p>使用数据库:<code>USE 数据库名;</code>  </p>
+<p>创建数据库:<code>CREATE DATABASE [IF NOT EXISTS] 数据库名 [CHARSET=UTF-8];</code>  </p>
+<p>删除数据库:<code>DROP DATABASE 数据库名;</code>  </p>
+<p>修改数据库的编码:<code>ALTER DATABASE 数据库名 CHARACTER SET UTF-8;</code>  </p>
+<p><strong>对表结构的操作</strong><br>创建表:  </p>
+<pre><code>CREATE TABLE (IF NOT EXISTS) 表名(
+列名 列类型，
+...，
+列名 列类型
+)；  
+</code></pre><p>查看当前数据库中所有表:<code>SHOW TABLES;</code>  </p>
+<p>查看表结构:<code>DESC 表名;</code>  </p>
+<p>删除表:<code>DROP 表名;</code>  </p>
+<p>修改表:修改表有四个操作，但前缀都是一样的:<code>ALTER TABLE 表名...</code>  </p>
 <ul>
-<li>pageContext:与JSP内置对象pageContext完全一样。</li>
-<li>pageScope:当前页面的域对象的Map。</li>
-<li>requestScope:请求域对象的Map。</li>
-<li>sessionScope:会话域对象的Map。</li>
-<li>applicationScope:应用域对象的Map。</li>
-<li>param:请求参数的Map，key为请求参数名，value为请求参数的值。</li>
-<li>paramValues:请求参数(可重名)的<code>Map&lt;String,String[])</code>，key为请求参数名，value为请求参数的值数组。</li>
-<li>header:请求消息头Map，key为请求头名，value为对应的值。</li>
-<li>headerValues:请求消息头(可重名)的<code>Map&lt;String,String[]&gt;</code>，key为请求名，value为请求头值数组。</li>
-<li>cookie:封装cookie的<code>Map&lt;String,Cookie&gt;</code>，key为cookie的name属性，value为cookie对象本身。</li>
-<li>initParam:初始化参数的Map，在web.xml中的context-param元素中定义的初始化参数。</li>
+<li>修改表之添加列:<code>ALTER TABLE 表名 add (列名 列类型，...，列名 列类型);</code></li>
+<li>修改表之修改列类型:<code>ALTER TABLE 表名 MODIFY 列名 列的新类型;</code></li>
+<li>修改表之删除列:<code>ALTER TABLE 表名 DROP 列名;</code></li>
+<li>修改表之修改表名:<code>ALTER TABLE 表名 RENAME TO 新表名</code></li>
 </ul>
-<h3 id="2-4自定义EL函数。"><a href="#2-4自定义EL函数。" class="headerlink" title="2.4自定义EL函数。"></a>2.4自定义EL函数。</h3><h4 id="第一步：定义一个有静态方法的类。"><a href="#第一步：定义一个有静态方法的类。" class="headerlink" title="第一步：定义一个有静态方法的类。"></a>第一步：定义一个有静态方法的类。</h4><pre><code>package net.codingXiax.util;  
-
-public class StringUtil{  
-  public static String toUppercase(String str){  
-     return &quot;字符串&quot;;  
-     }  
-   }
-</code></pre><h4 id="第二步-配置tld。"><a href="#第二步-配置tld。" class="headerlink" title="第二步:配置tld。"></a>第二步:配置tld。</h4><p>在Web-INF目录下(也可以在其他目录下，该目录下建立安全性更高)，建立一个扩展名为tld的xml文件。  </p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
-&lt;taglib xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;  
-        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;  
-        xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd&quot;  
-        version=&quot;2.0&quot;&gt;  
-        &lt;tlib-version&gt;1.0&lt;/tlib-version&gt;  
-        &lt;short-name&gt;myfn&lt;/short-name&gt;  
-        &lt;uri&gt;http://www.yrom.net/jsp/string/fn&lt;/uri&gt;  
-        &lt;function&gt;  
-              &lt;name&gt;toUppercase&lt;/name&gt;  
-              &lt;function-class&gt;net.yrom.util.StringUtil&lt;/function-class&gt;  
-              &lt;function-signature&gt;java.lang.String toUpperCase( java.lang.String )&lt;/function-signature&gt;  
-        &lt;/function&gt;  
-&lt;/taglib&gt;
-</code></pre><h4 id="第三步-配置web-xml"><a href="#第三步-配置web-xml" class="headerlink" title="第三步:配置web.xml."></a>第三步:配置web.xml.</h4><p>如果tld文件是在Web-INF目录或类路径下，此步可跳过。  </p>
-<pre><code>&lt;jsp-config&gt;
-&lt;taglib&gt;
-    &lt;taglib-uri&gt;http://www.yrom.net/jsp/string/fn&lt;/taglib-uri&gt;
-    &lt;taglib-location&gt;/WEB-INF/myfn.tld&lt;/taglib-location&gt;
-&lt;/taglib&gt;  
-&lt;/jsp-config&gt;
-</code></pre><h4 id="第四步：在JSP中使用。"><a href="#第四步：在JSP中使用。" class="headerlink" title="第四步：在JSP中使用。"></a>第四步：在JSP中使用。</h4><p>注意应先用taglib指令引入该uri。  </p>
-<pre><code>&lt;%@ taglib uri=&quot;/该tld所在位置&quot; prefix=&quot;myfn&quot; %&gt;  
-...  
-&lt;body&gt;  
-&lt;%  
-   pageContext.setAttribute(&quot;a&quot;,&quot;aaa&quot;);  
-%&gt;  
-   ${myfn:toUppercase(a)}  
-&lt;/body&gt;  
-...  
-</code></pre><h3 id="2-5JSTL标签库"><a href="#2-5JSTL标签库" class="headerlink" title="2.5JSTL标签库"></a>2.5JSTL标签库</h3><p>JSTL标签库将在下篇文章<a href="">JavaWeb学习笔记之JSTL标签库</a>中详细介绍。</p>
-<hr>
-<h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<h3 id="2-2DML-数据操作语言-语法"><a href="#2-2DML-数据操作语言-语法" class="headerlink" title="2.2DML(数据操作语言)语法"></a>2.2DML(数据操作语言)语法</h3><p>该语言用来对表记录操作(增、删、改)。  </p>
+<h4 id="2-2-1插入数据-一次插入就是插入一行"><a href="#2-2-1插入数据-一次插入就是插入一行" class="headerlink" title="2.2.1插入数据(一次插入就是插入一行)"></a>2.2.1插入数据(一次插入就是插入一行)</h4><p><code>insert into 表名 (列名1，列名2，列名3) values (列值1，列值2，列值3)</code>  </p>
+<p>说明:1.在数据库中所有的字符串类型，必须使用单引号。2.(列名1，列名2，列名3)可省略，表示按照表中的顺序插入。但不建议采取这种写法，因为降低了程序的可读性。3.在命令行插入记录不要写中文，否则会出现乱码。  </p>
+<h4 id="2-2-2修改记录-不会修改一行"><a href="#2-2-2修改记录-不会修改一行" class="headerlink" title="2.2.2修改记录(不会修改一行)"></a>2.2.2修改记录(不会修改一行)</h4><p>修改某列的全部值:<code>update 表名 set 列名1=列值1(，列名2=列值2);</code>  </p>
+<p>修改(某行或者多行记录的)列的指定值:<code>update 表名 set 列名1=列值1 where 列名2=列值2 or 列名3=列值3;</code>  </p>
+<p>运算符:<code>=、!=、&lt;&gt;、&lt;、&gt;、&gt;=、&lt;=、between...and、in(…)、is null、not、or、and</code>，其中in(…)的用法表示集合。例如:<code>update 表名 set 列名1=列值1 where 列名2=列值2 or 列名2=列值22</code>用in(…)写成<code>update 表名 set 列名1=列值1 where 列名2 in(列值2，列值3)</code>  </p>
+<h4 id="2-2-3删除数据-删除整行"><a href="#2-2-3删除数据-删除整行" class="headerlink" title="2.2.3删除数据(删除整行)"></a>2.2.3删除数据(删除整行)</h4><p><code>delete from 表名 (where 条件);</code>不加where条件时会删除表中所有的路，所以为了防止这种失误操作，很多数据库往往都会有备份。</p>
+<h3 id="2-3DCL-数据控制语言-语法"><a href="#2-3DCL-数据控制语言-语法" class="headerlink" title="2.3DCL(数据控制语言)语法"></a>2.3DCL(数据控制语言)语法</h3><p>该语言用来定义访问权限，理解即可，以后不会多用。需要记住的是，一个项目创建一个用户，一个项目对应的数据库只有一个。这个用户只能对这个数据库有权限，其它数据库该用户就操作不了。  </p>
+<h4 id="2-3-1创建用户"><a href="#2-3-1创建用户" class="headerlink" title="2.3.1创建用户"></a>2.3.1创建用户</h4><p>用户只能在指定ip地址上登录mysql:<code>create user 用户名@IP地址 identified by  ‘密码’；</code>  </p>
+<p>用户可以在任意ip地址上登录:<code>create user 用户名@‘％’ identified by ‘密码’；</code>  </p>
+<h4 id="2-3-2给用户授权"><a href="#2-3-2给用户授权" class="headerlink" title="2.3.2给用户授权"></a>2.3.2给用户授权</h4><p>语法:<code>grant 权限1，…，权限n on 数据库.* to 用户名@IP地址；</code>其中权限1、2、n可以直接用all关键字代替。权限例如:create,alter,drop,insert,update,delete,select。  </p>
+<h4 id="2-3-3撤销授权"><a href="#2-3-3撤销授权" class="headerlink" title="2.3.3撤销授权"></a>2.3.3撤销授权</h4><p>语法:<code>revoke 权限1，…，权限n  on  数据库.*   from 用户名@ ip地址；</code>撤销指定用户在指定数据库上的指定权限。撤销例如:<code>revoke create,delete on mydb1.*  form user@localhost;</code>表示的意思是撤消user用户在数据库mydb1伤的create、alter权限。  </p>
+<h4 id="2-3-4查看权限"><a href="#2-3-4查看权限" class="headerlink" title="2.3.4查看权限"></a>2.3.4查看权限</h4><p>查看指定用户的权限:<code>show grants for 用户名@ip地址；</code>  </p>
+<h4 id="2-3-5删除用户"><a href="#2-3-5删除用户" class="headerlink" title="2.3.5删除用户"></a>2.3.5删除用户</h4><p><code>drop user 用户名@ip地址；</code></p>
+<h3 id="2-4DQL-数据查询语言-语法"><a href="#2-4DQL-数据查询语言-语法" class="headerlink" title="2.4DQL(数据查询语言)语法"></a>2.4DQL(数据查询语言)语法</h3><p>重点，该语言用来查询记录，不会修改数据库和表结构。  </p>
+<h4 id="2-4-1基本查询-后缀都是统一为from-表名"><a href="#2-4-1基本查询-后缀都是统一为from-表名" class="headerlink" title="2.4.1基本查询(后缀都是统一为from 表名)"></a>2.4.1基本查询(后缀都是统一为from 表名)</h4><ul>
+<li>1.字段(列)控制  <blockquote>
+<p>1.查询所有列:<code>select * from 表名;</code>其中＊表示查询所有列，而不是所有行的意思。<br>2.查询指定列:<code>select 列1，列2，列n  from 表名；</code><br>3.完全重复的记录只显示一次:在查询的列之前添加distinct:<code>select distinct $ from 表名；</code>缺省值为all。<br>4.列运算<br>a.数量类型的列可以做加、减、乘、除:<code>SELECT sal*5 from 表名；</code>说明:1.遇到null加任何值都等于null的情况，需要用到ifnull()函数。2.将字符串做加减乘除运算，会把字符串当作0。<br>b.字符串累类型可以做连续运算(需要用到concat()函数):<code>select concat(列名1，列名2) from 表名;</code>其中列名的类型要为字符串。<br>c. 给列名起别名:<code>select 列名1 (as) 别名1,列名2 (as) 别名2   from 表名；</code></p>
+</blockquote>
+</li>
+<li>2.条件控制<blockquote>
+<p>1.条件查询。在后面添加where指定条件:<code>select * from 表名 where 列名＝指定值;</code><br>2.模糊查询：当你想查询所有姓张的记录。用到关键字like。eg:<code>select * from 表名 where 列名 like ‘张_’;</code>(_代表匹配任意一个字符，％代表匹配0～n个任意字符)。  </p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-4-2排序-所谓升序和降序都是从上往下排列"><a href="#2-4-2排序-所谓升序和降序都是从上往下排列" class="headerlink" title="2.4.2排序(所谓升序和降序都是从上往下排列)"></a>2.4.2排序(所谓升序和降序都是从上往下排列)</h4><ul>
+<li>1.升序:<code>select * form 表名 order by 列名 (ASC );</code> ()里面的内容为缺省值；</li>
+<li>2.降序:<code>select * from 表名 order by 列名 DESC;</code></li>
+<li>3.使用多列作为排序条件: 当第一列排序条件相同时，根据第二列排序条件排序(当第二列依旧相同时可视情况根据第三例条件排序)。eg:<code>select * from 表名 order by 列名1 ASC, 列名2 DESC;</code>意思是当列名1的值相同时按照列名2的值降序排。</li>
+</ul>
+<h4 id="2-4-3聚合函数"><a href="#2-4-3聚合函数" class="headerlink" title="2.4.3聚合函数"></a>2.4.3聚合函数</h4><ul>
+<li>1.count:<code>select count(列名) from 表名；</code>,纪录有效行数。</li>
+<li>2.max:<code>select count(列名) from 表名；</code>,列中最大值。</li>
+<li>3.min:<code>select sum(列名) from 表名；</code>,列中最小值。</li>
+<li>4.sum:<code>select sum(列名) from 表名；</code>,求列的总值，null 和字符串默认为0。</li>
+<li>5.avg:<code>select avg(列名) from 表名;</code>,一列的平均值。</li>
+</ul>
+<h4 id="2-4-4分组查询"><a href="#2-4-4分组查询" class="headerlink" title="2.4.4分组查询"></a>2.4.4分组查询</h4><p>分组查询的信息都是组的信息，不能查到个人的信息，其中查询组的信息是通过聚合函数得到的。  </p>
+<p>语法：<code>select 分组列名，聚合函数1,聚合函数2  from 表名 group by 该分组列名；</code>其中分组列名需要的条件是该列名中有重复的信息。  </p>
+<p>查询的结果只能为：作为分组条件的列和聚合函数；查处的信息都是组的信息。  </p>
+<p>分组查询前，还可以通过关键字where先把满足条件的人分出来，再分组。语法为:<code>select 分组列，聚合函数 from 表名 where 条件 group by  分组列；</code>  </p>
+<p>分组查询后，也可以通过关键字having把组信息中满足条件的组再细分出来。语法为：<code>select 分组列，聚合函数 from 表名 where 条件 group by  分组列 having 聚合函数或列名(条件)；</code>  </p>
+<h4 id="2-4-5LIMIT子句-mysql中独有的语法"><a href="#2-4-5LIMIT子句-mysql中独有的语法" class="headerlink" title="2.4.5LIMIT子句(mysql中独有的语法)"></a>2.4.5LIMIT子句(mysql中独有的语法)</h4><p>LIMIT用来限定查询结果的起始行，以及总行数。  </p>
+<p>例如：<code>select * from 表名  limit 4，3；</code>表示起始行为第5行，一共查询3行记录。  </p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><p>学过的关键字：<code>select,from,where,group by,having ,order by。</code>当一条查询语句中都包含所有这些关键字时它们的优先级是<code>select&gt;from&gt;where&gt;group by&gt;having&gt;order by</code>。</p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
 </li>
@@ -437,7 +445,7 @@ public class StringUtil{
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a> </li>
 </ul>
 
       
@@ -477,7 +485,7 @@ public class StringUtil{
       
         <div class="post-tags">
           
-            <a href="/tags/Java-Web/" rel="tag">#Java Web</a>
+            <a href="/tags/MySQL-数据库/" rel="tag">#MySQL 数据库</a>
           
         </div>
       
@@ -486,17 +494,13 @@ public class StringUtil{
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/02/11-java学习笔记之反射机制/" rel="next" title="Java学习笔记之反射机制">
-                <i class="fa fa-chevron-left"></i> Java学习笔记之反射机制
+              <a href="/2016/10/04/14-在Java中使用dom4j来解析xml文件/" rel="next" title="在Java中使用dom4j来解析及生成xml文件">
+                <i class="fa fa-chevron-left"></i> 在Java中使用dom4j来解析及生成xml文件
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/04/14-在Java中使用dom4j来解析xml文件/" rel="prev" title="在Java中使用dom4j来解析及生成xml文件">
-                在Java中使用dom4j来解析及生成xml文件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -522,8 +526,8 @@ public class StringUtil{
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/03/12-EL表达式/"
-           data-title="JavaWeb学习笔记之EL表达式" data-url="http://codingxiaxw.cn/archives/2016/10/03/12-EL表达式/">
+      <div class="ds-thread" data-thread-key="2016/10/09/15-SQL学习笔记/"
+           data-title="MySQL学习笔记(一)" data-url="http://codingxiaxw.cn/archives/2016/10/09/15-SQL学习笔记/">
       </div>
     
   </div>
@@ -643,7 +647,7 @@ public class StringUtil{
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-语法及用法"><span class="nav-number">2.</span> <span class="nav-text">2.语法及用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1获取某个对象的值，并将其输出到页面上。"><span class="nav-number">2.1.</span> <span class="nav-text">2.1获取某个对象的值，并将其输出到页面上。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2逻辑和数学运算"><span class="nav-number">2.2.</span> <span class="nav-text">2.2逻辑和数学运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3、11个内置对象"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、11个内置对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4自定义EL函数。"><span class="nav-number">2.4.</span> <span class="nav-text">2.4自定义EL函数。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步：定义一个有静态方法的类。"><span class="nav-number">2.4.1.</span> <span class="nav-text">第一步：定义一个有静态方法的类。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步-配置tld。"><span class="nav-number">2.4.2.</span> <span class="nav-text">第二步:配置tld。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三步-配置web-xml"><span class="nav-number">2.4.3.</span> <span class="nav-text">第三步:配置web.xml.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四步：在JSP中使用。"><span class="nav-number">2.4.4.</span> <span class="nav-text">第四步：在JSP中使用。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5JSTL标签库"><span class="nav-number">2.5.</span> <span class="nav-text">2.5JSTL标签库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-联系"><span class="nav-number">3.</span> <span class="nav-text">3.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-SQL语句分类"><span class="nav-number">1.</span> <span class="nav-text">1.SQL语句分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SQL语句详解"><span class="nav-number">2.</span> <span class="nav-text">2.SQL语句详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1DDL-数据定义语言-语法"><span class="nav-number">2.1.</span> <span class="nav-text">2.1DDL(数据定义语言)语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2DML-数据操作语言-语法"><span class="nav-number">2.2.</span> <span class="nav-text">2.2DML(数据操作语言)语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1插入数据-一次插入就是插入一行"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1插入数据(一次插入就是插入一行)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2修改记录-不会修改一行"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2修改记录(不会修改一行)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3删除数据-删除整行"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.2.3删除数据(删除整行)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3DCL-数据控制语言-语法"><span class="nav-number">2.3.</span> <span class="nav-text">2.3DCL(数据控制语言)语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1创建用户"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1创建用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2给用户授权"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2给用户授权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3撤销授权"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3撤销授权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-4查看权限"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4查看权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-5删除用户"><span class="nav-number">2.3.5.</span> <span class="nav-text">2.3.5删除用户</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4DQL-数据查询语言-语法"><span class="nav-number">2.4.</span> <span class="nav-text">2.4DQL(数据查询语言)语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1基本查询-后缀都是统一为from-表名"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1基本查询(后缀都是统一为from 表名)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2排序-所谓升序和降序都是从上往下排列"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.4.2排序(所谓升序和降序都是从上往下排列)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3聚合函数"><span class="nav-number">2.4.3.</span> <span class="nav-text">2.4.3聚合函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-4分组查询"><span class="nav-number">2.4.4.</span> <span class="nav-text">2.4.4分组查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-5LIMIT子句-mysql中独有的语法"><span class="nav-number">2.4.5.</span> <span class="nav-text">2.4.5LIMIT子句(mysql中独有的语法)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-总结"><span class="nav-number">3.</span> <span class="nav-text">3.总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
             
           </div>
         </section>
