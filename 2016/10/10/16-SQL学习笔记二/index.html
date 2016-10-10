@@ -1,0 +1,1066 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MySQL 数据库," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1.编码问题1.1查看MySQL数据库编码在命令行中输入:SHOW VARIABLES LIKE &amp;#39;CHAR%&amp;#39;;  回车可看到如下内容:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL学习笔记二之单表查询与多表查询">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/10/16-SQL学习笔记二/index.html">
+<meta property="og:site_name" content="codingXiaxw's blog">
+<meta property="og:description" content="1.编码问题1.1查看MySQL数据库编码在命令行中输入:SHOW VARIABLES LIKE &amp;#39;CHAR%&amp;#39;;  回车可看到如下内容:">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%98%E5%90%97.png">
+<meta property="og:updated_time" content="2016-10-10T11:35:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL学习笔记二之单表查询与多表查询">
+<meta name="twitter:description" content="1.编码问题1.1查看MySQL数据库编码在命令行中输入:SHOW VARIABLES LIKE &amp;#39;CHAR%&amp;#39;;  回车可看到如下内容:">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%98%E5%90%97.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/10/16-SQL学习笔记二/"/>
+
+  <title> MySQL学习笔记二之单表查询与多表查询 | codingXiaxw's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">codingXiaxw's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Life is short,just coding.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            联系
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            列表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MySQL学习笔记二之单表查询与多表查询
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-10T19:24:09+08:00" content="Oct 10 2016">
+              Oct 10 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/MySQL-数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL 数据库</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/10/16-SQL学习笔记二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/16-SQL学习笔记二/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-编码问题"><a href="#1-编码问题" class="headerlink" title="1.编码问题"></a>1.编码问题</h2><h3 id="1-1查看MySQL数据库编码"><a href="#1-1查看MySQL数据库编码" class="headerlink" title="1.1查看MySQL数据库编码"></a>1.1查看MySQL数据库编码</h3><p>在命令行中输入:<code>SHOW VARIABLES LIKE &#39;CHAR%&#39;;</code>  回车可看到如下内容:  </p>
+<a id="more"></a>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%98%E5%90%97.png" alt="">  </p>
+<h3 id="1-2编码解释"><a href="#1-2编码解释" class="headerlink" title="1.2编码解释"></a>1.2编码解释</h3><ul>
+<li>character_set_client: mysql使用该编码来解读客户端发送过来的数据，例如该编码为utf，那么如果客户端发送过来的数据不是utf，就会出现乱码。</li>
+<li>character_set_results：mysql会把数据转换成该编码后，再发送给客户端，例如该编码为utf，那么如果客户端不使用utf来解读，那么就会出现乱码，其它编码只要支持中文即可。</li>
+</ul>
+<h3 id="1-3控制台乱码问题"><a href="#1-3控制台乱码问题" class="headerlink" title="1.3控制台乱码问题"></a>1.3控制台乱码问题</h3><ul>
+<li>插入或修改时出现乱码：因为控制台默认使用gbk，而character_set_client不是gbk的原因。</li>
+<li>查询出的数据为乱码，因为character_set_results不是gbk而控制台默认使用gbk。</li>
+<li>解决方法:通过在命令行中输入代码<code>set character_set_client=gbk;</code>和<code>set character_set_results=gbk;</code>来设置编码。<blockquote>
+<p>注意：设置编码只对当前链接有效，当退出mysql后再次登陆mysql时又回到utf了。解决方法:window系统下是找到my.ini配置文件，在配置文件中设置<code>set default_character=gbk</code>即可，mac用户我不知道用什么办法，希望知道的人在下方评论区得以告知，谢谢。  </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-备份数据库与恢复数据库"><a href="#2-备份数据库与恢复数据库" class="headerlink" title="2.备份数据库与恢复数据库"></a>2.备份数据库与恢复数据库</h2><h3 id="2-1备份数据库"><a href="#2-1备份数据库" class="headerlink" title="2.1备份数据库"></a>2.1备份数据库</h3><p>备份就是将数据库导出为sql脚本。在命令行中输入:<code>mysqldump -u用户名 -p密码 数据库名&gt;导出文件路径</code>  </p>
+<blockquote>
+<p>注意:1.末尾不要打分号。2.执行此语句前应该先退出mysql客户端。3.导出的内容不包括创建数据库的语句只包含数据库里面的内容。</p>
+</blockquote>
+<h3 id="2-2恢复数据库"><a href="#2-2恢复数据库" class="headerlink" title="2.2恢复数据库"></a>2.2恢复数据库</h3><p>就是将导出的sql脚本插入到数据库中。有如下两种实现方式:  </p>
+<ul>
+<li>第一种方式:1.登录mysql:<code>mysql -u用户名 -p密码</code>。2.创建数据库:<code>create database 数据库名</code>。3.输入命令:<code>mysql -uroot -p密码 数据库名&lt;备份的数据路径</code>并回车。</li>
+<li>第二种方式:1.删除数据库:<code>drop database 数据库名</code>。2.重新创建数据库:<code>create database 数据库名</code>。3.切换到数据库:<code>use 数据库名</code>。4.输入命令:<code>source sql脚本路径</code>并回车。</li>
+</ul>
+<h2 id="3-约束"><a href="#3-约束" class="headerlink" title="3.约束"></a>3.约束</h2><p>约束是添加在列上用来约束列的。</p>
+<h3 id="3-1主键约束-primary-key"><a href="#3-1主键约束-primary-key" class="headerlink" title="3.1主键约束(primary key)"></a>3.1主键约束(primary key)</h3><p>特点:1.非空。2.唯一。3.可被引用。当表的某一列被指定为主键后，该列的值就不能为空，也不能有重复值出现。  </p>
+<ul>
+<li><p>创建表时指定主键的两种方式:  </p>
+<pre><code>1.create table emp(
+  empno int primary key,
+  ename varchar(50)
+);
+
+2.create table emp(
+  empno int,
+  ename varchar(50),
+  primary key(empno)
+ );
+</code></pre></li>
+<li><p>修改表时指定主键的方式:</p>
+<pre><code>alter table emp
+add primary key(empno);
+</code></pre></li>
+<li><p>修改表时删除主键的方式:</p>
+<pre><code>alter table emp
+drop primary key;
+</code></pre></li>
+</ul>
+<h3 id="3-2主键自增长-auto-increment"><a href="#3-2主键自增长-auto-increment" class="headerlink" title="3.2主键自增长(auto_increment)"></a>3.2主键自增长(auto_increment)</h3><pre><code>create table student(
+id int primary key auto_increment,
+name varchar(50)
+);
+</code></pre><p>注意:auto_increment必须添加在int类型后，指定主键自增长后，插入数据时便可以给该主键设置null值。  </p>
+<p>限制:主键自增长在群集环境下不好使，所以大部分情况下我们使用UUID来作主键。  </p>
+<h3 id="3-3非空约束-not-null"><a href="#3-3非空约束-not-null" class="headerlink" title="3.3非空约束(not null)"></a>3.3非空约束(not null)</h3><p>因为某些列不能设置为null值，所以可以对列添加非空约束。  </p>
+<pre><code>create table student(
+id int primary key auto_increment,
+name varchar(50) not null
+);
+</code></pre><h3 id="3-4唯一约束-unique"><a href="#3-4唯一约束-unique" class="headerlink" title="3.4唯一约束(unique)"></a>3.4唯一约束(unique)</h3><p>数据库中某些列不能设置重复的值，所以可以对列添加唯一约束。</p>
+<pre><code>create table student(
+id int primary key auto_increment,
+name varchar(50) not null unique
+);
+</code></pre><h3 id="3-5概念模型"><a href="#3-5概念模型" class="headerlink" title="3.5概念模型"></a>3.5概念模型</h3><ul>
+<li>在java中表现为对象模型：在java中是domain。例如：User、Student。</li>
+<li>在数据库中表现为关系模型：在数据库中表现为 表。  </li>
+</ul>
+<p>当我们要完成一个软件系统时，需要把系统中的实体抽取出来，形成概念模型。例如部门、员工都是系统中的实体。概念模型中的实体最终会成为java中的类、数据库中的表。实体之间还存在着关系，关系有三种:</p>
+<ul>
+<li>1对多:例如员工和部门的关系</li>
+<li>1对1:例如老公和老婆的关系</li>
+<li>多对1:例如老师与学生的关系</li>
+</ul>
+<p>对象模型：可以双向关联，而且引用的是对象，而不是一个主键。  </p>
+<p>关系模型：只能多方引用一方，而且引用的是主键，而不是一整行记录。</p>
+<h3 id="3-6外键约束"><a href="#3-6外键约束" class="headerlink" title="3.6外键约束"></a>3.6外键约束</h3><ul>
+<li>1.外键必须是另一表(或自己表)的主键的值(即外键要引用主键的值)。</li>
+<li>2.外键可以为空。</li>
+<li>3.外键可重复。</li>
+<li><p>4.一张表可以有多个外键。</p>
+<pre><code>create table dept(
+deptno int primary key auto_increment,
+name varchar(50)
+);
+
+create table emp(
+empno int primary key auto_increment,
+name varchar(50), 
+dno int,
+constraint fk_emp_dept  foreign key(dno)  references dept (deptno)
+);
+</code></pre></li>
+</ul>
+<p>最后一行就是给emp表添加外键约束，添加外键约束后，在emp表中对dno列进行赋值时就应该考虑外键约束的三个条件了。(上图创建的两张表演示的也是数据库中1对多的关系。)</p>
+<h3 id="3-7数据库中1对1的关系"><a href="#3-7数据库中1对1的关系" class="headerlink" title="3.7数据库中1对1的关系"></a>3.7数据库中1对1的关系</h3><pre><code>create table husband (
+hid int primary key auto_increment,
+hname varchar(50)
+);
+
+insert into husband values(null,’刘备’);
+insert into husband values(null,’张飞’);
+insert into husband values(null,’关羽’);
+
+create table wife(
+wid int primary key auto_increment,
+wname varchar(50),
+constraint fk_wife_husband foreign key (wid)  references husband(hid)
+);
+</code></pre><p>特点:外键引用自身表的主键。</p>
+<h3 id="3-8数据库中多对多的关系"><a href="#3-8数据库中多对多的关系" class="headerlink" title="3.8数据库中多对多的关系"></a>3.8数据库中多对多的关系</h3><p>在表中建立多对多关系需要使用中间表(关联表)，即需要三张表，在中间表中使用两个外键，分别引用其它两个表的主键。</p>
+<pre><code>create table student(
+sid int primary key auto_increment,
+sname varchar(50)
+);
+
+create table teacher (
+tid int primary key auto_increment,
+name varchar(50)
+);
+
+create table stu_tea(
+sid int,
+tid int,
+constraint fk_student foreign key(sid) references student(sid),
+constraint fk_teacher foreign key(tid) references student(tid)
+);
+
+insert into student values(null,’刘德华’);
+insert into student values(null,’梁朝伟);
+insert into student values(null,’黄日华’);
+insert into student values(null,’苗侨伟’);
+insert into student values(null,’汤镇业’);
+
+insert into teacher values(null,’崔老师’);
+insert into teacher values(null,’刘老师’);
+insert into teacher values(null,’石老师’);
+
+insert into stu_tea values(1,1);
+insert into stu_tea values(2,1);
+insert into stu_tea values(3,1);
+insert into stu_tea values(4,1);
+insert into stu_tea values(5,1);
+insert into stu_tea values(1,2);
+insert into stu_tea values(2,2);
+insert into stu_tea values(3,2);
+insert into stu_tea values(3,3);
+insert into stu_tea values(4,3);
+insert into stu_tea values(5,3);
+
+select * from stu_tea;
+</code></pre><h2 id="4-多表查询"><a href="#4-多表查询" class="headerlink" title="4.多表查询"></a>4.多表查询</h2><h3 id="4-1分类"><a href="#4-1分类" class="headerlink" title="4.1分类"></a>4.1分类</h3><ul>
+<li>合并结果集(了解)</li>
+<li>连接查询</li>
+<li>子查询</li>
+</ul>
+<h3 id="4-2合并结果集"><a href="#4-2合并结果集" class="headerlink" title="4.2合并结果集"></a>4.2合并结果集</h3><p>要求两个结果集(注意这里强调的是结果集，而不是两张表)的列数、列类型完全相同。关键字union:去除重复行;关键字union all:不去除重复行。</p>
+<pre><code>create table ab(
+a int, 
+b,varchar(50)
+);
+
+insert into ab values(1,’1’);
+insert into ab values(2,’2’);
+insert into ab values(3,’3’);
+
+create table cd(
+c int,
+d varchar(50)
+);
+
+insert into cd values (3,’3’);
+insert into cd values (5,’5’);
+insert into cd values (5,’5’);
+</code></pre><p>合并操作为:</p>
+<pre><code>select * from ab
+union (all)
+select * from cd;
+</code></pre><h3 id="4-3连接查询"><a href="#4-3连接查询" class="headerlink" title="4.3连接查询"></a>4.3连接查询</h3><ul>
+<li>内连接</li>
+<li>外连接  <blockquote>
+<p>外连接又包括左外连接、右外连接、全外连接(mysql不支持这个)</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="4-3-1内连接"><a href="#4-3-1内连接" class="headerlink" title="4.3.1内连接"></a>4.3.1内连接</h4><p>方言语法:<code>select * from 表1 别名1，表2 别名2 where 别名1.xx＝别名2.xx;</code>例如:<code>select * from emp,dept  where emp.deptno=dept.deptno;</code>去除无用行后的笛卡尔积，where后的条件是主外键。  </p>
+<p>标准语法:<code>select * from 表1 别名1 inner join 表2 别名2，on 别名1.xx＝别名2.xx;</code>例如:<code>:select * from emp inner join dept on emp.deptno=dept.deptno;</code>  就是把方言版的逗号改为inner join ，把where改为on了。</p>
+<p>自然连接语法:<code>select * from 表1 别名1 natural  join 表2 别名2;</code>自然连接特有的特点就是它能够自己找到两个表中相同的列 即自己填全where条件。</p>
+<p>内连接的特点:内连接查询出的所有记录都是满足条件的记录，不满足条件的记录不显示出来。</p>
+<h4 id="4-3-2外连接"><a href="#4-3-2外连接" class="headerlink" title="4.3.2外连接"></a>4.3.2外连接</h4><p>特点:外连接有一主一次。</p>
+<ul>
+<li>左外连接左表为主，那么左表中所有的记录无论满足不满足条件，都打印出来。不满足条件的值用null填补。语法为:<code>select * from emp left outer join dept on emp.deptno=dept.deptno;</code></li>
+<li>右外连接右表为主，那么右表中所有的记录无论满足不满足条件，都打印出来。不满足条件的值用null填补。语法为:<code>:select * from amp right join dept on emp.deptno=dept.deptno;</code></li>
+<li>全外连接：左右表都为主，左表和右表中的记录都要打印出来，不满足条件的值用null填补。使用union将左外连接和右外连接的结果集合并起来就是全外连接。  </li>
+</ul>
+<h3 id="4-4子查询"><a href="#4-4子查询" class="headerlink" title="4.4子查询"></a>4.4子查询</h3><p>子查询通俗来讲，就是查询中有查询。  </p>
+<p>见例子:</p>
+<pre><code>/*查询本公司工资最高的员工的详细信息*/
+
+select * 
+from amp
+where sal=max(sal);
+
+此种写法错误，因为where条件中不能有聚合函数。所以想到要用字查询。
+
+思路:首先查出最高工资:select max(sal) from amp;然后查询该工资的员工:select * from amp where sal=刚刚的查询结果。所以合并起来为：select * from amp where sal=(select max(sal) from amp);
+</code></pre><h4 id="4-4-1子查询能出现的位置"><a href="#4-4-1子查询能出现的位置" class="headerlink" title="4.4.1子查询能出现的位置"></a>4.4.1子查询能出现的位置</h4><ul>
+<li>where后作为条件(上述例子)</li>
+<li>from后作为二次查询(下面例子)<blockquote>
+<p><code>select e.empno,e.ename from (select * from amp where deptno=30) as e where 条件;</code></p>
+</blockquote>
+</li>
+</ul>
+<h4 id="4-4-2子查询的结果集"><a href="#4-4-2子查询的结果集" class="headerlink" title="4.4.2子查询的结果集"></a>4.4.2子查询的结果集</h4><ul>
+<li>单行单列:<code>select * from 表1 where 列1 [=、&gt;、&lt;、&gt;=、&lt;=、!=] （select 列 from 表2  where 条件);</code></li>
+<li>多行单列:<code>:select * from 表1 where 列1 [=、&gt;、&lt;、&gt;=、&lt;=、!=] ［any、all、in］（select 列 from 表2  where 条件;</code></li>
+<li>单行多列:<code>select * from 表1 where （列1，列2） in (select 列1，列2 from 表2 where 条件);</code></li>
+<li>多行多列:该结果集用在from后作为二次查询。<code>select * from 表1,(select …) 别名 where 条件;</code></li>
+</ul>
+<h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a> </li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL-数据库/" rel="tag">#MySQL 数据库</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/09/15-SQL学习笔记一/" rel="next" title="MySQL学习笔记一之MySQL语法">
+                <i class="fa fa-chevron-left"></i> MySQL学习笔记一之MySQL语法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/10/16-SQL学习笔记二/"
+           data-title="MySQL学习笔记二之单表查询与多表查询" data-url="http://codingxiaxw.cn/archives/2016/10/10/16-SQL学习笔记二/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
+               alt="codingXiaxw" />
+          <p class="site-author-name" itemprop="name">codingXiaxw</p>
+          <p class="site-description motion-element" itemprop="description">Life is short,just coding.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/codingXiaxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5023661572?from=hissimilar_home&refer_flag=1005050003_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com//people/e9f78fa34b8002652811ac348da3f671" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-编码问题"><span class="nav-number">1.</span> <span class="nav-text">1.编码问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1查看MySQL数据库编码"><span class="nav-number">1.1.</span> <span class="nav-text">1.1查看MySQL数据库编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2编码解释"><span class="nav-number">1.2.</span> <span class="nav-text">1.2编码解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3控制台乱码问题"><span class="nav-number">1.3.</span> <span class="nav-text">1.3控制台乱码问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-备份数据库与恢复数据库"><span class="nav-number">2.</span> <span class="nav-text">2.备份数据库与恢复数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1备份数据库"><span class="nav-number">2.1.</span> <span class="nav-text">2.1备份数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2恢复数据库"><span class="nav-number">2.2.</span> <span class="nav-text">2.2恢复数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-约束"><span class="nav-number">3.</span> <span class="nav-text">3.约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1主键约束-primary-key"><span class="nav-number">3.1.</span> <span class="nav-text">3.1主键约束(primary key)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2主键自增长-auto-increment"><span class="nav-number">3.2.</span> <span class="nav-text">3.2主键自增长(auto_increment)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3非空约束-not-null"><span class="nav-number">3.3.</span> <span class="nav-text">3.3非空约束(not null)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4唯一约束-unique"><span class="nav-number">3.4.</span> <span class="nav-text">3.4唯一约束(unique)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5概念模型"><span class="nav-number">3.5.</span> <span class="nav-text">3.5概念模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6外键约束"><span class="nav-number">3.6.</span> <span class="nav-text">3.6外键约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7数据库中1对1的关系"><span class="nav-number">3.7.</span> <span class="nav-text">3.7数据库中1对1的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8数据库中多对多的关系"><span class="nav-number">3.8.</span> <span class="nav-text">3.8数据库中多对多的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-多表查询"><span class="nav-number">4.</span> <span class="nav-text">4.多表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1分类"><span class="nav-number">4.1.</span> <span class="nav-text">4.1分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2合并结果集"><span class="nav-number">4.2.</span> <span class="nav-text">4.2合并结果集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3连接查询"><span class="nav-number">4.3.</span> <span class="nav-text">4.3连接查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1内连接"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1内连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2外连接"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2外连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4子查询"><span class="nav-number">4.4.</span> <span class="nav-text">4.4子查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-1子查询能出现的位置"><span class="nav-number">4.4.1.</span> <span class="nav-text">4.4.1子查询能出现的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-2子查询的结果集"><span class="nav-number">4.4.2.</span> <span class="nav-text">4.4.2子查询的结果集</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-联系"><span class="nav-number">5.</span> <span class="nav-text">5.联系</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">codingXiaxw</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codingxiaxw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+
+
+</body>
+</html>

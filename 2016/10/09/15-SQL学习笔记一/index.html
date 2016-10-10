@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java之xml," />
+  <meta name="keywords" content="MySQL 数据库," />
 
 
 
@@ -96,24 +96,28 @@
 
 
 
-<meta name="description" content="1.概述在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。">
+<meta name="description" content="1.SQL语句分类
+1.DDL(Data Definition Language):数据定义语言，用来定义数据库对象：库、表、列等。功能：创建、删除、修改库和表结构。
+2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。
+3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。
+4.DQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Java中使用dom4j来解析及生成xml文件">
-<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/04/14-在Java中使用dom4j来解析xml文件/index.html">
+<meta property="og:title" content="MySQL学习笔记一之MySQL语法">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/09/15-SQL学习笔记一/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="1.概述在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8list%E9%9B%86%E5%90%88%E6%96%B9%E6%B3%95%E6%9D%A5%E8%A7%A3%E6%9E%90xml%28%E5%B7%B2%E7%9F%A5%E5%B1%9E%E6%80%A7%29.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8D%E7%9F%A5%E9%81%93%E5%AD%90%E5%85%83%E7%B4%A0%20%E7%94%A8list%E9%81%8D%E5%8E%86xml%E5%85%83%E7%B4%A0.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E7%9F%A5%E9%81%93%E5%B1%9E%E6%80%A7%E4%BD%BF%E7%94%A8iterator.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8D%E7%9F%A5%E9%81%93%E5%B1%9E%E6%80%A7%E7%A7%81%E7%94%A8iterator.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E7%94%9F%E6%88%90xml%E6%96%87%E4%BB%B6.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C2.png">
-<meta property="og:updated_time" content="2016-10-07T06:13:12.000Z">
+<meta property="og:description" content="1.SQL语句分类
+1.DDL(Data Definition Language):数据定义语言，用来定义数据库对象：库、表、列等。功能：创建、删除、修改库和表结构。
+2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。
+3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。
+4.DQ">
+<meta property="og:updated_time" content="2016-10-10T06:38:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Java中使用dom4j来解析及生成xml文件">
-<meta name="twitter:description" content="1.概述在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8list%E9%9B%86%E5%90%88%E6%96%B9%E6%B3%95%E6%9D%A5%E8%A7%A3%E6%9E%90xml%28%E5%B7%B2%E7%9F%A5%E5%B1%9E%E6%80%A7%29.png">
+<meta name="twitter:title" content="MySQL学习笔记一之MySQL语法">
+<meta name="twitter:description" content="1.SQL语句分类
+1.DDL(Data Definition Language):数据定义语言，用来定义数据库对象：库、表、列等。功能：创建、删除、修改库和表结构。
+2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。
+3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。
+4.DQ">
 
 
 
@@ -134,9 +138,9 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/04/14-在Java中使用dom4j来解析xml文件/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/09/15-SQL学习笔记一/"/>
 
-  <title> 在Java中使用dom4j来解析及生成xml文件 | codingXiaxw's blog </title>
+  <title> MySQL学习笔记一之MySQL语法 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -289,7 +293,7 @@
             
             
               
-                在Java中使用dom4j来解析及生成xml文件
+                MySQL学习笔记一之MySQL语法
               
             
           </h1>
@@ -301,8 +305,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-04T21:24:01+08:00" content="Oct 4 2016">
-              Oct 4 2016
+            <time itemprop="dateCreated" datetime="2016-10-09T18:03:55+08:00" content="Oct 9 2016">
+              Oct 9 2016
             </time>
           </span>
 
@@ -315,8 +319,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java之xml/" itemprop="url" rel="index">
-                    <span itemprop="name">Java之xml</span>
+                  <a href="/categories/MySQL-数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL 数据库</span>
                   </a>
                 </span>
 
@@ -331,8 +335,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/04/14-在Java中使用dom4j来解析xml文件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/04/14-在Java中使用dom4j来解析xml文件/" itemprop="commentsCount"></span>
+                <a href="/2016/10/09/15-SQL学习笔记一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/09/15-SQL学习笔记一/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -357,31 +361,82 @@
       
 
       
-        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。  </p>
+        <h2 id="1-SQL语句分类"><a href="#1-SQL语句分类" class="headerlink" title="1.SQL语句分类"></a>1.SQL语句分类</h2><ul>
+<li>1.DDL(Data Definition Language):数据定义语言，用来定义数据库对象：库、表、列等。功能：创建、删除、修改库和表结构。</li>
+<li>2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。</li>
+<li>3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。</li>
+<li>4.DQL(Data Query Language):数据查询语言，用来查询记录。也是本章学习的重点。  </li>
+</ul>
 <a id="more"></a>
-<h2 id="2-示例—解析xml文件"><a href="#2-示例—解析xml文件" class="headerlink" title="2.示例—解析xml文件"></a>2.示例—解析xml文件</h2><p>首先我们需要创建一个文档，然后才能对其解析。  </p>
-<h3 id="2-1xml文档"><a href="#2-1xml文档" class="headerlink" title="2.1xml文档"></a>2.1xml文档</h3><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;books&gt;
-    &lt;book id=&quot;001&quot;&gt;
-        &lt;title&gt;Harry Potter&lt;/title&gt;
-        &lt;author&gt;J K.Rowling&lt;/author&gt;
-    &lt;/book&gt;
-    &lt;book id=&quot;002&quot;&gt;
-        &lt;title&gt;Learning XML&lt;/title&gt;
-        &lt;author&gt;Erik T.Ray&lt;/author&gt;
-    &lt;/book&gt;
-&lt;/books&gt;  
-</code></pre><h3 id="2-2示例一、使用List列表方式来解析xml"><a href="#2-2示例一、使用List列表方式来解析xml" class="headerlink" title="2.2示例一、使用List列表方式来解析xml"></a>2.2示例一、使用List列表方式来解析xml</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8list%E9%9B%86%E5%90%88%E6%96%B9%E6%B3%95%E6%9D%A5%E8%A7%A3%E6%9E%90xml%28%E5%B7%B2%E7%9F%A5%E5%B1%9E%E6%80%A7%29.png" alt="">  </p>
-<p>以上方式是我们在知道xml文件中的详细内容(如根元素名字、根元素中包含的子元素、子元素的属性名、子元素中又包含子元素的元素名即文本内容)时采用的代码。但当我们不知道xml中的详细信息时，我们应该采用如下方式来解析xml。  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8D%E7%9F%A5%E9%81%93%E5%AD%90%E5%85%83%E7%B4%A0%20%E7%94%A8list%E9%81%8D%E5%8E%86xml%E5%85%83%E7%B4%A0.png" alt=""></p>
-<h3 id="2-3示例二、使用迭代器Iterator来解析xml"><a href="#2-3示例二、使用迭代器Iterator来解析xml" class="headerlink" title="2.3示例二、使用迭代器Iterator来解析xml"></a>2.3示例二、使用迭代器Iterator来解析xml</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E7%9F%A5%E9%81%93%E5%B1%9E%E6%80%A7%E4%BD%BF%E7%94%A8iterator.png" alt=""></p>
-<p>同示例一，以上代码也是我们在知道xml文本详细内容后采用的代码。当我们不知道xml中的详细信息时，我们应该采用如下代码方式来解析xml。<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8D%E7%9F%A5%E9%81%93%E5%B1%9E%E6%80%A7%E7%A7%81%E7%94%A8iterator.png" alt="">  </p>
-<p>运行结果如下:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png" alt=""></p>
-<h2 id="3-示例—生成xml文件"><a href="#3-示例—生成xml文件" class="headerlink" title="3.示例—生成xml文件"></a>3.示例—生成xml文件</h2><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E7%94%9F%E6%88%90xml%E6%96%87%E4%BB%B6.png" alt="">  </p>
-<p>运行代码后在桌面的dom4j种即可看到如下内容:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C2.png" alt="">  </p>
-<p><strong>说明:</strong>我这里用的是mac系统，文件路径是:/Users/codingBoy/Desktop/dom4j.xml，上图中的路径打错，这个才是正确的路径.</p>
+<h2 id="2-SQL语句详解"><a href="#2-SQL语句详解" class="headerlink" title="2.SQL语句详解"></a>2.SQL语句详解</h2><p>当然首先需要再命令行中输入<code>mysql -uroot -p</code>来进入mysql。注意:1.MySQL语法不区分大小写，但是建议在写关键字时用大写。2.每一条语句后面以分号结尾。  </p>
+<h3 id="2-1DDL-数据定义语言-语法"><a href="#2-1DDL-数据定义语言-语法" class="headerlink" title="2.1DDL(数据定义语言)语法"></a>2.1DDL(数据定义语言)语法</h3><p>该语言用来对数据库和表结构进行操作。  </p>
+<p><strong>对数据库的操作:</strong>  </p>
+<p>查看所有数据库:<code>SHOW DATABASES;</code>  </p>
+<p>使用数据库:<code>USE 数据库名;</code>  </p>
+<p>创建数据库:<code>CREATE DATABASE [IF NOT EXISTS] 数据库名 [CHARSET=UTF-8];</code>  </p>
+<p>删除数据库:<code>DROP DATABASE 数据库名;</code>  </p>
+<p>修改数据库的编码:<code>ALTER DATABASE 数据库名 CHARACTER SET UTF-8;</code>  </p>
+<p><strong>对表结构的操作</strong><br>创建表:  </p>
+<pre><code>CREATE TABLE (IF NOT EXISTS) 表名(
+列名 列类型，
+...，
+列名 列类型
+)；  
+</code></pre><p>查看当前数据库中所有表:<code>SHOW TABLES;</code>  </p>
+<p>查看表结构:<code>DESC 表名;</code>  </p>
+<p>删除表:<code>DROP 表名;</code>  </p>
+<p>修改表:修改表有四个操作，但前缀都是一样的:<code>ALTER TABLE 表名...</code>  </p>
+<ul>
+<li>修改表之添加列:<code>ALTER TABLE 表名 add (列名 列类型，...，列名 列类型);</code></li>
+<li>修改表之修改列类型:<code>ALTER TABLE 表名 MODIFY 列名 列的新类型;</code></li>
+<li>修改表之删除列:<code>ALTER TABLE 表名 DROP 列名;</code></li>
+<li>修改表之修改表名:<code>ALTER TABLE 表名 RENAME TO 新表名</code></li>
+</ul>
+<h3 id="2-2DML-数据操作语言-语法"><a href="#2-2DML-数据操作语言-语法" class="headerlink" title="2.2DML(数据操作语言)语法"></a>2.2DML(数据操作语言)语法</h3><p>该语言用来对表记录操作(增、删、改)。  </p>
+<h4 id="2-2-1插入数据-一次插入就是插入一行"><a href="#2-2-1插入数据-一次插入就是插入一行" class="headerlink" title="2.2.1插入数据(一次插入就是插入一行)"></a>2.2.1插入数据(一次插入就是插入一行)</h4><p><code>insert into 表名 (列名1，列名2，列名3) values (列值1，列值2，列值3)</code>  </p>
+<p>说明:1.在数据库中所有的字符串类型，必须使用单引号。2.(列名1，列名2，列名3)可省略，表示按照表中的顺序插入。但不建议采取这种写法，因为降低了程序的可读性。3.在命令行插入记录不要写中文，否则会出现乱码。  </p>
+<h4 id="2-2-2修改记录-不会修改一行"><a href="#2-2-2修改记录-不会修改一行" class="headerlink" title="2.2.2修改记录(不会修改一行)"></a>2.2.2修改记录(不会修改一行)</h4><p>修改某列的全部值:<code>update 表名 set 列名1=列值1(，列名2=列值2);</code>  </p>
+<p>修改(某行或者多行记录的)列的指定值:<code>update 表名 set 列名1=列值1 where 列名2=列值2 or 列名3=列值3;</code>  </p>
+<p>运算符:<code>=、!=、&lt;&gt;、&lt;、&gt;、&gt;=、&lt;=、between...and、in(…)、is null、not、or、and</code>，其中in(…)的用法表示集合。例如:<code>update 表名 set 列名1=列值1 where 列名2=列值2 or 列名2=列值22</code>用in(…)写成<code>update 表名 set 列名1=列值1 where 列名2 in(列值2，列值3)</code>  </p>
+<h4 id="2-2-3删除数据-删除整行"><a href="#2-2-3删除数据-删除整行" class="headerlink" title="2.2.3删除数据(删除整行)"></a>2.2.3删除数据(删除整行)</h4><p><code>delete from 表名 (where 条件);</code>不加where条件时会删除表中所有的记录，所以为了防止这种失误操作，很多数据库往往都会有备份。</p>
+<h3 id="2-3DCL-数据控制语言-语法"><a href="#2-3DCL-数据控制语言-语法" class="headerlink" title="2.3DCL(数据控制语言)语法"></a>2.3DCL(数据控制语言)语法</h3><p>该语言用来定义访问权限，理解即可，以后不会多用。需要记住的是，一个项目创建一个用户，一个项目对应的数据库只有一个。这个用户只能对这个数据库有权限，其它数据库该用户就操作不了。  </p>
+<h4 id="2-3-1创建用户"><a href="#2-3-1创建用户" class="headerlink" title="2.3.1创建用户"></a>2.3.1创建用户</h4><p>用户只能在指定ip地址上登录mysql:<code>create user 用户名@IP地址 identified by  ‘密码’；</code>  </p>
+<p>用户可以在任意ip地址上登录:<code>create user 用户名@‘％’ identified by ‘密码’；</code>  </p>
+<h4 id="2-3-2给用户授权"><a href="#2-3-2给用户授权" class="headerlink" title="2.3.2给用户授权"></a>2.3.2给用户授权</h4><p>语法:<code>grant 权限1，…，权限n on 数据库.* to 用户名@IP地址；</code>其中权限1、2、n可以直接用all关键字代替。权限例如:create,alter,drop,insert,update,delete,select。  </p>
+<h4 id="2-3-3撤销授权"><a href="#2-3-3撤销授权" class="headerlink" title="2.3.3撤销授权"></a>2.3.3撤销授权</h4><p>语法:<code>revoke 权限1，…，权限n  on  数据库.*   from 用户名@ ip地址；</code>撤销指定用户在指定数据库上的指定权限。撤销例如:<code>revoke create,delete on mydb1.*  form user@localhost;</code>表示的意思是撤消user用户在数据库mydb1伤的create、alter权限。  </p>
+<h4 id="2-3-4查看权限"><a href="#2-3-4查看权限" class="headerlink" title="2.3.4查看权限"></a>2.3.4查看权限</h4><p>查看指定用户的权限:<code>show grants for 用户名@ip地址；</code>  </p>
+<h4 id="2-3-5删除用户"><a href="#2-3-5删除用户" class="headerlink" title="2.3.5删除用户"></a>2.3.5删除用户</h4><p><code>drop user 用户名@ip地址；</code></p>
+<h3 id="2-4DQL-数据查询语言-语法"><a href="#2-4DQL-数据查询语言-语法" class="headerlink" title="2.4DQL(数据查询语言)语法"></a>2.4DQL(数据查询语言)语法</h3><p>重点，该语言用来查询记录，不会修改数据库和表结构。  </p>
+<h4 id="2-4-1基本查询-后缀都是统一为from-表名"><a href="#2-4-1基本查询-后缀都是统一为from-表名" class="headerlink" title="2.4.1基本查询(后缀都是统一为from 表名)"></a>2.4.1基本查询(后缀都是统一为from 表名)</h4><ul>
+<li>1.字段(列)控制  <blockquote>
+<p>1.查询所有列:<code>select * from 表名;</code>其中＊表示查询所有列，而不是所有行的意思。<br>2.查询指定列:<code>select 列1，列2，列n  from 表名；</code><br>3.完全重复的记录只显示一次:在查询的列之前添加distinct:<code>select distinct $ from 表名；</code>缺省值为all。<br>4.列运算<br>a.数量类型的列可以做加、减、乘、除:<code>SELECT sal*5 from 表名；</code>说明:1.遇到null加任何值都等于null的情况，需要用到ifnull()函数。2.将字符串做加减乘除运算，会把字符串当作0。<br>b.字符串累类型可以做连续运算(需要用到concat()函数):<code>select concat(列名1，列名2) from 表名;</code>其中列名的类型要为字符串。<br>c. 给列名起别名:<code>select 列名1 (as) 别名1,列名2 (as) 别名2   from 表名；</code></p>
+</blockquote>
+</li>
+<li>2.条件控制<blockquote>
+<p>1.条件查询。在后面添加where指定条件:<code>select * from 表名 where 列名＝指定值;</code><br>2.模糊查询：当你想查询所有姓张的记录。用到关键字like。eg:<code>select * from 表名 where 列名 like ‘张_’;</code>(_代表匹配任意一个字符，％代表匹配0～n个任意字符)。  </p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-4-2排序-所谓升序和降序都是从上往下排列"><a href="#2-4-2排序-所谓升序和降序都是从上往下排列" class="headerlink" title="2.4.2排序(所谓升序和降序都是从上往下排列)"></a>2.4.2排序(所谓升序和降序都是从上往下排列)</h4><ul>
+<li>1.升序:<code>select * form 表名 order by 列名 (ASC );</code> ()里面的内容为缺省值；</li>
+<li>2.降序:<code>select * from 表名 order by 列名 DESC;</code></li>
+<li>3.使用多列作为排序条件: 当第一列排序条件相同时，根据第二列排序条件排序(当第二列依旧相同时可视情况根据第三例条件排序)。eg:<code>select * from 表名 order by 列名1 ASC, 列名2 DESC;</code>意思是当列名1的值相同时按照列名2的值降序排。</li>
+</ul>
+<h4 id="2-4-3聚合函数"><a href="#2-4-3聚合函数" class="headerlink" title="2.4.3聚合函数"></a>2.4.3聚合函数</h4><ul>
+<li>1.count:<code>select count(列名) from 表名；</code>,纪录有效行数。</li>
+<li>2.max:<code>select count(列名) from 表名；</code>,列中最大值。</li>
+<li>3.min:<code>select sum(列名) from 表名；</code>,列中最小值。</li>
+<li>4.sum:<code>select sum(列名) from 表名；</code>,求列的总值，null 和字符串默认为0。</li>
+<li>5.avg:<code>select avg(列名) from 表名;</code>,一列的平均值。</li>
+</ul>
+<h4 id="2-4-4分组查询"><a href="#2-4-4分组查询" class="headerlink" title="2.4.4分组查询"></a>2.4.4分组查询</h4><p>分组查询的信息都是组的信息，不能查到个人的信息，其中查询组的信息是通过聚合函数得到的。  </p>
+<p>语法：<code>select 分组列名，聚合函数1,聚合函数2  from 表名 group by 该分组列名；</code>其中分组列名需要的条件是该列名中有重复的信息。  </p>
+<p>查询的结果只能为：作为分组条件的列和聚合函数；查处的信息都是组的信息。  </p>
+<p>分组查询前，还可以通过关键字where先把满足条件的人分出来，再分组。语法为:<code>select 分组列，聚合函数 from 表名 where 条件 group by  分组列；</code>  </p>
+<p>分组查询后，也可以通过关键字having把组信息中满足条件的组再细分出来。语法为：<code>select 分组列，聚合函数 from 表名 where 条件 group by  分组列 having 聚合函数或列名(条件)；</code>  </p>
+<h4 id="2-4-5LIMIT子句-mysql中独有的语法"><a href="#2-4-5LIMIT子句-mysql中独有的语法" class="headerlink" title="2.4.5LIMIT子句(mysql中独有的语法)"></a>2.4.5LIMIT子句(mysql中独有的语法)</h4><p>LIMIT用来限定查询结果的起始行，以及总行数。  </p>
+<p>例如：<code>select * from 表名  limit 4，3；</code>表示起始行为第5行，一共查询3行记录。  </p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><p>学过的关键字：<code>select,from,where,group by,having ,order by。</code>当一条查询语句中都包含所有这些关键字时它们的优先级是<code>select&gt;from&gt;where&gt;group by&gt;having&gt;order by</code>。</p>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
@@ -430,7 +485,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java之xml/" rel="tag">#Java之xml</a>
+            <a href="/tags/MySQL-数据库/" rel="tag">#MySQL 数据库</a>
           
         </div>
       
@@ -439,16 +494,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/03/12-EL表达式/" rel="next" title="JavaWeb学习笔记之EL表达式">
-                <i class="fa fa-chevron-left"></i> JavaWeb学习笔记之EL表达式
+              <a href="/2016/10/04/14-在Java中使用dom4j来解析xml文件/" rel="next" title="在Java中使用dom4j来解析及生成xml文件">
+                <i class="fa fa-chevron-left"></i> 在Java中使用dom4j来解析及生成xml文件
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/09/15-SQL学习笔记一/" rel="prev" title="MySQL学习笔记一之MySQL语法">
-                MySQL学习笔记一之MySQL语法 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/10/16-SQL学习笔记二/" rel="prev" title="MySQL学习笔记二之单表查询与多表查询">
+                MySQL学习笔记二之单表查询与多表查询 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -475,8 +530,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/04/14-在Java中使用dom4j来解析xml文件/"
-           data-title="在Java中使用dom4j来解析及生成xml文件" data-url="http://codingxiaxw.cn/archives/2016/10/04/14-在Java中使用dom4j来解析xml文件/">
+      <div class="ds-thread" data-thread-key="2016/10/09/15-SQL学习笔记一/"
+           data-title="MySQL学习笔记一之MySQL语法" data-url="http://codingxiaxw.cn/archives/2016/10/09/15-SQL学习笔记一/">
       </div>
     
   </div>
@@ -596,7 +651,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-示例—解析xml文件"><span class="nav-number">2.</span> <span class="nav-text">2.示例—解析xml文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1xml文档"><span class="nav-number">2.1.</span> <span class="nav-text">2.1xml文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2示例一、使用List列表方式来解析xml"><span class="nav-number">2.2.</span> <span class="nav-text">2.2示例一、使用List列表方式来解析xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3示例二、使用迭代器Iterator来解析xml"><span class="nav-number">2.3.</span> <span class="nav-text">2.3示例二、使用迭代器Iterator来解析xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-示例—生成xml文件"><span class="nav-number">3.</span> <span class="nav-text">3.示例—生成xml文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-SQL语句分类"><span class="nav-number">1.</span> <span class="nav-text">1.SQL语句分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SQL语句详解"><span class="nav-number">2.</span> <span class="nav-text">2.SQL语句详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1DDL-数据定义语言-语法"><span class="nav-number">2.1.</span> <span class="nav-text">2.1DDL(数据定义语言)语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2DML-数据操作语言-语法"><span class="nav-number">2.2.</span> <span class="nav-text">2.2DML(数据操作语言)语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1插入数据-一次插入就是插入一行"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1插入数据(一次插入就是插入一行)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2修改记录-不会修改一行"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2修改记录(不会修改一行)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3删除数据-删除整行"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.2.3删除数据(删除整行)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3DCL-数据控制语言-语法"><span class="nav-number">2.3.</span> <span class="nav-text">2.3DCL(数据控制语言)语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1创建用户"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1创建用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2给用户授权"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2给用户授权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3撤销授权"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3撤销授权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-4查看权限"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4查看权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-5删除用户"><span class="nav-number">2.3.5.</span> <span class="nav-text">2.3.5删除用户</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4DQL-数据查询语言-语法"><span class="nav-number">2.4.</span> <span class="nav-text">2.4DQL(数据查询语言)语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1基本查询-后缀都是统一为from-表名"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1基本查询(后缀都是统一为from 表名)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2排序-所谓升序和降序都是从上往下排列"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.4.2排序(所谓升序和降序都是从上往下排列)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3聚合函数"><span class="nav-number">2.4.3.</span> <span class="nav-text">2.4.3聚合函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-4分组查询"><span class="nav-number">2.4.4.</span> <span class="nav-text">2.4.4分组查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-5LIMIT子句-mysql中独有的语法"><span class="nav-number">2.4.5.</span> <span class="nav-text">2.4.5LIMIT子句(mysql中独有的语法)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-总结"><span class="nav-number">3.</span> <span class="nav-text">3.总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
             
           </div>
         </section>
