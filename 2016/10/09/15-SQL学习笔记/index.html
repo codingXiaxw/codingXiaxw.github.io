@@ -102,7 +102,7 @@
 3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。
 4.DQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL学习笔记(一)">
+<meta property="og:title" content="MySQL学习笔记一之MySQL语法">
 <meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/09/15-SQL学习笔记/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="1.SQL语句分类
@@ -110,9 +110,9 @@
 2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。
 3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。
 4.DQ">
-<meta property="og:updated_time" content="2016-10-09T10:53:43.000Z">
+<meta property="og:updated_time" content="2016-10-10T06:38:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL学习笔记(一)">
+<meta name="twitter:title" content="MySQL学习笔记一之MySQL语法">
 <meta name="twitter:description" content="1.SQL语句分类
 1.DDL(Data Definition Language):数据定义语言，用来定义数据库对象：库、表、列等。功能：创建、删除、修改库和表结构。
 2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。
@@ -140,7 +140,7 @@
 
   <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/09/15-SQL学习笔记/"/>
 
-  <title> MySQL学习笔记(一) | codingXiaxw's blog </title>
+  <title> MySQL学习笔记一之MySQL语法 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -293,7 +293,7 @@
             
             
               
-                MySQL学习笔记(一)
+                MySQL学习笔记一之MySQL语法
               
             
           </h1>
@@ -398,7 +398,7 @@
 <h4 id="2-2-2修改记录-不会修改一行"><a href="#2-2-2修改记录-不会修改一行" class="headerlink" title="2.2.2修改记录(不会修改一行)"></a>2.2.2修改记录(不会修改一行)</h4><p>修改某列的全部值:<code>update 表名 set 列名1=列值1(，列名2=列值2);</code>  </p>
 <p>修改(某行或者多行记录的)列的指定值:<code>update 表名 set 列名1=列值1 where 列名2=列值2 or 列名3=列值3;</code>  </p>
 <p>运算符:<code>=、!=、&lt;&gt;、&lt;、&gt;、&gt;=、&lt;=、between...and、in(…)、is null、not、or、and</code>，其中in(…)的用法表示集合。例如:<code>update 表名 set 列名1=列值1 where 列名2=列值2 or 列名2=列值22</code>用in(…)写成<code>update 表名 set 列名1=列值1 where 列名2 in(列值2，列值3)</code>  </p>
-<h4 id="2-2-3删除数据-删除整行"><a href="#2-2-3删除数据-删除整行" class="headerlink" title="2.2.3删除数据(删除整行)"></a>2.2.3删除数据(删除整行)</h4><p><code>delete from 表名 (where 条件);</code>不加where条件时会删除表中所有的路，所以为了防止这种失误操作，很多数据库往往都会有备份。</p>
+<h4 id="2-2-3删除数据-删除整行"><a href="#2-2-3删除数据-删除整行" class="headerlink" title="2.2.3删除数据(删除整行)"></a>2.2.3删除数据(删除整行)</h4><p><code>delete from 表名 (where 条件);</code>不加where条件时会删除表中所有的记录，所以为了防止这种失误操作，很多数据库往往都会有备份。</p>
 <h3 id="2-3DCL-数据控制语言-语法"><a href="#2-3DCL-数据控制语言-语法" class="headerlink" title="2.3DCL(数据控制语言)语法"></a>2.3DCL(数据控制语言)语法</h3><p>该语言用来定义访问权限，理解即可，以后不会多用。需要记住的是，一个项目创建一个用户，一个项目对应的数据库只有一个。这个用户只能对这个数据库有权限，其它数据库该用户就操作不了。  </p>
 <h4 id="2-3-1创建用户"><a href="#2-3-1创建用户" class="headerlink" title="2.3.1创建用户"></a>2.3.1创建用户</h4><p>用户只能在指定ip地址上登录mysql:<code>create user 用户名@IP地址 identified by  ‘密码’；</code>  </p>
 <p>用户可以在任意ip地址上登录:<code>create user 用户名@‘％’ identified by ‘密码’；</code>  </p>
@@ -527,7 +527,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/10/09/15-SQL学习笔记/"
-           data-title="MySQL学习笔记(一)" data-url="http://codingxiaxw.cn/archives/2016/10/09/15-SQL学习笔记/">
+           data-title="MySQL学习笔记一之MySQL语法" data-url="http://codingxiaxw.cn/archives/2016/10/09/15-SQL学习笔记/">
       </div>
     
   </div>
