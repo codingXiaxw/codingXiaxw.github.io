@@ -248,8 +248,19 @@ where sal=max(sal);
 <li>4.DQL(Data Query Language):数据查询语言，用来查询记录。也是本章学习的重点。  </li>
 </ul>
 <a id="more"></a>
-<h2 id="2-SQL语句详解"><a href="#2-SQL语句详解" class="headerlink" title="2.SQL语句详解"></a>2.SQL语句详解</h2><p>当然首先需要再命令行中输入<code>mysql -uroot -p</code>来进入mysql。注意:1.MySQL语法不区分大小写，但是建议在写关键字时用大写。2.每一条语句后面以分号结尾。  </p>
-<h3 id="2-1DDL-数据定义语言-语法"><a href="#2-1DDL-数据定义语言-语法" class="headerlink" title="2.1DDL(数据定义语言)语法"></a>2.1DDL(数据定义语言)语法</h3><p>该语言用来对数据库和表结构进行操作。  </p>
+<h2 id="2-SQL数据中的属性类型"><a href="#2-SQL数据中的属性类型" class="headerlink" title="2.SQL数据中的属性类型"></a>2.SQL数据中的属性类型</h2><ul>
+<li>INT:整型。</li>
+<li>DOUBLE(5,2):浮点型，参数表示该浮点型数值对多有5位，其中必须有2位小数。</li>
+<li>CHAR:字符型，固定长度字符串类型:char(255)。你存入一个a字符，虽然a只占一个字符，但是它会自动给你加254个空格凑成255个长度。即数据的长度不足指定长度，它会补足到指定长度。</li>
+<li>VARCHAR:可变长度字符串类型：varchar(65535),你存入的数据多长它就是多长。它会抽出几个字节来记录数据的长度。</li>
+<li>TEXT(CLOB):mysql独有的数据类型，字符串类型。</li>
+<li>BLOB:字节类型。</li>
+<li>DATA:日期类型，格式为:yyyy-MM-dd。</li>
+<li>TIME:时间类型，格式为:hh:mm:ss。</li>
+<li>TIMESTAMP:时间戳类型，格式为上面二者的综合。</li>
+</ul>
+<h2 id="3-SQL语句详解"><a href="#3-SQL语句详解" class="headerlink" title="3.SQL语句详解"></a>3.SQL语句详解</h2><p>当然首先需要再命令行中输入<code>mysql -uroot -p</code>来进入mysql。注意:1.MySQL语法不区分大小写，但是建议在写关键字时用大写。2.每一条语句后面以分号结尾。  </p>
+<h3 id="3-1DDL-数据定义语言-语法"><a href="#3-1DDL-数据定义语言-语法" class="headerlink" title="3.1DDL(数据定义语言)语法"></a>3.1DDL(数据定义语言)语法</h3><p>该语言用来对数据库和表结构进行操作。  </p>
 <p><strong>对数据库的操作:</strong>  </p>
 <p>查看所有数据库:<code>SHOW DATABASES;</code>  </p>
 <p>使用数据库:<code>USE 数据库名;</code>  </p>
@@ -272,22 +283,22 @@ where sal=max(sal);
 <li>修改表之删除列:<code>ALTER TABLE 表名 DROP 列名;</code></li>
 <li>修改表之修改表名:<code>ALTER TABLE 表名 RENAME TO 新表名</code></li>
 </ul>
-<h3 id="2-2DML-数据操作语言-语法"><a href="#2-2DML-数据操作语言-语法" class="headerlink" title="2.2DML(数据操作语言)语法"></a>2.2DML(数据操作语言)语法</h3><p>该语言用来对表记录操作(增、删、改)。  </p>
-<h4 id="2-2-1插入数据-一次插入就是插入一行"><a href="#2-2-1插入数据-一次插入就是插入一行" class="headerlink" title="2.2.1插入数据(一次插入就是插入一行)"></a>2.2.1插入数据(一次插入就是插入一行)</h4><p><code>insert into 表名 (列名1，列名2，列名3) values (列值1，列值2，列值3)</code>  </p>
+<h3 id="3-2DML-数据操作语言-语法"><a href="#3-2DML-数据操作语言-语法" class="headerlink" title="3.2DML(数据操作语言)语法"></a>3.2DML(数据操作语言)语法</h3><p>该语言用来对表记录操作(增、删、改)。  </p>
+<h4 id="3-2-1插入数据-一次插入就是插入一行"><a href="#3-2-1插入数据-一次插入就是插入一行" class="headerlink" title="3.2.1插入数据(一次插入就是插入一行)"></a>3.2.1插入数据(一次插入就是插入一行)</h4><p><code>insert into 表名 (列名1，列名2，列名3) values (列值1，列值2，列值3)</code>  </p>
 <p>说明:1.在数据库中所有的字符串类型，必须使用单引号。2.(列名1，列名2，列名3)可省略，表示按照表中的顺序插入。但不建议采取这种写法，因为降低了程序的可读性。3.在命令行插入记录不要写中文，否则会出现乱码。  </p>
-<h4 id="2-2-2修改记录-不会修改一行"><a href="#2-2-2修改记录-不会修改一行" class="headerlink" title="2.2.2修改记录(不会修改一行)"></a>2.2.2修改记录(不会修改一行)</h4><p>修改某列的全部值:<code>update 表名 set 列名1=列值1(，列名2=列值2);</code>  </p>
+<h4 id="3-2-2修改记录-不会修改一行"><a href="#3-2-2修改记录-不会修改一行" class="headerlink" title="3.2.2修改记录(不会修改一行)"></a>3.2.2修改记录(不会修改一行)</h4><p>修改某列的全部值:<code>update 表名 set 列名1=列值1(，列名2=列值2);</code>  </p>
 <p>修改(某行或者多行记录的)列的指定值:<code>update 表名 set 列名1=列值1 where 列名2=列值2 or 列名3=列值3;</code>  </p>
 <p>运算符:<code>=、!=、&lt;&gt;、&lt;、&gt;、&gt;=、&lt;=、between...and、in(…)、is null、not、or、and</code>，其中in(…)的用法表示集合。例如:<code>update 表名 set 列名1=列值1 where 列名2=列值2 or 列名2=列值22</code>用in(…)写成<code>update 表名 set 列名1=列值1 where 列名2 in(列值2，列值3)</code>  </p>
-<h4 id="2-2-3删除数据-删除整行"><a href="#2-2-3删除数据-删除整行" class="headerlink" title="2.2.3删除数据(删除整行)"></a>2.2.3删除数据(删除整行)</h4><p><code>delete from 表名 (where 条件);</code>不加where条件时会删除表中所有的记录，所以为了防止这种失误操作，很多数据库往往都会有备份。</p>
-<h3 id="2-3DCL-数据控制语言-语法"><a href="#2-3DCL-数据控制语言-语法" class="headerlink" title="2.3DCL(数据控制语言)语法"></a>2.3DCL(数据控制语言)语法</h3><p>该语言用来定义访问权限，理解即可，以后不会多用。需要记住的是，一个项目创建一个用户，一个项目对应的数据库只有一个。这个用户只能对这个数据库有权限，其它数据库该用户就操作不了。  </p>
-<h4 id="2-3-1创建用户"><a href="#2-3-1创建用户" class="headerlink" title="2.3.1创建用户"></a>2.3.1创建用户</h4><p>用户只能在指定ip地址上登录mysql:<code>create user 用户名@IP地址 identified by  ‘密码’；</code>  </p>
+<h4 id="3-2-3删除数据-删除整行"><a href="#3-2-3删除数据-删除整行" class="headerlink" title="3.2.3删除数据(删除整行)"></a>3.2.3删除数据(删除整行)</h4><p><code>delete from 表名 (where 条件);</code>不加where条件时会删除表中所有的记录，所以为了防止这种失误操作，很多数据库往往都会有备份。</p>
+<h3 id="3-3DCL-数据控制语言-语法"><a href="#3-3DCL-数据控制语言-语法" class="headerlink" title="3.3DCL(数据控制语言)语法"></a>3.3DCL(数据控制语言)语法</h3><p>该语言用来定义访问权限，理解即可，以后不会多用。需要记住的是，一个项目创建一个用户，一个项目对应的数据库只有一个。这个用户只能对这个数据库有权限，其它数据库该用户就操作不了。  </p>
+<h4 id="3-3-1创建用户"><a href="#3-3-1创建用户" class="headerlink" title="3.3.1创建用户"></a>3.3.1创建用户</h4><p>用户只能在指定ip地址上登录mysql:<code>create user 用户名@IP地址 identified by  ‘密码’；</code>  </p>
 <p>用户可以在任意ip地址上登录:<code>create user 用户名@‘％’ identified by ‘密码’；</code>  </p>
-<h4 id="2-3-2给用户授权"><a href="#2-3-2给用户授权" class="headerlink" title="2.3.2给用户授权"></a>2.3.2给用户授权</h4><p>语法:<code>grant 权限1，…，权限n on 数据库.* to 用户名@IP地址；</code>其中权限1、2、n可以直接用all关键字代替。权限例如:create,alter,drop,insert,update,delete,select。  </p>
-<h4 id="2-3-3撤销授权"><a href="#2-3-3撤销授权" class="headerlink" title="2.3.3撤销授权"></a>2.3.3撤销授权</h4><p>语法:<code>revoke 权限1，…，权限n  on  数据库.*   from 用户名@ ip地址；</code>撤销指定用户在指定数据库上的指定权限。撤销例如:<code>revoke create,delete on mydb1.*  form user@localhost;</code>表示的意思是撤消user用户在数据库mydb1伤的create、alter权限。  </p>
-<h4 id="2-3-4查看权限"><a href="#2-3-4查看权限" class="headerlink" title="2.3.4查看权限"></a>2.3.4查看权限</h4><p>查看指定用户的权限:<code>show grants for 用户名@ip地址；</code>  </p>
-<h4 id="2-3-5删除用户"><a href="#2-3-5删除用户" class="headerlink" title="2.3.5删除用户"></a>2.3.5删除用户</h4><p><code>drop user 用户名@ip地址；</code></p>
-<h3 id="2-4DQL-数据查询语言-语法"><a href="#2-4DQL-数据查询语言-语法" class="headerlink" title="2.4DQL(数据查询语言)语法"></a>2.4DQL(数据查询语言)语法</h3><p>重点，该语言用来查询记录，不会修改数据库和表结构。  </p>
-<h4 id="2-4-1基本查询-后缀都是统一为from-表名"><a href="#2-4-1基本查询-后缀都是统一为from-表名" class="headerlink" title="2.4.1基本查询(后缀都是统一为from 表名)"></a>2.4.1基本查询(后缀都是统一为from 表名)</h4><ul>
+<h4 id="3-3-2给用户授权"><a href="#3-3-2给用户授权" class="headerlink" title="3.3.2给用户授权"></a>3.3.2给用户授权</h4><p>语法:<code>grant 权限1，…，权限n on 数据库.* to 用户名@IP地址；</code>其中权限1、2、n可以直接用all关键字代替。权限例如:create,alter,drop,insert,update,delete,select。  </p>
+<h4 id="3-3-3撤销授权"><a href="#3-3-3撤销授权" class="headerlink" title="3.3.3撤销授权"></a>3.3.3撤销授权</h4><p>语法:<code>revoke 权限1，…，权限n  on  数据库.*   from 用户名@ ip地址；</code>撤销指定用户在指定数据库上的指定权限。撤销例如:<code>revoke create,delete on mydb1.*  form user@localhost;</code>表示的意思是撤消user用户在数据库mydb1伤的create、alter权限。  </p>
+<h4 id="3-3-4查看权限"><a href="#3-3-4查看权限" class="headerlink" title="3.3.4查看权限"></a>3.3.4查看权限</h4><p>查看指定用户的权限:<code>show grants for 用户名@ip地址；</code>  </p>
+<h4 id="3-3-5删除用户"><a href="#3-3-5删除用户" class="headerlink" title="3.3.5删除用户"></a>3.3.5删除用户</h4><p><code>drop user 用户名@ip地址；</code></p>
+<h3 id="3-4DQL-数据查询语言-语法"><a href="#3-4DQL-数据查询语言-语法" class="headerlink" title="3.4DQL(数据查询语言)语法"></a>3.4DQL(数据查询语言)语法</h3><p>重点，该语言用来查询记录，不会修改数据库和表结构。  </p>
+<h4 id="3-4-1基本查询-后缀都是统一为from-表名"><a href="#3-4-1基本查询-后缀都是统一为from-表名" class="headerlink" title="3.4.1基本查询(后缀都是统一为from 表名)"></a>3.4.1基本查询(后缀都是统一为from 表名)</h4><ul>
 <li>1.字段(列)控制  <blockquote>
 <p>1.查询所有列:<code>select * from 表名;</code>其中＊表示查询所有列，而不是所有行的意思。<br>2.查询指定列:<code>select 列1，列2，列n  from 表名；</code><br>3.完全重复的记录只显示一次:在查询的列之前添加distinct:<code>select distinct $ from 表名；</code>缺省值为all。<br>4.列运算<br>a.数量类型的列可以做加、减、乘、除:<code>SELECT sal*5 from 表名；</code>说明:1.遇到null加任何值都等于null的情况，需要用到ifnull()函数。2.将字符串做加减乘除运算，会把字符串当作0。<br>b.字符串累类型可以做连续运算(需要用到concat()函数):<code>select concat(列名1，列名2) from 表名;</code>其中列名的类型要为字符串。<br>c. 给列名起别名:<code>select 列名1 (as) 别名1,列名2 (as) 别名2   from 表名；</code></p>
 </blockquote>
@@ -297,27 +308,27 @@ where sal=max(sal);
 </blockquote>
 </li>
 </ul>
-<h4 id="2-4-2排序-所谓升序和降序都是从上往下排列"><a href="#2-4-2排序-所谓升序和降序都是从上往下排列" class="headerlink" title="2.4.2排序(所谓升序和降序都是从上往下排列)"></a>2.4.2排序(所谓升序和降序都是从上往下排列)</h4><ul>
+<h4 id="3-4-2排序-所谓升序和降序都是从上往下排列"><a href="#3-4-2排序-所谓升序和降序都是从上往下排列" class="headerlink" title="3.4.2排序(所谓升序和降序都是从上往下排列)"></a>3.4.2排序(所谓升序和降序都是从上往下排列)</h4><ul>
 <li>1.升序:<code>select * form 表名 order by 列名 (ASC );</code> ()里面的内容为缺省值；</li>
 <li>2.降序:<code>select * from 表名 order by 列名 DESC;</code></li>
 <li>3.使用多列作为排序条件: 当第一列排序条件相同时，根据第二列排序条件排序(当第二列依旧相同时可视情况根据第三例条件排序)。eg:<code>select * from 表名 order by 列名1 ASC, 列名2 DESC;</code>意思是当列名1的值相同时按照列名2的值降序排。</li>
 </ul>
-<h4 id="2-4-3聚合函数"><a href="#2-4-3聚合函数" class="headerlink" title="2.4.3聚合函数"></a>2.4.3聚合函数</h4><ul>
+<h4 id="3-4-3聚合函数"><a href="#3-4-3聚合函数" class="headerlink" title="3.4.3聚合函数"></a>3.4.3聚合函数</h4><ul>
 <li>1.count:<code>select count(列名) from 表名；</code>,纪录有效行数。</li>
 <li>2.max:<code>select count(列名) from 表名；</code>,列中最大值。</li>
 <li>3.min:<code>select sum(列名) from 表名；</code>,列中最小值。</li>
 <li>4.sum:<code>select sum(列名) from 表名；</code>,求列的总值，null 和字符串默认为0。</li>
 <li>5.avg:<code>select avg(列名) from 表名;</code>,一列的平均值。</li>
 </ul>
-<h4 id="2-4-4分组查询"><a href="#2-4-4分组查询" class="headerlink" title="2.4.4分组查询"></a>2.4.4分组查询</h4><p>分组查询的信息都是组的信息，不能查到个人的信息，其中查询组的信息是通过聚合函数得到的。  </p>
+<h4 id="3-4-4分组查询"><a href="#3-4-4分组查询" class="headerlink" title="3.4.4分组查询"></a>3.4.4分组查询</h4><p>分组查询的信息都是组的信息，不能查到个人的信息，其中查询组的信息是通过聚合函数得到的。  </p>
 <p>语法：<code>select 分组列名，聚合函数1,聚合函数2  from 表名 group by 该分组列名；</code>其中分组列名需要的条件是该列名中有重复的信息。  </p>
 <p>查询的结果只能为：作为分组条件的列和聚合函数；查处的信息都是组的信息。  </p>
 <p>分组查询前，还可以通过关键字where先把满足条件的人分出来，再分组。语法为:<code>select 分组列，聚合函数 from 表名 where 条件 group by  分组列；</code>  </p>
 <p>分组查询后，也可以通过关键字having把组信息中满足条件的组再细分出来。语法为：<code>select 分组列，聚合函数 from 表名 where 条件 group by  分组列 having 聚合函数或列名(条件)；</code>  </p>
-<h4 id="2-4-5LIMIT子句-mysql中独有的语法"><a href="#2-4-5LIMIT子句-mysql中独有的语法" class="headerlink" title="2.4.5LIMIT子句(mysql中独有的语法)"></a>2.4.5LIMIT子句(mysql中独有的语法)</h4><p>LIMIT用来限定查询结果的起始行，以及总行数。  </p>
+<h4 id="3-4-5LIMIT子句-mysql中独有的语法"><a href="#3-4-5LIMIT子句-mysql中独有的语法" class="headerlink" title="3.4.5LIMIT子句(mysql中独有的语法)"></a>3.4.5LIMIT子句(mysql中独有的语法)</h4><p>LIMIT用来限定查询结果的起始行，以及总行数。  </p>
 <p>例如：<code>select * from 表名  limit 4，3；</code>表示起始行为第5行，一共查询3行记录。  </p>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><p>学过的关键字：<code>select,from,where,group by,having ,order by。</code>当一条查询语句中都包含所有这些关键字时它们的优先级是<code>select&gt;from&gt;where&gt;group by&gt;having&gt;order by</code>。</p>
-<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p>学过的关键字：<code>select,from,where,group by,having ,order by。</code>当一条查询语句中都包含所有这些关键字时它们的优先级是<code>select&gt;from&gt;where&gt;group by&gt;having&gt;order by</code>。</p>
+<h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
 </li>
