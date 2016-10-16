@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java之xml," />
+  <meta name="keywords" content="Java IO流," />
 
 
 
@@ -96,24 +96,16 @@
 
 
 
-<meta name="description" content="1.概述在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。">
+<meta name="description" content="大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序的运行结果等。在Java中，将这种通过不同输入输出设备(键盘，内存，显示器，网络等)之间的数据传输抽象表述为”流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的”流”都位于java.io包中，称为IO(输入输出)流。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Java中使用dom4j来解析及生成xml文件">
-<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/04/14-在Java中使用dom4j来解析xml文件/index.html">
+<meta property="og:title" content="Java之IO流详解">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/16/17-Java之IO流详解/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="1.概述在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8list%E9%9B%86%E5%90%88%E6%96%B9%E6%B3%95%E6%9D%A5%E8%A7%A3%E6%9E%90xml%28%E5%B7%B2%E7%9F%A5%E5%B1%9E%E6%80%A7%29.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8D%E7%9F%A5%E9%81%93%E5%AD%90%E5%85%83%E7%B4%A0%20%E7%94%A8list%E9%81%8D%E5%8E%86xml%E5%85%83%E7%B4%A0.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E7%9F%A5%E9%81%93%E5%B1%9E%E6%80%A7%E4%BD%BF%E7%94%A8iterator.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8D%E7%9F%A5%E9%81%93%E5%B1%9E%E6%80%A7%E7%A7%81%E7%94%A8iterator.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E7%94%9F%E6%88%90xml%E6%96%87%E4%BB%B6.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C2.png">
-<meta property="og:updated_time" content="2016-10-13T04:28:38.000Z">
+<meta property="og:description" content="大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序的运行结果等。在Java中，将这种通过不同输入输出设备(键盘，内存，显示器，网络等)之间的数据传输抽象表述为”流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的”流”都位于java.io包中，称为IO(输入输出)流。">
+<meta property="og:updated_time" content="2016-10-16T13:41:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Java中使用dom4j来解析及生成xml文件">
-<meta name="twitter:description" content="1.概述在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8list%E9%9B%86%E5%90%88%E6%96%B9%E6%B3%95%E6%9D%A5%E8%A7%A3%E6%9E%90xml%28%E5%B7%B2%E7%9F%A5%E5%B1%9E%E6%80%A7%29.png">
+<meta name="twitter:title" content="Java之IO流详解">
+<meta name="twitter:description" content="大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序的运行结果等。在Java中，将这种通过不同输入输出设备(键盘，内存，显示器，网络等)之间的数据传输抽象表述为”流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的”流”都位于java.io包中，称为IO(输入输出)流。">
 
 
 
@@ -134,9 +126,9 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/04/14-在Java中使用dom4j来解析xml文件/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/16/17-Java之IO流详解/"/>
 
-  <title> 在Java中使用dom4j来解析及生成xml文件 | codingXiaxw's blog </title>
+  <title> Java之IO流详解 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -289,7 +281,7 @@
             
             
               
-                在Java中使用dom4j来解析及生成xml文件
+                Java之IO流详解
               
             
           </h1>
@@ -301,8 +293,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-04T21:24:01+08:00" content="Oct 4 2016">
-              Oct 4 2016
+            <time itemprop="dateCreated" datetime="2016-10-16T15:05:18+08:00" content="Oct 16 2016">
+              Oct 16 2016
             </time>
           </span>
 
@@ -315,8 +307,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java之xml/" itemprop="url" rel="index">
-                    <span itemprop="name">Java之xml</span>
+                  <a href="/categories/Java-IO流/" itemprop="url" rel="index">
+                    <span itemprop="name">Java IO流</span>
                   </a>
                 </span>
 
@@ -331,8 +323,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/04/14-在Java中使用dom4j来解析xml文件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/04/14-在Java中使用dom4j来解析xml文件/" itemprop="commentsCount"></span>
+                <a href="/2016/10/16/17-Java之IO流详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/17-Java之IO流详解/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -357,41 +349,191 @@
       
 
       
-        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。  </p>
+        <p>大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序的运行结果等。在Java中，将这种通过不同输入输出设备(键盘，内存，显示器，网络等)之间的数据传输抽象表述为”流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的”流”都位于java.io包中，称为IO(输入输出)流。  </p>
 <a id="more"></a>
-<h2 id="2-示例—解析xml文件"><a href="#2-示例—解析xml文件" class="headerlink" title="2.示例—解析xml文件"></a>2.示例—解析xml文件</h2><p>首先我们需要创建一个文档，然后才能对其解析。  </p>
-<h3 id="2-1xml文档"><a href="#2-1xml文档" class="headerlink" title="2.1xml文档"></a>2.1xml文档</h3><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;books&gt;
-    &lt;book id=&quot;001&quot;&gt;
-        &lt;title&gt;Harry Potter&lt;/title&gt;
-        &lt;author&gt;J K.Rowling&lt;/author&gt;
-    &lt;/book&gt;
-    &lt;book id=&quot;002&quot;&gt;
-        &lt;title&gt;Learning XML&lt;/title&gt;
-        &lt;author&gt;Erik T.Ray&lt;/author&gt;
-    &lt;/book&gt;
-&lt;/books&gt;  
-</code></pre><h3 id="2-2示例一、使用List列表方式来解析xml"><a href="#2-2示例一、使用List列表方式来解析xml" class="headerlink" title="2.2示例一、使用List列表方式来解析xml"></a>2.2示例一、使用List列表方式来解析xml</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8list%E9%9B%86%E5%90%88%E6%96%B9%E6%B3%95%E6%9D%A5%E8%A7%A3%E6%9E%90xml%28%E5%B7%B2%E7%9F%A5%E5%B1%9E%E6%80%A7%29.png" alt="">  </p>
-<p>以上方式是我们在知道xml文件中的详细内容(如根元素名字、根元素中包含的子元素、子元素的属性名、子元素中又包含子元素的元素名即文本内容)时采用的代码。但当我们不知道xml中的详细信息时，我们应该采用如下方式来解析xml。  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8D%E7%9F%A5%E9%81%93%E5%AD%90%E5%85%83%E7%B4%A0%20%E7%94%A8list%E9%81%8D%E5%8E%86xml%E5%85%83%E7%B4%A0.png" alt=""></p>
-<h3 id="2-3示例二、使用迭代器Iterator来解析xml"><a href="#2-3示例二、使用迭代器Iterator来解析xml" class="headerlink" title="2.3示例二、使用迭代器Iterator来解析xml"></a>2.3示例二、使用迭代器Iterator来解析xml</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E7%9F%A5%E9%81%93%E5%B1%9E%E6%80%A7%E4%BD%BF%E7%94%A8iterator.png" alt=""></p>
-<p>同示例一，以上代码也是我们在知道xml文本详细内容后采用的代码。当我们不知道xml中的详细信息时，我们应该采用如下代码方式来解析xml。<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8D%E7%9F%A5%E9%81%93%E5%B1%9E%E6%80%A7%E7%A7%81%E7%94%A8iterator.png" alt="">  </p>
-<p>运行结果如下:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png" alt=""></p>
-<h2 id="3-示例—生成xml文件"><a href="#3-示例—生成xml文件" class="headerlink" title="3.示例—生成xml文件"></a>3.示例—生成xml文件</h2><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E7%94%9F%E6%88%90xml%E6%96%87%E4%BB%B6.png" alt="">  </p>
-<p>运行代码后在桌面的dom4j种即可看到如下内容:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C2.png" alt="">  </p>
-<p><strong>说明:</strong>我这里用的是mac系统，文件路径是:/Users/codingBoy/Desktop/dom4j.xml，上图中的路径打错，这个才是正确的路径.</p>
-<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<p>IO流四大家族:</p>
 <ul>
-<li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
-</li>
-<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
-</li>
-<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎@codingXiaxw</a>  </p>
-</li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a> </li>
+<li>1.InputStream:输入字节流。</li>
+<li>2.OutputStream:输出字节流。</li>
+<li>3.Reader:输入字符流。</li>
+<li>4.Writer:输出字符流。</li>
 </ul>
+<p>其中1、2统称字节流，3、4统称字符流。接下来就来详细介绍这四大家族流的用法。</p>
+<h2 id="1-字节流"><a href="#1-字节流" class="headerlink" title="1.字节流"></a>1.字节流</h2><h3 id="1-1概念"><a href="#1-1概念" class="headerlink" title="1.1概念"></a>1.1概念</h3><p>在计算机中，无论是文本、图片、音频、还是视频，所有的文件都是以二进制(字节)形式存在，IO流中针对字节的输入输出提供了一系列的流，统称为字节流。字节流是程序中最常用的流，根据数据的传输方向可将其分为字节输入流和字节输出流。在JDK中，提供了两个抽象类InputStream和OutputStream，它们是字节流的顶级父类，所有的字节输入流都继承自InputStream，所有的字节输出流都继承自OutputStream。  </p>
+<p><strong>注意:</strong>以上所说的所有”输入”、”输出”都是相对于程序而言。数据通过输入流从源设备输入到程序，通过输出流从程序输出到目标设备，从而实现数据的传输。  </p>
+<h3 id="1-2字节输入流-InputStream"><a href="#1-2字节输入流-InputStream" class="headerlink" title="1.2字节输入流(InputStream)"></a>1.2字节输入流(InputStream)</h3><p><strong>常用方法:</strong>  </p>
+<ul>
+<li>int read();从输入流读取一个8位的字节，把它转换成0~255之间的整数，并返回这一整数。</li>
+<li>int read(byte[] b);从输入流读取若干字节，把它们保存到参数b指定的字节数组中，返回的整数表示读取字节数。</li>
+<li>int read(byte[] b,int off,int len);从输入流读取若干字节，把它们保存到参数b指定的字节数组中，off指定字节数组开始保存数据的起始下标，len表示读取的字节数目。</li>
+<li>void close();关闭此输入流并释放与该流关联的所有系统资源。</li>
+</ul>
+<p>前三个read()方法都是用来读数据的，其中，第一个read()方法是从输入流中逐个读入字节，而第二个和第三个read()方法则将若干字节以字节数组的形式一次性读入，从而提高读数据的效率。在进行IO流操作时，当前IO流会占用一定的内存，由于系统资源宝贵，因此，在IO流操作结束后，应该调用close()方法关闭流，从而释放当前IO流所占的系统资源。 </p>
+<p><strong>Demo:读取文件text.txt中的内容</strong>  </p>
+<pre><code>import java.io.*;
+public class Example{
+    public static void main(String[] args){
+        FileInputStream in=new FileInputStream(&quot;text.txt&quot;);
+        int b;//定义一个int类型的变量，记住每次读取的一个字节。
+        while((b=in.read())!=-1)
+        {
+            System.out.prinln(b);//逐个打印出读取的每一个字节
+        }
+        in.close();
+    }
+}
+</code></pre><h3 id="1-3字节输出流-OutputStream"><a href="#1-3字节输出流-OutputStream" class="headerlink" title="1.3字节输出流(OutputStream)"></a>1.3字节输出流(OutputStream)</h3><p><strong>常用方法:</strong>  </p>
+<ul>
+<li>void write(int b);向输出流写入一个字节。</li>
+<li>void write(byte[] b);把参数b指定的字节数组的所有字节写到输出流。</li>
+<li>void write(byte[] b,int off,int len);将指定byte数组中从偏移量off开始的len个字节写入输出流。</li>
+<li>void flush();刷新此输出流并强制写出所有缓冲的输出字节。</li>
+<li>void close();关闭此输出流并释放与此流相关的所有系统资源。</li>
+</ul>
+<p>前三个是重载的write()方法，都是用于向输出流写入字节，其中，第一个方法逐个写入字节，后两个方法是将若干个字节以字节数组的形式一次性写入，从而提高写数据的效率。flush()方法用来将当前输出流缓冲区(通常是字节数组)中的数据强制写入目标设备，此过程称为刷新。close()方法是用来关闭流并释放与当前IO流相关的系统资源。  </p>
+<p><strong>Demo:将字符串(首先要将字符串转换为字节)写入到文件中</strong>  </p>
+<pre><code>import java.io.*;
+public class Example{
+    public static void main(String[] args){
+        FileOutputStream out=new FileOutputStream(目标文件的路径);
+        String str=&quot;hello world&quot;;
+        byte[] b=str.getBytes();//字符串调用getBytes()方法即可转换成字节数组。
+        for(int i=0;i&lt;b.length;i++)
+        {
+            out.write(b[i]);
+        }
+        out.close();
+    }
+}
+</code></pre><p>InputStream和OutputStream这两个类虽然提供了一系列和读写数据有关的方法，但是这两个类都是抽象类，不能被实例化。因此，针对不同的功能，二者提供了不同的子类。</p>
+<h3 id="1-4代码示例"><a href="#1-4代码示例" class="headerlink" title="1.4代码示例"></a>1.4代码示例</h3><p>下面这个例子通过对文件的复制来讲解InputStream和OutputStream的用法。  </p>
+<pre><code>import java.io.*;
+public class Example{
+     public static void main(String[] args){
+         String fileName=&quot;/Users/codingBoy/Desktop/example1.jpg&quot;;//源文件路径
+         String fileName2=&quot;/Users/codingBoy/Desktop/example2.jpg&quot;;//目标文件路径
+         InputStream in=null;
+         OutputStream out=null;
+         try {
+             in = new FileInputStream(fileName);
+             out = new FileOutputStream(fileName2);
+             int b;
+             while ((b = in.read())!= -1) {
+                 out.write(b);
+             }
+         }catch (Exception e)
+         {
+             throw new RuntimeException(e);
+          }finally {
+             try {
+                 if (in != null) in.close();
+                if (out!=null) out.close();
+             }catch (Exception e)
+             {
+                 throw new RuntimeException(e);
+            }
+         }
+    }
+}
+</code></pre><h3 id="1-5字节缓冲流"><a href="#1-5字节缓冲流" class="headerlink" title="1.5字节缓冲流"></a>1.5字节缓冲流</h3><p>上面的例子实现了对文件的复制，但是一个字节一个字节的读写，需要频繁的操作文件，效率非常低。为了提高效率，需要使用两个带缓冲的字节流，分别是BufferedInputStream和BufferedOutputStream,它们两个同时也属于上文<a href="">JavaWeb学习笔记之Jdbc二</a>中讲到的装饰流。下面通过增加字节缓冲流来对上述例子进行变动:  </p>
+<p><strong>Demo:</strong>  </p>
+<pre><code>import java.io.*;
+public class Example{
+     public static void main(String[] args){
+        String fileName=&quot;/Users/codingBoy/Desktop/example1.jpg&quot;;//源文件路径
+         String fileName2=&quot;/Users/codingBoy/Desktop/example2.jpg&quot;;//目标文件路径
+         InputStream in=null;
+         OutputStream out=null;
+         BufferedInputStream bis=null;
+         BufferedOutputStream bos=null;
+         try {
+             in = new FileInputStream(fileName);
+             bis = new BufferedInputStream(in);//将输入流对象作为参数传递给输入缓冲流
+             out = new FileOutputStream(fileName2);
+             bos = new BufferedOutputStream(out);
+
+             int len;
+             while((len=bis.read())!=-1)                 {
+                 bos.write(len);
+             }
+         catch (Exception e)
+         {
+             throw new RuntimeException(e);
+          }finally {
+             try {
+                 if (in != null) in.close();
+                 if (bis!=null) bis.close();
+                if (out!=null) out.close();
+                if (bos!=null) bos.close();
+             }catch (Exception e)
+             {
+                 throw new RuntimeException(e);
+            }
+         }
+    }
+}
+</code></pre><h2 id="2-字符流"><a href="#2-字符流" class="headerlink" title="2.字符流"></a>2.字符流</h2><h3 id="2-1定义"><a href="#2-1定义" class="headerlink" title="2.1定义"></a>2.1定义</h3><p>前面我们讲过的InputStream和OutputStream类在读写文件时操作的都是字节，如果希望在程序中操作字符，使用这两个类就不太方便，为此JDK提供了字符流。同字节流一样，字符流也有两个抽象的顶级父类，分别是Reader和Writer。其中Reader是字符输入流，用于从某个源设备读取字符，Writer是字符输出流，用于向某个目标设备写入字符。其API跟字节流的类似。  </p>
+<h3 id="2-2输入字符流-Reader"><a href="#2-2输入字符流-Reader" class="headerlink" title="2.2输入字符流(Reader)"></a>2.2输入字符流(Reader)</h3><p><strong>Demo:读取reader.txt中的字符串</strong>  </p>
+<pre><code>import java.io.*;
+public class Example{
+     public static void main(String[] args){
+         FileReader reader=new FileReader(&quot;reader.txt&quot;);
+         int ch;
+         while((ch=reader.read())!=-1)
+         {
+             System.out.println((char)ch);//通过reader()方法读取到的是int类型的值，所以需要进行强制转换。
+         }
+         reader.close();
+     }
+}
+</code></pre><h3 id="2-3输出字符流-Writer"><a href="#2-3输出字符流-Writer" class="headerlink" title="2.3输出字符流(Writer)"></a>2.3输出字符流(Writer)</h3><p><strong>Demo:将字符串输出到目标文件中</strong>  </p>
+<pre><code>import java.io.*;
+public class Example{
+    public static void main(String[] args){
+        FileWrite out=new FileWrite(目标文件的路径);
+        String str=&quot;hello world&quot;;
+
+        out.write(str);
+        out.close();
+    }
+}
+</code></pre><h3 id="2-4字符缓冲流"><a href="#2-4字符缓冲流" class="headerlink" title="2.4字符缓冲流"></a>2.4字符缓冲流</h3><p>字符流同样提供了带缓冲区的包装流，分别是BufferedWriter和BufferedReader,其中BufferedReader用于对字符输入流的包装，BufferedWriter用于对字符输出流的包装。需要注意的是，在BufferedReader中有一个重要的方法readLine()，该方法用于一次读取一行文本。接下来通过一个例子学习如何使用这两个包装流实现文件的复制。  </p>
+<pre><code>import java.io.*;
+public class Example{
+     public static void main(String[] args){
+         String fileName=&quot;/Users/codingBoy/Desktop/example1.jpg&quot;;//源文件路径
+         String fileName2=&quot;/Users/codingBoy/Desktop/example2.jpg&quot;;//目标文件路径
+         Reader reader=null;
+         BufferedReader bf=null;
+         Writer writer=null;
+         BufferedWriter bw=null;
+         try {
+             reader = new Reader(fileName);
+             br=new BufferedReader(reader);
+             writer = new Writer(fileName2);
+             bw=new BufferedWriter(writer);
+             String str;
+             while ((str = bf.readLine())!= null) {
+                 bw.write(str);
+                 bw.newLine();//写入一个换行符，该方法会根据不同的操作系统生成相应的换行符。
+             }
+         }catch (Exception e)
+         {
+             throw new RuntimeException(e);
+          }finally {
+             try {
+                 if (reader != null) reader.close();
+                 if (br !=null) br.close();
+                if (writer!=null) writer.close();
+                if (bw !=null) bw.close();
+             }catch (Exception e)
+             {
+                 throw new RuntimeException(e);
+            }
+         }
+    }
+}
+</code></pre><h2 id="3-转换流"><a href="#3-转换流" class="headerlink" title="3.转换流"></a>3.转换流</h2><p>今天到此为止，明天再更。</p>
 
       
     </div>
@@ -430,7 +572,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java之xml/" rel="tag">#Java之xml</a>
+            <a href="/tags/Java-IO流/" rel="tag">#Java IO流</a>
           
         </div>
       
@@ -439,17 +581,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/03/12-EL表达式/" rel="next" title="JavaWeb学习笔记之EL表达式">
-                <i class="fa fa-chevron-left"></i> JavaWeb学习笔记之EL表达式
+              <a href="/2016/10/10/16-SQL学习笔记二/" rel="next" title="MySQL学习笔记二之单表查询与多表查询">
+                <i class="fa fa-chevron-left"></i> MySQL学习笔记二之单表查询与多表查询
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/09/15-SQL学习笔记一/" rel="prev" title="MySQL学习笔记一之MySQL语法">
-                MySQL学习笔记一之MySQL语法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -475,8 +613,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/04/14-在Java中使用dom4j来解析xml文件/"
-           data-title="在Java中使用dom4j来解析及生成xml文件" data-url="http://codingxiaxw.cn/archives/2016/10/04/14-在Java中使用dom4j来解析xml文件/">
+      <div class="ds-thread" data-thread-key="2016/10/16/17-Java之IO流详解/"
+           data-title="Java之IO流详解" data-url="http://codingxiaxw.cn/archives/2016/10/16/17-Java之IO流详解/">
       </div>
     
   </div>
@@ -596,7 +734,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-示例—解析xml文件"><span class="nav-number">2.</span> <span class="nav-text">2.示例—解析xml文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1xml文档"><span class="nav-number">2.1.</span> <span class="nav-text">2.1xml文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2示例一、使用List列表方式来解析xml"><span class="nav-number">2.2.</span> <span class="nav-text">2.2示例一、使用List列表方式来解析xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3示例二、使用迭代器Iterator来解析xml"><span class="nav-number">2.3.</span> <span class="nav-text">2.3示例二、使用迭代器Iterator来解析xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-示例—生成xml文件"><span class="nav-number">3.</span> <span class="nav-text">3.示例—生成xml文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-字节流"><span class="nav-number">1.</span> <span class="nav-text">1.字节流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.1概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2字节输入流-InputStream"><span class="nav-number">1.2.</span> <span class="nav-text">1.2字节输入流(InputStream)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3字节输出流-OutputStream"><span class="nav-number">1.3.</span> <span class="nav-text">1.3字节输出流(OutputStream)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4代码示例"><span class="nav-number">1.4.</span> <span class="nav-text">1.4代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5字节缓冲流"><span class="nav-number">1.5.</span> <span class="nav-text">1.5字节缓冲流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-字符流"><span class="nav-number">2.</span> <span class="nav-text">2.字符流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1定义"><span class="nav-number">2.1.</span> <span class="nav-text">2.1定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2输入字符流-Reader"><span class="nav-number">2.2.</span> <span class="nav-text">2.2输入字符流(Reader)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3输出字符流-Writer"><span class="nav-number">2.3.</span> <span class="nav-text">2.3输出字符流(Writer)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4字符缓冲流"><span class="nav-number">2.4.</span> <span class="nav-text">2.4字符缓冲流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-转换流"><span class="nav-number">3.</span> <span class="nav-text">3.转换流</span></a></li></ol></div>
             
           </div>
         </section>
