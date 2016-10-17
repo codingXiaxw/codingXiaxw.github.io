@@ -1,0 +1,1070 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaWeb Jdbc," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1.事务1.1事务的四大特性(ACID)
+1.原子性:事务中的所有操作要么全部执行成功，要么执行全部失败。
+2.一致性:事务执行后，数据库状态与其它业务规则保持一致。
+3.隔离性:隔离性是指在并发操作中，不同事务之间应该隔离开来，使每个并发中的事务不会相互干扰。
+4.持久性:一旦事务提交成功，事务中所有的数据操作都必须被持久化到数据库中。即使提交事务后数据库马上崩溃，在数据库重启后，也必须能保证通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb学习笔记之Jdbc(二)">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/16/18-JavaWeb学习笔记之Jdbc二/index.html">
+<meta property="og:site_name" content="codingXiaxw's blog">
+<meta property="og:description" content="1.事务1.1事务的四大特性(ACID)
+1.原子性:事务中的所有操作要么全部执行成功，要么执行全部失败。
+2.一致性:事务执行后，数据库状态与其它业务规则保持一致。
+3.隔离性:隔离性是指在并发操作中，不同事务之间应该隔离开来，使每个并发中的事务不会相互干扰。
+4.持久性:一旦事务提交成功，事务中所有的数据操作都必须被持久化到数据库中。即使提交事务后数据库马上崩溃，在数据库重启后，也必须能保证通">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/c3p0%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/jdni.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-17%20%E4%B8%8B%E5%8D%888.43.16.png">
+<meta property="og:updated_time" content="2016-10-17T12:46:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaWeb学习笔记之Jdbc(二)">
+<meta name="twitter:description" content="1.事务1.1事务的四大特性(ACID)
+1.原子性:事务中的所有操作要么全部执行成功，要么执行全部失败。
+2.一致性:事务执行后，数据库状态与其它业务规则保持一致。
+3.隔离性:隔离性是指在并发操作中，不同事务之间应该隔离开来，使每个并发中的事务不会相互干扰。
+4.持久性:一旦事务提交成功，事务中所有的数据操作都必须被持久化到数据库中。即使提交事务后数据库马上崩溃，在数据库重启后，也必须能保证通">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/16/18-JavaWeb学习笔记之Jdbc二/"/>
+
+  <title> JavaWeb学习笔记之Jdbc(二) | codingXiaxw's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">codingXiaxw's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Life is short,just coding.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Contact
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaWeb学习笔记之Jdbc(二)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-10-16T14:14:29+08:00" content="Oct 16 2016">
+              Oct 16 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaWeb-Jdbc/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb Jdbc</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/16/18-JavaWeb学习笔记之Jdbc二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/18-JavaWeb学习笔记之Jdbc二/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-事务"><a href="#1-事务" class="headerlink" title="1.事务"></a>1.事务</h2><h3 id="1-1事务的四大特性-ACID"><a href="#1-1事务的四大特性-ACID" class="headerlink" title="1.1事务的四大特性(ACID)"></a>1.1事务的四大特性(ACID)</h3><ul>
+<li>1.原子性:事务中的所有操作要么全部执行成功，要么执行全部失败。</li>
+<li>2.一致性:事务执行后，数据库状态与其它业务规则保持一致。</li>
+<li>3.隔离性:隔离性是指在并发操作中，不同事务之间应该隔离开来，使每个并发中的事务不会相互干扰。</li>
+<li>4.持久性:一旦事务提交成功，事务中所有的数据操作都必须被持久化到数据库中。即使提交事务后数据库马上崩溃，在数据库重启后，也必须能保证通过某种机制恢复数据。  </li>
+</ul>
+<a id="more"></a>
+<h3 id="1-2mysql中操作事务"><a href="#1-2mysql中操作事务" class="headerlink" title="1.2mysql中操作事务"></a>1.2mysql中操作事务</h3><p>在控制台中输入语句:<code>start transaction;</code>即开始事务。  </p>
+<p>在控制台中输入语句:<code>commit transaction;</code>即提交事务。  </p>
+<p>在控制台中输入语句:<code>rollback;</code>回滚事务，即在此事务中执行的操作全部无效，数据库回到<code>start transaction;</code>之前(前提是使用该语法前没有执行<code>commit transaction;</code>操作)。  </p>
+<h3 id="1-3Jdbc中操作事务"><a href="#1-3Jdbc中操作事务" class="headerlink" title="1.3Jdbc中操作事务"></a>1.3Jdbc中操作事务</h3><p>在Jdbc中处理事务都是通过Connection对象完成的，同一事务中的所有操作，都在使用同一个Connection对象。  </p>
+<p><code>setAutoCommit(boolean);</code>设置是否自动提交事务，如果为true表示自动提交(默认值就是true)，也就是每条执行的sql语句都是一个单独的事务，如果设置false，那么就相当于开启了事务了。<code>con.setAutoCommit(false);</code>语句表示开启事务。  </p>
+<p><code>con.commit();</code>提交并结束事务。</p>
+<p><code>con.rollback();</code>回滚事务。</p>
+<h2 id="2-事务的隔离级别"><a href="#2-事务的隔离级别" class="headerlink" title="2.事务的隔离级别"></a>2.事务的隔离级别</h2><h3 id="2-1事务的并发读问题"><a href="#2-1事务的并发读问题" class="headerlink" title="2.1事务的并发读问题"></a>2.1事务的并发读问题</h3><ul>
+<li>脏读:读取到另一份事务未提交数据，即读到了脏数据。</li>
+<li>不可重复读：两次读取不一致。对统一记录的两次读取不一致，因为另一事务对该记录做了修改。</li>
+<li>幻读：又叫虚读。对同一张表的两次查询不一致，因为另一事务进行了插入了一条记录的操作。</li>
+</ul>
+<h3 id="2-2四大隔离级别-防止上述问题"><a href="#2-2四大隔离级别-防止上述问题" class="headerlink" title="2.2四大隔离级别(防止上述问题)"></a>2.2四大隔离级别(防止上述问题)</h3><ul>
+<li>a.SERIALIZABLE(串行化)：不会出现任何并发问题，因为它是对同一数据的访问是串行的，非并发访问的。性能最差，可能导致死锁。</li>
+<li>b.REPEATABLE READ(可重复读)(mysql默认级别)：防止脏读和不可重复读，不能处理幻读问题。性能比a的好。</li>
+<li>c.READ COMMITTED(读已提交数据)(Oracle默认级别)：防止脏读，没有处理不可重复读，也没有处理幻读。性能比上述b好。</li>
+<li>d.READ UNCOMMITTED(读未提交数据):可能出现任何事务并发问题。性能最好。但基本没人用。  </li>
+</ul>
+<h3 id="2-3查看mysql的隔离级别"><a href="#2-3查看mysql的隔离级别" class="headerlink" title="2.3查看mysql的隔离级别"></a>2.3查看mysql的隔离级别</h3><p>在控制台中输入语句:<code>select @@tx_isolation;</code>  </p>
+<p>也可以通过下面命令来设置隔离级别:<code>set transaction isolationlevel[4选1];</code></p>
+<h3 id="2-4在Jdbc中设置隔离级别"><a href="#2-4在Jdbc中设置隔离级别" class="headerlink" title="2.4在Jdbc中设置隔离级别"></a>2.4在Jdbc中设置隔离级别</h3><p><code>con.setTransactionisolation[int lever];</code>  </p>
+<h2 id="3-数据库连接池"><a href="#3-数据库连接池" class="headerlink" title="3.数据库连接池"></a>3.数据库连接池</h2><p>用户每次请求都需要向数据库获得链接，而数据库创建连接通常需要消耗相对较大的资源，创建时间也较长。假设网站一天10万访问量，数据库服务器就需要创建10万次连接，极大的浪费数据库的资源，并且极易造成数据库服务器内存溢出、拓机。如下图所示:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0.png" alt="">  </p>
+<p>数据库连接是一种关键的有限的昂贵的资源,这一点在多用户的网页应用程序中体现的尤为突出.。对数据库连接的管理能显著影响到整个应用程序的伸缩性和健壮性，影响到程序的性能指标。数据库连接池正式针对这个问题提出来的。数据库连接池负责分配，管理和释放数据库连接，它允许应用程序重复使用一个现有的数据库连接，而不是重新建立一个。如下图所示:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0.png" alt="">  </p>
+<p>数据库连接池在初始化时将创建一定数量的数据库连接放到连接池中, 这些数据库连接的数量是由最小数据库连接数来设定的.无论这些数据库连接是否被使用,连接池都将一直保证至少拥有这么多的连接数量.连接池的最大数据库连接数量限定了这个连接池能占有的最大连接数,当应用程序向连接池请求的连接数超过最大连接数量时,这些请求将被加入到等待队列中。  </p>
+<p>数据库连接池的最小连接数和最大连接数的设置要考虑到以下几个因素:  </p>
+<ul>
+<li><p>1.最小连接数(MinActive):是连接池一直保持的数据库连接,所以如果应用程序对数据库连接的使用量不大,将会有大量的数据库连接资源被浪费。</p>
+</li>
+<li><p>2.最大连接数(MaxActive):是连接池能申请的最大连接数,如果数据库连接请求超过次数,后面的数据库连接请求将被加入到等待队列中,这会影响以后的数据库操作。</p>
+</li>
+<li><p>3.如果最小连接数与最大连接数相差很大:那么最先连接请求将会获利,之后超过最小连接数量的连接请求等价于建立一个新的数据库连接.不过,这些大于最小连接数的数据库连接在使用完不会马上被释放,他将被放到连接池中等待重复使用或是空间超时后被释放。  </p>
+</li>
+</ul>
+<h3 id="3-1池参数-所有池参数都有默认值"><a href="#3-1池参数-所有池参数都有默认值" class="headerlink" title="3.1池参数(所有池参数都有默认值)"></a>3.1池参数(所有池参数都有默认值)</h3><pre><code>设置初始化大小:connection.setInitialSize();
+设置最小空闲连接数:connection.setMinIdle();
+设置最大空闲连接数:connection.setMaxIdle();
+设置最小连接数:connection.setMinActive();
+设置最大连接数:connection.setMaxActive();
+设置增量:一次创建的最小单位。
+设置最大的等待时间:connection.setMaxWait();
+</code></pre><h3 id="3-2四大连接参数"><a href="#3-2四大连接参数" class="headerlink" title="3.2四大连接参数"></a>3.2四大连接参数</h3><p>连接池也是使用Jdbc中的四大连接参数和驱动jar包来完成创建连接对象。</p>
+<h3 id="3-3实现的接口"><a href="#3-3实现的接口" class="headerlink" title="3.3实现的接口"></a>3.3实现的接口</h3><p>连接池必须实现javax.sql.DataSource接口。  </p>
+<p>从连接池返回的Connection对象，它的close()方法与众不同。调用它的close()方法不是关闭，而是把连接归还给池。  </p>
+<h3 id="3-4DBCP数据库连接池"><a href="#3-4DBCP数据库连接池" class="headerlink" title="3.4DBCP数据库连接池"></a>3.4DBCP数据库连接池</h3><p>DBCP是Apache软件基金组织下的开源连接池实现，要使用DBCP数据源，需要应用程序应在系统中增加如下两个jar文件:</p>
+<ul>
+<li>Commons-dbcp.jar：连接池的实现</li>
+<li>Commons-pool.jar：连接池实现的依赖库</li>
+</ul>
+<p><strong>Demo:</strong></p>
+<pre><code>public class Demo{
+    public static void main(String[] args)
+    {
+        /*
+         *1.创建连接池对象
+         *2.配置四大参数
+         *3.配置池参数
+         *4.得到连接对象
+         */
+        BasicDataSource dataSource=new BasicDataSource();
+
+        dataSource.setDriverClassName(“com.mysql.jdbc.Driver”);
+        dataSource.setUrl(“jdbc:mysql://localhost:3306/mydb”);
+        dataSource.setUsername(“root”);
+        dataSource.setPassword(123);
+
+        dataSource.setMaxActive(20);
+        dataSource.setMinIdle(3);
+        dataSource.setMaxWait(1000);
+
+        Connection con=dataSource.getConnection();
+        System.out.println(con);
+
+      /*
+        *连接池内部使用四大参数创建了连接对象，即mysql驱动提供的Connection
+        *连接池使用mysql的连接对象进行了装饰，只对close()方法进行了增强！
+        *装饰之后的Connection的close()方法，用来把当前连接归还给池
+        */
+        con.close();//把连接归还给池。
+    }
+}
+</code></pre><p>既然谈到装饰，那下面我们就在下文3.7中来谈谈装饰者模式。  </p>
+<h3 id="3-5c3p0数据库连接池"><a href="#3-5c3p0数据库连接池" class="headerlink" title="3.5c3p0数据库连接池"></a>3.5c3p0数据库连接池</h3><p>c3p0,全名叫ComboPooledDataSource;<br><strong>Demo:</strong></p>
+<pre><code>public class Demo{
+    public static void main(String[] args)
+    {
+        //创建连接池对象
+        ComboPooledDataSource dataSource=new ComboPooledDataSource();
+
+        //进行四大参数的配置
+        dataSource.setDriverClass(“com.mysql.jdbc.Driver”);
+        dataSource.setJdbcUrl(“jdbc:mysql://localhost:3306/mydb”);
+        dataSource.setUser(&quot;root&quot;);
+        dataSource.setPassword(&quot;123&quot;);
+
+        //池配置
+        dataSource.setAcquireIncrement(5);
+        dataSource.setInitialPoolSize(20);
+        dataSource.setMinPoolSize(2);
+        dataSource.setMaxPoolSize(50);
+
+        Connection con=dataSource.getConnection();
+        System.out.println(con);
+
+        con.close();
+    }
+}
+</code></pre><h4 id="3-5-1c3p0配置文件的使用"><a href="#3-5-1c3p0配置文件的使用" class="headerlink" title="3.5.1c3p0配置文件的使用"></a>3.5.1c3p0配置文件的使用</h4><p>配置文件要求:</p>
+<blockquote>
+<p>文件名称:必须叫c3p0-config.xml。<br>文件的位置:必须在src下。  </p>
+</blockquote>
+<p><strong>c3p0配置文件:</strong><br><img src="http://od2xrf8gr.bkt.clouddn.com/c3p0%E9%85%8D%E7%BD%AE.png" alt="">  </p>
+<p><strong>写入配置文件后的Demo:</strong>  </p>
+<pre><code>public class Demo{
+    public static void main(String[] args)
+    {
+        //在创建连接池对象时，这个对象就会自动加载配置文件，不用我们来指定。
+        ComboPooledDataSource data=new comboPooledDataSource();
+        Connection con=data.getConnection();
+        System.out.println(con);
+    }
+}
+</code></pre><h3 id="3-6Tomcat配置数据库连接池"><a href="#3-6Tomcat配置数据库连接池" class="headerlink" title="3.6Tomcat配置数据库连接池"></a>3.6Tomcat配置数据库连接池</h3><h4 id="3-6-1Tomcat配置JNDI资源"><a href="#3-6-1Tomcat配置JNDI资源" class="headerlink" title="3.6.1Tomcat配置JNDI资源"></a>3.6.1Tomcat配置JNDI资源</h4><p><strong>JNDI:</strong>java命名和目录接口。作用:在服务器上配置资源，然后通过统一的方式来获取配置的资源。  </p>
+<p>首先需要在Tomcat/conf/Catelina/localhost目录下新建文件名: 项目名.xml  </p>
+<p>在该.xml文件中写入以下内容<br><img src="http://od2xrf8gr.bkt.clouddn.com/jdni.png" alt="">  </p>
+<h4 id="3-6-1获取资源的代码"><a href="#3-6-1获取资源的代码" class="headerlink" title="3.6.1获取资源的代码"></a>3.6.1获取资源的代码</h4><pre><code>Context initCtx=new InitialContext();//创建一个上下文。
+
+Context envCtx=(Context) initCtx.lookup(“java:comp/env”);//这个路径是固定的不能改。
+
+MyBean bean=(MyBean)envCtx.lookup(“bean/MyBeanFactory”);//通过该上下文进行二次查找才能找到资源。
+</code></pre><p><strong>Demo:测试类</strong></p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-17%20%E4%B8%8B%E5%8D%888.43.16.png" alt=""></p>
+<h3 id="3-7装饰者模式"><a href="#3-7装饰者模式" class="headerlink" title="3.7装饰者模式"></a>3.7装饰者模式</h3><p>将对象增强的手段有:</p>
+<ul>
+<li>继承  <blockquote>
+<p>缺点:1.增强的内容是死的，不能动。2.被增强的对象也是死的。</p>
+</blockquote>
+</li>
+<li>装饰者模式<blockquote>
+<p>特点:1.增强的内容是不能修改的。2.被增强的对象可以是任意的。</p>
+</blockquote>
+</li>
+<li>动态代理(AOP):以后再详讲，博客出来后会给出链接。</li>
+</ul>
+<p><strong>下面通过一个简单的例子来对装饰者模式进行讲解</strong></p>
+<pre><code>class 咖啡类 {};
+class 加奶咖啡 extends 咖啡类 {};
+class 加糖咖啡 extends 咖啡类 {};
+class 加盐咖啡 extends 咖啡类 {};
+
+咖啡 a＝new 加糖咖啡();
+咖啡 b＝new 加盐咖啡(a);//对a进行装饰，就是给a加盐
+咖啡 c＝new 加奶咖啡(b);//对b进行装饰，就是给b加奶
+</code></pre><p>装饰者模式在Java API中的IO流中用到的很多。如BufferedInputStream、BufferedOutputStream、BufferedReader、BufferedWriter、ObjectInputStream、ObjectOutputStream这几个都是运用了装饰模式的装饰流。关于的IO流的详情见下篇博客<a href="http://codingxiaxw.cn/2016/10/17/19-Java%E4%B9%8BIO%E6%B5%81%E8%AF%A6%E8%A7%A3/">Java之IO流详解</a>。</p>
+<h2 id="4-ThreadLocal"><a href="#4-ThreadLocal" class="headerlink" title="4.ThreadLocal"></a>4.ThreadLocal</h2><p>早在JDK 1.2的版本中就提供Java.lang.ThreadLocal，ThreadLocal为解决多线程程序的并发问题提供了一种新的思路。使用这个工具类可以很简洁地编写出优美的多线程程序。</p>
+<h3 id="4-1Thread-API"><a href="#4-1Thread-API" class="headerlink" title="4.1Thread API"></a>4.1Thread API</h3><ul>
+<li>void set(Object value);设置当前线程的线程局部变量的值。</li>
+<li>Object get();该方法返回当前线程所对应的线程局部变量。</li>
+<li>void remove();将当前线程局部变量的值删除，目的是为了减少内存的占用。需要指出的是，当线程结束后，对应该线程的局部变量将自动被垃圾回收，所以显式调用该方法清除线程的局部变量并不是必须的操作，但它可以加快内存回收的速度。  </li>
+</ul>
+<h3 id="4-2ThreadLocal内部结构"><a href="#4-2ThreadLocal内部结构" class="headerlink" title="4.2ThreadLocal内部结构"></a>4.2ThreadLocal内部结构</h3><p>ThreadLocal内部用Map来保存数据。虽然在使用上述API时没有给出键，但其实它内部使用了当前线程作为键。内部结构见下面demo:</p>
+<pre><code>class ThreadLocal
+{
+    private Map&lt;Thread,T&gt; map=new HashMap&lt;Thread,T&gt;();
+
+    public void set(T value){
+
+        map.put(Thread.currentThread(),value);
+    }
+
+    public void remove(){
+        map.remove(Thread.currentThread());
+    }
+
+    public T get(){
+        return map.get(Thread.currentThread());
+    }
+}
+</code></pre><h2 id="5-dbUtils结果集处理器介绍"><a href="#5-dbUtils结果集处理器介绍" class="headerlink" title="5.dbUtils结果集处理器介绍"></a>5.dbUtils结果集处理器介绍</h2><p>需要导入common-dbutil.jar包。</p>
+<ul>
+<li><p>update()方法:</p>
+<blockquote>
+<p>1.int update(String sql,Object… params)  可执行增删改语句。<br>2.重载方法int update(Connection con,String sql, Object… params)需要调用者提供Connection，这说明本方法不再管理Connection了。本重载方法支持事务。</p>
+</blockquote>
+</li>
+<li><p>query()方法:</p>
+<blockquote>
+<p>1.T query (String sql,ResultSetHandler rsh,Object… params)可执行查询操作。<br>2.重载方法:T query(Connection con,String sql,ResultSetHandler rsh,Object… params);  本重载方法支持事务。它会先得到ResultSet，然后调用rsh的handle()把rs转换成需要的类型。</p>
+</blockquote>
+</li>
+<li><p>ResultSetHandler接口</p>
+<blockquote>
+<p>1.BeanHandler(单行)－－&gt;构造器需要一个class类型的参数，用来把一行结果转换成指定类型的javaBean对象。<br>2.BeanListHandler(多行)—&gt;构造器也是需要一个Class类型的参数，用来把一行结果集转换成一个javabean，哪么多行就是转换成List对象，一堆javabean。<br>3.MapHandler(单行)—&gt;把一行结果集转换成Map对象。<br>4.MapListHandler(多行)—&gt;把一行记录转换成一个Map，多行就是多个Map，即List<map>。<br>5.ScalarHandler(单行单列)－&gt;同来用于select count(＊)from t_stu语句，结果集是单行单列的，它返回一个Object，就是count(*)的值，为long类型。  </map></p>
+</blockquote>
+</li>
+</ul>
+<p>dbutil结果处理集的代码以后抽时间补上。</p>
+<h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaWeb-Jdbc/" rel="tag">#JavaWeb Jdbc</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/12/17-JavaWeb学习笔记之Jdbc一/" rel="next" title="JavaWeb学习笔记之Jdbc(一)">
+                <i class="fa fa-chevron-left"></i> JavaWeb学习笔记之Jdbc(一)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/17/19-Java之IO流详解/" rel="prev" title="Java之IO流详解">
+                Java之IO流详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/16/18-JavaWeb学习笔记之Jdbc二/"
+           data-title="JavaWeb学习笔记之Jdbc(二)" data-url="http://codingxiaxw.cn/archives/2016/10/16/18-JavaWeb学习笔记之Jdbc二/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
+               alt="codingXiaxw" />
+          <p class="site-author-name" itemprop="name">codingXiaxw</p>
+          <p class="site-description motion-element" itemprop="description">Life is short,just coding.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/codingXiaxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5023661572?from=hissimilar_home&refer_flag=1005050003_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com//people/e9f78fa34b8002652811ac348da3f671" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-事务"><span class="nav-number">1.</span> <span class="nav-text">1.事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1事务的四大特性-ACID"><span class="nav-number">1.1.</span> <span class="nav-text">1.1事务的四大特性(ACID)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2mysql中操作事务"><span class="nav-number">1.2.</span> <span class="nav-text">1.2mysql中操作事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3Jdbc中操作事务"><span class="nav-number">1.3.</span> <span class="nav-text">1.3Jdbc中操作事务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-事务的隔离级别"><span class="nav-number">2.</span> <span class="nav-text">2.事务的隔离级别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1事务的并发读问题"><span class="nav-number">2.1.</span> <span class="nav-text">2.1事务的并发读问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2四大隔离级别-防止上述问题"><span class="nav-number">2.2.</span> <span class="nav-text">2.2四大隔离级别(防止上述问题)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3查看mysql的隔离级别"><span class="nav-number">2.3.</span> <span class="nav-text">2.3查看mysql的隔离级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4在Jdbc中设置隔离级别"><span class="nav-number">2.4.</span> <span class="nav-text">2.4在Jdbc中设置隔离级别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-数据库连接池"><span class="nav-number">3.</span> <span class="nav-text">3.数据库连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1池参数-所有池参数都有默认值"><span class="nav-number">3.1.</span> <span class="nav-text">3.1池参数(所有池参数都有默认值)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2四大连接参数"><span class="nav-number">3.2.</span> <span class="nav-text">3.2四大连接参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3实现的接口"><span class="nav-number">3.3.</span> <span class="nav-text">3.3实现的接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4DBCP数据库连接池"><span class="nav-number">3.4.</span> <span class="nav-text">3.4DBCP数据库连接池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5c3p0数据库连接池"><span class="nav-number">3.5.</span> <span class="nav-text">3.5c3p0数据库连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-1c3p0配置文件的使用"><span class="nav-number">3.5.1.</span> <span class="nav-text">3.5.1c3p0配置文件的使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6Tomcat配置数据库连接池"><span class="nav-number">3.6.</span> <span class="nav-text">3.6Tomcat配置数据库连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-1Tomcat配置JNDI资源"><span class="nav-number">3.6.1.</span> <span class="nav-text">3.6.1Tomcat配置JNDI资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-1获取资源的代码"><span class="nav-number">3.6.2.</span> <span class="nav-text">3.6.1获取资源的代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7装饰者模式"><span class="nav-number">3.7.</span> <span class="nav-text">3.7装饰者模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-ThreadLocal"><span class="nav-number">4.</span> <span class="nav-text">4.ThreadLocal</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1Thread-API"><span class="nav-number">4.1.</span> <span class="nav-text">4.1Thread API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2ThreadLocal内部结构"><span class="nav-number">4.2.</span> <span class="nav-text">4.2ThreadLocal内部结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-dbUtils结果集处理器介绍"><span class="nav-number">5.</span> <span class="nav-text">5.dbUtils结果集处理器介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-联系"><span class="nav-number">6.</span> <span class="nav-text">6.联系</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">codingXiaxw</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codingxiaxw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+
+
+</body>
+</html>

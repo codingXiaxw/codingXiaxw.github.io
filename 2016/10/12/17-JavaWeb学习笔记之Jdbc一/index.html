@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="JavaWeb Jdbc," />
 
 
 
@@ -96,18 +96,16 @@
 
 
 
-<meta name="description" content="1.前言&amp;emsp;&amp;emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去">
+<meta name="description" content="1.概念Jdbc(java database connectivity):Java数据库连接，就是用Java语言来操作数据库。原来我们操作数据库是在控制台中通过sql语句来操作数据库，而Jdbc是用Java语言来向数据库发送sql语句来操作数据库。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从Android开发转战Java Web">
-<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/09/12/5-新的开始/index.html">
+<meta property="og:title" content="JavaWeb学习笔记之Jdbc(一)">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/12/17-JavaWeb学习笔记之Jdbc一/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="1.前言&amp;emsp;&amp;emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%9D%8F%E7%AC%91.jpg">
-<meta property="og:updated_time" content="2016-10-17T12:53:18.000Z">
+<meta property="og:description" content="1.概念Jdbc(java database connectivity):Java数据库连接，就是用Java语言来操作数据库。原来我们操作数据库是在控制台中通过sql语句来操作数据库，而Jdbc是用Java语言来向数据库发送sql语句来操作数据库。">
+<meta property="og:updated_time" content="2016-10-17T12:49:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从Android开发转战Java Web">
-<meta name="twitter:description" content="1.前言&amp;emsp;&amp;emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%9D%8F%E7%AC%91.jpg">
+<meta name="twitter:title" content="JavaWeb学习笔记之Jdbc(一)">
+<meta name="twitter:description" content="1.概念Jdbc(java database connectivity):Java数据库连接，就是用Java语言来操作数据库。原来我们操作数据库是在控制台中通过sql语句来操作数据库，而Jdbc是用Java语言来向数据库发送sql语句来操作数据库。">
 
 
 
@@ -128,9 +126,9 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/09/12/5-新的开始/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/12/17-JavaWeb学习笔记之Jdbc一/"/>
 
-  <title> 从Android开发转战Java Web | codingXiaxw's blog </title>
+  <title> JavaWeb学习笔记之Jdbc(一) | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -283,7 +281,7 @@
             
             
               
-                从Android开发转战Java Web
+                JavaWeb学习笔记之Jdbc(一)
               
             
           </h1>
@@ -295,8 +293,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-12T19:23:54+08:00" content="Sep 12 2016">
-              Sep 12 2016
+            <time itemprop="dateCreated" datetime="2016-10-12T17:42:10+08:00" content="Oct 12 2016">
+              Oct 12 2016
             </time>
           </span>
 
@@ -309,8 +307,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/JavaWeb-Jdbc/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb Jdbc</span>
                   </a>
                 </span>
 
@@ -325,8 +323,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/12/5-新的开始/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/12/5-新的开始/" itemprop="commentsCount"></span>
+                <a href="/2016/10/12/17-JavaWeb学习笔记之Jdbc一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/17-JavaWeb学习笔记之Jdbc一/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -351,40 +349,143 @@
       
 
       
-        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>&emsp;&emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去搞开发吗)。<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%9D%8F%E7%AC%91.jpg" alt="">希望在接下来的日子里，能学有所得。 </p>
+        <h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1.概念"></a>1.概念</h2><p>Jdbc(java database connectivity):Java数据库连接，就是用Java语言来操作数据库。原来我们操作数据库是在控制台中通过sql语句来操作数据库，而Jdbc是用Java语言来向数据库发送sql语句来操作数据库。</p>
 <a id="more"></a>
-<h2 id="2-细数这一年来自己的经历"><a href="#2-细数这一年来自己的经历" class="headerlink" title="2.细数这一年来自己的经历:"></a>2.细数这一年来自己的经历:</h2><h3 id="2-1开发过的app"><a href="#2-1开发过的app" class="headerlink" title="2.1开发过的app"></a>2.1开发过的app</h3><ul>
-<li>计算器</li>
-<li>记事本</li>
-<li>智能聊天机器人</li>
-<li>天气预报</li>
-<li>2048小游戏</li>
-<li>知乎日报  </li>
+<h2 id="2-流程"><a href="#2-流程" class="headerlink" title="2.流程"></a>2.流程</h2><h3 id="2-1得到Connection对象"><a href="#2-1得到Connection对象" class="headerlink" title="2.1得到Connection对象"></a>2.1得到Connection对象</h3><ul>
+<li>1.导jar包。mysql-connector-java jar</li>
+<li>2.加载驱动类:Class.forName(“类名”);</li>
+<li>3.给出url、username、password等参数。</li>
+<li>4.使用DriverManager类来的到Connection对象。</li>
 </ul>
-<h3 id="2-2学习过的网站"><a href="#2-2学习过的网站" class="headerlink" title="2.2学习过的网站"></a>2.2学习过的网站</h3><ul>
-<li><a href="http://www.imooc.com/" target="_blank" rel="external">慕课网</a>  </li>
-<li><a href="http://www.jikexueyuan.com/" target="_blank" rel="external">极客学院</a>  </li>
-<li><a href="http://study.163.com/" target="_blank" rel="external">网易云课堂</a></li>
-</ul>
-<h3 id="2-3看过的书籍"><a href="#2-3看过的书籍" class="headerlink" title="2.3看过的书籍"></a>2.3看过的书籍</h3><p>有关java:  </p>
+<p><strong>时刻牢记Jdbc中的四大参数:</strong></p>
 <ul>
-<li>《java从入门到精通》  </li>
-<li>《java疯狂讲义》  </li>
+<li>driverClassName:com.mysql.jdbc.Driver</li>
+<li>url:jdbc:mysql://localhost:3306/数据库名</li>
+<li>username:mysql用户名</li>
+<li>password:mysql密码</li>
 </ul>
-<p>有关Android：</p>
+<p><strong>Demo:</strong></p>
+<pre><code>public class Demo{
+    public void main(String[] args) throws ClassNotFoundException,SQLException{
+
+        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);//加载驱动类。
+        String url=&quot;jdbc:mysql://localhost:3306/数据库名&quot;;
+        String username=&quot;root&quot;;
+        String password=&quot;123&quot;;
+
+        Connection con=DriverManager.getConnection(url,username,password);
+    }
+}
+</code></pre><p><strong>代码分析:</strong>  </p>
+<ol>
+<li>url的格式为–jdbc:厂商名称:子协议(由厂商自己来规定)。对于mysql而言，它的子协议结构的格式为://localhost:3306/数据库名。</li>
+<li>出现SQLException的原因:1.url username password 是否正确。2.检查是否打开了sql服务器</li>
+<li>出现ClassNotFoundException的原因:1.没导入驱动包。2.Class.forName()传入的字符串参数错误。</li>
+</ol>
+<h2 id="3-Jdbc对数据库进行增、删、改、查"><a href="#3-Jdbc对数据库进行增、删、改、查" class="headerlink" title="3.Jdbc对数据库进行增、删、改、查"></a>3.Jdbc对数据库进行增、删、改、查</h2><h3 id="3-1增、删、改"><a href="#3-1增、删、改" class="headerlink" title="3.1增、删、改"></a>3.1增、删、改</h3><pre><code>public class Demo{
+    public void main(String[] args) throws ClassNotFoundException,SQLException{
+
+        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);//加载驱动类。
+        String url=&quot;jdbc:mysql://localhost:3306/数据库名&quot;;
+        String username=&quot;root&quot;;
+        String password=&quot;123&quot;;
+
+        Connection con=DriverManager.getConnection(url,username,password);
+
+        Statement stmt=con.createStatement();//调用Connection的方法创建Statement对象，它是sql语句的发送器，功能就是向数据库发送sql语句
+        String sql＝&quot;insert into stu values(&apos;...&apos;,&apos;...&apos;,&apos;...&apos;,&apos;...&apos;)&quot;;//右括号不需要打分号，打了就会出错，因为程序会自动帮我们加。
+        stmt.executeUpdate(sql);//调用此方法向数据库发送sql语句。该语句返回的值为改变数据库的行数。
+    }
+}
+</code></pre><p><strong>注意:</strong>上述中出现的Connection和Statement都应该导入java.mysql下的包，而不是java.jdbc下的包。</p>
+<h3 id="3-2查询"><a href="#3-2查询" class="headerlink" title="3.2查询"></a>3.2查询</h3><p><strong>Demo:</strong></p>
+<pre><code>public class Demo{
+    public void main(String[] args) throws ClassNotFoundException,SQLException{
+
+        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);//加载驱动类。
+        String url=&quot;jdbc:mysql://localhost:3306/数据库名&quot;;
+        String username=&quot;root&quot;;
+        String password=&quot;123&quot;;
+
+        Connection con=DriverManager.getConnection(url,username,password);
+
+        Statement stmt=con.createStatement();
+
+        String sql=&quot;selece * from stu&quot;;
+
+        ResultSet rs=stmt.execute(sql);
+
+        /*
+         *解析ResultSet
+         *ResultSet提供了一系列的getXxx()方法
+         */
+         while(rs.next())//第一次调用next()方法是将光标移动到该表的第一行
+         {
+             rs.getInt(1);//通过列编号来获取该列的值
+             rs.getString(&quot;name&quot;);//通过列名称来获取该列的值。
+         }
+    }
+}
+</code></pre><h2 id="4-关闭资源"><a href="#4-关闭资源" class="headerlink" title="4.关闭资源"></a>4.关闭资源</h2><p>关闭资源时采用倒关的手法将对象进行处理:即先得到的对象后关，后得到的对象先关。  </p>
+<pre><code>rs.close();
+stmt.close();
+con.close();
+</code></pre><p>为了注意代码的规范化:在try外给出引用的定义，在try内位对象实例化，在finally中对资源进行关闭。</p>
+<h2 id="5-PreparedStatement-预处理"><a href="#5-PreparedStatement-预处理" class="headerlink" title="5.PreparedStatement(预处理)"></a>5.PreparedStatement(预处理)</h2><h3 id="5-1介绍"><a href="#5-1介绍" class="headerlink" title="5.1介绍"></a>5.1介绍</h3><p>PrepaerdStatement是Statement的子接口。下面通过一个例子学习PreparedStatement，注意与上述例子中Statement的区别。             </p>
+<pre><code>public class Demo{
+    public void main(String[] args) throws ClassNotFoundException,SQLException{
+
+        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);//加载驱动类。
+        String url=&quot;jdbc:mysql://localhost:3306/数据库名&quot;;            String username=&quot;root&quot;;
+        String password=&quot;123&quot;;
+
+        Connection con=DriverManager.getConnection(url,username,password);
+
+        String sql=&quot;insert into stu where username=? and password=?&quot;;//定义sql模板，即参数以问号的形式给出
+
+        PreparedStatement pst=con.prepaerStatement(sql);
+        pst.setString(1,username);//数字1代表第一个问号
+        pst.setString(2.password);//数字2代表第二个问号
+        pst.executeUpdate();//向数据库发送sql语句
+    }
+}
+</code></pre><h3 id="5-2预处理的原理"><a href="#5-2预处理的原理" class="headerlink" title="5.2预处理的原理"></a>5.2预处理的原理</h3><p>服务器的工作:</p>
 <ul>
-<li>《第一行代码》</li>
-<li>《Android群英传》</li>
-<li>《Android开发艺术探索》  </li>
+<li>1.检验sql语句的语法</li>
+<li>2.编译：一个与函数相似的东西</li>
+<li>3.执行：调用函数</li>
 </ul>
-<p>这一年，开发进行的真的格外辛苦，从最开始立下的向Web开发的flag转战Android开发。这一年里，经常遇到调了几天几夜都还调不出来的bug，很是难受；看着书上那一串串乏味的代码和解说，真的很让人犯困；特别是当你的编程能力过了初级工程师的编程能力想要进阶的时候，看到那些源码真的让人很难受；很多时候想过放弃，但还是坚持了下来；因为当你完成一个功能而设计出一个app的时候，那种自豪感真的很让人兴奋。 </p>
-<h2 id="3-做的好好的为什么要转？"><a href="#3-做的好好的为什么要转？" class="headerlink" title="3.做的好好的为什么要转？"></a>3.做的好好的为什么要转？</h2><p>纯属兴趣。  </p>
-<p>做就要做到最好，我会依旧保持自己对编程的热爱之情，向大牛发展，争取在2018年毕业之际顺利进入自己梦想的大公司(当然BAT是首选啊哈哈）。  </p>
-<p>人若没有理想，跟咸鱼有什么区别呢？  </p>
-<hr>
-<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p> If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<p>PreparedStatement使用的前提就是:连接的数据库必须支持预处理。</p>
+<p>以后我们要学的DAO模式就是写一个类，把访问数据库的代码封装起来，DAO在数据库与业务逻辑层之间。</p>
+<h2 id="6-Java中的时间类型和mysql中的时间类型转换"><a href="#6-Java中的时间类型和mysql中的时间类型转换" class="headerlink" title="6.Java中的时间类型和mysql中的时间类型转换"></a>6.Java中的时间类型和mysql中的时间类型转换</h2><h3 id="6-1数据库类型与Java中类型的对应关系"><a href="#6-1数据库类型与Java中类型的对应关系" class="headerlink" title="6.1数据库类型与Java中类型的对应关系"></a>6.1数据库类型与Java中类型的对应关系</h3><p>数据库中的DATE–&gt;java.sql.Date–&gt;java.util.Date;  </p>
+<p>数据库中的TIME–&gt;java.sql.Time–&gt;java.util.Date;  </p>
+<p>数据库中的TIMESTAMP–&gt;java.sql.Timestamp–&gt;java.util.Date;  </p>
+<p><strong>需要注意的是:</strong></p>
 <ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li>1.领域对象(domain)中的所有属性不能出现java.sql包下的东西，即不能使用java.sql.Date、java.sql.Time、java.sql.TimeStamp。</li>
+<li>2.ResultSet的getDate()返回的是java.sql.Date()。</li>
+<li>3.PreparedStatment的setDate(int,Date),其中第二个参数是sql包下的java.sql.Date()。为了在java中使用sql包下的时间类型，这是就出现了时间类型的转换。</li>
+</ul>
+<h3 id="6-2转换"><a href="#6-2转换" class="headerlink" title="6.2转换"></a>6.2转换</h3><h4 id="6-2-1将util包下的Date转换为sql包下的Date、Time、Timestamp"><a href="#6-2-1将util包下的Date转换为sql包下的Date、Time、Timestamp" class="headerlink" title="6.2.1将util包下的Date转换为sql包下的Date、Time、Timestamp"></a>6.2.1将util包下的Date转换为sql包下的Date、Time、Timestamp</h4><p><strong>步骤如下:</strong></p>
+<ul>
+<li>1.把util的的Date转换成毫秒值。</li>
+<li>2.使用毫秒值创建sql的Date、Time、Timestamp  <blockquote>
+<p>java.util.Date date=new java.util.Date();<br>long l=date.getTime();<br>java.sql.Date sqlDate=new java.sql.Date(l);</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="6-2-2将sql包下的Date、Time、Timestamp转换为util包下的Date"><a href="#6-2-2将sql包下的Date、Time、Timestamp转换为util包下的Date" class="headerlink" title="6.2.2将sql包下的Date、Time、Timestamp转换为util包下的Date"></a>6.2.2将sql包下的Date、Time、Timestamp转换为util包下的Date</h4><p>这一步不需要处理了，因为sql包下的Date、Time、和Timestamp继承自util包下的Date。所以可以直接用:  </p>
+<pre><code>new java.util.Date()=new java.sql.Date();或
+new java.util.Date()=new java.sql.Time();或
+new java.util.Date()=new java.sql.Timestamp();  
+</code></pre><h2 id="7-批处理"><a href="#7-批处理" class="headerlink" title="7.批处理"></a>7.批处理</h2><h3 id="7-1Statement批处理"><a href="#7-1Statement批处理" class="headerlink" title="7.1Statement批处理"></a>7.1Statement批处理</h3><p>批处理就是一批一批的处理，而不是一个一个的处理。  </p>
+<p>当你有10条sql语句要执行时，一次向服务器发送一条语句，这么做效率很差。处理的方案是用批处理，即一次向服务器发送多条sql语句，然后由服务器一次性处理。  </p>
+<p>批处理只针对更新(增、删、改),没有查询什么事。  </p>
+<p>添加批的语句:PreparedStatement.addBatch();<br>执行批的语句:PreparedStatement.executeBatch();  </p>
+<p>mysql默认批处理是关闭的，需要在url参数后面加上?rewriteBatchedStatement=true;</p>
+<h2 id="8-联系"><a href="#8-联系" class="headerlink" title="8.联系"></a>8.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
@@ -430,7 +531,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag">#Android</a>
+            <a href="/tags/JavaWeb-Jdbc/" rel="tag">#JavaWeb Jdbc</a>
           
         </div>
       
@@ -439,16 +540,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/07/4-Android中Activity的生命周期/" rel="next" title="Android中Activity的生命周期">
-                <i class="fa fa-chevron-left"></i> Android中Activity的生命周期
+              <a href="/2016/10/10/16-SQL学习笔记二/" rel="next" title="MySQL学习笔记二之单表查询与多表查询">
+                <i class="fa fa-chevron-left"></i> MySQL学习笔记二之单表查询与多表查询
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/24/6-java-web实现Servlet的方式/" rel="prev" title="Java Web中实现Servlet的方式">
-                Java Web中实现Servlet的方式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/16/18-JavaWeb学习笔记之Jdbc二/" rel="prev" title="JavaWeb学习笔记之Jdbc(二)">
+                JavaWeb学习笔记之Jdbc(二) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -475,8 +576,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/12/5-新的开始/"
-           data-title="从Android开发转战Java Web" data-url="http://codingxiaxw.cn/archives/2016/09/12/5-新的开始/">
+      <div class="ds-thread" data-thread-key="2016/10/12/17-JavaWeb学习笔记之Jdbc一/"
+           data-title="JavaWeb学习笔记之Jdbc(一)" data-url="http://codingxiaxw.cn/archives/2016/10/12/17-JavaWeb学习笔记之Jdbc一/">
       </div>
     
   </div>
@@ -596,7 +697,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前言"><span class="nav-number">1.</span> <span class="nav-text">1.前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-细数这一年来自己的经历"><span class="nav-number">2.</span> <span class="nav-text">2.细数这一年来自己的经历:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1开发过的app"><span class="nav-number">2.1.</span> <span class="nav-text">2.1开发过的app</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2学习过的网站"><span class="nav-number">2.2.</span> <span class="nav-text">2.2学习过的网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3看过的书籍"><span class="nav-number">2.3.</span> <span class="nav-text">2.3看过的书籍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-做的好好的为什么要转？"><span class="nav-number">3.</span> <span class="nav-text">3.做的好好的为什么要转？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概念"><span class="nav-number">1.</span> <span class="nav-text">1.概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-流程"><span class="nav-number">2.</span> <span class="nav-text">2.流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1得到Connection对象"><span class="nav-number">2.1.</span> <span class="nav-text">2.1得到Connection对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Jdbc对数据库进行增、删、改、查"><span class="nav-number">3.</span> <span class="nav-text">3.Jdbc对数据库进行增、删、改、查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1增、删、改"><span class="nav-number">3.1.</span> <span class="nav-text">3.1增、删、改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2查询"><span class="nav-number">3.2.</span> <span class="nav-text">3.2查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-关闭资源"><span class="nav-number">4.</span> <span class="nav-text">4.关闭资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-PreparedStatement-预处理"><span class="nav-number">5.</span> <span class="nav-text">5.PreparedStatement(预处理)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1介绍"><span class="nav-number">5.1.</span> <span class="nav-text">5.1介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2预处理的原理"><span class="nav-number">5.2.</span> <span class="nav-text">5.2预处理的原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Java中的时间类型和mysql中的时间类型转换"><span class="nav-number">6.</span> <span class="nav-text">6.Java中的时间类型和mysql中的时间类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1数据库类型与Java中类型的对应关系"><span class="nav-number">6.1.</span> <span class="nav-text">6.1数据库类型与Java中类型的对应关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2转换"><span class="nav-number">6.2.</span> <span class="nav-text">6.2转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-1将util包下的Date转换为sql包下的Date、Time、Timestamp"><span class="nav-number">6.2.1.</span> <span class="nav-text">6.2.1将util包下的Date转换为sql包下的Date、Time、Timestamp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-2将sql包下的Date、Time、Timestamp转换为util包下的Date"><span class="nav-number">6.2.2.</span> <span class="nav-text">6.2.2将sql包下的Date、Time、Timestamp转换为util包下的Date</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-批处理"><span class="nav-number">7.</span> <span class="nav-text">7.批处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1Statement批处理"><span class="nav-number">7.1.</span> <span class="nav-text">7.1Statement批处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-联系"><span class="nav-number">8.</span> <span class="nav-text">8.联系</span></a></li></ol></div>
             
           </div>
         </section>
