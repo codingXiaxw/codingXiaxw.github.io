@@ -102,7 +102,7 @@
 <meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/16/17-Java之IO流详解/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序的运行结果等。在Java中，将这种通过不同输入输出设备(键盘，内存，显示器，网络等)之间的数据传输抽象表述为”流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的”流”都位于java.io包中，称为IO(输入输出)流。">
-<meta property="og:updated_time" content="2016-10-16T13:41:04.000Z">
+<meta property="og:updated_time" content="2016-10-17T04:49:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java之IO流详解">
 <meta name="twitter:description" content="大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序的运行结果等。在Java中，将这种通过不同输入输出设备(键盘，内存，显示器，网络等)之间的数据传输抽象表述为”流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的”流”都位于java.io包中，称为IO(输入输出)流。">
@@ -533,7 +533,76 @@ public class Example{
          }
     }
 }
-</code></pre><h2 id="3-转换流"><a href="#3-转换流" class="headerlink" title="3.转换流"></a>3.转换流</h2><p>今天到此为止，明天再更。</p>
+</code></pre><h2 id="3-转换流"><a href="#3-转换流" class="headerlink" title="3.转换流"></a>3.转换流</h2><p>前面提到IO流可分为字节流和字符流，有时自己流和字符流之间也需要进行转换。在JDK中提供了两个类可以将字节流转换为字符流，它们分别是InputStreamReader和OutputStreamWriter。  </p>
+<p>转换流也是一种包装流，其中OutputStreamWriter是Writer的子类，它可以将一个字节输出流包装成字符输出流，方便直接写入字符，而InputStreamReader是Reader的子类，它可以将一个字节输入流包装成字符输入流，方便直接读取字符。  </p>
+<p><strong>Demo:将字节流转换为字符流</strong>  </p>
+<pre><code>import java.io.*;
+public class Example{
+     public static void main(String[] args){
+         String fileName=&quot;/Users/codingBoy/Desktop/example1.jpg&quot;;//源文件路径
+         String fileName2=&quot;/Users/codingBoy/Desktop/example2.jpg&quot;;//目标文件路径
+         InputStreamReader isr=new InputStreamReader(new FileInputStream(fileName1));
+         BufferedReader br=new BufferedReader(isr);
+
+         OutputStreamWriter osw=new OutputStreamWriter(new FileOutputStream(fileName2));
+         BufferedWriter bw=new BufferedWriter(osw);
+
+         String line;
+         while((line=br.readLine())!=null)
+         {
+             bw.write(line);
+         }
+
+         br.close();
+         bw.close();
+     }
+}
+</code></pre><h2 id="4-其他IO流"><a href="#4-其他IO流" class="headerlink" title="4.其他IO流"></a>4.其他IO流</h2><h4 id="4-1ByteArrayInputStream和ByteArrayOutputStream"><a href="#4-1ByteArrayInputStream和ByteArrayOutputStream" class="headerlink" title="4.1ByteArrayInputStream和ByteArrayOutputStream"></a>4.1ByteArrayInputStream和ByteArrayOutputStream</h4><p>在前面的学习中，都是将文件直接存储到硬盘，但有时候我们希望将文件临时存储到缓冲区，方便以后读取。为此JDK中提供了一个ByteArrayOutputStream类。该类会在创建对象时就创建一个byte型数组的缓冲区，当向数组中写数据时，该对象会把所有的数据先写入缓冲区，最后一次行写入文件。<br><strong>Demo:将数据写入缓冲区</strong>  </p>
+<pre><code>import java.io.*;
+public class Example{
+     public static void main(String[] args){
+         String fileName1=&quot;/Users/codingBoy/Desktop/example1.jpg&quot;;//源文件路径
+         String fileName2=&quot;/Users/codingBoy/Desktop/example2.jpg&quot;;//目标文件路径
+         FileInputStream in=new FileInputStream(fileName1);
+         ByteArrayOutputStream bos=new ByteArrayOutputStream();
+         FileOutputStream out=new FileOutputStream(fileName2);
+
+         int b;
+         while((b=in.read())!=-1)
+         {
+             bos.write(b);//先将数据写入缓冲区，当需要写入目标文件中的时候再调用输出流的write(bos.toByteArray())方法。
+         }
+
+         in.close();
+         bos.close();
+         out.write(bos.toByteArray());
+         out.close();
+}
+</code></pre><p>在该例中，定义了一个ByteArrayOutputStream对象，将从fileName1文件中读取的字节全部写入该对象的缓冲区，通过FileOutputStream对象将缓冲区的数据一次性写入fileName2文件。  </p>
+<p>与ByteArrayOutputStream类似，ByteArrayInputStream是从缓冲区中读取数据，接下来通过一个案例来演示ByteArrayInputStream如何读取缓冲区的数据。  </p>
+<p><strong>Demo:</strong></p>
+<pre><code>import java.io.*;
+public class Example{
+     public static void main(String[] args){
+         byte[] bytes=new byte[]{97,98,99,100};
+         ByteArrayInputStream bis=new ByteArrayInputStream(bytes);
+
+         int b;
+         while((b=bis.read())!=-1)
+         {
+             System.out.println((char)b);
+         }
+}
+</code></pre><h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">博客:codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a> </li>
+</ul>
 
       
     </div>
@@ -734,7 +803,7 @@ public class Example{
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-字节流"><span class="nav-number">1.</span> <span class="nav-text">1.字节流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.1概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2字节输入流-InputStream"><span class="nav-number">1.2.</span> <span class="nav-text">1.2字节输入流(InputStream)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3字节输出流-OutputStream"><span class="nav-number">1.3.</span> <span class="nav-text">1.3字节输出流(OutputStream)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4代码示例"><span class="nav-number">1.4.</span> <span class="nav-text">1.4代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5字节缓冲流"><span class="nav-number">1.5.</span> <span class="nav-text">1.5字节缓冲流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-字符流"><span class="nav-number">2.</span> <span class="nav-text">2.字符流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1定义"><span class="nav-number">2.1.</span> <span class="nav-text">2.1定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2输入字符流-Reader"><span class="nav-number">2.2.</span> <span class="nav-text">2.2输入字符流(Reader)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3输出字符流-Writer"><span class="nav-number">2.3.</span> <span class="nav-text">2.3输出字符流(Writer)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4字符缓冲流"><span class="nav-number">2.4.</span> <span class="nav-text">2.4字符缓冲流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-转换流"><span class="nav-number">3.</span> <span class="nav-text">3.转换流</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-字节流"><span class="nav-number">1.</span> <span class="nav-text">1.字节流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.1概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2字节输入流-InputStream"><span class="nav-number">1.2.</span> <span class="nav-text">1.2字节输入流(InputStream)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3字节输出流-OutputStream"><span class="nav-number">1.3.</span> <span class="nav-text">1.3字节输出流(OutputStream)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4代码示例"><span class="nav-number">1.4.</span> <span class="nav-text">1.4代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5字节缓冲流"><span class="nav-number">1.5.</span> <span class="nav-text">1.5字节缓冲流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-字符流"><span class="nav-number">2.</span> <span class="nav-text">2.字符流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1定义"><span class="nav-number">2.1.</span> <span class="nav-text">2.1定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2输入字符流-Reader"><span class="nav-number">2.2.</span> <span class="nav-text">2.2输入字符流(Reader)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3输出字符流-Writer"><span class="nav-number">2.3.</span> <span class="nav-text">2.3输出字符流(Writer)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4字符缓冲流"><span class="nav-number">2.4.</span> <span class="nav-text">2.4字符缓冲流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-转换流"><span class="nav-number">3.</span> <span class="nav-text">3.转换流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-其他IO流"><span class="nav-number">4.</span> <span class="nav-text">4.其他IO流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1ByteArrayInputStream和ByteArrayOutputStream"><span class="nav-number">4.0.1.</span> <span class="nav-text">4.1ByteArrayInputStream和ByteArrayOutputStream</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-联系"><span class="nav-number">5.</span> <span class="nav-text">5.联系</span></a></li></ol></div>
             
           </div>
         </section>
