@@ -355,7 +355,13 @@ public class Example{
     }
 }
 </code></pre><p>既然谈到装饰，那下面我们就在下文3.7中来谈谈装饰者模式。  </p>
-<h3 id="3-5c3p0数据库连接池"><a href="#3-5c3p0数据库连接池" class="headerlink" title="3.5c3p0数据库连接池"></a>3.5c3p0数据库连接池</h3><p>c3p0,全名叫ComboPooledDataSource;<br><strong>Demo:</strong></p>
+<h3 id="3-5c3p0数据库连接池"><a href="#3-5c3p0数据库连接池" class="headerlink" title="3.5c3p0数据库连接池"></a>3.5c3p0数据库连接池</h3><p>c3p0,全名叫ComboPooledDataSource;   </p>
+<p>需要导入的jar包:</p>
+<ul>
+<li>连接池的实现:c3p0-0.9.5.2.jar</li>
+<li>依赖库:mchange－commons.jar   </li>
+</ul>
+<p><strong>Demo:</strong></p>
 <pre><code>public class Demo{
     public static void main(String[] args)
     {
@@ -451,7 +457,13 @@ class 加盐咖啡 extends 咖啡类 {};
         return map.get(Thread.currentThread());
     }
 }
-</code></pre><h2 id="5-dbUtils结果集处理器介绍"><a href="#5-dbUtils结果集处理器介绍" class="headerlink" title="5.dbUtils结果集处理器介绍"></a>5.dbUtils结果集处理器介绍</h2><p>需要导入common-dbutil.jar包。</p>
+</code></pre><h2 id="5-dbtils结果集处理器介绍"><a href="#5-dbtils结果集处理器介绍" class="headerlink" title="5.dbtils结果集处理器介绍"></a>5.dbtils结果集处理器介绍</h2><p>需要导入的jar包:</p>
+<ul>
+<li>common-dbutil.jar</li>
+<li>c3p0.jar</li>
+<li>mchange-commons.jar</li>
+</ul>
+<p>关键要得到QueryRunner对象，然后调用其各种方法。</p>
 <ul>
 <li><p>update()方法:</p>
 <blockquote>
@@ -469,16 +481,122 @@ class 加盐咖啡 extends 咖啡类 {};
 </blockquote>
 </li>
 </ul>
-<p>dbutil结果处理集的代码以后抽时间补上。</p>
+<p><strong>dbutil结果处理集原理代码:</strong>  </p>
+<pre><code>package demo;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ * Created by codingBoy on 16/10/19.
+ */
+ public class QR&lt;T&gt;
+ {
+    private DataSource dataSource;
+
+public QR(DataSource dataSource)
+{
+    this.dataSource=dataSource;
+}
+
+public QR(){
+    super();
+}
+
+public int update(String sql,Object... params)
+{
+    Connection con=null;
+    PreparedStatement pstmt=null;
+
+    try
+    {
+        con=dataSource.getConnection();//通过连接池得到连接对象
+        pstmt=con.prepareStatement(sql);
+
+        initParams(pstmt,params);//给出参数
+
+        return pstmt.executeUpdate();//调用update执行增、删、该
+    }catch (Exception e)
+    {
+        throw new RuntimeException(e);
+    }finally {
+        try{
+            if (pstmt!=null) pstmt.close();
+            if (con!=null) con.close();
+        }catch (SQLException e){}
+    }
+}
+
+//给参数赋值
+public void initParams(PreparedStatement pstmt,Object... params) throws SQLException {
+    for (int i = 0; i &lt; params.length; i++)
+    {
+        pstmt.setObject(i+1,params[i]);
+    }
+}
+
+public T query(String sql,RsHandler&lt;T&gt; rh,Object... params) throws SQLException {
+    Connection con=null;
+    PreparedStatement pstmt=null;
+    ResultSet rs=null;
+
+    try
+    {
+        con=dataSource.getConnection();//通过连接池得到连接对象
+        pstmt=con.prepareStatement(sql);
+
+        initParams(pstmt,params);//给出参数
+
+        rs=pstmt.executeQuery();//调用update执行增、删、该
+
+        return rh.handle(rs);
+    }catch (Exception e)
+    {
+        throw new RuntimeException(e);
+    }finally {
+
+        if (rs!=null) rs.close();
+        if (pstmt!=null) pstmt.close();
+        if (con!=null) con.close();
+
+    }
+}
+
+interface RsHandler&lt;T&gt;
+{
+    public T handle(ResultSet rs);
+}
+}
+</code></pre><p>这样我们以后对数据库进行增、删、改操作时，只需写以下代码即可:</p>
+<pre><code>1.QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource);//创建QueryRunner对象，并传入连接池对象
+
+2.String sql=&quot;insert into user values(?,?,?,?);//给出sql语句模板
+3.Object[] params={参数1，参数2，参数3，参数4};//传入参数
+4.qr.update(sql,params);//调用qr方法。
+</code></pre><p>通过这简单的四步就可以对数据库进行增删改了。  </p>
+<p>对数据库进行查询操作时，只需写以下代码:  </p>
+<pre><code>1.QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource);//创建QueryRunner对象，并传入连接池对象
+2.String sql=&quot;select * from user where id=?&quot;;//给出sql语句模板
+3. Object[] params={参数};//传入参数
+//4. ResultSetHandler&lt;Object&gt; rsh=new ResultSetHandler(){
+//        @Override
+//        public Object handle(Result rs) throws SQLException{
+//            return null;
+//        }
+//    };
+5.Object object=qr.query(sql,new BeanHandler&lt;Object&gt;(Object.class),params);
+</code></pre><p>通过这几步即可实现对数据的查询操作了。</p>
 <h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li><p><a href="codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 ]]></content>
     </entry>
@@ -615,12 +733,13 @@ con.close();
 <pre><code>new java.util.Date()=new java.sql.Date();或
 new java.util.Date()=new java.sql.Time();或
 new java.util.Date()=new java.sql.Timestamp();  
-</code></pre><h2 id="7-批处理"><a href="#7-批处理" class="headerlink" title="7.批处理"></a>7.批处理</h2><h3 id="7-1Statement批处理"><a href="#7-1Statement批处理" class="headerlink" title="7.1Statement批处理"></a>7.1Statement批处理</h3><p>批处理就是一批一批的处理，而不是一个一个的处理。  </p>
+</code></pre><h2 id="7-大数据"><a href="#7-大数据" class="headerlink" title="7.大数据"></a>7.大数据</h2><p>将大数据的歌曲存入数据库。代码日后补上。</p>
+<h2 id="8-批处理"><a href="#8-批处理" class="headerlink" title="8.批处理"></a>8.批处理</h2><h3 id="8-1Statement批处理"><a href="#8-1Statement批处理" class="headerlink" title="8.1Statement批处理"></a>8.1Statement批处理</h3><p>批处理就是一批一批的处理，而不是一个一个的处理。  </p>
 <p>当你有10条sql语句要执行时，一次向服务器发送一条语句，这么做效率很差。处理的方案是用批处理，即一次向服务器发送多条sql语句，然后由服务器一次性处理。  </p>
 <p>批处理只针对更新(增、删、改),没有查询什么事。  </p>
 <p>添加批的语句:PreparedStatement.addBatch();<br>执行批的语句:PreparedStatement.executeBatch();  </p>
 <p>mysql默认批处理是关闭的，需要在url参数后面加上?rewriteBatchedStatement=true;</p>
-<h2 id="8-联系"><a href="#8-联系" class="headerlink" title="8.联系"></a>8.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<h2 id="9-联系"><a href="#9-联系" class="headerlink" title="9.联系"></a>9.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
 </li>
@@ -1667,12 +1786,13 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
     </entry>
     
     <entry>
-      <title><![CDATA[写博客也是一种生活方式]]></title>
+      <title><![CDATA[开启我的博客之旅]]></title>
       <url>http://codingxiaxw.cn/archives/2016/03/31/1-%E5%86%99%E5%8D%9A%E5%AE%A2%E4%B9%9F%E6%98%AF%E4%B8%80%E7%A7%8D%E7%94%9F%E6%B4%BB%E6%96%B9%E5%BC%8F/</url>
       <content type="html"><![CDATA[<p>hello guys,I’m codingXiaxw,who decide to write my own blog while I’m coding.As far as I’m concerned, writing blog is also a part of life.Everytime I felt tired,I would stop coding to play macdown,and then writed my feelings and reviews in it.In this way can I deepen the knowledges in my brain and can also make me relaxing.  </p>
 <p>Welcome to <a href="https://codingxiaxw.cn">codingXiaxw’s blog</a> website!Thank for you coming,and thank for your support.They are the energy to encourage me to move forward.  </p>
 <p>Today I will begin my blog journey，and I will update it frequently.   </p>
 <a id="more"></a>
+<h3 id="为什么要写博客"><a href="#为什么要写博客" class="headerlink" title="为什么要写博客:"></a>为什么要写博客:</h3><p>在网上查找资料时，各种博客内容参差不齐，等自己了解透了便将自己的见解写出来，供自己以后的学习，也供他人日后的参考。</p>
 <h3 id="现阶段"><a href="#现阶段" class="headerlink" title="现阶段:"></a>现阶段:</h3><p>研习 <strong>Android开发</strong>，正朝着进阶的方法加以奋斗。</p>
 <h3 id="个性签名"><a href="#个性签名" class="headerlink" title="个性签名:"></a>个性签名:</h3><p>Life is shot, just coding.</p>
 <h3 id="坚信"><a href="#坚信" class="headerlink" title="坚信:"></a>坚信:</h3><ul>
@@ -1688,13 +1808,13 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 </ul>
 <h3 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h3><p> If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><p><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a>- <a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a> </p>
+<li><p><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></p>
 </li>
 <li><p>微信号：wu19961017</p>
 </li>
