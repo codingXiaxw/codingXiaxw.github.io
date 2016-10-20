@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title><![CDATA[用Java写网络爬虫一之项目介绍]]></title>
+      <url>http://codingxiaxw.cn/archives/2016/10/20/20-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%80%E4%B9%8B%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/</url>
+      <content type="html"><![CDATA[<h2 id="用Java写网络爬虫系列介绍"><a href="#用Java写网络爬虫系列介绍" class="headerlink" title="用Java写网络爬虫系列介绍"></a>用Java写网络爬虫系列介绍</h2><p>这系列文章我打算用4篇博客来完成，一览表:</p>
+<ul>
+<li>1.<a href="">用Java写网络爬虫一之项目介绍</a></li>
+<li>2.<a href="">用Java写网络爬虫二之Java正则表达式</a></li>
+<li>3.<a href="">用Java写网络爬虫三之开始爬取</a></li>
+<li>4.<a href="">用Java写网络爬虫四之将爬取内容存入数据库</a></li>
+</ul>
+<a id="more"></a>
+<p>制作网络爬虫主要的步骤就是:  </p>
+<ul>
+<li>1.通过输入流获取到网页源码</li>
+<li>2.利用正则表达式在源码中找到自己想要的内容  <blockquote>
+<p>正因为正则表达式在制作网络爬虫中的重要，所以这里我有必要把Java正则表达式拿出来单独写篇博客，当然基础好的可以直接忽略跳到第三篇。</p>
+</blockquote>
+</li>
+<li>3.将自己找到的内容输出来并查看</li>
+</ul>
+<p>后续进阶可以对第三步进行改善，如将自己爬到的内容不是打印出来，而是通过JDBC存入MySQL中然后在MySQL中进行查看(见第四篇文章)。</p>
+<h2 id="我的爬虫目标"><a href="#我的爬虫目标" class="headerlink" title="我的爬虫目标"></a>我的爬虫目标</h2><p>制作网络爬虫爬取知乎网上提的问题、问题链接、问题描述以及回答内容，并将它们打印在输出台。(后续进阶我选择将这些内容存入MySQL数据库，而不是)</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Java之IO流详解]]></title>
       <url>http://codingxiaxw.cn/archives/2016/10/17/19-Java%E4%B9%8BIO%E6%B5%81%E8%AF%A6%E8%A7%A3/</url>
       <content type="html"><![CDATA[<p>大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序的运行结果等。在Java中，将这种通过不同输入输出设备(键盘，内存，显示器，网络等)之间的数据传输抽象表述为”流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的”流”都位于java.io包中，称为IO(输入输出)流。  </p>
@@ -92,7 +117,7 @@ public class Example{
          }
     }
 }
-</code></pre><h3 id="1-5字节缓冲流"><a href="#1-5字节缓冲流" class="headerlink" title="1.5字节缓冲流"></a>1.5字节缓冲流</h3><p>上面的例子实现了对文件的复制，但是一个字节一个字节的读写，需要频繁的操作文件，效率非常低。为了提高效率，需要使用两个带缓冲的字节流，分别是BufferedInputStream和BufferedOutputStream,它们两个同时也属于上文<a href="">JavaWeb学习笔记之Jdbc二</a>中讲到的装饰流。下面通过增加字节缓冲流来对上述例子进行变动:  </p>
+</code></pre><h3 id="1-5字节缓冲流"><a href="#1-5字节缓冲流" class="headerlink" title="1.5字节缓冲流"></a>1.5字节缓冲流</h3><p>上面的例子实现了对文件的复制，但是一个字节一个字节的读写，需要频繁的操作文件，效率非常低。为了提高效率，需要使用两个带缓冲的字节流，分别是BufferedInputStream和BufferedOutputStream,它们两个同时也属于上文<a href="http://codingxiaxw.cn/2016/10/16/18-JavaWeb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8BJdbc%E4%BA%8C/">JavaWeb学习笔记之Jdbc二</a>中讲到的装饰流。下面通过增加字节缓冲流来对上述例子进行变动:  </p>
 <p><strong>Demo:</strong>  </p>
 <pre><code>import java.io.*;
 public class Example{
