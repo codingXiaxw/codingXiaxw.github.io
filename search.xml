@@ -613,7 +613,10 @@ interface RsHandler&lt;T&gt;
 //        }
 //    };
 5.Object object=qr.query(sql,new BeanHandler&lt;Object&gt;(Object.class),params);
-</code></pre><p>通过这几步即可实现对数据的查询操作了。</p>
+</code></pre><p>通过这几步即可实现对数据的查询操作了。  </p>
+<p><strong>下面的解释写给自己看的:关于connection是否关闭的问题</strong>  </p>
+<p>在jar包中，QueryRunner类的update(没有connection参数的)方法，在finally中将connection进行了关闭;在update(有connection参数的)方法中，在finally中没有对connection进行关闭(暂时这么记吧，不然要是进行关闭了的话，在传智播客写的小工具封装类TxQueryRunner中将connection传入JdbcUtils的releaseConnecion()方法中对connection进行关闭时会出现报错)。</p>
+<p>在讲到事务时，我们会对QueryRunner进行再次封装。上述写出的QueryRunner的代码只是包中的QueryRunner源码方法的一部分(因为源码中还有很多的重载方法)，我们会通过另一个类TxQueryRunner(较QueryRunner多出的一个功能就是它支持事务)继承该类，在TxQueryrunner类中，对connection进行了判断:若connection为事务中的connection则在TxqueryRunner的update()方法中不对connection进行关闭，而是在commitTransaction()即提交事务时进行关闭;若connection为普通连接，则将connection进行关闭。那么以后我们在DAO中要获取的就不是QueryRunner对象，而是通过<code>QueryRunner qr=new TxQueryRunner();</code>获取TxQueryRunner对象了。</p>
 <h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
