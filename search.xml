@@ -6,7 +6,9 @@
     <entry>
       <title><![CDATA[用Java实现网络爬虫一之项目介绍]]></title>
       <url>http://codingxiaxw.cn/archives/2016/10/20/20-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%80%E4%B9%8B%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/</url>
-      <content type="html"><![CDATA[<h2 id="用Java实现网络爬虫系列一览表"><a href="#用Java实现网络爬虫系列一览表" class="headerlink" title="用Java实现网络爬虫系列一览表"></a>用Java实现网络爬虫系列一览表</h2><p>这系列文章我打算用5篇博客来完成，一览表:</p>
+      <content type="html"><![CDATA[<p>网络爬虫(Web crawler)也叫网络爬虫(Web spider)、蚂蚁（ant）、自动检索工具(automatic indexer)，或者(在FOAF软件概念中)网络疾走(WEB scutter)，是一种“自动化浏览网络”的程序，或者说是一种网络机器人。它们被广泛用于互联网搜索引擎或其他类似网站，以获取或更新这些网站的内容和检索方式。它们可以自动采集所有其能够访问到的页面内容，以供搜索引擎做进一步处理（分检整理下载的页面），而使得用户能更快的检索到他们需要的信息。  </p>
+<a id="more"></a>
+<h2 id="用Java实现网络爬虫系列"><a href="#用Java实现网络爬虫系列" class="headerlink" title="用Java实现网络爬虫系列"></a>用Java实现网络爬虫系列</h2><p>这系列文章我打算用5篇博客来完成，一览表:</p>
 <ul>
 <li>1.<a href="http://codingxiaxw.cn/2016/10/20/20-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%80%E4%B9%8B%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/">用Java实现网络爬虫一之项目介绍</a></li>
 <li>2.<a href="">用Java实现网络爬虫二之Java正则表达式</a></li>
@@ -14,7 +16,6 @@
 <li>4.<a href="">进阶段:用Java实现网络爬虫四之将爬取内容存入数据库</a></li>
 <li>5.<a href="">进阶段:开始使用框架实现网络爬虫</a></li>
 </ul>
-<a id="more"></a>
 <p>制作网络爬虫主要的步骤就是:  </p>
 <ul>
 <li>1.通过输入流获取到网页源码</li>
