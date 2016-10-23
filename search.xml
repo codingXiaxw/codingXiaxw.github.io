@@ -4,6 +4,63 @@
   
     
     <entry>
+      <title><![CDATA[JavaWeb项目之客户管理系统]]></title>
+      <url>http://codingxiaxw.cn/archives/2016/10/23/24-JavaWeb%E9%A1%B9%E7%9B%AE%E4%B9%8B%E5%AE%A2%E6%88%B7%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</url>
+      <content type="html"><![CDATA[<h2 id="1-项目介绍"><a href="#1-项目介绍" class="headerlink" title="1.项目介绍"></a>1.项目介绍</h2><h3 id="1-1功能介绍"><a href="#1-1功能介绍" class="headerlink" title="1.1功能介绍"></a>1.1功能介绍</h3><ul>
+<li>添加客户:添加客户的信息，包括姓名，性别，手机，邮箱，自我描述</li>
+<li>查询客户:查询数据库中所有的客户，查询结果将客户信息以列表的形式给出，可以对列表中的客户信息进行编辑及删除</li>
+<li>高级搜索:多条件组合在数据库中进行客户信息的查询，搜索结果以列表的形式给出，可以对列表中的客户信息进行编辑及删除</li>
+</ul>
+<p>源码见我<a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement" target="_blank" rel="external">github</a>:<a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement" target="_blank" rel="external">https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement</a></p>
+<h3 id="1-2运用知识"><a href="#1-2运用知识" class="headerlink" title="1.2运用知识"></a>1.2运用知识</h3><ul>
+<li>数据库基本查询</li>
+<li>数据库连接池c3p0</li>
+<li>运用dbutil.jar包一键封装表单数据到bean对象中</li>
+<li>利用dbutils.jar包简化对数据库增、删、改、查的代码</li>
+<li>标签库</li>
+<li>JavaWeb三层框架的分离</li>
+<li>将servlet的转发、重定向及方法进行封装，这样当设计到多个功能时不用建立多个servlet类。</li>
+<li>反射</li>
+</ul>
+<h2 id="2-准备"><a href="#2-准备" class="headerlink" title="2.准备"></a>2.准备</h2><p>1.导入第三方jar包以及c3p0配置文件。</p>
+<ul>
+<li>c3p0.jar</li>
+<li>mchange-commons.java.jar</li>
+<li>commons-beanutils.jar</li>
+<li>commons-dbutils.jar</li>
+<li>commons-logging.jar</li>
+<li>自己写的小工具itcast-tools.jar</li>
+<li>jstl.jar</li>
+<li>mysql-connector-java.jar</li>
+</ul>
+<p>2.建包</p>
+<ul>
+<li>dao</li>
+<li>service</li>
+<li>servlet</li>
+<li>domain</li>
+</ul>
+<h2 id="3-搭建环境"><a href="#3-搭建环境" class="headerlink" title="3.搭建环境"></a>3.搭建环境</h2><p>IntelliJ IDEA  +  MySQL</p>
+<h2 id="4-使用方法"><a href="#4-使用方法" class="headerlink" title="4.使用方法"></a>4.使用方法</h2><p>1.git clone <a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement.git" target="_blank" rel="external">https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement.git</a>  </p>
+<p>2.使用IntelliJ IDEA导入打开即可。</p>
+<h2 id="5-项目功能截图"><a href="#5-项目功能截图" class="headerlink" title="5.项目功能截图"></a>5.项目功能截图</h2><h3 id="5-1添加客户"><a href="#5-1添加客户" class="headerlink" title="5.1添加客户"></a>5.1添加客户</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/tianjia.png" alt=""></p>
+<h3 id="5-2查询客户"><a href="#5-2查询客户" class="headerlink" title="5.2查询客户"></a>5.2查询客户</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/chaxun.png" alt=""></p>
+<h3 id="5-3编辑客户"><a href="#5-3编辑客户" class="headerlink" title="5.3编辑客户"></a>5.3编辑客户</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/bianji.png" alt=""></p>
+<h3 id="5-4高级搜索客户"><a href="#5-4高级搜索客户" class="headerlink" title="5.4高级搜索客户"></a>5.4高级搜索客户</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/sousuo.png" alt=""></p>
+<h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[用Java实现网络爬虫一之项目介绍]]></title>
       <url>http://codingxiaxw.cn/archives/2016/10/20/20-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%80%E4%B9%8B%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/</url>
       <content type="html"><![CDATA[<p>网络爬虫(Web crawler)也叫网络爬虫(Web spider)、蚂蚁（ant）、自动检索工具(automatic indexer)，或者(在FOAF软件概念中)网络疾走(WEB scutter)，是一种“自动化浏览网络”的程序，或者说是一种网络机器人。它们被广泛用于互联网搜索引擎或其他类似网站，以获取或更新这些网站的内容和检索方式。它们可以自动采集所有其能够访问到的页面内容，以供搜索引擎做进一步处理（分检整理下载的页面），而使得用户能更快的检索到他们需要的信息。  </p>
@@ -27,6 +84,16 @@
 </ul>
 <p>后续进阶可以对第三步进行改善，如将自己爬到的内容不是打印出来，而是通过JDBC存入MySQL中然后在MySQL中进行查看(见第四篇文章)。</p>
 <h2 id="我的爬虫目标"><a href="#我的爬虫目标" class="headerlink" title="我的爬虫目标"></a>我的爬虫目标</h2><p>制作网络爬虫爬取知乎网上提的问题、问题链接、问题描述以及回答内容，并将它们打印在输出台。(后续进阶我选择将这些内容存入MySQL数据库，而不是)</p>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
 ]]></content>
     </entry>
     
@@ -1055,10 +1122,11 @@ where sal=max(sal);
 </code></pre><p>查看当前数据库中所有表:<code>SHOW TABLES;</code>  </p>
 <p>查看表结构:<code>DESC 表名;</code>  </p>
 <p>删除表:<code>DROP 表名;</code>  </p>
-<p>修改表:修改表有四个操作，但前缀都是一样的:<code>ALTER TABLE 表名...</code>  </p>
+<p>修改表:修改表有5个操作，但前缀都是一样的:<code>ALTER TABLE 表名...</code>  </p>
 <ul>
 <li>修改表之添加列:<code>ALTER TABLE 表名 add (列名 列类型，...，列名 列类型);</code></li>
 <li>修改表之修改列类型:<code>ALTER TABLE 表名 MODIFY 列名 列的新类型;</code></li>
+<li>修改标之列名称列类型一起修改:<code>ALTER TABLE 表名 MODIFY 原列名 新列名 列名类型;</code></li>
 <li>修改表之删除列:<code>ALTER TABLE 表名 DROP 列名;</code></li>
 <li>修改表之修改表名:<code>ALTER TABLE 表名 RENAME TO 新表名</code></li>
 </ul>

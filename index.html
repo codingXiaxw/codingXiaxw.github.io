@@ -283,6 +283,178 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/23/24-JavaWeb项目之客户管理系统/" itemprop="url">
+                  JavaWeb项目之客户管理系统
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-10-23T17:28:10+08:00" content="Oct 23 2016">
+              Oct 23 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/avaWeb-project-客户管理系统/" itemprop="url" rel="index">
+                    <span itemprop="name">avaWeb project 客户管理系统</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/23/24-JavaWeb项目之客户管理系统/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/23/24-JavaWeb项目之客户管理系统/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-项目介绍"><a href="#1-项目介绍" class="headerlink" title="1.项目介绍"></a>1.项目介绍</h2><h3 id="1-1功能介绍"><a href="#1-1功能介绍" class="headerlink" title="1.1功能介绍"></a>1.1功能介绍</h3><ul>
+<li>添加客户:添加客户的信息，包括姓名，性别，手机，邮箱，自我描述</li>
+<li>查询客户:查询数据库中所有的客户，查询结果将客户信息以列表的形式给出，可以对列表中的客户信息进行编辑及删除</li>
+<li>高级搜索:多条件组合在数据库中进行客户信息的查询，搜索结果以列表的形式给出，可以对列表中的客户信息进行编辑及删除</li>
+</ul>
+<p>源码见我<a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement" target="_blank" rel="external">github</a>:<a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement" target="_blank" rel="external">https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement</a></p>
+<h3 id="1-2运用知识"><a href="#1-2运用知识" class="headerlink" title="1.2运用知识"></a>1.2运用知识</h3><ul>
+<li>数据库基本查询</li>
+<li>数据库连接池c3p0</li>
+<li>运用dbutil.jar包一键封装表单数据到bean对象中</li>
+<li>利用dbutils.jar包简化对数据库增、删、改、查的代码</li>
+<li>标签库</li>
+<li>JavaWeb三层框架的分离</li>
+<li>将servlet的转发、重定向及方法进行封装，这样当设计到多个功能时不用建立多个servlet类。</li>
+<li>反射</li>
+</ul>
+<h2 id="2-准备"><a href="#2-准备" class="headerlink" title="2.准备"></a>2.准备</h2><p>1.导入第三方jar包以及c3p0配置文件。</p>
+<ul>
+<li>c3p0.jar</li>
+<li>mchange-commons.java.jar</li>
+<li>commons-beanutils.jar</li>
+<li>commons-dbutils.jar</li>
+<li>commons-logging.jar</li>
+<li>自己写的小工具itcast-tools.jar</li>
+<li>jstl.jar</li>
+<li>mysql-connector-java.jar</li>
+</ul>
+<p>2.建包</p>
+<ul>
+<li>dao</li>
+<li>service</li>
+<li>servlet</li>
+<li>domain</li>
+</ul>
+<h2 id="3-搭建环境"><a href="#3-搭建环境" class="headerlink" title="3.搭建环境"></a>3.搭建环境</h2><p>IntelliJ IDEA  +  MySQL</p>
+<h2 id="4-使用方法"><a href="#4-使用方法" class="headerlink" title="4.使用方法"></a>4.使用方法</h2><p>1.git clone <a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement.git" target="_blank" rel="external">https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement.git</a>  </p>
+<p>2.使用IntelliJ IDEA导入打开即可。</p>
+<h2 id="5-项目功能截图"><a href="#5-项目功能截图" class="headerlink" title="5.项目功能截图"></a>5.项目功能截图</h2><h3 id="5-1添加客户"><a href="#5-1添加客户" class="headerlink" title="5.1添加客户"></a>5.1添加客户</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/tianjia.png" alt=""></p>
+<h3 id="5-2查询客户"><a href="#5-2查询客户" class="headerlink" title="5.2查询客户"></a>5.2查询客户</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/chaxun.png" alt=""></p>
+<h3 id="5-3编辑客户"><a href="#5-3编辑客户" class="headerlink" title="5.3编辑客户"></a>5.3编辑客户</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/bianji.png" alt=""></p>
+<h3 id="5-4高级搜索客户"><a href="#5-4高级搜索客户" class="headerlink" title="5.4高级搜索客户"></a>5.4高级搜索客户</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/sousuo.png" alt=""></p>
+<h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/20/20-用Java写网络爬虫一之项目介绍/" itemprop="url">
                   用Java实现网络爬虫一之项目介绍
                 </a>
@@ -1390,137 +1562,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/" itemprop="url">
-                  Java随机生成图片与HTML表单中的验证码实现
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-30T18:21:28+08:00" content="Sep 30 2016">
-              Sep 30 2016
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/HTML/" itemprop="url" rel="index">
-                    <span itemprop="name">HTML</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Java随机生成图片"><a href="#Java随机生成图片" class="headerlink" title="Java随机生成图片"></a>Java随机生成图片</h2><p>用Java语言生成一个带有字符串文本的图片总结来说只需要如下四步:</p>
-<ul>
-<li>1.创建图片缓冲区</li>
-<li>2.设置图片缓冲区的宽高及保存图片的类型</li>
-<li>3.得到这个图片的绘制环境(拿到画笔)</li>
-<li>4.将图片保存起来</li>
-</ul>
-<p>代码如下:<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1566,7 +1607,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1574,7 +1615,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -1583,7 +1624,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

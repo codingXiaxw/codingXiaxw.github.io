@@ -110,7 +110,7 @@
 2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。
 3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。
 4.DQ">
-<meta property="og:updated_time" content="2016-10-17T12:51:34.000Z">
+<meta property="og:updated_time" content="2016-10-23T09:25:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL学习笔记一之MySQL语法">
 <meta name="twitter:description" content="1.SQL语句分类
@@ -396,10 +396,11 @@
 </code></pre><p>查看当前数据库中所有表:<code>SHOW TABLES;</code>  </p>
 <p>查看表结构:<code>DESC 表名;</code>  </p>
 <p>删除表:<code>DROP 表名;</code>  </p>
-<p>修改表:修改表有四个操作，但前缀都是一样的:<code>ALTER TABLE 表名...</code>  </p>
+<p>修改表:修改表有5个操作，但前缀都是一样的:<code>ALTER TABLE 表名...</code>  </p>
 <ul>
 <li>修改表之添加列:<code>ALTER TABLE 表名 add (列名 列类型，...，列名 列类型);</code></li>
 <li>修改表之修改列类型:<code>ALTER TABLE 表名 MODIFY 列名 列的新类型;</code></li>
+<li>修改标之列名称列类型一起修改:<code>ALTER TABLE 表名 MODIFY 原列名 新列名 列名类型;</code></li>
 <li>修改表之删除列:<code>ALTER TABLE 表名 DROP 列名;</code></li>
 <li>修改表之修改表名:<code>ALTER TABLE 表名 RENAME TO 新表名</code></li>
 </ul>
@@ -587,7 +588,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -595,7 +596,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -604,7 +605,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
