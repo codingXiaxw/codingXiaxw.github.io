@@ -62,6 +62,263 @@
     </entry>
     
     <entry>
+      <title><![CDATA[用Java实现网络爬虫二之Java正则表达式]]></title>
+      <url>http://codingxiaxw.cn/archives/2016/10/23/21-%E7%94%A8Java%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%BA%8C%E4%B9%8BJava%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<p>正则表达式定义了字符串的模式，可以用来搜索、编辑或处理文本，正则表达式并不仅限于某一种语言，但是在每种语言中有细微的差别。  </p>
+<a id="more"></a>
+<h2 id="1-正则表达式语法"><a href="#1-正则表达式语法" class="headerlink" title="1.正则表达式语法"></a>1.正则表达式语法</h2><table>
+<thead>
+<tr>
+<th>字符</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\</td>
+<td style="text-align:center">将下一字符标记为特殊字符、文本、反向引用或八进制转义符。例如，”n”匹配字符”n”。”\n”匹配换行符。序列”\“匹配”\”，”(“匹配”(“。</td>
+</tr>
+<tr>
+<td>^</td>
+<td style="text-align:center">匹配输入字符串开始的位置。如果设置了 RegExp 对象的 Multiline 属性，^ 还会与”\n”或”\r”之后的位置匹配。</td>
+</tr>
+<tr>
+<td>$</td>
+<td style="text-align:center">匹配输入字符串结尾的位置。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与”\n”或”\r”之前的位置匹配。</td>
+</tr>
+<tr>
+<td>*</td>
+<td style="text-align:center">零次或多次匹配前面的字符或子表达式。例如，zo<em> 匹配”z”和”zoo”。</em> 等效于 {0,}。</td>
+</tr>
+<tr>
+<td>+</td>
+<td style="text-align:center">一次或多次匹配前面的字符或子表达式。例如，”zo+”与”zo”和”zoo”匹配，但与”z”不匹配。+ 等效于 {1,}。</td>
+</tr>
+<tr>
+<td>?</td>
+<td style="text-align:center">零次或一次匹配前面的字符或子表达式。例如，”do(es)?”匹配”do”或”does”中的”do”。? 等效于 {0,1}。当此字符紧随任何其他限定符（ * 、+、?、{n}、{n,}、{n,m}）之后时，匹配模式是”非贪心的”。”非贪心的”模式匹配搜索到的、尽可能短的字符串，而默认的”贪心的”模式匹配搜索到的、尽可能长的字符串。例如，在字符串”oooo”中，”o+?”只匹配单个”o”，而”o+”匹配所有”o”。</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td style="text-align:center">n 是非负整数。正好匹配 n 次。例如，”o{2}”与”Bob”中的”o”不匹配，但与”food”中的两个”o”匹配。</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td style="text-align:center">n 是非负整数。至少匹配 n 次。例如，”o{2,}”不匹配”Bob”中的”o”，而匹配”foooood”中的所有 o。”o{1,}”等效于”o+”。”o{0,}”等效于”o*”。</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td style="text-align:center">M 和 n 是非负整数，其中 n &lt;= m。匹配至少 n 次，至多 m 次。例如，”o{1,3}”匹配”fooooood”中的头三个 o。’o{0,1}’ 等效于 ‘o?’。注意：不能将空格插入逗号和数字之间。</td>
+</tr>
+<tr>
+<td>.</td>
+<td style="text-align:center">匹配除”\r\n”之外的任何单个字符。若要匹配包括”\r\n”在内的任意字符，请使用诸如”[\s\S]”之类的模式。</td>
+</tr>
+<tr>
+<td>x｜y</td>
+<td style="text-align:center">匹配 x 或 y。例如，’z｜food’ 匹配”z”或”food”。’(z｜f)ood’ 匹配”zood”或”food”。</td>
+</tr>
+<tr>
+<td>[xyz]</td>
+<td style="text-align:center">字符集。匹配包含的任一字符。例如，”[abc]”匹配”plain”中的”a”。</td>
+</tr>
+<tr>
+<td>[^xyz]</td>
+<td style="text-align:center">反向字符集。匹配未包含的任何字符。例如，”[^abc]”匹配”plain”中”p”，”l”，”i”，”n”。</td>
+</tr>
+<tr>
+<td>[a-z]</td>
+<td style="text-align:center">字符范围。匹配指定范围内的任何字符。例如，”[a-z]”匹配”a”到”z”范围内的任何小写字母。</td>
+</tr>
+<tr>
+<td>[^a-z]</td>
+<td style="text-align:center">反向范围字符。匹配不在指定的范围内的任何字符。例如，”[^a-z]”匹配任何不在”a”到”z”范围内的任何字符。</td>
+</tr>
+<tr>
+<td>\b</td>
+<td style="text-align:center">匹配一个字边界，即字与空格间的位置。例如，”er\b”匹配”never”中的”er”，但不匹配”verb”中的”er”。</td>
+</tr>
+<tr>
+<td>\B</td>
+<td style="text-align:center">非字边界匹配。”er\B”匹配”verb”中的”er”，但不匹配”never”中的”er”。</td>
+</tr>
+<tr>
+<td>\d</td>
+<td style="text-align:center">数字字符匹配。等效于 [0-9]。</td>
+</tr>
+<tr>
+<td>\D</td>
+<td style="text-align:center">非数字字符匹配。等效于 [^0-9]。</td>
+</tr>
+<tr>
+<td>\n</td>
+<td style="text-align:center">换行符匹配。等效于 \x0a 和 \cJ。</td>
+</tr>
+<tr>
+<td>\f</td>
+<td style="text-align:center">换页符匹配。等效于 \x0c 和 \cL。</td>
+</tr>
+<tr>
+<td>\r</td>
+<td style="text-align:center">匹配一个回车符。等效于 \x0d 和 \cM。</td>
+</tr>
+<tr>
+<td>\s</td>
+<td style="text-align:center">匹配任何空白字符，包括空格、制表符、换页符等。与 [ \f\n\r\t\v] 等效。</td>
+</tr>
+<tr>
+<td>\S</td>
+<td style="text-align:center">匹配任何非空白字符。与 [^ \f\n\r\t\v] 等效。</td>
+</tr>
+<tr>
+<td>\t</td>
+<td style="text-align:center">制表符匹配。与 \x09 和 \cI 等效。</td>
+</tr>
+<tr>
+<td>\w</td>
+<td style="text-align:center">匹配任何字类字符，包括下划线。与”[A-Za-z0-9_]”等效。</td>
+</tr>
+<tr>
+<td>\W</td>
+<td style="text-align:center">与任何非单词字符匹配。与”[^A-Za-z0-9_]”等效。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-Pattern类与Matcher类详解"><a href="#2-Pattern类与Matcher类详解" class="headerlink" title="2.Pattern类与Matcher类详解"></a>2.Pattern类与Matcher类详解</h2><p>java.util.regex是一个用正则表达式所订制的模式来对字符串进行匹配工作的类库包。它包括两个类：Pattern和Matcher。一个Pattern对象是一个正则表达式经编译后的表现模式；一个Matcher对象是一个状态机器，它依据Pattern对象做为匹配模式对字符串展开匹配检查。 首先一个Pattern实例订制了一个所用语法与PERL的类似的正则表达式经编译后的模式，然后一个Matcher实例在这个给定的Pattern实例的模式控制下进行字符串的匹配工作。  </p>
+<p>以下我们就分别来看看这两个类: </p>
+<h3 id="2-1-捕获组的概念"><a href="#2-1-捕获组的概念" class="headerlink" title="2.1 捕获组的概念"></a>2.1 捕获组的概念</h3><p>捕获组可以通过从左到右计算其开括号来编号，编号是从1开始的。例如，在表达式<code>((A)(B(C)))</code>中，存在四个这样的组:  </p>
+<pre><code>第0组:    ((A)(B(C)))
+第1组:    (A)
+第2组:    (B(C))
+第3组:    (C)
+</code></pre><p>组零始终代表整个表达式，以(?)开头的组是纯的非捕获组，它不捕获文本，也不针对组合进行计数。  </p>
+<p>与组关联的捕获输入始终是与组最近匹配的子序列。如果由于量化的缘故再次计算了组，则在第二次计算失败时将保留其以前捕获的值(如果有的话)，例如，将字符串”aba”与表达式(a(b)?)+相匹配，会将第二组设置为”b”。在每个匹配的开头，所有捕获的输入都会被丢弃。</p>
+<h3 id="2-3详解Pattern类和Matcher类"><a href="#2-3详解Pattern类和Matcher类" class="headerlink" title="2.3详解Pattern类和Matcher类"></a>2.3详解Pattern类和Matcher类</h3><p>java正则表达式通过java.util.regex包下的Pattern类与Matcher类实现(建议在阅读本文时,打开java API文档,当介绍到哪个方法时,查看java API中的方法说明,效果会更佳).  </p>
+<p>Pattern类用于创建一个正则表达式,也可以说创建一个匹配模式,它的构造方法是私有的,不可以直接创建,但可以通过Pattern.complie(String regex)简单工厂方法创建一个正则表达式, Java代码示例:  </p>
+<pre><code>Pattern p=Pattern.compile(&quot;\\w+&quot;);
+
+p.pattern();//返回 \w+ 
+//或者直接输出p,例如System.out.println(p);得到的也是\w+。
+</code></pre><p>pattern() 返回正则表达式的字符串形式,其实就是返回Pattern.complile(String regex)的regex参数(当然regex中的某些特殊字符应在其前加上“\”进行转义)。如上方的”\w”就需要在”w”前面的”\”加上”\”进行转义。</p>
+<h4 id="2-3-1Pattern-split-CharSequence-input"><a href="#2-3-1Pattern-split-CharSequence-input" class="headerlink" title="2.3.1Pattern.split(CharSequence input)"></a>2.3.1Pattern.split(CharSequence input)</h4><p>Pattern有一个split(CharSequence input)方法，用于分隔字符串，并返回一个String[]，我猜String.split(String regex)就是通过该方法来实现的。代码示例:  </p>
+<pre><code>Pattern p=Pattern.compile(&quot;\\d+&quot;); 
+
+String[] str=p.split(&quot;我的QQ是:456456我的电话是:0532214我的邮箱是:aaa@aaa.com&quot;); 
+</code></pre><p>结果:str[0]=”我的QQ是:” str[1]=”我的电话是:” str[2]=”我的邮箱是:aaa@aaa.com” 。</p>
+<h4 id="2-3-2Pattern-matches-String-regex-CharSequence-input"><a href="#2-3-2Pattern-matches-String-regex-CharSequence-input" class="headerlink" title="2.3.2Pattern.matches(String regex,CharSequence input)"></a>2.3.2Pattern.matches(String regex,CharSequence input)</h4><p>是一个静态方法，用于快速匹配字符串，该方法适合用于只匹配一次，且匹配全部字符串。代码示例:  </p>
+<pre><code>Pattern.matches(&quot;\\d+&quot;,&quot;2223&quot;);//返回true 
+Pattern.matches(&quot;\\d+&quot;,&quot;2223aa&quot;);//返回false,需要匹配到所有字符串才能返回true,这里aa不能匹配到 
+Pattern.matches(&quot;\\d+&quot;,&quot;22bb23&quot;);//返回false,需要匹配到所有字符串才能返回true,这里bb不能匹配到 
+</code></pre><h4 id="2-3-3Pattern-matcher-charSequence-input"><a href="#2-3-3Pattern-matcher-charSequence-input" class="headerlink" title="2.3.3Pattern.matcher(charSequence input)"></a>2.3.3Pattern.matcher(charSequence input)</h4><p>说了这么多，终于轮到Matcher类登场了，Pattern.matcher(CharSequence input)返回一个Matcher对象。Matcher类的构造方法也是私有的，不能随意创建，只能通过Pattern.matcher(CharSequence input)方法得到该类的实例。Pattern类只能做一些简单的匹配操作，要想得到更强更便捷的正则匹配操作，那就需要将Pattern与Matcher一起合作。Matcher类提供了对正则表达式的分组支持，以及对正则表达式的多次匹配支持。代码示例:  </p>
+<pre><code>Pattern p=Pattern.compile(&quot;\\d+&quot;); 
+Matcher m=p.matcher(&quot;22bb23&quot;); 
+m.pattern();//返回正则表达式，等同于System.out.println(p)中的p或者System.out.println(p.pattern())中的p.pattern()
+System.out.println(m);//返回p 也就是返回该Matcher对象是由哪个Pattern对象的创建的 
+</code></pre><h4 id="2-3-4Matcher-matches-Matcher-lookingAt-Matcher-find"><a href="#2-3-4Matcher-matches-Matcher-lookingAt-Matcher-find" class="headerlink" title="2.3.4Matcher.matches()/Matcher.lookingAt()/Matcher.find"></a>2.3.4Matcher.matches()/Matcher.lookingAt()/Matcher.find</h4><p>Matcher类提供三个匹配操作方法，三个方法均返回boolean类型，当匹配到时返回true，没匹配到则返回false。  </p>
+<p><strong>matches()</strong>方法对整个字符串进行匹配，只有整个字符串都匹配了才返回true。代码示例:  </p>
+<pre><code>Pattern p=Pattern.compile(&quot;\\d+&quot;); 
+Matcher m=p.matcher(&quot;22bb23&quot;); 
+m.matches();//返回false,因为bb不能被\d+匹配,导致整个字符串匹配未成功. 
+
+Matcher m2=p.matcher(&quot;2223&quot;); 
+m2.matches();//返回true,因为\d+匹配到了整个字符串
+</code></pre><p>我们现在回头看一下Pattern.matches(String regex,CharSequence input),它与下面这段代码等价:<code>Pattern.compile(String regex).matcher(String input).matches();</code>  </p>
+<p><strong>lookingAt()</strong>对前面的字符串进行匹配，只有匹配到的字符串在最前面才返回true。代码示例:  </p>
+<pre><code>Pattern p=Pattern.compile(&quot;\\d+&quot;); 
+Matcher m=p.matcher(&quot;22bb23&quot;); 
+m.lookingAt();//返回true,因为\d+匹配到了前面的22 
+
+Matcher m2=p.matcher(&quot;aa2223&quot;); 
+m2.lookingAt();//返回false,因为\d+不能匹配前面的aa 
+</code></pre><p><strong>find()</strong>对字符串进行匹配，匹配到的字符串可以在字符串的任何位置。代码示例:</p>
+<pre><code>Pattern p=Pattern.compile(&quot;\\d+&quot;); 
+Matcher m=p.matcher(&quot;22bb23&quot;); 
+m.find();//返回true 
+
+Matcher m2=p.matcher(&quot;aa2223&quot;); 
+m2.find();//返回true 
+
+Matcher m3=p.matcher(&quot;aa2223bb&quot;); 
+m3.find();//返回true 
+
+Matcher m4=p.matcher(&quot;aabb&quot;); 
+m4.find();//返回false 
+</code></pre><h4 id="2-3-5Matcher-start-Matcher-end-Matcher-group"><a href="#2-3-5Matcher-start-Matcher-end-Matcher-group" class="headerlink" title="2.3.5Matcher.start()/Matcher.end()/Matcher.group()"></a>2.3.5Matcher.start()/Matcher.end()/Matcher.group()</h4><p>当使用matches()、lookingAt()、find()执行匹配操作并返回的值为true后，就可以利用以上三个方法得到更详细的信息。(若上述三个方法matches()、lookingAt()、find()返回的是false或者根本没有调用过上述三个方法则不能进行这三个查找方法)  </p>
+<p>start()返回匹配到的子字符串在字符串中的索引位置。<br>end()返回匹配到的子字符串的最后一个字符的后一个字符在字符串中的索引位置。<br>group()返回匹配到的子字符串。(group()等同与group(0)方法)。代码示例:  </p>
+<pre><code>Pattern p=Pattern.compile(&quot;\\d+&quot;); 
+Matcher m=p.matcher(&quot;aaa2223bb22&quot;); 
+m.find();//匹配2223 ，匹配的是一个和正则表达式相匹配的字符串，返回true
+m.start();//返回3 
+m.end();//返回7,返回的是2223后的索引号 
+m.group();//返回2223，返回的是第一个和正则表达式相匹配的字符串，若想全部输出应采用while(m.find){System.out.println(m.group());}的形式将全部匹配到的字符串返回
+
+Mathcer m2=p.matcher(&quot;2223bb&quot;); 
+m2.lookingAt();   //匹配2223，返回true
+m2.start();   //返回0,由于lookingAt()只能匹配前面的字符串,所以当使用lookingAt()匹配时,start()方法总是返回0 
+m2.end();   //返回4 
+m2.group();   //返回2223 
+
+Matcher m3=p.matcher(&quot;2223bb&quot;);
+m3.matches();   //匹配整个字符串,返回false;
+m3.start();   //出现异常，因为m3.matches()返回的是false，故不能用start()、end()、group()方法。
+m3.end();   //出现异常 
+m3.group();   //出现异常
+</code></pre><p>说了这么多,相信大家都明白了以上几个方法的使用,该说说正则表达式的分组在java中是怎么使用的。start(),end(),group()均有一个重载方法，它们是start(int i),end(int i),group(int i)专用于分组操作,Mathcer类还有一个groupCount()用于返回此正则表达式有多少分组(实际上组的数量等于groupCount返回的分组＋1)。代码示例:</p>
+<pre><code>Pattern p=Pattern.compile(&quot;([a-z]+)(\\d+)&quot;); 
+Matcher m=p.matcher(&quot;aaa2223bb&quot;); 
+m.find();   //匹配aaa2223 
+m.groupCount();   //返回2,但此正则表达式中有3组，因为默认0组是(([a-z]+)(\\d+)). 
+m.start(1);   //返回0 返回第一组匹配到的子字符串在字符串中的索引号 
+m.start(2);   //返回3 
+
+m.end(1);   //返回3 返回第一组匹配到的子字符串的最后一个字符在字符串中的索引位置. 
+m.end(2);   //返回7 
+
+m.group(1);   //返回aaa,返回第一组匹配到的子字符串 
+m.group(2);   //返回2223,返回第二组匹配到的子字符串 
+m.group();//返回aaa2223,返回的是第0组匹配到的子字符串
+m.group(0);//等同于m.group(),返回aaa2223,返回的是第0组匹配到的子字符串
+</code></pre><p>现在我们使用一下稍微高级点的正则匹配操作,例如有一段文本,里面有很多数字,而且这些数字是分开的,我们现在要将文本中所有数字都取出来,利用java的正则操作是那么的简单. 代码示例:</p>
+<pre><code>Pattern p=Pattern.compile(&quot;\\d+&quot;); 
+Matcher m=p.matcher(&quot;我的QQ是:456456 我的电话是:0532214 我的邮箱是:aaa123@aaa.com&quot;); 
+
+while(m.find()) { 
+     System.out.println(m.group()); 
+ }
+</code></pre><p>输出:</p>
+<pre><code>456456 
+0532214 
+123 
+</code></pre><p>如将以上while()循环替换成:</p>
+<pre><code>while(m.find()) { 
+     System.out.println(m.group()); 
+     System.out.print(&quot;start:&quot;+m.start()); 
+     System.out.println(&quot; end:&quot;+m.end()); 
+ } 
+</code></pre><p>则输出:  </p>
+<pre><code>456456 
+start:6 end:12 
+0532214 
+start:19 end:26 
+123 
+start:36 end:39 
+</code></pre><p>现在大家应该知道,每次执行匹配操作后start(),end(),group()三个方法的值都会改变,改变成匹配到的子字符串的信息,以及它们的重载方法,也会改变成相应的信息.  </p>
+<p><strong>注意:</strong>只有当匹配操作成功,才可以使用start(),end(),group()三个方法,否则会抛出java.lang.IllegalStateException,也就是当matches(),lookingAt(),find()其中任意一个方法返回true时,才可以使用.</p>
+<h2 id="3-贪婪模式和懒惰模式"><a href="#3-贪婪模式和懒惰模式" class="headerlink" title="3.贪婪模式和懒惰模式"></a>3.贪婪模式和懒惰模式</h2><p>今天到此为止吧，明天再更，晚安。</p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[用Java实现网络爬虫一之项目介绍]]></title>
       <url>http://codingxiaxw.cn/archives/2016/10/20/20-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%80%E4%B9%8B%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/</url>
       <content type="html"><![CDATA[<p>网络爬虫(Web crawler)也叫网络爬虫(Web spider)、蚂蚁（ant）、自动检索工具(automatic indexer)，或者(在FOAF软件概念中)网络疾走(WEB scutter)，是一种“自动化浏览网络”的程序，或者说是一种网络机器人。它们被广泛用于互联网搜索引擎或其他类似网站，以获取或更新这些网站的内容和检索方式。它们可以自动采集所有其能够访问到的页面内容，以供搜索引擎做进一步处理（分检整理下载的页面），而使得用户能更快的检索到他们需要的信息。  </p>

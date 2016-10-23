@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -43,7 +45,11 @@
   
 
   
+    
+      
+    
 
+    
   
 
   
@@ -52,9 +58,19 @@
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
   
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
 
 
 
@@ -106,10 +122,15 @@
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/page/3/"/>
+
   <title> codingXiaxw's blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 
@@ -162,21 +183,11 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/archives" rel="section">
+          <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            Archives
           </a>
         </li>
       
@@ -184,9 +195,19 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-about fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            Contact
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
           </a>
         </li>
       
@@ -194,7 +215,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -202,9 +223,32 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
   
 </nav>
 
@@ -239,8 +283,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/26/java-web中的Servlet请求转发与请求包含/" itemprop="url">
-                  Java Web中的Servlet请求转发和请求包含
+                <a class="post-title-link" href="/2016/03/31/1-写博客也是一种生活方式/" itemprop="url">
+                  开启我的博客之旅
                 </a>
               
             
@@ -253,17 +297,45 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-26T20:28:24+08:00" content="Sep 26 2016">
-              Sep 26 2016
+            <time itemprop="dateCreated" datetime="2016-03-31T12:59:31+08:00" content="Mar 31 2016">
+              Mar 31 2016
             </time>
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/diaries/" itemprop="url" rel="index">
+                    <span itemprop="name">diaries</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/31/1-写博客也是一种生活方式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/31/1-写博客也是一种生活方式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
+          
+          
           
 
           
@@ -282,60 +354,18 @@
 
       
         
-          
-            <p>为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  </p>
-<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
-<p><code>ResquestDispatcher rd=request.getRequestDispatcher(&quot;/MyServlet&quot;);</code>  </p>
-<p>参数为被包含或被转发的目标Servlet路径。  </p>
-<p>若是请求转发，接下来输入<code>rd.forward(request,response);</code>  </p>
-<p>若是请求包含，接下来输入<code>rd.include(request,response);</code>  </p>
-<p>即可完成我们的请求转发和请求包含。二者的区别为:  </p>
-<ul>
-<li>请求转发:由当前Servlet设置响应头(不能设置响应体)，下一个Servlet既可设置响应头也可设置响应体。  </li>
-<li>请求包含:当前Servlet和下一个Servlet共同完成相应头和响应体。  </li>
-</ul>
-<p>需要注意的是无论是请求转发还是请求包含，都在一个请求范围内，所以多个Servlet中使用的是同一个request和response。  </p>
-<h3 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h3><p>OneServlet代码如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91One.png" alt="">  </p>
-<p>TwoServlet代码如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png" alt="">  </p>
-<p>网页响应结果为:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E7%BB%93%E6%9E%9C.png" alt="">  </p>
-<p>由响应结果我们可以看到OneServlet中设置的响应体没有在网页中显示出来，只有TwoServlet中设置的响应体显示出来了。  </p>
-<h3 id="请求包含"><a href="#请求包含" class="headerlink" title="请求包含"></a>请求包含</h3><p>请求包含和请求转发中代码相比，只是在OneServlet中将forward()方法改为include()方法而已。  </p>
-<p>OneServlet中代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABOne.png" alt="">  </p>
-<p>TwoServlet中代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png" alt="">  </p>
-<p>网页响应结果为:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C.png" alt="">  </p>
-<p>从响应结果中我们可以看到在OneServlet和TwoServlet中设置的响应体都显示了出来。  </p>
-<h3 id="请求转发和重定向的区别"><a href="#请求转发和重定向的区别" class="headerlink" title="请求转发和重定向的区别"></a>请求转发和重定向的区别</h3><ol>
-<li>请求转发是一个请求一次响应，而重定向是两次请求两次响应。</li>
-<li>请求转发地址栏不变化，而重定向会显示后一个请求的地址。 </li>
-<li>请求转发智能转发到本项目其他Servlet，而重定向不只能重定向到本项目的其它Servlet，还能定向到其它项目。</li>
-<li>请求转发是服务器端行为，只需各处转发的Servlet路径，而重定向需要给出requestURI,即包含项目名。</li>
-<li>请求转发和重定向二者效率前者高，因为前者只发出一个请求。  <blockquote>
-<p>很多时候我们需要地址栏发生变化，那时候必须使用重定向。<br>需要在下一个Servlet中获取到request域中的数据，必须用请求转发。  </p>
-</blockquote>
-</li>
-</ol>
-<p>既然请求转发和请求包含都是一个请求需要多个servlet协作完成，那么这些Servlet是如何传递数据的呢？见下文新概念。  </p>
-<h3 id="request域"><a href="#request域" class="headerlink" title="request域"></a>request域</h3><p>何为域？上一篇文章中提到对ServletContext域对象(详见<a href="http://codingxiaxw.cn/2016/09/24/%E5%AE%9E%E7%8E%B0Servlet%E7%9A%84%E6%96%B9%E5%BC%8F/">Servlet的实现方式</a>)的介绍时已经说过域的功能，即具有能存数据和取数据的功能。  </p>
-<p>同一请求范围内使用request.setAttribute()来传值、使用request.getAttribute()方法来取值.即前一个Servlet使用request.setAttribute()来传值、后一个Servlet使用request.getAttribute()方法来取值。而当想清除request中的值时，调用request.removeAttribute()方法即可清除。如下图:</p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png" alt="">  </p>
-<p>上图中三大域对象的生命周期长度为:<code>request&lt;session&lt;application</code>  </p>
-<p><strong>扩展:</strong>&nbsp;&nbsp;注意上图中三个方法和请求参数方法的区别，请求参数是客户端传给服务器的，我们不能修改；而此处的setAttribute()是我们自己设置的属性与属性值。  </p>
-<hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><ul>
-<li><p><a href="codingxiaxw.cn">博客: codingXiaxw’s blog</a></p>
-</li>
-<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">微博 @codingXiaxw</a></p>
-</li>
-<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">知乎 @码农xxw</a>  </p>
-</li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github @codingXiaxw</a> </li>
-</ul>
-
-          
+          <p>hello guys,I’m codingXiaxw,who decide to write my own blog while I’m coding.As far as I’m concerned, writing blog is also a part of life.Everytime I felt tired,I would stop coding to play macdown,and then writed my feelings and reviews in it.In this way can I deepen the knowledges in my brain and can also make me relaxing.  </p>
+<p>Welcome to <a href="https://codingxiaxw.cn">codingXiaxw’s blog</a> website!Thank for you coming,and thank for your support.They are the energy to encourage me to move forward.  </p>
+<p>Today I will begin my blog journey，and I will update it frequently.   </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/31/1-写博客也是一种生活方式/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
-    
+
     <div>
       
     </div>
@@ -362,7 +392,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
   </nav>
 
 
@@ -403,17 +433,24 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
 
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -425,15 +462,42 @@
 
         <div class="links-of-author motion-element">
           
-        </div>
-
-        
-        
-
-        
-        <div class="links-of-blogroll motion-element">
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/codingXiaxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5023661572?from=hissimilar_home&refer_flag=1005050003_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com//people/e9f78fa34b8002652811ac348da3f671" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
           
         </div>
+
+        
+        
+
+        
+        
 
       </section>
 
@@ -460,7 +524,7 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
@@ -543,19 +607,173 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codingxiaxw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
+
+
+
   
   
-  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
 
   
 
   
+
+  
+
+
 
 </body>
 </html>
