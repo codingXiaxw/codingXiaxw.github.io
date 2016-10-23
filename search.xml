@@ -11,6 +11,7 @@
 <li>查询客户:查询数据库中所有的客户，查询结果将客户信息以列表的形式给出，可以对列表中的客户信息进行编辑及删除</li>
 <li>高级搜索:多条件组合在数据库中进行客户信息的查询，搜索结果以列表的形式给出，可以对列表中的客户信息进行编辑及删除</li>
 </ul>
+<a id="more"></a>
 <p>源码见我<a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement" target="_blank" rel="external">github</a>:<a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement" target="_blank" rel="external">https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement</a></p>
 <h3 id="1-2运用知识"><a href="#1-2运用知识" class="headerlink" title="1.2运用知识"></a>1.2运用知识</h3><ul>
 <li>数据库基本查询</li>
