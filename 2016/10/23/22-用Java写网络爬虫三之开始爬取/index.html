@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java 网络爬虫 Spider Crawler," />
 
 
 
@@ -96,15 +96,28 @@
 
 
 
-<meta name="description" content="Life is short,just coding.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="codingXiaxw's blog">
-<meta property="og:url" content="http://codingxiaxw.cn/archives/tags/Java-网络爬虫-Spider-Crawler-正则表达式/index.html">
+<meta name="description" content="目标爬取知乎推荐页面的所有问题、问题描述、地址、回答内容，爬取地址为http://www.zhihu.com/explore/recommendations。  
+项目源代码见我Github,地址为 https://github.com/codingXiaxw/Crawler">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Java实现网络爬虫三之开始爬取">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/23/22-用Java写网络爬虫三之开始爬取/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="Life is short,just coding.">
+<meta property="og:description" content="目标爬取知乎推荐页面的所有问题、问题描述、地址、回答内容，爬取地址为http://www.zhihu.com/explore/recommendations。  
+项目源代码见我Github,地址为 https://github.com/codingXiaxw/Crawler">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/zhihu.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/sendget.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/source.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/lianjie.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/regexstring.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/test.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/lianjie2.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/printi2.png">
+<meta property="og:updated_time" content="2016-10-24T14:34:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="codingXiaxw's blog">
-<meta name="twitter:description" content="Life is short,just coding.">
+<meta name="twitter:title" content="用Java实现网络爬虫三之开始爬取">
+<meta name="twitter:description" content="目标爬取知乎推荐页面的所有问题、问题描述、地址、回答内容，爬取地址为http://www.zhihu.com/explore/recommendations。  
+项目源代码见我Github,地址为 https://github.com/codingXiaxw/Crawler">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/zhihu.png">
 
 
 
@@ -125,9 +138,9 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/archives/tags/Java-网络爬虫-Spider-Crawler-正则表达式/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/23/22-用Java写网络爬虫三之开始爬取/"/>
 
-  <title> Tag: Java 网络爬虫 Spider Crawler 正则表达式 | codingXiaxw's blog </title>
+  <title> 用Java实现网络爬虫三之开始爬取 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -148,7 +161,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -259,46 +272,250 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Java 网络爬虫 Spider Crawler 正则表达式
-        <small>Tag</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                用Java实现网络爬虫三之开始爬取
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-10-23T18:08:54+08:00" content="Oct 23 2016">
+              Oct 23 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java-网络爬虫-Spider-Crawler/" itemprop="url" rel="index">
+                    <span itemprop="name">Java 网络爬虫 Spider Crawler</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/23/22-用Java写网络爬虫三之开始爬取/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/23/22-用Java写网络爬虫三之开始爬取/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>爬取知乎推荐页面的所有问题、问题描述、地址、回答内容，爬取地址为<a href="http://www.zhihu.com/explore/recommendations。" target="_blank" rel="external">http://www.zhihu.com/explore/recommendations。</a>  </p>
+<p>项目源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">Github</a>,地址为 <a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">https://github.com/codingXiaxw/Crawler</a> </p>
+<a id="more"></a>
+<h2 id="代码介绍"><a href="#代码介绍" class="headerlink" title="代码介绍"></a>代码介绍</h2><p>1.新建Zhihu.java类，它是一个JavaBean类，用于封装我们需要得到的内容。代码如下:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/zhihu.png" alt="">  </p>
+<p>2.新建Spider.java类包括两个方法:  </p>
+<ul>
+<li>String sendGet(String url):用于获取网页源码。<br><img src="http://od2xrf8gr.bkt.clouddn.com/sendget.png" alt="">  </li>
+</ul>
+<p>打印出result可以得到网页的源码，会看到下面这一串串代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/source.png" alt="">  </p>
+<p>找到我们需要爬取的标题那一块，可以看到:<br><img src="http://od2xrf8gr.bkt.clouddn.com/lianjie.png" alt="">  </p>
+<p>href=””中的内容即是标题的地址链接，而<a></a>中的内容即是我们需要的标题。那我们该如何使用正则表达式爬取到这些内容呢？标题可以使用<code>&quot;question_link.+?&gt;(.+?)&lt;&quot;</code>来匹配得到，而链接可以使用<code>&quot;&lt;h2&gt;.+?question_link.+?href=\&quot;(.+?)\&quot;.+?&lt;/h2&gt;&quot;</code>来匹配得到。下面我们就来看看Spide.java中的第二个方法，如何匹配我们我们的内容。</p>
+<ul>
+<li>ArrayList<zhihu> regexString(String targetStr,String regex):用于将正则表达式和网页源码进行匹配，将得到的内容封装到Zhihu对象中，然后将对象加入到集合lists中，返回集合。</zhihu></li>
+</ul>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/regexstring.png" alt=""></p>
+<p>最后我们只需要定义一个测试类，先调用Spider的sendGet(String url)方法中传入目标网页url并得到返回的网页源码，然后调用Spider的regexString(String target)方法得到返回的Zhihu对象的集合，然后将这些内容打印出来，即可看到我们爬取到的内容。  </p>
+<p>测试类:<br><img src="http://od2xrf8gr.bkt.clouddn.com/test.png" alt="">  </p>
+<p>打印出的内容:<br><img src="http://od2xrf8gr.bkt.clouddn.com/lianjie2.png" alt=""> </p>
+<p>问题分析:  </p>
+<ul>
+<li>1.从打印台的信息我们可以发现，我们爬取到的问题地址链接并不是属于问题的地址链接，而是属于回答的地址链接，那么这里我们就需要截掉链接后半部分的”/answer/数字”部分。  <blockquote>
+<p>解决方法如下:对爬取到的链接采取二次正则表达式的方法进行再一次匹配，需要匹配的字符串即为<code>/question/数字部分</code>，这样我们就将链接作为目标字符串，将该数字部分作为正则表达式即可。代码如下:  </p>
+<pre><code>在Zhihu.java文件下添加方法:
+boolean getRealUrl(String url)
+{
+    String regex=&quot;question/(.+?)/&quot;;
+    Pattern pattern=Pattern.compile(regex);
+    Matcher matcher=pattern.matcher(url);
+        while (matcher.find())
+        {
+            zhihuUrl=&quot;http://www.zhihu.com/question/&quot;+matcher.group(1);
+            return true;
+        }
+    return false;
+}
+</code></pre></blockquote>
+</li>
+</ul>
+<ul>
+<li><p>2.我们爬取的只是一个页面的相关内容，并没有发挥爬虫的真正强大之处。所以接下来我们就将从该页面爬取到的链接作为二次起始链接。只需在Zhihu.java的构造函数里添加如下方法即可:  </p>
+<pre><code>if (getRealUrl(url))
+{
+    System.out.println(&quot;正在抓取链接&quot;+zhihuUrl);
 
-      <h1 class="post-title">
+    String content=Spider.sendGet(zhihuUrl);
+
+    Pattern pattern;
+    Matcher matcher;
+
+    pattern=Pattern.compile(&quot;zh-question-title.+?&lt;h2.+?&gt;(.+?)&lt;/h2&gt;&quot;);
+    matcher=pattern.matcher(content);
+    if (matcher.find()) {
+        title = matcher.group(1);
+    }
+
+    pattern=Pattern.compile(&quot;zh-question-detail.+?&lt;div.+?&gt;(.*?)&lt;/div&gt;&quot;);
+    matcher=pattern.matcher(content);
+    if (matcher.find()) {
+        titleDescription=matcher.group(1);
+    }
+
+    pattern=Pattern.compile(&quot;/answer/content.+?&lt;div.+?&gt;(.*?)&lt;/div&gt;&quot;);
+    matcher=pattern.matcher(content);
+    while (matcher.find())
+    {
+        answers.add(matcher.group(1));
+    }
+
+}
+</code></pre></li>
+</ul>
+<p>这样当我们在Spider类的regexString()方法里，每当用构造方法创建一个Zhihu对象时就会执行上述代码生成从一个链接爬取到的文章标题、内容、标题描述即回答内容并封装到该Zhihu对象里，然后继续执行Spider后面的代码时将该对象添加至list集合中。  </p>
+<p>最后打印出的内容如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/printi2.png" alt=""></p>
+<p>项目源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">Github</a>,地址为 <a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">https://github.com/codingXiaxw/Crawler</a>  </p>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/10/23/21-用Java实现网络爬虫二之Java正则表达式/" itemprop="url">
-              
-                <span itemprop="name">用Java实现网络爬虫二之Java正则表达式</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-23T17:28:10+08:00"
-              content="Oct 23 2016" >
-          10-23
-        </time>
-      </div>
 
-    </header>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java-网络爬虫-Spider-Crawler/" rel="tag">#Java 网络爬虫 Spider Crawler</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/23/21-用Java实现网络爬虫二之Java正则表达式/" rel="next" title="用Java实现网络爬虫二之Java正则表达式">
+                <i class="fa fa-chevron-left"></i> 用Java实现网络爬虫二之Java正则表达式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -306,6 +523,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/23/22-用Java写网络爬虫三之开始爬取/"
+           data-title="用Java实现网络爬虫三之开始爬取" data-url="http://codingxiaxw.cn/archives/2016/10/23/22-用Java写网络爬虫三之开始爬取/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -325,8 +550,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
@@ -405,6 +639,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码介绍"><span class="nav-number">2.</span> <span class="nav-text">代码介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">3.</span> <span class="nav-text">联系</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -501,6 +746,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

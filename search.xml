@@ -4,51 +4,84 @@
   
     
     <entry>
-      <title><![CDATA[JavaWeb项目之客户管理系统]]></title>
-      <url>http://codingxiaxw.cn/archives/2016/10/23/24-JavaWeb%E9%A1%B9%E7%9B%AE%E4%B9%8B%E5%AE%A2%E6%88%B7%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</url>
-      <content type="html"><![CDATA[<h2 id="1-项目介绍"><a href="#1-项目介绍" class="headerlink" title="1.项目介绍"></a>1.项目介绍</h2><h3 id="1-1功能介绍"><a href="#1-1功能介绍" class="headerlink" title="1.1功能介绍"></a>1.1功能介绍</h3><ul>
-<li>添加客户:添加客户的信息，包括姓名，性别，手机，邮箱，自我描述</li>
-<li>查询客户:查询数据库中所有的客户，查询结果将客户信息以列表的形式给出，可以对列表中的客户信息进行编辑及删除</li>
-<li>高级搜索:多条件组合在数据库中进行客户信息的查询，搜索结果以列表的形式给出，可以对列表中的客户信息进行编辑及删除</li>
-</ul>
+      <title><![CDATA[用Java实现网络爬虫三之开始爬取]]></title>
+      <url>http://codingxiaxw.cn/archives/2016/10/23/22-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%89%E4%B9%8B%E5%BC%80%E5%A7%8B%E7%88%AC%E5%8F%96/</url>
+      <content type="html"><![CDATA[<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>爬取知乎推荐页面的所有问题、问题描述、地址、回答内容，爬取地址为<a href="http://www.zhihu.com/explore/recommendations。" target="_blank" rel="external">http://www.zhihu.com/explore/recommendations。</a>  </p>
+<p>项目源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">Github</a>,地址为 <a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">https://github.com/codingXiaxw/Crawler</a> </p>
 <a id="more"></a>
-<p>源码见我<a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement" target="_blank" rel="external">github</a>:<a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement" target="_blank" rel="external">https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement</a></p>
-<h3 id="1-2运用知识"><a href="#1-2运用知识" class="headerlink" title="1.2运用知识"></a>1.2运用知识</h3><ul>
-<li>数据库基本查询</li>
-<li>数据库连接池c3p0</li>
-<li>运用dbutil.jar包一键封装表单数据到bean对象中</li>
-<li>利用dbutils.jar包简化对数据库增、删、改、查的代码</li>
-<li>标签库</li>
-<li>JavaWeb三层框架的分离</li>
-<li>将servlet的转发、重定向及方法进行封装，这样当设计到多个功能时不用建立多个servlet类。</li>
-<li>反射</li>
-</ul>
-<h2 id="2-准备"><a href="#2-准备" class="headerlink" title="2.准备"></a>2.准备</h2><p>1.导入第三方jar包以及c3p0配置文件。</p>
+<h2 id="代码介绍"><a href="#代码介绍" class="headerlink" title="代码介绍"></a>代码介绍</h2><p>1.新建Zhihu.java类，它是一个JavaBean类，用于封装我们需要得到的内容。代码如下:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/zhihu.png" alt="">  </p>
+<p>2.新建Spider.java类包括两个方法:  </p>
 <ul>
-<li>c3p0.jar</li>
-<li>mchange-commons.java.jar</li>
-<li>commons-beanutils.jar</li>
-<li>commons-dbutils.jar</li>
-<li>commons-logging.jar</li>
-<li>自己写的小工具itcast-tools.jar</li>
-<li>jstl.jar</li>
-<li>mysql-connector-java.jar</li>
+<li>String sendGet(String url):用于获取网页源码。<br><img src="http://od2xrf8gr.bkt.clouddn.com/sendget.png" alt="">  </li>
 </ul>
-<p>2.建包</p>
+<p>打印出result可以得到网页的源码，会看到下面这一串串代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/source.png" alt="">  </p>
+<p>找到我们需要爬取的标题那一块，可以看到:<br><img src="http://od2xrf8gr.bkt.clouddn.com/lianjie.png" alt="">  </p>
+<p>href=””中的内容即是标题的地址链接，而<a></a>中的内容即是我们需要的标题。那我们该如何使用正则表达式爬取到这些内容呢？标题可以使用<code>&quot;question_link.+?&gt;(.+?)&lt;&quot;</code>来匹配得到，而链接可以使用<code>&quot;&lt;h2&gt;.+?question_link.+?href=\&quot;(.+?)\&quot;.+?&lt;/h2&gt;&quot;</code>来匹配得到。下面我们就来看看Spide.java中的第二个方法，如何匹配我们我们的内容。</p>
 <ul>
-<li>dao</li>
-<li>service</li>
-<li>servlet</li>
-<li>domain</li>
+<li>ArrayList<zhihu> regexString(String targetStr,String regex):用于将正则表达式和网页源码进行匹配，将得到的内容封装到Zhihu对象中，然后将对象加入到集合lists中，返回集合。</zhihu></li>
 </ul>
-<h2 id="3-搭建环境"><a href="#3-搭建环境" class="headerlink" title="3.搭建环境"></a>3.搭建环境</h2><p>IntelliJ IDEA  +  MySQL</p>
-<h2 id="4-使用方法"><a href="#4-使用方法" class="headerlink" title="4.使用方法"></a>4.使用方法</h2><p>1.git clone <a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement.git" target="_blank" rel="external">https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement.git</a>  </p>
-<p>2.使用IntelliJ IDEA导入打开即可。</p>
-<h2 id="5-项目功能截图"><a href="#5-项目功能截图" class="headerlink" title="5.项目功能截图"></a>5.项目功能截图</h2><h3 id="5-1添加客户"><a href="#5-1添加客户" class="headerlink" title="5.1添加客户"></a>5.1添加客户</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/tianjia.png" alt=""></p>
-<h3 id="5-2查询客户"><a href="#5-2查询客户" class="headerlink" title="5.2查询客户"></a>5.2查询客户</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/chaxun.png" alt=""></p>
-<h3 id="5-3编辑客户"><a href="#5-3编辑客户" class="headerlink" title="5.3编辑客户"></a>5.3编辑客户</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/bianji.png" alt=""></p>
-<h3 id="5-4高级搜索客户"><a href="#5-4高级搜索客户" class="headerlink" title="5.4高级搜索客户"></a>5.4高级搜索客户</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/sousuo.png" alt=""></p>
-<h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/regexstring.png" alt=""></p>
+<p>最后我们只需要定义一个测试类，先调用Spider的sendGet(String url)方法中传入目标网页url并得到返回的网页源码，然后调用Spider的regexString(String target)方法得到返回的Zhihu对象的集合，然后将这些内容打印出来，即可看到我们爬取到的内容。  </p>
+<p>测试类:<br><img src="http://od2xrf8gr.bkt.clouddn.com/test.png" alt="">  </p>
+<p>打印出的内容:<br><img src="http://od2xrf8gr.bkt.clouddn.com/lianjie2.png" alt=""> </p>
+<p>问题分析:  </p>
+<ul>
+<li>1.从打印台的信息我们可以发现，我们爬取到的问题地址链接并不是属于问题的地址链接，而是属于回答的地址链接，那么这里我们就需要截掉链接后半部分的”/answer/数字”部分。  <blockquote>
+<p>解决方法如下:对爬取到的链接采取二次正则表达式的方法进行再一次匹配，需要匹配的字符串即为<code>/question/数字部分</code>，这样我们就将链接作为目标字符串，将该数字部分作为正则表达式即可。代码如下:  </p>
+<pre><code>在Zhihu.java文件下添加方法:
+boolean getRealUrl(String url)
+{
+    String regex=&quot;question/(.+?)/&quot;;
+    Pattern pattern=Pattern.compile(regex);
+    Matcher matcher=pattern.matcher(url);
+        while (matcher.find())
+        {
+            zhihuUrl=&quot;http://www.zhihu.com/question/&quot;+matcher.group(1);
+            return true;
+        }
+    return false;
+}
+</code></pre></blockquote>
+</li>
+</ul>
+<ul>
+<li><p>2.我们爬取的只是一个页面的相关内容，并没有发挥爬虫的真正强大之处。所以接下来我们就将从该页面爬取到的链接作为二次起始链接。只需在Zhihu.java的构造函数里添加如下方法即可:  </p>
+<pre><code>if (getRealUrl(url))
+{
+    System.out.println(&quot;正在抓取链接&quot;+zhihuUrl);
+
+    String content=Spider.sendGet(zhihuUrl);
+
+    Pattern pattern;
+    Matcher matcher;
+
+    pattern=Pattern.compile(&quot;zh-question-title.+?&lt;h2.+?&gt;(.+?)&lt;/h2&gt;&quot;);
+    matcher=pattern.matcher(content);
+    if (matcher.find()) {
+        title = matcher.group(1);
+    }
+
+    pattern=Pattern.compile(&quot;zh-question-detail.+?&lt;div.+?&gt;(.*?)&lt;/div&gt;&quot;);
+    matcher=pattern.matcher(content);
+    if (matcher.find()) {
+        titleDescription=matcher.group(1);
+    }
+
+    pattern=Pattern.compile(&quot;/answer/content.+?&lt;div.+?&gt;(.*?)&lt;/div&gt;&quot;);
+    matcher=pattern.matcher(content);
+    while (matcher.find())
+    {
+        answers.add(matcher.group(1));
+    }
+
+}
+</code></pre></li>
+</ul>
+<p>这样当我们在Spider类的regexString()方法里，每当用构造方法创建一个Zhihu对象时就会执行上述代码生成从一个链接爬取到的文章标题、内容、标题描述即回答内容并封装到该Zhihu对象里，然后继续执行Spider后面的代码时将该对象添加至list集合中。  </p>
+<p>最后打印出的内容如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/printi2.png" alt=""></p>
+<p>项目源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">Github</a>,地址为 <a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">https://github.com/codingXiaxw/Crawler</a>  </p>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
@@ -66,6 +99,7 @@
       <url>http://codingxiaxw.cn/archives/2016/10/23/21-%E7%94%A8Java%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%BA%8C%E4%B9%8BJava%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
       <content type="html"><![CDATA[<p>正则表达式定义了字符串的模式，可以用来搜索、编辑或处理文本，正则表达式并不仅限于某一种语言，但是在每种语言中有细微的差别。  </p>
 <a id="more"></a>
+<p>爬虫项目源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">Github</a>, 地址为  <a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">https://github.com/codingXiaxw/Crawler</a></p>
 <h2 id="1-正则表达式语法"><a href="#1-正则表达式语法" class="headerlink" title="1.正则表达式语法"></a>1.正则表达式语法</h2><table>
 <thead>
 <tr>
@@ -304,7 +338,24 @@ start:19 end:26
 start:36 end:39 
 </code></pre><p>现在大家应该知道,每次执行匹配操作后start(),end(),group()三个方法的值都会改变,改变成匹配到的子字符串的信息,以及它们的重载方法,也会改变成相应的信息.  </p>
 <p><strong>注意:</strong>只有当匹配操作成功,才可以使用start(),end(),group()三个方法,否则会抛出java.lang.IllegalStateException,也就是当matches(),lookingAt(),find()其中任意一个方法返回true时,才可以使用.</p>
-<h2 id="3-贪婪模式和懒惰模式"><a href="#3-贪婪模式和懒惰模式" class="headerlink" title="3.贪婪模式和懒惰模式"></a>3.贪婪模式和懒惰模式</h2><p>今天到此为止吧，明天再更，晚安。</p>
+<h2 id="3-贪婪模式和懒惰模式"><a href="#3-贪婪模式和懒惰模式" class="headerlink" title="3.贪婪模式和懒惰模式"></a>3.贪婪模式和懒惰模式</h2><h3 id="3-1概述"><a href="#3-1概述" class="headerlink" title="3.1概述"></a>3.1概述</h3><p>贪婪与非贪婪模式影响的是被量词修饰的子表达式的匹配行为，贪婪模式在整个表达式匹配成功的前提下，尽可能多的匹配，而非贪婪模式在整个表达式匹配成功的前提下，尽可能少的匹配。非贪婪模式只被部分NFA引擎所支持。  </p>
+<p>属于贪婪模式的量词，也叫做匹配优先量词，包括：<br><code>{m,n}”、“{m,}”、“?”、“*”和“+”。</code>  </p>
+<p>在一些使用NFA引擎的语言中，在匹配优先量词后加上“?”，即变成属于非贪婪模式的量词，也叫做忽略优先量词，包括：  </p>
+<p><code>“{m,n}?”、“{m,}?”、“??”、“*?”和“+?”。</code>  </p>
+<p>从正则语法的角度来讲，被匹配优先量词修饰的子表达式使用的就是贪婪模式，如“(Expression)+”；被忽略优先量词修饰的子表达式使用的就是非贪婪模式，如“(Expression)+?”。  </p>
+<p>对于贪婪模式，各种文档的叫法基本一致，但是对于非贪婪模式，有的叫懒惰模式或惰性模式，有的叫勉强模式，其实叫什么无所谓，只要掌握原理和用法，能够运用自如也就是了。个人习惯使用贪婪与非贪婪的叫法，所以文中都会使用这种叫法进行介绍。  </p>
+<h3 id="3-2什么是贪婪模式与非贪婪模式"><a href="#3-2什么是贪婪模式与非贪婪模式" class="headerlink" title="3.2什么是贪婪模式与非贪婪模式"></a>3.2什么是贪婪模式与非贪婪模式</h3><p>示例:  </p>
+<pre><code>源字符串：aa&lt;div&gt;test1&lt;/div&gt;bb&lt;div&gt;test2&lt;/div&gt;cc
+正则表达式一：&lt;div&gt;.*&lt;/div&gt;
+匹配结果一：&lt;div&gt;test1&lt;/div&gt;bb&lt;div&gt;test2&lt;/div&gt;
+
+正则表达式二：&lt;div&gt;.*?&lt;/div&gt;
+匹配结果二：&lt;div&gt;test1&lt;/div&gt;（这里指的是一次匹配结果，所以没包括&lt;div&gt;test2&lt;/div&gt;）  
+</code></pre><p>根据上面的例子，从匹配行为上分析一下，什是贪婪与非贪婪模式。  </p>
+<p>正则表达式一采用的是贪婪模式，在匹配到第一个“”时已经可以使整个表达式匹配成功，但是由于采用的是贪婪模式，所以仍然要向右尝试匹配，查看是否还有更长的可以成功匹配的子串，匹配到第二个“”后，向右再没有可以成功匹配的子串，匹配结束，匹配结果为“<div>test1</div>bb<div>test2</div>”。  </p>
+<p>仅从应用角度分析，可以这样认为，贪婪模式，就是在整个表达式匹配成功的前提下，尽可能多的匹配，也就是所谓的“贪婪”，通俗点讲，就是看到想要的，有多少就捡多少，除非再也没有想要的了。  </p>
+<p>正则表达式二采用的是非贪婪模式，在匹配到第一个“”时使整个表达式匹配成功，由于采用的是非贪婪模式，所以结束匹配，不再向右尝试，匹配结果为“<div>test1</div>”。  </p>
+<p>仅从应用角度分析，可以这样认为，非贪婪模式，就是在整个表达式匹配成功的前提下，尽可能少的匹配，也就是所谓的“非贪婪”，通俗点讲，就是找到一个想要的捡起来就行了，至于还有没有没捡的就不管了。</p>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
@@ -323,7 +374,8 @@ start:36 end:39
       <url>http://codingxiaxw.cn/archives/2016/10/20/20-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%80%E4%B9%8B%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/</url>
       <content type="html"><![CDATA[<p>网络爬虫(Web crawler)也叫网络爬虫(Web spider)、蚂蚁（ant）、自动检索工具(automatic indexer)，或者(在FOAF软件概念中)网络疾走(WEB scutter)，是一种“自动化浏览网络”的程序，或者说是一种网络机器人。它们被广泛用于互联网搜索引擎或其他类似网站，以获取或更新这些网站的内容和检索方式。它们可以自动采集所有其能够访问到的页面内容，以供搜索引擎做进一步处理（分检整理下载的页面），而使得用户能更快的检索到他们需要的信息。  </p>
 <a id="more"></a>
-<h2 id="用Java实现网络爬虫系列"><a href="#用Java实现网络爬虫系列" class="headerlink" title="用Java实现网络爬虫系列"></a>用Java实现网络爬虫系列</h2><p>这系列文章我打算用5篇博客来完成，一览表:</p>
+<h2 id="用Java实现网络爬虫系列"><a href="#用Java实现网络爬虫系列" class="headerlink" title="用Java实现网络爬虫系列"></a>用Java实现网络爬虫系列</h2><p>这系列文章我打算用5篇博客来完成，源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">Github</a>,地址为 <a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">https://github.com/codingXiaxw/Crawler</a>  </p>
+<p>一览表:</p>
 <ul>
 <li>1.<a href="http://codingxiaxw.cn/2016/10/20/20-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%80%E4%B9%8B%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/">用Java实现网络爬虫一之项目介绍</a></li>
 <li>2.<a href="">用Java实现网络爬虫二之Java正则表达式</a></li>
@@ -340,7 +392,12 @@ start:36 end:39
 </li>
 <li>3.将自己找到的内容输出来并查看</li>
 </ul>
-<p>后续进阶可以对第三步进行改善，如将自己爬到的内容不是打印出来，而是通过JDBC存入MySQL中然后在MySQL中进行查看(见第四篇文章)。</p>
+<p>后续进阶可以对第三步进行改善，如将自己爬到的内容不是打印出来，而是通过JDBC存入MySQL中然后在MySQL中进行查看(见第四篇文章)。  </p>
+<h2 id="需要用到的知识"><a href="#需要用到的知识" class="headerlink" title="需要用到的知识"></a>需要用到的知识</h2><ul>
+<li>Java IO流</li>
+<li>Java 正则表达式</li>
+<li>html/css 的基本了解</li>
+</ul>
 <h2 id="我的爬虫目标"><a href="#我的爬虫目标" class="headerlink" title="我的爬虫目标"></a>我的爬虫目标</h2><p>制作网络爬虫爬取知乎网上提的问题、问题链接、问题描述以及回答内容，并将它们打印在输出台。(后续进阶我选择将这些内容存入MySQL数据库，而不是)</p>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>

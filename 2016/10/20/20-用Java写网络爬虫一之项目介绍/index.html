@@ -102,7 +102,7 @@
 <meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/20/20-用Java写网络爬虫一之项目介绍/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="网络爬虫(Web crawler)也叫网络爬虫(Web spider)、蚂蚁（ant）、自动检索工具(automatic indexer)，或者(在FOAF软件概念中)网络疾走(WEB scutter)，是一种“自动化浏览网络”的程序，或者说是一种网络机器人。它们被广泛用于互联网搜索引擎或其他类似网站，以获取或更新这些网站的内容和检索方式。它们可以自动采集所有其能够访问到的页面内容，以供搜索引擎做">
-<meta property="og:updated_time" content="2016-10-23T04:08:35.000Z">
+<meta property="og:updated_time" content="2016-10-24T14:34:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用Java实现网络爬虫一之项目介绍">
 <meta name="twitter:description" content="网络爬虫(Web crawler)也叫网络爬虫(Web spider)、蚂蚁（ant）、自动检索工具(automatic indexer)，或者(在FOAF软件概念中)网络疾走(WEB scutter)，是一种“自动化浏览网络”的程序，或者说是一种网络机器人。它们被广泛用于互联网搜索引擎或其他类似网站，以获取或更新这些网站的内容和检索方式。它们可以自动采集所有其能够访问到的页面内容，以供搜索引擎做">
@@ -351,7 +351,8 @@
       
         <p>网络爬虫(Web crawler)也叫网络爬虫(Web spider)、蚂蚁（ant）、自动检索工具(automatic indexer)，或者(在FOAF软件概念中)网络疾走(WEB scutter)，是一种“自动化浏览网络”的程序，或者说是一种网络机器人。它们被广泛用于互联网搜索引擎或其他类似网站，以获取或更新这些网站的内容和检索方式。它们可以自动采集所有其能够访问到的页面内容，以供搜索引擎做进一步处理（分检整理下载的页面），而使得用户能更快的检索到他们需要的信息。  </p>
 <a id="more"></a>
-<h2 id="用Java实现网络爬虫系列"><a href="#用Java实现网络爬虫系列" class="headerlink" title="用Java实现网络爬虫系列"></a>用Java实现网络爬虫系列</h2><p>这系列文章我打算用5篇博客来完成，一览表:</p>
+<h2 id="用Java实现网络爬虫系列"><a href="#用Java实现网络爬虫系列" class="headerlink" title="用Java实现网络爬虫系列"></a>用Java实现网络爬虫系列</h2><p>这系列文章我打算用5篇博客来完成，源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">Github</a>,地址为 <a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">https://github.com/codingXiaxw/Crawler</a>  </p>
+<p>一览表:</p>
 <ul>
 <li>1.<a href="http://codingxiaxw.cn/2016/10/20/20-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%80%E4%B9%8B%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/">用Java实现网络爬虫一之项目介绍</a></li>
 <li>2.<a href="">用Java实现网络爬虫二之Java正则表达式</a></li>
@@ -368,7 +369,12 @@
 </li>
 <li>3.将自己找到的内容输出来并查看</li>
 </ul>
-<p>后续进阶可以对第三步进行改善，如将自己爬到的内容不是打印出来，而是通过JDBC存入MySQL中然后在MySQL中进行查看(见第四篇文章)。</p>
+<p>后续进阶可以对第三步进行改善，如将自己爬到的内容不是打印出来，而是通过JDBC存入MySQL中然后在MySQL中进行查看(见第四篇文章)。  </p>
+<h2 id="需要用到的知识"><a href="#需要用到的知识" class="headerlink" title="需要用到的知识"></a>需要用到的知识</h2><ul>
+<li>Java IO流</li>
+<li>Java 正则表达式</li>
+<li>html/css 的基本了解</li>
+</ul>
 <h2 id="我的爬虫目标"><a href="#我的爬虫目标" class="headerlink" title="我的爬虫目标"></a>我的爬虫目标</h2><p>制作网络爬虫爬取知乎网上提的问题、问题链接、问题描述以及回答内容，并将它们打印在输出台。(后续进阶我选择将这些内容存入MySQL数据库，而不是)</p>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
@@ -517,7 +523,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -526,7 +532,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -584,7 +590,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用Java实现网络爬虫系列"><span class="nav-number">1.</span> <span class="nav-text">用Java实现网络爬虫系列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的爬虫目标"><span class="nav-number">2.</span> <span class="nav-text">我的爬虫目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">3.</span> <span class="nav-text">联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用Java实现网络爬虫系列"><span class="nav-number">1.</span> <span class="nav-text">用Java实现网络爬虫系列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需要用到的知识"><span class="nav-number">2.</span> <span class="nav-text">需要用到的知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的爬虫目标"><span class="nav-number">3.</span> <span class="nav-text">我的爬虫目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">4.</span> <span class="nav-text">联系</span></a></li></ol></div>
             
           </div>
         </section>
