@@ -283,8 +283,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/02/11-java学习笔记之反射机制/" itemprop="url">
-                  Java学习笔记之反射机制
+                <a class="post-title-link" href="/2016/10/12/17-JavaWeb学习笔记之Jdbc一/" itemprop="url">
+                  JavaWeb学习笔记之Jdbc(一)
                 </a>
               
             
@@ -297,8 +297,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-02T13:31:47+08:00" content="Oct 2 2016">
-              Oct 2 2016
+            <time itemprop="dateCreated" datetime="2016-10-12T17:42:10+08:00" content="Oct 12 2016">
+              Oct 12 2016
             </time>
           </span>
 
@@ -311,8 +311,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/JavaWeb-Jdbc/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb Jdbc</span>
                   </a>
                 </span>
 
@@ -327,8 +327,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/02/11-java学习笔记之反射机制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/02/11-java学习笔记之反射机制/" itemprop="commentsCount"></span>
+                <a href="/2016/10/12/17-JavaWeb学习笔记之Jdbc一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/17-JavaWeb学习笔记之Jdbc一/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -354,10 +354,9 @@
 
       
         
-          <h2 id="理论介绍"><a href="#理论介绍" class="headerlink" title="理论介绍"></a>理论介绍</h2><p>为了便于理解，在给出代码例子之前，首先用文字给大家说说关于”Java反射机制”的理论介绍。  </p>
-<p>Java反射是Java语言的一个很重要的特征，它使得Java具有了“动态性”。  </p>
+          <h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1.概念"></a>1.概念</h2><p>Jdbc(java database connectivity):Java数据库连接，就是用Java语言来操作数据库。原来我们操作数据库是在控制台中通过sql语句来操作数据库，而Jdbc是用Java语言来向数据库发送sql语句来操作数据库。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/02/11-java学习笔记之反射机制/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/17-JavaWeb学习笔记之Jdbc一/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -408,8 +407,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/" itemprop="url">
-                  Java随机生成图片与HTML表单中的验证码实现
+                <a class="post-title-link" href="/2016/10/10/16-SQL学习笔记二/" itemprop="url">
+                  MySQL学习笔记二之单表查询与多表查询
                 </a>
               
             
@@ -422,8 +421,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-30T18:21:28+08:00" content="Sep 30 2016">
-              Sep 30 2016
+            <time itemprop="dateCreated" datetime="2016-10-10T19:24:09+08:00" content="Oct 10 2016">
+              Oct 10 2016
             </time>
           </span>
 
@@ -436,8 +435,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/HTML/" itemprop="url" rel="index">
-                    <span itemprop="name">HTML</span>
+                  <a href="/categories/MySQL-数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL 数据库</span>
                   </a>
                 </span>
 
@@ -452,8 +451,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/" itemprop="commentsCount"></span>
+                <a href="/2016/10/10/16-SQL学习笔记二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/16-SQL学习笔记二/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -479,16 +478,138 @@
 
       
         
-          <h2 id="Java随机生成图片"><a href="#Java随机生成图片" class="headerlink" title="Java随机生成图片"></a>Java随机生成图片</h2><p>用Java语言生成一个带有字符串文本的图片总结来说只需要如下四步:</p>
-<ul>
-<li>1.创建图片缓冲区</li>
-<li>2.设置图片缓冲区的宽高及保存图片的类型</li>
-<li>3.得到这个图片的绘制环境(拿到画笔)</li>
-<li>4.将图片保存起来</li>
+          <h2 id="1-编码问题"><a href="#1-编码问题" class="headerlink" title="1.编码问题"></a>1.编码问题</h2><h3 id="1-1查看MySQL数据库编码"><a href="#1-1查看MySQL数据库编码" class="headerlink" title="1.1查看MySQL数据库编码"></a>1.1查看MySQL数据库编码</h3><p>在命令行中输入:<code>SHOW VARIABLES LIKE &#39;CHAR%&#39;;</code>  回车可看到如下内容:  </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/10/16-SQL学习笔记二/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/09/15-SQL学习笔记一/" itemprop="url">
+                  MySQL学习笔记一之MySQL语法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-10-09T18:03:55+08:00" content="Oct 9 2016">
+              Oct 9 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/MySQL-数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL 数据库</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/09/15-SQL学习笔记一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/09/15-SQL学习笔记一/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="1-SQL语句分类"><a href="#1-SQL语句分类" class="headerlink" title="1.SQL语句分类"></a>1.SQL语句分类</h2><ul>
+<li>1.DDL(Data Definition Language):数据定义语言，用来定义数据库对象：库、表、列等。功能：创建、删除、修改库和表结构。</li>
+<li>2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。</li>
+<li>3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。</li>
+<li>4.DQL(Data Query Language):数据查询语言，用来查询记录。也是本章学习的重点。  </li>
 </ul>
-<p>代码如下:<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/#more" rel="contents">
+            <a class="btn" href="/2016/10/09/15-SQL学习笔记一/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -539,8 +660,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/27/9-java-web学习笔记之session入门/" itemprop="url">
-                  Java Web学习笔记之session入门
+                <a class="post-title-link" href="/2016/10/04/14-在Java中使用dom4j来解析xml文件/" itemprop="url">
+                  在Java中使用dom4j来解析及生成xml文件
                 </a>
               
             
@@ -553,8 +674,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-27T23:52:46+08:00" content="Sep 27 2016">
-              Sep 27 2016
+            <time itemprop="dateCreated" datetime="2016-10-04T21:24:01+08:00" content="Oct 4 2016">
+              Oct 4 2016
             </time>
           </span>
 
@@ -567,8 +688,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java-Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Java Web</span>
+                  <a href="/categories/Java之xml/" itemprop="url" rel="index">
+                    <span itemprop="name">Java之xml</span>
                   </a>
                 </span>
 
@@ -583,8 +704,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/27/9-java-web学习笔记之session入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/9-java-web学习笔记之session入门/" itemprop="commentsCount"></span>
+                <a href="/2016/10/04/14-在Java中使用dom4j来解析xml文件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/04/14-在Java中使用dom4j来解析xml文件/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -610,12 +731,9 @@
 
       
         
-          <h2 id="1-HttpSession概述"><a href="#1-HttpSession概述" class="headerlink" title="1.HttpSession概述"></a>1.HttpSession概述</h2><ul>
-<li>HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。</li>
-<li>HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。</li>
-<li><p>HttpSession底层依赖Cookie，或是URL重写。 </p>
+          <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。  </p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/27/9-java-web学习笔记之session入门/#more" rel="contents">
+            <a class="btn" href="/2016/10/04/14-在Java中使用dom4j来解析xml文件/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -666,8 +784,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/27/8-java-web学习笔记之Cookie入门/" itemprop="url">
-                  Java Web读书笔记之Cookie入门
+                <a class="post-title-link" href="/2016/10/03/12-EL表达式/" itemprop="url">
+                  JavaWeb学习笔记之EL表达式
                 </a>
               
             
@@ -680,8 +798,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-27T23:50:53+08:00" content="Sep 27 2016">
-              Sep 27 2016
+            <time itemprop="dateCreated" datetime="2016-10-03T14:53:17+08:00" content="Oct 3 2016">
+              Oct 3 2016
             </time>
           </span>
 
@@ -694,8 +812,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java-Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Java Web</span>
+                  <a href="/categories/EL/" itemprop="url" rel="index">
+                    <span itemprop="name">EL</span>
                   </a>
                 </span>
 
@@ -710,8 +828,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/27/8-java-web学习笔记之Cookie入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/8-java-web学习笔记之Cookie入门/" itemprop="commentsCount"></span>
+                <a href="/2016/10/03/12-EL表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/03/12-EL表达式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -737,771 +855,10 @@
 
       
         
-          <h2 id="1-Http协议与Cookie-了解"><a href="#1-Http协议与Cookie-了解" class="headerlink" title="1.Http协议与Cookie(了解)"></a>1.Http协议与Cookie(了解)</h2><ol>
-<li>Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。</li>
-<li><p>由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;例如:  </p>
-<pre><code>response.addHeader(&quot;Set-Cookie&quot;,&quot;aaa=AAA&quot;);
-response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
-</code></pre></li>
-</ol>
+          <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>EL，即Expression Language。在JavaWeb中属于JSP技术。  </p>
+<p>JSP中的表达式:Java脚本表达式<code>&lt;%=Java表达式%&gt;</code>;EL表达式<code>${EL表达式}</code>。  </p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/27/8-java-web学习笔记之Cookie入门/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/26/7-java-web中的Servlet请求转发与请求包含/" itemprop="url">
-                  Java Web中的Servlet请求转发和请求包含
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-26T20:28:24+08:00" content="Sep 26 2016">
-              Sep 26 2016
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java-Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Java Web</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/26/7-java-web中的Servlet请求转发与请求包含/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/26/7-java-web中的Servlet请求转发与请求包含/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  </p>
-<h2 id="1-格式"><a href="#1-格式" class="headerlink" title="1.格式"></a>1.格式</h2><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
-<pre><code>ResquestDispatcher rd=request.getRequestDispatcher(&quot;/MyServlet&quot;);  
-</code></pre><p>参数为被包含或被转发的目标Servlet路径。  </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/26/7-java-web中的Servlet请求转发与请求包含/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/24/6-java-web实现Servlet的方式/" itemprop="url">
-                  Java Web中实现Servlet的方式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-24T17:21:07+08:00" content="Sep 24 2016">
-              Sep 24 2016
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java-Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Java Web</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/24/6-java-web实现Servlet的方式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/24/6-java-web实现Servlet的方式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="1-Servlet是什么"><a href="#1-Servlet是什么" class="headerlink" title="1.Servlet是什么?"></a>1.Servlet是什么?</h2><p>Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  </p>
-<ul>
-<li>接受数据请求</li>
-<li>处理请求</li>
-<li><p>完成响应  </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/24/6-java-web实现Servlet的方式/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/12/5-新的开始/" itemprop="url">
-                  从Android开发转战Java Web
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-12T19:23:54+08:00" content="Sep 12 2016">
-              Sep 12 2016
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/12/5-新的开始/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/12/5-新的开始/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>&emsp;&emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去搞开发吗)。<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%9D%8F%E7%AC%91.jpg" alt="">希望在接下来的日子里，能学有所得。 </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/12/5-新的开始/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/07/4-Android中Activity的生命周期/" itemprop="url">
-                  Android中Activity的生命周期
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-07T15:11:29+08:00" content="Sep 7 2016">
-              Sep 7 2016
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/07/4-Android中Activity的生命周期/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/07/4-Android中Activity的生命周期/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>刚刚在stormzhang的一篇叫    <strong><a href="http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&amp;mid=2650661665&amp;idx=1&amp;sn=8127335085ce285473eb5ba53663fc29&amp;scene=21#wechat_redirect">android学到哪种程度可以去找工作</a></strong>中看到张哥提了这么一个观点<strong>如果我问你Android中Activity生命周期你还支支吾吾的那我就对你没什么兴趣了</strong>。吓得我赶紧在脑海中回顾了下有关activity生命周期的知识，便打算趁热打铁写下自己对activity生命周期的理解。    </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/07/4-Android中Activity的生命周期/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/06/3-java中string、StringBuffer和StringBuilder的区别/" itemprop="url">
-                  Java中String、StringBuilder和StringBuffer的区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-06T16:25:53+08:00" content="Sep 6 2016">
-              Sep 6 2016
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/06/3-java中string、StringBuffer和StringBuilder的区别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/06/3-java中string、StringBuffer和StringBuilder的区别/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>  在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  </p>
-<p>  今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  </p>
-<ul>
-<li><strong>String字符串常量</strong>  </li>
-<li><strong>StringBuffer字符串变量(线程安全）</strong>  </li>
-<li><p><strong>StringBuilder字符串变量（非线程安全）</strong>  </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/06/3-java中string、StringBuffer和StringBuilder的区别/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/09/2-mac用户如何将自己的代码上传至github托管/" itemprop="url">
-                  Mac用户如何将自己的代码上传至github托管
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-04-09T22:07:54+08:00" content="Apr 9 2016">
-              Apr 9 2016
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mac-and-Github/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac and Github</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/09/2-mac用户如何将自己的代码上传至github托管/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/2-mac用户如何将自己的代码上传至github托管/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>  楼主刚开始试着想将自己的代码上传至github上的时候真的是个小白，google上面到处搜到处找资源。后来云里雾里的成功上传后，发现网络上介绍的大致有两种方法，一种方法是通过git命令行，另一种方法是通过下载github客户端。两种方法都很简单，也许你觉得我接下来介绍的很繁琐，但这是详细的表现，下面将详细介绍<strong>通过git命令行来上传自己的代码</strong>。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/09/2-mac用户如何将自己的代码上传至github托管/#more" rel="contents">
+            <a class="btn" href="/2016/10/03/12-EL表达式/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1535,7 +892,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
