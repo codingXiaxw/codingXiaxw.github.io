@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/test.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/lianjie2.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/printi2.png">
-<meta property="og:updated_time" content="2016-10-24T14:37:15.000Z">
+<meta property="og:updated_time" content="2016-10-25T05:32:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用Java实现网络爬虫三之开始爬取">
 <meta name="twitter:description" content="目标爬取知乎推荐页面的所有问题、问题描述、地址、回答内容，爬取地址为http://www.zhihu.com/explore/recommendations   
@@ -380,6 +380,7 @@
 <p>最后我们只需要定义一个测试类，先调用Spider的sendGet(String url)方法中传入目标网页url并得到返回的网页源码，然后调用Spider的regexString(String target)方法得到返回的Zhihu对象的集合，然后将这些内容打印出来，即可看到我们爬取到的内容。  </p>
 <p>测试类:<br><img src="http://od2xrf8gr.bkt.clouddn.com/test.png" alt="">  </p>
 <p>打印出的内容:<br><img src="http://od2xrf8gr.bkt.clouddn.com/lianjie2.png" alt=""> </p>
+<p>这样我们便实现了从一个页面上爬取到我们所需信息的网络爬虫。如何进阶呢？  </p>
 <p>问题分析:  </p>
 <ul>
 <li>1.从打印台的信息我们可以发现，我们爬取到的问题地址链接并不是属于问题的地址链接，而是属于回答的地址链接，那么这里我们就需要截掉链接后半部分的”/answer/数字”部分。  <blockquote>
@@ -501,6 +502,10 @@ boolean getRealUrl(String url)
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/10/25/25-JavaWeb项目之客户管理系统/" rel="prev" title="JavaWeb项目之客户管理系统">
+                JavaWeb项目之客户管理系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -571,7 +576,7 @@ boolean getRealUrl(String url)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -579,7 +584,7 @@ boolean getRealUrl(String url)
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -588,7 +593,7 @@ boolean getRealUrl(String url)
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
