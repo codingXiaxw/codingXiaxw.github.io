@@ -1,0 +1,1029 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaWeb 监听器," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="监听器是一个专门用于对其他对象身上发生的事件或状态改变进行监听和相应处理的对象，当被监视的对象发生情况时，立即采取相应的行动。监听器其实就是一个实现特定接口的普通java程序，这个程序专门用于监听另一个java对象的方法调用或属性改变，当被监听对象发生上述事件后，监听器某个方法立即被执行。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb三大组件之监听器(Listener)">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/26/26-JavaWeb三大组件之监听器/index.html">
+<meta property="og:site_name" content="codingXiaxw's blog">
+<meta property="og:description" content="监听器是一个专门用于对其他对象身上发生的事件或状态改变进行监听和相应处理的对象，当被监视的对象发生情况时，立即采取相应的行动。监听器其实就是一个实现特定接口的普通java程序，这个程序专门用于监听另一个java对象的方法调用或属性改变，当被监听对象发生上述事件后，监听器某个方法立即被执行。">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/alistern.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/alistern.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/alistern.png">
+<meta property="og:updated_time" content="2016-10-26T12:39:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaWeb三大组件之监听器(Listener)">
+<meta name="twitter:description" content="监听器是一个专门用于对其他对象身上发生的事件或状态改变进行监听和相应处理的对象，当被监视的对象发生情况时，立即采取相应的行动。监听器其实就是一个实现特定接口的普通java程序，这个程序专门用于监听另一个java对象的方法调用或属性改变，当被监听对象发生上述事件后，监听器某个方法立即被执行。">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/alistern.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/26/26-JavaWeb三大组件之监听器/"/>
+
+  <title> JavaWeb三大组件之监听器(Listener) | codingXiaxw's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">codingXiaxw's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Life is short,just coding.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Contact
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaWeb三大组件之监听器(Listener)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-10-26T18:32:00+08:00" content="Oct 26 2016">
+              Oct 26 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaWeb-监听器/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb 监听器</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/26/26-JavaWeb三大组件之监听器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/26/26-JavaWeb三大组件之监听器/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>监听器是一个专门用于对其他对象身上发生的事件或状态改变进行监听和相应处理的对象，当被监视的对象发生情况时，立即采取相应的行动。监听器其实就是一个实现特定接口的普通java程序，这个程序专门用于监听另一个java对象的方法调用或属性改变，当被监听对象发生上述事件后，监听器某个方法立即被执行。<br><a id="more"></a></p>
+<p>上述概念设计到3个名词概念:</p>
+<ul>
+<li>1.事件源:即谁产生的事件</li>
+<li>2.事件对象:即产生了什么事件</li>
+<li>3.监听器:监听事件源的动作</li>
+</ul>
+<p>由于事件源可以产生多个动作(即产生多个事件)，而监听器中的每一个方法监听一个动作，故每个监听器中都有很多方法。</p>
+<h2 id="1-JavaWeb中的监听器"><a href="#1-JavaWeb中的监听器" class="headerlink" title="1.JavaWeb中的监听器"></a>1.JavaWeb中的监听器</h2><h3 id="1-1概念"><a href="#1-1概念" class="headerlink" title="1.1概念"></a>1.1概念</h3><p>JavaWeb中的监听器是Servlet规范中定义的一种特殊类，它用于监听web应用程序中的ServletContext、HttpSession和 ServletRequest这三大域对象的创建、销毁事件以及监听这些域对象中的属性发生修改的事件。</p>
+<h3 id="1-2JavaWeb中监听器的分类"><a href="#1-2JavaWeb中监听器的分类" class="headerlink" title="1.2JavaWeb中监听器的分类"></a>1.2JavaWeb中监听器的分类</h3><p>在Servlet规范中定义了多种类型的监听器(一共8个监听器)，它们用于监听的事件源分别为ServletContext，HttpSession和ServletRequest这三个域对象。Servlet规范针对这三个对象上的操作，又把多种类型的监听器划分为三种类型：  </p>
+<ul>
+<li>1.域对象的生命周期监听:监听域对象自身的创建和销毁。这个监听器需要实现相应的监听器接口:ServletContextListener、HttpSessionListener、ServletRequestListener。</li>
+<li>2.域对象的属性监听:监听域对象中属性的增加和删除。这个监听器需要实现的监听器接口为:ServletContextAttributeListener、HttpSessionAttributeListener、ServletRequestAttributeListener</li>
+<li>3.感知监听(都与HttpSession域对象有关):监听绑定到HttpSession域中的某个JavaBean对象的状态的监听器。这个监听器需要实现的监听器接口:HttpSessionBindingListener、HttpSessionActiveationListener.</li>
+</ul>
+<h3 id="1-3第一类-域对象的生命周期监听"><a href="#1-3第一类-域对象的生命周期监听" class="headerlink" title="1.3第一类:域对象的生命周期监听"></a>1.3第一类:域对象的生命周期监听</h3><p>事件源为:三大域<br>事件对象为:创建与销毁<br>监听器为:实现了ServletContextListener、HttpSessionListener、ServletRequestListener这三个接口的监听器  </p>
+<h4 id="1-3-1ServletContext的生命周期监听"><a href="#1-3-1ServletContext的生命周期监听" class="headerlink" title="1.3.1ServletContext的生命周期监听"></a>1.3.1ServletContext的生命周期监听</h4><pre><code>public class AListener implements ServletContextListener{
+
+    public void contextInitialized(ServletContextEvent sce)
+    {
+      //在项目启动时调用
+    }
+
+    public void contextDestroyed(ServletContextEvent sce)
+    {
+      //在项目关闭时调用
+    }
+}
+</code></pre><p>在web.xml文件中对该监听器进行配置:<br><img src="http://od2xrf8gr.bkt.clouddn.com/alistern.png" alt=""></p>
+<h4 id="1-3-2HttpSession的生命周期监听"><a href="#1-3-2HttpSession的生命周期监听" class="headerlink" title="1.3.2HttpSession的生命周期监听"></a>1.3.2HttpSession的生命周期监听</h4><p>代码同上述基本一致:  </p>
+<pre><code>public class AListener implements HttpSessionListener{
+
+    public void sessionCreated(HttpSessionEvent sce)
+    {
+      //在会话产生时调用
+    }
+
+    public void sessionDestroyed(HttpSessionEvent sce)
+    {
+      //在会话关闭时调用
+    }
+}
+</code></pre><p>同样需要在web.xml文件中进行配置:<br><img src="http://od2xrf8gr.bkt.clouddn.com/alistern.png" alt=""></p>
+<h4 id="1-3-3ServletRequest的生命周期"><a href="#1-3-3ServletRequest的生命周期" class="headerlink" title="1.3.3ServletRequest的生命周期"></a>1.3.3ServletRequest的生命周期</h4><p>代码同上述基本一致:  </p>
+<pre><code>public class AListener implements ServletRequestListener{
+
+    public void rquestInitialized(ServletRequestEvent sce)
+    {
+      //在请求产生时调用
+    }
+
+    public void requestDestroyed(ServletRequestEvent sce)
+    {
+      //在请求关闭时调用
+    }
+}
+</code></pre><p>同样需要在web.xml文件中进行配置:<br><img src="http://od2xrf8gr.bkt.clouddn.com/alistern.png" alt="">  </p>
+<h4 id="1-3-4对各个监听器接口的方法中出现的类介绍"><a href="#1-3-4对各个监听器接口的方法中出现的类介绍" class="headerlink" title="1.3.4对各个监听器接口的方法中出现的类介绍"></a>1.3.4对各个监听器接口的方法中出现的类介绍</h4><p>ServletContextEvent类:类中有一个方法getServletContext(),该方法返回ServletContext对象。</p>
+<p>HttpSessionEvent类:类中有一个方法getSession()，该方法返回一个HttpSession对象。  </p>
+<p>ServletRequestEvent类:类中有两个方法，getServletContext()用于返回一个ServletContext对象，getServletRequest()用于返回一个ServletRequest对象。</p>
+<h3 id="1-4第二类-域对象的属性监听"><a href="#1-4第二类-域对象的属性监听" class="headerlink" title="1.4第二类:域对象的属性监听"></a>1.4第二类:域对象的属性监听</h3><p>事件源:三大域<br>事件对象:属性的增加与删除<br>监听器:实现了ServletContextAttributeListener、HttpSessionAttributeListener、ServletRequestAttributeListener接口的监听器  </p>
+<h4 id="1-4-1ServletContext的属性监听"><a href="#1-4-1ServletContext的属性监听" class="headerlink" title="1.4.1ServletContext的属性监听"></a>1.4.1ServletContext的属性监听</h4><pre><code>public class AListener implements ServletContextAttributeListener{
+
+    public void attributeAdded(ServletcontextAttribute scab){
+      //给ServletContext对象添加属性时调用
+    }
+
+    public void attributeRemoved(ServletContextAttributeEvent scab){
+    //给ServletContext对象删除属性时调用
+    }
+
+    public void attributeReplaced(ServletContextAttributeEvent scab){
+    //给ServletContext对象替换属性值时调用
+    }
+}
+</code></pre><p>同样需要在web.xml文件中对AListener进行配置。</p>
+<h4 id="1-4-2HttpSession的属性监听"><a href="#1-4-2HttpSession的属性监听" class="headerlink" title="1.4.2HttpSession的属性监听"></a>1.4.2HttpSession的属性监听</h4><pre><code>public class AListener implements HttpSessionAttributeListener{
+
+    public void attributeAdded(HttpSessionAttribute scab){
+      //给HttpSession对象添加属性时调用
+    }
+
+    public void attributeRemoved(HttpSessionAttributeEvent scab){
+    //给HttpSession对象删除属性时调用
+    }    
+
+    public void attributeReplaced(HttpSessionAttributeEvent scab){
+    //给HttpSession对象替换属性值时调用
+    }
+}
+</code></pre><p>同样需要在web.xml中对AListener进行配置。</p>
+<h4 id="1-4-3ServletRequest的属性监听"><a href="#1-4-3ServletRequest的属性监听" class="headerlink" title="1.4.3ServletRequest的属性监听"></a>1.4.3ServletRequest的属性监听</h4><pre><code>public class AListener implements ServletRequestAttributeListener{
+
+    public void attributeAdded(ServletRequestAttribute scab){
+      //给ServletRequest对象添加属性时调用
+    }
+
+    public void attributeRemoved(ServletRequestAttributeEvent scab){
+    //给ServletRequest对象删除属性时调用
+    }
+
+    public void attributeReplaced(ServletRequestAttributeEvent scab){
+    //给ServletRequest对象替换属性值时调用
+    }
+}
+</code></pre><p>同样需要在web.xml中对AListener进行配置。</p>
+<h4 id="1-4-4对各个监听器接口的方法中出现的类介绍"><a href="#1-4-4对各个监听器接口的方法中出现的类介绍" class="headerlink" title="1.4.4对各个监听器接口的方法中出现的类介绍"></a>1.4.4对各个监听器接口的方法中出现的类介绍</h4><p>ServletContextAttributeEvent类:该类对象有三个方法，getSevletContext()用于返回一个ServletContext，getName()用于返回属性名，getValue()用于返回属性值。  </p>
+<p>HttpSessionBindingEvent类:该类对象有两个方法，getName()用于获取属性名，getValue()用于获取属性值。  </p>
+<p>ServletRequestAttributeEvent类:该类对象有两个方法，getName()用于获取属性名，getValue()用于获取属性值。  </p>
+<h3 id="1-5感知监听器"><a href="#1-5感知监听器" class="headerlink" title="1.5感知监听器"></a>1.5感知监听器</h3><p>保存在Session域中的对象可以有多种状态：绑定(session.setAttribute(“bean”,Object))到Session中,随Session对象持久化到一个存储设备中；从Session域中解除(session.removeAttribute(“bean”))绑定,随Session对象从一个存储设备中恢复。  </p>
+<p>Servlet 规范中定义了两个特殊的监听器接口”HttpSessionBindingListener和HttpSessionActivationListener”来帮助JavaBean 对象了解自己在Session域中的这些状态，实现这两个接口的类不需要 web.xml 文件中进行注册。  </p>
+<h4 id="1-5-1HttpSessionBindingListener接口"><a href="#1-5-1HttpSessionBindingListener接口" class="headerlink" title="1.5.1HttpSessionBindingListener接口"></a>1.5.1HttpSessionBindingListener接口</h4><p>实现了HttpSessionBindingListener接口的JavaBean对象可以感知自己被绑定到Session中和 Session中删除的事件。  </p>
+<p>当对象被绑定到HttpSession对象中时，web服务器调用该对象的void valueBound(HttpSessionBindingEvent event)方法。  </p>
+<p>当对象从HttpSession对象中解除绑定时，web服务器调用该对象的void valueUnbound(HttpSessionBindingEvent event)方法。</p>
+<pre><code>17public class JavaBeanDemo1 implements HttpSessionBindingListener {
+18 
+19     private String name;
+20     
+21     @Override
+22     public void valueBound(HttpSessionBindingEvent event) {
+23         System.out.println(name+&quot;被加到session中了&quot;);
+24     }
+25 
+26     @Override
+27     public void valueUnbound(HttpSessionBindingEvent event) {
+28         System.out.println(name+&quot;被session踢出来了&quot;);
+29     }
+30 
+31     public String getName() {
+32         return name;
+33     }
+34 
+35     public void setName(String name) {
+36         this.name = name;
+37     }
+38 
+39     public JavaBeanDemo1(String name) {
+40         this.name = name;
+41     }
+42 }
+</code></pre><p>上述的JavaBeanDemo1这个javabean实现了HttpSessionBindingListener接口，那么这个JavaBean对象可以感知自己被绑定到Session中和从Session中删除的这两个操作。  </p>
+<h4 id="1-5-2HttpSessionActivationListener接口"><a href="#1-5-2HttpSessionActivationListener接口" class="headerlink" title="1.5.2HttpSessionActivationListener接口"></a>1.5.2HttpSessionActivationListener接口</h4><p>实现了HttpSessionActivationListener接口的JavaBean对象可以感知自己被活化(反序列化)和钝化(序列化)的事件。  </p>
+<p>当绑定到HttpSession对象中的javabean对象将要随HttpSession对象被钝化(序列化)之前，web服务器调用该javabean对象的void sessionWillPassivate(HttpSessionEvent event) 方法。这样javabean对象就可以知道自己将要和HttpSession对象一起被序列化(钝化)到硬盘中。  </p>
+<p>当绑定到HttpSession对象中的javabean对象将要随HttpSession对象被活化(反序列化)之后，web服务器调用该javabean对象的void sessionDidActive(HttpSessionEvent event)方法。这样javabean对象就可以知道自己将要和 HttpSession对象一起被反序列化(活化)回到内存中。(javabean随着HttpSession对象一起被活化的前提是该javabean对象除了实现该接口外还应该实现Serialize接口)。  </p>
+<pre><code>27 public class JavaBeanDemo2 implements HttpSessionActivationListener,
+28         Serializable {
+29 
+30      
+31     private static final long serialVersionUID = 7589841135210272124L;
+32     private String name;
+33     
+34     @Override
+35     public void sessionWillPassivate(HttpSessionEvent se) {
+36         
+37         System.out.println(name+&quot;和session一起被序列化(钝化)到硬盘了，session的id是：&quot;+se.getSession().getId());
+38     }
+39 
+40     @Override
+41     public void sessionDidActivate(HttpSessionEvent se) {
+42         System.out.println(name+&quot;和session一起从硬盘反序列化(活化)回到内存了，session的id是：&quot;+se.getSession().getId());
+43     }
+44 
+45     public String getName() {
+46         return name;
+47     }
+48 
+49     public void setName(String name) {
+50         this.name = name;
+51     }
+52 
+53     public JavaBeanDemo2(String name) {
+54         this.name = name;
+55     }
+56 }
+</code></pre><p>既然这里谈到了session的序列化(钝化)，反序列化(活化)那我们就来具体聊聊。</p>
+<h2 id="2-session序列化-钝化"><a href="#2-session序列化-钝化" class="headerlink" title="2.session序列化(钝化)"></a>2.session序列化(钝化)</h2><p>在session上线时，会在tomcat／work／Catalina／localhost／项目名／下生成一个sessions.ser文件，里面存放了所有session的信息，当你正在访问某个网页时若此时服务器关闭(关闭时才生成这个文件)又打开(打开后这个文件会消失)，你依旧能正常访问该网页。(故说session有重生的效果)。<br>若想废掉session的序列化,需要在tomcat／conf／context.xml中添加\<manager pathname="“”/"></manager></p>
+<h2 id="3-session的钝化与活化"><a href="#3-session的钝化与活化" class="headerlink" title="3.session的钝化与活化"></a>3.session的钝化与活化</h2><p>Tomcat会在session一段时间内不被使用时钝化session对象，所谓钝化session，就是把session通过序列化的方法保存到硬盘文件中。当用户再使用session时，Tomcat还会把钝化的对象再活化session，所谓活化就是把硬盘文件中的session在反序列化中放回内存。当session被tomcat钝化时，sesseion中存储的对象也被钝化，当session被活化时，也会把session中存储的对象(javabean对象)活化。如果某个类(javabean对象)实现了HttpSessionActiveationListener接口后，当对象随着session被钝化和活化时，下面两个方法就会被调用:</p>
+<pre><code>public void sessionWillPassivate(HttpSessionEvent se):当对象感知被活化时调用本方法。  
+public void sessionDidActivate(HttpSessionEvent se):当对象感知被钝化时调用本方法。
+</code></pre><p>钝化时会在tomcat/work/Catalina/localhost/项目/mysession／文件下生成一个后缀为.session的文件，网页中一个被钝化的session就对应一个.session文件(而上面的序列化是一个.ser文件存在所有的session)，在活化时此文件也不会消失(不同于上述的.ser文件消失)。<br>当然要看到上述效果，应该先配置tomcat钝化session的参数，在tomcat/conf/catalina/localhost目录下，添加以下配置内容(google一下吧)。</p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaWeb-监听器/" rel="tag">#JavaWeb 监听器</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/25/25-JavaWeb项目之客户管理系统/" rel="next" title="JavaWeb项目之客户管理系统">
+                <i class="fa fa-chevron-left"></i> JavaWeb项目之客户管理系统
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/26/26-JavaWeb三大组件之监听器/"
+           data-title="JavaWeb三大组件之监听器(Listener)" data-url="http://codingxiaxw.cn/archives/2016/10/26/26-JavaWeb三大组件之监听器/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
+               alt="codingXiaxw" />
+          <p class="site-author-name" itemprop="name">codingXiaxw</p>
+          <p class="site-description motion-element" itemprop="description">Life is short,just coding.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/codingXiaxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5023661572?from=hissimilar_home&refer_flag=1005050003_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com//people/e9f78fa34b8002652811ac348da3f671" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JavaWeb中的监听器"><span class="nav-number">1.</span> <span class="nav-text">1.JavaWeb中的监听器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.1概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2JavaWeb中监听器的分类"><span class="nav-number">1.2.</span> <span class="nav-text">1.2JavaWeb中监听器的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3第一类-域对象的生命周期监听"><span class="nav-number">1.3.</span> <span class="nav-text">1.3第一类:域对象的生命周期监听</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1ServletContext的生命周期监听"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1ServletContext的生命周期监听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2HttpSession的生命周期监听"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2HttpSession的生命周期监听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3ServletRequest的生命周期"><span class="nav-number">1.3.3.</span> <span class="nav-text">1.3.3ServletRequest的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-4对各个监听器接口的方法中出现的类介绍"><span class="nav-number">1.3.4.</span> <span class="nav-text">1.3.4对各个监听器接口的方法中出现的类介绍</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4第二类-域对象的属性监听"><span class="nav-number">1.4.</span> <span class="nav-text">1.4第二类:域对象的属性监听</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1ServletContext的属性监听"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.4.1ServletContext的属性监听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2HttpSession的属性监听"><span class="nav-number">1.4.2.</span> <span class="nav-text">1.4.2HttpSession的属性监听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-3ServletRequest的属性监听"><span class="nav-number">1.4.3.</span> <span class="nav-text">1.4.3ServletRequest的属性监听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-4对各个监听器接口的方法中出现的类介绍"><span class="nav-number">1.4.4.</span> <span class="nav-text">1.4.4对各个监听器接口的方法中出现的类介绍</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5感知监听器"><span class="nav-number">1.5.</span> <span class="nav-text">1.5感知监听器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-1HttpSessionBindingListener接口"><span class="nav-number">1.5.1.</span> <span class="nav-text">1.5.1HttpSessionBindingListener接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-2HttpSessionActivationListener接口"><span class="nav-number">1.5.2.</span> <span class="nav-text">1.5.2HttpSessionActivationListener接口</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-session序列化-钝化"><span class="nav-number">2.</span> <span class="nav-text">2.session序列化(钝化)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-session的钝化与活化"><span class="nav-number">3.</span> <span class="nav-text">3.session的钝化与活化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">codingXiaxw</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codingxiaxw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+
+
+</body>
+</html>
