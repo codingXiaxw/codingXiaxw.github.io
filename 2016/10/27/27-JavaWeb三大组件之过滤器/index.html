@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Mac and Github," />
+  <meta name="keywords" content="JavaWeb 过滤器," />
 
 
 
@@ -96,20 +96,34 @@
 
 
 
-<meta name="description" content="楼主刚开始试着想将自己的代码上传至github上的时候真的是个小白，google上面到处搜到处找资源。后来云里雾里的成功上传后，发现网络上介绍的大致有两种方法，一种方法是通过git命令行，另一种方法是通过下载github客户端。两种方法都很简单，也许你觉得我接下来介绍的很繁琐，但这是详细的表现，下面将详细介绍通过git命令行来上传自己的代码。">
+<meta name="description" content="过滤器可以动态的拦截请求和响应，以变换或使用包含在请求或响应中的信息。  
+过滤器是可用于Servlet编程的Java类，可以实现以下目的:  
+
+在客户端的请求访问后端资源之前，拦截这些请求。
+在服务器的响应发送回客户端之前，处理这些响应。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac用户如何将自己的代码上传至github托管">
-<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/04/09/2-mac用户如何将自己的代码上传至github托管/index.html">
+<meta property="og:title" content="JavaWeb三大组件之过滤器(Filter)">
+<meta property="og:url" content="http://codingxiaxw.cn/archives/2016/10/27/27-JavaWeb三大组件之过滤器/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="楼主刚开始试着想将自己的代码上传至github上的时候真的是个小白，google上面到处搜到处找资源。后来云里雾里的成功上传后，发现网络上介绍的大致有两种方法，一种方法是通过git命令行，另一种方法是通过下载github客户端。两种方法都很简单，也许你觉得我接下来介绍的很繁琐，但这是详细的表现，下面将详细介绍通过git命令行来上传自己的代码。">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%90%8D%E7%A7%B0.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%9B%BE%E6%A0%87.png">
-<meta property="og:updated_time" content="2016-10-17T12:53:41.000Z">
+<meta property="og:description" content="过滤器可以动态的拦截请求和响应，以变换或使用包含在请求或响应中的信息。  
+过滤器是可用于Servlet编程的Java类，可以实现以下目的:  
+
+在客户端的请求访问后端资源之前，拦截这些请求。
+在服务器的响应发送回客户端之前，处理这些响应。">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/filter.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/AListener.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/AFilter.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/showjsp.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/xiaoguo.png">
+<meta property="og:updated_time" content="2016-10-27T12:44:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac用户如何将自己的代码上传至github托管">
-<meta name="twitter:description" content="楼主刚开始试着想将自己的代码上传至github上的时候真的是个小白，google上面到处搜到处找资源。后来云里雾里的成功上传后，发现网络上介绍的大致有两种方法，一种方法是通过git命令行，另一种方法是通过下载github客户端。两种方法都很简单，也许你觉得我接下来介绍的很繁琐，但这是详细的表现，下面将详细介绍通过git命令行来上传自己的代码。">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%90%8D%E7%A7%B0.png">
+<meta name="twitter:title" content="JavaWeb三大组件之过滤器(Filter)">
+<meta name="twitter:description" content="过滤器可以动态的拦截请求和响应，以变换或使用包含在请求或响应中的信息。  
+过滤器是可用于Servlet编程的Java类，可以实现以下目的:  
+
+在客户端的请求访问后端资源之前，拦截这些请求。
+在服务器的响应发送回客户端之前，处理这些响应。">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/filter.png">
 
 
 
@@ -130,9 +144,9 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/04/09/2-mac用户如何将自己的代码上传至github托管/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/archives/2016/10/27/27-JavaWeb三大组件之过滤器/"/>
 
-  <title> Mac用户如何将自己的代码上传至github托管 | codingXiaxw's blog </title>
+  <title> JavaWeb三大组件之过滤器(Filter) | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -285,7 +299,7 @@
             
             
               
-                Mac用户如何将自己的代码上传至github托管
+                JavaWeb三大组件之过滤器(Filter)
               
             
           </h1>
@@ -297,8 +311,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-04-09T22:07:54+08:00" content="Apr 9 2016">
-              Apr 9 2016
+            <time itemprop="dateCreated" datetime="2016-10-27T19:13:41+08:00" content="Oct 27 2016">
+              Oct 27 2016
             </time>
           </span>
 
@@ -311,8 +325,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mac-and-Github/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac and Github</span>
+                  <a href="/categories/JavaWeb-过滤器/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb 过滤器</span>
                   </a>
                 </span>
 
@@ -327,8 +341,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/09/2-mac用户如何将自己的代码上传至github托管/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/2-mac用户如何将自己的代码上传至github托管/" itemprop="commentsCount"></span>
+                <a href="/2016/10/27/27-JavaWeb三大组件之过滤器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/27/27-JavaWeb三大组件之过滤器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -353,47 +367,74 @@
       
 
       
-        <p>  楼主刚开始试着想将自己的代码上传至github上的时候真的是个小白，google上面到处搜到处找资源。后来云里雾里的成功上传后，发现网络上介绍的大致有两种方法，一种方法是通过git命令行，另一种方法是通过下载github客户端。两种方法都很简单，也许你觉得我接下来介绍的很繁琐，但这是详细的表现，下面将详细介绍<strong>通过git命令行来上传自己的代码</strong>。</p>
-<a id="more"></a>
-<h2 id="通过git命令行。"><a href="#通过git命令行。" class="headerlink" title="通过git命令行。"></a>通过git命令行。</h2><p>其实git命令不用学太多，会基本的5、6个命令就好，经常用的有  </p>
-<ol>
-<li><strong>git init;</strong>(作用:初始化你的文件夹)</li>
-<li><strong>git add;</strong>(作用：将你的仓库添加至远程)</li>
-<li><strong>git commit -m “你想输入的信息”;</strong>(作用:将你的仓库提交至远程)</li>
-<li><strong>git push origin master;</strong>(作用:将你的仓库推至github)<br>其实将你的代码上传至github上，按照这四个步骤便可以完成了，是不是很简单呢？  </li>
-</ol>
-<p><strong>请见详细步骤:</strong></p>
-<p>首先，你想使用git总得在网页上下载个git吧？打开终端，输入以下命令并回车:  </p>
-<table width="100%"><tr><td bgcolor="black"><font color="ffffff">ruby -e “$(curl -fsSL   <a href="https://raw.githubusercontent.com/Homebrew/install/master/install" target="_blank" rel="external">https://raw.githubusercontent.com/Homebrew/install/master/install</a>)”<br>brew install git</font></td></tr></table><br>如何看你是否安装好git了呢？打开你的终端，并输入如下命令<br> <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git –version</font></td></tr></table><br>若出现类似下面的代码则代表你的git客户端安装成功。<br><table width="100%"><tr><td bgcolor="black"><font color="ffffff">zjcs-MacBook-Pro:zjc_HexoBlog zjc $ git –version<br>  git version 2.1.3.36.g8e36a6d</font></td></tr></table>   
-
-<p>  接下来分别通过下面两个步骤即可完成将你的代码上传至github上。  </p>
-<p>  1.克隆你github上面的项目到本地仓库，在命令行输入以下代码：git clone url 然后回车。 这时你就可以看到你的电脑上多了一个以你仓库命名的文件夹啦。（其中url指你github上面仓库的地址，点开你的仓库就可以看到你仓库的地址啦。）<br>  如我的仓库名称是: <img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%90%8D%E7%A7%B0.png" alt=""><br>  我的project仓库的地址是 <img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80.png" alt=""><br>  点击这个图标可以复制你仓库的url<br>  <img src="http://od2xrf8gr.bkt.clouddn.com/%E5%9B%BE%E6%A0%87.png" alt="">   </p>
-<p>  2.首先要将你想上传的代码文件夹拖至这个新出现的仓库文件夹，然后在命令行输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">cd 你的仓库文件夹名称</font></td></tr></table></p>
-<p>  如我的就在命令行中输入:  </p>
-  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">cd projects</font></td></tr></table>
-
-
-<p>  这时你命令行中的目录就会出现在你的仓库目录下。  </p>
-<p>  接下来输入:  </p>
-   <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git add 你想上传的代码文件夹名称</font></td></tr></table>
-
-
-<p>  或者是输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git add .</font></td></tr></table><br>(add后面的‘.’代表你仓库中的所有内容)   </p>
-<p>  然后输入:  </p>
-   <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git commit -m “你想交代的内容”</font></td></tr></table>
-
-<p>  最后输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git push origin master</font></td></tr></table>  </p>
-<p>  一会儿后你就会在你github的仓库中看到你上传的代码文件夹啦。是不是都很简单呢！  </p>
-<hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p> If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by clicking  these links.</p>
+        <p>过滤器可以动态的拦截请求和响应，以变换或使用包含在请求或响应中的信息。  </p>
+<p>过滤器是可用于Servlet编程的Java类，可以实现以下目的:  </p>
 <ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li>在客户端的请求访问后端资源之前，拦截这些请求。</li>
+<li>在服务器的响应发送回客户端之前，处理这些响应。</li>
+</ul>
+<a id="more"></a>
+<p>过滤器通过 Web 部署描述符（web.xml）中的 XML 标签来声明，然后映射到你的应用程序的部署描述符中的 Servlet 名称或 URL 模式。  </p>
+<p>当 Web 容器启动 Web 应用程序时，它会为你在部署描述符中声明的每一个过滤器创建一个实例。  </p>
+<p>Filter的执行顺序与在web.xml配置文件中的配置顺序一致，一般把Filter配置在所有的Servlet之前。  </p>
+<h2 id="编写过滤器"><a href="#编写过滤器" class="headerlink" title="编写过滤器"></a>编写过滤器</h2><p>如何编写过滤器?  </p>
+<ol>
+<li>创建一个类，必须实现Filter接口</li>
+<li>在web.xml中进行配置，一般把Filter配置在所有的Servlet配置之前  </li>
+</ol>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/filter.png" alt=""></p>
+<p>方法介绍:   </p>
+<ul>
+<li><strong>void init():</strong>Filter的初始化，Filter在服务器启动时就创建，创建之后马上执行这个方法。用来初始化一些参数</li>
+<li><strong>void doFilter(req,resp,chain):</strong>当向服务器请求的Servlet或jsp页面在过滤器的过滤范围内时就会执行这个方法。若方法体中没有chain.doFilter()操作，则表示当向服务器请求该过滤器过滤范围内的资源(如Servlet/JSP页面/html页面等)时，这些资源中的所有方法都不会执行(被过滤掉了);若方法体中有chain.doFilter()操作，表示不对过滤器过滤范围内的资源进行过滤。(即你请求的资源下的方法会执行)</li>
+<li><strong>void destroy():</strong>在服务器关闭时对Filter进行销毁，在Filter销毁之前会执行这个方法，用来对非内存资源进行释放。</li>
+</ul>
+<p>对方法中设计到的类介绍:  </p>
+<ul>
+<li><strong>FilterConfig:</strong>与ServletConfig相似，该类有如下四个方法:  <ul>
+<li><strong>getInitParameter():</strong>获取初始化参数。</li>
+<li><strong>getInitParameterNames():</strong>获取所有初始化参数的名称。</li>
+<li><strong>getFilterName():</strong>获取过滤器的配置名称。</li>
+<li><strong>getServletContext():</strong>获取application。</li>
+</ul>
+</li>
+<li><strong>FilterChain类:</strong>该类中有一个方法:  <ul>
+<li><strong>doFilter():</strong>是不是会觉得该方法与Filter接口中的doFilter()方法是一样的呢？没错，二者虽然外观看起来一样，但功能却是千差万别的。该方法被FilterChain对象调用，表示对Filter过滤器过滤范围下的资源进行放行。</li>
+</ul>
+</li>
+</ul>
+<h2 id="多过滤器的执行顺序"><a href="#多过滤器的执行顺序" class="headerlink" title="多过滤器的执行顺序"></a>多过滤器的执行顺序</h2><p>Web应用程序可以根据特定的目的定义若干个不同的过滤器，那么就需要在web.xml中对多个过滤器进行多个配置。而在web.xml中使用\<filter-mapping>来控制多个过滤器的执行顺序，即哪个过滤器的\<filter-mapping>配置在web.xml中的顺序排在前面那这个过滤器就先执行。  </filter-mapping></filter-mapping></p>
+<h2 id="过滤器的四种拦截方式"><a href="#过滤器的四种拦截方式" class="headerlink" title="过滤器的四种拦截方式"></a>过滤器的四种拦截方式</h2><ul>
+<li>1.拦截直接请求方式:REQUEST</li>
+<li>2.拦截请求转发方式:FORWARD</li>
+<li>3.拦截请求包含方式:INCLUDE</li>
+<li>4.拦截错误转发方式:ERROR</li>
+</ul>
+<p>实现不同的拦截方式需要在\<filter-mapping>中进行不同的配置:  </filter-mapping></p>
+<ul>
+<li>\<dispatcher>REQUEST\</dispatcher></li>
+<li>\<dispatcher>FORWORD\</dispatcher></li>
+<li>\<dispatcher>INCLUDE\</dispatcher></li>
+<li>\<dispatcher>ERROR\</dispatcher></li>
+</ul>
+<p>若在web.xml配置文件中没有写出上面四个拦截配置时默认该过滤器只拦截请求。  </p>
+<h2 id="过滤器的应用场景"><a href="#过滤器的应用场景" class="headerlink" title="过滤器的应用场景"></a>过滤器的应用场景</h2><p>1.执行目标资源之前做”预处理”工作，例如设置编码，这种通常都会放行，只是在目标资源执行之前做一些准备工作。(例如：几乎是所有的Servlet中都需要写request.setCharacteEncoding(),可以把它放入到一个Filter中。）这种过滤器没有拦截功能。  </p>
+<p>2.通过条件判断是否放行，例如校验当前用户是否已经登录，或者用户IP是否已经被禁用。(有拦截操作) (粗粒度权限控制，会员有会员的权利、游客有游客的权利) </p>
+<p>3.在目标资源执行后，做一些后续的特殊处理工作。例如把目标资源输出的数据进行处理。</p>
+<h2 id="案例-分IP统计网站的访问次数"><a href="#案例-分IP统计网站的访问次数" class="headerlink" title="案例:分IP统计网站的访问次数"></a>案例:分IP统计网站的访问次数</h2><p>功能分析:1.统计工作需要在所有资源之前都执行，那么就可以放到Filter中了。2.我们这个过滤器不打算做拦截操作，因为我们只是用来做统计的。3.用什么东西来装载统计的数据。Map<string ,integer="">，整个网站只需要一个Map即可4.Map什么时候创建(使用ServletContextListener，在服务器启动时完成创建，并保存到SevletContext中)，Map保存到哪里:Map需要在Filter中用来保存数据;Map需要在页面使用，打印Map中的数据。  </string></p>
+<p>AListener.java:<br><img src="http://od2xrf8gr.bkt.clouddn.com/AListener.png" alt="">  </p>
+<p>AFilter.java:<br><img src="http://od2xrf8gr.bkt.clouddn.com/AFilter.png" alt="">  </p>
+<p>show.jsp:<br><img src="http://od2xrf8gr.bkt.clouddn.com/showjsp.png" alt="">  </p>
+<p>效果图:<br><img src="http://od2xrf8gr.bkt.clouddn.com/xiaoguo.png" alt=""></p>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 
       
@@ -433,7 +474,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mac-and-Github/" rel="tag">#Mac and Github</a>
+            <a href="/tags/JavaWeb-过滤器/" rel="tag">#JavaWeb 过滤器</a>
           
         </div>
       
@@ -442,17 +483,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/31/1-写博客也是一种生活方式/" rel="next" title="开启我的博客之旅">
-                <i class="fa fa-chevron-left"></i> 开启我的博客之旅
+              <a href="/2016/10/26/26-JavaWeb三大组件之监听器/" rel="next" title="JavaWeb三大组件之监听器(Listener)">
+                <i class="fa fa-chevron-left"></i> JavaWeb三大组件之监听器(Listener)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/06/3-java中string、StringBuffer和StringBuilder的区别/" rel="prev" title="Java中String、StringBuilder和StringBuffer的区别">
-                Java中String、StringBuilder和StringBuffer的区别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -478,8 +515,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/09/2-mac用户如何将自己的代码上传至github托管/"
-           data-title="Mac用户如何将自己的代码上传至github托管" data-url="http://codingxiaxw.cn/archives/2016/04/09/2-mac用户如何将自己的代码上传至github托管/">
+      <div class="ds-thread" data-thread-key="2016/10/27/27-JavaWeb三大组件之过滤器/"
+           data-title="JavaWeb三大组件之过滤器(Filter)" data-url="http://codingxiaxw.cn/archives/2016/10/27/27-JavaWeb三大组件之过滤器/">
       </div>
     
   </div>
@@ -599,7 +636,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过git命令行。"><span class="nav-number">1.</span> <span class="nav-text">通过git命令行。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">2.</span> <span class="nav-text">联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编写过滤器"><span class="nav-number">1.</span> <span class="nav-text">编写过滤器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多过滤器的执行顺序"><span class="nav-number">2.</span> <span class="nav-text">多过滤器的执行顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤器的四种拦截方式"><span class="nav-number">3.</span> <span class="nav-text">过滤器的四种拦截方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤器的应用场景"><span class="nav-number">4.</span> <span class="nav-text">过滤器的应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例-分IP统计网站的访问次数"><span class="nav-number">5.</span> <span class="nav-text">案例:分IP统计网站的访问次数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">6.</span> <span class="nav-text">联系</span></a></li></ol></div>
             
           </div>
         </section>

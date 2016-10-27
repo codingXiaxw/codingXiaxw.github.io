@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title><![CDATA[JavaWeb三大组件之过滤器(Filter)]]></title>
+      <url>http://codingxiaxw.cn/archives/2016/10/27/27-JavaWeb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8B%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
+      <content type="html"><![CDATA[<p>过滤器可以动态的拦截请求和响应，以变换或使用包含在请求或响应中的信息。  </p>
+<p>过滤器是可用于Servlet编程的Java类，可以实现以下目的:  </p>
+<ul>
+<li>在客户端的请求访问后端资源之前，拦截这些请求。</li>
+<li>在服务器的响应发送回客户端之前，处理这些响应。</li>
+</ul>
+<a id="more"></a>
+<p>过滤器通过 Web 部署描述符（web.xml）中的 XML 标签来声明，然后映射到你的应用程序的部署描述符中的 Servlet 名称或 URL 模式。  </p>
+<p>当 Web 容器启动 Web 应用程序时，它会为你在部署描述符中声明的每一个过滤器创建一个实例。  </p>
+<p>Filter的执行顺序与在web.xml配置文件中的配置顺序一致，一般把Filter配置在所有的Servlet之前。  </p>
+<h2 id="编写过滤器"><a href="#编写过滤器" class="headerlink" title="编写过滤器"></a>编写过滤器</h2><p>如何编写过滤器?  </p>
+<ol>
+<li>创建一个类，必须实现Filter接口</li>
+<li>在web.xml中进行配置，一般把Filter配置在所有的Servlet配置之前  </li>
+</ol>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/filter.png" alt=""></p>
+<p>方法介绍:   </p>
+<ul>
+<li><strong>void init():</strong>Filter的初始化，Filter在服务器启动时就创建，创建之后马上执行这个方法。用来初始化一些参数</li>
+<li><strong>void doFilter(req,resp,chain):</strong>当向服务器请求的Servlet或jsp页面在过滤器的过滤范围内时就会执行这个方法。若方法体中没有chain.doFilter()操作，则表示当向服务器请求该过滤器过滤范围内的资源(如Servlet/JSP页面/html页面等)时，这些资源中的所有方法都不会执行(被过滤掉了);若方法体中有chain.doFilter()操作，表示不对过滤器过滤范围内的资源进行过滤。(即你请求的资源下的方法会执行)</li>
+<li><strong>void destroy():</strong>在服务器关闭时对Filter进行销毁，在Filter销毁之前会执行这个方法，用来对非内存资源进行释放。</li>
+</ul>
+<p>对方法中设计到的类介绍:  </p>
+<ul>
+<li><strong>FilterConfig:</strong>与ServletConfig相似，该类有如下四个方法:  <ul>
+<li><strong>getInitParameter():</strong>获取初始化参数。</li>
+<li><strong>getInitParameterNames():</strong>获取所有初始化参数的名称。</li>
+<li><strong>getFilterName():</strong>获取过滤器的配置名称。</li>
+<li><strong>getServletContext():</strong>获取application。</li>
+</ul>
+</li>
+<li><strong>FilterChain类:</strong>该类中有一个方法:  <ul>
+<li><strong>doFilter():</strong>是不是会觉得该方法与Filter接口中的doFilter()方法是一样的呢？没错，二者虽然外观看起来一样，但功能却是千差万别的。该方法被FilterChain对象调用，表示对Filter过滤器过滤范围下的资源进行放行。</li>
+</ul>
+</li>
+</ul>
+<h2 id="多过滤器的执行顺序"><a href="#多过滤器的执行顺序" class="headerlink" title="多过滤器的执行顺序"></a>多过滤器的执行顺序</h2><p>Web应用程序可以根据特定的目的定义若干个不同的过滤器，那么就需要在web.xml中对多个过滤器进行多个配置。而在web.xml中使用\<filter-mapping>来控制多个过滤器的执行顺序，即哪个过滤器的\<filter-mapping>配置在web.xml中的顺序排在前面那这个过滤器就先执行。  </filter-mapping></filter-mapping></p>
+<h2 id="过滤器的四种拦截方式"><a href="#过滤器的四种拦截方式" class="headerlink" title="过滤器的四种拦截方式"></a>过滤器的四种拦截方式</h2><ul>
+<li>1.拦截直接请求方式:REQUEST</li>
+<li>2.拦截请求转发方式:FORWARD</li>
+<li>3.拦截请求包含方式:INCLUDE</li>
+<li>4.拦截错误转发方式:ERROR</li>
+</ul>
+<p>实现不同的拦截方式需要在\<filter-mapping>中进行不同的配置:  </filter-mapping></p>
+<ul>
+<li>\<dispatcher>REQUEST\</dispatcher></li>
+<li>\<dispatcher>FORWORD\</dispatcher></li>
+<li>\<dispatcher>INCLUDE\</dispatcher></li>
+<li>\<dispatcher>ERROR\</dispatcher></li>
+</ul>
+<p>若在web.xml配置文件中没有写出上面四个拦截配置时默认该过滤器只拦截请求。  </p>
+<h2 id="过滤器的应用场景"><a href="#过滤器的应用场景" class="headerlink" title="过滤器的应用场景"></a>过滤器的应用场景</h2><p>1.执行目标资源之前做”预处理”工作，例如设置编码，这种通常都会放行，只是在目标资源执行之前做一些准备工作。(例如：几乎是所有的Servlet中都需要写request.setCharacteEncoding(),可以把它放入到一个Filter中。）这种过滤器没有拦截功能。  </p>
+<p>2.通过条件判断是否放行，例如校验当前用户是否已经登录，或者用户IP是否已经被禁用。(有拦截操作) (粗粒度权限控制，会员有会员的权利、游客有游客的权利) </p>
+<p>3.在目标资源执行后，做一些后续的特殊处理工作。例如把目标资源输出的数据进行处理。</p>
+<h2 id="案例-分IP统计网站的访问次数"><a href="#案例-分IP统计网站的访问次数" class="headerlink" title="案例:分IP统计网站的访问次数"></a>案例:分IP统计网站的访问次数</h2><p>功能分析:1.统计工作需要在所有资源之前都执行，那么就可以放到Filter中了。2.我们这个过滤器不打算做拦截操作，因为我们只是用来做统计的。3.用什么东西来装载统计的数据。Map<string ,integer="">，整个网站只需要一个Map即可4.Map什么时候创建(使用ServletContextListener，在服务器启动时完成创建，并保存到SevletContext中)，Map保存到哪里:Map需要在Filter中用来保存数据;Map需要在页面使用，打印Map中的数据。  </string></p>
+<p>AListener.java:<br><img src="http://od2xrf8gr.bkt.clouddn.com/AListener.png" alt="">  </p>
+<p>AFilter.java:<br><img src="http://od2xrf8gr.bkt.clouddn.com/AFilter.png" alt="">  </p>
+<p>show.jsp:<br><img src="http://od2xrf8gr.bkt.clouddn.com/showjsp.png" alt="">  </p>
+<p>效果图:<br><img src="http://od2xrf8gr.bkt.clouddn.com/xiaoguo.png" alt=""></p>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[JavaWeb三大组件之监听器(Listener)]]></title>
       <url>http://codingxiaxw.cn/archives/2016/10/26/26-JavaWeb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8B%E7%9B%91%E5%90%AC%E5%99%A8/</url>
       <content type="html"><![CDATA[<p>监听器是一个专门用于对其他对象身上发生的事件或状态改变进行监听和相应处理的对象，当被监视的对象发生情况时，立即采取相应的行动。监听器其实就是一个实现特定接口的普通java程序，这个程序专门用于监听另一个java对象的方法调用或属性改变，当被监听对象发生上述事件后，监听器某个方法立即被执行。<br><a id="more"></a></p>
