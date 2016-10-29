@@ -1995,7 +1995,7 @@ where sal=max(sal);
       <content type="html"><![CDATA[<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>EL，即Expression Language。在JavaWeb中属于JSP技术。  </p>
 <p>JSP中的表达式:Java脚本表达式<code>&lt;%=Java表达式%&gt;</code>;EL表达式<code>${EL表达式}</code>。  </p>
 <a id="more"></a>
-<p>JavaWeb中最好不要在JSP中写JSP代码，所以用EL表达式来替代Java表达式。  </p>
+<p>JavaWeb中最好不要在JSP中写Java代码，所以用EL表达式来替代Java表达式。  </p>
 <h2 id="2-语法及用法"><a href="#2-语法及用法" class="headerlink" title="2.语法及用法"></a>2.语法及用法</h2><h3 id="2-1获取某个对象的值，并将其输出到页面上。"><a href="#2-1获取某个对象的值，并将其输出到页面上。" class="headerlink" title="2.1获取某个对象的值，并将其输出到页面上。"></a>2.1获取某个对象的值，并将其输出到页面上。</h3><ul>
 <li>1.点运算符:<code>${stu.name}</code>，即调用域中<code>stu</code>对应的对象的<code>name</code>的读属性<code>getName()</code>。但，若stu在4个域中没有绑定相应对象，那么就在网页上输出空字符串(即什么都不输出)。  </li>
 </ul>
