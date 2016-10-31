@@ -4,6 +4,796 @@
   
     
     <entry>
+      <title><![CDATA[JavaWeb之JSTL标签库]]></title>
+      <url>http://codingxiaxw.cn/archives/2016/10/30/29-JSTL%E6%A0%87%E7%AD%BE%E5%BA%93/</url>
+      <content type="html"><![CDATA[<p>之前学习EL表达式和JSTL标签库的时候只将EL的知识总结后上传到了blog上，没抽时间将JSTL的知识总结出来，如今做项目时在JSP页面中涉及到太多JSTL标签的语法，于是便抽时间将这篇博客补上。  </p>
+<a id="more"></a> 
+<h2 id="1-JSTL标签库介绍"><a href="#1-JSTL标签库介绍" class="headerlink" title="1.JSTL标签库介绍"></a>1.JSTL标签库介绍</h2><p>JSTL标签库的使用是为弥补html标签的不足，规范自定义标签的使用而诞生的。使用JSLT标签的目的就是不希望在jsp页面中出现java逻辑代码。JSTL也是对EL表达式的扩展(也就是说JSTL依赖EL)，是一门标签语言。JSTL标签使用起来非常方便，它与JSP动作标签一样，只不过它不是JSP内置的标签，需要我们自己导包，一定要指定标签库。 </p>
+<p>如果你使用MyEclipse开发JavaWeb，那么把项目发布到Tomcat时，你会发现MyEclipse在lib目录下自动存放了JSTL的Jar包。如果你使用其他IDE，那么你需要手动导入这个JSTL的Jar包:jstl-1.2.jar。  </p>
+<h2 id="2-JSTL标签库的分类"><a href="#2-JSTL标签库的分类" class="headerlink" title="2.JSTL标签库的分类"></a>2.JSTL标签库的分类</h2><ul>
+<li>core:核心标签库(用得最多)</li>
+<li>fmt:国际化标签库(只需学习两个，日期和数字)</li>
+<li>sql:数据库标签库(过时了，不需要学习)</li>
+<li>xml:xml标签库(过时了，不需要学习)</li>
+</ul>
+<h2 id="3-核心标签库使用说明"><a href="#3-核心标签库使用说明" class="headerlink" title="3.核心标签库使用说明"></a>3.核心标签库使用说明</h2><p>JSTL的核心标签库标签共13个，使用这些标签能够完成JSP页面的基本功能，减少编码工作。  </p>
+<p>从功能上可以分为4类:表达式控制标签、流程控制标签、循环标签、URL操作标签。  </p>
+<ul>
+<li>(1) 表达式控制标签:out标签、set标签、remove标签、catch标签</li>
+<li>(2) 流程控制标签:if标签、choose标签、when标签、otherwise标签</li>
+<li>(3) 循环标签:forEach标签、forTokens标签</li>
+<li>(4) URL操作标签</li>
+</ul>
+<p>在JSP页面引入核心标签库的代码为:<code>&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;</code></p>
+<h3 id="3-1表达式控制标签——out标签使用"><a href="#3-1表达式控制标签——out标签使用" class="headerlink" title="3.1表达式控制标签——out标签使用"></a>3.1表达式控制标签——out标签使用</h3><h4 id="3-1-1-lt-c-out-gt-标签的功能"><a href="#3-1-1-lt-c-out-gt-标签的功能" class="headerlink" title="3.1.1&lt;c:out&gt;标签的功能"></a>3.1.1<code>&lt;c:out&gt;</code>标签的功能</h4><p><code>&lt;c:out&gt;</code>标签主要是用来输出数据对象(字符串、表达式)的内容或结果。  </p>
+<p>在使用Java脚本输出时常使用的方式为:<code>&lt;% out.println(&quot;字符串&quot;); %&gt;</code>或者<code>&lt;%=表达式 %&gt;</code>，在web开发中，为了避免暴露逻辑代码会尽量减少页面中的Java脚本，使用<code>&lt;c:out&gt;</code>标签就可以实现以上功能。  </p>
+<pre><code>&lt;c:out value=&quot;字符串&quot;/&gt;或者&lt;c:out value=&quot;EL表达式&quot;/&gt;  
+</code></pre><p>JSTL的使用是和EL表达式分不开的，EL表达式虽然可以直接将结果返回给页面，但有时得到的结果为空，<code>&lt;c:out&gt;</code>有特定的结果处理功能，EL的单独使用会降低程序的易读性，建议把EL的结果输入放入<code>&lt;c:out&gt;</code>标签中。  </p>
+<h4 id="3-1-2-lt-c-out-gt-标签的语法"><a href="#3-1-2-lt-c-out-gt-标签的语法" class="headerlink" title="3.1.2&lt;c:out&gt;标签的语法"></a>3.1.2<code>&lt;c:out&gt;</code>标签的语法</h4><p><code>&lt;c:out&gt;</code>标签的使用有两种语法格式:  </p>
+<ul>
+<li>语法1:<code>&lt;c:out value=&quot;要显示的数据对象&quot; [escapeXml=&quot;true|false&quot;][default=&quot;默认值&quot;]/&gt;</code></li>
+<li>语法2:<code>&lt;c:out value=&quot;要显示的数据对象&quot; [escapeXml=&quot;true|false&quot;]&gt;默认值&lt;/c:out&gt;</code></li>
+</ul>
+<p>这两种方式没有本质的区别，只是格式上的差别。[escapeXml=”true|false”][defult=”默认值”]这些使用[]属性表示是不是必须的。  </p>
+<h4 id="3-1-3-lt-c-out-gt-标签的属性"><a href="#3-1-3-lt-c-out-gt-标签的属性" class="headerlink" title="3.1.3&lt;c:out&gt;标签的属性"></a>3.1.3<code>&lt;c:out&gt;</code>标签的属性</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:center">是否支持EL</th>
+<th>属性类型</th>
+<th>属性描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Value</td>
+<td style="text-align:center">true</td>
+<td>Object</td>
+<td>指定要输出的内容</td>
+</tr>
+<tr>
+<td>escapeXml</td>
+<td style="text-align:center">true</td>
+<td>Boolean</td>
+<td>指定是否将&gt;、&lt;、&amp;、’ 、”等特殊字符进行HTML编码转换后再进行输出。默认值为true。</td>
+</tr>
+<tr>
+<td>default</td>
+<td style="text-align:center">true</td>
+<td>Object</td>
+<td>指定如果value属性的值为null时所输出的默认值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-1-4-lt-c-out-gt-标签的使用范例"><a href="#3-1-4-lt-c-out-gt-标签的使用范例" class="headerlink" title="3.1.4&lt;c:out&gt;标签的使用范例"></a>3.1.4<code>&lt;c:out&gt;</code>标签的使用范例</h4><pre><code>&lt;%@ page language=&quot;java&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%--引入JSTL核心标签库 --%&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt;
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;JSTL: --表达式控制标签“out”标签的使用&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;h3&gt;&lt;c:out value=&quot;下面的代码演示了c:out的使用，以及在不同属性值状态下的结果。&quot;/&gt;&lt;/h3&gt;
+&lt;hr/&gt;
+&lt;ul&gt;
+    &lt;%--（1）直接输出了一个字符串。 --%&gt;
+    &lt;li&gt;（1）&lt;c:out value=&quot;JSTL的out标签的使用&quot; /&gt;&lt;/li&gt;
+
+    &lt;li&gt;（2）&lt;c:out value=&quot;&lt;a href=&apos;http://www.cnblogs.com/&apos;&gt;点击链接到博客园&lt;/a&gt;&quot; /&gt;&lt;/li&gt;
+    &lt;%--escapeXml=&quot;false&quot;表示value值中的html标签不进行转义，而是直接输出 --%&gt;
+    &lt;li&gt;（3）&lt;c:out value=&quot;&lt;a href=&apos;http://www.cnblogs.com/&apos;&gt;点击链接到博客园&lt;/a&gt;&quot; escapeXml=&quot;false&quot;/&gt;&lt;/li&gt;
+
+    &lt;%--(4）字符串中有转义字符，但在默认情况下没有转换。 --%&gt;
+    &lt;li&gt;（4）&lt;c:out value=&quot;&amp;lt未使用字符转义&amp;gt&quot; /&gt;&lt;/li&gt;
+    &lt;%--（5）使用了转义字符&amp;lt和&amp;gt分别转换成&lt;和&gt;符号。 --%&gt;
+    &lt;li&gt;（5）&lt;c:out value=&quot;&amp;lt使用字符转义&amp;gt&quot; escapeXml=&quot;false&quot;&gt;&lt;/c:out&gt;&lt;/li&gt;
+
+    &lt;%--（6）设定了默认值，从EL表达式${null}得到空值，所以直接输出设定的默认值。 --%&gt;
+    &lt;li&gt;（6）&lt;c:out value=&quot;${null}&quot;&gt;使用了默认值&lt;/c:out&gt;&lt;/li&gt;
+    &lt;%--（7）未设定默认值，输出结果为空。 --%&gt;
+    &lt;li&gt;（7）&lt;c:out value=&quot;${null}&quot;&gt;&lt;/c:out&gt;&lt;/li&gt;
+
+    &lt;%--（8）设定了默认值，从EL表达式${null}得到空值，所以直接输出设定的默认值。 --%&gt;
+    &lt;li&gt;（8）&lt;c:out value=&quot;${null}&quot; default=&quot;默认值&quot;/&gt;&lt;/li&gt;
+    &lt;%--（9）未设定默认值，输出结果为空。 --%&gt;
+    &lt;li&gt;（9）&lt;c:out value=&quot;${null}&quot;/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>运行结果如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/1.png" alt=""></p>
+<h3 id="3-2表达式控制标签——set标签的使用"><a href="#3-2表达式控制标签——set标签的使用" class="headerlink" title="3.2表达式控制标签——set标签的使用"></a>3.2表达式控制标签——set标签的使用</h3><h4 id="3-2-1-lt-c-set-gt-标签的功能"><a href="#3-2-1-lt-c-set-gt-标签的功能" class="headerlink" title="3.2.1&lt;c:set&gt;标签的功能"></a>3.2.1<code>&lt;c:set&gt;</code>标签的功能</h4><p><code>&lt;c:set&gt;</code>标签用于把某一个对象存在指定的域范围内，或者将某一个对象存储到Map或者JavaBean对象中。  </p>
+<h4 id="3-2-2-lt-c-set-gt-标签的语法"><a href="#3-2-2-lt-c-set-gt-标签的语法" class="headerlink" title="3.2.2&lt;c:set&gt;标签的语法"></a>3.2.2<code>&lt;c:set&gt;</code>标签的语法</h4><p><code>&lt;c:set&gt;</code>标签的编写共有4种语法格式。  </p>
+<ul>
+<li>语法1:存值，把一个值放在指定的域范围内.<code>&lt;c:set value=”值1” var=”name1” [scope=”page|request|session|application”]/&gt;</code>  <blockquote>
+<p>含义:把一个变量名为name1值为“值1”的变量存储在指定的scope范围内。</p>
+</blockquote>
+</li>
+<li>语法2:<code>&lt;c:set var=”name2” [scope=”page|request|session|application”]&gt;值2&lt;/c:set&gt;</code>  <blockquote>
+<p>含义：把一个变量名为name2，值为值2的变量存储在指定的scope范围内。</p>
+</blockquote>
+</li>
+<li>语法3: <code>&lt;c:set value=”值3” target=”JavaBean对象” property=”属性名”/&gt;</code> <blockquote>
+<p>含义:把一个值为“值3”赋值给指定的JavaBean的属性名。相当与setter()方法。</p>
+</blockquote>
+</li>
+<li>语法4: <code>&lt;c:set target=”JavaBean对象” property=”属性名”&gt;值4&lt;/c:set&gt;</code>  <blockquote>
+<p>含义：把一个值4赋值给指定的JavaBean的属性名。  </p>
+</blockquote>
+</li>
+</ul>
+<p>从功能上分语法1和语法2、语法3和语法4的效果是一样的，只是把value值放置的位置不同，至于使用那个根据个人的喜爱，语法1和语法2是向scope范围内存储一个值，语法3和语法4是给指定的JavaBean赋值。</p>
+<h4 id="3-2-3-lt-c-set-gt-标签的属性"><a href="#3-2-3-lt-c-set-gt-标签的属性" class="headerlink" title="3.2.3&lt;c:set&gt;标签的属性"></a>3.2.3<code>&lt;c:set&gt;</code>标签的属性</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:center">是否支持EL</th>
+<th>属性类型</th>
+<th>属性描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Value</td>
+<td style="text-align:center">true</td>
+<td>Object</td>
+<td>用于指定属性值</td>
+</tr>
+<tr>
+<td>var</td>
+<td style="text-align:center">false</td>
+<td>String</td>
+<td>用于指定要设置的Web域属性的名称</td>
+</tr>
+<tr>
+<td>scope</td>
+<td style="text-align:center">false</td>
+<td>String</td>
+<td>用于指定属性所在的Web域</td>
+</tr>
+<tr>
+<td>target</td>
+<td style="text-align:center">true</td>
+<td>Object</td>
+<td>用于指定要设置属性的对象，这个对象必须是JavaBean对象或java.util.Map对象</td>
+</tr>
+<tr>
+<td>property</td>
+<td style="text-align:center">true</td>
+<td>string</td>
+<td>用于指定当前要为对象设置的属性名称</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-2-4-lt-c-set-gt-标签的使用范例"><a href="#3-2-4-lt-c-set-gt-标签的使用范例" class="headerlink" title="3.2.4&lt;c:set&gt;标签的使用范例"></a>3.2.4<code>&lt;c:set&gt;</code>标签的使用范例</h4><pre><code>&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%--引入JSTL核心标签库 --%&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt;
+&lt;%--使用JSP的指令元素指定要使用的JavaBean --%&gt;
+&lt;jsp:useBean id=&quot;person&quot; class=&quot;javabean.Person&quot;/&gt;
+&lt;%--负责实例化Bean，id指定实例化后的对象名，可以通过${person}得到person在内存中的值（或者使用person.toString()方法）。 --%&gt;
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+
+&lt;title&gt;JSTL: --表达式控制标签“set”标签的使用&lt;/title&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;h3&gt;代码给出了给指定scope范围赋值的示例。&lt;/h3&gt;
+&lt;ul&gt;
+    &lt;%--通过&lt;c:set&gt;标签将data1的值放入page范围中。--%&gt;
+    &lt;li&gt;把一个值放入page域中:&lt;c:set var=&quot;data1&quot; value=&quot;xdp&quot; scope=&quot;page&quot;/&gt;&lt;/li&gt;
+    &lt;%--使用EL表达式从pageScope得到data1的值。--%&gt;
+    &lt;li&gt;从page域中得到值：${pageScope.data1}&lt;/li&gt;
+
+    &lt;%--通过&lt;c:set&gt;标签将data2的值放入request范围中。--%&gt;
+    &lt;li&gt;把一个值放入request域中:&lt;c:set var=&quot;data2&quot; value=&quot;gacl&quot; scope=&quot;request&quot;/&gt;&lt;/li&gt;
+    &lt;%--使用EL表达式从requestScope得到data2的值。--%&gt;
+    &lt;li&gt;从request域中得到值：${requestScope.data2}&lt;/li&gt;
+
+    &lt;%--通过&lt;c:set&gt;标签将值name1的值放入session范围中。--%&gt;
+    &lt;li&gt;把一个值放入session域中。&lt;c:set value=&quot;孤傲苍狼&quot; var=&quot;name1&quot; scope=&quot;session&quot;&gt;&lt;/c:set&gt;&lt;/li&gt;
+    &lt;%--使用EL表达式从sessionScope得到name1的值。--%&gt;
+    &lt;li&gt;从session域中得到值:${sessionScope.name1} &lt;/li&gt;
+
+    &lt;%--把name2放入application范围中。 --%&gt;
+    &lt;li&gt;把一个值放入application域中。&lt;c:set var=&quot;name2&quot; scope=&quot;application&quot;&gt;白虎神皇&lt;/c:set&gt;&lt;/li&gt;
+    &lt;%--使用EL表达式从application范围中取值，用&lt;c:out&gt;标签输出使得页面规范化。 --%&gt;
+    &lt;li&gt;使用out标签和EL表达式嵌套从application域中得到值： 
+         &lt;c:out value=&quot;${applicationScope.name2}&quot;&gt;未得到name的值&lt;/c:out&gt;
+    &lt;/li&gt;
+
+    &lt;%--不指定范围使用EL自动查找得到值 --%&gt; 
+    &lt;li&gt;未指定scope的范围，会从不同的范围内查找得到相应的值：${data1}、${data2}、${name1}、${name2}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h3&gt;使用Java脚本实现以上功能&lt;/h3&gt;
+&lt;ul&gt;
+
+    &lt;li&gt;把一个值放入page域中。&lt;%pageContext.setAttribute(&quot;data1&quot;,&quot;xdp&quot;);%&gt;&lt;/li&gt;
+    &lt;li&gt;从page域中得到值:&lt;%out.println(pageContext.getAttribute(&quot;data1&quot;));%&gt;&lt;/li&gt;
+
+    &lt;li&gt;把一个值放入request域中。&lt;%request.setAttribute(&quot;data2&quot;,&quot;gacl&quot;);%&gt;&lt;/li&gt;
+    &lt;li&gt;从request域中得到值:&lt;%out.println(request.getAttribute(&quot;data2&quot;));%&gt;&lt;/li&gt;
+
+    &lt;li&gt;把一个值放入session域中。&lt;%session.setAttribute(&quot;name1&quot;,&quot;孤傲苍狼&quot;);%&gt;&lt;/li&gt;
+    &lt;li&gt;从session中域得到值:&lt;%out.println(session.getAttribute(&quot;name1&quot;));%&gt;&lt;/li&gt;
+    &lt;%--out.println()方法与&lt;%=%&gt;表达式输出功能一样 
+    但使用表达式输出（&lt;%=%&gt;）明显要比使用out.println()输出更好。
+    --%&gt;
+    &lt;li&gt;&lt;%=session.getAttribute(&quot;name1&quot;) %&gt;&lt;/li&gt;
+    &lt;li&gt;把另一个值放入application域中。&lt;%application.setAttribute(&quot;name2&quot;,&quot;白虎神皇&quot;);%&gt;&lt;/li&gt;
+    &lt;li&gt; 从application域中得到值：&lt;%out.println(application.getAttribute(&quot;name2&quot;));%&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;%=application.getAttribute(&quot;name2&quot;)%&gt;&lt;/li&gt;
+
+    &lt;li&gt;未指定scope的范围，会从不同的范围内查找得到相应的值：
+        &lt;%=pageContext.findAttribute(&quot;data1&quot;)%&gt;、
+        &lt;%=pageContext.findAttribute(&quot;data2&quot;)%&gt;、
+        &lt;%=pageContext.findAttribute(&quot;name1&quot;)%&gt;、
+        &lt;%=pageContext.findAttribute(&quot;name2&quot;)%&gt;
+    &lt;/li&gt;
+
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h3&gt;操作JavaBean，设置JavaBean的属性值&lt;/h3&gt;
+&lt;%--设置JavaBean的属性值，等同与setter方法，Target指向实例化后的对象，property指向要插入值的参数名。
+注意：使用target时一定要指向实例化后的JavaBean对象，也就是要跟&lt;jsp:useBean&gt;配套使用，
+也可以java脚本实例化，但这就失去了是用标签的本质意义。
+使用Java脚本实例化：
+&lt;%@page import=&quot;javabean.Person&quot;%
+&lt;% Person person=new Person(); %&gt;
+ --%&gt;
+&lt;c:set target=&quot;${person}&quot; property=&quot;name&quot;&gt;孤傲苍狼&lt;/c:set&gt;
+&lt;c:set target=&quot;${person}&quot; property=&quot;age&quot;&gt;25&lt;/c:set&gt;
+&lt;c:set target=&quot;${person}&quot; property=&quot;sex&quot;&gt;男&lt;/c:set&gt;
+&lt;c:set target=&quot;${person}&quot; property=&quot;home&quot;&gt;中国&lt;/c:set&gt;
+&lt;ul&gt;
+    &lt;li&gt;使用的目标对象为：${person}&lt;/li&gt;
+    &lt;li&gt;从Bean中获得的name值为：&lt;c:out value=&quot;${person.name}&quot;&gt;&lt;/c:out&gt;&lt;/li&gt;
+    &lt;li&gt;从Bean中获得的age值为：&lt;c:out value=&quot;${person.age}&quot;&gt;&lt;/c:out&gt;&lt;/li&gt;
+    &lt;li&gt;从Bean中获得的sex值为：&lt;c:out value=&quot;${person.sex}&quot;&gt;&lt;/c:out&gt;&lt;/li&gt;
+    &lt;li&gt;从Bean中获得的home值为：&lt;c:out value=&quot;${person.home}&quot;&gt;&lt;/c:out&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h3&gt;操作Map&lt;/h3&gt;
+ &lt;% 
+    Map map = new HashMap();
+    request.setAttribute(&quot;map&quot;,map);
+ %&gt;
+ &lt;%--将data对象的值存储到map集合中 --%&gt;
+&lt;c:set property=&quot;data&quot; value=&quot;gacl&quot; target=&quot;${map}&quot;/&gt;
+    ${map.data}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><strong>jsp页面中使用到的javabean.Person类的代码如下:</strong>  </p>
+<pre><code>package javabean;
+
+/**
+* 项目名称：JSTLStudy 
+* 类名称：Person 
+* 类描述：一个只有getter和setter方法的JavaBean或者说一个pojo(简单的Java对象(Plain Old Java Objects))类，
+* 作为一个vo（数据传输对象）。定义了四个变量age、name、sex和home。 
+*/
+public class Person {
+
+    private String age;
+
+    private String home;
+
+    private String name;
+
+    private String sex;
+
+    public String getAge() {
+        return age;
+    }
+
+    public String getHome() {
+        return home;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSex() {
+        return sex;
+   }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public void setHome(String home) {
+        this.home = home;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+}
+</code></pre><p>运行结果如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/2.png" alt=""></p>
+<h3 id="3-3表达式控制标签——remove标签的使用"><a href="#3-3表达式控制标签——remove标签的使用" class="headerlink" title="3.3表达式控制标签——remove标签的使用"></a>3.3表达式控制标签——remove标签的使用</h3><h4 id="3-3-1-lt-c-remove-gt-标签的功能"><a href="#3-3-1-lt-c-remove-gt-标签的功能" class="headerlink" title="3.3.1&lt;c:remove&gt;标签的功能"></a>3.3.1<code>&lt;c:remove&gt;</code>标签的功能</h4><p><code>&lt;c:remove&gt;</code>标签主要用来从指定的JSP范围内移除指定的变量。  </p>
+<h4 id="3-3-2-lt-c-remove-gt-标签的语法"><a href="#3-3-2-lt-c-remove-gt-标签的语法" class="headerlink" title="3.3.2&lt;c:remove&gt;标签的语法"></a>3.3.2<code>&lt;c:remove&gt;</code>标签的语法</h4><p><code>&lt;c:remove var=&quot;变量名&quot; [scope=”page|request|session|application”]/&gt;</code>其中var属性是必须的，scope可以以省略。  </p>
+<h4 id="3-3-3-lt-c-remove-gt-标签的使用范例"><a href="#3-3-3-lt-c-remove-gt-标签的使用范例" class="headerlink" title="3.3.3&lt;c:remove&gt;标签的使用范例"></a>3.3.3<code>&lt;c:remove&gt;</code>标签的使用范例</h4><pre><code>&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%--引入JSTL核心标签库 --%&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt;
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;JSTL: --表达式控制标签“remove”标签的使用&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;ul&gt;
+        &lt;c:set var=&quot;name&quot; scope=&quot;session&quot;&gt;孤傲苍狼&lt;/c:set&gt;
+        &lt;c:set var=&quot;age&quot; scope=&quot;session&quot;&gt;25&lt;/c:set&gt;
+        &lt;li&gt;&lt;c:out value=&quot;${sessionScope.name}&quot;&gt;&lt;/c:out&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;c:out value=&quot;${sessionScope.age}&quot;&gt;&lt;/c:out&gt;&lt;/li&gt;
+        &lt;%--使用remove标签移除age变量 --%&gt;
+        &lt;c:remove var=&quot;age&quot; /&gt;
+        &lt;li&gt;&lt;c:out value=&quot;${sessionScope.name}&quot;&gt;&lt;/c:out&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;c:out value=&quot;${sessionScope.age}&quot;&gt;&lt;/c:out&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>运行结果如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/3.png" alt="">  </p>
+<h3 id="3-4表达式控制标签——catch标签的使用"><a href="#3-4表达式控制标签——catch标签的使用" class="headerlink" title="3.4表达式控制标签——catch标签的使用"></a>3.4表达式控制标签——catch标签的使用</h3><h4 id="3-4-1-lt-c-catch-gt-标签的功能"><a href="#3-4-1-lt-c-catch-gt-标签的功能" class="headerlink" title="3.4.1&lt;c:catch&gt;标签的功能"></a>3.4.1<code>&lt;c:catch&gt;</code>标签的功能</h4><p><code>&lt;c:catch&gt;</code>标签用于捕获嵌套在标签体中的内容抛出的异常。  </p>
+<h4 id="3-4-2-lt-c-catch-gt-标签的语法"><a href="#3-4-2-lt-c-catch-gt-标签的语法" class="headerlink" title="3.4.2&lt;c:catch&gt;标签的语法"></a>3.4.2<code>&lt;c:catch&gt;</code>标签的语法</h4><p>其语法格式如下：<code>&lt;c:catch [var=&quot;varName&quot;]&gt;容易产生异常的代码&lt;/c:catch&gt;</code> </p>
+<p>var属性用于标识<code>&lt;c:catch&gt;</code>标签捕获的异常对象，它将保存在page这个Web域中。</p>
+<h4 id="3-4-3-lt-c-catch-gt-标签的使用范例"><a href="#3-4-3-lt-c-catch-gt-标签的使用范例" class="headerlink" title="3.4.3&lt;c:catch&gt;标签的使用范例"></a>3.4.3<code>&lt;c:catch&gt;</code>标签的使用范例</h4><pre><code>&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%--引入JSTL核心标签库 --%&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt;
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;JSTL: --表达式控制标签“catch”标签实例&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h4&gt;catch标签实例&lt;/h4&gt;
+    &lt;hr&gt;
+
+    &lt;%--把容易产生异常的代码放在&lt;c:catch&gt;&lt;/c:catch&gt;中，自定义一个变量errorInfo用于存储异常信息 --%&gt;
+    &lt;c:catch var=&quot;errorInfo&quot;&gt;
+       &lt;%--实现了一段异常代码，向一个不存在的JavaBean中插入一个值--%&gt;
+       &lt;c:set target=&quot;person&quot; property=&quot;hao&quot;&gt;&lt;/c:set&gt;
+    &lt;/c:catch&gt;
+
+    &lt;%--用EL表达式得到errorInfo的值，并使用&lt;c:out&gt;标签输出 --%&gt;
+    异常：&lt;c:out value=&quot;${errorInfo}&quot; /&gt;&lt;br /&gt;
+    异常 errorInfo.getMessage：&lt;c:out value=&quot;${errorInfo.message}&quot; /&gt;&lt;br /&gt;
+    异常 errorInfo.getCause：&lt;c:out value=&quot;${errorInfo.cause}&quot; /&gt;&lt;br /&gt;
+    异常 errorInfo.getStackTrace：&lt;c:out value=&quot;${errorInfo.stackTrace}&quot; /&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>运行结果如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/4.png" alt=""></p>
+<h3 id="3-5流程控制标签——if标签使用总结"><a href="#3-5流程控制标签——if标签使用总结" class="headerlink" title="3.5流程控制标签——if标签使用总结"></a>3.5流程控制标签——if标签使用总结</h3><h4 id="3-5-1-lt-c-if-gt-标签的功能"><a href="#3-5-1-lt-c-if-gt-标签的功能" class="headerlink" title="3.5.1&lt;c:if&gt;标签的功能"></a>3.5.1<code>&lt;c:if&gt;</code>标签的功能</h4><p><code>&lt;c:if&gt;</code> 标签和程序中的if语句作用相同，用来实现条件控制。  </p>
+<h4 id="3-5-2-lt-c-if-gt-标签的语法"><a href="#3-5-2-lt-c-if-gt-标签的语法" class="headerlink" title="3.5.2&lt;c:if&gt;标签的语法"></a>3.5.2<code>&lt;c:if&gt;</code>标签的语法</h4><ul>
+<li>语法1:没有标签体内容:<code>&lt;c:if test=&quot;testCondition&quot; var=&quot;varName&quot; [scope=&quot;{page|request|session|application}&quot;]/&gt;</code></li>
+<li>语法2: 有标签体内容。<code>&lt;c:if test=&quot;testCondition&quot; [var=&quot;varName&quot;] [scope=&quot;{page|request|session|application}&quot;]&gt;标签体内容。&lt;/c:if&gt;</code></li>
+</ul>
+<p>参数说明:  </p>
+<ul>
+<li>1）test属性用于存放判断的条件，一般使用EL表达式来编写。</li>
+<li>2）var属性用来存放判断的结果，类型为true或false。</li>
+<li>3）scopes属性用来指定var属性存放的范围。</li>
+</ul>
+<h4 id="3-5-3-lt-c-if-gt-标签的属性"><a href="#3-5-3-lt-c-if-gt-标签的属性" class="headerlink" title="3.5.3&lt;c:if&gt;标签的属性"></a>3.5.3<code>&lt;c:if&gt;</code>标签的属性</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:center">是否支持EL</th>
+<th>属性类型</th>
+<th>属性描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>test</td>
+<td style="text-align:center">true</td>
+<td>boolean</td>
+<td>决定是否处理标签体中的内容的条件表达式</td>
+</tr>
+<tr>
+<td>var</td>
+<td style="text-align:center">false</td>
+<td>String</td>
+<td>用于指定将test属性的执行结果保存到某个Web域中的某个属性的名称</td>
+</tr>
+<tr>
+<td>scope</td>
+<td style="text-align:center">false</td>
+<td>String</td>
+<td>指定将test属性的执行结果保存到哪个Web域中</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-5-4-lt-c-if-gt-标签的使用范例"><a href="#3-5-4-lt-c-if-gt-标签的使用范例" class="headerlink" title="3.5.4&lt;c:if&gt;标签的使用范例"></a>3.5.4<code>&lt;c:if&gt;</code>标签的使用范例</h4><pre><code>&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%--引入JSTL核心标签库 --%&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt;
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;JSTL: --流程控制标签 if标签示例&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h4&gt;if标签示例&lt;/h4&gt;
+    &lt;hr&gt;
+    &lt;form action=&quot;JSTL_if_tag.jsp&quot; method=&quot;post&quot;&gt;
+        &lt;input type=&quot;text&quot; name=&quot;uname&quot; value=&quot;${param.uname}&quot;&gt; 
+        &lt;input type=&quot;submit&quot; value=&quot;登录&quot;&gt;
+    &lt;/form&gt;
+
+    &lt;%--使用if标签进行判断并把检验后的结果赋给adminchock，存储在默认的page范围中。 --%&gt;
+    &lt;c:if test=&quot;${param.uname==&apos;admin&apos;}&quot; var=&quot;adminchock&quot;&gt;
+    &lt;%--可以把adminchock的属性范围设置为session，这样就可以在其他的页面中得到adminchock的值，
+使用&lt;c:if text=”${adminchock}”&gt;&lt;c:if&gt;判断，实现不同的权限。 --%&gt;
+        &lt;c:out value=&quot;管理员欢迎您！&quot;/&gt;
+    &lt;/c:if&gt;
+    &lt;%--使用EL表达式得到adminchock的值，如果输入的用户名为admin将显示true。 --%&gt;
+    ${adminchock}
+&lt;/body&gt;
+&lt;/html&gt;  
+</code></pre><h3 id="3-6流程控制标签——choose标签、when标签、otherwise标签配合使用讲解"><a href="#3-6流程控制标签——choose标签、when标签、otherwise标签配合使用讲解" class="headerlink" title="3.6流程控制标签——choose标签、when标签、otherwise标签配合使用讲解"></a>3.6流程控制标签——choose标签、when标签、otherwise标签配合使用讲解</h3><h4 id="3-6-1-lt-c-choose-gt-、-lt-c-when-gt-和-lt-c-otherwise-gt-标签的功能"><a href="#3-6-1-lt-c-choose-gt-、-lt-c-when-gt-和-lt-c-otherwise-gt-标签的功能" class="headerlink" title="3.6.1&lt;c:choose&gt;、&lt;c:when&gt;和&lt;c:otherwise&gt;标签的功能"></a>3.6.1<code>&lt;c:choose&gt;</code>、<code>&lt;c:when&gt;</code>和<code>&lt;c:otherwise&gt;</code>标签的功能</h4><p><code>&lt;c:choose&gt;</code>、<code>&lt;c:when&gt;</code>和<code>&lt;c:otherwise&gt;</code>这3个标签通常情况下是一起使用的，<code>&lt;c:choose&gt;</code>标签作为<code>&lt;c:when&gt;</code>和<code>&lt;c:otherwise&gt;</code>标签的父标签来使用。  </p>
+<p>使用<code>&lt;c:choose&gt;</code>，<code>&lt;c:when&gt;</code>和<code>&lt;c:otherwise&gt;</code>三个标签，可以构造类似 “if-else if-else” 的复杂条件判断结构。  </p>
+<h4 id="3-6-2语法"><a href="#3-6-2语法" class="headerlink" title="3.6.2语法"></a>3.6.2语法</h4><pre><code>&lt;c:choose&gt;
+     &lt;c:when test=&quot;条件1&quot;&gt;
+             //业务逻辑1
+     &lt;/c:when&gt;
+     &lt;c:when test=&quot;条件2&quot;&gt;
+             //业务逻辑2
+     &lt;/c:when&gt;
+     &lt;c:when test=&quot;条件n&quot;&gt;
+             //业务逻辑n
+     &lt;/c:when&gt;
+     &lt;c:otherwise&gt;
+             //业务逻辑
+     &lt;/c:otherwise&gt;
+&lt;/c:choose&gt;
+</code></pre><h4 id="3-6-3使用范例"><a href="#3-6-3使用范例" class="headerlink" title="3.6.3使用范例"></a>3.6.3使用范例</h4><pre><code>&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%--引入JSTL核心标签库 --%&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt;
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;JSTL: -- choose及其嵌套标签标签示例&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h4&gt;choose及其嵌套标签示例&lt;/h4&gt;
+    &lt;hr/&gt;
+    &lt;%--通过set标签设定score的值为85 --%&gt;
+    &lt;c:set var=&quot;score&quot; value=&quot;85&quot;/&gt;
+
+    &lt;c:choose&gt;
+
+    &lt;%--使用&lt;c:when&gt;进行条件判断。
+    如果大于等于90，输出“您的成绩为优秀”；
+    如果大于等于70小于90，输出“您的成绩为良好”；
+    大于等于60小于70，输出“您的成绩为及格”；
+    其他（otherwise）输出“对不起，您没能通过考试”。
+ --%&gt;
+
+        &lt;c:when test=&quot;${score&gt;=90}&quot;&gt;
+        你的成绩为优秀！
+        &lt;/c:when&gt;
+
+        &lt;c:when test=&quot;${score&gt;70 &amp;&amp; score&lt;90}&quot;&gt;
+        您的成绩为良好!
+        &lt;/c:when&gt;
+
+        &lt;c:when test=&quot;${score&gt;60 &amp;&amp; score&lt;70}&quot;&gt;
+        您的成绩为及格
+        &lt;/c:when&gt;
+
+        &lt;c:otherwise&gt;
+        对不起，您没有通过考试！
+
+        &lt;/c:otherwise&gt;
+    &lt;/c:choose&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3 id="3-7循环标签——forEach标签的使用"><a href="#3-7循环标签——forEach标签的使用" class="headerlink" title="3.7循环标签——forEach标签的使用"></a>3.7循环标签——forEach标签的使用</h3><h4 id="3-7-1-lt-c-forEach-gt-标签的功能"><a href="#3-7-1-lt-c-forEach-gt-标签的功能" class="headerlink" title="3.7.1&lt;c:forEach&gt;标签的功能"></a>3.7.1<code>&lt;c:forEach&gt;</code>标签的功能</h4><p>该标签根据循环条件遍历集合（Collection）中的元素。</p>
+<h4 id="3-7-2-lt-c-forEach-gt-标签的语法"><a href="#3-7-2-lt-c-forEach-gt-标签的语法" class="headerlink" title="3.7.2&lt;c:forEach&gt;标签的语法"></a>3.7.2<code>&lt;c:forEach&gt;</code>标签的语法</h4><pre><code>&lt;c:forEach var=”name” items=”Collection” 
+　　varStatus=”StatusName” begin=”begin” 
+　　end=”end” step=”step”&gt;
+
+    本体内容
+
+&lt;/c:forEach&gt;
+</code></pre><p>参数说明:  </p>
+<ul>
+<li>1）var设定变量名用于存储从集合中取出元素。</li>
+<li>2）items指定要遍历的集合。</li>
+<li>3）varStatus设定变量名，该变量用于存放集合中元素的信息。</li>
+<li>4）begin、end用于指定遍历的起始位置和终止位置（可选）。</li>
+<li>5）step指定循环的步长。</li>
+</ul>
+<h4 id="3-7-3-lt-c-forEach-gt-标签的属性"><a href="#3-7-3-lt-c-forEach-gt-标签的属性" class="headerlink" title="3.7.3&lt;c:forEach&gt;标签的属性"></a>3.7.3<code>&lt;c:forEach&gt;</code>标签的属性</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:center">是否支持EL</th>
+<th>属性类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>var</td>
+<td style="text-align:center">false</td>
+<td>String</td>
+<td>yes</td>
+<td>无</td>
+</tr>
+<tr>
+<td>items</td>
+<td style="text-align:center">true</td>
+<td>Arrays Collection Iterator Enumeration Map String[]args</td>
+<td>无</td>
+</tr>
+<tr>
+<td>begin</td>
+<td style="text-align:center">true</td>
+<td>int</td>
+<td>no</td>
+<td>0</td>
+</tr>
+<tr>
+<td>end</td>
+<td style="text-align:center">true</td>
+<td>int</td>
+<td>no</td>
+<td>集合中最后一个元素</td>
+</tr>
+<tr>
+<td>step</td>
+<td style="text-align:center">true</td>
+<td>int</td>
+<td>no</td>
+<td>1</td>
+</tr>
+<tr>
+<td>varStatus</td>
+<td style="text-align:center">false</td>
+<td>String</td>
+<td>no</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<p>其中varStatus有4个状态属性，如下表所示:  </p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:center">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td style="text-align:center">int</td>
+<td>当前循环的索引值</td>
+</tr>
+<tr>
+<td>count</td>
+<td style="text-align:center">int</td>
+<td>循环的次数</td>
+</tr>
+<tr>
+<td>first</td>
+<td style="text-align:center">boolean</td>
+<td>是否为第一个位置</td>
+</tr>
+<tr>
+<td>last</td>
+<td style="text-align:center">boolean</td>
+<td>是否为最后一个位置</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-7-4-lt-c-forEach-gt-的使用范例"><a href="#3-7-4-lt-c-forEach-gt-的使用范例" class="headerlink" title="3.7.4&lt;c:forEach&gt;的使用范例"></a>3.7.4<code>&lt;c:forEach&gt;</code>的使用范例</h4><pre><code>&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%--引入JSTL核心标签库 --%&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt;
+&lt;%@page import=&quot;java.util.ArrayList&quot;%&gt;
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;JSTL: -- forEach标签实例&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;h4&gt;&lt;c:out value=&quot;forEach实例&quot;/&gt;&lt;/h4&gt;
+    &lt;% 
+       List&lt;String&gt;list = new ArrayList&lt;String&gt;(); 
+       list.add(0, &quot;贝贝&quot;); 
+       list.add(1, &quot;晶晶&quot;); 
+       list.add(2, &quot;欢欢&quot;); 
+       list.add(3, &quot;莹莹&quot;); 
+       list.add(4, &quot;妮妮&quot;); 
+       request.setAttribute(&quot;list&quot;, list); 
+    %&gt;
+    &lt;B&gt;&lt;c:out value=&quot;不指定begin和end的迭代：&quot; /&gt;&lt;/B&gt;&lt;br&gt;
+    &lt;%--不使用begin和end的迭代，从集合的第一个元素开始，遍历到最后一个元素。 --%&gt;
+
+    &lt;c:forEach var=&quot;fuwa&quot; items=&quot;${list}&quot;&gt;
+        &amp;nbsp;&lt;c:out value=&quot;${fuwa}&quot;/&gt;&lt;br/&gt;
+    &lt;/c:forEach&gt;
+
+    &lt;B&gt;&lt;c:out value=&quot;指定begin和end的迭代：&quot; /&gt;&lt;/B&gt;&lt;br&gt;
+    &lt;%--指定begin的值为1、end的值为3、step的值为2，
+    从第二个开始首先得到晶晶，每两个遍历一次，
+    则下一个显示的结果为莹莹，end为3则遍历结束。 --%&gt;
+    &lt;c:forEach var=&quot;fuwa&quot; items=&quot;${list}&quot; begin=&quot;1&quot; end=&quot;3&quot; step=&quot;2&quot;&gt;
+       &lt;c:out value=&quot;${fuwa}&quot;/&gt;&lt;br/&gt;
+   &lt;/c:forEach&gt;
+
+    &lt;B&gt;&lt;c:out value=&quot;输出整个迭代的信息：&quot; /&gt;&lt;/B&gt;&lt;br&gt;
+        &lt;%--指定varStatus的属性名为s，并取出存储的状态信息 --%&gt;
+        &lt;c:forEach var=&quot;fuwa&quot; items=&quot;${list}&quot; begin=&quot;3&quot; end=&quot;4&quot; varStatus=&quot;s&quot; step=&quot;1&quot;&gt;
+             &lt;c:out value=&quot;${fuwa}&quot; /&gt;的四种属性：&lt;br&gt;
+
+           所在位置，即索引：&lt;c:out value=&quot;${s.index}&quot; /&gt;&lt;br&gt;
+
+             总共已迭代的次数：&lt;c:out value=&quot;${s.count}&quot; /&gt;&lt;br&gt;
+
+             是否为第一个位置：&lt;c:out value=&quot;${s.first}&quot; /&gt;&lt;br&gt;
+
+             是否为最后一个位置：&lt;c:out value=&quot;${s.last}&quot; /&gt;&lt;br&gt;  
+        &lt;/c:forEach&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>运行结果如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/7.png" alt=""></p>
+<h3 id="3-8URL操作标签——import标签的使用"><a href="#3-8URL操作标签——import标签的使用" class="headerlink" title="3.8URL操作标签——import标签的使用"></a>3.8URL操作标签——import标签的使用</h3><h4 id="3-8-1-lt-c-import-gt-标签的功能"><a href="#3-8-1-lt-c-import-gt-标签的功能" class="headerlink" title="3.8.1&lt;c:import&gt;标签的功能"></a>3.8.1<code>&lt;c:import&gt;</code>标签的功能</h4><p>该标签可以把其他静态或动态文件包含到本JSP页面，与<code>&lt;jsp:include&gt;</code>的区别为：<code>&lt;jsp:include&gt;</code>只能包含同一个web应用中的文件。而<code>&lt;c:import&gt;</code>可以包含其他web应用中的文件，甚至是网络上的资源。</p>
+<h4 id="3-8-2-lt-c-import-gt-标签的语法"><a href="#3-8-2-lt-c-import-gt-标签的语法" class="headerlink" title="3.8.2&lt;c:import&gt;标签的语法"></a>3.8.2<code>&lt;c:import&gt;</code>标签的语法</h4><ul>
+<li>语法1:<code>&lt;c:import url=”url” [context=”context”][value=”value”] [scope=”page|request|session|application”] [charEncoding=”encoding”]/&gt;</code></li>
+<li>语法2:<code>&lt;c:import url=”url” varReader=”name” [context=”context”] [charEncoding=”encoding”]/&gt;</code></li>
+</ul>
+<p>参数说明:  </p>
+<ul>
+<li>1）URL为资源的路径，当引用的资源不存在时系统会抛出异常，因此该语句应该放在<code>&lt;c:catch&gt;&lt;/c:catch&gt;</code>语句块中捕获。</li>
+<li>2）引用资源有两种方式：绝对路径和相对路径。  <blockquote>
+<p>使用绝对路径的示例如下：<code>&lt;c:import url=”http://www.baidu.com”&gt;</code><br>使用相对路径的示例如下：<code>&lt;c:import url=”aa.txt”&gt;</code>，aa.txt放在同一文件目录。</p>
+</blockquote>
+</li>
+<li>3）如果以“/”开头表示应用的根目录下。例如：tomcat应用程序的根目录文件夹为webapps。导入webapps下的文件bb.txt的编写方式为：<code>&lt;c:import url=”/bb.txt”&gt;</code></li>
+<li>4）context属性用于在访问其他web应用的文件时，指定根目录。例如，访问root下的index.jsp的实现代码为：<code>&lt;c:import url=”/index.jsp” context=”/root”&gt;</code>。等同于webapps/root/index.jsp</li>
+<li>5）var、scope、charEncoding、varReader是可选属性。</li>
+</ul>
+<h4 id="3-8-3-lt-c-import-gt-标签使用范例"><a href="#3-8-3-lt-c-import-gt-标签使用范例" class="headerlink" title="3.8.3&lt;c:import&gt;标签使用范例"></a>3.8.3<code>&lt;c:import&gt;</code>标签使用范例</h4><pre><code>&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%--引入JSTL核心标签库 --%&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt;
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;JSTL: -- import标签实例&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h4&gt;&lt;c:out value=&quot;import实例&quot;/&gt;&lt;/h4&gt;
+    &lt;hr/&gt;
+    &lt;h4&gt;&lt;c:out value=&quot;绝对路径引用的实例&quot; /&gt;&lt;/h4&gt;
+    &lt;%--使用绝对路径导入百度首页,导入时使用&lt;c:catch&gt;&lt;/c:catch&gt;捕获异常。--%&gt;
+        &lt;c:catch var=&quot;error1&quot;&gt;
+            &lt;c:import url=&quot;http://wwww.baidu.com&quot; charEncoding=&quot;utf-8&quot;/&gt;
+        &lt;/c:catch&gt;
+            ${error1}
+        &lt;hr/&gt;
+
+     &lt;h4&gt;&lt;c:out value=&quot;相对路径引用本应用中的文件&quot; /&gt;&lt;/h4&gt;
+     &lt;%--使用相对路径导入同一文件夹下的“JSTL的import标签使用说明”文件，接收的字符编码格式使用charEncoding设置为utf-8。 --%&gt;
+         &lt;c:catch var=&quot;error2&quot;&gt;
+             &lt;c:import url=&quot;JSTL的import标签使用说明&quot; charEncoding=&quot;utf-8&quot;/&gt;
+         &lt;/c:catch&gt;
+              ${error2}
+         &lt;hr/&gt;
+
+      &lt;h4&gt;&lt;c:out value=&quot;使用字符串输出相对路径引用的实例，并保存在session范围内&quot; /&gt;&lt;/h4&gt;
+      &lt;%--导入“JSTL的import标签使用说明.txt”，使用var定义的变量接收要导入的文件，并存储在session中，
+      如果在其他页面同样也要导入该文件，只须使用&lt;c:out&gt;输出“JSTL的import标签使用说明.txt”的值即可。--%&gt;
+          &lt;c:catch var=&quot;error3&quot;&gt;
+           &lt;c:import var=&quot;myurl&quot; url=&quot;JSTL的import标签使用说明&quot; scope=&quot;session&quot; charEncoding=&quot;utf-8&quot;/&gt;
+               &lt;c:out value=&quot;${myurl}&quot;&gt;&lt;/c:out&gt;
+           &lt;hr/&gt;
+            &lt;c:out value=&quot;${myurl}&quot; /&gt;
+          &lt;/c:catch&gt;
+               ${error3}
+       &lt;/body&gt;
+    &lt;/html&gt;
+</code></pre><h3 id="3-9URL操作符——url标签的使用"><a href="#3-9URL操作符——url标签的使用" class="headerlink" title="3.9URL操作符——url标签的使用"></a>3.9URL操作符——url标签的使用</h3><h4 id="3-9-1-lt-c-url-gt-标签的功能"><a href="#3-9-1-lt-c-url-gt-标签的功能" class="headerlink" title="3.9.1&lt;c:url&gt;标签的功能"></a>3.9.1<code>&lt;c:url&gt;</code>标签的功能</h4><p><c:url>标签用于在JSP页面中构造一个URL地址，其主要目的是实现URL重写。</c:url></p>
+<h4 id="3-9-2-lt-c-url-gt-标签的语法"><a href="#3-9-2-lt-c-url-gt-标签的语法" class="headerlink" title="3.9.2&lt;c:url&gt;标签的语法"></a>3.9.2<code>&lt;c:url&gt;</code>标签的语法</h4><ul>
+<li>语法1:指定一个url不做修改，可以选择把该url存储在JSP不同的范围中。<code>&lt;c:url value=”value” [var=”name”][scope=”page|request|session|application”] [context=”context”]/&gt;</code></li>
+<li><p>语法2:配合 <code>&lt;c:param&gt;</code>标签给url加上指定参数及参数值，可以选择以name存储该url。</p>
+<pre><code>&lt;c:url value=”value” [var=”name”] [scope=”page|request|session|application”] [context=”context”] 
+    &lt;c:param name=”参数名” value=”值”&gt;
+&lt;/c:url&gt;`
+</code></pre></li>
+</ul>
+<h4 id="3-9-3-lt-c-url-gt-标签的主要属性"><a href="#3-9-3-lt-c-url-gt-标签的主要属性" class="headerlink" title="3.9.3&lt;c:url&gt;标签的主要属性"></a>3.9.3<code>&lt;c:url&gt;</code>标签的主要属性</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:center">是否支持EL</th>
+<th>属性类型</th>
+<th>属性描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td style="text-align:center">true</td>
+<td>String</td>
+<td>指定要构造的URL</td>
+</tr>
+<tr>
+<td>var</td>
+<td style="text-align:center">false</td>
+<td>String</td>
+<td>指定将构造出的URL结果保存到Web域中的属性名称</td>
+</tr>
+<tr>
+<td>scope</td>
+<td style="text-align:center">false</td>
+<td>String</td>
+<td>指定将构造出的URL结果保存到哪个Web域中</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-9-4-lt-c-url-gt-标签使用范例"><a href="#3-9-4-lt-c-url-gt-标签使用范例" class="headerlink" title="3.9.4&lt;c:url&gt;标签使用范例"></a>3.9.4<code>&lt;c:url&gt;</code>标签使用范例</h4><pre><code>&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%--引入JSTL核心标签库 --%&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt;
+
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;JSTL: -- url标签实例&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;c:out value=&quot;url标签使用&quot;&gt;&lt;/c:out&gt;
+    &lt;h4&gt;使用url标签生成一个动态的url，并把值存入session中.&lt;/h4&gt;
+    &lt;hr/&gt;
+    &lt;c:url value=&quot;http://www.baidu.com&quot; var=&quot;url&quot; scope=&quot;session&quot;&gt;
+    &lt;/c:url&gt;
+    &lt;a href=&quot;${url}&quot;&gt;百度首页(不带参数)&lt;/a&gt;
+    &lt;hr/&gt;
+    &lt;h4&gt;
+    配合 &amp;lt;c:param&amp;gt;标签给url加上指定参数及参数值，生成一个动态的url然后存储到paramUrl变量中
+    &lt;/h4&gt;
+    &lt;c:url value=&quot;http://www.baidu.com&quot; var=&quot;paramUrl&quot;&gt;
+        &lt;c:param name=&quot;userName&quot; value=&quot;codingxiaxw&quot;/&gt;
+        &lt;c:param name=&quot;pwd&quot;&gt;123456&lt;/c:param&gt;
+    &lt;/c:url&gt;
+    &lt;a href=&quot;${paramUrl}&quot;&gt;百度首页(带参数)&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><strong>说明:</strong> 此博客参考大神博客<a href="http://www.cnblogs.com/xdp-gacl/p/3943390.html" target="_blank" rel="external">孤傲苍狼</a></p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[玩转AJAX]]></title>
       <url>http://codingxiaxw.cn/archives/2016/10/28/28-AJAX%E6%98%AF%E4%BB%80%E4%B9%88/</url>
       <content type="html"><![CDATA[<p>客户端向服务器发送请求，若服务器每次响应过来的结果都要重新加载整个界面的话这样会给服务器带来很大的压力。所以ajax出现了，它是在不重新加载整个页面的情况下与服务器交换数据并更新部分网页的技术，是一种使用现有标准的新方法。  </p>
