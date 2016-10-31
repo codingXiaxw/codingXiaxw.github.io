@@ -115,7 +115,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/AFilter.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/showjsp.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/xiaoguo.png">
-<meta property="og:updated_time" content="2016-10-27T12:44:44.000Z">
+<meta property="og:updated_time" content="2016-10-31T08:56:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb三大组件之过滤器(Filter)">
 <meta name="twitter:description" content="过滤器可以动态的拦截请求和响应，以变换或使用包含在请求或响应中的信息。  
@@ -403,22 +403,22 @@
 </ul>
 </li>
 </ul>
-<h2 id="多过滤器的执行顺序"><a href="#多过滤器的执行顺序" class="headerlink" title="多过滤器的执行顺序"></a>多过滤器的执行顺序</h2><p>Web应用程序可以根据特定的目的定义若干个不同的过滤器，那么就需要在web.xml中对多个过滤器进行多个配置。而在web.xml中使用\<filter-mapping>来控制多个过滤器的执行顺序，即哪个过滤器的\<filter-mapping>配置在web.xml中的顺序排在前面那这个过滤器就先执行。  </filter-mapping></filter-mapping></p>
+<h2 id="多过滤器的执行顺序"><a href="#多过滤器的执行顺序" class="headerlink" title="多过滤器的执行顺序"></a>多过滤器的执行顺序</h2><p>Web应用程序可以根据特定的目的定义若干个不同的过滤器，那么就需要在web.xml中对多个过滤器进行多个配置。而在web.xml中使用<code>&lt;filter-mapping&gt;</code>来控制多个过滤器的执行顺序，即哪个过滤器的<code>&lt;filter-mapping&gt;</code>配置在web.xml中的顺序排在前面那这个过滤器就先执行。  </p>
 <h2 id="过滤器的四种拦截方式"><a href="#过滤器的四种拦截方式" class="headerlink" title="过滤器的四种拦截方式"></a>过滤器的四种拦截方式</h2><ul>
 <li>1.拦截直接请求方式:REQUEST</li>
 <li>2.拦截请求转发方式:FORWARD</li>
 <li>3.拦截请求包含方式:INCLUDE</li>
 <li>4.拦截错误转发方式:ERROR</li>
 </ul>
-<p>实现不同的拦截方式需要在\<filter-mapping>中进行不同的配置:  </filter-mapping></p>
+<p>实现不同的拦截方式需要在<filter-mapping>中进行不同的配置:  </filter-mapping></p>
 <ul>
-<li>\<dispatcher>REQUEST\</dispatcher></li>
-<li>\<dispatcher>FORWORD\</dispatcher></li>
-<li>\<dispatcher>INCLUDE\</dispatcher></li>
-<li>\<dispatcher>ERROR\</dispatcher></li>
+<li><code>&lt;dispatcher&gt;REQUEST&lt;/dispatcher&gt;</code></li>
+<li><code>&lt;dispatcher&gt;FORWORD&lt;/dispatcher&gt;</code></li>
+<li><code>&lt;dispatcher&gt;INCLUDE&lt;/dispatcher&gt;</code></li>
+<li><code>&lt;dispatcher&gt;ERROR&lt;/dispatcher&gt;</code></li>
 </ul>
 <p>若在web.xml配置文件中没有写出上面四个拦截配置时默认该过滤器只拦截请求。  </p>
-<h2 id="过滤器的应用场景"><a href="#过滤器的应用场景" class="headerlink" title="过滤器的应用场景"></a>过滤器的应用场景</h2><p>1.执行目标资源之前做”预处理”工作，例如设置编码，这种通常都会放行，只是在目标资源执行之前做一些准备工作。(例如：几乎是所有的Servlet中都需要写request.setCharacteEncoding(),可以把它放入到一个Filter中。）这种过滤器没有拦截功能。  </p>
+<h2 id="过滤器的应用场景"><a href="#过滤器的应用场景" class="headerlink" title="过滤器的应用场景"></a>过滤器的应用场景</h2><p>1.执行目标资源之前做”预处理”工作，例如设置编码，这种通常都会放行，只是在目标资源执行之前做一些准备工作。(例如：几乎是所有的Servlet中都需要写<code>request.setCharacteEncoding()</code>,可以把它放入到一个Filter中。）这种过滤器没有拦截功能。  </p>
 <p>2.通过条件判断是否放行，例如校验当前用户是否已经登录，或者用户IP是否已经被禁用。(有拦截操作) (粗粒度权限控制，会员有会员的权利、游客有游客的权利) </p>
 <p>3.在目标资源执行后，做一些后续的特殊处理工作。例如把目标资源输出的数据进行处理。</p>
 <h2 id="案例-分IP统计网站的访问次数"><a href="#案例-分IP统计网站的访问次数" class="headerlink" title="案例:分IP统计网站的访问次数"></a>案例:分IP统计网站的访问次数</h2><p>功能分析:1.统计工作需要在所有资源之前都执行，那么就可以放到Filter中了。2.我们这个过滤器不打算做拦截操作，因为我们只是用来做统计的。3.用什么东西来装载统计的数据。Map<string ,integer="">，整个网站只需要一个Map即可4.Map什么时候创建(使用ServletContextListener，在服务器启动时完成创建，并保存到SevletContext中)，Map保存到哪里:Map需要在Filter中用来保存数据;Map需要在页面使用，打印Map中的数据。  </string></p>
