@@ -8,6 +8,7 @@
       <url>http://codingxiaxw.cn/archives/2016/10/30/29-JSTL%E6%A0%87%E7%AD%BE%E5%BA%93/</url>
       <content type="html"><![CDATA[<p>之前学习EL表达式和JSTL标签库的时候只将EL的知识总结后上传到了blog上，没抽时间将JSTL的知识总结出来，如今做项目时在JSP页面中涉及到太多JSTL标签的语法，于是便抽时间将这篇博客补上。  </p>
 <a id="more"></a> 
+<p><strong>特此说明:</strong> 此博客参考<a href="http://www.cnblogs.com/xdp-gacl/p/3943390.html" target="_blank" rel="external">孤傲苍狼的博客</a></p>
 <h2 id="1-JSTL标签库介绍"><a href="#1-JSTL标签库介绍" class="headerlink" title="1.JSTL标签库介绍"></a>1.JSTL标签库介绍</h2><p>JSTL标签库的使用是为弥补html标签的不足，规范自定义标签的使用而诞生的。使用JSLT标签的目的就是不希望在jsp页面中出现java逻辑代码。JSTL也是对EL表达式的扩展(也就是说JSTL依赖EL)，是一门标签语言。JSTL标签使用起来非常方便，它与JSP动作标签一样，只不过它不是JSP内置的标签，需要我们自己导包，一定要指定标签库。 </p>
 <p>如果你使用MyEclipse开发JavaWeb，那么把项目发布到Tomcat时，你会发现MyEclipse在lib目录下自动存放了JSTL的Jar包。如果你使用其他IDE，那么你需要手动导入这个JSTL的Jar包:jstl-1.2.jar。  </p>
 <h2 id="2-JSTL标签库的分类"><a href="#2-JSTL标签库的分类" class="headerlink" title="2.JSTL标签库的分类"></a>2.JSTL标签库的分类</h2><ul>
@@ -1189,7 +1190,7 @@ public void sessionDidActivate(HttpSessionEvent se):当对象感知被钝化时�
 <li>10月30日更:新增分页功能，逻辑性很强。</li>
 </ul>
 <a id="more"></a>
-<p>源码见我<a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement" target="_blank" rel="external">Github</a> 地址为: <a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement" target="_blank" rel="external">https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement</a></p>
+<p>源码见我<a href="https://github.com/codingXiaxw/JavaWeb-Project-CustomerManagement" target="_blank" rel="external">github上的project</a>  </p>
 <h3 id="1-2运用知识"><a href="#1-2运用知识" class="headerlink" title="1.2运用知识"></a>1.2运用知识</h3><ul>
 <li>数据库基本查询</li>
 <li>数据库连接池c3p0</li>
@@ -1242,8 +1243,8 @@ public void sessionDidActivate(HttpSessionEvent se):当对象感知被钝化时�
     <entry>
       <title><![CDATA[用Java实现网络爬虫三之开始爬取]]></title>
       <url>http://codingxiaxw.cn/archives/2016/10/23/22-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%89%E4%B9%8B%E5%BC%80%E5%A7%8B%E7%88%AC%E5%8F%96/</url>
-      <content type="html"><![CDATA[<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>爬取知乎推荐页面的所有问题、问题描述、地址、回答内容，爬取地址为<a href="http://www.zhihu.com/explore/recommendations" target="_blank" rel="external">http://www.zhihu.com/explore/recommendations</a>   </p>
-<p>项目源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">Github</a>,地址为 <a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">https://github.com/codingXiaxw/Crawler</a> </p>
+      <content type="html"><![CDATA[<p>下面的代码用于爬取知乎推荐页面的所有问题、问题描述、地址、回答内容，爬取地址为<a href="http://www.zhihu.com/explore/recommendations" target="_blank" rel="external">http://www.zhihu.com/explore/recommendations</a>   </p>
+<p>项目源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">github上的project</a></p>
 <a id="more"></a>
 <h2 id="代码介绍"><a href="#代码介绍" class="headerlink" title="代码介绍"></a>代码介绍</h2><p>1.新建Zhihu.java类，它是一个JavaBean类，用于封装我们需要得到的内容。代码如下:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/zhihu.png" alt="">  </p>
@@ -1336,7 +1337,7 @@ boolean getRealUrl(String url)
       <url>http://codingxiaxw.cn/archives/2016/10/23/21-%E7%94%A8Java%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%BA%8C%E4%B9%8BJava%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
       <content type="html"><![CDATA[<p>正则表达式定义了字符串的模式，可以用来搜索、编辑或处理文本，正则表达式并不仅限于某一种语言，但是在每种语言中有细微的差别。  </p>
 <a id="more"></a>
-<p>爬虫项目源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">Github</a>, 地址为  <a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">https://github.com/codingXiaxw/Crawler</a></p>
+<p>爬虫项目源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">github上的project</a></p>
 <h2 id="1-正则表达式语法"><a href="#1-正则表达式语法" class="headerlink" title="1.正则表达式语法"></a>1.正则表达式语法</h2><table>
 <thead>
 <tr>
@@ -1611,7 +1612,7 @@ start:36 end:39
       <url>http://codingxiaxw.cn/archives/2016/10/20/20-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%80%E4%B9%8B%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/</url>
       <content type="html"><![CDATA[<p>网络爬虫(Web crawler)也叫网络爬虫(Web spider)、蚂蚁（ant）、自动检索工具(automatic indexer)，或者(在FOAF软件概念中)网络疾走(WEB scutter)，是一种“自动化浏览网络”的程序，或者说是一种网络机器人。它们被广泛用于互联网搜索引擎或其他类似网站，以获取或更新这些网站的内容和检索方式。它们可以自动采集所有其能够访问到的页面内容，以供搜索引擎做进一步处理（分检整理下载的页面），而使得用户能更快的检索到他们需要的信息。  </p>
 <a id="more"></a>
-<h2 id="用Java实现网络爬虫系列"><a href="#用Java实现网络爬虫系列" class="headerlink" title="用Java实现网络爬虫系列"></a>用Java实现网络爬虫系列</h2><p>这系列文章我打算用5篇博客来完成，源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">Github</a>,地址为 <a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">https://github.com/codingXiaxw/Crawler</a>  </p>
+<h2 id="用Java实现网络爬虫系列"><a href="#用Java实现网络爬虫系列" class="headerlink" title="用Java实现网络爬虫系列"></a>用Java实现网络爬虫系列</h2><p>这系列文章我打算用5篇博客来完成，源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">github上的project</a>  </p>
 <p>一览表:</p>
 <ul>
 <li>1.<a href="http://codingxiaxw.cn/2016/10/20/20-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%80%E4%B9%8B%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/">用Java实现网络爬虫一之项目介绍</a></li>
@@ -2647,15 +2648,22 @@ where sal=max(sal);
 </ul>
 <a id="more"></a>
 <h2 id="2-SQL数据中的属性类型"><a href="#2-SQL数据中的属性类型" class="headerlink" title="2.SQL数据中的属性类型"></a>2.SQL数据中的属性类型</h2><ul>
-<li>INT:整型。</li>
-<li>DOUBLE(5,2):浮点型，参数表示该浮点型数值对多有5位，其中必须有2位小数。</li>
+<li>TINYINT:1字节，小整数值。</li>
+<li>SMALLINT:2字节，大整数值。</li>
+<li>MEDIUMINT:3字节，大整数值。</li>
+<li>INT或INTEGER:4字节，整型,大整数值。</li>
+<li>FLOAT:单精度浮点数值。</li>
+<li>DOUBLE(5,2):双精度浮点型数值，参数表示该浮点型数值最多有5位，其中必须有2位小数。</li>
+<li>DECIMAL(M,D):小数值,参数表示该数值最多有M位，其中必须有D位小数。</li>
 <li>CHAR:字符型，固定长度字符串类型:char(255)。你存入一个a字符，虽然a只占一个字符，但是它会自动给你加254个空格凑成255个长度。即数据的长度不足指定长度，它会补足到指定长度。</li>
 <li>VARCHAR:可变长度字符串类型：varchar(65535),你存入的数据多长它就是多长。它会抽出几个字节来记录数据的长度。</li>
 <li>TEXT(CLOB):mysql独有的数据类型，字符串类型。</li>
 <li>BLOB:字节类型。</li>
+<li>YEAR:年份值，格式为:YYYY</li>
 <li>DATA:日期类型，格式为:yyyy-MM-dd。</li>
 <li>TIME:时间类型，格式为:hh:mm:ss。</li>
 <li>TIMESTAMP:时间戳类型，格式为上面二者的综合。</li>
+<li>DATETIME:混合日期和时间值，格式为:YYYYMMDD HHMMSS.</li>
 </ul>
 <h2 id="3-SQL语句详解"><a href="#3-SQL语句详解" class="headerlink" title="3.SQL语句详解"></a>3.SQL语句详解</h2><p>当然首先需要再命令行中输入<code>mysql -uroot -p</code>来进入mysql。注意:1.MySQL语法不区分大小写，但是建议在写关键字时用大写。2.每一条语句后面以分号结尾。  </p>
 <h3 id="3-1DDL-数据定义语言-语法"><a href="#3-1DDL-数据定义语言-语法" class="headerlink" title="3.1DDL(数据定义语言)语法"></a>3.1DDL(数据定义语言)语法</h3><p>该语言用来对数据库和表结构进行操作。  </p>

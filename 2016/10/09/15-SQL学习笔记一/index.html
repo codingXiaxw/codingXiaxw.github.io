@@ -110,7 +110,7 @@
 2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。
 3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。
 4.DQ">
-<meta property="og:updated_time" content="2016-10-23T09:25:11.000Z">
+<meta property="og:updated_time" content="2016-11-01T13:45:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL学习笔记一之MySQL语法">
 <meta name="twitter:description" content="1.SQL语句分类
@@ -369,15 +369,22 @@
 </ul>
 <a id="more"></a>
 <h2 id="2-SQL数据中的属性类型"><a href="#2-SQL数据中的属性类型" class="headerlink" title="2.SQL数据中的属性类型"></a>2.SQL数据中的属性类型</h2><ul>
-<li>INT:整型。</li>
-<li>DOUBLE(5,2):浮点型，参数表示该浮点型数值对多有5位，其中必须有2位小数。</li>
+<li>TINYINT:1字节，小整数值。</li>
+<li>SMALLINT:2字节，大整数值。</li>
+<li>MEDIUMINT:3字节，大整数值。</li>
+<li>INT或INTEGER:4字节，整型,大整数值。</li>
+<li>FLOAT:单精度浮点数值。</li>
+<li>DOUBLE(5,2):双精度浮点型数值，参数表示该浮点型数值最多有5位，其中必须有2位小数。</li>
+<li>DECIMAL(M,D):小数值,参数表示该数值最多有M位，其中必须有D位小数。</li>
 <li>CHAR:字符型，固定长度字符串类型:char(255)。你存入一个a字符，虽然a只占一个字符，但是它会自动给你加254个空格凑成255个长度。即数据的长度不足指定长度，它会补足到指定长度。</li>
 <li>VARCHAR:可变长度字符串类型：varchar(65535),你存入的数据多长它就是多长。它会抽出几个字节来记录数据的长度。</li>
 <li>TEXT(CLOB):mysql独有的数据类型，字符串类型。</li>
 <li>BLOB:字节类型。</li>
+<li>YEAR:年份值，格式为:YYYY</li>
 <li>DATA:日期类型，格式为:yyyy-MM-dd。</li>
 <li>TIME:时间类型，格式为:hh:mm:ss。</li>
 <li>TIMESTAMP:时间戳类型，格式为上面二者的综合。</li>
+<li>DATETIME:混合日期和时间值，格式为:YYYYMMDD HHMMSS.</li>
 </ul>
 <h2 id="3-SQL语句详解"><a href="#3-SQL语句详解" class="headerlink" title="3.SQL语句详解"></a>3.SQL语句详解</h2><p>当然首先需要再命令行中输入<code>mysql -uroot -p</code>来进入mysql。注意:1.MySQL语法不区分大小写，但是建议在写关键字时用大写。2.每一条语句后面以分号结尾。  </p>
 <h3 id="3-1DDL-数据定义语言-语法"><a href="#3-1DDL-数据定义语言-语法" class="headerlink" title="3.1DDL(数据定义语言)语法"></a>3.1DDL(数据定义语言)语法</h3><p>该语言用来对数据库和表结构进行操作。  </p>
