@@ -4,6 +4,28 @@
   
     
     <entry>
+      <title><![CDATA[JavaWeb之上传下载与JavaMail]]></title>
+      <url>http://codingxiaxw.cn/archives/2016/11/02/31-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E4%B8%8EJavaMail/</url>
+      <content type="html"><![CDATA[<p>对于JavaWeb中的上传与下载，别说你从没遇到过。  </p>
+<p>当我们要向网站中上传文件或者需要从网站上下载文件时,其实我们就已经玩了一遍上传与下载了。那么我们上传的文件会保存在服务器的哪里呢？下载的文件又是从服务器的哪里传过来的？这些又是怎么实现的呢？  </p>
+<a id="more"></a>
+<p>另外很多时候我们注册某个公司的账号时，注册成功后该公司会给你填入的邮箱发送一封邮件，要求你点击邮件中的链接来给该账号激活。这个功能又是怎么实现的呢？  </p>
+<p>下面我将告诉你如何用代码实现这些功能。</p>
+<h2 id="1-文件的上传"><a href="#1-文件的上传" class="headerlink" title="1.文件的上传"></a>1.文件的上传</h2><p>首先我们需要明确的是要实现上传和下载功能都要借助第三方Jar包 <code>fileupload.jar</code>。 </p>
+<h3 id="1-1上传对表单的限制"><a href="#1-1上传对表单的限制" class="headerlink" title="1.1上传对表单的限制"></a>1.1上传对表单的限制</h3><ul>
+<li>1.method必须为”post”.</li>
+<li>2.必须对表单form添加<code>enctype=&quot;multipart/form-data</code>的属性。</li>
+<li>3.表单中需要添加文件表单项:<code>&lt;input type=&quot;file&quot; name=&quot;xxx&quot;/&gt;</code>,除了文件表单项叫文件表单项外其他所有的input表单项都叫普通表单项。</li>
+</ul>
+<h3 id="1-2上传对servlet的限制"><a href="#1-2上传对servlet的限制" class="headerlink" title="1.2上传对servlet的限制"></a>1.2上传对servlet的限制</h3><ul>
+<li>1.在servlet中通过方法<code>request.getParameter(&quot;xxx&quot;);</code>得到表单中的参数时得到返回值不再是Object对象，而是返回的null，因为文件表单form添加了<code>enctype=&quot;multipart/form-data</code>的属性。</li>
+<li>2.解决方法:在Servlet中通过方法<code>ServletInputStream request.getInputStream();</code>得到表单中的参数，然而得到的内容将是表单的整个请求体。  </li>
+</ul>
+<p>嗷嗷…要上床刷剧啦，明天在更。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[JavaWeb之JSTL标签库]]></title>
       <url>http://codingxiaxw.cn/archives/2016/10/30/29-JSTL%E6%A0%87%E7%AD%BE%E5%BA%93/</url>
       <content type="html"><![CDATA[<p>之前学习EL表达式和JSTL标签库的时候只将EL的知识总结后上传到了blog上，没抽时间将JSTL的知识总结出来，如今做项目时在JSP页面中涉及到太多JSTL标签的语法，于是便抽时间将这篇博客补上。  </p>
