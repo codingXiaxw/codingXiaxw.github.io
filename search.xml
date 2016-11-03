@@ -46,7 +46,7 @@
 <li>2.创建解析器:<code>ServletFileUpload sfu=new ServletFileUpload(factory);</code></li>
 <li>3.使用解析器来解析request，得到的是FileItem集合:<code>List&lt;FileItem&gt; fileItemList=sfu.parseRequest(request);</code></li>
 </ul>
-<p><strong>Demo:</strong><br><img src="" alt=""></p>
+<p><strong>Demo:</strong><br><img src="http://od2xrf8gr.bkt.clouddn.com/upload3.png" alt=""></p>
 <p><strong>FileItem的API</strong></p>
 <ul>
 <li>boolean isFormField():是否为普通表单项，如果返回true则为普通表单项，如果为false则为文件表单项。</li>
@@ -95,7 +95,7 @@ if(index!=-1)
 </blockquote>
 </li>
 <li>b.整个请求所有文件大小限制<blockquote>
-<p><code>sfu.setSizeMax(1024*1024);</code>限制整个表单大小为1M。此方法调用必须在解析开始之前调用。<br>如果上传的文件超过限制，则在parseRequest()方法时，会抛出异常。超出限制大小时显示错误信息代码:需要在jsp文件中增加${msg}。</p>
+<p><code>sfu.setSizeMax(1024*1024);</code>限制整个表单大小为1M。此方法调用必须在解析开始之前调用。<br>如果上传的文件超过限制，则在parseRequest()方法时，会抛出异常。超出限制大小时显示错误信息代码:需要在jsp文件中增加${msg}。<br>代码如下: <img src="http://od2xrf8gr.bkt.clouddn.com/%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E8%B6%85%E8%BF%87%E9%99%90%E5%88%B6%E6%98%BE%E7%A4%BA%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF.png" alt=""></p>
 </blockquote>
 </li>
 </ul>
@@ -114,14 +114,14 @@ if(index!=-1)
 <li>Content-Disposition:它的默认值为inline，表示在浏览器窗口中打开。<code>attachment;fileName=xxx;</code>在fileName后面跟随的是显示在下载框中的文件名称。</li>
 <li>流:要下载的文件数据。自己new一个输入流即可。</li>
 </ul>
-<h3 id="2-2下载Demo"><a href="#2-2下载Demo" class="headerlink" title="2.2下载Demo"></a>2.2下载Demo</h3><p><img src="" alt=""></p>
+<h3 id="2-2下载Demo"><a href="#2-2下载Demo" class="headerlink" title="2.2下载Demo"></a>2.2下载Demo</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E7%9A%84%E4%BB%A3%E7%A0%81.png" alt=""></p>
 <h3 id="2-3下载的细节"><a href="#2-3下载的细节" class="headerlink" title="2.3下载的细节"></a>2.3下载的细节</h3><p>1.显示在下载框中的中文名称时，会出现乱码。  </p>
 <ul>
 <li>FireFox:Base64编码</li>
 <li>其它大部分浏览器:url编码</li>
 </ul>
 <p>通用方案:<code>frameName=new String(filename.getBytes(&quot;GBK&quot;),&quot;ISO-8859-1&quot;);</code>  </p>
-<p>代码见下:<img src="" alt="">  </p>
+<p>代码见下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8B%E8%BD%BD%E6%A1%86%E4%B8%AD%E8%A7%A3%E5%86%B3%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.png" alt="">  </p>
 <p>注意downutil.jar包的使用</p>
 <h2 id="3-JavaMail"><a href="#3-JavaMail" class="headerlink" title="3.JavaMail"></a>3.JavaMail</h2><p>JavaMail是Java提供的一组API，用来发送和接收邮件。  </p>
 <p>需要导入的jar包为:1.mail.jar2.activation.jar</p>
@@ -143,8 +143,8 @@ protected PasswordAuthentication getPasswordAuthentication(){
 Session session=Session.getInstance(props,auth);
 </code></pre><p>2.<em>MimeMessage</em><br>它表示一个邮件对象，你可以调用它的<code>setFrom()</code>方法进行设置发件人、设置主题、设置正文。</p>
 <p>3.TransPort<br>它只有一个发邮件的功能。  </p>
-<h3 id="3-3完整Demo如下"><a href="#3-3完整Demo如下" class="headerlink" title="3.3完整Demo如下"></a>3.3完整Demo如下</h3><p><img src="" alt="">  </p>
-<h3 id="3-4带有附件的邮件"><a href="#3-4带有附件的邮件" class="headerlink" title="3.4带有附件的邮件"></a>3.4带有附件的邮件</h3><p><img src="" alt="">代码见Day23_1 demo9.</p>
+<h3 id="3-3完整Demo如下"><a href="#3-3完整Demo如下" class="headerlink" title="3.3完整Demo如下"></a>3.3完整Demo如下</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8javamail%E5%8F%91%E9%82%AE%E4%BB%B6.png" alt="">  </p>
+<h3 id="3-4带有附件的邮件"><a href="#3-4带有附件的邮件" class="headerlink" title="3.4带有附件的邮件"></a>3.4带有附件的邮件</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/demo9.png" alt=""></p>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
