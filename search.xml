@@ -2841,7 +2841,7 @@ where sal=max(sal);
 <ul>
 <li>修改表之添加列:<code>ALTER TABLE 表名 add (列名 列类型，...，列名 列类型);</code></li>
 <li>修改表之修改列类型:<code>ALTER TABLE 表名 MODIFY 列名 列的新类型;</code></li>
-<li>修改标之列名称列类型一起修改:<code>ALTER TABLE 表名 MODIFY 原列名 新列名 列名类型;</code></li>
+<li>修改表之列名称列类型一起修改:<code>ALTER TABLE 表名 CHANGE 原列名 新列名 列名类型;</code></li>
 <li>修改表之删除列:<code>ALTER TABLE 表名 DROP 列名;</code></li>
 <li>修改表之修改表名:<code>ALTER TABLE 表名 RENAME TO 新表名</code></li>
 </ul>
