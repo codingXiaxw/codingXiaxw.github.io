@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[JavaWeb之上传下载与JavaMail]]></title>
-      <url>/2016/11/02/31-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E4%B8%8EJavaMail/</url>
+      <url>http://codingxiaxw.com/2016/11/02/31-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E4%B8%8EJavaMail/</url>
       <content type="html"><![CDATA[<p>对于JavaWeb中的上传与下载，别说你从没遇到过。  </p>
 <p>当我们要向网站中上传文件或者需要从网站上下载文件时,其实我们就已经玩了一遍上传与下载了。那么我们上传的文件会保存在服务器的哪里呢？下载的文件又是从服务器的哪里传过来的？这些又是怎么实现的呢？  </p>
 <a id="more"></a>
@@ -160,7 +160,7 @@ Session session=Session.getInstance(props,auth);
     
     <entry>
       <title><![CDATA[JavaWeb之JSTL标签库]]></title>
-      <url>/2016/10/30/29-JSTL%E6%A0%87%E7%AD%BE%E5%BA%93/</url>
+      <url>http://codingxiaxw.com/2016/10/30/29-JSTL%E6%A0%87%E7%AD%BE%E5%BA%93/</url>
       <content type="html"><![CDATA[<p>之前学习EL表达式和JSTL标签库的时候只将EL的知识总结后上传到了blog上，没抽时间将JSTL的知识总结出来，如今做项目时在JSP页面中涉及到太多JSTL标签的语法，于是便抽时间将这篇博客补上。  </p>
 <a id="more"></a> 
 <p><strong>特此说明:</strong> 此博客参考<a href="http://www.cnblogs.com/xdp-gacl/p/3943390.html" target="_blank" rel="external">孤傲苍狼的博客</a></p>
@@ -951,7 +951,7 @@ public class Person {
     
     <entry>
       <title><![CDATA[玩转AJAX]]></title>
-      <url>/2016/10/28/28-AJAX%E6%98%AF%E4%BB%80%E4%B9%88/</url>
+      <url>http://codingxiaxw.com/2016/10/28/28-AJAX%E6%98%AF%E4%BB%80%E4%B9%88/</url>
       <content type="html"><![CDATA[<p>客户端向服务器发送请求，若服务器每次响应过来的结果都要重新加载整个界面的话这样会给服务器带来很大的压力。所以ajax出现了，它是在不重新加载整个页面的情况下与服务器交换数据并更新部分网页的技术，是一种使用现有标准的新方法。  </p>
 <a id="more"></a>
 <h2 id="AJAX是什么"><a href="#AJAX是什么" class="headerlink" title="AJAX是什么"></a>AJAX是什么</h2><p>1.asynchronous javascript and xml，翻译过来就是异步的js和xml。2.它能使用js语言访问服务器，而且是异步访问。3.服务器给客户端的响应一般是整个页面，一个html完整页面但在ajax中因为是局部刷新，那么服务器就不用再响应整个页面而只是响应局部。  </p>
@@ -1066,7 +1066,7 @@ public class Person {
     
     <entry>
       <title><![CDATA[JavaWeb三大组件之过滤器(Filter)]]></title>
-      <url>/2016/10/27/27-JavaWeb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8B%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
+      <url>http://codingxiaxw.com/2016/10/27/27-JavaWeb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8B%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
       <content type="html"><![CDATA[<p>过滤器可以动态的拦截请求和响应，以变换或使用包含在请求或响应中的信息。  </p>
 <p>过滤器是可用于Servlet编程的Java类，可以实现以下目的:  </p>
 <ul>
@@ -1141,7 +1141,7 @@ public class Person {
     
     <entry>
       <title><![CDATA[JavaWeb三大组件之监听器(Listener)]]></title>
-      <url>/2016/10/26/26-JavaWeb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8B%E7%9B%91%E5%90%AC%E5%99%A8/</url>
+      <url>http://codingxiaxw.com/2016/10/26/26-JavaWeb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8B%E7%9B%91%E5%90%AC%E5%99%A8/</url>
       <content type="html"><![CDATA[<p>监听器是一个专门用于对其他对象身上发生的事件或状态改变进行监听和相应处理的对象，当被监视的对象发生情况时，立即采取相应的行动。监听器其实就是一个实现特定接口的普通java程序，这个程序专门用于监听另一个java对象的方法调用或属性改变，当被监听对象发生上述事件后，监听器某个方法立即被执行。<br><a id="more"></a></p>
 <p>上述概念设计到3个名词概念:</p>
 <ul>
@@ -1337,7 +1337,7 @@ public void sessionDidActivate(HttpSessionEvent se):当对象感知被钝化时�
     
     <entry>
       <title><![CDATA[JavaWeb项目之客户管理系统]]></title>
-      <url>/2016/10/25/25-JavaWeb%E9%A1%B9%E7%9B%AE%E4%B9%8B%E5%AE%A2%E6%88%B7%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</url>
+      <url>http://codingxiaxw.com/2016/10/25/25-JavaWeb%E9%A1%B9%E7%9B%AE%E4%B9%8B%E5%AE%A2%E6%88%B7%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</url>
       <content type="html"><![CDATA[<h2 id="1-项目介绍"><a href="#1-项目介绍" class="headerlink" title="1.项目介绍"></a>1.项目介绍</h2><h3 id="1-1功能介绍"><a href="#1-1功能介绍" class="headerlink" title="1.1功能介绍"></a>1.1功能介绍</h3><ul>
 <li>添加客户:添加客户的信息，包括姓名，性别，手机，邮箱，自我描述</li>
 <li>查询客户:查询数据库中所有的客户，查询结果将客户信息以列表的形式给出，可以对列表中的客户信息进行编辑及删除</li>
@@ -1397,7 +1397,7 @@ public void sessionDidActivate(HttpSessionEvent se):当对象感知被钝化时�
     
     <entry>
       <title><![CDATA[用Java实现网络爬虫三之开始爬取]]></title>
-      <url>/2016/10/23/22-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%89%E4%B9%8B%E5%BC%80%E5%A7%8B%E7%88%AC%E5%8F%96/</url>
+      <url>http://codingxiaxw.com/2016/10/23/22-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%89%E4%B9%8B%E5%BC%80%E5%A7%8B%E7%88%AC%E5%8F%96/</url>
       <content type="html"><![CDATA[<p>下面的代码用于爬取知乎推荐页面的所有问题、问题描述、地址、回答内容，爬取地址为<a href="http://www.zhihu.com/explore/recommendations" target="_blank" rel="external">http://www.zhihu.com/explore/recommendations</a>   </p>
 <p>项目源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">github上的project</a></p>
 <a id="more"></a>
@@ -1489,7 +1489,7 @@ boolean getRealUrl(String url)
     
     <entry>
       <title><![CDATA[用Java实现网络爬虫二之Java正则表达式]]></title>
-      <url>/2016/10/23/21-%E7%94%A8Java%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%BA%8C%E4%B9%8BJava%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+      <url>http://codingxiaxw.com/2016/10/23/21-%E7%94%A8Java%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%BA%8C%E4%B9%8BJava%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
       <content type="html"><![CDATA[<p>正则表达式定义了字符串的模式，可以用来搜索、编辑或处理文本，正则表达式并不仅限于某一种语言，但是在每种语言中有细微的差别。  </p>
 <a id="more"></a>
 <p>爬虫项目源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">github上的project</a></p>
@@ -1764,7 +1764,7 @@ start:36 end:39
     
     <entry>
       <title><![CDATA[用Java实现网络爬虫一之项目介绍]]></title>
-      <url>/2016/10/20/20-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%80%E4%B9%8B%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/</url>
+      <url>http://codingxiaxw.com/2016/10/20/20-%E7%94%A8Java%E5%86%99%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%80%E4%B9%8B%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/</url>
       <content type="html"><![CDATA[<p>网络爬虫(Web crawler)也叫网络爬虫(Web spider)、蚂蚁（ant）、自动检索工具(automatic indexer)，或者(在FOAF软件概念中)网络疾走(WEB scutter)，是一种“自动化浏览网络”的程序，或者说是一种网络机器人。它们被广泛用于互联网搜索引擎或其他类似网站，以获取或更新这些网站的内容和检索方式。它们可以自动采集所有其能够访问到的页面内容，以供搜索引擎做进一步处理（分检整理下载的页面），而使得用户能更快的检索到他们需要的信息。  </p>
 <a id="more"></a>
 <h2 id="用Java实现网络爬虫系列"><a href="#用Java实现网络爬虫系列" class="headerlink" title="用Java实现网络爬虫系列"></a>用Java实现网络爬虫系列</h2><p>这系列文章我打算用5篇博客来完成，源代码见我<a href="https://github.com/codingXiaxw/Crawler" target="_blank" rel="external">github上的project</a>  </p>
@@ -1807,7 +1807,7 @@ start:36 end:39
     
     <entry>
       <title><![CDATA[Java之IO流详解]]></title>
-      <url>/2016/10/17/19-Java%E4%B9%8BIO%E6%B5%81%E8%AF%A6%E8%A7%A3/</url>
+      <url>http://codingxiaxw.com/2016/10/17/19-Java%E4%B9%8BIO%E6%B5%81%E8%AF%A6%E8%A7%A3/</url>
       <content type="html"><![CDATA[<p>大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序的运行结果等。在Java中，将这种通过不同输入输出设备(键盘，内存，显示器，网络等)之间的数据传输抽象表述为”流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的”流”都位于java.io包中，称为IO(输入输出)流。  </p>
 <a id="more"></a>
 <p>IO流四大家族:</p>
@@ -2068,7 +2068,7 @@ public class Example{
     
     <entry>
       <title><![CDATA[JavaWeb学习笔记之Jdbc(二)]]></title>
-      <url>/2016/10/16/18-JavaWeb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8BJdbc%E4%BA%8C/</url>
+      <url>http://codingxiaxw.com/2016/10/16/18-JavaWeb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8BJdbc%E4%BA%8C/</url>
       <content type="html"><![CDATA[<h2 id="1-事务"><a href="#1-事务" class="headerlink" title="1.事务"></a>1.事务</h2><h3 id="1-1事务的四大特性-ACID"><a href="#1-1事务的四大特性-ACID" class="headerlink" title="1.1事务的四大特性(ACID)"></a>1.1事务的四大特性(ACID)</h3><ul>
 <li>1.原子性:事务中的所有操作要么全部执行成功，要么执行全部失败。</li>
 <li>2.一致性:事务执行后，数据库状态与其它业务规则保持一致。</li>
@@ -2408,7 +2408,7 @@ interface RsHandler&lt;T&gt;
     
     <entry>
       <title><![CDATA[JavaWeb学习笔记之Jdbc(一)]]></title>
-      <url>/2016/10/12/17-JavaWeb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8BJdbc%E4%B8%80/</url>
+      <url>http://codingxiaxw.com/2016/10/12/17-JavaWeb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8BJdbc%E4%B8%80/</url>
       <content type="html"><![CDATA[<h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1.概念"></a>1.概念</h2><p>Jdbc(java database connectivity):Java数据库连接，就是用Java语言来操作数据库。原来我们操作数据库是在控制台中通过sql语句来操作数据库，而Jdbc是用Java语言来向数据库发送sql语句来操作数据库。</p>
 <a id="more"></a>
 <h2 id="2-流程"><a href="#2-流程" class="headerlink" title="2.流程"></a>2.流程</h2><h3 id="2-1得到Connection对象"><a href="#2-1得到Connection对象" class="headerlink" title="2.1得到Connection对象"></a>2.1得到Connection对象</h3><ul>
@@ -2559,7 +2559,7 @@ new java.util.Date()=new java.sql.Timestamp();
     
     <entry>
       <title><![CDATA[MySQL学习笔记二之单表查询与多表查询]]></title>
-      <url>/2016/10/10/16-SQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</url>
+      <url>http://codingxiaxw.com/2016/10/10/16-SQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</url>
       <content type="html"><![CDATA[<h2 id="1-编码问题"><a href="#1-编码问题" class="headerlink" title="1.编码问题"></a>1.编码问题</h2><h3 id="1-1查看MySQL数据库编码"><a href="#1-1查看MySQL数据库编码" class="headerlink" title="1.1查看MySQL数据库编码"></a>1.1查看MySQL数据库编码</h3><p>在命令行中输入:<code>SHOW VARIABLES LIKE &#39;CHAR%&#39;;</code>  回车可看到如下内容:  </p>
 <a id="more"></a>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%98%E5%90%97.png" alt="">  </p>
@@ -2794,7 +2794,7 @@ where sal=max(sal);
     
     <entry>
       <title><![CDATA[MySQL学习笔记一之MySQL语法]]></title>
-      <url>/2016/10/09/15-SQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</url>
+      <url>http://codingxiaxw.com/2016/10/09/15-SQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</url>
       <content type="html"><![CDATA[<h2 id="1-SQL语句分类"><a href="#1-SQL语句分类" class="headerlink" title="1.SQL语句分类"></a>1.SQL语句分类</h2><ul>
 <li>1.DDL(Data Definition Language):数据定义语言，用来定义数据库对象：库、表、列等。功能：创建、删除、修改库和表结构。</li>
 <li>2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。</li>
@@ -2905,7 +2905,7 @@ where sal=max(sal);
     
     <entry>
       <title><![CDATA[在Java中使用dom4j来解析及生成xml文件]]></title>
-      <url>/2016/10/04/14-%E5%9C%A8Java%E4%B8%AD%E4%BD%BF%E7%94%A8dom4j%E6%9D%A5%E8%A7%A3%E6%9E%90xml%E6%96%87%E4%BB%B6/</url>
+      <url>http://codingxiaxw.com/2016/10/04/14-%E5%9C%A8Java%E4%B8%AD%E4%BD%BF%E7%94%A8dom4j%E6%9D%A5%E8%A7%A3%E6%9E%90xml%E6%96%87%E4%BB%B6/</url>
       <content type="html"><![CDATA[<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>在Java中解析xml文件的方式有四种，分别是:Dom、Sax、Jdom、Dom4j。鉴于目前的趋势，我们这里来讲讲Dom4J的用法，不涉及递归等复杂操作。  </p>
 <a id="more"></a>
 <h2 id="2-示例—解析xml文件"><a href="#2-示例—解析xml文件" class="headerlink" title="2.示例—解析xml文件"></a>2.示例—解析xml文件</h2><p>首先我们需要创建一个文档，然后才能对其解析。  </p>
@@ -2946,7 +2946,7 @@ where sal=max(sal);
     
     <entry>
       <title><![CDATA[JavaWeb学习笔记之EL表达式]]></title>
-      <url>/2016/10/03/12-EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+      <url>http://codingxiaxw.com/2016/10/03/12-EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
       <content type="html"><![CDATA[<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>EL，即Expression Language。在JavaWeb中属于JSP技术。  </p>
 <p>JSP中的表达式:Java脚本表达式<code>&lt;%=Java表达式%&gt;</code>;EL表达式<code>${EL表达式}</code>。  </p>
 <a id="more"></a>
@@ -3039,7 +3039,7 @@ public class StringUtil{
     
     <entry>
       <title><![CDATA[Java学习笔记之反射机制]]></title>
-      <url>/2016/10/02/11-java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/</url>
+      <url>http://codingxiaxw.com/2016/10/02/11-java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/</url>
       <content type="html"><![CDATA[<h2 id="理论介绍"><a href="#理论介绍" class="headerlink" title="理论介绍"></a>理论介绍</h2><p>为了便于理解，在给出代码例子之前，首先用文字给大家说说关于”Java反射机制”的理论介绍。  </p>
 <p>Java反射是Java语言的一个很重要的特征，它使得Java具有了“动态性”。  </p>
 <a id="more"></a>
@@ -3111,7 +3111,7 @@ public class StringUtil{
     
     <entry>
       <title><![CDATA[Java随机生成图片与HTML表单中的验证码实现]]></title>
-      <url>/2016/09/30/10-Java%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87%E4%B8%8EHTML%E8%A1%A8%E5%8D%95%E4%B8%AD%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E5%AE%9E%E7%8E%B0%E4%BB%8B%E7%BB%8D/</url>
+      <url>http://codingxiaxw.com/2016/09/30/10-Java%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87%E4%B8%8EHTML%E8%A1%A8%E5%8D%95%E4%B8%AD%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E5%AE%9E%E7%8E%B0%E4%BB%8B%E7%BB%8D/</url>
       <content type="html"><![CDATA[<h2 id="Java随机生成图片"><a href="#Java随机生成图片" class="headerlink" title="Java随机生成图片"></a>Java随机生成图片</h2><p>用Java语言生成一个带有字符串文本的图片总结来说只需要如下四步:</p>
 <ul>
 <li>1.创建图片缓冲区</li>
@@ -3164,7 +3164,7 @@ ImageIO.write(image,&quot;JPEG&quot;,out);//参数为图片缓冲区、图片类
     
     <entry>
       <title><![CDATA[Java Web学习笔记之session入门]]></title>
-      <url>/2016/09/27/9-java-web%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsession%E5%85%A5%E9%97%A8/</url>
+      <url>http://codingxiaxw.com/2016/09/27/9-java-web%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsession%E5%85%A5%E9%97%A8/</url>
       <content type="html"><![CDATA[<h2 id="1-HttpSession概述"><a href="#1-HttpSession概述" class="headerlink" title="1.HttpSession概述"></a>1.HttpSession概述</h2><ul>
 <li>HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端。</li>
 <li>HttpSession是Servlet三大域对象(request、session、application)之一，所以它也有setAttribute()、getAttribute()、removeAttribute()三个方法。</li>
@@ -3243,7 +3243,7 @@ ImageIO.write(image,&quot;JPEG&quot;,out);//参数为图片缓冲区、图片类
     
     <entry>
       <title><![CDATA[Java Web读书笔记之Cookie入门]]></title>
-      <url>/2016/09/27/8-java-web%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8BCookie%E5%85%A5%E9%97%A8/</url>
+      <url>http://codingxiaxw.com/2016/09/27/8-java-web%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8BCookie%E5%85%A5%E9%97%A8/</url>
       <content type="html"><![CDATA[<h2 id="1-Http协议与Cookie-了解"><a href="#1-Http协议与Cookie-了解" class="headerlink" title="1.Http协议与Cookie(了解)"></a>1.Http协议与Cookie(了解)</h2><ol>
 <li>Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。</li>
 <li><p>由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;例如:  </p>
@@ -3303,7 +3303,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
     
     <entry>
       <title><![CDATA[Java Web中的Servlet请求转发和请求包含]]></title>
-      <url>/2016/09/26/7-java-web%E4%B8%AD%E7%9A%84Servlet%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB/</url>
+      <url>http://codingxiaxw.com/2016/09/26/7-java-web%E4%B8%AD%E7%9A%84Servlet%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB/</url>
       <content type="html"><![CDATA[<p>为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  </p>
 <h2 id="1-格式"><a href="#1-格式" class="headerlink" title="1.格式"></a>1.格式</h2><p>首先调用request的getRequestDispatcher(“参数”)方法，获取到一个RequestDispatcher对象:  </p>
 <pre><code>ResquestDispatcher rd=request.getRequestDispatcher(&quot;/MyServlet&quot;);  
@@ -3361,7 +3361,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
     
     <entry>
       <title><![CDATA[Java Web中实现Servlet的方式]]></title>
-      <url>/2016/09/24/6-java-web%E5%AE%9E%E7%8E%B0Servlet%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
+      <url>http://codingxiaxw.com/2016/09/24/6-java-web%E5%AE%9E%E7%8E%B0Servlet%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
       <content type="html"><![CDATA[<h2 id="1-Servlet是什么"><a href="#1-Servlet是什么" class="headerlink" title="1.Servlet是什么?"></a>1.Servlet是什么?</h2><p>Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  </p>
 <ul>
 <li>接受数据请求</li>
@@ -3429,7 +3429,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
     
     <entry>
       <title><![CDATA[从Android开发转战Java Web]]></title>
-      <url>/2016/09/12/5-%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</url>
+      <url>http://codingxiaxw.com/2016/09/12/5-%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</url>
       <content type="html"><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>&emsp;&emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去搞开发吗)。<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%9D%8F%E7%AC%91.jpg" alt="">希望在接下来的日子里，能学有所得。 </p>
 <a id="more"></a>
 <h2 id="2-细数这一年来自己的经历"><a href="#2-细数这一年来自己的经历" class="headerlink" title="2.细数这一年来自己的经历:"></a>2.细数这一年来自己的经历:</h2><h3 id="2-1开发过的app"><a href="#2-1开发过的app" class="headerlink" title="2.1开发过的app"></a>2.1开发过的app</h3><ul>
@@ -3476,7 +3476,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
     
     <entry>
       <title><![CDATA[Android中Activity的生命周期]]></title>
-      <url>/2016/09/07/4-Android%E4%B8%ADActivity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+      <url>http://codingxiaxw.com/2016/09/07/4-Android%E4%B8%ADActivity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
       <content type="html"><![CDATA[<p>刚刚在stormzhang的一篇叫    <strong><a href="http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&amp;mid=2650661665&amp;idx=1&amp;sn=8127335085ce285473eb5ba53663fc29&amp;scene=21#wechat_redirect" target="_blank" rel="external">android学到哪种程度可以去找工作</a></strong>中看到张哥提了这么一个观点<strong>如果我问你Android中Activity生命周期你还支支吾吾的那我就对你没什么兴趣了</strong>。吓得我赶紧在脑海中回顾了下有关activity生命周期的知识，便打算趁热打铁写下自己对activity生命周期的理解。    </p>
 <a id="more"></a>
 <h2 id="1-Activity形态"><a href="#1-Activity形态" class="headerlink" title="1.Activity形态"></a>1.Activity形态</h2><p>Activity一个最大的特点就是拥有多种形态，它可以在多种形态间进行切换，以此来控制自己的生命周期。    </p>
@@ -3518,7 +3518,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
     
     <entry>
       <title><![CDATA[Java中String、StringBuilder和StringBuffer的区别]]></title>
-      <url>/2016/09/06/3-java%E4%B8%ADstring%E3%80%81StringBuffer%E5%92%8CStringBuilder%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+      <url>http://codingxiaxw.com/2016/09/06/3-java%E4%B8%ADstring%E3%80%81StringBuffer%E5%92%8CStringBuilder%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
       <content type="html"><![CDATA[<p>  在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  </p>
 <p>  今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  </p>
 <ul>
@@ -3552,7 +3552,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
     
     <entry>
       <title><![CDATA[Mac用户如何将自己的代码上传至github托管]]></title>
-      <url>/2016/04/09/2-mac%E7%94%A8%E6%88%B7%E5%A6%82%E4%BD%95%E5%B0%86%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BB%A3%E7%A0%81%E4%B8%8A%E4%BC%A0%E8%87%B3github%E6%89%98%E7%AE%A1/</url>
+      <url>http://codingxiaxw.com/2016/04/09/2-mac%E7%94%A8%E6%88%B7%E5%A6%82%E4%BD%95%E5%B0%86%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BB%A3%E7%A0%81%E4%B8%8A%E4%BC%A0%E8%87%B3github%E6%89%98%E7%AE%A1/</url>
       <content type="html"><![CDATA[<p>  楼主刚开始试着想将自己的代码上传至github上的时候真的是个小白，google上面到处搜到处找资源。后来云里雾里的成功上传后，发现网络上介绍的大致有两种方法，一种方法是通过git命令行，另一种方法是通过下载github客户端。两种方法都很简单，也许你觉得我接下来介绍的很繁琐，但这是详细的表现，下面将详细介绍<strong>通过git命令行来上传自己的代码</strong>。</p>
 <a id="more"></a>
 <h2 id="通过git命令行。"><a href="#通过git命令行。" class="headerlink" title="通过git命令行。"></a>通过git命令行。</h2><p>其实git命令不用学太多，会基本的5、6个命令就好，经常用的有  </p>
@@ -3600,7 +3600,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
     
     <entry>
       <title><![CDATA[开启我的博客之旅]]></title>
-      <url>/2016/03/31/1-%E5%86%99%E5%8D%9A%E5%AE%A2%E4%B9%9F%E6%98%AF%E4%B8%80%E7%A7%8D%E7%94%9F%E6%B4%BB%E6%96%B9%E5%BC%8F/</url>
+      <url>http://codingxiaxw.com/2016/03/31/1-%E5%86%99%E5%8D%9A%E5%AE%A2%E4%B9%9F%E6%98%AF%E4%B8%80%E7%A7%8D%E7%94%9F%E6%B4%BB%E6%96%B9%E5%BC%8F/</url>
       <content type="html"><![CDATA[<p>hello guys,I’m codingXiaxw,who decide to write my own blog while I’m coding.As far as I’m concerned, writing blog is also a part of life.Everytime I felt tired,I would stop coding to play macdown,and then writed my feelings and reviews in it.In this way can I deepen the knowledges in my brain and can also make me relaxing.  </p>
 <p>Welcome to <a href="https://codingxiaxw.cn" target="_blank" rel="external">codingXiaxw’s blog</a> website!Thank for you coming,and thank for your support.They are the energy to encourage me to move forward.  </p>
 <p>Today I will begin my blog journey，and I will update it frequently.   </p>
