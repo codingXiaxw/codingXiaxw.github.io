@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/3.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/4.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/7.png">
-<meta property="og:updated_time" content="2016-11-05T10:35:31.000Z">
+<meta property="og:updated_time" content="2016-11-06T13:37:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb之JSTL标签库">
 <meta name="twitter:description" content="之前学习EL表达式和JSTL标签库的时候只将EL的知识总结后上传到了blog上，没抽时间将JSTL的知识总结出来，如今做项目时在JSP页面中涉及到太多JSTL标签的语法，于是便抽时间将这篇博客补上。">
@@ -179,6 +179,8 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             Home
           </a>
         </li>
@@ -186,6 +188,8 @@
         
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             Contact
           </a>
@@ -195,6 +199,8 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
             Archives
           </a>
         </li>
@@ -202,6 +208,8 @@
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -213,6 +221,8 @@
           
             <a href="javascript:;" class="popup-trigger">
           
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             Search
           </a>
@@ -334,7 +344,7 @@
       
         <p>之前学习EL表达式和JSTL标签库的时候只将EL的知识总结后上传到了blog上，没抽时间将JSTL的知识总结出来，如今做项目时在JSP页面中涉及到太多JSTL标签的语法，于是便抽时间将这篇博客补上。  </p>
 <a id="more"></a> 
-<p><strong>特此说明:</strong> 此博客参考<a href="http://www.cnblogs.com/xdp-gacl/p/3943390.html" target="_blank" rel="external">孤傲苍狼的博客</a></p>
+<p><strong>首先需要说明的是:</strong> 此博客参考<a href="http://www.cnblogs.com/xdp-gacl/p/3943390.html" target="_blank" rel="external">孤傲苍狼</a>这位技术大牛对JSTL标签的理解，写的非常通俗易懂。原文链接:  <a href="http://www.cnblogs.com/xdp-gacl/p/3943390.html" target="_blank" rel="external">http://www.cnblogs.com/xdp-gacl/p/3943390.html</a></p>
 <h2 id="1-JSTL标签库介绍"><a href="#1-JSTL标签库介绍" class="headerlink" title="1.JSTL标签库介绍"></a>1.JSTL标签库介绍</h2><p>JSTL标签库的使用是为弥补html标签的不足，规范自定义标签的使用而诞生的。使用JSLT标签的目的就是不希望在jsp页面中出现java逻辑代码。JSTL也是对EL表达式的扩展(也就是说JSTL依赖EL)，是一门标签语言。JSTL标签使用起来非常方便，它与JSP动作标签一样，只不过它不是JSP内置的标签，需要我们自己导包，一定要指定标签库。 </p>
 <p>如果你使用MyEclipse开发JavaWeb，那么把项目发布到Tomcat时，你会发现MyEclipse在lib目录下自动存放了JSTL的Jar包。如果你使用其他IDE，那么你需要手动导入这个JSTL的Jar包:jstl-1.2.jar。  </p>
 <h2 id="2-JSTL标签库的分类"><a href="#2-JSTL标签库的分类" class="headerlink" title="2.JSTL标签库的分类"></a>2.JSTL标签库的分类</h2><ul>
@@ -1246,7 +1256,7 @@ public class Person {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1254,7 +1264,7 @@ public class Person {
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -1263,7 +1273,7 @@ public class Person {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

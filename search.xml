@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title><![CDATA[JavaWeb之Spring框架学习笔记]]></title>
+      <url>http://codingxiaxw.cn/2016/11/06/32-spring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AD%A6%E4%B9%A0/</url>
+      <content type="html"><![CDATA[<p>当客户端向服务器发出请求时，服务器把得到的请求发送给控制器Servlet，而在Servlet中需要创建Service对象来调用业务层相关功能(故说控制器层Servlet依赖于业务层Service),而在Service中又需要创建数据库层DAO对象来对数据库进行操作(故说业务层Service依赖于数据库层DAO)。<br><a id="more"></a><br><strong>思考:</strong>针对上述过程，我们需要考虑这样几个问题。1.Servlet、Service以及Dao对象的创建时间、创建数量。2.Servlet、Service以及Dao之间的依赖关系。如何处理这些问题呢？Spring就是用来处理对象的创建、以及对象之间依赖关系的一个开发框架。它打破了我们传统开发的观念，我们不再需要像以前那样在具体的类中创建具体的对象，而是将对象的创建交给它去完成。它是我们所要学习的框架中最重要的框架，请务必好好学习。  </p>
+<p>##1.Spring框架中的专业术语  </p>
+<h3 id="1-1组件／框架设计"><a href="#1-1组件／框架设计" class="headerlink" title="1.1组件／框架设计"></a>1.1组件／框架设计</h3><ul>
+<li>侵入式设计:对现有类的结构有影响，即需要实现或继承某些特定类。 如Struts框架。 </li>
+<li>非侵入式设计:引入了框架，对现有的类结构没有影响。如Spring框架／Hibernate框架。</li>
+</ul>
+<h2 id="1-2控制反转"><a href="#1-2控制反转" class="headerlink" title="1.2控制反转"></a>1.2控制反转</h2><p>Inversion On Control，简称IOC。对象的创建交给外部容器完成，这个就叫做控制反转。  </p>
+<p>依赖注入dependency injection,简称DI，用于处理对象间的依赖关系。  </p>
+<p><strong>二者区别:</strong>控制反转(IOC):解决对象创建的问题，(对象的创建交给别人)。依赖注入(DI):在创建完对象后，对象关系的处理就是依赖注入，(通过set方法依赖注入。)</p>
+<h2 id="1-3AOP"><a href="#1-3AOP" class="headerlink" title="1.3AOP"></a>1.3AOP</h2><p>面向切面编程。切面，简单来说可以理解为一个类，由很多重复代码形成的类。切面举例:事务、日志、权限。  </p>
+<p>##2.Spring框架概述<br>Spring框架，可以解决对象创建以及对象之间依赖关系的一种框架。且可以和其它框架一起使用，例如spring与struts、spring和hibernate。(起到整合／粘合作用的一个框架)。  </p>
+<p>spring提供了一站式解决方案:<br>1）SpringCore:是Spring的核心功能：IOC容器，解决对象创建及依赖关系。<br>2）SpringWeb:Spring对web模块的支持。</p>
+<blockquote>
+<p>可以与struts整合，让struts的action创建交给spring。<br>Spring mvc模式，用springmvc整合了就不用struts了。  </p>
+</blockquote>
+<p>3）Spring DAO:是Spring对Jdbc操作的支持。(Jdbc Template模块工具类)  </p>
+<p>4)Spring ORM:是Spring对ORM的支持。</p>
+<blockquote>
+<p>既可以与hibernate整合(使用原始的session)<br>也可以使用Spring对Hibernate操作的封装(对上面的session又进行了一层封装)  </p>
+</blockquote>
+<p>5）Spring AOP:  </p>
+<p>6）SpringEE:Spring对javaEE其它模块的支持</p>
+<p>##3.Spring开发步骤<br>明天更。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[JavaWeb之上传下载与JavaMail]]></title>
       <url>http://codingxiaxw.cn/2016/11/02/31-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E4%B8%8EJavaMail/</url>
       <content type="html"><![CDATA[<p>对于JavaWeb中的上传与下载，别说你从没遇到过。  </p>
@@ -163,7 +192,7 @@ Session session=Session.getInstance(props,auth);
       <url>http://codingxiaxw.cn/2016/10/30/29-JSTL%E6%A0%87%E7%AD%BE%E5%BA%93/</url>
       <content type="html"><![CDATA[<p>之前学习EL表达式和JSTL标签库的时候只将EL的知识总结后上传到了blog上，没抽时间将JSTL的知识总结出来，如今做项目时在JSP页面中涉及到太多JSTL标签的语法，于是便抽时间将这篇博客补上。  </p>
 <a id="more"></a> 
-<p><strong>特此说明:</strong> 此博客参考<a href="http://www.cnblogs.com/xdp-gacl/p/3943390.html" target="_blank" rel="external">孤傲苍狼的博客</a></p>
+<p><strong>首先需要说明的是:</strong> 此博客参考<a href="http://www.cnblogs.com/xdp-gacl/p/3943390.html" target="_blank" rel="external">孤傲苍狼</a>这位技术大牛对JSTL标签的理解，写的非常通俗易懂。原文链接:  <a href="http://www.cnblogs.com/xdp-gacl/p/3943390.html" target="_blank" rel="external">http://www.cnblogs.com/xdp-gacl/p/3943390.html</a></p>
 <h2 id="1-JSTL标签库介绍"><a href="#1-JSTL标签库介绍" class="headerlink" title="1.JSTL标签库介绍"></a>1.JSTL标签库介绍</h2><p>JSTL标签库的使用是为弥补html标签的不足，规范自定义标签的使用而诞生的。使用JSLT标签的目的就是不希望在jsp页面中出现java逻辑代码。JSTL也是对EL表达式的扩展(也就是说JSTL依赖EL)，是一门标签语言。JSTL标签使用起来非常方便，它与JSP动作标签一样，只不过它不是JSP内置的标签，需要我们自己导包，一定要指定标签库。 </p>
 <p>如果你使用MyEclipse开发JavaWeb，那么把项目发布到Tomcat时，你会发现MyEclipse在lib目录下自动存放了JSTL的Jar包。如果你使用其他IDE，那么你需要手动导入这个JSTL的Jar包:jstl-1.2.jar。  </p>
 <h2 id="2-JSTL标签库的分类"><a href="#2-JSTL标签库的分类" class="headerlink" title="2.JSTL标签库的分类"></a>2.JSTL标签库的分类</h2><ul>
