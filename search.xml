@@ -4,11 +4,177 @@
   
     
     <entry>
+      <title><![CDATA[MyBatis学习笔记(一)————MyBatis快速入门]]></title>
+      <url>http://codingxiaxw.cn/2016/11/07/32-MyBatis%E6%A1%86%E6%9E%B6/</url>
+      <content type="html"><![CDATA[<p>首先我要明确告诉大家的是MyBatis是一个java持久层框架，以前我们都是用jdbc来将我们的java程序与数据库相连接，而MyBatis是对jdbc的一个封装。<br><a id="more"></a></p>
+<h2 id="1-MyBatis框架的引入"><a href="#1-MyBatis框架的引入" class="headerlink" title="1.MyBatis框架的引入"></a>1.MyBatis框架的引入</h2><p>我们来看看传统的编程方式中使用jdbc的问题:  </p>
+<ul>
+<li>1.数据库连接频繁的创建和关闭，缺点:浪费数据库的资源，影响操作效率。解决方法:使用数据库连接池如c3p0.</li>
+<li>2.sql语句是硬编码(不利用系统维护)，如果需求变更需要修改sql，这时候就需要修改java代码，然后需要重新编译，系统不易维护。解决方法:将sql语句统一配置在文件中。这样以后修改sql时就不需要修改java代码了。</li>
+<li>3.我们通过preparedStatement对象向占位符设置参数，存在硬编码(参数位置、参数)问题，系统不易维护。解决方法:将sql中的占位符及对应的参数类型配置在配置文件中，能够自动输入的映射。</li>
+<li>4.遍历查询结果集存在硬编码(列名)。解决方法:自动进行sql查询结果向java对象的映射(输出映射)。</li>
+</ul>
+<p>为了解决这些问题，所以出现了MyBatis框架。</p>
+<h2 id="2-MyBatis介绍"><a href="#2-MyBatis介绍" class="headerlink" title="2.MyBatis介绍"></a>2.MyBatis介绍</h2><p>MyBatis 本是apache的一个开源项目iBatis, 2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis，实质上Mybatis对ibatis进行一些改进。 目前mybatis在github上托管。  </p>
+<p>MyBatis是一个优秀的持久层框架，它对jdbc的操作数据库的过程进行封装，使开发者只需要关注 SQL 本身，而不需要花费精力去处理例如注册驱动、创建connection、创建statement、手动设置参数、结果集检索等jdbc繁杂的过程代码。  </p>
+<p>MyBatis通过xml或注解的方式将要执行的各种statement（statement、preparedStatemnt、CallableStatement）配置起来，并通过java对象和statement中的sql进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射成java对象并返回。</p>
+<h2 id="3-MyBatis架构"><a href="#3-MyBatis架构" class="headerlink" title="3.MyBatis架构"></a>3.MyBatis架构</h2><p>如下图:<br><img src="http://od2xrf8gr.bkt.clouddn.com/mybatis.png" alt="">  </p>
+<p>接下来我将通过对一张用户表进行增、删、改、查带你快速入门MyBatis。   </p>
+<h2 id="4-MyBatis快速入门"><a href="#4-MyBatis快速入门" class="headerlink" title="4.MyBatis快速入门"></a>4.MyBatis快速入门</h2><h3 id="4-1准备开发环境"><a href="#4-1准备开发环境" class="headerlink" title="4.1准备开发环境"></a>4.1准备开发环境</h3><p>1.创建测试项目，普通java项目或是web项目都可。  </p>
+<p>2.导入jar包:mybatis-3.1.1.jar(低于这个版本的jar包需要导入很多依赖包)和mysql-connection-java  </p>
+<p>3.创建数据库和相应的表,SQL脚本如下:  </p>
+<pre><code>create database mybatis;
+
+use mybatis;
+
+create table user(
+id int primary key auto_increment,
+username varchar(50),
+birthday date,
+sex varchar(20),
+address carchar(50)
+);
+
+insert into user values(null,&apos;xxw&apos;,&apos;1996-10-17&apos;,&apos;male&apos;,null);
+
+insert into user values(null,&apos;wyr&apos;,&apos;1997-04-24&apos;,&apos;female&apos;,null);
+</code></pre><p>到此，环境配置就告一段落。</p>
+<h3 id="4-2使用MyBatis查询表中数据-通过id查询"><a href="#4-2使用MyBatis查询表中数据-通过id查询" class="headerlink" title="4.2使用MyBatis查询表中数据(通过id查询)"></a>4.2使用MyBatis查询表中数据(通过id查询)</h3><p><strong>1.添加Mybatis的配置文件SqlMapConfig.xml</strong>  </p>
+<p>在src目录下创建一个SqlMapConfig.xml文件(文件名称随便起),内容如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/config2.png" alt="">  </p>
+<p><strong>2.定义表所需要的实体类User.java</strong>  </p>
+<p>代码如下:  </p>
+<pre><code>public class User
+{
+    private int id;
+    private String username;
+    private Date birthday;
+    private String sex;
+    private String address;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Date getBirthday(){
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getAddress(){
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;domain.User{&quot; +
+            &quot;id=&quot; + id +
+            &quot;, username=&apos;&quot; + username + &apos;\&apos;&apos; +
+            &quot;, birthday=&quot; + birthday +
+            &quot;, sex=&apos;&quot; + sex + &apos;\&apos;&apos; +
+            &quot;, address=&apos;&quot; + address + &apos;\&apos;&apos; +
+            &apos;}&apos;;
+    }
+}
+</code></pre><p><strong>3.定义操作user表的sql映射文件User.xml</strong><br>这里我们没将文件命名为userMapper.xml，后面我们会改。  </p>
+<p>User.xml文件内容如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-07%20%E4%B8%8B%E5%8D%886.50.45.png" alt="">  </p>
+<p>在User.xml中写SQL语句，在参数处使用占位符<code>#{}</code>，应该注意的是大括号<code>{}</code>中传入的数据应该与User.java中的属性对应，文件中各个属性的解释见图中注释处。  </p>
+<p><strong>4.在SqlMapConfig文件中注册User.xml文件</strong><br>在SqlMapConfig.xml中添加一个<code>&lt;mappers&gt;&lt;/mappers&gt;</code>字段，并在里面传入User.xml文件路径。  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/congif.png" alt="">  </p>
+<p><strong>5.接下来我们便可以借助上面MyBatis架构图来编写测试类了</strong><br><img src="http://od2xrf8gr.bkt.clouddn.com/select.png" alt="">  </p>
+<p>注意，我是借助junit.jar包来编写的测试类。输出结果如下:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/result...png" alt="">  </p>
+<p>上面我们是通过id来对表进行查询，接下来我要讲讲如何通过姓名来模糊查询表。  </p>
+<h3 id="4-3使用MyBatis根据用户名模糊查询用户信息"><a href="#4-3使用MyBatis根据用户名模糊查询用户信息" class="headerlink" title="4.3使用MyBatis根据用户名模糊查询用户信息"></a>4.3使用MyBatis根据用户名模糊查询用户信息</h3><p><strong>1.需要在User.xml文件中添加如下字段:</strong>  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-07%20%E4%B8%8B%E5%8D%887.07.08.png" alt="">  </p>
+<p>此时，我们在传入参数的地方不再使用占位符<code>#{}</code>而是使用<code>${}</code>，二者区别如下:  </p>
+<ul>
+<li><code>#{}</code>:1.表示一个占位符，向占位符输入参数，mybatis自动进行java类型和jdbc类型的转换。2.程序员不需要考虑参数的类型，比如：传入字符串，mybatis最终拼接好的sql就是参数两边加单引号。3.<code>#{}</code>接收pojo(Plain Old Java Object Java数据对象)数据，可以使用OGNL解析出pojo的属性值。</li>
+<li><code>${}</code>:1.表示sql的拼接，通过<code>${}</code>接收参数，将参数的内容不加任何修饰拼接在sql中。2.<code>${}</code>也可以接收pojo数据，可以使用OGNL解析出pojo的属性值。3.缺点:不能防止sql注入。  </li>
+</ul>
+<p><strong>2.测试类代码如下:</strong>  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/byname.png" alt="">  </p>
+<p>注意，此时我们通过name查询出来的语句为多条，故此时我们应该选择调用sqlSession对象的selectList()方法返回多条记录，输出我们查询到的第一条记录即可。若使用selectOne()方法，当返回的记录为多条时就会发生异常。</p>
+<p>这样我们便完成了查询时将sql结果输出映射到Java对象中。那如何将Java对象输入映射到sql语句中，接下来我们就来讲通过MyBatis实现增、删、改数据库。</p>
+<h3 id="4-4使用MyBatis向表中插入一条记录"><a href="#4-4使用MyBatis向表中插入一条记录" class="headerlink" title="4.4使用MyBatis向表中插入一条记录"></a>4.4使用MyBatis向表中插入一条记录</h3><p><strong>1.在User.xml中添加如下字段:</strong>  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/insertinto.png" alt=""></p>
+<p><strong>2.编写测试类:</strong>  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/insertintotest.png" alt="">  </p>
+<p>此时查看数据库:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/shujuku.png" alt="">  </p>
+<p>发现数据已被插入。  </p>
+<p><strong>扩展:主键返回:</strong>  </p>
+<p>在测试类中，我们没有给User对象的id属性设置值，所以我们在测试类中尝试输出User对象的id时会输出<code>id=0</code>，但是该对象通过输入映射在数据库中是有对应的id值的(因为我们为该字段设置了自增长属性)。那么我们想输出该对象在记录中的id时，又该怎么做呢？只需在User.xml文件中的<code>&lt;insert&gt;&lt;/insert&gt;</code>自断中添加如下字段即可,属性解释见图:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/insert.png" alt="">  </p>
+<p>此时我们在测试类中便可输出该User对象插入在表中的记录id值了。 </p>
+<p>这里我们由于在建表时设置了id字段为自增长，采用自增长的形式生成主键，所以我们在传入User对象的id属性时可以将该属性设置为null。那么当我们使用uuid生成主键时又该怎么做呢？  </p>
+<p>只需在User.xml中添加如下字段:<br><img src="http://od2xrf8gr.bkt.clouddn.com/abu.png" alt="">  </p>
+<p>属性值”before”的意思表示在执行插入操作时，会先调用uuid()函数生成uuid得到主键，然后将主键设置到User对象中，再将User对象插入到数据库。所以此时我们在测试类中也可以不对User的id属性进行设置值。  </p>
+<h3 id="4-5使用MyBatis实现删除表中数据"><a href="#4-5使用MyBatis实现删除表中数据" class="headerlink" title="4.5使用MyBatis实现删除表中数据"></a>4.5使用MyBatis实现删除表中数据</h3><p>接下来的操作就很轻松了，因为跟上述操作差不多。  </p>
+<p><strong>1.在User.xml文件中添加如下字段:</strong>  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/delete.png" alt="">  </p>
+<p><strong>2.编写测试类:</strong>  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/delete%E6%B5%8B%E8%AF%95%E7%B1%BB.png" alt="">  </p>
+<p>运行程序后便可发现数据库中的该数据已被删除。  </p>
+<h3 id="4-6使用MyBatis实现更新表中数据"><a href="#4-6使用MyBatis实现更新表中数据" class="headerlink" title="4.6使用MyBatis实现更新表中数据"></a>4.6使用MyBatis实现更新表中数据</h3><p><strong>1.在User.xml文件中添加如下字段:</strong>  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/updatexml.png" alt="">  </p>
+<p><strong>2.编写测试类:</strong>  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/update%E6%B5%8B%E8%AF%95%E7%B1%BB.png" alt="">  </p>
+<p>运行程序后便可发现数据库中的该数据已被更新。  </p>
+<h2 id="5-MyBatis开发流程"><a href="#5-MyBatis开发流程" class="headerlink" title="5.MyBatis开发流程"></a>5.MyBatis开发流程</h2><p>写过上述代码，我们便可以对MyBatis的开发流程进行一下总结了，流程如下:  </p>
+<ul>
+<li>1.编写SqlMapConfig.xml</li>
+<li>2.编写mapper.xml(每个字段定义一个statement)</li>
+<li>3.编程通过配置文件创建SqlSessionFactory</li>
+<li>4.通过SqlSessionFactory获取SqlSession对象。</li>
+<li>5.通过SqlSession操作数据库。(如果执行添加、更新、删除需要调用SqlSession.commit())</li>
+<li>6.SqlSesion使用完成要关闭。</li>
+</ul>
+<h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[JavaWeb之Spring框架学习笔记]]></title>
       <url>http://codingxiaxw.cn/2016/11/06/32-spring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AD%A6%E4%B9%A0/</url>
       <content type="html"><![CDATA[<p>当客户端向服务器发出请求时，服务器把得到的请求发送给控制器Servlet，而在Servlet中需要创建Service对象来调用业务层相关功能(故说控制器层Servlet依赖于业务层Service),而在Service中又需要创建数据库层DAO对象来对数据库进行操作(故说业务层Service依赖于数据库层DAO)。<br><a id="more"></a><br><strong>思考:</strong>针对上述过程，我们需要考虑这样几个问题。1.Servlet、Service以及Dao对象的创建时间、创建数量。2.Servlet、Service以及Dao之间的依赖关系。如何处理这些问题呢？Spring就是用来处理对象的创建、以及对象之间依赖关系的一个开发框架。它打破了我们传统开发的观念，我们不再需要像以前那样在具体的类中创建具体的对象，而是将对象的创建交给它去完成。它是我们所要学习的框架中最重要的框架，请务必好好学习。  </p>
-<p>##1.Spring框架中的专业术语  </p>
-<h3 id="1-1组件／框架设计"><a href="#1-1组件／框架设计" class="headerlink" title="1.1组件／框架设计"></a>1.1组件／框架设计</h3><ul>
+<h2 id="1-Spring框架中的专业术语"><a href="#1-Spring框架中的专业术语" class="headerlink" title="1.Spring框架中的专业术语"></a>1.Spring框架中的专业术语</h2><h3 id="1-1组件／框架设计"><a href="#1-1组件／框架设计" class="headerlink" title="1.1组件／框架设计"></a>1.1组件／框架设计</h3><ul>
 <li>侵入式设计:对现有类的结构有影响，即需要实现或继承某些特定类。 如Struts框架。 </li>
 <li>非侵入式设计:引入了框架，对现有的类结构没有影响。如Spring框架／Hibernate框架。</li>
 </ul>
@@ -16,7 +182,7 @@
 <p>依赖注入dependency injection,简称DI，用于处理对象间的依赖关系。  </p>
 <p><strong>二者区别:</strong>控制反转(IOC):解决对象创建的问题，(对象的创建交给别人)。依赖注入(DI):在创建完对象后，对象关系的处理就是依赖注入，(通过set方法依赖注入。)</p>
 <h2 id="1-3AOP"><a href="#1-3AOP" class="headerlink" title="1.3AOP"></a>1.3AOP</h2><p>面向切面编程。切面，简单来说可以理解为一个类，由很多重复代码形成的类。切面举例:事务、日志、权限。  </p>
-<p>##2.Spring框架概述<br>Spring框架，可以解决对象创建以及对象之间依赖关系的一种框架。且可以和其它框架一起使用，例如spring与struts、spring和hibernate。(起到整合／粘合作用的一个框架)。  </p>
+<h2 id="2-Spring框架概述"><a href="#2-Spring框架概述" class="headerlink" title="2.Spring框架概述"></a>2.Spring框架概述</h2><p>Spring框架，可以解决对象创建以及对象之间依赖关系的一种框架。且可以和其它框架一起使用，例如spring与struts、spring和hibernate。(起到整合／粘合作用的一个框架)。  </p>
 <p>spring提供了一站式解决方案:<br>1）SpringCore:是Spring的核心功能：IOC容器，解决对象创建及依赖关系。<br>2）SpringWeb:Spring对web模块的支持。</p>
 <blockquote>
 <p>可以与struts整合，让struts的action创建交给spring。<br>Spring mvc模式，用springmvc整合了就不用struts了。  </p>
@@ -28,7 +194,7 @@
 </blockquote>
 <p>5）Spring AOP:  </p>
 <p>6）SpringEE:Spring对javaEE其它模块的支持</p>
-<p>##3.Spring开发步骤<br>明天更。</p>
+<h2 id="3-Spring开发步骤"><a href="#3-Spring开发步骤" class="headerlink" title="3.Spring开发步骤"></a>3.Spring开发步骤</h2><p>1)源码:</p>
 ]]></content>
     </entry>
     
@@ -53,7 +219,7 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="1-文件的上传"><a href="#1-文件的上传" class="headerlink" title="1.文件的上传"></a>1.文件的上传</h2><p>首先我们需要明确的是要实现上传和下载功能都要借助第三方Jar包 <code>fileupload.jar</code>,依赖jar包为:commons-io.jar。 </p>
+<h2 id="1-文件的上传"><a href="#1-文件的上传" class="headerlink" title="1.文件的上传"></a>1.文件的上传</h2><p>首先我们需要明确的是要实现上传和下载功能都要借助第三方Jar包 <code>fileupload.jar</code>,依赖jar包为:<code>commons-io.jar</code>。 </p>
 <h3 id="1-1上传对表单的限制"><a href="#1-1上传对表单的限制" class="headerlink" title="1.1上传对表单的限制"></a>1.1上传对表单的限制</h3><ul>
 <li>1.method必须为”post”.</li>
 <li>2.必须对表单form添加<code>enctype=&quot;multipart/form-data</code>的属性。</li>
@@ -78,14 +244,14 @@
 <p><strong>Demo:</strong><br><img src="http://od2xrf8gr.bkt.clouddn.com/upload3.png" alt=""></p>
 <p><strong>FileItem的API</strong></p>
 <ul>
-<li>boolean isFormField():是否为普通表单项，如果返回true则为普通表单项，如果为false则为文件表单项。</li>
-<li>String getFieldName():返回当前表单项的名称。</li>
-<li>String getString(String charset):返回表单项的值，参数传入utf-8即可。这个方法不适合文件表单项。</li>
-<li>String getName():返回上传的文件名称。</li>
-<li>long getSize():返回上传文件的字节数。</li>
-<li>InputStream getInputStream():返回上传文件对应的输入流。</li>
-<li>void write(File file):把上传的文件内容保存到指定的文件中。</li>
-<li>String getContextType();</li>
+<li><code>boolean isFormField()</code>:是否为普通表单项，如果返回true则为普通表单项，如果为false则为文件表单项。</li>
+<li><code>String getFieldName()</code>:返回当前表单项的名称。</li>
+<li><code>String getString(String charset)</code>:返回表单项的值，参数传入utf-8即可。这个方法不适合文件表单项。</li>
+<li><code>String getName()</code>:返回上传的文件名称。</li>
+<li><code>long getSize()</code>:返回上传文件的字节数。</li>
+<li><code>InputStream getInputStream()</code>:返回上传文件对应的输入流。</li>
+<li><code>void write(File file)</code>:把上传的文件内容保存到指定的文件中。</li>
+<li><code>String getContextType()</code>;</li>
 </ul>
 <h3 id="1-4上传的细节"><a href="#1-4上传的细节" class="headerlink" title="1.4上传的细节"></a>1.4上传的细节</h3><ul>
 <li>1.文件必须保存到WEB-INF文件下<blockquote>

@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8B%E8%BD%BD%E6%A1%86%E4%B8%AD%E8%A7%A3%E5%86%B3%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8javamail%E5%8F%91%E9%82%AE%E4%BB%B6.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/demo9.png">
-<meta property="og:updated_time" content="2016-11-05T08:40:06.000Z">
+<meta property="og:updated_time" content="2016-11-07T12:05:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb之上传下载与JavaMail">
 <meta name="twitter:description" content="对于JavaWeb中的上传与下载，别说你从没遇到过。  
@@ -364,7 +364,7 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="1-文件的上传"><a href="#1-文件的上传" class="headerlink" title="1.文件的上传"></a>1.文件的上传</h2><p>首先我们需要明确的是要实现上传和下载功能都要借助第三方Jar包 <code>fileupload.jar</code>,依赖jar包为:commons-io.jar。 </p>
+<h2 id="1-文件的上传"><a href="#1-文件的上传" class="headerlink" title="1.文件的上传"></a>1.文件的上传</h2><p>首先我们需要明确的是要实现上传和下载功能都要借助第三方Jar包 <code>fileupload.jar</code>,依赖jar包为:<code>commons-io.jar</code>。 </p>
 <h3 id="1-1上传对表单的限制"><a href="#1-1上传对表单的限制" class="headerlink" title="1.1上传对表单的限制"></a>1.1上传对表单的限制</h3><ul>
 <li>1.method必须为”post”.</li>
 <li>2.必须对表单form添加<code>enctype=&quot;multipart/form-data</code>的属性。</li>
@@ -389,14 +389,14 @@
 <p><strong>Demo:</strong><br><img src="http://od2xrf8gr.bkt.clouddn.com/upload3.png" alt=""></p>
 <p><strong>FileItem的API</strong></p>
 <ul>
-<li>boolean isFormField():是否为普通表单项，如果返回true则为普通表单项，如果为false则为文件表单项。</li>
-<li>String getFieldName():返回当前表单项的名称。</li>
-<li>String getString(String charset):返回表单项的值，参数传入utf-8即可。这个方法不适合文件表单项。</li>
-<li>String getName():返回上传的文件名称。</li>
-<li>long getSize():返回上传文件的字节数。</li>
-<li>InputStream getInputStream():返回上传文件对应的输入流。</li>
-<li>void write(File file):把上传的文件内容保存到指定的文件中。</li>
-<li>String getContextType();</li>
+<li><code>boolean isFormField()</code>:是否为普通表单项，如果返回true则为普通表单项，如果为false则为文件表单项。</li>
+<li><code>String getFieldName()</code>:返回当前表单项的名称。</li>
+<li><code>String getString(String charset)</code>:返回表单项的值，参数传入utf-8即可。这个方法不适合文件表单项。</li>
+<li><code>String getName()</code>:返回上传的文件名称。</li>
+<li><code>long getSize()</code>:返回上传文件的字节数。</li>
+<li><code>InputStream getInputStream()</code>:返回上传文件对应的输入流。</li>
+<li><code>void write(File file)</code>:把上传的文件内容保存到指定的文件中。</li>
+<li><code>String getContextType()</code>;</li>
 </ul>
 <h3 id="1-4上传的细节"><a href="#1-4上传的细节" class="headerlink" title="1.4上传的细节"></a>1.4上传的细节</h3><ul>
 <li>1.文件必须保存到WEB-INF文件下<blockquote>
@@ -624,7 +624,7 @@ Session session=Session.getInstance(props,auth);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -632,7 +632,7 @@ Session session=Session.getInstance(props,auth);
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -641,7 +641,7 @@ Session session=Session.getInstance(props,auth);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
