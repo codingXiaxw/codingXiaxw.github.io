@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="AJAX 异步请求," />
+  <meta name="keywords" content="MyBatis," />
 
 
 
@@ -84,18 +84,24 @@
 
 
 
-<meta name="description" content="客户端向服务器发送请求，若服务器每次响应过来的结果都要重新加载整个界面的话这样会给服务器带来很大的压力。所以ajax出现了，它是在不重新加载整个页面的情况下与服务器交换数据并更新部分网页的技术，是一种使用现有标准的新方法。">
+<meta name="description" content="1.SqlSession的使用范围1.SqlSessionFactoryBuilderSqlSessionFactoryBuilder是以工具类的方式来使用:需要创建sqlSessionFactory时就new一个 SqlSessionFactoryBuilder">
 <meta property="og:type" content="article">
-<meta property="og:title" content="玩转AJAX">
-<meta property="og:url" content="http://codingxiaxw.cn/2016/10/28/28-AJAX是什么/index.html">
+<meta property="og:title" content="MyBatis学习笔记(二)————Mapper动态代理开发">
+<meta property="og:url" content="http://codingxiaxw.cn/2016/11/07/33-MyBatis框架二/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="客户端向服务器发送请求，若服务器每次响应过来的结果都要重新加载整个界面的话这样会给服务器带来很大的压力。所以ajax出现了，它是在不重新加载整个页面的情况下与服务器交换数据并更新部分网页的技术，是一种使用现有标准的新方法。">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ajax.png">
-<meta property="og:updated_time" content="2016-11-02T15:07:37.000Z">
+<meta property="og:description" content="1.SqlSession的使用范围1.SqlSessionFactoryBuilderSqlSessionFactoryBuilder是以工具类的方式来使用:需要创建sqlSessionFactory时就new一个 SqlSessionFactoryBuilder">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E7%B1%BB.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E6%B5%8B%E8%AF%95222.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/mulu22.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/namespace.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/danduo.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ceshissss.png">
+<meta property="og:updated_time" content="2016-11-08T09:52:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="玩转AJAX">
-<meta name="twitter:description" content="客户端向服务器发送请求，若服务器每次响应过来的结果都要重新加载整个界面的话这样会给服务器带来很大的压力。所以ajax出现了，它是在不重新加载整个页面的情况下与服务器交换数据并更新部分网页的技术，是一种使用现有标准的新方法。">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/ajax.png">
+<meta name="twitter:title" content="MyBatis学习笔记(二)————Mapper动态代理开发">
+<meta name="twitter:description" content="1.SqlSession的使用范围1.SqlSessionFactoryBuilderSqlSessionFactoryBuilder是以工具类的方式来使用:需要创建sqlSessionFactory时就new一个 SqlSessionFactoryBuilder">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3.png">
 
 
 
@@ -116,10 +122,10 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/2016/10/28/28-AJAX是什么/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/2016/11/07/33-MyBatis框架二/"/>
 
 
-  <title> 玩转AJAX | codingXiaxw's blog </title>
+  <title> MyBatis学习笔记(二)————Mapper动态代理开发 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -272,7 +278,7 @@
             
             
               
-                玩转AJAX
+                MyBatis学习笔记(二)————Mapper动态代理开发
               
             
           </h1>
@@ -284,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-28T19:42:25+08:00" content="Oct 28 2016">
-              Oct 28 2016
+            <time itemprop="dateCreated" datetime="2016-11-07T18:50:10+08:00" content="Nov 7 2016">
+              Nov 7 2016
             </time>
           </span>
 
@@ -298,8 +304,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/AJAX-异步请求/" itemprop="url" rel="index">
-                    <span itemprop="name">AJAX 异步请求</span>
+                  <a href="/categories/MyBatis/" itemprop="url" rel="index">
+                    <span itemprop="name">MyBatis</span>
                   </a>
                 </span>
 
@@ -314,8 +320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/28/28-AJAX是什么/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/28-AJAX是什么/" itemprop="commentsCount"></span>
+                <a href="/2016/11/07/33-MyBatis框架二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/07/33-MyBatis框架二/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -338,116 +344,53 @@
       
 
       
-        <p>客户端向服务器发送请求，若服务器每次响应过来的结果都要重新加载整个界面的话这样会给服务器带来很大的压力。所以ajax出现了，它是在不重新加载整个页面的情况下与服务器交换数据并更新部分网页的技术，是一种使用现有标准的新方法。  </p>
+        <h2 id="1-SqlSession的使用范围"><a href="#1-SqlSession的使用范围" class="headerlink" title="1.SqlSession的使用范围"></a>1.SqlSession的使用范围</h2><p><strong>1.SqlSessionFactoryBuilder</strong><br>SqlSessionFactoryBuilder是以工具类的方式来使用:需要创建sqlSessionFactory时就new一个 SqlSessionFactoryBuilder  </p>
 <a id="more"></a>
-<h2 id="AJAX是什么"><a href="#AJAX是什么" class="headerlink" title="AJAX是什么"></a>AJAX是什么</h2><p>1.asynchronous javascript and xml，翻译过来就是异步的js和xml。2.它能使用js语言访问服务器，而且是异步访问。3.服务器给客户端的响应一般是整个页面，一个html完整页面但在ajax中因为是局部刷新，那么服务器就不用再响应整个页面而只是响应局部。  </p>
-<h2 id="服务器向客户端返回的数据类型"><a href="#服务器向客户端返回的数据类型" class="headerlink" title="服务器向客户端返回的数据类型"></a>服务器向客户端返回的数据类型</h2><p>一般客户端向服务器发送请求，服务器返回的数据类型有三种:  </p>
+<p><strong>2.sqlSessionFactory</strong><br>正常开发时，以单例方式管理sqlSessionFactory，整个系统运行过程中sqlSessionFactory直邮一个实例，将来和Spring整合后由Spring以单例方式管理sqlSessionFactory  </p>
+<p><strong>3.SqlSession</strong><br>SqlSession是一个面向用户(程序员)的接口，程序员调用 SqlSession接口的方法进行操作数据库。那么我们会思考:SqlSession能否以单例方式使用？？？由于 SqlSession是线程不安全的，所以 SqlSession最佳应用范围在方法体内。也就是说在方法体内定义局部变量 SqlSession的对象来使用。  </p>
+<h2 id="2-MyBatis开发DAO的方式"><a href="#2-MyBatis开发DAO的方式" class="headerlink" title="2.MyBatis开发DAO的方式"></a>2.MyBatis开发DAO的方式</h2><h3 id="2-1原始dao的开发方式"><a href="#2-1原始dao的开发方式" class="headerlink" title="2.1原始dao的开发方式"></a>2.1原始dao的开发方式</h3><p>程序员需要编写dao接口:<img src="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3.png" alt="">和dao接口的实现类:<img src="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E7%B1%BB.png" alt="">  </p>
+<p>然后就能在测试类中使用。测试类代码如下:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E6%B5%8B%E8%AF%95222.png" alt="">  </p>
+<p>我们来看看这种方式开发有什么问题?  </p>
 <ul>
-<li>1.text类型:返回的数据是纯文本。</li>
-<li>2.xml类型:返回的数据是xml格式，它是提供js和java交互的数据格式</li>
-<li>3.json类型:它也是提供js和java交互的数据格式，在ajax中最受欢迎。</li>
+<li>1.dao的实现类中存在重复代码，整个mybatis操作的过程代码模板重复(都是先创建sqlSession、调用sqlSession的方法、关闭sqlSession)。</li>
+<li>2.dao的实现类中存在硬编码，调用sqlSession方法时将statement的id硬编码。</li>
 </ul>
-<h2 id="理解同步交互和异步交互"><a href="#理解同步交互和异步交互" class="headerlink" title="理解同步交互和异步交互"></a>理解同步交互和异步交互</h2><ul>
-<li>同步交互:<ul>
-<li>1.发一个请求，就要等待服务器的响应结束，然后才能发送第二个请求。</li>
-<li>2刷新的是整个页面。</li>
-</ul>
-</li>
-<li>异步交互:<ul>
-<li>1.发一个请求，无需等待服务器的响应，然后就可以发第二个请求。</li>
-<li>2.可以使用js来接受服务器的响应，然后使用js来局部刷新界面。</li>
-</ul>
-</li>
-</ul>
-<p>附上uml图解释这两者的区别:<br><img src="http://od2xrf8gr.bkt.clouddn.com/ajax.png" alt=""></p>
-<h2 id="ajax常见应用情景"><a href="#ajax常见应用情景" class="headerlink" title="ajax常见应用情景"></a>ajax常见应用情景</h2><ul>
-<li>1.搜索引擎:在搜索引擎中输入关键字，会出现一个下拉框，列出网络上与关键字相关的字眼。</li>
-<li>2.注册:注册页面上填写完用户名后移开光标，会显示该用户名是否已被注册。</li>
-<li>3.淘宝某个店铺下方的评论框:翻页时的异步操作。</li>
-</ul>
-<h2 id="ajax的优缺点"><a href="#ajax的优缺点" class="headerlink" title="ajax的优缺点"></a>ajax的优缺点</h2><ul>
-<li>优点:<ul>
-<li>异步交互，增强了用户的体验。</li>
-<li>性能:因为服务器无需再响应整个页面，只需要响应部分内容，所以服务器的压力减轻了。</li>
-</ul>
-</li>
-<li>缺点:<ul>
-<li>ajax不能应用在所有场景</li>
-<li>ajax无端的增多了对服务器的访问次数，给服务器带来了压力(比较上述优点，在减少了服务器压力的同时又给服务器带来了压力，不知你理不理解哈哈)</li>
-</ul>
-</li>
-</ul>
-<h2 id="如何使用ajax来发送异步请求"><a href="#如何使用ajax来发送异步请求" class="headerlink" title="如何使用ajax来发送异步请求"></a>如何使用ajax来发送异步请求</h2><h3 id="第一步-首先要得到XMLHttpRequest"><a href="#第一步-首先要得到XMLHttpRequest" class="headerlink" title="第一步(首先要得到XMLHttpRequest)"></a>第一步(首先要得到XMLHttpRequest)</h3><p>大多数浏览器都只是得到该对象的方法为:var xmlHttp=new XMLHttpRequest();  </p>
-<p>IE6.0得到的方法为:var xmlHttp = new ActiveXObject(“Msxml2.XMLHTTP”);  </p>
-<p>IE5.0以及更早版本的IE:var xmlHttp=new ActiveXObject(“Microsoft.XMLHTTP”);</p>
-<p>在\<script>中编写创建XMLHttpRequest对象的函数:  </p>
-<pre><code>function createXMLHttpRequest(){
-        try{
-            return new XMLHttpRequest();
-        }catch(e){
-            try{
-                return new ActiveXObject(“Msxml2.XMLHTTP”);
-            }catch(e){
-                try{
-                    return new ActiveXObject(“Microsoft.XMLHTTP”);
-                }catch(e){
-                    alert(“哥们，你用的是什么浏览器啊”);
-                    throw e;
-                }
-            }
-        }
-    }
-</code></pre><h3 id="第二步-打开与服务器的连接"><a href="#第二步-打开与服务器的连接" class="headerlink" title="第二步(打开与服务器的连接)"></a>第二步(打开与服务器的连接)</h3><p>xmlHttp.open(“”,””,boolean):用来打开与服务器的连接，它需要三个参数。1.请求参数，可以是get可以是post。2.请求的url:指定服务器端资源。3.请求是否异步，如果为true表示发送异步请求，否则发送同步请求。例如xmlHttp.open(“GET”,”项目名称/AServlet”,true);</p>
-<h3 id="第三步-发送请求"><a href="#第三步-发送请求" class="headerlink" title="第三步(发送请求)"></a>第三步(发送请求)</h3><p>xmlHttp.send(参数):参数为请求体内容。如果请求方式是get，则参数为null(不可以省略null)，因为get请求方式的请求体为空;如果请求方式为post，则参数为请求体，另外还需要在此方法前面增加一个<code>mlHttp.setRequestHeader(“Content-Type”,”application/x-www-form-urlencoded”);</code>设置请求头的方法。</p>
-<h3 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h3><p>给xmlHttp对象注册onreadystatechange监听器，这个方法用于接收从服务器发送过来的响应数据。 在该方法中需要做以下步骤: </p>
-<p>1.获取xmlHttp对象的状态，xmlHttp对象一共有5个状态:  </p>
+<p>下面我们看看mapper动态代理的方式。  </p>
+<h3 id="2-2mapper动态代理的方式"><a href="#2-2mapper动态代理的方式" class="headerlink" title="2.2mapper动态代理的方式"></a>2.2mapper动态代理的方式</h3><p>这种方式下程序员只需要写dao接口，dao接口实现对象由mybatis自动生成代理对象。因为本身dao在三层架构中就是一个通用的接口。  </p>
+<h4 id="2-2-1mapper开发规范"><a href="#2-2-1mapper开发规范" class="headerlink" title="2.2.1mapper开发规范"></a>2.2.1mapper开发规范</h4><p>要想让mybatis自动创建dao接口实现类的代理对象，必须要遵循一些规则:  </p>
 <ul>
-<li>0状态:表示xmlHttp对象刚创建，还没有调用open()方法。</li>
-<li>1状态：请求开始，调用了open方法，但还没有调用send方法</li>
-<li>2状态：调用完了send方法</li>
-<li>3状态：服务器已经开始响应，但不表示响应结束了。</li>
-<li>4状态：服务器响应结束(通常我们只关心这个状态)</li>
+<li>1.mapper.xml中 namespace指定为mapper接口的全限定名。此步骤的目的:通过mapper.xml和mapper.java关联。</li>
+<li>2.mapper.xml中statement的id就是mapper.java中的方法名。</li>
+<li>3.mapper.xml中statement的parameterType和mapper.java中方法输入参数一致。</li>
+<li>4.mapper.xml中statement的resultType和mapper.java中方法的返回值类型一致。</li>
 </ul>
-<p>该状态通过调用xmlHttp.readyState得到。  </p>
-<p>2.得到服务器响应的状态码:通过调用xmlHttp.status得到，例如200，404，500。  </p>
-<p>3.得到服务器响应的内容，由于服务器返回的类型不同，所以得到的内容类型也不同，以下3种类型采用3种方法得到: </p>
+<p>采用这种方式后，我们便可将第一篇文章中提到的User.xml改为UserMapper.xml。文件目录如下:<img src="http://od2xrf8gr.bkt.clouddn.com/mulu22.png" alt="">，其中有些类我们会在后面用到。  </p>
+<h4 id="2-2-2mapper-xml-映射文件"><a href="#2-2-2mapper-xml-映射文件" class="headerlink" title="2.2.2mapper.xml(映射文件)"></a>2.2.2mapper.xml(映射文件)</h4><p>mapper映射文件的命名方式建议表名加Mapper.xml,namespace指定为mapper接口的全限定名。  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/namespace.png" alt=""></p>
+<h4 id="2-2-3mapper-java接口"><a href="#2-2-3mapper-java接口" class="headerlink" title="2.2.3mapper.java接口"></a>2.2.3mapper.java接口</h4><p>mybatis提出了mapper接口,相当于dao接口,mapper接口的命名方式建议为表名加Mapper.  </p>
+<pre><code>public interface UserMapper{};
+</code></pre><h4 id="2-3-4将mapper-xml在SqlMapConfing-xml中进行注册"><a href="#2-3-4将mapper-xml在SqlMapConfing-xml中进行注册" class="headerlink" title="2.3.4将mapper.xml在SqlMapConfing.xml中进行注册"></a>2.3.4将mapper.xml在SqlMapConfing.xml中进行注册</h4><pre><code>&lt;mappers&gt;
+ &lt;mapper resource=&quot;mapper/UserMapper.xml&quot;/&gt;
+&lt;/mappers&gt;
+</code></pre><h4 id="2-3-5mapper接口返回单个对象和集合对象"><a href="#2-3-5mapper接口返回单个对象和集合对象" class="headerlink" title="2.3.5mapper接口返回单个对象和集合对象"></a>2.3.5mapper接口返回单个对象和集合对象</h4><p><img src="http://od2xrf8gr.bkt.clouddn.com/danduo.png" alt=""><br>不管查询记录是单条还是多条，在statement(即UserMapper.xml)中resultType定义一致，都是单条记录映射的pojo类型。  </p>
+<p>mapper接口方法返回值，如果返回的是单个对象，返回值类型是pojo，生成的代理对象内部通过selectOne获取记录，如果返回值类型是多条对象，生成的代理对象内部通过selectList获取记录。  </p>
+<p>测试代码如下:<img src="http://od2xrf8gr.bkt.clouddn.com/ceshissss.png" alt=""></p>
+<h4 id="2-3-6mapper代理开发的问题"><a href="#2-3-6mapper代理开发的问题" class="headerlink" title="2.3.6mapper代理开发的问题"></a>2.3.6mapper代理开发的问题</h4><ul>
+<li>1.返回值的问题:如果方法(即UserMapper.java接口中的方法)调用的statement中返回是多条记录，而mapper.java方法的返回值为pojo，此时代理对象通过selectOne调用，但由于返回的是多条记录所以会报错:Expected one result (for null ) to be returned by selectOne() but found 4;  </li>
+<li>2.输入参数的问题:使用mapper代理的方式开发，mapper接口方法的输入参数只有一个，可扩展性是否很差?答:可扩展性没有问题，因为dao层就是通用的，可以通过扩展pojo(定义poji包装类型，后面<a href="">第四篇文章–MyBatis输入输出映射</a>会讲扩展pojo的知识)来将不同的参数(可以是pojo也可以是简单类型)传入进去。</li>
+</ul>
+<h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li>var content=xmlHttp.responseText;//服务器返回的文本为text。</li>
-<li>var content=xmlHttp.responseXML;//服务器响应的文本为xml内容。xmlHttp会自动对xml文本进行解析，得到的content为document对象。</li>
-<li>var content=eval(“(“+xmlHttp.responsetext+”)”);//服务器返回的文本为json数据。  </li>
+<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
 </ul>
-<p>完成第四步我们需要写的完整代码为:</p>
-<pre><code>xmlHttp.onreadystatechange=function(){//xmlHttp的5种状态都会调用本方法
-    if(xmlHttp.readState==4&amp;&amp;xmlHttp.status==200){//双重判断:判断是否为4状态，而且还要判断是否为200
-        //获取服务器的响应内容
-        var content=xmlHttp.responseText;//或var content= xmlHttp.responseXML;
-    }
-} 
-</code></pre><h2 id="案例-省市联动"><a href="#案例-省市联动" class="headerlink" title="案例:省市联动"></a>案例:省市联动</h2><p>说明，该案例就是在网页上显示两个下拉列表，一个列表用于显示中国所有的省份，一个列表用于显示相应省份下的城市，当然这些数据是存在数据库中的，为了方便展示，我只在数据库中列举了两个省份和部分城市。</p>
-<p>domain包下的city.java和province.java代码如下:   </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/province.png" alt=""><br><img src="http://od2xrf8gr.bkt.clouddn.com/city.png" alt=""></p>
-<p>servlet包下的CityServlet.java与ProvinceServlet.java，用于向客户端发送响应数据代码如下:   </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/cityservlet.png" alt=""><br><img src="http://od2xrf8gr.bkt.clouddn.com/provinceservlet.png" alt=""></p>
-<p>dao包下的ProvinceDao.java代码如下:用于与数据库连接:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/provincedao.png" alt=""></p>
-<p>最终要的界面代码关于ajax的操作,代码如下:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/ajax1.png" alt=""><br><img src="http://od2xrf8gr.bkt.clouddn.com/ajax2.png" alt=""><br><img src="http://od2xrf8gr.bkt.clouddn.com/ajax3.png" alt=""></p>
-<p>数据库中的表有两张，一张是省份表province,一张是城市表city,如下:   </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/city2.png" alt=""><br><img src="http://od2xrf8gr.bkt.clouddn.com/province2.png" alt=""></p>
-<p>结果如下:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/jiemian.png" alt=""></p>
-<p>当选择了相应的省份时，ajax会立即向服务器发送请求，然后服务器返回该省份下所有的城市，ajax将这些城市动态的显示在”请选择城市”列表中。达到部分刷新界面的效果。</p>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
-<ul>
-<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
-</li>
-<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_">Weibo@codingXiaxw</a></p>
-</li>
-<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671">Zhihu@codingXiaxw</a>  </p>
-</li>
-<li><a href="https://github.com/codingXiaxw">Github@codingXiaxw</a></li>
-</ul>
-</script></p>
+
       
     </div>
 
@@ -485,7 +428,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/AJAX-异步请求/" rel="tag">#AJAX 异步请求</a>
+            <a href="/tags/MyBatis/" rel="tag">#MyBatis</a>
           
         </div>
       
@@ -494,16 +437,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/27/27-JavaWeb三大组件之过滤器/" rel="next" title="JavaWeb三大组件之过滤器(Filter)">
-                <i class="fa fa-chevron-left"></i> JavaWeb三大组件之过滤器(Filter)
+              <a href="/2016/11/06/31-mybatis1/" rel="next" title="MyBatis学习笔记(一)————MyBatis快速入门">
+                <i class="fa fa-chevron-left"></i> MyBatis学习笔记(一)————MyBatis快速入门
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/30/29-JSTL标签库/" rel="prev" title="JavaWeb之JSTL标签库">
-                JavaWeb之JSTL标签库 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/08/34-mybatis3/" rel="prev" title="MyBatis学习笔记(三)————优化MyBatis配置文件中的配置">
+                MyBatis学习笔记(三)————优化MyBatis配置文件中的配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -530,8 +473,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/28/28-AJAX是什么/"
-           data-title="玩转AJAX" data-url="http://codingxiaxw.cn/2016/10/28/28-AJAX是什么/">
+      <div class="ds-thread" data-thread-key="2016/11/07/33-MyBatis框架二/"
+           data-title="MyBatis学习笔记(二)————Mapper动态代理开发" data-url="http://codingxiaxw.cn/2016/11/07/33-MyBatis框架二/">
       </div>
     
   </div>
@@ -651,7 +594,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX是什么"><span class="nav-number">1.</span> <span class="nav-text">AJAX是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器向客户端返回的数据类型"><span class="nav-number">2.</span> <span class="nav-text">服务器向客户端返回的数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解同步交互和异步交互"><span class="nav-number">3.</span> <span class="nav-text">理解同步交互和异步交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax常见应用情景"><span class="nav-number">4.</span> <span class="nav-text">ajax常见应用情景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax的优缺点"><span class="nav-number">5.</span> <span class="nav-text">ajax的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用ajax来发送异步请求"><span class="nav-number">6.</span> <span class="nav-text">如何使用ajax来发送异步请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步-首先要得到XMLHttpRequest"><span class="nav-number">6.1.</span> <span class="nav-text">第一步(首先要得到XMLHttpRequest)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-SqlSession的使用范围"><span class="nav-number">1.</span> <span class="nav-text">1.SqlSession的使用范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-MyBatis开发DAO的方式"><span class="nav-number">2.</span> <span class="nav-text">2.MyBatis开发DAO的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1原始dao的开发方式"><span class="nav-number">2.1.</span> <span class="nav-text">2.1原始dao的开发方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2mapper动态代理的方式"><span class="nav-number">2.2.</span> <span class="nav-text">2.2mapper动态代理的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1mapper开发规范"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1mapper开发规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2mapper-xml-映射文件"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2mapper.xml(映射文件)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3mapper-java接口"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.2.3mapper.java接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-4将mapper-xml在SqlMapConfing-xml中进行注册"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.3.4将mapper.xml在SqlMapConfing.xml中进行注册</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-5mapper接口返回单个对象和集合对象"><span class="nav-number">2.2.5.</span> <span class="nav-text">2.3.5mapper接口返回单个对象和集合对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-6mapper代理开发的问题"><span class="nav-number">2.2.6.</span> <span class="nav-text">2.3.6mapper代理开发的问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-联系"><span class="nav-number">3.</span> <span class="nav-text">3.联系</span></a></li></ol></div>
             
           </div>
         </section>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="AJAX 异步请求," />
+  <meta name="keywords" content="MyBatis," />
 
 
 
@@ -84,18 +84,24 @@
 
 
 
-<meta name="description" content="客户端向服务器发送请求，若服务器每次响应过来的结果都要重新加载整个界面的话这样会给服务器带来很大的压力。所以ajax出现了，它是在不重新加载整个页面的情况下与服务器交换数据并更新部分网页的技术，是一种使用现有标准的新方法。">
+<meta name="description" content="MyBatis配置文件很重要，首先我们来看看MyBatis配置文件中的内容和顺序:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="玩转AJAX">
-<meta property="og:url" content="http://codingxiaxw.cn/2016/10/28/28-AJAX是什么/index.html">
+<meta property="og:title" content="MyBatis学习笔记(三)————优化MyBatis配置文件中的配置">
+<meta property="og:url" content="http://codingxiaxw.cn/2016/11/08/34-mybatis3/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="客户端向服务器发送请求，若服务器每次响应过来的结果都要重新加载整个界面的话这样会给服务器带来很大的压力。所以ajax出现了，它是在不重新加载整个页面的情况下与服务器交换数据并更新部分网页的技术，是一种使用现有标准的新方法。">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ajax.png">
-<meta property="og:updated_time" content="2016-11-02T15:07:37.000Z">
+<meta property="og:description" content="MyBatis配置文件很重要，首先我们来看看MyBatis配置文件中的内容和顺序:">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/mulu22.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/db.pro.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%885.59.18.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/nima.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/hahaha.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/dadada.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.12.42.png">
+<meta property="og:updated_time" content="2016-11-08T10:14:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="玩转AJAX">
-<meta name="twitter:description" content="客户端向服务器发送请求，若服务器每次响应过来的结果都要重新加载整个界面的话这样会给服务器带来很大的压力。所以ajax出现了，它是在不重新加载整个页面的情况下与服务器交换数据并更新部分网页的技术，是一种使用现有标准的新方法。">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/ajax.png">
+<meta name="twitter:title" content="MyBatis学习笔记(三)————优化MyBatis配置文件中的配置">
+<meta name="twitter:description" content="MyBatis配置文件很重要，首先我们来看看MyBatis配置文件中的内容和顺序:">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/mulu22.png">
 
 
 
@@ -116,10 +122,10 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/2016/10/28/28-AJAX是什么/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/2016/11/08/34-mybatis3/"/>
 
 
-  <title> 玩转AJAX | codingXiaxw's blog </title>
+  <title> MyBatis学习笔记(三)————优化MyBatis配置文件中的配置 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -272,7 +278,7 @@
             
             
               
-                玩转AJAX
+                MyBatis学习笔记(三)————优化MyBatis配置文件中的配置
               
             
           </h1>
@@ -284,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-28T19:42:25+08:00" content="Oct 28 2016">
-              Oct 28 2016
+            <time itemprop="dateCreated" datetime="2016-11-08T17:27:57+08:00" content="Nov 8 2016">
+              Nov 8 2016
             </time>
           </span>
 
@@ -298,8 +304,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/AJAX-异步请求/" itemprop="url" rel="index">
-                    <span itemprop="name">AJAX 异步请求</span>
+                  <a href="/categories/MyBatis/" itemprop="url" rel="index">
+                    <span itemprop="name">MyBatis</span>
                   </a>
                 </span>
 
@@ -314,8 +320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/28/28-AJAX是什么/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/28-AJAX是什么/" itemprop="commentsCount"></span>
+                <a href="/2016/11/08/34-mybatis3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/08/34-mybatis3/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -338,116 +344,57 @@
       
 
       
-        <p>客户端向服务器发送请求，若服务器每次响应过来的结果都要重新加载整个界面的话这样会给服务器带来很大的压力。所以ajax出现了，它是在不重新加载整个页面的情况下与服务器交换数据并更新部分网页的技术，是一种使用现有标准的新方法。  </p>
-<a id="more"></a>
-<h2 id="AJAX是什么"><a href="#AJAX是什么" class="headerlink" title="AJAX是什么"></a>AJAX是什么</h2><p>1.asynchronous javascript and xml，翻译过来就是异步的js和xml。2.它能使用js语言访问服务器，而且是异步访问。3.服务器给客户端的响应一般是整个页面，一个html完整页面但在ajax中因为是局部刷新，那么服务器就不用再响应整个页面而只是响应局部。  </p>
-<h2 id="服务器向客户端返回的数据类型"><a href="#服务器向客户端返回的数据类型" class="headerlink" title="服务器向客户端返回的数据类型"></a>服务器向客户端返回的数据类型</h2><p>一般客户端向服务器发送请求，服务器返回的数据类型有三种:  </p>
+        <p>MyBatis配置文件很重要，首先我们来看看MyBatis配置文件中的内容和顺序:<br><a id="more"></a>  </p>
+<pre><code>&lt;properties&gt;(属性)
+
+&lt;setting&gt;(全局配置参数)
+
+&lt;typeAliases&gt;(类型别名)
+
+&lt;typeHandlers&gt;(类型处理器)
+
+&lt;objectFactory&gt;(对象工厂)
+
+&lt;plugins&gt;(插件)
+
+&lt;environments&gt;(环境集合属性对象)
+    &lt;environment&gt;(环境子属性对象)
+        &lt;transactionManager&gt;(事务管理)
+        dataSource&gt;(数据源)
+
+&lt;mappers&gt;(映射器)
+</code></pre><p>文件目录结构如下:<img src="http://od2xrf8gr.bkt.clouddn.com/mulu22.png" alt=""></p>
+<h2 id="1-lt-properties-gt-属性定义"><a href="#1-lt-properties-gt-属性定义" class="headerlink" title="1.&lt;properties&gt;属性定义"></a>1.<code>&lt;properties&gt;</code>属性定义</h2><p>可以把一些通用的属性值配置在属性文件中，加载到mybatis运行环境内。例如创建db.properties文件，然后在SqlMapperConfig.xml中进行配置。db.properties文件内容如下:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/db.pro.png" alt=""></p>
+<p>然后在SqlMapperConfig.xml中进行配置:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%885.59.18.png" alt="">  </p>
+<p>然后在<code>&lt;environments&gt;</code>标签中用<code>${}</code>符号做如下修改:</p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/nima.png" alt="">  </p>
+<p><strong>注意:Mybatis将按照下面的顺序来加载属性</strong>  </p>
 <ul>
-<li>1.text类型:返回的数据是纯文本。</li>
-<li>2.xml类型:返回的数据是xml格式，它是提供js和java交互的数据格式</li>
-<li>3.json类型:它也是提供js和java交互的数据格式，在ajax中最受欢迎。</li>
+<li>1.在properties标签之间定义的属性首先被读取。</li>
+<li>2.然后会读取properties标签内部resource或url的属性，它会覆盖已读取的同名属性。</li>
+<li>3.最后读取parameterType(即insert标签或是update标签或是…)传递的属性，它会覆盖已读取的同名属性。</li>
 </ul>
-<h2 id="理解同步交互和异步交互"><a href="#理解同步交互和异步交互" class="headerlink" title="理解同步交互和异步交互"></a>理解同步交互和异步交互</h2><ul>
-<li>同步交互:<ul>
-<li>1.发一个请求，就要等待服务器的响应结束，然后才能发送第二个请求。</li>
-<li>2刷新的是整个页面。</li>
-</ul>
-</li>
-<li>异步交互:<ul>
-<li>1.发一个请求，无需等待服务器的响应，然后就可以发第二个请求。</li>
-<li>2.可以使用js来接受服务器的响应，然后使用js来局部刷新界面。</li>
-</ul>
-</li>
-</ul>
-<p>附上uml图解释这两者的区别:<br><img src="http://od2xrf8gr.bkt.clouddn.com/ajax.png" alt=""></p>
-<h2 id="ajax常见应用情景"><a href="#ajax常见应用情景" class="headerlink" title="ajax常见应用情景"></a>ajax常见应用情景</h2><ul>
-<li>1.搜索引擎:在搜索引擎中输入关键字，会出现一个下拉框，列出网络上与关键字相关的字眼。</li>
-<li>2.注册:注册页面上填写完用户名后移开光标，会显示该用户名是否已被注册。</li>
-<li>3.淘宝某个店铺下方的评论框:翻页时的异步操作。</li>
-</ul>
-<h2 id="ajax的优缺点"><a href="#ajax的优缺点" class="headerlink" title="ajax的优缺点"></a>ajax的优缺点</h2><ul>
-<li>优点:<ul>
-<li>异步交互，增强了用户的体验。</li>
-<li>性能:因为服务器无需再响应整个页面，只需要响应部分内容，所以服务器的压力减轻了。</li>
-</ul>
-</li>
-<li>缺点:<ul>
-<li>ajax不能应用在所有场景</li>
-<li>ajax无端的增多了对服务器的访问次数，给服务器带来了压力(比较上述优点，在减少了服务器压力的同时又给服务器带来了压力，不知你理不理解哈哈)</li>
-</ul>
-</li>
-</ul>
-<h2 id="如何使用ajax来发送异步请求"><a href="#如何使用ajax来发送异步请求" class="headerlink" title="如何使用ajax来发送异步请求"></a>如何使用ajax来发送异步请求</h2><h3 id="第一步-首先要得到XMLHttpRequest"><a href="#第一步-首先要得到XMLHttpRequest" class="headerlink" title="第一步(首先要得到XMLHttpRequest)"></a>第一步(首先要得到XMLHttpRequest)</h3><p>大多数浏览器都只是得到该对象的方法为:var xmlHttp=new XMLHttpRequest();  </p>
-<p>IE6.0得到的方法为:var xmlHttp = new ActiveXObject(“Msxml2.XMLHTTP”);  </p>
-<p>IE5.0以及更早版本的IE:var xmlHttp=new ActiveXObject(“Microsoft.XMLHTTP”);</p>
-<p>在\<script>中编写创建XMLHttpRequest对象的函数:  </p>
-<pre><code>function createXMLHttpRequest(){
-        try{
-            return new XMLHttpRequest();
-        }catch(e){
-            try{
-                return new ActiveXObject(“Msxml2.XMLHTTP”);
-            }catch(e){
-                try{
-                    return new ActiveXObject(“Microsoft.XMLHTTP”);
-                }catch(e){
-                    alert(“哥们，你用的是什么浏览器啊”);
-                    throw e;
-                }
-            }
-        }
-    }
-</code></pre><h3 id="第二步-打开与服务器的连接"><a href="#第二步-打开与服务器的连接" class="headerlink" title="第二步(打开与服务器的连接)"></a>第二步(打开与服务器的连接)</h3><p>xmlHttp.open(“”,””,boolean):用来打开与服务器的连接，它需要三个参数。1.请求参数，可以是get可以是post。2.请求的url:指定服务器端资源。3.请求是否异步，如果为true表示发送异步请求，否则发送同步请求。例如xmlHttp.open(“GET”,”项目名称/AServlet”,true);</p>
-<h3 id="第三步-发送请求"><a href="#第三步-发送请求" class="headerlink" title="第三步(发送请求)"></a>第三步(发送请求)</h3><p>xmlHttp.send(参数):参数为请求体内容。如果请求方式是get，则参数为null(不可以省略null)，因为get请求方式的请求体为空;如果请求方式为post，则参数为请求体，另外还需要在此方法前面增加一个<code>mlHttp.setRequestHeader(“Content-Type”,”application/x-www-form-urlencoded”);</code>设置请求头的方法。</p>
-<h3 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h3><p>给xmlHttp对象注册onreadystatechange监听器，这个方法用于接收从服务器发送过来的响应数据。 在该方法中需要做以下步骤: </p>
-<p>1.获取xmlHttp对象的状态，xmlHttp对象一共有5个状态:  </p>
+<p>所以我们建议使用properties标签时，不要在properties标签之间定义属性，只引用在.properties文件中定义的属性，并且.properties文件中定义的key值要有一些特殊的规则。例如我上述定义key值时前面都加了jdbc.的前缀。</p>
+<h2 id="2-lt-settings-gt-全局参数配置"><a href="#2-lt-settings-gt-全局参数配置" class="headerlink" title="2.&lt;settings&gt;全局参数配置"></a>2.<code>&lt;settings&gt;</code>全局参数配置</h2><p>mybatis运行时可以调整一些全局参数(相当于软件的运行参数)。根据使用需求进行参数配置。但是要注意:小心配置，配置参数会影响mybatis的执行。  </p>
+<p>itatis的全局配置参数中包括很多的性能参数(最大线程数、最大等待时间…)，通过调整这些性能参数使ibatis达到高性能的运行，而mybatis没有这些性能参数，由mybatis自动调节。</p>
+<h2 id="3-lt-typeAliases-gt-属性"><a href="#3-lt-typeAliases-gt-属性" class="headerlink" title="3.&lt;typeAliases&gt;属性"></a>3.<code>&lt;typeAliases&gt;</code>属性</h2><p>可以将parameterType、resultType中指定的类型通过别名引用。MyBatis提供了很多的别名，这里我们采用自定义的别名，在SqlMapperConfig.xml中进行如下配置:<img src="http://od2xrf8gr.bkt.clouddn.com/hahaha.png" alt=""><br>里面包括定义单个别名和批量别名定义(即一次性定义一个包下所有.java文件的别名)。  </p>
+<p>定义别名后这样我们在parameterType和resultType中使用时就不用再繁琐的指定类的全限定类名了，像下面这样使用即可<img src="http://od2xrf8gr.bkt.clouddn.com/dadada.png" alt=""></p>
+<h2 id="4-lt-typeHandlers-gt-属性"><a href="#4-lt-typeHandlers-gt-属性" class="headerlink" title="4.&lt;typeHandlers&gt;属性"></a>4.<code>&lt;typeHandlers&gt;</code>属性</h2><p>类型处理器将java类型和jdbc类型进行映射，mybatis提供了很多类型处理器，一般情况下够用了。</p>
+<h2 id="5-lt-mapper-gt-映射器属性"><a href="#5-lt-mapper-gt-映射器属性" class="headerlink" title="5.&lt;mapper&gt;映射器属性"></a>5.<code>&lt;mapper&gt;</code>映射器属性</h2><p>之前我们在配置文件中使用的<code>&lt;mapper&gt;</code>标签内容为:<code>&lt;mapper resource=“mapper/UserMapper.xml”/&gt;</code>，接下来我要讲的是另一种在配置文件中映射mapper动态代理的方法。在配置文件中这样配置<code>&lt;mapper class=“mapper.UserMapper”/&gt;</code>，这样的要求需要保证UserMapper.xml文件和UserMapper.java在同一个包下且.xml文件和.java文件名要同名。  </p>
+<p>同上方别名的配置，当包下出现多个Mapper.java和Mapper.xml时我们采用批量配置:<code>&lt;package name=“domain”/&gt;</code>，代码如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.12.42.png" alt="">  </p>
+<h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li>0状态:表示xmlHttp对象刚创建，还没有调用open()方法。</li>
-<li>1状态：请求开始，调用了open方法，但还没有调用send方法</li>
-<li>2状态：调用完了send方法</li>
-<li>3状态：服务器已经开始响应，但不表示响应结束了。</li>
-<li>4状态：服务器响应结束(通常我们只关心这个状态)</li>
-</ul>
-<p>该状态通过调用xmlHttp.readyState得到。  </p>
-<p>2.得到服务器响应的状态码:通过调用xmlHttp.status得到，例如200，404，500。  </p>
-<p>3.得到服务器响应的内容，由于服务器返回的类型不同，所以得到的内容类型也不同，以下3种类型采用3种方法得到: </p>
-<ul>
-<li>var content=xmlHttp.responseText;//服务器返回的文本为text。</li>
-<li>var content=xmlHttp.responseXML;//服务器响应的文本为xml内容。xmlHttp会自动对xml文本进行解析，得到的content为document对象。</li>
-<li>var content=eval(“(“+xmlHttp.responsetext+”)”);//服务器返回的文本为json数据。  </li>
-</ul>
-<p>完成第四步我们需要写的完整代码为:</p>
-<pre><code>xmlHttp.onreadystatechange=function(){//xmlHttp的5种状态都会调用本方法
-    if(xmlHttp.readState==4&amp;&amp;xmlHttp.status==200){//双重判断:判断是否为4状态，而且还要判断是否为200
-        //获取服务器的响应内容
-        var content=xmlHttp.responseText;//或var content= xmlHttp.responseXML;
-    }
-} 
-</code></pre><h2 id="案例-省市联动"><a href="#案例-省市联动" class="headerlink" title="案例:省市联动"></a>案例:省市联动</h2><p>说明，该案例就是在网页上显示两个下拉列表，一个列表用于显示中国所有的省份，一个列表用于显示相应省份下的城市，当然这些数据是存在数据库中的，为了方便展示，我只在数据库中列举了两个省份和部分城市。</p>
-<p>domain包下的city.java和province.java代码如下:   </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/province.png" alt=""><br><img src="http://od2xrf8gr.bkt.clouddn.com/city.png" alt=""></p>
-<p>servlet包下的CityServlet.java与ProvinceServlet.java，用于向客户端发送响应数据代码如下:   </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/cityservlet.png" alt=""><br><img src="http://od2xrf8gr.bkt.clouddn.com/provinceservlet.png" alt=""></p>
-<p>dao包下的ProvinceDao.java代码如下:用于与数据库连接:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/provincedao.png" alt=""></p>
-<p>最终要的界面代码关于ajax的操作,代码如下:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/ajax1.png" alt=""><br><img src="http://od2xrf8gr.bkt.clouddn.com/ajax2.png" alt=""><br><img src="http://od2xrf8gr.bkt.clouddn.com/ajax3.png" alt=""></p>
-<p>数据库中的表有两张，一张是省份表province,一张是城市表city,如下:   </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/city2.png" alt=""><br><img src="http://od2xrf8gr.bkt.clouddn.com/province2.png" alt=""></p>
-<p>结果如下:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/jiemian.png" alt=""></p>
-<p>当选择了相应的省份时，ajax会立即向服务器发送请求，然后服务器返回该省份下所有的城市，ajax将这些城市动态的显示在”请选择城市”列表中。达到部分刷新界面的效果。</p>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
-<ul>
-<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
 </li>
-<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_">Weibo@codingXiaxw</a></p>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
-<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671">Zhihu@codingXiaxw</a>  </p>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw">Github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
 </ul>
-</script></p>
+
       
     </div>
 
@@ -485,7 +432,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/AJAX-异步请求/" rel="tag">#AJAX 异步请求</a>
+            <a href="/tags/MyBatis/" rel="tag">#MyBatis</a>
           
         </div>
       
@@ -494,17 +441,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/27/27-JavaWeb三大组件之过滤器/" rel="next" title="JavaWeb三大组件之过滤器(Filter)">
-                <i class="fa fa-chevron-left"></i> JavaWeb三大组件之过滤器(Filter)
+              <a href="/2016/11/07/33-MyBatis框架二/" rel="next" title="MyBatis学习笔记(二)————Mapper动态代理开发">
+                <i class="fa fa-chevron-left"></i> MyBatis学习笔记(二)————Mapper动态代理开发
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/30/29-JSTL标签库/" rel="prev" title="JavaWeb之JSTL标签库">
-                JavaWeb之JSTL标签库 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -530,8 +473,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/28/28-AJAX是什么/"
-           data-title="玩转AJAX" data-url="http://codingxiaxw.cn/2016/10/28/28-AJAX是什么/">
+      <div class="ds-thread" data-thread-key="2016/11/08/34-mybatis3/"
+           data-title="MyBatis学习笔记(三)————优化MyBatis配置文件中的配置" data-url="http://codingxiaxw.cn/2016/11/08/34-mybatis3/">
       </div>
     
   </div>
@@ -651,7 +594,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX是什么"><span class="nav-number">1.</span> <span class="nav-text">AJAX是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器向客户端返回的数据类型"><span class="nav-number">2.</span> <span class="nav-text">服务器向客户端返回的数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解同步交互和异步交互"><span class="nav-number">3.</span> <span class="nav-text">理解同步交互和异步交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax常见应用情景"><span class="nav-number">4.</span> <span class="nav-text">ajax常见应用情景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax的优缺点"><span class="nav-number">5.</span> <span class="nav-text">ajax的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用ajax来发送异步请求"><span class="nav-number">6.</span> <span class="nav-text">如何使用ajax来发送异步请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步-首先要得到XMLHttpRequest"><span class="nav-number">6.1.</span> <span class="nav-text">第一步(首先要得到XMLHttpRequest)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-lt-properties-gt-属性定义"><span class="nav-number">1.</span> <span class="nav-text">1.<properties>属性定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-lt-settings-gt-全局参数配置"><span class="nav-number">2.</span> <span class="nav-text">2.<settings>全局参数配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-lt-typeAliases-gt-属性"><span class="nav-number">3.</span> <span class="nav-text">3.<typeAliases>属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-lt-typeHandlers-gt-属性"><span class="nav-number">4.</span> <span class="nav-text">4.<typeHandlers>属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-lt-mapper-gt-映射器属性"><span class="nav-number">5.</span> <span class="nav-text">5.<mapper>映射器属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-联系"><span class="nav-number">6.</span> <span class="nav-text">6.联系</span></a></li></ol></div>
             
           </div>
         </section>
