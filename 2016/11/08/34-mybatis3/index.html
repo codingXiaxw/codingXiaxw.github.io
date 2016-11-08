@@ -94,10 +94,11 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/db.pro.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%885.59.18.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/nima.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%88%AB%E5%90%8D.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/hahaha.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/dadada.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.12.42.png">
-<meta property="og:updated_time" content="2016-11-08T10:14:09.000Z">
+<meta property="og:updated_time" content="2016-11-08T11:28:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis学习笔记(三)————优化MyBatis配置文件中的配置">
 <meta name="twitter:description" content="MyBatis配置文件很重要，首先我们来看看MyBatis配置文件中的内容和顺序:">
@@ -379,20 +380,23 @@
 <p>所以我们建议使用properties标签时，不要在properties标签之间定义属性，只引用在.properties文件中定义的属性，并且.properties文件中定义的key值要有一些特殊的规则。例如我上述定义key值时前面都加了jdbc.的前缀。</p>
 <h2 id="2-lt-settings-gt-全局参数配置"><a href="#2-lt-settings-gt-全局参数配置" class="headerlink" title="2.&lt;settings&gt;全局参数配置"></a>2.<code>&lt;settings&gt;</code>全局参数配置</h2><p>mybatis运行时可以调整一些全局参数(相当于软件的运行参数)。根据使用需求进行参数配置。但是要注意:小心配置，配置参数会影响mybatis的执行。  </p>
 <p>itatis的全局配置参数中包括很多的性能参数(最大线程数、最大等待时间…)，通过调整这些性能参数使ibatis达到高性能的运行，而mybatis没有这些性能参数，由mybatis自动调节。</p>
-<h2 id="3-lt-typeAliases-gt-属性"><a href="#3-lt-typeAliases-gt-属性" class="headerlink" title="3.&lt;typeAliases&gt;属性"></a>3.<code>&lt;typeAliases&gt;</code>属性</h2><p>可以将parameterType、resultType中指定的类型通过别名引用。MyBatis提供了很多的别名，这里我们采用自定义的别名，在SqlMapperConfig.xml中进行如下配置:<img src="http://od2xrf8gr.bkt.clouddn.com/hahaha.png" alt=""><br>里面包括定义单个别名和批量别名定义(即一次性定义一个包下所有.java文件的别名)。  </p>
+<h2 id="3-lt-typeAliases-gt-属性"><a href="#3-lt-typeAliases-gt-属性" class="headerlink" title="3.&lt;typeAliases&gt;属性"></a>3.<code>&lt;typeAliases&gt;</code>属性</h2><p>可以将parameterType、resultType中指定的类型通过别名引用。MyBatis提供了很多的别名如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%88%AB%E5%90%8D.png" alt="">  </p>
+<p>这里我们采用自定义的别名，在SqlMapperConfig.xml中进行如下配置:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/hahaha.png" alt="">  </p>
+<p>里面包括定义单个别名和批量别名定义(即一次性定义一个包下所有.java文件的别名)。  </p>
 <p>定义别名后这样我们在parameterType和resultType中使用时就不用再繁琐的指定类的全限定类名了，像下面这样使用即可<img src="http://od2xrf8gr.bkt.clouddn.com/dadada.png" alt=""></p>
 <h2 id="4-lt-typeHandlers-gt-属性"><a href="#4-lt-typeHandlers-gt-属性" class="headerlink" title="4.&lt;typeHandlers&gt;属性"></a>4.<code>&lt;typeHandlers&gt;</code>属性</h2><p>类型处理器将java类型和jdbc类型进行映射，mybatis提供了很多类型处理器，一般情况下够用了。</p>
 <h2 id="5-lt-mapper-gt-映射器属性"><a href="#5-lt-mapper-gt-映射器属性" class="headerlink" title="5.&lt;mapper&gt;映射器属性"></a>5.<code>&lt;mapper&gt;</code>映射器属性</h2><p>之前我们在配置文件中使用的<code>&lt;mapper&gt;</code>标签内容为:<code>&lt;mapper resource=“mapper/UserMapper.xml”/&gt;</code>，接下来我要讲的是另一种在配置文件中映射mapper动态代理的方法。在配置文件中这样配置<code>&lt;mapper class=“mapper.UserMapper”/&gt;</code>，这样的要求需要保证UserMapper.xml文件和UserMapper.java在同一个包下且.xml文件和.java文件名要同名。  </p>
 <p>同上方别名的配置，当包下出现多个Mapper.java和Mapper.xml时我们采用批量配置:<code>&lt;package name=“domain”/&gt;</code>，代码如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.12.42.png" alt="">  </p>
 <h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 
       
@@ -448,6 +452,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/08/35-mybatis4/" rel="prev" title="MyBatis学习笔记(四)————输入(parameterType)与输出(resultType、resultMap)映射">
+                MyBatis学习笔记(四)————输入(parameterType)与输出(resultType、resultMap)映射 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -519,7 +527,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
