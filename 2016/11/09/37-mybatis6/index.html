@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="MyBatis," />
 
 
 
@@ -84,18 +84,30 @@
 
 
 
-<meta name="description" content="1.前言&amp;emsp;&amp;emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去">
+<meta name="description" content="对于数据库中对表的增删改查操作，我们知道增删改都涉及的是单表，而只有查询操作既可以设计到单表操作又可以涉及到多表操作，所以对于输入映射parameterType而言是没有所谓的高级映射的，也就是说高级映射只针对于输出映射(因为高级映射设计到多张表)。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从Android开发转战Java Web">
-<meta property="og:url" content="http://codingxiaxw.cn/2016/09/12/5-新的开始/index.html">
+<meta property="og:title" content="MyBatis学习笔记(六)————使用resultMap实现高级映射">
+<meta property="og:url" content="http://codingxiaxw.cn/2016/11/09/37-mybatis6/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="1.前言&amp;emsp;&amp;emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%9D%8F%E7%AC%91.jpg">
-<meta property="og:updated_time" content="2016-10-17T12:53:18.000Z">
+<meta property="og:description" content="对于数据库中对表的增删改查操作，我们知道增删改都涉及的是单表，而只有查询操作既可以设计到单表操作又可以涉及到多表操作，所以对于输入映射parameterType而言是没有所谓的高级映射的，也就是说高级映射只针对于输出映射(因为高级映射设计到多张表)。">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%883.44.21.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.01.21.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.01.37.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.01.48.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.09.21.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.52.56.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.53.04.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.53.13.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.14.55.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.32.43.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.32.50.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.33.21.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.33.31.png">
+<meta property="og:updated_time" content="2016-11-09T10:55:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从Android开发转战Java Web">
-<meta name="twitter:description" content="1.前言&amp;emsp;&amp;emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%9D%8F%E7%AC%91.jpg">
+<meta name="twitter:title" content="MyBatis学习笔记(六)————使用resultMap实现高级映射">
+<meta name="twitter:description" content="对于数据库中对表的增删改查操作，我们知道增删改都涉及的是单表，而只有查询操作既可以设计到单表操作又可以涉及到多表操作，所以对于输入映射parameterType而言是没有所谓的高级映射的，也就是说高级映射只针对于输出映射(因为高级映射设计到多张表)。">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%883.44.21.png">
 
 
 
@@ -116,10 +128,10 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/2016/09/12/5-新的开始/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/2016/11/09/37-mybatis6/"/>
 
 
-  <title> 从Android开发转战Java Web | codingXiaxw's blog </title>
+  <title> MyBatis学习笔记(六)————使用resultMap实现高级映射 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -272,7 +284,7 @@
             
             
               
-                从Android开发转战Java Web
+                MyBatis学习笔记(六)————使用resultMap实现高级映射
               
             
           </h1>
@@ -284,8 +296,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-12T19:23:54+08:00" content="Sep 12 2016">
-              Sep 12 2016
+            <time itemprop="dateCreated" datetime="2016-11-09T17:04:50+08:00" content="Nov 9 2016">
+              Nov 9 2016
             </time>
           </span>
 
@@ -298,8 +310,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/MyBatis/" itemprop="url" rel="index">
+                    <span itemprop="name">MyBatis</span>
                   </a>
                 </span>
 
@@ -314,8 +326,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/12/5-新的开始/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/12/5-新的开始/" itemprop="commentsCount"></span>
+                <a href="/2016/11/09/37-mybatis6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/09/37-mybatis6/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -338,46 +350,82 @@
       
 
       
-        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>&emsp;&emsp;一个伟大事迹的诞生总要牺牲点什么，William Henry Gates大学时选择休学而去搞开发，最后成就了自己的 SoftWare；Steven Jobs因父母财务紧张不得不辍学，最后成就了自己的apple；而我，一个平凡的在校大三狗，在Andriod开发的世界里摸黑打滚了大半年之后，在仔细的思考过后，而今打算放弃Android去选择Web开发(你以为我也要辍学去搞开发吗)。<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%9D%8F%E7%AC%91.jpg" alt="">希望在接下来的日子里，能学有所得。 </p>
-<a id="more"></a>
-<h2 id="2-细数这一年来自己的经历"><a href="#2-细数这一年来自己的经历" class="headerlink" title="2.细数这一年来自己的经历:"></a>2.细数这一年来自己的经历:</h2><h3 id="2-1开发过的app"><a href="#2-1开发过的app" class="headerlink" title="2.1开发过的app"></a>2.1开发过的app</h3><ul>
-<li>计算器</li>
-<li>记事本</li>
-<li>智能聊天机器人</li>
-<li>天气预报</li>
-<li>2048小游戏</li>
-<li>知乎日报  </li>
+        <p>对于数据库中对表的增删改查操作，我们知道增删改都涉及的是单表，而只有查询操作既可以设计到单表操作又可以涉及到多表操作，所以对于输入映射parameterType而言是没有所谓的高级映射的，也就是说高级映射只针对于输出映射(因为高级映射设计到多张表)。<br><a id="more"></a></p>
+<p>前五篇文章我们都只实现了单表中的字段与pojo的映射，而本篇文章我们将来讲解如何实现多表与pojo之间的高级映射,分别有一对一映射、一对多映射和多对多映射。首先我们来看看如何使用resultType完成一对一映射。  </p>
+<h2 id="1-多表间的一对一查询"><a href="#1-多表间的一对一查询" class="headerlink" title="1.多表间的一对一查询"></a>1.多表间的一对一查询</h2><h3 id="1-1需求"><a href="#1-1需求" class="headerlink" title="1.1需求"></a>1.1需求</h3><p>查询订单信息关联查询用户信息。这里我们知道一个用户可以有多张订单，而一张订单只能属于一个用户，所以用户与订单间的关系是一对多而订单与用户间的关系是一对一。所以这里我们将订单表作为主查询表来关联用户表，从而实现一对一映射。  </p>
+<h3 id="1-2创建表和数据"><a href="#1-2创建表和数据" class="headerlink" title="1.2创建表和数据"></a>1.2创建表和数据</h3><pre><code>create table orders( id int primary key auto_increment, user_id int , number int, createtime datetime, note varchar(50));
+
+用户表在第一篇文章中我们已经创建。
+</code></pre><p>建立oders表和user表对应的pojo对象Orders.java和User.java。</p>
+<pre><code>public class Orders
+{
+    private Integer id;
+
+    private Integer userId;
+
+    private String number;
+
+    private Date createtime;
+
+    private String note;
+
+｝
+</code></pre><p> 并建立相关的get和set方法，User.java我们之前已建立。</p>
+<h3 id="1-3sql查询语句"><a href="#1-3sql查询语句" class="headerlink" title="1.3sql查询语句"></a>1.3sql查询语句</h3><p>对于查询语句，我们需要知道:1.先确定主查询表:订单表。2.再确定关联查询表:用户信息表。通过orders关联查询用户使用user_id一个外键，只能关联查询出一条用户记录，我们使用内连接。查询语句为:  </p>
+<pre><code>SELECT orders.*,user.username,user.sex 
+FROM orders,user 
+WHERE orders.user_id = user.id
+</code></pre><h3 id="1-4使用resultType实现"><a href="#1-4使用resultType实现" class="headerlink" title="1.4使用resultType实现"></a>1.4使用resultType实现</h3><p>通过查询语句，查询到的结果同时包括user表和orders表两张表的列，那么我们将结果映射到哪个pojo对象中呢？若映射到User.java，那查询结果中对应的orders表的字段一定会遗失；若映射到Orders.java，那查询结果中对应的user表的字段同样也会遗失。所以这里需要我们针对查询的结果重新创建一个映射的pojo对象OrderCustom.java:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%883.44.21.png" alt="">  </p>
+<p>这里我们让OrderCustom.java继承自Order.java，这样我们就只需在OrderCustom.java中添加user表中的字段即可。因为MyBatis主要的重点在sql语句，所以我们完成配置和pojo对象的建立后主要的点就放在了sql语句上，所以接下来要定义写sql语句的mapper.xml和对数据库进行操作的mapper.java接口了.  </p>
+<p>OrdersMapperCustom.xml文件内容如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.01.21.png" alt=""><br>因为我们只关心输出映射，所以在xml中写sql查询语句时没有写parameterType属性，而resultType的属性值我之所以没有写全OrderCustom类的全限定性名，是因为我们在SqlMapperConfig.xml中进行了别名的配置。相应的OrdersMapperCustom.java接口内容如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.01.37.png" alt="">  </p>
+<p>然后在测试类中测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.01.48.png" alt="">便可完成这两张表的关联与我们自定义的pojo对象的映射。接下来我们看看如何使用resultMap完成。  </p>
+<h3 id="1-5使用resultMap实现一对一映射"><a href="#1-5使用resultMap实现一对一映射" class="headerlink" title="1.5使用resultMap实现一对一映射"></a>1.5使用resultMap实现一对一映射</h3><p>思路:将关联查询的信息映射到pojo中，如下:只需在Orders类中创建一个User属性，将关联查询的信息映射到User属性中。<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.09.21.png" alt=""><br>这样我们便可以将查询的结果映射到Orders.java类中，而不用自己再自定义一个pojo了。  </p>
+<p>修改OrdersMapperCustom.xml中的内容(添加并使用resultMap标签),:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.52.56.png" alt="">  </p>
+<p>然后在OrdersMapperCutom.java中添加方法:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.53.04.png" alt="">  </p>
+<p>最后测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.53.13.png" alt="">发现查询结果已全部映射到Orders.java类中。  </p>
+<h3 id="1-6比较resultType和resultMap完成一对一映射"><a href="#1-6比较resultType和resultMap完成一对一映射" class="headerlink" title="1.6比较resultType和resultMap完成一对一映射"></a>1.6比较resultType和resultMap完成一对一映射</h3><ul>
+<li>resultType：要自定义pojo 保证sql查询列和pojo的属性对应，这种方法相对较简单，所以应用广泛。</li>
+<li>resultMap：使用association完成一对一映射需要配置一个resultMap标签，过程有点复杂，如果要实现延迟加载(后面会讲)就只能用resultMap实现 ，如果为了方便对关联信息进行解析，也可以用association将关联信息映射到pojo中方便解析。</li>
 </ul>
-<h3 id="2-2学习过的网站"><a href="#2-2学习过的网站" class="headerlink" title="2.2学习过的网站"></a>2.2学习过的网站</h3><ul>
-<li><a href="http://www.imooc.com/" target="_blank" rel="external">慕课网</a>  </li>
-<li><a href="http://www.jikexueyuan.com/" target="_blank" rel="external">极客学院</a>  </li>
-<li><a href="http://study.163.com/" target="_blank" rel="external">网易云课堂</a></li>
-</ul>
-<h3 id="2-3看过的书籍"><a href="#2-3看过的书籍" class="headerlink" title="2.3看过的书籍"></a>2.3看过的书籍</h3><p>有关java:  </p>
+<h2 id="2-多表间的一对多查询"><a href="#2-多表间的一对多查询" class="headerlink" title="2.多表间的一对多查询"></a>2.多表间的一对多查询</h2><h3 id="2-1需求"><a href="#2-1需求" class="headerlink" title="2.1需求"></a>2.1需求</h3><p>查询所有订单信息及订单下的订单明细信息。分析:一个订单可以可以有多个订单明细，而一个订单明细只属于一个订单，所以订单与订单明细间的关系为一对多。</p>
+<h3 id="2-2创建表和数据"><a href="#2-2创建表和数据" class="headerlink" title="2.2创建表和数据"></a>2.2创建表和数据</h3><pre><code>create table orderdetail( id int primary key auto_increment, orders_id int, items_id int, items_num int);//创建订单明细表
+
+订单表我们已经创建
+</code></pre><p>创建和订单明细表对应的pojo对象:  </p>
+<pre><code>public class Orderdetail
+{
+    private Integer id;
+
+    private Integer ordersId;
+
+    private Integer itemsId;
+
+    private Integer itemsNum;
+
+}
+</code></pre><p>并创建相关的set和get方法。</p>
+<h3 id="2-3sql查询语句"><a href="#2-3sql查询语句" class="headerlink" title="2.3sql查询语句"></a>2.3sql查询语句</h3><p>1.先确定主查询表:订单表。2.再确定关联查询表:用户表加订单明细表。通过orderdetail关联查询订单使用orders_id一个外键，只能关联查询出一条订单记录，我们使用内连接。查询语句为:  </p>
+<pre><code>SELECT orders.*,user.username,user.sex ,orderdetail.id orderdetail_id,orderdetail.items_num,orderdetail.items_id
+
+FROM orders,user,orderdetail 
+WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
+</code></pre><h3 id="2-4使用resultMap进行一对多映射"><a href="#2-4使用resultMap进行一对多映射" class="headerlink" title="2.4使用resultMap进行一对多映射"></a>2.4使用resultMap进行一对多映射</h3><p>思路:resultMap 提供collection完成关联信息映射到集合对象中。在orders类中创建集合属性：<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.14.55.png" alt="">  </p>
+<p>然后修改OrdersMapperCustom.xml中的信息:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.32.43.png" alt=""><br>并在其中添加resultMap的定义:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.32.50.png" alt="">  </p>
+<p>然后在OrdersMapperCutom.java中添加方法:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.33.21.png" alt="">  </p>
+<p>最后进行测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.33.31.png" alt="">  </p>
+<p>发现查询的结果已全部映射到pojo对象Orders.java的属性中。  </p>
+<h2 id="3-多对多查询-以后我会实现的"><a href="#3-多对多查询-以后我会实现的" class="headerlink" title="3.多对多查询(以后我会实现的)"></a>3.多对多查询(以后我会实现的)</h2><p>首先我们应该明确的是:一对多是多对多的特例。  </p>
+<p><strong>需求1:查询显示字段：用户账号、用户名称、用户性别、商品名称、商品价格(最常见)</strong><br>企业开发中常见明细列表，用户购买商品明细列表，<br>使用resultType将上边查询列映射到pojo输出。</p>
+<p><strong>需求2：查询显示字段：用户账号、用户名称、购买商品数量、商品明细（鼠标移上显示明细）</strong><br>使用resultMap将用户购买的商品明细列表映射到user对象中。</p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li>《java从入门到精通》  </li>
-<li>《java疯狂讲义》  </li>
-</ul>
-<p>有关Android：</p>
-<ul>
-<li>《第一行代码》</li>
-<li>《Android群英传》</li>
-<li>《Android开发艺术探索》  </li>
-</ul>
-<p>这一年，开发进行的真的格外辛苦，从最开始立下的向Web开发的flag转战Android开发。这一年里，经常遇到调了几天几夜都还调不出来的bug，很是难受；看着书上那一串串乏味的代码和解说，真的很让人犯困；特别是当你的编程能力过了初级工程师的编程能力想要进阶的时候，看到那些源码真的让人很难受；很多时候想过放弃，但还是坚持了下来；因为当你完成一个功能而设计出一个app的时候，那种自豪感真的很让人兴奋。 </p>
-<h2 id="3-做的好好的为什么要转？"><a href="#3-做的好好的为什么要转？" class="headerlink" title="3.做的好好的为什么要转？"></a>3.做的好好的为什么要转？</h2><p>纯属兴趣。  </p>
-<p>做就要做到最好，我会依旧保持自己对编程的热爱之情，向大牛发展，争取在2018年毕业之际顺利进入自己梦想的大公司(当然BAT是首选啊哈哈）。  </p>
-<p>人若没有理想，跟咸鱼有什么区别呢？  </p>
-<hr>
-<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p> If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
-<ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 
       
@@ -417,7 +465,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag">#Android</a>
+            <a href="/tags/MyBatis/" rel="tag">#MyBatis</a>
           
         </div>
       
@@ -426,17 +474,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/07/4-Android中Activity的生命周期/" rel="next" title="Android中Activity的生命周期">
-                <i class="fa fa-chevron-left"></i> Android中Activity的生命周期
+              <a href="/2016/11/09/36-mybatis5/" rel="next" title="MyBatis学习笔记(五)————动态sql">
+                <i class="fa fa-chevron-left"></i> MyBatis学习笔记(五)————动态sql
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/24/6-java-web实现Servlet的方式/" rel="prev" title="Java Web中实现Servlet的方式">
-                Java Web中实现Servlet的方式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -462,8 +506,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/12/5-新的开始/"
-           data-title="从Android开发转战Java Web" data-url="http://codingxiaxw.cn/2016/09/12/5-新的开始/">
+      <div class="ds-thread" data-thread-key="2016/11/09/37-mybatis6/"
+           data-title="MyBatis学习笔记(六)————使用resultMap实现高级映射" data-url="http://codingxiaxw.cn/2016/11/09/37-mybatis6/">
       </div>
     
   </div>
@@ -583,7 +627,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前言"><span class="nav-number">1.</span> <span class="nav-text">1.前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-细数这一年来自己的经历"><span class="nav-number">2.</span> <span class="nav-text">2.细数这一年来自己的经历:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1开发过的app"><span class="nav-number">2.1.</span> <span class="nav-text">2.1开发过的app</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2学习过的网站"><span class="nav-number">2.2.</span> <span class="nav-text">2.2学习过的网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3看过的书籍"><span class="nav-number">2.3.</span> <span class="nav-text">2.3看过的书籍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-做的好好的为什么要转？"><span class="nav-number">3.</span> <span class="nav-text">3.做的好好的为什么要转？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-多表间的一对一查询"><span class="nav-number">1.</span> <span class="nav-text">1.多表间的一对一查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1需求"><span class="nav-number">1.1.</span> <span class="nav-text">1.1需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2创建表和数据"><span class="nav-number">1.2.</span> <span class="nav-text">1.2创建表和数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3sql查询语句"><span class="nav-number">1.3.</span> <span class="nav-text">1.3sql查询语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4使用resultType实现"><span class="nav-number">1.4.</span> <span class="nav-text">1.4使用resultType实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5使用resultMap实现一对一映射"><span class="nav-number">1.5.</span> <span class="nav-text">1.5使用resultMap实现一对一映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6比较resultType和resultMap完成一对一映射"><span class="nav-number">1.6.</span> <span class="nav-text">1.6比较resultType和resultMap完成一对一映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-多表间的一对多查询"><span class="nav-number">2.</span> <span class="nav-text">2.多表间的一对多查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1需求"><span class="nav-number">2.1.</span> <span class="nav-text">2.1需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2创建表和数据"><span class="nav-number">2.2.</span> <span class="nav-text">2.2创建表和数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3sql查询语句"><span class="nav-number">2.3.</span> <span class="nav-text">2.3sql查询语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4使用resultMap进行一对多映射"><span class="nav-number">2.4.</span> <span class="nav-text">2.4使用resultMap进行一对多映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-多对多查询-以后我会实现的"><span class="nav-number">3.</span> <span class="nav-text">3.多对多查询(以后我会实现的)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
             
           </div>
         </section>

@@ -4,6 +4,89 @@
   
     
     <entry>
+      <title><![CDATA[MyBatis学习笔记(六)————使用resultMap实现高级映射]]></title>
+      <url>http://codingxiaxw.cn/2016/11/09/37-mybatis6/</url>
+      <content type="html"><![CDATA[<p>对于数据库中对表的增删改查操作，我们知道增删改都涉及的是单表，而只有查询操作既可以设计到单表操作又可以涉及到多表操作，所以对于输入映射parameterType而言是没有所谓的高级映射的，也就是说高级映射只针对于输出映射(因为高级映射设计到多张表)。<br><a id="more"></a></p>
+<p>前五篇文章我们都只实现了单表中的字段与pojo的映射，而本篇文章我们将来讲解如何实现多表与pojo之间的高级映射,分别有一对一映射、一对多映射和多对多映射。首先我们来看看如何使用resultType完成一对一映射。  </p>
+<h2 id="1-多表间的一对一查询"><a href="#1-多表间的一对一查询" class="headerlink" title="1.多表间的一对一查询"></a>1.多表间的一对一查询</h2><h3 id="1-1需求"><a href="#1-1需求" class="headerlink" title="1.1需求"></a>1.1需求</h3><p>查询订单信息关联查询用户信息。这里我们知道一个用户可以有多张订单，而一张订单只能属于一个用户，所以用户与订单间的关系是一对多而订单与用户间的关系是一对一。所以这里我们将订单表作为主查询表来关联用户表，从而实现一对一映射。  </p>
+<h3 id="1-2创建表和数据"><a href="#1-2创建表和数据" class="headerlink" title="1.2创建表和数据"></a>1.2创建表和数据</h3><pre><code>create table orders( id int primary key auto_increment, user_id int , number int, createtime datetime, note varchar(50));
+
+用户表在第一篇文章中我们已经创建。
+</code></pre><p>建立oders表和user表对应的pojo对象Orders.java和User.java。</p>
+<pre><code>public class Orders
+{
+    private Integer id;
+
+    private Integer userId;
+
+    private String number;
+
+    private Date createtime;
+
+    private String note;
+
+｝
+</code></pre><p> 并建立相关的get和set方法，User.java我们之前已建立。</p>
+<h3 id="1-3sql查询语句"><a href="#1-3sql查询语句" class="headerlink" title="1.3sql查询语句"></a>1.3sql查询语句</h3><p>对于查询语句，我们需要知道:1.先确定主查询表:订单表。2.再确定关联查询表:用户信息表。通过orders关联查询用户使用user_id一个外键，只能关联查询出一条用户记录，我们使用内连接。查询语句为:  </p>
+<pre><code>SELECT orders.*,user.username,user.sex 
+FROM orders,user 
+WHERE orders.user_id = user.id
+</code></pre><h3 id="1-4使用resultType实现"><a href="#1-4使用resultType实现" class="headerlink" title="1.4使用resultType实现"></a>1.4使用resultType实现</h3><p>通过查询语句，查询到的结果同时包括user表和orders表两张表的列，那么我们将结果映射到哪个pojo对象中呢？若映射到User.java，那查询结果中对应的orders表的字段一定会遗失；若映射到Orders.java，那查询结果中对应的user表的字段同样也会遗失。所以这里需要我们针对查询的结果重新创建一个映射的pojo对象OrderCustom.java:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%883.44.21.png" alt="">  </p>
+<p>这里我们让OrderCustom.java继承自Order.java，这样我们就只需在OrderCustom.java中添加user表中的字段即可。因为MyBatis主要的重点在sql语句，所以我们完成配置和pojo对象的建立后主要的点就放在了sql语句上，所以接下来要定义写sql语句的mapper.xml和对数据库进行操作的mapper.java接口了.  </p>
+<p>OrdersMapperCustom.xml文件内容如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.01.21.png" alt=""><br>因为我们只关心输出映射，所以在xml中写sql查询语句时没有写parameterType属性，而resultType的属性值我之所以没有写全OrderCustom类的全限定性名，是因为我们在SqlMapperConfig.xml中进行了别名的配置。相应的OrdersMapperCustom.java接口内容如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.01.37.png" alt="">  </p>
+<p>然后在测试类中测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.01.48.png" alt="">便可完成这两张表的关联与我们自定义的pojo对象的映射。接下来我们看看如何使用resultMap完成。  </p>
+<h3 id="1-5使用resultMap实现一对一映射"><a href="#1-5使用resultMap实现一对一映射" class="headerlink" title="1.5使用resultMap实现一对一映射"></a>1.5使用resultMap实现一对一映射</h3><p>思路:将关联查询的信息映射到pojo中，如下:只需在Orders类中创建一个User属性，将关联查询的信息映射到User属性中。<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.09.21.png" alt=""><br>这样我们便可以将查询的结果映射到Orders.java类中，而不用自己再自定义一个pojo了。  </p>
+<p>修改OrdersMapperCustom.xml中的内容(添加并使用resultMap标签),:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.52.56.png" alt="">  </p>
+<p>然后在OrdersMapperCutom.java中添加方法:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.53.04.png" alt="">  </p>
+<p>最后测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.53.13.png" alt="">发现查询结果已全部映射到Orders.java类中。  </p>
+<h3 id="1-6比较resultType和resultMap完成一对一映射"><a href="#1-6比较resultType和resultMap完成一对一映射" class="headerlink" title="1.6比较resultType和resultMap完成一对一映射"></a>1.6比较resultType和resultMap完成一对一映射</h3><ul>
+<li>resultType：要自定义pojo 保证sql查询列和pojo的属性对应，这种方法相对较简单，所以应用广泛。</li>
+<li>resultMap：使用association完成一对一映射需要配置一个resultMap标签，过程有点复杂，如果要实现延迟加载(后面会讲)就只能用resultMap实现 ，如果为了方便对关联信息进行解析，也可以用association将关联信息映射到pojo中方便解析。</li>
+</ul>
+<h2 id="2-多表间的一对多查询"><a href="#2-多表间的一对多查询" class="headerlink" title="2.多表间的一对多查询"></a>2.多表间的一对多查询</h2><h3 id="2-1需求"><a href="#2-1需求" class="headerlink" title="2.1需求"></a>2.1需求</h3><p>查询所有订单信息及订单下的订单明细信息。分析:一个订单可以可以有多个订单明细，而一个订单明细只属于一个订单，所以订单与订单明细间的关系为一对多。</p>
+<h3 id="2-2创建表和数据"><a href="#2-2创建表和数据" class="headerlink" title="2.2创建表和数据"></a>2.2创建表和数据</h3><pre><code>create table orderdetail( id int primary key auto_increment, orders_id int, items_id int, items_num int);//创建订单明细表
+
+订单表我们已经创建
+</code></pre><p>创建和订单明细表对应的pojo对象:  </p>
+<pre><code>public class Orderdetail
+{
+    private Integer id;
+
+    private Integer ordersId;
+
+    private Integer itemsId;
+
+    private Integer itemsNum;
+
+}
+</code></pre><p>并创建相关的set和get方法。</p>
+<h3 id="2-3sql查询语句"><a href="#2-3sql查询语句" class="headerlink" title="2.3sql查询语句"></a>2.3sql查询语句</h3><p>1.先确定主查询表:订单表。2.再确定关联查询表:用户表加订单明细表。通过orderdetail关联查询订单使用orders_id一个外键，只能关联查询出一条订单记录，我们使用内连接。查询语句为:  </p>
+<pre><code>SELECT orders.*,user.username,user.sex ,orderdetail.id orderdetail_id,orderdetail.items_num,orderdetail.items_id
+
+FROM orders,user,orderdetail 
+WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
+</code></pre><h3 id="2-4使用resultMap进行一对多映射"><a href="#2-4使用resultMap进行一对多映射" class="headerlink" title="2.4使用resultMap进行一对多映射"></a>2.4使用resultMap进行一对多映射</h3><p>思路:resultMap 提供collection完成关联信息映射到集合对象中。在orders类中创建集合属性：<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.14.55.png" alt="">  </p>
+<p>然后修改OrdersMapperCustom.xml中的信息:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.32.43.png" alt=""><br>并在其中添加resultMap的定义:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.32.50.png" alt="">  </p>
+<p>然后在OrdersMapperCutom.java中添加方法:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.33.21.png" alt="">  </p>
+<p>最后进行测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.33.31.png" alt="">  </p>
+<p>发现查询的结果已全部映射到pojo对象Orders.java的属性中。  </p>
+<h2 id="3-多对多查询-以后我会实现的"><a href="#3-多对多查询-以后我会实现的" class="headerlink" title="3.多对多查询(以后我会实现的)"></a>3.多对多查询(以后我会实现的)</h2><p>首先我们应该明确的是:一对多是多对多的特例。  </p>
+<p><strong>需求1:查询显示字段：用户账号、用户名称、用户性别、商品名称、商品价格(最常见)</strong><br>企业开发中常见明细列表，用户购买商品明细列表，<br>使用resultType将上边查询列映射到pojo输出。</p>
+<p><strong>需求2：查询显示字段：用户账号、用户名称、购买商品数量、商品明细（鼠标移上显示明细）</strong><br>使用resultMap将用户购买的商品明细列表映射到user对象中。</p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[MyBatis学习笔记(五)————动态sql]]></title>
       <url>http://codingxiaxw.cn/2016/11/09/36-mybatis5/</url>
       <content type="html"><![CDATA[<p>我们需要知道的是，使用mybatis重点是对sql的灵活解析和处理。在原先的UserMappser.xml中，我们这样查询表中满足条件的记录 :</p>
@@ -28,13 +111,13 @@
 <p>通过这5篇文章，我们便完成了MyBatis学习的基础知识。</p>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 ]]></content>
     </entry>
@@ -67,13 +150,13 @@
 <p>运行测试类发现，即使我们查询的列名与User对象的属性不一样，但是我们的确映射成功了。</p>
 <h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 ]]></content>
     </entry>
@@ -2349,7 +2432,7 @@ public class Example{
          }
     }
 }
-</code></pre><h2 id="3-转换流"><a href="#3-转换流" class="headerlink" title="3.转换流"></a>3.转换流</h2><p>前面提到IO流可分为字节流和字符流，有时自己流和字符流之间也需要进行转换。在JDK中提供了两个类可以将字节流转换为字符流，它们分别是InputStreamReader和OutputStreamWriter。  </p>
+</code></pre><h2 id="3-转换流"><a href="#3-转换流" class="headerlink" title="3.转换流"></a>3.转换流</h2><p>前面提到IO流可分为字节流和字符流，有时字节流和字符流之间也需要进行转换。在JDK中提供了两个类可以将字节流转换为字符流，它们分别是InputStreamReader和OutputStreamWriter。  </p>
 <p>转换流也是一种包装流，其中OutputStreamWriter是Writer的子类，它可以将一个字节输出流包装成字符输出流，方便直接写入字符，而InputStreamReader是Reader的子类，它可以将一个字节输入流包装成字符输入流，方便直接读取字符。  </p>
 <p><strong>Demo:将字节流转换为字符流</strong>  </p>
 <pre><code>import java.io.*;
@@ -2411,13 +2494,13 @@ public class Example{
 }
 </code></pre><h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li><p><a href="codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><p><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a> </p>
+<li><p><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a> </p>
 </li>
 </ul>
 ]]></content>
