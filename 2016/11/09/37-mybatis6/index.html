@@ -103,7 +103,12 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.32.50.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.33.21.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.33.31.png">
-<meta property="og:updated_time" content="2016-11-09T10:55:02.000Z">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.39.21.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.41.51.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.42.51.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.43.46.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.44.14.png">
+<meta property="og:updated_time" content="2016-11-09T12:32:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis学习笔记(六)————使用resultMap实现高级映射">
 <meta name="twitter:description" content="对于数据库中对表的增删改查操作，我们知道增删改都涉及的是单表，而只有查询操作既可以设计到单表操作又可以涉及到多表操作，所以对于输入映射parameterType而言是没有所谓的高级映射的，也就是说高级映射只针对于输出映射(因为高级映射设计到多张表)。">
@@ -417,7 +422,52 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
 <h2 id="3-多对多查询-以后我会实现的"><a href="#3-多对多查询-以后我会实现的" class="headerlink" title="3.多对多查询(以后我会实现的)"></a>3.多对多查询(以后我会实现的)</h2><p>首先我们应该明确的是:一对多是多对多的特例。  </p>
 <p><strong>需求1:查询显示字段：用户账号、用户名称、用户性别、商品名称、商品价格(最常见)</strong><br>企业开发中常见明细列表，用户购买商品明细列表，<br>使用resultType将上边查询列映射到pojo输出。</p>
 <p><strong>需求2：查询显示字段：用户账号、用户名称、购买商品数量、商品明细（鼠标移上显示明细）</strong><br>使用resultMap将用户购买的商品明细列表映射到user对象中。</p>
-<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<p>讲完如何使用resultMap完成多表间的查询结果与pojo对象的高级映射，这里我们还需要补充一个<strong>使用resultMap实现延迟加载</strong>的知识点。  </p>
+<h2 id="4-延迟加载"><a href="#4-延迟加载" class="headerlink" title="4.延迟加载"></a>4.延迟加载</h2><h3 id="4-1使用延迟加载的意义"><a href="#4-1使用延迟加载的意义" class="headerlink" title="4.1使用延迟加载的意义"></a>4.1使用延迟加载的意义</h3><p>在进行数据查询时，为了提高数据库查询性能，尽量使用单表查询，因为单表查询比多表关联查询速度要快。  </p>
+<p>如果查询单表就可以满足需求，一开始先查询单表，当需要关联信息时，再关联查询，当需要关联信息再查询这个叫延迟加载。  </p>
+<p>mybatis中resultMap提供延迟加载功能，通过resultMap配置延迟加载,但需要在MyBatis的配置文件中进行相关配置，如下:  </p>
+<h3 id="4-2配置mybatis支持延迟加载"><a href="#4-2配置mybatis支持延迟加载" class="headerlink" title="4.2配置mybatis支持延迟加载"></a>4.2配置mybatis支持延迟加载</h3><table>
+<thead>
+<tr>
+<th>设置项</th>
+<th style="text-align:center">描述</th>
+<th>允许值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lazyLoadingEnabled</td>
+<td style="text-align:center">全局性设置懒加载。如果设为‘false’，则所有相关联的都会被初始化加载。</td>
+<td>true｜false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>aggressiveLazyLoading</td>
+<td style="text-align:center">当设置为‘true’的时候，懒加载的对象可能被任何懒属性全部加载。否则，每个属性都按需加载。</td>
+<td>true ｜  false</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>然后在SqlMapperConfig.xml中添加如下配置信息:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.39.21.png" alt="">  </p>
+<h3 id="4-3一对一延迟加载的实现"><a href="#4-3一对一延迟加载的实现" class="headerlink" title="4.3一对一延迟加载的实现"></a>4.3一对一延迟加载的实现</h3><h4 id="4-3-1实现思路"><a href="#4-3-1实现思路" class="headerlink" title="4.3.1实现思路"></a>4.3.1实现思路</h4><p>需求:查询订单及用户的信息，一对一查询。  </p>
+<p>刚开始我们只查询订单信息。而当需要用户信息时调用Orders类中的getUser()方法执行延迟加载 ，向数据库发出sql。代码实现如下:  </p>
+<p>在OrderMapperCustom.xml文件中添加如下信息:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.41.51.png" alt="">  </p>
+<p>并定义resultMap标签:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.42.51.png" alt="">  </p>
+<p>然后在OrderMapperCustom.java接口中添加如下方法:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.43.46.png" alt=""></p>
+<p>最后是测试代码:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.44.14.png" alt=""></p>
+<h3 id="4-4一对多延迟加载的实现"><a href="#4-4一对多延迟加载的实现" class="headerlink" title="4.4一对多延迟加载的实现"></a>4.4一对多延迟加载的实现</h3><p>一对多延迟加载的方法同一对一延迟加载，在collection标签中配置select内容。  </p>
+<h2 id="5-resultType、resultMap、延迟加载使用场景总结"><a href="#5-resultType、resultMap、延迟加载使用场景总结" class="headerlink" title="5.resultType、resultMap、延迟加载使用场景总结"></a>5.resultType、resultMap、延迟加载使用场景总结</h2><p><strong>延迟加载:</strong><br>延迟加载实现的方法多种多样，在只查询单表就可以满足需求，为了提高数据库查询性能使用延迟加载，再查询关联信息。</p>
+<p>mybatis提供延迟加载的功能用于service层。</p>
+<p><strong>resultType:</strong>作用：将查询结果按照sql列名pojo属性名一致性映射到pojo中。  </p>
+<p>场合：常见一些明细记录的展示，将关联查询信息全部展示在页面时，此时可直接使用resultType将每一条记录映射到pojo中，在前端页面遍历list（list中是pojo）即可。</p>
+<p><strong>resultMap:</strong>使用association和collection完成一对一和一对多高级映射。  </p>
+<p><strong>association:</strong>作用:将关联查询信息映射到一个pojo类中。  </p>
+<p>场合:为了方便获取关联信息可以使用association将关联订单映射为pojo，比如:查询订单及关联用户信息。</p>
+<p><strong>collection:</strong>作用:将关联查询信息映射到一个list集合中。  </p>
+<p>场合:为了方便获取关联信息可以使用collection将关联信息映射到list集合中，比如:查询用户权限范围模块和功能，可使用collection将模块和功能列表映射到list中。</p>
+<h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
@@ -627,7 +677,7 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-多表间的一对一查询"><span class="nav-number">1.</span> <span class="nav-text">1.多表间的一对一查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1需求"><span class="nav-number">1.1.</span> <span class="nav-text">1.1需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2创建表和数据"><span class="nav-number">1.2.</span> <span class="nav-text">1.2创建表和数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3sql查询语句"><span class="nav-number">1.3.</span> <span class="nav-text">1.3sql查询语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4使用resultType实现"><span class="nav-number">1.4.</span> <span class="nav-text">1.4使用resultType实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5使用resultMap实现一对一映射"><span class="nav-number">1.5.</span> <span class="nav-text">1.5使用resultMap实现一对一映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6比较resultType和resultMap完成一对一映射"><span class="nav-number">1.6.</span> <span class="nav-text">1.6比较resultType和resultMap完成一对一映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-多表间的一对多查询"><span class="nav-number">2.</span> <span class="nav-text">2.多表间的一对多查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1需求"><span class="nav-number">2.1.</span> <span class="nav-text">2.1需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2创建表和数据"><span class="nav-number">2.2.</span> <span class="nav-text">2.2创建表和数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3sql查询语句"><span class="nav-number">2.3.</span> <span class="nav-text">2.3sql查询语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4使用resultMap进行一对多映射"><span class="nav-number">2.4.</span> <span class="nav-text">2.4使用resultMap进行一对多映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-多对多查询-以后我会实现的"><span class="nav-number">3.</span> <span class="nav-text">3.多对多查询(以后我会实现的)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-多表间的一对一查询"><span class="nav-number">1.</span> <span class="nav-text">1.多表间的一对一查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1需求"><span class="nav-number">1.1.</span> <span class="nav-text">1.1需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2创建表和数据"><span class="nav-number">1.2.</span> <span class="nav-text">1.2创建表和数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3sql查询语句"><span class="nav-number">1.3.</span> <span class="nav-text">1.3sql查询语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4使用resultType实现"><span class="nav-number">1.4.</span> <span class="nav-text">1.4使用resultType实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5使用resultMap实现一对一映射"><span class="nav-number">1.5.</span> <span class="nav-text">1.5使用resultMap实现一对一映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6比较resultType和resultMap完成一对一映射"><span class="nav-number">1.6.</span> <span class="nav-text">1.6比较resultType和resultMap完成一对一映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-多表间的一对多查询"><span class="nav-number">2.</span> <span class="nav-text">2.多表间的一对多查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1需求"><span class="nav-number">2.1.</span> <span class="nav-text">2.1需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2创建表和数据"><span class="nav-number">2.2.</span> <span class="nav-text">2.2创建表和数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3sql查询语句"><span class="nav-number">2.3.</span> <span class="nav-text">2.3sql查询语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4使用resultMap进行一对多映射"><span class="nav-number">2.4.</span> <span class="nav-text">2.4使用resultMap进行一对多映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-多对多查询-以后我会实现的"><span class="nav-number">3.</span> <span class="nav-text">3.多对多查询(以后我会实现的)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-延迟加载"><span class="nav-number">4.</span> <span class="nav-text">4.延迟加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1使用延迟加载的意义"><span class="nav-number">4.1.</span> <span class="nav-text">4.1使用延迟加载的意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2配置mybatis支持延迟加载"><span class="nav-number">4.2.</span> <span class="nav-text">4.2配置mybatis支持延迟加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3一对一延迟加载的实现"><span class="nav-number">4.3.</span> <span class="nav-text">4.3一对一延迟加载的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1实现思路"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1实现思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4一对多延迟加载的实现"><span class="nav-number">4.4.</span> <span class="nav-text">4.4一对多延迟加载的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-resultType、resultMap、延迟加载使用场景总结"><span class="nav-number">5.</span> <span class="nav-text">5.resultType、resultMap、延迟加载使用场景总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-联系"><span class="nav-number">6.</span> <span class="nav-text">6.联系</span></a></li></ol></div>
             
           </div>
         </section>
