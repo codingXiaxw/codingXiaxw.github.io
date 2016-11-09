@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/namespace.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/danduo.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ceshissss.png">
-<meta property="og:updated_time" content="2016-11-08T11:28:48.000Z">
+<meta property="og:updated_time" content="2016-11-08T13:45:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis学习笔记(二)————Mapper动态代理开发">
 <meta name="twitter:description" content="1.SqlSession的使用范围1.SqlSessionFactoryBuilderSqlSessionFactoryBuilder是以工具类的方式来使用:需要创建sqlSessionFactory时就new一个 SqlSessionFactoryBuilder">
@@ -381,7 +381,7 @@
 <p>使用Mapper代理方式进行开发，使程序员只需要关注UserMapper.java接口中的方法，它的实现类由Mapper自动为我们生成，带来了很大的方便。但这种方式也有它的弊端。  </p>
 <h4 id="2-3-6mapper代理开发的问题"><a href="#2-3-6mapper代理开发的问题" class="headerlink" title="2.3.6mapper代理开发的问题"></a>2.3.6mapper代理开发的问题</h4><ul>
 <li>1.返回值的问题:如果方法(即UserMapper.java接口中的方法)调用的statement中返回是多条记录，而mapper.java方法的返回值为pojo，此时代理对象通过selectOne调用，但由于返回的是多条记录所以会报错:Expected one result (for null ) to be returned by selectOne() but found 4;  </li>
-<li>2.输入参数的问题:使用mapper代理的方式开发，mapper接口方法的输入参数只有一个，可扩展性是否很差?答:可扩展性没有问题，因为dao层就是通用的，可以通过扩展pojo(定义poji包装类型，后面<a href="">第四篇文章–MyBatis输入输出映射</a>会讲扩展pojo的知识)来将不同的参数(可以是pojo也可以是简单类型)传入进去。</li>
+<li>2.输入参数的问题:使用mapper代理的方式开发，mapper接口方法的输入参数只有一个，可扩展性是否很差?答:可扩展性没有问题，因为dao层就是通用的，可以通过扩展pojo(定义poji包装类型，后面<a href="http://codingxiaxw.cn/2016/11/08/35-mybatis4/">第四篇文章–MyBatis输入输出映射</a>会讲扩展pojo的知识)来将不同的参数(可以是pojo也可以是简单类型)传入进去。</li>
 </ul>
 <h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
@@ -522,7 +522,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

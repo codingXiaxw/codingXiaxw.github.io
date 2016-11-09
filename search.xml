@@ -4,6 +4,42 @@
   
     
     <entry>
+      <title><![CDATA[MyBatis学习笔记(五)————动态sql]]></title>
+      <url>http://codingxiaxw.cn/2016/11/09/36-mybatis5/</url>
+      <content type="html"><![CDATA[<p>我们需要知道的是，使用mybatis重点是对sql的灵活解析和处理。在原先的UserMappser.xml中，我们这样查询表中满足条件的记录 :</p>
+<a id="more"></a> 
+<pre><code>&lt;select id=&quot;findUserList&quot; parameterType=&quot;userQueryVo&quot; resultType=&quot;user&quot;&gt;
+        select id,username,birthday from user where username like &apos;${value}&apos;
+&lt;/select&gt;
+</code></pre><p>上述语句在表中查询满足<code>username</code>条件的记录，这样写查询语句有一个弊端，就是该语句只能通过username查询数据库。当我们在多条件中查询时，如果不需要username条件而是需要其它多个查询条件时，那UserMapper.xml文件中的这个查询条件就没用了。  </p>
+<p>需求:将自定义查询条件查询用户列表和查询用户列表总记录数改为动态sql。需要使用if标签和where标签。  </p>
+<h2 id="1-if和where"><a href="#1-if和where" class="headerlink" title="1.if和where"></a>1.if和where</h2><p>使用if标签和where标签在UserMapper.xml中添加如下内容:<br>修改自定义查询条件查询用户列表代码:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%888.14.15.png" alt=""></p>
+<p>修改自定义查询条件查询用户列表总记录数代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%888.19.54.png" alt="">  </p>
+<p>发现<code>&lt;where&gt;</code>和<code>&lt;if&gt;</code>在上述两个查询语句中重复的代码出现了两次，那这里我们是否可以把相同的sql片段拿出来单独写在一个sql片段中然后再在不同的查询语句中应用呢？答案是肯定的,看下面的sql片段。  </p>
+<h2 id="2-sql片段"><a href="#2-sql片段" class="headerlink" title="2.sql片段"></a>2.sql片段</h2><p>通过sql片段可以将通用的sql语句抽取出来，单独定义，在其它的statement中可以引用sql片段。其中通用的sql语句，一般用在:where条件、查询列。  </p>
+<h2 id="2-1定义sql片段"><a href="#2-1定义sql片段" class="headerlink" title="2.1定义sql片段"></a>2.1定义sql片段</h2><p>在UserMapper.xml中添加如下字段:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.25.19.png" alt="">这样就完成了sql片段的定义，然后才能使用sql片段。</p>
+<h2 id="2-2使用sql片段"><a href="#2-2使用sql片段" class="headerlink" title="2.2使用sql片段"></a>2.2使用sql片段</h2><p>使用<code>&lt;include&gt;</code>标签对上面定义的sql片段加以引用:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.27.20.png" alt=""><br>和<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.27.28.png" alt="">  </p>
+<p>测试类代码不变，这样我们便完成了对sql片段的引用。  </p>
+<p>有时候我们希望查询语句是这样<code>select id,username,birthday from user where username like &#39;%codingXiaxw%&#39; and id in (1,2)</code>，那我们又应该在sql片段中如何添加代码呢？这时候需要用到<code>&lt;foreach&gt;</code>标签。</p>
+<h2 id="3-foreach标签"><a href="#3-foreach标签" class="headerlink" title="3.foreach标签"></a>3.foreach标签</h2><p>在statement通过foreach遍历parameterType中的集合类型。首先我们需要在UserQueryVo中定义List<integer>ids属性:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.36.44.png" alt=""><br>并添加相应的get和set方法。  </integer></p>
+<p>然后我们在UserMapper.xml中使用foreach修改where语句,使用foreache遍历list:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.38.18.png" alt=""><br>各属性说明见代码注释，然后是测试代码:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.39.11.png" alt="">  </p>
+<p>通过这5篇文章，我们便完成了MyBatis学习的基础知识。</p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[MyBatis学习笔记(四)————输入(parameterType)与输出(resultType、resultMap)映射]]></title>
       <url>http://codingxiaxw.cn/2016/11/08/35-mybatis4/</url>
       <content type="html"><![CDATA[<p>在MyBatis中，我们通过parameterType完成输入映射，通过resultType完成输出映射。接下来我们先谈谈输入映射。文件目录如下:<br><a id="more"></a><br><img src="http://od2xrf8gr.bkt.clouddn.com/mulu22.png" alt="">  </p>
@@ -141,7 +177,7 @@
 <p>使用Mapper代理方式进行开发，使程序员只需要关注UserMapper.java接口中的方法，它的实现类由Mapper自动为我们生成，带来了很大的方便。但这种方式也有它的弊端。  </p>
 <h4 id="2-3-6mapper代理开发的问题"><a href="#2-3-6mapper代理开发的问题" class="headerlink" title="2.3.6mapper代理开发的问题"></a>2.3.6mapper代理开发的问题</h4><ul>
 <li>1.返回值的问题:如果方法(即UserMapper.java接口中的方法)调用的statement中返回是多条记录，而mapper.java方法的返回值为pojo，此时代理对象通过selectOne调用，但由于返回的是多条记录所以会报错:Expected one result (for null ) to be returned by selectOne() but found 4;  </li>
-<li>2.输入参数的问题:使用mapper代理的方式开发，mapper接口方法的输入参数只有一个，可扩展性是否很差?答:可扩展性没有问题，因为dao层就是通用的，可以通过扩展pojo(定义poji包装类型，后面<a href="">第四篇文章–MyBatis输入输出映射</a>会讲扩展pojo的知识)来将不同的参数(可以是pojo也可以是简单类型)传入进去。</li>
+<li>2.输入参数的问题:使用mapper代理的方式开发，mapper接口方法的输入参数只有一个，可扩展性是否很差?答:可扩展性没有问题，因为dao层就是通用的，可以通过扩展pojo(定义poji包装类型，后面<a href="http://codingxiaxw.cn/2016/11/08/35-mybatis4/">第四篇文章–MyBatis输入输出映射</a>会讲扩展pojo的知识)来将不同的参数(可以是pojo也可以是简单类型)传入进去。</li>
 </ul>
 <h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
