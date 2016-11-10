@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[MyBatis学习笔记(七)————MyBatis查询缓存]]></title>
+      <title><![CDATA[MyBatis之查询缓存]]></title>
       <url>http://codingxiaxw.cn/2016/11/10/38-mybatis7/</url>
       <content type="html"><![CDATA[<p>正如大多数持久层框架一样，MyBatis同样也提供了对查询数据的缓存支持。今后我们要学习的SpringMVC框架属于系统控制层，它也有它的缓存区域，对响应的jsp页面进行缓存；Spring属于系统业务层，它的缓存区域对业务数据进行缓存。而它们三者的缓存区域都存在于用户要访问数据库的中间，当用户向数据库中发送查询请求时，系统会先在它们三者的缓存区域看是否有满足用户要求的查询数据，若有则直接从缓存区域返回信息；若没有则从数据库中进行查询。  </p>
 <a id="more"></a>  
@@ -78,7 +78,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[MyBatis学习笔记(六)————使用resultMap实现高级映射]]></title>
+      <title><![CDATA[MyBatis之使用resultMap实现高级映射]]></title>
       <url>http://codingxiaxw.cn/2016/11/09/37-mybatis6/</url>
       <content type="html"><![CDATA[<p>对于数据库中对表的增删改查操作，我们知道增删改都涉及的是单表，而只有查询操作既可以设计到单表操作又可以涉及到多表操作，所以对于输入映射parameterType而言是没有所谓的高级映射的，也就是说高级映射只针对于输出映射(因为高级映射设计到多张表)。<br><a id="more"></a></p>
 <p>前五篇文章我们都只实现了单表中的字段与pojo的映射，而本篇文章我们将来讲解如何实现多表与pojo之间的高级映射,分别有一对一映射、一对多映射和多对多映射。首先我们来看看如何使用resultType完成一对一映射。  </p>
@@ -206,7 +206,7 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
     </entry>
     
     <entry>
-      <title><![CDATA[MyBatis学习笔记(五)————动态sql]]></title>
+      <title><![CDATA[MyBatis之动态sql]]></title>
       <url>http://codingxiaxw.cn/2016/11/09/36-mybatis5/</url>
       <content type="html"><![CDATA[<p>我们需要知道的是，使用mybatis重点是对sql的灵活解析和处理。在原先的UserMappser.xml中，我们这样查询表中满足条件的记录 :</p>
 <a id="more"></a> 
@@ -242,7 +242,7 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
     </entry>
     
     <entry>
-      <title><![CDATA[MyBatis学习笔记(四)————输入(parameterType)与输出(resultType、resultMap)映射]]></title>
+      <title><![CDATA[MyBatis之输入(parameterType)与输出(resultType、resultMap)映射]]></title>
       <url>http://codingxiaxw.cn/2016/11/08/35-mybatis4/</url>
       <content type="html"><![CDATA[<p>在MyBatis中，我们通过parameterType完成输入映射，通过resultType完成输出映射。接下来我们先谈谈输入映射。文件目录如下:<br><a id="more"></a><br><img src="http://od2xrf8gr.bkt.clouddn.com/mulu22.png" alt="">  </p>
 <h2 id="1-输入映射parameterType"><a href="#1-输入映射parameterType" class="headerlink" title="1.输入映射parameterType"></a>1.输入映射parameterType</h2><p>通过parameterType传入简单类型或对象，我们之前讲过了，接下来我们要讲的是parameterType传递pojo包装对象。可以定义pojo包装类型扩展mapper接口输入参数的内容。  </p>
@@ -281,7 +281,7 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
     </entry>
     
     <entry>
-      <title><![CDATA[MyBatis学习笔记(三)————优化MyBatis配置文件中的配置]]></title>
+      <title><![CDATA[MyBatis之优化MyBatis配置文件中的配置]]></title>
       <url>http://codingxiaxw.cn/2016/11/08/34-mybatis3/</url>
       <content type="html"><![CDATA[<p>MyBatis配置文件很重要，首先我们来看看MyBatis配置文件中的内容和顺序:<br><a id="more"></a>  </p>
 <pre><code>&lt;properties&gt;(属性)
@@ -340,7 +340,7 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
     </entry>
     
     <entry>
-      <title><![CDATA[MyBatis学习笔记(二)————Mapper动态代理开发]]></title>
+      <title><![CDATA[MyBatis之Mapper动态代理开发]]></title>
       <url>http://codingxiaxw.cn/2016/11/07/33-MyBatis%E6%A1%86%E6%9E%B6%E4%BA%8C/</url>
       <content type="html"><![CDATA[<h2 id="1-SqlSession的使用范围"><a href="#1-SqlSession的使用范围" class="headerlink" title="1.SqlSession的使用范围"></a>1.SqlSession的使用范围</h2><p><strong>1.SqlSessionFactoryBuilder</strong><br>SqlSessionFactoryBuilder是以工具类的方式来使用:需要创建sqlSessionFactory时就new一个 SqlSessionFactoryBuilder  </p>
 <a id="more"></a>
@@ -395,7 +395,7 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
     </entry>
     
     <entry>
-      <title><![CDATA[MyBatis学习笔记(一)————MyBatis快速入门]]></title>
+      <title><![CDATA[MyBatis之快速入门]]></title>
       <url>http://codingxiaxw.cn/2016/11/06/31-mybatis1/</url>
       <content type="html"><![CDATA[<p>首先我要明确告诉大家的是MyBatis是一个java持久层框架，以前我们都是用jdbc来将我们的java程序与数据库相连接，而MyBatis是对jdbc的一个封装。<br><a id="more"></a></p>
 <h2 id="1-MyBatis框架的引入"><a href="#1-MyBatis框架的引入" class="headerlink" title="1.MyBatis框架的引入"></a>1.MyBatis框架的引入</h2><p>我们来看看传统的编程方式中使用jdbc的问题:  </p>
