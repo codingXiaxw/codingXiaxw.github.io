@@ -4,6 +4,80 @@
   
     
     <entry>
+      <title><![CDATA[MyBatis学习笔记(七)————MyBatis查询缓存]]></title>
+      <url>http://codingxiaxw.cn/2016/11/10/38-mybatis7/</url>
+      <content type="html"><![CDATA[<p>正如大多数持久层框架一样，MyBatis同样也提供了对查询数据的缓存支持。今后我们要学习的SpringMVC框架属于系统控制层，它也有它的缓存区域，对响应的jsp页面进行缓存；Spring属于系统业务层，它的缓存区域对业务数据进行缓存。而它们三者的缓存区域都存在于用户要访问数据库的中间，当用户向数据库中发送查询请求时，系统会先在它们三者的缓存区域看是否有满足用户要求的查询数据，若有则直接从缓存区域返回信息；若没有则从数据库中进行查询。  </p>
+<a id="more"></a>  
+<h2 id="1-缓存的意义"><a href="#1-缓存的意义" class="headerlink" title="1.缓存的意义"></a>1.缓存的意义</h2><p>将用户经常查询的数据放在缓存（内存）中，用户去查询数据就不用从磁盘上(关系型数据库数据文件)查询，从缓存中查询，从而提高查询效率，解决了高并发系统的性能问题。  </p>
+<h2 id="2-MyBatis持久层缓存"><a href="#2-MyBatis持久层缓存" class="headerlink" title="2.MyBatis持久层缓存"></a>2.MyBatis持久层缓存</h2><p>MyBatis提供了一级缓存和二级缓存，概念图如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.15.43.png" alt="">  </p>
+<p>如图中所示，MyBatis一级缓存是一个SqlSession级别，SqlSession只能访问自己的一级缓存的数据，二级缓存是跨SqlSession，是mapper级别的缓存，对于mapper级别的缓存不同的Sqlsession是可以共享的。</p>
+<h2 id="3-MyBatis一级缓存"><a href="#3-MyBatis一级缓存" class="headerlink" title="3.MyBatis一级缓存"></a>3.MyBatis一级缓存</h2><h3 id="3-1原理"><a href="#3-1原理" class="headerlink" title="3.1原理"></a>3.1原理</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.19.30.png" alt="">  </p>
+<p>对于图的解释:第一次发出一个查询sql，sql查询结果写入sqlsession的一级缓存中，缓存使用的数据结构是一个<code>map&lt;key,value&gt;</code>。  </p>
+<p>key：hashcode+sql+sql输入参数+输出参数（sql的唯一标识）<br>value：用户信息</p>
+<p>同一个sqlsession再次发出相同的sql，就从缓存中取,而不走数据库。如果两次中间出现commit操作（修改、添加、删除），本sqlsession中的一级缓存区域全部清空，下次再去缓存中查询不到所以要从数据库查询，从数据库查询到再写入缓存。即对于查询操作，每次查询都先从缓存中查询，如果缓存中查询到数据则将缓存数据直接返回，如果缓存中查询不到就从数据库查询。  </p>
+<h3 id="3-2一级缓存配置"><a href="#3-2一级缓存配置" class="headerlink" title="3.2一级缓存配置"></a>3.2一级缓存配置</h3><p>mybatis默认支持一级缓存不需要配置。  </p>
+<p><strong>注意:</strong>mybatis和spring整合后进行mapper代理开发，不支持一级缓存，mybatis和spring整合，spring按照mapper的模板去生成mapper代理对象，模板中在最后统一关闭sqlsession。  </p>
+<h3 id="3-3一级缓存的测试"><a href="#3-3一级缓存的测试" class="headerlink" title="3.3一级缓存的测试"></a>3.3一级缓存的测试</h3><p>测试代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.25.22.png" alt="">  </p>
+<p>运行，在控制台看到输出:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.26.38.png" alt="">  </p>
+<p>发现打印两次结果只有第一次向数据库中发送了查询请求，第二次是直接从缓存中返回的数据。接下来我们在中间加入更新数据的操作:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.29.29.png" alt="">  </p>
+<p>然后在控制台中看到打印过程:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.30.31.png" alt="">   </p>
+<p>可以发现向数据库发送了三次请求。  </p>
+<h2 id="4-MyBatis二级缓存"><a href="#4-MyBatis二级缓存" class="headerlink" title="4.MyBatis二级缓存"></a>4.MyBatis二级缓存</h2><h3 id="4-1二级缓存原理"><a href="#4-1二级缓存原理" class="headerlink" title="4.1二级缓存原理"></a>4.1二级缓存原理</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.31.30.png" alt="">  </p>
+<p>二级缓存的范围是mapper级别（mapper同一个命名空间），mapper以命名空间为单位创建缓存数据结构，结构是<code>map&lt;key、value&gt;</code>。  </p>
+<p>过程:每次查询先看是否开启二级缓存，如果开启从二级缓存的数据结构中取缓存数据，如果从二级缓存没有取到，再从一级缓存中找，如果一级缓存也没有，从数据库查询。  </p>
+<h3 id="4-2二级缓存的配置"><a href="#4-2二级缓存的配置" class="headerlink" title="4.2二级缓存的配置"></a>4.2二级缓存的配置</h3><p>不像一级缓存那样mybatis自动开启一级缓存，mybatis是默认关闭二级缓存的，所以我们需要需要进行两个操作才能开启二级缓存:  </p>
+<p>1.在核心配置文件SqlMapperConfig.xml中加入<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.34.12.png" alt="">  </p>
+<p>属性值cacheEnabled表示对在此配置文件下的所有cache 进行全局性开/关设置，它的可选值为true｜false,默认值为true.   </p>
+<p>2.在你的Mapper映射文件中添加一行:<code>&lt;cache /&gt;</code> ，表示此mapper开启二级缓存。 </p>
+<h3 id="4-3查询结果映射的pojo序列化"><a href="#4-3查询结果映射的pojo序列化" class="headerlink" title="4.3查询结果映射的pojo序列化"></a>4.3查询结果映射的pojo序列化</h3><p>mybatis二级缓存需要将查询结果映射的pojo实现 java.io.serializable接口，如果不实现则抛出异常：<br><code>org.apache.ibatis.cache.CacheException: Error serializing object.  Cause: java.io.NotSerializableException: cn.itcast.mybatis.po.User</code>  </p>
+<p>二级缓存可以将内存的数据写到磁盘，存在对象的序列化和反序列化，所以要实现java.io.serializable接口。  </p>
+<p>如果结果映射的pojo中还包括了pojo，都要实现java.io.serializable接口。  </p>
+<h3 id="4-4二级缓存的禁用"><a href="#4-4二级缓存的禁用" class="headerlink" title="4.4二级缓存的禁用"></a>4.4二级缓存的禁用</h3><p>对于变化频率较高的sql，需要禁用二级缓存：在statement中设置<code>useCache=false</code>可以禁用当前select语句的二级缓存，即每次查询都会发出sql去查询，默认情况是true，即该sql使用二级缓存。<br><code>&lt;select id=&quot;findOrderListResultMap&quot; resultMap=&quot;ordersUserMap&quot; useCache=&quot;false&quot;&gt;</code>  </p>
+<h3 id="4-5刷新缓存"><a href="#4-5刷新缓存" class="headerlink" title="4.5刷新缓存"></a>4.5刷新缓存</h3><p>将二级缓存进行刷新操作有两种方式:  </p>
+<ul>
+<li>如果sqlsession操作commit操作，对二级缓存进行刷新（全局清空）。</li>
+<li>设置statement的flushCache是否刷新缓存，默认值是true。</li>
+</ul>
+<h3 id="4-6测试代码"><a href="#4-6测试代码" class="headerlink" title="4.6测试代码"></a>4.6测试代码</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.41.06.png" alt="">  </p>
+<p>分别将中间更新用户信息的代码注释:发现两次打印用户信息的操作只向数据库中发送一次查询请求;去掉注释:三次操作向数据库中发送三次请求。  </p>
+<h3 id="4-7mybatis的cache参数（了解）"><a href="#4-7mybatis的cache参数（了解）" class="headerlink" title="4.7mybatis的cache参数（了解）"></a>4.7mybatis的cache参数（了解）</h3><p>mybatis的cache参数只适用于mybatis维护缓存。</p>
+<ul>
+<li>flushInterval（刷新间隔）:可以被设置为任意的正整数，而且它们代表一个合理的毫秒形式的时间段。默认情况是不设置，也就是没有刷新间隔，缓存仅仅调用语句时刷新。</li>
+<li>size（引用数目）:可以被设置为任意正整数，要记住你缓存的对象数目和你运行环境的可用内存资源数目。默认值是1024。</li>
+<li>readOnly（只读）:属性可以被设置为true或false。只读的缓存会给所有调用者返回缓存对象的相同实例。因此这些对象不能被修改。这提供了很重要的性能优势。可读写的缓存会返回缓存对象的拷贝（通过序列化）。这会慢一些，但是安全，因此默认是false。</li>
+</ul>
+<p>如下例子:  </p>
+<p><code>&lt;cache  eviction=&quot;FIFO&quot;  flushInterval=&quot;60000&quot;  size=&quot;512&quot;  readOnly=&quot;true&quot;/&gt;</code></p>
+<p>这个更高级的配置创建了一个 FIFO 缓存,并每隔 60 秒刷新,存数结果对象或列表的 512 个引用,而且返回的对象被认为是只读的,因此在不同线程中的调用者之间修改它们会导致冲突。可用的收回策略有, 默认的是 LRU:</p>
+<ul>
+<li>LRU – 最近最少使用的:移除最长时间不被使用的对象。</li>
+<li>FIFO – 先进先出:按对象进入缓存的顺序来移除它们。</li>
+<li>SOFT – 软引用:移除基于垃圾回收器状态和软引用规则的对象。</li>
+<li>WEAK – 弱引用:更积极地移除基于垃圾收集器状态和弱引用规则的对象。</li>
+</ul>
+<h3 id="4-8二级缓存的应用场景"><a href="#4-8二级缓存的应用场景" class="headerlink" title="4.8二级缓存的应用场景"></a>4.8二级缓存的应用场景</h3><p>对查询频率高，变化频率低的数据建议使用二级缓存。  </p>
+<p>对于访问多的查询请求且用户对查询结果实时性要求不高，此时可采用mybatis二级缓存技术降低数据库访问量，提高访问速度，业务场景比如：耗时较高的统计分析sql、电话账单查询sql等。  </p>
+<p>实现方法如下：通过设置刷新间隔时间，由mybatis每隔一段时间自动清空缓存，根据数据变化频率设置缓存刷新间隔flushInterval，比如设置为30分钟、60分钟、24小时等，根据需求而定。  </p>
+<h3 id="4-9二级缓存的局限性"><a href="#4-9二级缓存的局限性" class="headerlink" title="4.9二级缓存的局限性"></a>4.9二级缓存的局限性</h3><p>mybatis二级缓存对细粒度的数据级别的缓存实现不好，比如如下需求：对商品信息进行缓存，由于商品信息查询访问量大，但是要求用户每次都能查询最新的商品信息，此时如果使用mybatis的二级缓存就无法实现当一个商品变化时只刷新该商品的缓存信息而不刷新其它商品的信息，因为mybaits的二级缓存区域以mapper为单位划分，当一个商品信息变化会将所有商品信息的缓存数据全部清空。解决此类问题需要在业务层根据需求对数据有针对性缓存。  </p>
+<h2 id="5-MyBatis和ehcache缓存框架整合"><a href="#5-MyBatis和ehcache缓存框架整合" class="headerlink" title="5.MyBatis和ehcache缓存框架整合"></a>5.MyBatis和ehcache缓存框架整合</h2><h3 id="5-1分布缓存"><a href="#5-1分布缓存" class="headerlink" title="5.1分布缓存"></a>5.1分布缓存</h3><p>将缓存数据进行分布式管理，这个概念我们以后会学。  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.45.41.png" alt="">  </p>
+<h3 id="5-3MyBatis和ehcache整合思路"><a href="#5-3MyBatis和ehcache整合思路" class="headerlink" title="5.3MyBatis和ehcache整合思路"></a>5.3MyBatis和ehcache整合思路</h3><p>通过MyBatis和ehcache框架进行整合，就可以把缓存数据的管理托管给ehcache。  </p>
+<p>首先我们看看MyBatis自己的二级缓存，它在自己内部提供了一个cache接口，我们只要实现了cache接口就可以把缓存数据灵活的管理起来。  </p>
+<p>要将MyBatis和ehcache整合，我们首先需要下载ehcache的jar包:  </p>
+<ul>
+<li>ehcache-core.jar</li>
+<li>mybatis-ehcache.jar</li>
+</ul>
+<p>然后需要添加一个ehcache的配置文件ehcache.xml:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.59.32.png" alt="">  </p>
+<p>然后在mapper.xml中添加ehcache的配置:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%8812.00.18.png" alt="">  </p>
+<p>然后便可以进行测试。  </p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[MyBatis学习笔记(六)————使用resultMap实现高级映射]]></title>
       <url>http://codingxiaxw.cn/2016/11/09/37-mybatis6/</url>
       <content type="html"><![CDATA[<p>对于数据库中对表的增删改查操作，我们知道增删改都涉及的是单表，而只有查询操作既可以设计到单表操作又可以涉及到多表操作，所以对于输入映射parameterType而言是没有所谓的高级映射的，也就是说高级映射只针对于输出映射(因为高级映射设计到多张表)。<br><a id="more"></a></p>
@@ -1802,11 +1876,11 @@ public class Person {
 55     }
 56 }
 </code></pre><p>既然这里谈到了session的序列化(钝化)，反序列化(活化)那我们就来具体聊聊。</p>
-<h2 id="2-session序列化-钝化"><a href="#2-session序列化-钝化" class="headerlink" title="2.session序列化(钝化)"></a>2.session序列化(钝化)</h2><p>在session上线时，会在tomcat／work／Catalina／localhost／项目名／下生成一个sessions.ser文件，里面存放了所有session的信息，当你正在访问某个网页时若此时服务器关闭(关闭时才生成这个文件)又打开(打开后这个文件会消失)，你依旧能正常访问该网页。(故说session有重生的效果)。<br>若想废掉session的序列化,需要在tomcat／conf／context.xml中添加\<manager pathname="“”/"></manager></p>
+<h2 id="2-session序列化-钝化"><a href="#2-session序列化-钝化" class="headerlink" title="2.session序列化(钝化)"></a>2.session序列化(钝化)</h2><p>在session上线时，会在<code>tomcat／work／Catalina／localhost／项目名／</code>下生成一个sessions.ser文件，里面存放了所有session的信息，当你正在访问某个网页时若此时服务器关闭(关闭时才生成这个文件)又打开(打开后这个文件会消失)，你依旧能正常访问该网页。(故说session有重生的效果)。<br>若想废掉session的序列化,需要在<code>tomcat／conf／context.xml</code>中添加<code>&lt;Manager pathname=“”/&gt;</code></p>
 <h2 id="3-session的钝化与活化"><a href="#3-session的钝化与活化" class="headerlink" title="3.session的钝化与活化"></a>3.session的钝化与活化</h2><p>Tomcat会在session一段时间内不被使用时钝化session对象，所谓钝化session，就是把session通过序列化的方法保存到硬盘文件中。当用户再使用session时，Tomcat还会把钝化的对象再活化session，所谓活化就是把硬盘文件中的session在反序列化中放回内存。当session被tomcat钝化时，sesseion中存储的对象也被钝化，当session被活化时，也会把session中存储的对象(javabean对象)活化。如果某个类(javabean对象)实现了HttpSessionActiveationListener接口后，当对象随着session被钝化和活化时，下面两个方法就会被调用:</p>
 <pre><code>public void sessionWillPassivate(HttpSessionEvent se):当对象感知被活化时调用本方法。  
 public void sessionDidActivate(HttpSessionEvent se):当对象感知被钝化时调用本方法。
-</code></pre><p>钝化时会在tomcat/work/Catalina/localhost/项目/mysession／文件下生成一个后缀为.session的文件，网页中一个被钝化的session就对应一个.session文件(而上面的序列化是一个.ser文件存在所有的session)，在活化时此文件也不会消失(不同于上述的.ser文件消失)。<br>当然要看到上述效果，应该先配置tomcat钝化session的参数，在tomcat/conf/catalina/localhost目录下，添加以下配置内容(google一下吧)。</p>
+</code></pre><p>钝化时会在<code>tomcat/work/Catalina/localhost/项目/mysession／</code>文件下生成一个后缀为.session的文件，网页中一个被钝化的session就对应一个.session文件(而上面的序列化是一个.ser文件存在所有的session)，在活化时此文件也不会消失(不同于上述的.ser文件消失)。<br>当然要看到上述效果，应该先配置tomcat钝化session的参数，在<code>tomcat/conf/catalina/localhost</code>目录下，添加以下配置内容(google一下吧)。</p>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
