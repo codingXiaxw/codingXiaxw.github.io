@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.45.41.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8A%E5%8D%8811.59.32.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%8812.00.18.png">
-<meta property="og:updated_time" content="2016-11-10T06:26:47.000Z">
+<meta property="og:updated_time" content="2016-11-10T07:27:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis之查询缓存">
 <meta name="twitter:description" content="正如大多数持久层框架一样，MyBatis同样也提供了对查询数据的缓存支持。今后我们要学习的SpringMVC框架属于系统控制层，它也有它的缓存区域，对响应的jsp页面进行缓存；Spring属于系统业务层，它的缓存区域对业务数据进行缓存。而它们三者的缓存区域都存在于用户要访问数据库的中间，当用户向数据库中发送查询请求时，系统会先在它们三者的缓存区域看是否有满足用户要求的查询数据，若有则直接从缓存区域">
@@ -417,6 +417,17 @@
 <p>然后在mapper.xml中添加ehcache的配置:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%8812.00.18.png" alt="">  </p>
 <p>然后便可以进行测试。  </p>
+<p>学完以上7篇文章，你就可以使用MyBatis去搭建一个项目了。后面的博客中，我还会写几篇MyBatis与Spring和Spring MVC整合的文章供大家学习。</p>
+<h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
 
       
     </div>
@@ -471,6 +482,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/11/39-Spring/" rel="prev" title="Spring————程序员的春天">
+                Spring————程序员的春天 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -542,7 +557,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -550,7 +565,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -559,7 +574,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -617,7 +632,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-缓存的意义"><span class="nav-number">1.</span> <span class="nav-text">1.缓存的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-MyBatis持久层缓存"><span class="nav-number">2.</span> <span class="nav-text">2.MyBatis持久层缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-MyBatis一级缓存"><span class="nav-number">3.</span> <span class="nav-text">3.MyBatis一级缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1原理"><span class="nav-number">3.1.</span> <span class="nav-text">3.1原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2一级缓存配置"><span class="nav-number">3.2.</span> <span class="nav-text">3.2一级缓存配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3一级缓存的测试"><span class="nav-number">3.3.</span> <span class="nav-text">3.3一级缓存的测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-MyBatis二级缓存"><span class="nav-number">4.</span> <span class="nav-text">4.MyBatis二级缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1二级缓存原理"><span class="nav-number">4.1.</span> <span class="nav-text">4.1二级缓存原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2二级缓存的配置"><span class="nav-number">4.2.</span> <span class="nav-text">4.2二级缓存的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3查询结果映射的pojo序列化"><span class="nav-number">4.3.</span> <span class="nav-text">4.3查询结果映射的pojo序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4二级缓存的禁用"><span class="nav-number">4.4.</span> <span class="nav-text">4.4二级缓存的禁用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5刷新缓存"><span class="nav-number">4.5.</span> <span class="nav-text">4.5刷新缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6测试代码"><span class="nav-number">4.6.</span> <span class="nav-text">4.6测试代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7mybatis的cache参数（了解）"><span class="nav-number">4.7.</span> <span class="nav-text">4.7mybatis的cache参数（了解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8二级缓存的应用场景"><span class="nav-number">4.8.</span> <span class="nav-text">4.8二级缓存的应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-9二级缓存的局限性"><span class="nav-number">4.9.</span> <span class="nav-text">4.9二级缓存的局限性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-MyBatis和ehcache缓存框架整合"><span class="nav-number">5.</span> <span class="nav-text">5.MyBatis和ehcache缓存框架整合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1分布缓存"><span class="nav-number">5.1.</span> <span class="nav-text">5.1分布缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3MyBatis和ehcache整合思路"><span class="nav-number">5.2.</span> <span class="nav-text">5.3MyBatis和ehcache整合思路</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-缓存的意义"><span class="nav-number">1.</span> <span class="nav-text">1.缓存的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-MyBatis持久层缓存"><span class="nav-number">2.</span> <span class="nav-text">2.MyBatis持久层缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-MyBatis一级缓存"><span class="nav-number">3.</span> <span class="nav-text">3.MyBatis一级缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1原理"><span class="nav-number">3.1.</span> <span class="nav-text">3.1原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2一级缓存配置"><span class="nav-number">3.2.</span> <span class="nav-text">3.2一级缓存配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3一级缓存的测试"><span class="nav-number">3.3.</span> <span class="nav-text">3.3一级缓存的测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-MyBatis二级缓存"><span class="nav-number">4.</span> <span class="nav-text">4.MyBatis二级缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1二级缓存原理"><span class="nav-number">4.1.</span> <span class="nav-text">4.1二级缓存原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2二级缓存的配置"><span class="nav-number">4.2.</span> <span class="nav-text">4.2二级缓存的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3查询结果映射的pojo序列化"><span class="nav-number">4.3.</span> <span class="nav-text">4.3查询结果映射的pojo序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4二级缓存的禁用"><span class="nav-number">4.4.</span> <span class="nav-text">4.4二级缓存的禁用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5刷新缓存"><span class="nav-number">4.5.</span> <span class="nav-text">4.5刷新缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6测试代码"><span class="nav-number">4.6.</span> <span class="nav-text">4.6测试代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7mybatis的cache参数（了解）"><span class="nav-number">4.7.</span> <span class="nav-text">4.7mybatis的cache参数（了解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8二级缓存的应用场景"><span class="nav-number">4.8.</span> <span class="nav-text">4.8二级缓存的应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-9二级缓存的局限性"><span class="nav-number">4.9.</span> <span class="nav-text">4.9二级缓存的局限性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-MyBatis和ehcache缓存框架整合"><span class="nav-number">5.</span> <span class="nav-text">5.MyBatis和ehcache缓存框架整合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1分布缓存"><span class="nav-number">5.1.</span> <span class="nav-text">5.1分布缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3MyBatis和ehcache整合思路"><span class="nav-number">5.2.</span> <span class="nav-text">5.3MyBatis和ehcache整合思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-联系"><span class="nav-number">6.</span> <span class="nav-text">6.联系</span></a></li></ol></div>
             
           </div>
         </section>
