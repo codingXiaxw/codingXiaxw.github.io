@@ -102,7 +102,11 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.26.42.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.27.16.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.27.34.png">
-<meta property="og:updated_time" content="2016-11-12T10:29:14.000Z">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%887.43.40.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%887.44.57.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%888.08.48.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%887.44.57.png">
+<meta property="og:updated_time" content="2016-11-12T12:55:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis3.x和Spring3.x的整合">
 <meta name="twitter:description" content="1.mybatis和spring整合的思路1.让spring管理SqlSessionFactory2.让spring管理mapper对象和dao  
@@ -366,7 +370,23 @@
 <p>然后需要在spring配置文件中配置dao:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.26.42.png" alt="">  </p>
 <p>测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.27.16.png" alt="">  </p>
 <p>控制台中成功打印出结果:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.27.34.png" alt="">  </p>
-<h2 id="4-整合开发mapper代理方法"><a href="#4-整合开发mapper代理方法" class="headerlink" title="4.整合开发mapper代理方法"></a>4.整合开发mapper代理方法</h2><p>明天更。</p>
+<h2 id="4-整合开发mapper代理方法"><a href="#4-整合开发mapper代理方法" class="headerlink" title="4.整合开发mapper代理方法"></a>4.整合开发mapper代理方法</h2><p>首先在mapper包下创建UserMapper.java和UserMapper.xml文件，利用mybatis和spring整合开发mapper的方式有两种。  </p>
+<h3 id="4-1使用MapperFactoryBean"><a href="#4-1使用MapperFactoryBean" class="headerlink" title="4.1使用MapperFactoryBean"></a>4.1使用MapperFactoryBean</h3><p>该类是整合jar包下的一个类，它的内部已经继承SqlSessionDaoSupport类，首先我们需要在spring配置文件中进行Mapper对象的配置。<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%887.43.40.png" alt="">  </p>
+<p>然后便可以进行测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%887.44.57.png" alt="">  </p>
+<p>这样就完成了对mapper的开发，使用这种方式的缺点就是对于项目中的每个mapper我们都需要配置上述内容，比较繁琐。接下来看看下面这种开发mapper代理的方式。  </p>
+<h3 id="4-2使用MapperScannerConfigurer-扫描mapper"><a href="#4-2使用MapperScannerConfigurer-扫描mapper" class="headerlink" title="4.2使用MapperScannerConfigurer(扫描mapper)"></a>4.2使用MapperScannerConfigurer(扫描mapper)</h3><p>该类同样是整合jar包中的一个类。在spring配置文件中加入如下配置:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%888.08.48.png" alt="">  </p>
+<p>然后进行测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%887.44.57.png" alt="">同样正常运行。  </p>
+<p>使用这种方式的优点:使用扫描器自动扫描mapper，生成代理对象比较方便。  </p>
+<h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
 
       
     </div>
@@ -567,7 +587,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-mybatis和spring整合的思路"><span class="nav-number">1.</span> <span class="nav-text">1.mybatis和spring整合的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-准备工作"><span class="nav-number">2.</span> <span class="nav-text">2.准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1创建整合工程"><span class="nav-number">2.1.</span> <span class="nav-text">2.1创建整合工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-导入jar包"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.导入jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-SqlMapConfig-xml"><span class="nav-number">2.3.</span> <span class="nav-text">2.3.SqlMapConfig.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-applicationContext-xml"><span class="nav-number">2.4.</span> <span class="nav-text">2.4.applicationContext.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-整合开发原始dao接口"><span class="nav-number">3.</span> <span class="nav-text">3.整合开发原始dao接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1配置SqlSessionFactory"><span class="nav-number">3.1.</span> <span class="nav-text">3.1配置SqlSessionFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2开发原始dao"><span class="nav-number">3.2.</span> <span class="nav-text">3.2开发原始dao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-整合开发mapper代理方法"><span class="nav-number">4.</span> <span class="nav-text">4.整合开发mapper代理方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-mybatis和spring整合的思路"><span class="nav-number">1.</span> <span class="nav-text">1.mybatis和spring整合的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-准备工作"><span class="nav-number">2.</span> <span class="nav-text">2.准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1创建整合工程"><span class="nav-number">2.1.</span> <span class="nav-text">2.1创建整合工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-导入jar包"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.导入jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-SqlMapConfig-xml"><span class="nav-number">2.3.</span> <span class="nav-text">2.3.SqlMapConfig.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-applicationContext-xml"><span class="nav-number">2.4.</span> <span class="nav-text">2.4.applicationContext.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-整合开发原始dao接口"><span class="nav-number">3.</span> <span class="nav-text">3.整合开发原始dao接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1配置SqlSessionFactory"><span class="nav-number">3.1.</span> <span class="nav-text">3.1配置SqlSessionFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2开发原始dao"><span class="nav-number">3.2.</span> <span class="nav-text">3.2开发原始dao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-整合开发mapper代理方法"><span class="nav-number">4.</span> <span class="nav-text">4.整合开发mapper代理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1使用MapperFactoryBean"><span class="nav-number">4.1.</span> <span class="nav-text">4.1使用MapperFactoryBean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2使用MapperScannerConfigurer-扫描mapper"><span class="nav-number">4.2.</span> <span class="nav-text">4.2使用MapperScannerConfigurer(扫描mapper)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-联系"><span class="nav-number">5.</span> <span class="nav-text">5.联系</span></a></li></ol></div>
             
           </div>
         </section>
