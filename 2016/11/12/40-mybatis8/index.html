@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="MyBatis," />
 
 
 
@@ -84,15 +84,31 @@
 
 
 
-<meta name="description" content="Life is short,just coding.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="codingXiaxw's blog">
-<meta property="og:url" content="http://codingxiaxw.cn/categories/Mac-and-Github/index.html">
+<meta name="description" content="1.mybatis和spring整合的思路1.让spring管理SqlSessionFactory2.让spring管理mapper对象和dao  
+
+使用spring和mybatis整合开发mapper代理及原始dao接口。自动开启事务，自动管理sqlsession">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis3.x和Spring3.x的整合">
+<meta property="og:url" content="http://codingxiaxw.cn/2016/11/12/40-mybatis8/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="Life is short,just coding.">
+<meta property="og:description" content="1.mybatis和spring整合的思路1.让spring管理SqlSessionFactory2.让spring管理mapper对象和dao  
+
+使用spring和mybatis整合开发mapper代理及原始dao接口。自动开启事务，自动管理sqlsession">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.15.47.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.18.44.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.21.53.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.22.55.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.25.45.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.26.42.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.27.16.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.27.34.png">
+<meta property="og:updated_time" content="2016-11-12T10:29:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="codingXiaxw's blog">
-<meta name="twitter:description" content="Life is short,just coding.">
+<meta name="twitter:title" content="MyBatis3.x和Spring3.x的整合">
+<meta name="twitter:description" content="1.mybatis和spring整合的思路1.让spring管理SqlSessionFactory2.让spring管理mapper对象和dao  
+
+使用spring和mybatis整合开发mapper代理及原始dao接口。自动开启事务，自动管理sqlsession">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.15.47.png">
 
 
 
@@ -113,10 +129,10 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/categories/Mac-and-Github/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/2016/11/12/40-mybatis8/"/>
 
 
-  <title> Category: Mac and Github | codingXiaxw's blog </title>
+  <title> MyBatis3.x和Spring3.x的整合 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -137,7 +153,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -248,47 +264,179 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Mac and Github
-        <small>Category</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MyBatis3.x和Spring3.x的整合
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-11-12T18:12:22+08:00" content="Nov 12 2016">
+              Nov 12 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/MyBatis/" itemprop="url" rel="index">
+                    <span itemprop="name">MyBatis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/12/40-mybatis8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/12/40-mybatis8/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+      
+        <h2 id="1-mybatis和spring整合的思路"><a href="#1-mybatis和spring整合的思路" class="headerlink" title="1.mybatis和spring整合的思路"></a>1.mybatis和spring整合的思路</h2><p>1.让spring管理SqlSessionFactory<br>2.让spring管理mapper对象和dao  </p>
+<blockquote>
+<p>使用spring和mybatis整合开发mapper代理及原始dao接口。<br>自动开启事务，自动管理sqlsession</p>
+</blockquote>
+<a id="more"></a>
+<p>3.让spring管理数据源(即数据库连接池)  </p>
+<h2 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2.准备工作"></a>2.准备工作</h2><h3 id="2-1创建整合工程"><a href="#2-1创建整合工程" class="headerlink" title="2.1创建整合工程"></a>2.1创建整合工程</h3><p>新建项目，拷贝前一天所建mybatis的项目，现在的项目结构为:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.15.47.png" alt="">  </p>
+<h3 id="2-2-导入jar包"><a href="#2-2-导入jar包" class="headerlink" title="2.2.导入jar包"></a>2.2.导入jar包</h3><p>1.mybatis3.x本身的jar包<br>2.数据库驱动包<br>3.spring3.xjar包<br>4.spring和mybatis的整合包:从mybatis官方下载mybatis-spring-1.2.2.jar  </p>
+<h3 id="2-3-SqlMapConfig-xml"><a href="#2-3-SqlMapConfig-xml" class="headerlink" title="2.3.SqlMapConfig.xml"></a>2.3.SqlMapConfig.xml</h3><p>mybatis的配置文件:设置别名、settings。如下<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.18.44.png" alt="">  </p>
+<h3 id="2-4-applicationContext-xml"><a href="#2-4-applicationContext-xml" class="headerlink" title="2.4.applicationContext.xml"></a>2.4.applicationContext.xml</h3><p>spring配置文件:1.数据源(用的是dbcp连接池)。2.SqlSessionFactory。3.mapper或dao。如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.21.53.png" alt=""></p>
+<h2 id="3-整合开发原始dao接口"><a href="#3-整合开发原始dao接口" class="headerlink" title="3.整合开发原始dao接口"></a>3.整合开发原始dao接口</h2><h3 id="3-1配置SqlSessionFactory"><a href="#3-1配置SqlSessionFactory" class="headerlink" title="3.1配置SqlSessionFactory"></a>3.1配置SqlSessionFactory</h3><p>在applicationContext.xml中配置SqlSessionFactory，为上图的:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.22.55.png" alt="">  </p>
+<h3 id="3-2开发原始dao"><a href="#3-2开发原始dao" class="headerlink" title="3.2开发原始dao"></a>3.2开发原始dao</h3><p>将dao接口的实现类UserDaoImpl.java继承SqlSessionDaoSupport.java，该父类中有属性的set方法并已经声明SqlSessionFactory对象，所以我们在UserDaoImpl.java中只需要写如下代码:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.25.45.png" alt="">  </p>
+<p>然后需要在spring配置文件中配置dao:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.26.42.png" alt="">  </p>
+<p>测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.27.16.png" alt="">  </p>
+<p>控制台中成功打印出结果:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.27.34.png" alt="">  </p>
+<h2 id="4-整合开发mapper代理方法"><a href="#4-整合开发mapper代理方法" class="headerlink" title="4.整合开发mapper代理方法"></a>4.整合开发mapper代理方法</h2><p>明天更。</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/04/09/2-mac用户如何将自己的代码上传至github托管/" itemprop="url">
-              
-                <span itemprop="name">Mac用户如何将自己的代码上传至github托管</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-09T22:07:54+08:00"
-              content="Apr 9 2016" >
-          04-09
-        </time>
-      </div>
 
-    </header>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MyBatis/" rel="tag">#MyBatis</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/11/39-Spring/" rel="next" title="Spring————程序员的春天">
+                <i class="fa fa-chevron-left"></i> Spring————程序员的春天
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </section>
 
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -296,6 +444,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/12/40-mybatis8/"
+           data-title="MyBatis3.x和Spring3.x的整合" data-url="http://codingxiaxw.cn/2016/11/12/40-mybatis8/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -315,8 +471,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
@@ -395,6 +560,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-mybatis和spring整合的思路"><span class="nav-number">1.</span> <span class="nav-text">1.mybatis和spring整合的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-准备工作"><span class="nav-number">2.</span> <span class="nav-text">2.准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1创建整合工程"><span class="nav-number">2.1.</span> <span class="nav-text">2.1创建整合工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-导入jar包"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.导入jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-SqlMapConfig-xml"><span class="nav-number">2.3.</span> <span class="nav-text">2.3.SqlMapConfig.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-applicationContext-xml"><span class="nav-number">2.4.</span> <span class="nav-text">2.4.applicationContext.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-整合开发原始dao接口"><span class="nav-number">3.</span> <span class="nav-text">3.整合开发原始dao接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1配置SqlSessionFactory"><span class="nav-number">3.1.</span> <span class="nav-text">3.1配置SqlSessionFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2开发原始dao"><span class="nav-number">3.2.</span> <span class="nav-text">3.2开发原始dao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-整合开发mapper代理方法"><span class="nav-number">4.</span> <span class="nav-text">4.整合开发mapper代理方法</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -491,6 +667,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 

@@ -4,6 +4,28 @@
   
     
     <entry>
+      <title><![CDATA[MyBatis3.x和Spring3.x的整合]]></title>
+      <url>http://codingxiaxw.cn/2016/11/12/40-mybatis8/</url>
+      <content type="html"><![CDATA[<h2 id="1-mybatis和spring整合的思路"><a href="#1-mybatis和spring整合的思路" class="headerlink" title="1.mybatis和spring整合的思路"></a>1.mybatis和spring整合的思路</h2><p>1.让spring管理SqlSessionFactory<br>2.让spring管理mapper对象和dao  </p>
+<blockquote>
+<p>使用spring和mybatis整合开发mapper代理及原始dao接口。<br>自动开启事务，自动管理sqlsession</p>
+</blockquote>
+<a id="more"></a>
+<p>3.让spring管理数据源(即数据库连接池)  </p>
+<h2 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2.准备工作"></a>2.准备工作</h2><h3 id="2-1创建整合工程"><a href="#2-1创建整合工程" class="headerlink" title="2.1创建整合工程"></a>2.1创建整合工程</h3><p>新建项目，拷贝前一天所建mybatis的项目，现在的项目结构为:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.15.47.png" alt="">  </p>
+<h3 id="2-2-导入jar包"><a href="#2-2-导入jar包" class="headerlink" title="2.2.导入jar包"></a>2.2.导入jar包</h3><p>1.mybatis3.x本身的jar包<br>2.数据库驱动包<br>3.spring3.xjar包<br>4.spring和mybatis的整合包:从mybatis官方下载mybatis-spring-1.2.2.jar  </p>
+<h3 id="2-3-SqlMapConfig-xml"><a href="#2-3-SqlMapConfig-xml" class="headerlink" title="2.3.SqlMapConfig.xml"></a>2.3.SqlMapConfig.xml</h3><p>mybatis的配置文件:设置别名、settings。如下<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.18.44.png" alt="">  </p>
+<h3 id="2-4-applicationContext-xml"><a href="#2-4-applicationContext-xml" class="headerlink" title="2.4.applicationContext.xml"></a>2.4.applicationContext.xml</h3><p>spring配置文件:1.数据源(用的是dbcp连接池)。2.SqlSessionFactory。3.mapper或dao。如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.21.53.png" alt=""></p>
+<h2 id="3-整合开发原始dao接口"><a href="#3-整合开发原始dao接口" class="headerlink" title="3.整合开发原始dao接口"></a>3.整合开发原始dao接口</h2><h3 id="3-1配置SqlSessionFactory"><a href="#3-1配置SqlSessionFactory" class="headerlink" title="3.1配置SqlSessionFactory"></a>3.1配置SqlSessionFactory</h3><p>在applicationContext.xml中配置SqlSessionFactory，为上图的:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.22.55.png" alt="">  </p>
+<h3 id="3-2开发原始dao"><a href="#3-2开发原始dao" class="headerlink" title="3.2开发原始dao"></a>3.2开发原始dao</h3><p>将dao接口的实现类UserDaoImpl.java继承SqlSessionDaoSupport.java，该父类中有属性的set方法并已经声明SqlSessionFactory对象，所以我们在UserDaoImpl.java中只需要写如下代码:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.25.45.png" alt="">  </p>
+<p>然后需要在spring配置文件中配置dao:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.26.42.png" alt="">  </p>
+<p>测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.27.16.png" alt="">  </p>
+<p>控制台中成功打印出结果:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.27.34.png" alt="">  </p>
+<h2 id="4-整合开发mapper代理方法"><a href="#4-整合开发mapper代理方法" class="headerlink" title="4.整合开发mapper代理方法"></a>4.整合开发mapper代理方法</h2><p>明天更。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Spring————程序员的春天]]></title>
       <url>http://codingxiaxw.cn/2016/11/11/39-Spring/</url>
       <content type="html"><![CDATA[<p>当客户端向服务器发出请求时，服务器把得到的请求发送给控制器Servlet，而在Servlet中需要创建Service对象来调用业务层相关功能(故说控制器层Servlet依赖于业务层Service),而在Service中又需要创建数据库层DAO对象来对数据库进行操作(故说业务层Service依赖于数据库层DAO)。<br><a id="more"></a><br><strong>思考:</strong>针对上述过程，我们需要考虑这样几个问题。1.Servlet、Service以及Dao对象的创建时间、创建数量。2.Servlet、Service以及Dao之间的依赖关系。如何处理这些问题呢？Spring就是用来处理对象的创建、以及对象之间依赖关系的一个开发框架。它打破了我们传统开发的观念，我们不再需要像以前那样在具体的类中创建具体的对象，而是将对象的创建交给它去完成。它是我们所要学习的框架中最重要的框架，请务必好好学习。  </p>
@@ -30,10 +52,10 @@
 <h2 id="3-Spring开发步骤"><a href="#3-Spring开发步骤" class="headerlink" title="3.Spring开发步骤"></a>3.Spring开发步骤</h2><p><strong>1)导入jar包:</strong>  </p>
 <ul>
 <li>commons-logging-1.1.3.jar</li>
-<li>spring-beans-4.0.5.RELEASE.jar</li>
-<li>spring-context-4.0.5.RELEASE.jar</li>
-<li>spring-core-4.0.5.RELEASE.jar</li>
-<li>spring-expression-4.0.5.RELEASE.jar</li>
+<li>spring-beans-3.2.5.RELEASE.jar</li>
+<li>spring-context-3.2.5.RELEASE.jar</li>
+<li>spring-core-3.2.5.RELEASE.jar</li>
+<li>spring-expression-3.2.5.RELEASE.jar</li>
 </ul>
 <p><strong>2)配置核心文件applicationContext.xml(文件名称随意):</strong></p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%885.32.28.png" alt="">  </p>
