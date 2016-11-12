@@ -117,7 +117,15 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%884.48.51.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%885.04.23.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%885.18.05.png">
-<meta property="og:updated_time" content="2016-11-11T09:27:48.000Z">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%8812.12.14.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%8812.53.31.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%8812.54.31.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%8812.54.43.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%8812.54.52.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.06.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.10.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.15.png">
+<meta property="og:updated_time" content="2016-11-12T06:15:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring————程序员的春天">
 <meta name="twitter:description" content="当客户端向服务器发出请求时，服务器把得到的请求发送给控制器Servlet，而在Servlet中需要创建Service对象来调用业务层相关功能(故说控制器层Servlet依赖于业务层Service),而在Service中又需要创建数据库层DAO对象来对数据库进行操作(故说业务层Service依赖于数据库层DAO)。">
@@ -439,9 +447,10 @@ xsi:schemaLocation=&quot;
 <li>3.<code>destoy-method:</code>同上，给该属性传递一个在pojo对象中创建的方法例如B方法的方法名B作为destoy-method的属性值，表示当IOC容器被销毁时(该pojo对象也会在IOC中销毁)会立刻调用这个B方法。当然我们通过<code>ApplicationContext ac=new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</code>创建的IOC对象ac是没有destoy()方法的，我们需要这个创建IOC对象<code>ClassPathXmlApplicationContext ac=new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</code>这样创建出来的IOC对象才有destoy()方法。</li>
 </ul>
 <h2 id="5-Spring-IOC容器"><a href="#5-Spring-IOC容器" class="headerlink" title="5.Spring IOC容器"></a>5.Spring IOC容器</h2><p>Spring IOC容器，是Spring的核心内容，用于创建对象和处理对象间的依赖关系。</p>
-<h3 id="对象的依赖关系"><a href="#对象的依赖关系" class="headerlink" title="对象的依赖关系"></a>对象的依赖关系</h3><h4 id="如何给对象的属性赋值"><a href="#如何给对象的属性赋值" class="headerlink" title="如何给对象的属性赋值"></a>如何给对象的属性赋值</h4><p>1.通过构造方法。2.通过set方法给属性注入值。3.p名称空间。4.自动装配。5.注解。  </p>
-<p>1.首先我们来看看如何通过构造方法来给对象的属性赋值,在配置文件中添加如下标签即可通过构造器给该User对象的属性赋值:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%884.21.03.png" alt="">  </p>
-<p>2.通过set方法给属性赋值,前提是在User对象中给它的属性添加了set方法:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%884.26.29.png" alt="">  </p>
+<h3 id="5-1对象的创建"><a href="#5-1对象的创建" class="headerlink" title="5.1对象的创建"></a>5.1对象的创建</h3><p>以往我们创建对象的方式有如下几种:</p>
+<h3 id="5-2处理对象的依赖关系"><a href="#5-2处理对象的依赖关系" class="headerlink" title="5.2处理对象的依赖关系"></a>5.2处理对象的依赖关系</h3><p>在IOC容器的配置文件中我们有如下给对象注入属性的方法:1.通过构造方法。2.通过set方法给属性注入值。3.p名称空间。4.自动装配。5.注解。  </p>
+<h4 id="5-2-1通过构造方法"><a href="#5-2-1通过构造方法" class="headerlink" title="5.2.1通过构造方法"></a>5.2.1通过构造方法</h4><p>首先我们来看看如何通过构造方法来给对象的属性赋值,在配置文件中添加如下标签即可通过构造器给该User对象的属性赋值:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%884.21.03.png" alt="">  </p>
+<h4 id="5-2-2通过set方法"><a href="#5-2-2通过set方法" class="headerlink" title="5.2.2通过set方法"></a>5.2.2通过set方法</h4><p>通过set方法给属性赋值,前提是在User对象中给它的属性添加了set方法:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%884.26.29.png" alt="">  </p>
 <p>接下来我们看个案例，以前我们开发时根据MVC模式都会像下面这样建立相应的Service.java、Servlet.java和dao.java:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%884.38.05.png" alt="">  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%884.38.10.png" alt="">  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%884.38.30.png" alt="">  </p>
@@ -456,7 +465,7 @@ xsi:schemaLocation=&quot;
 <li>相同:都可以创建Service对象，并处理了之间的依赖关系。</li>
 <li>区别:set注入创建的Service对象可以给另一个Servlet对象调用，而内部bean将Service对象写在Servlet内部导致该Service对象只能被该Servlet使用，所以内部bean标签的使用场景在只需要一个Servlet对象的项目中。  </li>
 </ul>
-<p>3.通过p名称空间给对象的属性注入值。但此中方法只有在Spring3.0版本及以上版本才能用。首先在配置文件的<code>&lt;beans&gt;</code>根标签中加入属性:<code>xmlns:p=&quot;http://www.springframework.org/schema/p&quot;</code>。然后我们便可以在配置文件中这样给对象的属性赋值:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%885.18.05.png" alt="">  </p>
+<h4 id="5-2-3通过p名称空间给对象的属性注入值"><a href="#5-2-3通过p名称空间给对象的属性注入值" class="headerlink" title="5.2.3通过p名称空间给对象的属性注入值"></a>5.2.3通过p名称空间给对象的属性注入值</h4><p>此中方法只有在Spring3.0版本及以上版本才能用。首先在配置文件的<code>&lt;beans&gt;</code>根标签中加入属性:<code>xmlns:p=&quot;http://www.springframework.org/schema/p&quot;</code>。然后我们便可以在配置文件中这样给对象的属性赋值:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%885.18.05.png" alt="">  </p>
 <p>当我们在配置文件中输入<code>p:</code>时，会出现两个属性<code>1.p:userDao 和p:userDao-ref</code>,这里有必要说明一下二者区别:  </p>
 <ul>
 <li>p:userDao:代表直接给UserService对象的userDao属性赋值</li>
@@ -465,7 +474,45 @@ xsi:schemaLocation=&quot;
 <p>例如使用p名称空间给传统的对象属性赋值时我们这样写:  </p>
 <pre><code>&lt;bean id=&quot;user&quot; class=&quot;pojo.User&quot; p:id=&quot;xxx&quot;/&gt;
 &lt;bean id=&quot;user&quot; class=&quot;pojo.User&quot; p:name=&quot;xxx&quot;/&gt;
-</code></pre><p>明天更。</p>
+</code></pre><h4 id="5-2-4-自动装配"><a href="#5-2-4-自动装配" class="headerlink" title="5.2.4.自动装配"></a>5.2.4.自动装配</h4><p>当我们在配置文件中用<code>&lt;bean&gt;</code>标签指明相应对象的同时就将这个对象放入到了IOC容器中(其中标签中的id属性唯一指示一个对象)，当我们给该bean标签添加了<code>autowrite=&quot;byName&quot;</code>的属性后，对于该标签对应的对象注入的属性，会去IOC容器中自动查找与属性同名的对象。  </p>
+<p>例如如下代码:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%8812.12.14.png" alt="">  </p>
+<p>通过上述三个<code>&lt;bean&gt;</code>标签我们就将userDao、userService、userServlet三个对象添加到了IOC容器中。我们在UserService对象的bean标签中加上了<code>autowrite=&quot;byName&quot;</code>的属性，这样我们查看UserService.java的代码，它有一个UserDao对象名为userDao的属性，此时就会自动去IOC容器中寻找与<code>userDao</code>同名的对象(即在bean标签中寻找id为userDao的对象)，然后进行注入，此时我们若将<code>&lt;bean id=&quot;userDao&quot; class=&quot;pojo.UserDao&quot;&gt;</code>的<code>id=&quot;userDao&quot;</code>属性值改为userDao1或者其它名字，则运行系统会出现空指针异常，道理上述已分析。UserServlet注入userService的属性道理同此。  </p>
+<p>我们也可以将该属性定义到全局<code>&lt;beans&gt;</code>标签中，设置<code>default-autowrite=&quot;byName&quot;</code>的属性,这样就不用每个bean标签中都写上<code>autowrite=&quot;byName&quot;</code>属性了。  </p>
+<p>上述是根据名称自动装配，其实autowrite的属性值还可以为byType即根据类型自动装配。对于<code>&lt;bean id=&quot;userService&quot; class=&quot;pojo.UserService&quot;&gt;</code>，当添加了<code>autowrity=&quot;byType&quot;</code>的属性后，此时寻找它依赖的属性userDao的过程如下:查看UserService.java代码，它需要注入的属性类型为UserDao类型，所以就会自动去IOC容器中查找UserDao类型的对象并自动为UserService对象注入该属性，此时各bean标签的id属性值便可以随便写了如果根据类型自动装配，则要保证保证该类型的对象只有一个，否则会报错。该属性同样可以在全局beans标签中进行配置。  </p>
+<p>利用自动装配的优缺点:简化了配置，但不利用系统维护。所以一般不推荐此中用法，下面我们再来介绍第5中非常简单的配置。  </p>
+<h4 id="5-2-5注解"><a href="#5-2-5注解" class="headerlink" title="5.2.5注解"></a>5.2.5注解</h4><p>注解方式可以简化Spring的IOC容器的配置。  </p>
+<p>使用步骤:  </p>
+<ul>
+<li>1.先引入context名称空间</li>
+<li>2.开启注解扫描</li>
+<li>3.使用注解:通过注解的方式，把对象加入到IOC容器中。</li>
+</ul>
+<p>首先在IOC配置文件中引入context名称空间,即在<code>&lt;beans&gt;</code>全局标签中添加<code>xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</code>属性。  </p>
+<p>然后在配置文件中添加如下标签<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%8812.53.31.png" alt="">   </p>
+<p>base-package:表示该扫描器只扫描此包下所有类。 </p>
+<p>最后我们便可以使用注解了，在pojo对象的.java文件中分别加入如下注解:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%8812.54.31.png" alt="">  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%8812.54.43.png" alt="">  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%8812.54.52.png" alt="">  </p>
+<p>@Componet注解:代表将该对象放入到IOC容器中，括号里面的名字代表该对象在IOC容器中的唯一标识名字，名字任意取。该注解写在代码第一行。  </p>
+<p>@Resource注解:用于将该对象依赖的属性从IOC容器中找到并注入，括号里面的name属性值必须跟@Compenent注解里填入的名字相同。  </p>
+<p>通过注解方法便可去掉各.java文件中为属性创建设置的set方法。  </p>
+<p>继续对上述注解方式进行配置优化，去掉括号中的内容:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.06.png" alt="">  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.10.png" alt="">  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.15.png" alt=""></p>
+<p>在测试类中运行依然可以正常运行。  </p>
+<p>说明:利用@Compenent注解的方式是通用的将对象加入到IOC容器中的方式，而有时候我们需要区别各层对象添加的方式，所以这里我们将Dao层对象添加到IOC容器的注解方式改为:@Repository表示持久层的组件;修改Service层对象添加到IOC容器的注解方式:@Service表示业务逻辑层的组件;修改Servlet层对象添加到IOC容器的注解方式为:@Controller表示控制层的组件。  </p>
+<p>另外需要说明的是使用注解的方式将对象添加到IOC容器中和在xml文件中添加配置的方式是可以共存的。但通过@Resource不带括号的注解，必须要保证该类型只有一个变量，所以一般情况下我们还是优先使用@Resource(name=””)注解。</p>
+<p>到此，Spring框架的学习我们已完成。  </p>
+<h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
 
       
     </div>
@@ -666,7 +713,7 @@ xsi:schemaLocation=&quot;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Spring框架中的专业术语"><span class="nav-number">1.</span> <span class="nav-text">1.Spring框架中的专业术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1组件／框架设计"><span class="nav-number">1.1.</span> <span class="nav-text">1.1组件／框架设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2控制反转"><span class="nav-number">2.</span> <span class="nav-text">1.2控制反转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3AOP"><span class="nav-number">3.</span> <span class="nav-text">1.3AOP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Spring框架概述"><span class="nav-number">4.</span> <span class="nav-text">2.Spring框架概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Spring开发步骤"><span class="nav-number">5.</span> <span class="nav-text">3.Spring开发步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-lt-bean-gt-创建的细节"><span class="nav-number">6.</span> <span class="nav-text">4.<bean>创建的细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-lt-bean-gt-标签中的其它属性说明"><span class="nav-number">6.1.</span> <span class="nav-text">4.1<bean>标签中的其它属性说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Spring-IOC容器"><span class="nav-number">7.</span> <span class="nav-text">5.Spring IOC容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的依赖关系"><span class="nav-number">7.1.</span> <span class="nav-text">对象的依赖关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何给对象的属性赋值"><span class="nav-number">7.1.1.</span> <span class="nav-text">如何给对象的属性赋值</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Spring框架中的专业术语"><span class="nav-number">1.</span> <span class="nav-text">1.Spring框架中的专业术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1组件／框架设计"><span class="nav-number">1.1.</span> <span class="nav-text">1.1组件／框架设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2控制反转"><span class="nav-number">2.</span> <span class="nav-text">1.2控制反转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3AOP"><span class="nav-number">3.</span> <span class="nav-text">1.3AOP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Spring框架概述"><span class="nav-number">4.</span> <span class="nav-text">2.Spring框架概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Spring开发步骤"><span class="nav-number">5.</span> <span class="nav-text">3.Spring开发步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-lt-bean-gt-创建的细节"><span class="nav-number">6.</span> <span class="nav-text">4.<bean>创建的细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-lt-bean-gt-标签中的其它属性说明"><span class="nav-number">6.1.</span> <span class="nav-text">4.1<bean>标签中的其它属性说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Spring-IOC容器"><span class="nav-number">7.</span> <span class="nav-text">5.Spring IOC容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1对象的创建"><span class="nav-number">7.1.</span> <span class="nav-text">5.1对象的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2处理对象的依赖关系"><span class="nav-number">7.2.</span> <span class="nav-text">5.2处理对象的依赖关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-1通过构造方法"><span class="nav-number">7.2.1.</span> <span class="nav-text">5.2.1通过构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-2通过set方法"><span class="nav-number">7.2.2.</span> <span class="nav-text">5.2.2通过set方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-3通过p名称空间给对象的属性注入值"><span class="nav-number">7.2.3.</span> <span class="nav-text">5.2.3通过p名称空间给对象的属性注入值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-4-自动装配"><span class="nav-number">7.2.4.</span> <span class="nav-text">5.2.4.自动装配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-5注解"><span class="nav-number">7.2.5.</span> <span class="nav-text">5.2.5注解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-联系"><span class="nav-number">8.</span> <span class="nav-text">6.联系</span></a></li></ol></div>
             
           </div>
         </section>
