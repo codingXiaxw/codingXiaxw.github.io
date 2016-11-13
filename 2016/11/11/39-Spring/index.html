@@ -90,6 +90,7 @@
 <meta property="og:url" content="http://codingxiaxw.cn/2016/11/11/39-Spring/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="当客户端向服务器发出请求时，服务器把得到的请求发送给控制器Servlet，而在Servlet中需要创建Service对象来调用业务层相关功能(故说控制器层Servlet依赖于业务层Service),而在Service中又需要创建数据库层DAO对象来对数据库进行操作(故说业务层Service依赖于数据库层DAO)。">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-13%20%E4%B8%8B%E5%8D%882.01.02.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%885.32.28.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%885.48.12.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%885.50.26.png">
@@ -125,11 +126,11 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.06.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.10.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.15.png">
-<meta property="og:updated_time" content="2016-11-13T05:23:27.000Z">
+<meta property="og:updated_time" content="2016-11-13T06:04:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring————程序员的春天">
 <meta name="twitter:description" content="当客户端向服务器发出请求时，服务器把得到的请求发送给控制器Servlet，而在Servlet中需要创建Service对象来调用业务层相关功能(故说控制器层Servlet依赖于业务层Service),而在Service中又需要创建数据库层DAO对象来对数据库进行操作(故说业务层Service依赖于数据库层DAO)。">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%885.32.28.png">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-13%20%E4%B8%8B%E5%8D%882.01.02.png">
 
 
 
@@ -394,13 +395,8 @@
 <p>5）Spring AOP:  </p>
 <p>6）SpringEE:Spring对javaEE其它模块的支持</p>
 <h2 id="3-Spring开发步骤"><a href="#3-Spring开发步骤" class="headerlink" title="3.Spring开发步骤"></a>3.Spring开发步骤</h2><p><strong>1)导入jar包:</strong>  </p>
-<ul>
-<li>commons-logging-1.1.3.jar</li>
-<li>spring-beans-3.2.5.RELEASE.jar</li>
-<li>spring-context-3.2.5.RELEASE.jar</li>
-<li>spring-core-3.2.5.RELEASE.jar</li>
-<li>spring-expression-3.2.5.RELEASE.jar</li>
-</ul>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-13%20%E4%B8%8B%E5%8D%882.01.02.png" alt="">  </p>
+<p>之前按照网上的教程只导入了一个logging包和四个spring包，最后出现<code>org.springframework.beans.factory.BeanDefinitionStoreException</code>的报错信息，说明jar包导入不完整。建议大家使用spring4.x的jar包。</p>
 <p><strong>2)配置核心文件applicationContext.xml(文件名称随意):</strong></p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%885.32.28.png" alt="">  </p>
 <p>代码如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">    <span class="attr">xmlns:p</span>=<span class="string">"http://www.springframework.org/schema/p"</span></span><br><span class="line">    <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span><br><span class="line">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span><br><span class="line">        http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">        http://www.springframework.org/schema/context</span><br><span class="line">        http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -547,7 +543,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/10/38-mybatis7/" rel="next" title="MyBatis之查询缓存">
+              <a href="/2016/11/10/38-mybatis查询缓存/" rel="next" title="MyBatis之查询缓存">
                 <i class="fa fa-chevron-left"></i> MyBatis之查询缓存
               </a>
             
@@ -555,7 +551,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/12/40-mybatis8/" rel="prev" title="MyBatis3.x和Spring3.x的整合">
+              <a href="/2016/11/12/40-mybatis与spring的整合/" rel="prev" title="MyBatis3.x和Spring3.x的整合">
                 MyBatis3.x和Spring3.x的整合 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -629,7 +625,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -637,7 +633,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -646,7 +642,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
