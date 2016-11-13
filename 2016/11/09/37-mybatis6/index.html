@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.42.51.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.43.46.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%887.44.14.png">
-<meta property="og:updated_time" content="2016-11-10T06:26:34.000Z">
+<meta property="og:updated_time" content="2016-11-13T05:30:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis之使用resultMap实现高级映射">
 <meta name="twitter:description" content="对于数据库中对表的增删改查操作，我们知道增删改都涉及的是单表，而只有查询操作既可以设计到单表操作又可以涉及到多表操作，所以对于输入映射parameterType而言是没有所谓的高级映射的，也就是说高级映射只针对于输出映射(因为高级映射设计到多张表)。">
@@ -358,29 +358,13 @@
         <p>对于数据库中对表的增删改查操作，我们知道增删改都涉及的是单表，而只有查询操作既可以设计到单表操作又可以涉及到多表操作，所以对于输入映射parameterType而言是没有所谓的高级映射的，也就是说高级映射只针对于输出映射(因为高级映射设计到多张表)。<br><a id="more"></a></p>
 <p>前五篇文章我们都只实现了单表中的字段与pojo的映射，而本篇文章我们将来讲解如何实现多表与pojo之间的高级映射,分别有一对一映射、一对多映射和多对多映射。首先我们来看看如何使用resultType完成一对一映射。  </p>
 <h2 id="1-多表间的一对一查询"><a href="#1-多表间的一对一查询" class="headerlink" title="1.多表间的一对一查询"></a>1.多表间的一对一查询</h2><h3 id="1-1需求"><a href="#1-1需求" class="headerlink" title="1.1需求"></a>1.1需求</h3><p>查询订单信息关联查询用户信息。这里我们知道一个用户可以有多张订单，而一张订单只能属于一个用户，所以用户与订单间的关系是一对多而订单与用户间的关系是一对一。所以这里我们将订单表作为主查询表来关联用户表，从而实现一对一映射。  </p>
-<h3 id="1-2创建表和数据"><a href="#1-2创建表和数据" class="headerlink" title="1.2创建表和数据"></a>1.2创建表和数据</h3><pre><code>create table orders( id int primary key auto_increment, user_id int , number int, createtime datetime, note varchar(50));
-
-用户表在第一篇文章中我们已经创建。
-</code></pre><p>建立oders表和user表对应的pojo对象Orders.java和User.java。</p>
-<pre><code>public class Orders
-{
-    private Integer id;
-
-    private Integer userId;
-
-    private String number;
-
-    private Date createtime;
-
-    private String note;
-
-｝
-</code></pre><p> 并建立相关的get和set方法，User.java我们之前已建立。</p>
-<h3 id="1-3sql查询语句"><a href="#1-3sql查询语句" class="headerlink" title="1.3sql查询语句"></a>1.3sql查询语句</h3><p>对于查询语句，我们需要知道:1.先确定主查询表:订单表。2.再确定关联查询表:用户信息表。通过orders关联查询用户使用user_id一个外键，只能关联查询出一条用户记录，我们使用内连接。查询语句为:  </p>
-<pre><code>SELECT orders.*,user.username,user.sex 
-FROM orders,user 
-WHERE orders.user_id = user.id
-</code></pre><h3 id="1-4使用resultType实现"><a href="#1-4使用resultType实现" class="headerlink" title="1.4使用resultType实现"></a>1.4使用resultType实现</h3><p>通过查询语句，查询到的结果同时包括user表和orders表两张表的列，那么我们将结果映射到哪个pojo对象中呢？若映射到User.java，那查询结果中对应的orders表的字段一定会遗失；若映射到Orders.java，那查询结果中对应的user表的字段同样也会遗失。所以这里需要我们针对查询的结果重新创建一个映射的pojo对象OrderCustom.java:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%883.44.21.png" alt="">  </p>
+<h3 id="1-2创建表和数据"><a href="#1-2创建表和数据" class="headerlink" title="1.2创建表和数据"></a>1.2创建表和数据</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">create table <span class="title">orders</span><span class="params">( id <span class="keyword">int</span> primary key auto_increment, </span><br><span class="line">	user_id <span class="keyword">int</span> ,</span><br><span class="line">	 number <span class="keyword">int</span>, </span><br><span class="line">	 createtime datetime, note varchar(<span class="number">50</span>)</span>)</span>;</span><br><span class="line"></span><br><span class="line">用户表在第一篇文章中我们已经创建。</span><br></pre></td></tr></table></figure>
+<p>建立oders表和user表对应的pojo对象Orders.java和User.java。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Orders</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer id;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> Integer userId;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> String number;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> Date createtime;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> String note;</span><br><span class="line">    	</span><br><span class="line">｝</span><br></pre></td></tr></table></figure>
+<p> 并建立相关的get和set方法，User.java我们之前已建立。</p>
+<h3 id="1-3sql查询语句"><a href="#1-3sql查询语句" class="headerlink" title="1.3sql查询语句"></a>1.3sql查询语句</h3><p>对于查询语句，我们需要知道:1.先确定主查询表:订单表。2.再确定关联查询表:用户信息表。通过orders关联查询用户使用user_id一个外键，只能关联查询出一条用户记录，我们使用内连接。查询语句为:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT orders.*,user.username,user.sex </span><br><span class="line">FROM orders,user </span><br><span class="line">WHERE orders.user_id = user.id</span><br></pre></td></tr></table></figure>
+<h3 id="1-4使用resultType实现"><a href="#1-4使用resultType实现" class="headerlink" title="1.4使用resultType实现"></a>1.4使用resultType实现</h3><p>通过查询语句，查询到的结果同时包括user表和orders表两张表的列，那么我们将结果映射到哪个pojo对象中呢？若映射到User.java，那查询结果中对应的orders表的字段一定会遗失；若映射到Orders.java，那查询结果中对应的user表的字段同样也会遗失。所以这里需要我们针对查询的结果重新创建一个映射的pojo对象OrderCustom.java:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%883.44.21.png" alt="">  </p>
 <p>这里我们让OrderCustom.java继承自Order.java，这样我们就只需在OrderCustom.java中添加user表中的字段即可。因为MyBatis主要的重点在sql语句，所以我们完成配置和pojo对象的建立后主要的点就放在了sql语句上，所以接下来要定义写sql语句的mapper.xml和对数据库进行操作的mapper.java接口了.  </p>
 <p>OrdersMapperCustom.xml文件内容如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.01.21.png" alt=""><br>因为我们只关心输出映射，所以在xml中写sql查询语句时没有写parameterType属性，而resultType的属性值我之所以没有写全OrderCustom类的全限定性名，是因为我们在SqlMapperConfig.xml中进行了别名的配置。相应的OrdersMapperCustom.java接口内容如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.01.37.png" alt="">  </p>
 <p>然后在测试类中测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%884.01.48.png" alt="">便可完成这两张表的关联与我们自定义的pojo对象的映射。接下来我们看看如何使用resultMap完成。  </p>
@@ -393,28 +377,16 @@ WHERE orders.user_id = user.id
 <li>resultMap：使用association完成一对一映射需要配置一个resultMap标签，过程有点复杂，如果要实现延迟加载(后面会讲)就只能用resultMap实现 ，如果为了方便对关联信息进行解析，也可以用association将关联信息映射到pojo中方便解析。</li>
 </ul>
 <h2 id="2-多表间的一对多查询"><a href="#2-多表间的一对多查询" class="headerlink" title="2.多表间的一对多查询"></a>2.多表间的一对多查询</h2><h3 id="2-1需求"><a href="#2-1需求" class="headerlink" title="2.1需求"></a>2.1需求</h3><p>查询所有订单信息及订单下的订单明细信息。分析:一个订单可以可以有多个订单明细，而一个订单明细只属于一个订单，所以订单与订单明细间的关系为一对多。</p>
-<h3 id="2-2创建表和数据"><a href="#2-2创建表和数据" class="headerlink" title="2.2创建表和数据"></a>2.2创建表和数据</h3><pre><code>create table orderdetail( id int primary key auto_increment, orders_id int, items_id int, items_num int);//创建订单明细表
-
-订单表我们已经创建
-</code></pre><p>创建和订单明细表对应的pojo对象:  </p>
-<pre><code>public class Orderdetail
-{
-    private Integer id;
-
-    private Integer ordersId;
-
-    private Integer itemsId;
-
-    private Integer itemsNum;
-
-}
-</code></pre><p>并创建相关的set和get方法。</p>
+<h3 id="2-2创建表和数据"><a href="#2-2创建表和数据" class="headerlink" title="2.2创建表和数据"></a>2.2创建表和数据</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">create table <span class="title">orderdetail</span><span class="params">( id <span class="keyword">int</span> primary key auto_increment, orders_id <span class="keyword">int</span>, items_id <span class="keyword">int</span>, items_num <span class="keyword">int</span>)</span></span>;<span class="comment">//创建订单明细表</span></span><br><span class="line"></span><br><span class="line">订单表我们已经创建</span><br></pre></td></tr></table></figure>
+<p>创建和订单明细表对应的pojo对象:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Orderdetail</span></span><br><span class="line"></span>&#123;</span><br><span class="line">   	<span class="keyword">private</span> Integer id;</span><br><span class="line"></span><br><span class="line">   	<span class="keyword">private</span> Integer ordersId;</span><br><span class="line"></span><br><span class="line">   	<span class="keyword">private</span> Integer itemsId;</span><br><span class="line"></span><br><span class="line">   	<span class="keyword">private</span> Integer itemsNum;</span><br><span class="line">   	</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>并创建相关的set和get方法。</p>
 <h3 id="2-3sql查询语句"><a href="#2-3sql查询语句" class="headerlink" title="2.3sql查询语句"></a>2.3sql查询语句</h3><p>1.先确定主查询表:订单表。2.再确定关联查询表:用户表加订单明细表。通过orderdetail关联查询订单使用orders_id一个外键，只能关联查询出一条订单记录，我们使用内连接。查询语句为:  </p>
-<pre><code>SELECT orders.*,user.username,user.sex ,orderdetail.id orderdetail_id,orderdetail.items_num,orderdetail.items_id
+<pre><code class="java">SELECT orders.*,user.username,user.sex ,orderdetail.id orderdetail_id,orderdetail.items_num,orderdetail.items_id
 
 FROM orders,user,orderdetail 
 WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
-</code></pre><h3 id="2-4使用resultMap进行一对多映射"><a href="#2-4使用resultMap进行一对多映射" class="headerlink" title="2.4使用resultMap进行一对多映射"></a>2.4使用resultMap进行一对多映射</h3><p>思路:resultMap 提供collection完成关联信息映射到集合对象中。在orders类中创建集合属性：<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.14.55.png" alt="">  </p>
+</code></pre>
+<h3 id="2-4使用resultMap进行一对多映射"><a href="#2-4使用resultMap进行一对多映射" class="headerlink" title="2.4使用resultMap进行一对多映射"></a>2.4使用resultMap进行一对多映射</h3><p>思路:resultMap 提供collection完成关联信息映射到集合对象中。在orders类中创建集合属性：<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.14.55.png" alt="">  </p>
 <p>然后修改OrdersMapperCustom.xml中的信息:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.32.43.png" alt=""><br>并在其中添加resultMap的定义:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.32.50.png" alt="">  </p>
 <p>然后在OrdersMapperCutom.java中添加方法:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.33.21.png" alt="">  </p>
 <p>最后进行测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-09%20%E4%B8%8B%E5%8D%885.33.31.png" alt="">  </p>

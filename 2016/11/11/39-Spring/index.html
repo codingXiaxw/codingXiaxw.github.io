@@ -125,7 +125,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.06.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.10.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.15.png">
-<meta property="og:updated_time" content="2016-11-12T10:07:55.000Z">
+<meta property="og:updated_time" content="2016-11-13T05:23:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring————程序员的春天">
 <meta name="twitter:description" content="当客户端向服务器发出请求时，服务器把得到的请求发送给控制器Servlet，而在Servlet中需要创建Service对象来调用业务层相关功能(故说控制器层Servlet依赖于业务层Service),而在Service中又需要创建数据库层DAO对象来对数据库进行操作(故说业务层Service依赖于数据库层DAO)。">
@@ -403,19 +403,8 @@
 </ul>
 <p><strong>2)配置核心文件applicationContext.xml(文件名称随意):</strong></p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%885.32.28.png" alt="">  </p>
-<p>代码如下:  </p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-xmlns:p=&quot;http://www.springframework.org/schema/p&quot;
-xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-xsi:schemaLocation=&quot;
-    http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
-&lt;/beans&gt;     
-</code></pre><p><strong>3)使用:</strong>  </p>
+<p>代码如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">    <span class="attr">xmlns:p</span>=<span class="string">"http://www.springframework.org/schema/p"</span></span><br><span class="line">    <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span><br><span class="line">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span><br><span class="line">        http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">        http://www.springframework.org/schema/context</span><br><span class="line">        http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>3)使用:</strong>  </p>
 <p>首先我们创建一个pojo对象User.java:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%885.48.12.png" alt="">  </p>
 <p>然后创建测试类使用这个User对象，以前我们要使用User对象时直接像这样<code>User user=new User();</code>new一个对象即可:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%885.50.26.png" alt="">  </p>
@@ -471,10 +460,8 @@ xsi:schemaLocation=&quot;
 <li>p:userDao:代表直接给UserService对象的userDao属性赋值</li>
 <li>p:userDao-ref:代表引用的userDao对象</li>
 </ul>
-<p>例如使用p名称空间给传统的对象属性赋值时我们这样写:  </p>
-<pre><code>&lt;bean id=&quot;user&quot; class=&quot;pojo.User&quot; p:id=&quot;xxx&quot;/&gt;
-&lt;bean id=&quot;user&quot; class=&quot;pojo.User&quot; p:name=&quot;xxx&quot;/&gt;
-</code></pre><h4 id="5-2-4-自动装配"><a href="#5-2-4-自动装配" class="headerlink" title="5.2.4.自动装配"></a>5.2.4.自动装配</h4><p>当我们在配置文件中用<code>&lt;bean&gt;</code>标签指明相应对象的同时就将这个对象放入到了IOC容器中(其中标签中的id属性唯一指示一个对象)，当我们给该bean标签添加了<code>autowrite=&quot;byName&quot;</code>的属性后，对于该标签对应的对象注入的属性，会去IOC容器中自动查找与属性同名的对象。  </p>
+<p>例如使用p名称空间给传统的对象属性赋值时我们这样写:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"user"</span> <span class="attr">class</span>=<span class="string">"pojo.User"</span> <span class="attr">p:id</span>=<span class="string">"xxx"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"user"</span> <span class="attr">class</span>=<span class="string">"pojo.User"</span> <span class="attr">p:name</span>=<span class="string">"xxx"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="5-2-4-自动装配"><a href="#5-2-4-自动装配" class="headerlink" title="5.2.4.自动装配"></a>5.2.4.自动装配</h4><p>当我们在配置文件中用<code>&lt;bean&gt;</code>标签指明相应对象的同时就将这个对象放入到了IOC容器中(其中标签中的id属性唯一指示一个对象)，当我们给该bean标签添加了<code>autowrite=&quot;byName&quot;</code>的属性后，对于该标签对应的对象注入的属性，会去IOC容器中自动查找与属性同名的对象。  </p>
 <p>例如如下代码:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%8812.12.14.png" alt="">  </p>
 <p>通过上述三个<code>&lt;bean&gt;</code>标签我们就将userDao、userService、userServlet三个对象添加到了IOC容器中。我们在UserService对象的bean标签中加上了<code>autowrite=&quot;byName&quot;</code>的属性，这样我们查看UserService.java的代码，它有一个UserDao对象名为userDao的属性，此时就会自动去IOC容器中寻找与<code>userDao</code>同名的对象(即在bean标签中寻找id为userDao的对象)，然后进行注入，此时我们若将<code>&lt;bean id=&quot;userDao&quot; class=&quot;pojo.UserDao&quot;&gt;</code>的<code>id=&quot;userDao&quot;</code>属性值改为userDao1或者其它名字，则运行系统会出现空指针异常，道理上述已分析。UserServlet注入userService的属性道理同此。  </p>
 <p>我们也可以将该属性定义到全局<code>&lt;beans&gt;</code>标签中，设置<code>default-autowrite=&quot;byName&quot;</code>的属性,这样就不用每个bean标签中都写上<code>autowrite=&quot;byName&quot;</code>属性了。  </p>
