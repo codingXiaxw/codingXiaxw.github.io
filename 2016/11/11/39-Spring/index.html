@@ -132,7 +132,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.06.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.10.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%881.21.15.png">
-<meta property="og:updated_time" content="2016-11-14T09:17:20.000Z">
+<meta property="og:updated_time" content="2016-11-14T11:30:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring————程序员的春天">
 <meta name="twitter:description" content="当客户端向服务器发出请求时，服务器把得到的请求发送给控制器Servlet，而在Servlet中需要创建Service对象来调用业务层相关功能(故说控制器层Servlet依赖于业务层Service),而在Service中又需要创建数据库层DAO对象来对数据库进行操作(故说业务层Service依赖于数据库层DAO)。">
@@ -398,11 +398,15 @@
 <blockquote>
 <p>既可以与hibernate整合(使用原始的session)<br>也可以使用Spring对Hibernate操作的封装(对上面的session又进行了一层封装)  </p>
 </blockquote>
-<p>5）Spring AOP:  </p>
+<p>5）Spring AOP:关于AOP的详细讲解我推荐你们看这篇博客:<a href="http://www.ibm.com/developerworks/cn/java/j-lo-springaopcglib/" target="_blank" rel="external">Spring AOP实现原理与应用</a> ，往后我会单独写篇博客为你们详细介绍AOP。 </p>
 <p>6）SpringEE:Spring对javaEE其它模块的支持</p>
 <h2 id="3-Spring开发步骤"><a href="#3-Spring开发步骤" class="headerlink" title="3.Spring开发步骤"></a>3.Spring开发步骤</h2><p><strong>1)导入jar包:</strong>  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-13%20%E4%B8%8B%E5%8D%882.01.02.png" alt="">  </p>
-<p>之前按照网上的教程用的是spring3.x的jar包，最后出现<code>org.springframework.beans.factory.BeanDefinitionStoreException</code>的报错信息，换成spring4.x版本的jar包后才解决。出现这种报错的信息原因是因为jdk版本和你导入的spring jar包不兼容的问题，可以通过更换spring.jar包的版本解决也可以通过更换jdk版本来解决。</p>
+<p><strong>写在前面的话:</strong>当你运行程序出现<code>org.springframework.beans.factory.BeanDefinitionStoreException</code>的报错信息时，不要想了，出现这种报错的信息原因绝对是因为jdk版本和你导入的spring jar包不兼容的问题。由于spring3.x与jdk1.7兼容，而spring4.x与jdk1.8兼容，所以这里提供两种解决方案:  </p>
+<ul>
+<li>1.将jdk版本调为1.7，我用的开发工具为IDEA，它默认下的JDK使用1.8版本，所以我需要在三个地方将jdk的版本改过来(前提是你已经下载了jdk1.7版本)，修改IDEA配置中Project的jdk版本、Modules的jdk版本、SDKs的版本，如果你用到leTomcat还需要修改Tomcat配置的jdk版本。这样jdk1.7与spring3.x才兼容。</li>
+<li>2.将spring3.x.jar换成spring4.x.jar包。这种方式比较繁琐，建议大家使用第一种方式。spring4.x与jdk1.8才兼容。</li>
+</ul>
 <p><strong>2)配置核心文件applicationContext.xml(文件名称随意):</strong></p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%885.32.28.png" alt="">  </p>
 <p>代码如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">    <span class="attr">xmlns:p</span>=<span class="string">"http://www.springframework.org/schema/p"</span></span><br><span class="line">    <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span><br><span class="line">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span><br><span class="line">        http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">        http://www.springframework.org/schema/context</span><br><span class="line">        http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -638,7 +642,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

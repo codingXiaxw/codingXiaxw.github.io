@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%887.44.57.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%888.08.48.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%887.44.57.png">
-<meta property="og:updated_time" content="2016-11-14T07:27:36.000Z">
+<meta property="og:updated_time" content="2016-11-14T11:27:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis3.x和Spring3.x的整合">
 <meta name="twitter:description" content="1.mybatis和spring整合的思路1.让spring管理SqlSessionFactory2.让spring管理mapper对象和dao  
@@ -377,8 +377,15 @@
 <h3 id="4-2使用MapperScannerConfigurer-扫描mapper"><a href="#4-2使用MapperScannerConfigurer-扫描mapper" class="headerlink" title="4.2使用MapperScannerConfigurer(扫描mapper)"></a>4.2使用MapperScannerConfigurer(扫描mapper)</h3><p>该类同样是整合jar包中的一个类。在spring配置文件中加入如下配置:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%888.08.48.png" alt="">  </p>
 <p>然后进行测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%887.44.57.png" alt="">同样正常运行。  </p>
 <p>使用这种方式的优点:使用扫描器自动扫描mapper，生成代理对象比较方便。</p>
-<p>使用MapperFactoryBean的方式不会报错，但是使用这样扫描包的方式，上述代码我完全是照搬的教程代码，可是运行时会出现<code>org.springframework.beans.factory.BeanDefinitionStoreException</code>的报错，目前已知的原因是因为我用的spring 3.x的jar包，与IDEA的jdk1.8不兼容，已知解决方法:1.将jdk版本调为1.7，这个比较麻烦，需要我们调整jdk版本后再重新创建一个项目然后照搬这些代码。2.将spring3.x.jar换成spring4.x.jar包。上述两种方法我都试过仍然无法解决，求帮忙。</p>
-<h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<h2 id="5-出现异常总结"><a href="#5-出现异常总结" class="headerlink" title="5.出现异常总结"></a>5.出现异常总结</h2><p>使用MapperFactoryBean的方式不会报错，但是使用这样扫描包的方式，上述代码我完全是照搬的教程代码，可是运行时会出现<code>org.springframework.beans.factory.BeanDefinitionStoreException</code>的报错。  </p>
+<p>出现这个异常的原因你不用多想，绝对的你的spring 版本与开发工具的jdk版本不兼容！之前在单独开发spring框架中使用到<code>&lt;content:component-scan base-package=&quot;包名&quot;</code>注解扫描声明整个pojo包下的类时也出现了这个错误，那时候我将spring3.x.jar包换成spring4.x.jar包后成功解决，因为我的开发工具IDEA默认jdk版本是1.8，所以我要升级jar包版本才能实现兼容。  </p>
+<p>整合spring和mybatis时又出现了这个错误！所以这里我决定像之前那样将spring3.x换成sring4.x，可是我已经导入的jar包太多太多实在分不清了，经过很多的轮回换jar包后又出现了更多的异常。我为这个异常真是头疼了几天几夜，经过几天的不断研究找资料才发现原因是因为我用的spring 3.x的jar包，与IDEA的jdk1.8不兼容，解决方法有两种:  </p>
+<ul>
+<li>1.将jdk版本调为1.7，我用的开发工具为IDEA，它默认下的JDK使用1.8版本，所以我需要在三个地方将jdk的版本改过来(前提是你已经下载了jdk1.7版本)，修改IDEA配置中Project的jdk版本、Modules的jdk版本、SDKs的版本，如果你用到leTomcat还需要修改Tomcat配置的jdk版本。这样jdk1.7与spring3.x才兼容。</li>
+<li>2.将spring3.x.jar换成spring4.x.jar包。这种方式比较繁琐，建议大家使用第一种方式。spring4.x与jdk1.8才兼容。</li>
+</ul>
+<p>写到这里，我们便成功的完成了spring3.x与mybatis3.x的整合。</p>
+<h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
@@ -517,7 +524,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -592,7 +599,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-mybatis和spring整合的思路"><span class="nav-number">1.</span> <span class="nav-text">1.mybatis和spring整合的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-准备工作"><span class="nav-number">2.</span> <span class="nav-text">2.准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1创建整合工程"><span class="nav-number">2.1.</span> <span class="nav-text">2.1创建整合工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-导入jar包"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.导入jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-SqlMapConfig-xml"><span class="nav-number">2.3.</span> <span class="nav-text">2.3.SqlMapConfig.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-applicationContext-xml"><span class="nav-number">2.4.</span> <span class="nav-text">2.4.applicationContext.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-整合开发原始dao接口"><span class="nav-number">3.</span> <span class="nav-text">3.整合开发原始dao接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1配置SqlSessionFactory"><span class="nav-number">3.1.</span> <span class="nav-text">3.1配置SqlSessionFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2开发原始dao"><span class="nav-number">3.2.</span> <span class="nav-text">3.2开发原始dao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-整合开发mapper代理方法"><span class="nav-number">4.</span> <span class="nav-text">4.整合开发mapper代理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1使用MapperFactoryBean"><span class="nav-number">4.1.</span> <span class="nav-text">4.1使用MapperFactoryBean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2使用MapperScannerConfigurer-扫描mapper"><span class="nav-number">4.2.</span> <span class="nav-text">4.2使用MapperScannerConfigurer(扫描mapper)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-联系"><span class="nav-number">5.</span> <span class="nav-text">5.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-mybatis和spring整合的思路"><span class="nav-number">1.</span> <span class="nav-text">1.mybatis和spring整合的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-准备工作"><span class="nav-number">2.</span> <span class="nav-text">2.准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1创建整合工程"><span class="nav-number">2.1.</span> <span class="nav-text">2.1创建整合工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-导入jar包"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.导入jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-SqlMapConfig-xml"><span class="nav-number">2.3.</span> <span class="nav-text">2.3.SqlMapConfig.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-applicationContext-xml"><span class="nav-number">2.4.</span> <span class="nav-text">2.4.applicationContext.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-整合开发原始dao接口"><span class="nav-number">3.</span> <span class="nav-text">3.整合开发原始dao接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1配置SqlSessionFactory"><span class="nav-number">3.1.</span> <span class="nav-text">3.1配置SqlSessionFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2开发原始dao"><span class="nav-number">3.2.</span> <span class="nav-text">3.2开发原始dao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-整合开发mapper代理方法"><span class="nav-number">4.</span> <span class="nav-text">4.整合开发mapper代理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1使用MapperFactoryBean"><span class="nav-number">4.1.</span> <span class="nav-text">4.1使用MapperFactoryBean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2使用MapperScannerConfigurer-扫描mapper"><span class="nav-number">4.2.</span> <span class="nav-text">4.2使用MapperScannerConfigurer(扫描mapper)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-出现异常总结"><span class="nav-number">5.</span> <span class="nav-text">5.出现异常总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-联系"><span class="nav-number">6.</span> <span class="nav-text">6.联系</span></a></li></ol></div>
             
           </div>
         </section>
