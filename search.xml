@@ -91,7 +91,7 @@
 <h3 id="4-2使用MapperScannerConfigurer-扫描mapper"><a href="#4-2使用MapperScannerConfigurer-扫描mapper" class="headerlink" title="4.2使用MapperScannerConfigurer(扫描mapper)"></a>4.2使用MapperScannerConfigurer(扫描mapper)</h3><p>该类同样是整合jar包中的一个类。在spring配置文件中加入如下配置:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%888.08.48.png" alt="">  </p>
 <p>然后进行测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%887.44.57.png" alt="">同样正常运行。  </p>
 <p>使用这种方式的优点:使用扫描器自动扫描mapper，生成代理对象比较方便。</p>
-<p>使用这样方式，上述代码我完全是照搬的教程代码，可以我运行时会出现<code>org.springframework.beans.factory.BeanDefinitionStoreException</code>的报错，前面的方式都可以正常运行，不知道这种方式为什么不能正常运行。  </p>
+<p>使用MapperFactoryBean的方式不会报错，但是使用这样扫描包的方式，上述代码我完全是照搬的教程代码，可是运行时会出现<code>org.springframework.beans.factory.BeanDefinitionStoreException</code>的报错，目前已知的原因是因为我用的spring 3.x的jar包，与IDEA的jdk1.8不兼容，已知解决方法:1.将jdk版本调为1.7，这个比较麻烦，需要我们调整jdk版本后再重新创建一个项目然后照搬这些代码。2.将spring3.x.jar换成spring4.x.jar包。上述两种方法我都试过仍然无法解决，求帮忙。</p>
 <h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
@@ -113,10 +113,10 @@
 <li>侵入式设计:对现有类的结构有影响，即需要实现或继承某些特定类。 如Struts框架。 </li>
 <li>非侵入式设计:引入了框架，对现有的类结构没有影响。如Spring框架／Hibernate框架。</li>
 </ul>
-<h2 id="1-2控制反转"><a href="#1-2控制反转" class="headerlink" title="1.2控制反转"></a>1.2控制反转</h2><p>Inversion On Control，简称IOC。对象的创建交给外部容器自动完成，这个就叫做控制反转。(有控制反转就有控制正转，控制正转:对象的创建由我们自己创建)  </p>
+<h3 id="1-2控制反转"><a href="#1-2控制反转" class="headerlink" title="1.2控制反转"></a>1.2控制反转</h3><p>Inversion On Control，简称IOC。对象的创建交给外部容器自动完成，这个就叫做控制反转。(有控制反转就有控制正转，控制正转:对象的创建由我们自己创建)  </p>
 <p>依赖注入dependency injection,简称DI，用于处理对象间的依赖关系。  </p>
 <p><strong>二者区别:</strong>控制反转(IOC):解决对象创建的问题，(对象的创建交给别人)。依赖注入(DI):在创建完对象后，对象关系的处理就是依赖注入，(通过set方法依赖注入。)</p>
-<h2 id="1-3AOP"><a href="#1-3AOP" class="headerlink" title="1.3AOP"></a>1.3AOP</h2><p>面向切面编程。切面，简单来说可以理解为一个类，由很多重复代码形成的类。切面举例:事务、日志、权限。  </p>
+<h3 id="1-3AOP"><a href="#1-3AOP" class="headerlink" title="1.3AOP"></a>1.3AOP</h3><p>面向切面编程。切面，简单来说可以理解为一个类，由很多重复代码形成的类。切面举例:事务、日志、权限。 关于AOP的详细讲解我推荐你们看这篇博客:<a href="http://www.ibm.com/developerworks/cn/java/j-lo-springaopcglib/" target="_blank" rel="external">Spring AOP实现原理与应用</a> ，往后我会单独写篇博客为你们详细介绍AOP。 </p>
 <h2 id="2-Spring框架概述"><a href="#2-Spring框架概述" class="headerlink" title="2.Spring框架概述"></a>2.Spring框架概述</h2><p>Spring框架，可以解决对象创建以及对象之间依赖关系的一种框架。且可以和其它框架一起使用，例如spring与struts、spring和hibernate。(起到整合／粘合作用的一个框架)。  </p>
 <p>spring提供了一站式解决方案:<br>1）SpringCore:是Spring的核心功能：IOC容器，解决对象创建及依赖关系。<br>2）SpringWeb:Spring对web模块的支持。</p>
 <blockquote>
@@ -131,7 +131,7 @@
 <p>6）SpringEE:Spring对javaEE其它模块的支持</p>
 <h2 id="3-Spring开发步骤"><a href="#3-Spring开发步骤" class="headerlink" title="3.Spring开发步骤"></a>3.Spring开发步骤</h2><p><strong>1)导入jar包:</strong>  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-13%20%E4%B8%8B%E5%8D%882.01.02.png" alt="">  </p>
-<p>之前按照网上的教程只导入了一个logging包和四个spring包，最后出现<code>org.springframework.beans.factory.BeanDefinitionStoreException</code>的报错信息，说明jar包导入不完整。建议大家使用spring4.x的jar包。</p>
+<p>之前按照网上的教程用的是spring3.x的jar包，最后出现<code>org.springframework.beans.factory.BeanDefinitionStoreException</code>的报错信息，换成spring4.x版本的jar包后才解决。出现这种报错的信息原因是因为jdk版本和你导入的spring jar包不兼容的问题，可以通过更换spring.jar包的版本解决也可以通过更换jdk版本来解决。</p>
 <p><strong>2)配置核心文件applicationContext.xml(文件名称随意):</strong></p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%885.32.28.png" alt="">  </p>
 <p>代码如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">    <span class="attr">xmlns:p</span>=<span class="string">"http://www.springframework.org/schema/p"</span></span><br><span class="line">    <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span><br><span class="line">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span><br><span class="line">        http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">        http://www.springframework.org/schema/context</span><br><span class="line">        http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -159,15 +159,22 @@
 <p>从控制台中输出内容我们可以得知:当程序运行时，IOC容器首先创建，然后当我们需要得到IOC容器中的pojo对象时我们通过语句<code>ac.getBean(&quot;user&quot;);</code>得到，此时就会在IOC中创建由它管理的pojo对象。当我们删除<code>ac.getBean(&quot;user&quot;);</code>语句时，再次运行程序，得到如下内容:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%886.36.49.png" alt="">  </p>
 <p>这说明什么呢?说明IOC容器中没有创建pojo对象(因为一旦创建就会有”—User对象创建—“的语句输出)。综上情况，即只有当我们用到pojo对象时，IOC容器才会在自己内部创建它。此种情况为<code>&lt;bean&gt;</code>标签的属性为<code>scope=&quot;prototype&quot;</code>的结果，那么我们再来看看当属性为<code>scope=&quot;singleton&quot;</code>时的输出结果为:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%886.40.53.png" alt="">  </p>
 <p>打印台的内容说明该User对象在程序启动时就创建在IOC容器中了，不信我们把通过IOC容器得到User对象的代码注释掉再看输出结果:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-10%20%E4%B8%8B%E5%8D%886.42.48.png" alt="">  </p>
-<p>发现此时即使我们不通过<code>ac.getBean(&quot;user&quot;);</code>语句得到User对象，它也再程序启动时就创建了。</p>
+<p>发现此时即使我们不通过<code>ac.getBean(&quot;user&quot;);</code>语句得到User对象，它也在程序启动时就创建了。</p>
 <p>总结:在<code>&lt;bean&gt;</code>标签中设置bean对象为单例时，该对象在系统启动时就会创建；设置为多例时，该对象在我们需要使用时才创建。</p>
 <h3 id="4-1-lt-bean-gt-标签中的其它属性说明"><a href="#4-1-lt-bean-gt-标签中的其它属性说明" class="headerlink" title="4.1&lt;bean&gt;标签中的其它属性说明"></a>4.1<code>&lt;bean&gt;</code>标签中的其它属性说明</h3><ul>
-<li>1.<code>lazy-init:</code>延迟初始化bean对象，默认值为false，即不延迟创建bean对象，在程序启动时就zaiIOC中创建bean对象；若其值为true则延迟创建bean对象，即在我们需要对象时才在IOC容器中创建该对象。它的值只对单例bean对象有效。</li>
+<li>1.<code>lazy-init:</code>延迟初始化bean对象，默认值为false，即不延迟创建bean对象，在程序启动时就在IOC中创建bean对象；若其值为true则延迟创建bean对象，即在我们需要对象时才在IOC容器中创建该对象。此属性只对单例bean对象有效。</li>
 <li>2.<code>init-method:</code>可以给该属性传递一个在pojo对象中创建的方法例如A方法的方法名A作为init-method的属性值，表示当该pojo对象在IOC容器中被创建后就立刻执行这个A方法。</li>
-<li>3.<code>destoy-method:</code>同上，给该属性传递一个在pojo对象中创建的方法例如B方法的方法名B作为destoy-method的属性值，表示当IOC容器被销毁时(该pojo对象也会在IOC中销毁)会立刻调用这个B方法。当然我们通过<code>ApplicationContext ac=new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</code>创建的IOC对象ac是没有destoy()方法的，我们需要这个创建IOC对象<code>ClassPathXmlApplicationContext ac=new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</code>这样创建出来的IOC对象才有destoy()方法。</li>
+<li>3.<code>destoy-method:</code>同上，给该属性传递一个在pojo对象中创建的方法例如B方法的方法名B作为destoy-method的属性值，表示当IOC容器被销毁时(该pojo对象也会在IOC中销毁)会立刻调用这个B方法。当然我们通过<code>ApplicationContext ac=new  ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</code>创建的IOC对象ac是没有destoy()方法的，我们需要这个创建IOC对象<code>ClassPathXmlApplicationContext ac=new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</code>这样创建出来的IOC对象才有destoy()方法。</li>
 </ul>
 <h2 id="5-Spring-IOC容器"><a href="#5-Spring-IOC容器" class="headerlink" title="5.Spring IOC容器"></a>5.Spring IOC容器</h2><p>Spring IOC容器，是Spring的核心内容，用于创建对象和处理对象间的依赖关系。</p>
-<h3 id="5-1对象的创建"><a href="#5-1对象的创建" class="headerlink" title="5.1对象的创建"></a>5.1对象的创建</h3><p>以往我们创建对象的方式有如下几种:</p>
+<h3 id="5-1对象的创建"><a href="#5-1对象的创建" class="headerlink" title="5.1对象的创建"></a>5.1对象的创建</h3><p>利用IOC容器创建对象的方式有如下几种:1.调用无参数构造器。2.调用带参数构造器。3.工厂创建对象。包括工厂类的静态方法创建对象和工厂类的非静态方法创建对象4.反射。(IOC的原理就是通过反射来创建对象)</p>
+<h4 id="5-1-1调用无参数构造器"><a href="#5-1-1调用无参数构造器" class="headerlink" title="5.1.1调用无参数构造器"></a>5.1.1调用无参数构造器</h4><p>在配置文件中加入如下内容:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%881.31.43.png" alt=""></p>
+<h4 id="5-1-2调用带参数构造器"><a href="#5-1-2调用带参数构造器" class="headerlink" title="5.1.2调用带参数构造器"></a>5.1.2调用带参数构造器</h4><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%881.31.50.png" alt="">  </p>
+<p><code>&lt;constructor-arg&gt;</code>标签中还有一个ref的属性，属性值代表引用配置文件(即IOC容器)中的相应对象。  </p>
+<p>故还可以采用这种方法调用带参数构造器创建对象:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%881.31.58.png" alt="">  </p>
+<h4 id="5-1-3工厂创建对象"><a href="#5-1-3工厂创建对象" class="headerlink" title="5.1.3工厂创建对象"></a>5.1.3工厂创建对象</h4><p>首先创建一个工厂类: <img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%881.34.32.png" alt="">  </p>
+<p>调用工厂的实例方法创建对象:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%881.32.02.png" alt="">  </p>
+<p>调用工厂静态方法创建对象:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%881.32.05.png" alt="">  </p>
 <h3 id="5-2处理对象的依赖关系"><a href="#5-2处理对象的依赖关系" class="headerlink" title="5.2处理对象的依赖关系"></a>5.2处理对象的依赖关系</h3><p>在IOC容器的配置文件中我们有如下给对象注入属性的方法:1.通过构造方法。2.通过set方法给属性注入值。3.p名称空间。4.自动装配。5.注解。  </p>
 <h4 id="5-2-1通过构造方法"><a href="#5-2-1通过构造方法" class="headerlink" title="5.2.1通过构造方法"></a>5.2.1通过构造方法</h4><p>首先我们来看看如何通过构造方法来给对象的属性赋值,在配置文件中添加如下标签即可通过构造器给该User对象的属性赋值:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%884.21.03.png" alt="">  </p>
 <h4 id="5-2-2通过set方法"><a href="#5-2-2通过set方法" class="headerlink" title="5.2.2通过set方法"></a>5.2.2通过set方法</h4><p>通过set方法给属性赋值,前提是在User对象中给它的属性添加了set方法:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-11%20%E4%B8%8B%E5%8D%884.26.29.png" alt="">  </p>
@@ -424,17 +431,15 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
       <url>http://codingxiaxw.cn/2016/11/09/36-mybatis%E5%8A%A8%E6%80%81sql/</url>
       <content type="html"><![CDATA[<p>我们需要知道的是，使用mybatis重点是对sql的灵活解析和处理。在原先的UserMappser.xml中，我们这样查询表中满足条件的记录 :</p>
 <a id="more"></a> 
-<pre><code>&lt;select id=&quot;findUserList&quot; parameterType=&quot;userQueryVo&quot; resultType=&quot;user&quot;&gt;
-        select id,username,birthday from user where username like &apos;${value}&apos;
-&lt;/select&gt;
-</code></pre><p>上述语句在表中查询满足<code>username</code>条件的记录，这样写查询语句有一个弊端，就是该语句只能通过username查询数据库。当我们在多条件中查询时，如果不需要username条件而是需要其它多个查询条件时，那UserMapper.xml文件中的这个查询条件就没用了。  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findUserList"</span> <span class="attr">parameterType</span>=<span class="string">"userQueryVo"</span> <span class="attr">resultType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">  	 	select id,username,birthday from user where username like '$&#123;value&#125;'</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上述语句在表中查询满足<code>username</code>条件的记录，这样写查询语句有一个弊端，就是该语句只能通过username查询数据库。当我们在多条件中查询时，如果不需要username条件而是需要其它多个查询条件时，那UserMapper.xml文件中的这个查询条件就没用了。  </p>
 <p>需求:将自定义查询条件查询用户列表和查询用户列表总记录数改为动态sql。需要使用if标签和where标签。  </p>
 <h2 id="1-if和where"><a href="#1-if和where" class="headerlink" title="1.if和where"></a>1.if和where</h2><p>使用if标签和where标签在UserMapper.xml中添加如下内容:<br>修改自定义查询条件查询用户列表代码:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%888.14.15.png" alt=""></p>
 <p>修改自定义查询条件查询用户列表总记录数代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%888.19.54.png" alt="">  </p>
 <p>发现<code>&lt;where&gt;</code>和<code>&lt;if&gt;</code>在上述两个查询语句中重复的代码出现了两次，那这里我们是否可以把相同的sql片段拿出来单独写在一个sql片段中然后再在不同的查询语句中应用呢？答案是肯定的,看下面的sql片段。  </p>
 <h2 id="2-sql片段"><a href="#2-sql片段" class="headerlink" title="2.sql片段"></a>2.sql片段</h2><p>通过sql片段可以将通用的sql语句抽取出来，单独定义，在其它的statement中可以引用sql片段。其中通用的sql语句，一般用在:where条件、查询列。  </p>
-<h2 id="2-1定义sql片段"><a href="#2-1定义sql片段" class="headerlink" title="2.1定义sql片段"></a>2.1定义sql片段</h2><p>在UserMapper.xml中添加如下字段:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.25.19.png" alt="">这样就完成了sql片段的定义，然后才能使用sql片段。</p>
+<h2 id="2-1定义sql片段"><a href="#2-1定义sql片段" class="headerlink" title="2.1定义sql片段"></a>2.1定义sql片段</h2><p>在UserMapper.xml中添加<code>&lt;sql&gt;</code>标签代表sql片段:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.25.19.png" alt="">这样就完成了sql片段的定义，然后才能使用sql片段。</p>
 <h2 id="2-2使用sql片段"><a href="#2-2使用sql片段" class="headerlink" title="2.2使用sql片段"></a>2.2使用sql片段</h2><p>使用<code>&lt;include&gt;</code>标签对上面定义的sql片段加以引用:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.27.20.png" alt=""><br>和<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.27.28.png" alt="">  </p>
 <p>测试类代码不变，这样我们便完成了对sql片段的引用。  </p>
 <p>有时候我们希望查询语句是这样<code>select id,username,birthday from user where username like &#39;%codingXiaxw%&#39; and id in (1,2)</code>，那我们又应该在sql片段中如何添加代码呢？这时候需要用到<code>&lt;foreach&gt;</code>标签。</p>
@@ -468,7 +473,7 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
 <p>可能出现的异常:如果在parameterType中指定了错误的属性名时会出现如下异常:  </p>
 <pre><code>org.apache.ibatis.exceptions.PersistenceException: ### Error querying database.  Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named &apos;userCusto&apos; in &apos;class cn.itcast.mybatis.po.UserQueryVo&apos;### Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named &apos;userCusto&apos; in &apos;class cn.itcast.mybatis.po.UserQueryVo&apos;
 </code></pre><h2 id="2-输出映射"><a href="#2-输出映射" class="headerlink" title="2.输出映射"></a>2.输出映射</h2><p>输出映射有resultType和resultMap,他们都是指定输出结果的类型(pojo、简单类型、hashmap…)，并将sql查询结果映射为java对象 。</p>
-<h3 id="2-1resultType"><a href="#2-1resultType" class="headerlink" title="2.1resultType"></a>2.1resultType</h3><p>借用上述parameter传递包装pojo对象的知识(不用parameter传递包装pojo对象的知识也行)，我们来谈谈用resultType输入简单类型。UserMapper.xml文件中添加如下配置:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.51.42.png" alt="">  </p>
+<h3 id="2-1resultType"><a href="#2-1resultType" class="headerlink" title="2.1resultType"></a>2.1resultType</h3><p>借用上述parameter传递包装pojo对象的知识(不用parameter传递包装pojo对象的知识也行)，我们来谈谈用resultType输出简单类型。UserMapper.xml文件中添加如下配置:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.51.42.png" alt="">  </p>
 <p>然后在UserMapper.java中添加如下方法:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.52.30.png" alt="">  </p>
 <p>测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.53.12.png" alt="">  </p>
 <p>这里因为查询的记录结果集为一条记录且该记录只有1列，所以我们使用的是返回简单类型。</p>
@@ -497,26 +502,8 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
     <entry>
       <title><![CDATA[MyBatis之优化MyBatis配置文件中的配置]]></title>
       <url>http://codingxiaxw.cn/2016/11/08/34-mybatis%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
-      <content type="html"><![CDATA[<p>MyBatis配置文件很重要，首先我们来看看MyBatis配置文件中的内容和顺序:<br><a id="more"></a>  </p>
-<pre><code>&lt;properties&gt;(属性)
-
-&lt;setting&gt;(全局配置参数)
-
-&lt;typeAliases&gt;(类型别名)
-
-&lt;typeHandlers&gt;(类型处理器)
-
-&lt;objectFactory&gt;(对象工厂)
-
-&lt;plugins&gt;(插件)
-
-&lt;environments&gt;(环境集合属性对象)
-    &lt;environment&gt;(环境子属性对象)
-        &lt;transactionManager&gt;(事务管理)
-        dataSource&gt;(数据源)
-
-&lt;mappers&gt;(映射器)
-</code></pre><p>文件目录结构如下:<img src="http://od2xrf8gr.bkt.clouddn.com/mulu22.png" alt=""></p>
+      <content type="html"><![CDATA[<p>MyBatis配置文件很重要，首先我们来看看MyBatis配置文件中的内容和顺序:<br><a id="more"></a><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span>(属性)</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">setting</span>&gt;</span>(全局配置参数)</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span>(类型别名)</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">typeHandlers</span>&gt;</span>(类型处理器)</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">objectFactory</span>&gt;</span>(对象工厂)</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">plugins</span>&gt;</span>(插件)</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">environments</span>&gt;</span>(环境集合属性对象)</span><br><span class="line">	<span class="tag">&lt;<span class="name">environment</span>&gt;</span>(环境子属性对象)</span><br><span class="line">		<span class="tag">&lt;<span class="name">transactionManager</span>&gt;</span>(事务管理)</span><br><span class="line">		dataSource&gt;(数据源)</span><br><span class="line">		</span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span>(映射器)</span><br></pre></td></tr></table></figure></p>
+<p>文件目录结构如下:<img src="http://od2xrf8gr.bkt.clouddn.com/mulu22.png" alt=""></p>
 <h2 id="1-lt-properties-gt-属性定义"><a href="#1-lt-properties-gt-属性定义" class="headerlink" title="1.&lt;properties&gt;属性定义"></a>1.<code>&lt;properties&gt;</code>属性定义</h2><p>可以把一些通用的属性值配置在属性文件中，加载到mybatis运行环境内。例如创建db.properties文件，然后在SqlMapperConfig.xml中进行配置。db.properties文件内容如下:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/db.pro.png" alt=""></p>
 <p>然后在SqlMapperConfig.xml中进行配置:  </p>
@@ -531,7 +518,7 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
 </ul>
 <p>所以我们建议使用properties标签时，不要在properties标签之间定义属性，只引用在.properties文件中定义的属性，并且.properties文件中定义的key值要有一些特殊的规则。例如我上述定义key值时前面都加了jdbc.的前缀。</p>
 <h2 id="2-lt-settings-gt-全局参数配置"><a href="#2-lt-settings-gt-全局参数配置" class="headerlink" title="2.&lt;settings&gt;全局参数配置"></a>2.<code>&lt;settings&gt;</code>全局参数配置</h2><p>mybatis运行时可以调整一些全局参数(相当于软件的运行参数)。根据使用需求进行参数配置。但是要注意:小心配置，配置参数会影响mybatis的执行。  </p>
-<p>itatis的全局配置参数中包括很多的性能参数(最大线程数、最大等待时间…)，通过调整这些性能参数使ibatis达到高性能的运行，而mybatis没有这些性能参数，由mybatis自动调节。</p>
+<p>ibatis的全局配置参数中包括很多的性能参数(最大线程数、最大等待时间…)，通过调整这些性能参数使ibatis达到高性能的运行，而mybatis没有这些性能参数，由mybatis自动调节。</p>
 <h2 id="3-lt-typeAliases-gt-属性"><a href="#3-lt-typeAliases-gt-属性" class="headerlink" title="3.&lt;typeAliases&gt;属性"></a>3.<code>&lt;typeAliases&gt;</code>属性</h2><p>可以将parameterType、resultType中指定的类型通过别名引用。MyBatis提供了很多的别名如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%88%AB%E5%90%8D.png" alt="">  </p>
 <p>这里我们采用自定义的别名，在SqlMapperConfig.xml中进行如下配置:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/hahaha.png" alt="">  </p>
@@ -539,7 +526,7 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
 <p>定义别名后这样我们在parameterType和resultType中使用时就不用再繁琐的指定类的全限定类名了，像下面这样使用即可<img src="http://od2xrf8gr.bkt.clouddn.com/dadada.png" alt=""></p>
 <h2 id="4-lt-typeHandlers-gt-属性"><a href="#4-lt-typeHandlers-gt-属性" class="headerlink" title="4.&lt;typeHandlers&gt;属性"></a>4.<code>&lt;typeHandlers&gt;</code>属性</h2><p>类型处理器将java类型和jdbc类型进行映射，mybatis提供了很多类型处理器，一般情况下够用了。</p>
 <h2 id="5-lt-mapper-gt-映射器属性"><a href="#5-lt-mapper-gt-映射器属性" class="headerlink" title="5.&lt;mapper&gt;映射器属性"></a>5.<code>&lt;mapper&gt;</code>映射器属性</h2><p>之前我们在配置文件中使用的<code>&lt;mapper&gt;</code>标签内容为:<code>&lt;mapper resource=“mapper/UserMapper.xml”/&gt;</code>，接下来我要讲的是另一种在配置文件中映射mapper动态代理的方法。在配置文件中这样配置<code>&lt;mapper class=“mapper.UserMapper”/&gt;</code>，这样的要求需要保证UserMapper.xml文件和UserMapper.java在同一个包下且.xml文件和.java文件名要同名。  </p>
-<p>同上方别名的配置，当包下出现多个Mapper.java和Mapper.xml时我们采用批量配置:<code>&lt;package name=“domain”/&gt;</code>，代码如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.12.42.png" alt="">  </p>
+<p>同上方别名的配置，当包下出现多个Mapper.java和Mapper.xml时我们采用批量配置:<code>&lt;package name=“mapper”/&gt;</code>，代码如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.12.42.png" alt="">  </p>
 <h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
@@ -558,7 +545,7 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
       <url>http://codingxiaxw.cn/2016/11/07/33-MyBatis%E4%BD%BF%E7%94%A8mapper%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%BC%80%E5%8F%91/</url>
       <content type="html"><![CDATA[<h2 id="1-SqlSession的使用范围"><a href="#1-SqlSession的使用范围" class="headerlink" title="1.SqlSession的使用范围"></a>1.SqlSession的使用范围</h2><p><strong>1.SqlSessionFactoryBuilder</strong><br>SqlSessionFactoryBuilder是以工具类的方式来使用:需要创建sqlSessionFactory时就new一个 SqlSessionFactoryBuilder  </p>
 <a id="more"></a>
-<p><strong>2.sqlSessionFactory</strong><br>正常开发时，以单例方式管理sqlSessionFactory，整个系统运行过程中sqlSessionFactory直邮一个实例，将来和Spring整合后由Spring以单例方式管理sqlSessionFactory  </p>
+<p><strong>2.sqlSessionFactory</strong><br>正常开发时，以单例方式管理sqlSessionFactory，整个系统运行过程中sqlSessionFactory只有一个实例，将来和Spring整合后由Spring以单例方式管理sqlSessionFactory  </p>
 <p><strong>3.SqlSession</strong><br>SqlSession是一个面向用户(程序员)的接口，程序员调用 SqlSession接口的方法进行操作数据库。那么我们会思考:SqlSession能否以单例方式使用？？？由于 SqlSession是线程不安全的，所以 SqlSession最佳应用范围在方法体内。也就是说在方法体内定义局部变量 SqlSession的对象来使用。  </p>
 <h2 id="2-MyBatis开发DAO的方式"><a href="#2-MyBatis开发DAO的方式" class="headerlink" title="2.MyBatis开发DAO的方式"></a>2.MyBatis开发DAO的方式</h2><h3 id="2-1原始dao的开发方式"><a href="#2-1原始dao的开发方式" class="headerlink" title="2.1原始dao的开发方式"></a>2.1原始dao的开发方式</h3><p>程序员需要编写dao接口:<img src="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3.png" alt="">和dao接口的实现类:<img src="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E7%B1%BB.png" alt="">  </p>
 <p>然后就能在测试类中使用。测试类代码如下:  </p>
@@ -580,20 +567,20 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
 <p>采用这种方式后，我们便可将第一篇文章中提到的User.xml改为UserMapper.xml。文件目录如下:<img src="http://od2xrf8gr.bkt.clouddn.com/mulu22.png" alt="">其中有些类我们会在后面用到。  </p>
 <h4 id="2-2-2mapper-xml-映射文件"><a href="#2-2-2mapper-xml-映射文件" class="headerlink" title="2.2.2mapper.xml(映射文件)"></a>2.2.2mapper.xml(映射文件)</h4><p>mapper映射文件的命名方式建议表名加Mapper.xml,namespace指定为mapper接口的全限定名。  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/namespace.png" alt=""></p>
-<h4 id="2-2-3mapper-java接口"><a href="#2-2-3mapper-java接口" class="headerlink" title="2.2.3mapper.java接口"></a>2.2.3mapper.java接口</h4><p>mybatis提出了mapper接口,相当于dao接口,mapper接口的命名方式建议为表名加Mapper.  </p>
-<pre><code>public interface UserMapper{};
-</code></pre><h4 id="2-3-4将mapper-xml在SqlMapConfing-xml中进行注册"><a href="#2-3-4将mapper-xml在SqlMapConfing-xml中进行注册" class="headerlink" title="2.3.4将mapper.xml在SqlMapConfing.xml中进行注册"></a>2.3.4将mapper.xml在SqlMapConfing.xml中进行注册</h4><pre><code>&lt;mappers&gt;
- &lt;mapper resource=&quot;mapper/UserMapper.xml&quot;/&gt;
-&lt;/mappers&gt;
-</code></pre><h4 id="2-3-5mapper接口返回单个对象和集合对象"><a href="#2-3-5mapper接口返回单个对象和集合对象" class="headerlink" title="2.3.5mapper接口返回单个对象和集合对象"></a>2.3.5mapper接口返回单个对象和集合对象</h4><p>在UserMapper.java中添加如下两个方法:  </p>
+<h4 id="2-2-3mapper-java接口"><a href="#2-2-3mapper-java接口" class="headerlink" title="2.2.3mapper.java接口"></a>2.2.3mapper.java接口</h4><p>mybatis提出了mapper接口,相当于dao接口,mapper接口的命名方式建议为表名加Mapper.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span></span>&#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-3-4将mapper-xml在SqlMapConfing-xml中进行注册"><a href="#2-3-4将mapper-xml在SqlMapConfing-xml中进行注册" class="headerlink" title="2.3.4将mapper.xml在SqlMapConfing.xml中进行注册"></a>2.3.4将mapper.xml在SqlMapConfing.xml中进行注册</h4><pre><code class="xml"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span>
+ <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"mapper/UserMapper.xml"</span>/&gt;</span>
+<span class="tag">&lt;/<span class="name">mappers</span>&gt;</span>
+</code></pre>
+<h4 id="2-3-5mapper接口返回单个对象和集合对象"><a href="#2-3-5mapper接口返回单个对象和集合对象" class="headerlink" title="2.3.5mapper接口返回单个对象和集合对象"></a>2.3.5mapper接口返回单个对象和集合对象</h4><p>在UserMapper.java中添加如下两个方法:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/danduo.png" alt="">  </p>
 <p>对于UserMapper.xml，不管查询记录是单条还是多条，在statement(即UserMapper.xml)中的resultType都定义一致，都是单条记录映射的pojo类型。  </p>
 <p>而对于UserMapper.java接口方法中的返回值，如果返回的是单个对象，返回值类型是pojo，生成的代理对象内部会自动通过selectOne获取记录，如果返回值类型是多条对象，生成的代理对象内部会自动通过selectList获取记录。  </p>
 <p>测试代码如下:<img src="http://od2xrf8gr.bkt.clouddn.com/ceshissss.png" alt=""></p>
 <p>使用Mapper代理方式进行开发，使程序员只需要关注UserMapper.java接口中的方法，它的实现类由Mapper自动为我们生成，带来了很大的方便。但这种方式也有它的弊端。  </p>
 <h4 id="2-3-6mapper代理开发的问题"><a href="#2-3-6mapper代理开发的问题" class="headerlink" title="2.3.6mapper代理开发的问题"></a>2.3.6mapper代理开发的问题</h4><ul>
-<li>1.返回值的问题:如果方法(即UserMapper.java接口中的方法)调用的statement中返回是多条记录，而mapper.java方法的返回值为pojo，此时代理对象通过selectOne调用，但由于返回的是多条记录所以会报错:Expected one result (for null ) to be returned by selectOne() but found 4;  </li>
-<li>2.输入参数的问题:使用mapper代理的方式开发，mapper接口方法的输入参数只有一个，可扩展性是否很差?答:可扩展性没有问题，因为dao层就是通用的，可以通过扩展pojo(定义poji包装类型，后面<a href="http://codingxiaxw.cn/2016/11/08/35-mybatis4/">第四篇文章–MyBatis输入输出映射</a>会讲扩展pojo的知识)来将不同的参数(可以是pojo也可以是简单类型)传入进去。</li>
+<li>1.返回值的问题:如果方法(即UserMapper.java接口中的方法)调用的statement中返回是多条记录，而mapper.java方法的返回值为pojo，此时代理对象通过selectOne调用，但由于返回的是多条记录所以会报错:<code>Expected one result (for null ) to be returned by selectOne() but found 4</code>;  </li>
+<li>2.输入参数的问题:使用mapper代理的方式开发，mapper接口方法的输入参数只有一个，可扩展性是否很差?答:可扩展性没有问题，因为dao层就是通用的，可以通过扩展pojo(定义pojo包装类型，后面<a href="http://codingxiaxw.cn/2016/11/08/35-mybatis4/">第四篇文章–MyBatis输入输出映射</a>会讲扩展pojo的知识)来将不同的参数(可以是pojo也可以是简单类型)传入进去。</li>
 </ul>
 <h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
@@ -627,88 +614,13 @@ WHERE orders.user_id = user.id AND orders.id=orderdetail.orders_id
 <p>接下来我将通过对一张用户表进行增、删、改、查带你快速入门MyBatis。   </p>
 <h2 id="4-MyBatis快速入门"><a href="#4-MyBatis快速入门" class="headerlink" title="4.MyBatis快速入门"></a>4.MyBatis快速入门</h2><h3 id="4-1准备开发环境"><a href="#4-1准备开发环境" class="headerlink" title="4.1准备开发环境"></a>4.1准备开发环境</h3><p>1.创建测试项目，普通java项目或是web项目都可。  </p>
 <p>2.导入jar包:mybatis-3.1.1.jar(低于这个版本的jar包需要导入很多依赖包)和mysql-connection-java  </p>
-<p>3.创建数据库和相应的表,SQL脚本如下:  </p>
-<pre><code>create database mybatis;
-
-use mybatis;
-
-create table user(
-id int primary key auto_increment,
-username varchar(50),
-birthday date,
-sex varchar(20),
-address carchar(50)
-);
-
-insert into user values(null,&apos;xxw&apos;,&apos;1996-10-17&apos;,&apos;male&apos;,null);
-
-insert into user values(null,&apos;wyr&apos;,&apos;1997-04-24&apos;,&apos;female&apos;,null);
-</code></pre><p>到此，环境配置就告一段落。</p>
+<p>3.创建数据库和相应的表,SQL脚本如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">create database mybatis;</span><br><span class="line"></span><br><span class="line">use mybatis;</span><br><span class="line"></span><br><span class="line"><span class="function">create table <span class="title">user</span><span class="params">(</span><br><span class="line">id <span class="keyword">int</span> primary key auto_increment,</span><br><span class="line">username varchar(<span class="number">50</span>)</span>,</span><br><span class="line">birthday date,</span><br><span class="line">sex <span class="title">varchar</span><span class="params">(<span class="number">20</span>)</span>,</span><br><span class="line">address <span class="title">carchar</span><span class="params">(<span class="number">50</span>)</span></span><br><span class="line">)</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">insert into user <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'xxw'</span>,<span class="string">'1996-10-17'</span>,<span class="string">'male'</span>,<span class="keyword">null</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">insert into user <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'wyr'</span>,<span class="string">'1997-04-24'</span>,<span class="string">'female'</span>,<span class="keyword">null</span>)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>到此，环境配置就告一段落。</p>
 <h3 id="4-2使用MyBatis查询表中数据-通过id查询"><a href="#4-2使用MyBatis查询表中数据-通过id查询" class="headerlink" title="4.2使用MyBatis查询表中数据(通过id查询)"></a>4.2使用MyBatis查询表中数据(通过id查询)</h3><p><strong>1.添加Mybatis的配置文件SqlMapConfig.xml</strong>  </p>
 <p>在src目录下创建一个SqlMapConfig.xml文件(文件名称随便起),内容如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/config2.png" alt="">  </p>
 <p><strong>2.定义表所需要的实体类User.java</strong>  </p>
-<p>代码如下:  </p>
-<pre><code>public class User
-{
-    private int id;
-    private String username;
-    private Date birthday;
-    private String sex;
-    private String address;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Date getBirthday(){
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getAddress(){
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    @Override
-    public String toString() {
-        return &quot;domain.User{&quot; +
-            &quot;id=&quot; + id +
-            &quot;, username=&apos;&quot; + username + &apos;\&apos;&apos; +
-            &quot;, birthday=&quot; + birthday +
-            &quot;, sex=&apos;&quot; + sex + &apos;\&apos;&apos; +
-            &quot;, address=&apos;&quot; + address + &apos;\&apos;&apos; +
-            &apos;}&apos;;
-    }
-}
-</code></pre><p><strong>3.定义操作user表的sql映射文件User.xml</strong><br>这里我们没将文件命名为userMapper.xml，后面我们会改。  </p>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span><br><span class="line"></span>&#123;</span><br><span class="line">   	<span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">   	<span class="keyword">private</span> String username;</span><br><span class="line">   	<span class="keyword">private</span> Date birthday;</span><br><span class="line">   	<span class="keyword">private</span> String sex;</span><br><span class="line">   	<span class="keyword">private</span> String address;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">return</span> id;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span></span><br><span class="line">   	</span>&#123;</span><br><span class="line">   		<span class="keyword">this</span>.id = id;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">return</span> username;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">this</span>.username = username;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> Date <span class="title">getBirthday</span><span class="params">()</span></span>&#123;</span><br><span class="line">       	<span class="keyword">return</span> birthday;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBirthday</span><span class="params">(Date birthday)</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">this</span>.birthday = birthday;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> String <span class="title">getSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">return</span> sex;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSex</span><span class="params">(String sex)</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">this</span>.sex = sex;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> String <span class="title">getAddress</span><span class="params">()</span></span>&#123;</span><br><span class="line">       	<span class="keyword">return</span> address;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAddress</span><span class="params">(String address)</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">this</span>.address = address;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="meta">@Override</span></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">return</span> <span class="string">"domain.User&#123;"</span> +</span><br><span class="line">               <span class="string">"id="</span> + id +</span><br><span class="line">               <span class="string">", username='"</span> + username + <span class="string">'\''</span> +</span><br><span class="line">               <span class="string">", birthday="</span> + birthday +</span><br><span class="line">               <span class="string">", sex='"</span> + sex + <span class="string">'\''</span> +</span><br><span class="line">               <span class="string">", address='"</span> + address + <span class="string">'\''</span> +</span><br><span class="line">               <span class="string">'&#125;'</span>;</span><br><span class="line">   	&#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3.定义操作user表的sql映射文件User.xml</strong><br>这里我们没将文件命名为userMapper.xml，后面我们会改。  </p>
 <p>User.xml文件内容如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-07%20%E4%B8%8B%E5%8D%886.50.45.png" alt="">  </p>
 <p>在User.xml中写SQL语句，在参数处使用占位符<code>#{}</code>，应该注意的是大括号<code>{}</code>中传入的数据应该与User.java中的属性对应，文件中各个属性的解释见图中注释处。  </p>
 <p><strong>4.在SqlMapConfig文件中注册User.xml文件</strong><br>在SqlMapConfig.xml中添加一个<code>&lt;mappers&gt;&lt;/mappers&gt;</code>字段，并在里面传入User.xml文件路径。  </p>
@@ -722,7 +634,7 @@ insert into user values(null,&apos;wyr&apos;,&apos;1997-04-24&apos;,&apos;female
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-07%20%E4%B8%8B%E5%8D%887.07.08.png" alt="">  </p>
 <p>此时，我们在传入参数的地方不再使用占位符<code>#{}</code>而是使用<code>${}</code>，二者区别如下:  </p>
 <ul>
-<li><code>#{}</code>:1.表示一个占位符，向占位符输入参数，mybatis自动进行java类型和jdbc类型的转换。2.程序员不需要考虑参数的类型，比如：传入字符串，mybatis最终拼接好的sql就是参数两边加单引号。3.<code>#{}</code>接收pojo(Plain Old Java Object Java数据对象)数据，可以使用OGNL解析出pojo的属性值。</li>
+<li><code>#{}</code>:1.表示一个占位符，向占位符输入参数，mybatis自动进行java类型和jdbc类型的转换。2.程序员不需要考虑参数的类型，比如：传入字符串，mybatis最终拼接好的sql就是参数两边加单引号。3.<code>#{}</code>接收pojo(Plain Old Java Object Java数据对象)数据，可以使用OGNL(就是el表达式)解析出pojo的属性值。</li>
 <li><code>${}</code>:1.表示sql的拼接，通过<code>${}</code>接收参数，将参数的内容不加任何修饰拼接在sql中。2.<code>${}</code>也可以接收pojo数据，可以使用OGNL解析出pojo的属性值。3.缺点:不能防止sql注入。  </li>
 </ul>
 <p><strong>2.测试类代码如下:</strong>  </p>
@@ -730,14 +642,15 @@ insert into user values(null,&apos;wyr&apos;,&apos;1997-04-24&apos;,&apos;female
 <p>注意，此时我们通过name查询出来的语句为多条，故此时我们应该选择调用sqlSession对象的selectList()方法返回多条记录，输出我们查询到的第一条记录即可。若使用selectOne()方法，当返回的记录为多条时就会发生异常。</p>
 <p>这样我们便完成了查询时将sql结果输出映射到Java对象中。那如何将Java对象输入映射到sql语句中，接下来我们就来讲通过MyBatis实现增、删、改数据库。</p>
 <h3 id="4-4使用MyBatis向表中插入一条记录"><a href="#4-4使用MyBatis向表中插入一条记录" class="headerlink" title="4.4使用MyBatis向表中插入一条记录"></a>4.4使用MyBatis向表中插入一条记录</h3><p><strong>1.在User.xml中添加如下字段:</strong>  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/insertinto.png" alt=""></p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/insertinto.png" alt="">  </p>
+<p>貌似关键字为value和values都可以…</p>
 <p><strong>2.编写测试类:</strong>  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/insertintotest.png" alt="">  </p>
 <p>此时查看数据库:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/shujuku.png" alt="">  </p>
 <p>发现数据已被插入。  </p>
 <p><strong>扩展:主键返回:</strong>  </p>
-<p>在测试类中，我们没有给User对象的id属性设置值，所以我们在测试类中尝试输出User对象的id时会输出<code>id=0</code>，但是该对象通过输入映射在数据库中是有对应的id值的(因为我们为该字段设置了自增长属性)。那么我们想输出该对象在记录中的id时，又该怎么做呢？只需在User.xml文件中的<code>&lt;insert&gt;&lt;/insert&gt;</code>自断中添加如下字段即可,属性解释见图:  </p>
+<p>在测试类中，我们没有给User对象的id属性设置值，所以我们在测试类中尝试输出User对象的id时会输出<code>id=0</code>，但是该对象通过输入映射在数据库中是有对应的id值的(因为我们为该字段设置了自增长属性)。那么我们想输出该对象在记录中的id时，又该怎么做呢？只需在User.xml文件中的<code>&lt;insert&gt;&lt;/insert&gt;</code>标签中添加<code>&lt;selectKey&gt;</code>标签即可,属性解释见图:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/insert.png" alt="">  </p>
 <p>此时我们在测试类中便可输出该User对象插入在表中的记录id值了。 </p>
 <p>这里我们由于在建表时设置了id字段为自增长，采用自增长的形式生成主键，所以我们在传入User对象的id属性时可以将该属性设置为null。那么当我们使用uuid生成主键时又该怎么做呢？  </p>

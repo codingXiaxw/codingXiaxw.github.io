@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/namespace.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/danduo.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ceshissss.png">
-<meta property="og:updated_time" content="2016-11-10T06:26:05.000Z">
+<meta property="og:updated_time" content="2016-11-14T06:01:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis之Mapper动态代理开发">
 <meta name="twitter:description" content="1.SqlSession的使用范围1.SqlSessionFactoryBuilderSqlSessionFactoryBuilder是以工具类的方式来使用:需要创建sqlSessionFactory时就new一个 SqlSessionFactoryBuilder">
@@ -346,7 +346,7 @@
       
         <h2 id="1-SqlSession的使用范围"><a href="#1-SqlSession的使用范围" class="headerlink" title="1.SqlSession的使用范围"></a>1.SqlSession的使用范围</h2><p><strong>1.SqlSessionFactoryBuilder</strong><br>SqlSessionFactoryBuilder是以工具类的方式来使用:需要创建sqlSessionFactory时就new一个 SqlSessionFactoryBuilder  </p>
 <a id="more"></a>
-<p><strong>2.sqlSessionFactory</strong><br>正常开发时，以单例方式管理sqlSessionFactory，整个系统运行过程中sqlSessionFactory直邮一个实例，将来和Spring整合后由Spring以单例方式管理sqlSessionFactory  </p>
+<p><strong>2.sqlSessionFactory</strong><br>正常开发时，以单例方式管理sqlSessionFactory，整个系统运行过程中sqlSessionFactory只有一个实例，将来和Spring整合后由Spring以单例方式管理sqlSessionFactory  </p>
 <p><strong>3.SqlSession</strong><br>SqlSession是一个面向用户(程序员)的接口，程序员调用 SqlSession接口的方法进行操作数据库。那么我们会思考:SqlSession能否以单例方式使用？？？由于 SqlSession是线程不安全的，所以 SqlSession最佳应用范围在方法体内。也就是说在方法体内定义局部变量 SqlSession的对象来使用。  </p>
 <h2 id="2-MyBatis开发DAO的方式"><a href="#2-MyBatis开发DAO的方式" class="headerlink" title="2.MyBatis开发DAO的方式"></a>2.MyBatis开发DAO的方式</h2><h3 id="2-1原始dao的开发方式"><a href="#2-1原始dao的开发方式" class="headerlink" title="2.1原始dao的开发方式"></a>2.1原始dao的开发方式</h3><p>程序员需要编写dao接口:<img src="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3.png" alt="">和dao接口的实现类:<img src="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E7%B1%BB.png" alt="">  </p>
 <p>然后就能在测试类中使用。测试类代码如下:  </p>
@@ -368,20 +368,20 @@
 <p>采用这种方式后，我们便可将第一篇文章中提到的User.xml改为UserMapper.xml。文件目录如下:<img src="http://od2xrf8gr.bkt.clouddn.com/mulu22.png" alt="">其中有些类我们会在后面用到。  </p>
 <h4 id="2-2-2mapper-xml-映射文件"><a href="#2-2-2mapper-xml-映射文件" class="headerlink" title="2.2.2mapper.xml(映射文件)"></a>2.2.2mapper.xml(映射文件)</h4><p>mapper映射文件的命名方式建议表名加Mapper.xml,namespace指定为mapper接口的全限定名。  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/namespace.png" alt=""></p>
-<h4 id="2-2-3mapper-java接口"><a href="#2-2-3mapper-java接口" class="headerlink" title="2.2.3mapper.java接口"></a>2.2.3mapper.java接口</h4><p>mybatis提出了mapper接口,相当于dao接口,mapper接口的命名方式建议为表名加Mapper.  </p>
-<pre><code>public interface UserMapper{};
-</code></pre><h4 id="2-3-4将mapper-xml在SqlMapConfing-xml中进行注册"><a href="#2-3-4将mapper-xml在SqlMapConfing-xml中进行注册" class="headerlink" title="2.3.4将mapper.xml在SqlMapConfing.xml中进行注册"></a>2.3.4将mapper.xml在SqlMapConfing.xml中进行注册</h4><pre><code>&lt;mappers&gt;
- &lt;mapper resource=&quot;mapper/UserMapper.xml&quot;/&gt;
-&lt;/mappers&gt;
-</code></pre><h4 id="2-3-5mapper接口返回单个对象和集合对象"><a href="#2-3-5mapper接口返回单个对象和集合对象" class="headerlink" title="2.3.5mapper接口返回单个对象和集合对象"></a>2.3.5mapper接口返回单个对象和集合对象</h4><p>在UserMapper.java中添加如下两个方法:  </p>
+<h4 id="2-2-3mapper-java接口"><a href="#2-2-3mapper-java接口" class="headerlink" title="2.2.3mapper.java接口"></a>2.2.3mapper.java接口</h4><p>mybatis提出了mapper接口,相当于dao接口,mapper接口的命名方式建议为表名加Mapper.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span></span>&#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-3-4将mapper-xml在SqlMapConfing-xml中进行注册"><a href="#2-3-4将mapper-xml在SqlMapConfing-xml中进行注册" class="headerlink" title="2.3.4将mapper.xml在SqlMapConfing.xml中进行注册"></a>2.3.4将mapper.xml在SqlMapConfing.xml中进行注册</h4><pre><code class="xml"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span>
+ <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"mapper/UserMapper.xml"</span>/&gt;</span>
+<span class="tag">&lt;/<span class="name">mappers</span>&gt;</span>
+</code></pre>
+<h4 id="2-3-5mapper接口返回单个对象和集合对象"><a href="#2-3-5mapper接口返回单个对象和集合对象" class="headerlink" title="2.3.5mapper接口返回单个对象和集合对象"></a>2.3.5mapper接口返回单个对象和集合对象</h4><p>在UserMapper.java中添加如下两个方法:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/danduo.png" alt="">  </p>
 <p>对于UserMapper.xml，不管查询记录是单条还是多条，在statement(即UserMapper.xml)中的resultType都定义一致，都是单条记录映射的pojo类型。  </p>
 <p>而对于UserMapper.java接口方法中的返回值，如果返回的是单个对象，返回值类型是pojo，生成的代理对象内部会自动通过selectOne获取记录，如果返回值类型是多条对象，生成的代理对象内部会自动通过selectList获取记录。  </p>
 <p>测试代码如下:<img src="http://od2xrf8gr.bkt.clouddn.com/ceshissss.png" alt=""></p>
 <p>使用Mapper代理方式进行开发，使程序员只需要关注UserMapper.java接口中的方法，它的实现类由Mapper自动为我们生成，带来了很大的方便。但这种方式也有它的弊端。  </p>
 <h4 id="2-3-6mapper代理开发的问题"><a href="#2-3-6mapper代理开发的问题" class="headerlink" title="2.3.6mapper代理开发的问题"></a>2.3.6mapper代理开发的问题</h4><ul>
-<li>1.返回值的问题:如果方法(即UserMapper.java接口中的方法)调用的statement中返回是多条记录，而mapper.java方法的返回值为pojo，此时代理对象通过selectOne调用，但由于返回的是多条记录所以会报错:Expected one result (for null ) to be returned by selectOne() but found 4;  </li>
-<li>2.输入参数的问题:使用mapper代理的方式开发，mapper接口方法的输入参数只有一个，可扩展性是否很差?答:可扩展性没有问题，因为dao层就是通用的，可以通过扩展pojo(定义poji包装类型，后面<a href="http://codingxiaxw.cn/2016/11/08/35-mybatis4/">第四篇文章–MyBatis输入输出映射</a>会讲扩展pojo的知识)来将不同的参数(可以是pojo也可以是简单类型)传入进去。</li>
+<li>1.返回值的问题:如果方法(即UserMapper.java接口中的方法)调用的statement中返回是多条记录，而mapper.java方法的返回值为pojo，此时代理对象通过selectOne调用，但由于返回的是多条记录所以会报错:<code>Expected one result (for null ) to be returned by selectOne() but found 4</code>;  </li>
+<li>2.输入参数的问题:使用mapper代理的方式开发，mapper接口方法的输入参数只有一个，可扩展性是否很差?答:可扩展性没有问题，因为dao层就是通用的，可以通过扩展pojo(定义pojo包装类型，后面<a href="http://codingxiaxw.cn/2016/11/08/35-mybatis4/">第四篇文章–MyBatis输入输出映射</a>会讲扩展pojo的知识)来将不同的参数(可以是pojo也可以是简单类型)传入进去。</li>
 </ul>
 <h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>

@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.36.44.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.38.18.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.39.11.png">
-<meta property="og:updated_time" content="2016-11-10T06:26:27.000Z">
+<meta property="og:updated_time" content="2016-11-14T06:17:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis之动态sql">
 <meta name="twitter:description" content="我们需要知道的是，使用mybatis重点是对sql的灵活解析和处理。在原先的UserMappser.xml中，我们这样查询表中满足条件的记录 :">
@@ -347,17 +347,15 @@
       
         <p>我们需要知道的是，使用mybatis重点是对sql的灵活解析和处理。在原先的UserMappser.xml中，我们这样查询表中满足条件的记录 :</p>
 <a id="more"></a> 
-<pre><code>&lt;select id=&quot;findUserList&quot; parameterType=&quot;userQueryVo&quot; resultType=&quot;user&quot;&gt;
-        select id,username,birthday from user where username like &apos;${value}&apos;
-&lt;/select&gt;
-</code></pre><p>上述语句在表中查询满足<code>username</code>条件的记录，这样写查询语句有一个弊端，就是该语句只能通过username查询数据库。当我们在多条件中查询时，如果不需要username条件而是需要其它多个查询条件时，那UserMapper.xml文件中的这个查询条件就没用了。  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findUserList"</span> <span class="attr">parameterType</span>=<span class="string">"userQueryVo"</span> <span class="attr">resultType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">  	 	select id,username,birthday from user where username like '$&#123;value&#125;'</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上述语句在表中查询满足<code>username</code>条件的记录，这样写查询语句有一个弊端，就是该语句只能通过username查询数据库。当我们在多条件中查询时，如果不需要username条件而是需要其它多个查询条件时，那UserMapper.xml文件中的这个查询条件就没用了。  </p>
 <p>需求:将自定义查询条件查询用户列表和查询用户列表总记录数改为动态sql。需要使用if标签和where标签。  </p>
 <h2 id="1-if和where"><a href="#1-if和where" class="headerlink" title="1.if和where"></a>1.if和where</h2><p>使用if标签和where标签在UserMapper.xml中添加如下内容:<br>修改自定义查询条件查询用户列表代码:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%888.14.15.png" alt=""></p>
 <p>修改自定义查询条件查询用户列表总记录数代码:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%888.19.54.png" alt="">  </p>
 <p>发现<code>&lt;where&gt;</code>和<code>&lt;if&gt;</code>在上述两个查询语句中重复的代码出现了两次，那这里我们是否可以把相同的sql片段拿出来单独写在一个sql片段中然后再在不同的查询语句中应用呢？答案是肯定的,看下面的sql片段。  </p>
 <h2 id="2-sql片段"><a href="#2-sql片段" class="headerlink" title="2.sql片段"></a>2.sql片段</h2><p>通过sql片段可以将通用的sql语句抽取出来，单独定义，在其它的statement中可以引用sql片段。其中通用的sql语句，一般用在:where条件、查询列。  </p>
-<h2 id="2-1定义sql片段"><a href="#2-1定义sql片段" class="headerlink" title="2.1定义sql片段"></a>2.1定义sql片段</h2><p>在UserMapper.xml中添加如下字段:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.25.19.png" alt="">这样就完成了sql片段的定义，然后才能使用sql片段。</p>
+<h2 id="2-1定义sql片段"><a href="#2-1定义sql片段" class="headerlink" title="2.1定义sql片段"></a>2.1定义sql片段</h2><p>在UserMapper.xml中添加<code>&lt;sql&gt;</code>标签代表sql片段:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.25.19.png" alt="">这样就完成了sql片段的定义，然后才能使用sql片段。</p>
 <h2 id="2-2使用sql片段"><a href="#2-2使用sql片段" class="headerlink" title="2.2使用sql片段"></a>2.2使用sql片段</h2><p>使用<code>&lt;include&gt;</code>标签对上面定义的sql片段加以引用:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.27.20.png" alt=""><br>和<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%889.27.28.png" alt="">  </p>
 <p>测试类代码不变，这样我们便完成了对sql片段的引用。  </p>
 <p>有时候我们希望查询语句是这样<code>select id,username,birthday from user where username like &#39;%codingXiaxw%&#39; and id in (1,2)</code>，那我们又应该在sql片段中如何添加代码呢？这时候需要用到<code>&lt;foreach&gt;</code>标签。</p>

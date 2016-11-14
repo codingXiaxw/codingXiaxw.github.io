@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/delete%E6%B5%8B%E8%AF%95%E7%B1%BB.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/updatexml.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/update%E6%B5%8B%E8%AF%95%E7%B1%BB.png">
-<meta property="og:updated_time" content="2016-11-10T06:25:56.000Z">
+<meta property="og:updated_time" content="2016-11-14T05:52:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis之快速入门">
 <meta name="twitter:description" content="首先我要明确告诉大家的是MyBatis是一个java持久层框架，以前我们都是用jdbc来将我们的java程序与数据库相连接，而MyBatis是对jdbc的一个封装。">
@@ -371,88 +371,13 @@
 <p>接下来我将通过对一张用户表进行增、删、改、查带你快速入门MyBatis。   </p>
 <h2 id="4-MyBatis快速入门"><a href="#4-MyBatis快速入门" class="headerlink" title="4.MyBatis快速入门"></a>4.MyBatis快速入门</h2><h3 id="4-1准备开发环境"><a href="#4-1准备开发环境" class="headerlink" title="4.1准备开发环境"></a>4.1准备开发环境</h3><p>1.创建测试项目，普通java项目或是web项目都可。  </p>
 <p>2.导入jar包:mybatis-3.1.1.jar(低于这个版本的jar包需要导入很多依赖包)和mysql-connection-java  </p>
-<p>3.创建数据库和相应的表,SQL脚本如下:  </p>
-<pre><code>create database mybatis;
-
-use mybatis;
-
-create table user(
-id int primary key auto_increment,
-username varchar(50),
-birthday date,
-sex varchar(20),
-address carchar(50)
-);
-
-insert into user values(null,&apos;xxw&apos;,&apos;1996-10-17&apos;,&apos;male&apos;,null);
-
-insert into user values(null,&apos;wyr&apos;,&apos;1997-04-24&apos;,&apos;female&apos;,null);
-</code></pre><p>到此，环境配置就告一段落。</p>
+<p>3.创建数据库和相应的表,SQL脚本如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">create database mybatis;</span><br><span class="line"></span><br><span class="line">use mybatis;</span><br><span class="line"></span><br><span class="line"><span class="function">create table <span class="title">user</span><span class="params">(</span><br><span class="line">id <span class="keyword">int</span> primary key auto_increment,</span><br><span class="line">username varchar(<span class="number">50</span>)</span>,</span><br><span class="line">birthday date,</span><br><span class="line">sex <span class="title">varchar</span><span class="params">(<span class="number">20</span>)</span>,</span><br><span class="line">address <span class="title">carchar</span><span class="params">(<span class="number">50</span>)</span></span><br><span class="line">)</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">insert into user <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'xxw'</span>,<span class="string">'1996-10-17'</span>,<span class="string">'male'</span>,<span class="keyword">null</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">insert into user <span class="title">values</span><span class="params">(<span class="keyword">null</span>,<span class="string">'wyr'</span>,<span class="string">'1997-04-24'</span>,<span class="string">'female'</span>,<span class="keyword">null</span>)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>到此，环境配置就告一段落。</p>
 <h3 id="4-2使用MyBatis查询表中数据-通过id查询"><a href="#4-2使用MyBatis查询表中数据-通过id查询" class="headerlink" title="4.2使用MyBatis查询表中数据(通过id查询)"></a>4.2使用MyBatis查询表中数据(通过id查询)</h3><p><strong>1.添加Mybatis的配置文件SqlMapConfig.xml</strong>  </p>
 <p>在src目录下创建一个SqlMapConfig.xml文件(文件名称随便起),内容如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/config2.png" alt="">  </p>
 <p><strong>2.定义表所需要的实体类User.java</strong>  </p>
-<p>代码如下:  </p>
-<pre><code>public class User
-{
-    private int id;
-    private String username;
-    private Date birthday;
-    private String sex;
-    private String address;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Date getBirthday(){
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getAddress(){
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    @Override
-    public String toString() {
-        return &quot;domain.User{&quot; +
-            &quot;id=&quot; + id +
-            &quot;, username=&apos;&quot; + username + &apos;\&apos;&apos; +
-            &quot;, birthday=&quot; + birthday +
-            &quot;, sex=&apos;&quot; + sex + &apos;\&apos;&apos; +
-            &quot;, address=&apos;&quot; + address + &apos;\&apos;&apos; +
-            &apos;}&apos;;
-    }
-}
-</code></pre><p><strong>3.定义操作user表的sql映射文件User.xml</strong><br>这里我们没将文件命名为userMapper.xml，后面我们会改。  </p>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span><br><span class="line"></span>&#123;</span><br><span class="line">   	<span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">   	<span class="keyword">private</span> String username;</span><br><span class="line">   	<span class="keyword">private</span> Date birthday;</span><br><span class="line">   	<span class="keyword">private</span> String sex;</span><br><span class="line">   	<span class="keyword">private</span> String address;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">return</span> id;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span></span><br><span class="line">   	</span>&#123;</span><br><span class="line">   		<span class="keyword">this</span>.id = id;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">return</span> username;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">this</span>.username = username;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> Date <span class="title">getBirthday</span><span class="params">()</span></span>&#123;</span><br><span class="line">       	<span class="keyword">return</span> birthday;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBirthday</span><span class="params">(Date birthday)</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">this</span>.birthday = birthday;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> String <span class="title">getSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">return</span> sex;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSex</span><span class="params">(String sex)</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">this</span>.sex = sex;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> String <span class="title">getAddress</span><span class="params">()</span></span>&#123;</span><br><span class="line">       	<span class="keyword">return</span> address;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAddress</span><span class="params">(String address)</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">this</span>.address = address;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="meta">@Override</span></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       	<span class="keyword">return</span> <span class="string">"domain.User&#123;"</span> +</span><br><span class="line">               <span class="string">"id="</span> + id +</span><br><span class="line">               <span class="string">", username='"</span> + username + <span class="string">'\''</span> +</span><br><span class="line">               <span class="string">", birthday="</span> + birthday +</span><br><span class="line">               <span class="string">", sex='"</span> + sex + <span class="string">'\''</span> +</span><br><span class="line">               <span class="string">", address='"</span> + address + <span class="string">'\''</span> +</span><br><span class="line">               <span class="string">'&#125;'</span>;</span><br><span class="line">   	&#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3.定义操作user表的sql映射文件User.xml</strong><br>这里我们没将文件命名为userMapper.xml，后面我们会改。  </p>
 <p>User.xml文件内容如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-07%20%E4%B8%8B%E5%8D%886.50.45.png" alt="">  </p>
 <p>在User.xml中写SQL语句，在参数处使用占位符<code>#{}</code>，应该注意的是大括号<code>{}</code>中传入的数据应该与User.java中的属性对应，文件中各个属性的解释见图中注释处。  </p>
 <p><strong>4.在SqlMapConfig文件中注册User.xml文件</strong><br>在SqlMapConfig.xml中添加一个<code>&lt;mappers&gt;&lt;/mappers&gt;</code>字段，并在里面传入User.xml文件路径。  </p>
@@ -466,7 +391,7 @@ insert into user values(null,&apos;wyr&apos;,&apos;1997-04-24&apos;,&apos;female
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-07%20%E4%B8%8B%E5%8D%887.07.08.png" alt="">  </p>
 <p>此时，我们在传入参数的地方不再使用占位符<code>#{}</code>而是使用<code>${}</code>，二者区别如下:  </p>
 <ul>
-<li><code>#{}</code>:1.表示一个占位符，向占位符输入参数，mybatis自动进行java类型和jdbc类型的转换。2.程序员不需要考虑参数的类型，比如：传入字符串，mybatis最终拼接好的sql就是参数两边加单引号。3.<code>#{}</code>接收pojo(Plain Old Java Object Java数据对象)数据，可以使用OGNL解析出pojo的属性值。</li>
+<li><code>#{}</code>:1.表示一个占位符，向占位符输入参数，mybatis自动进行java类型和jdbc类型的转换。2.程序员不需要考虑参数的类型，比如：传入字符串，mybatis最终拼接好的sql就是参数两边加单引号。3.<code>#{}</code>接收pojo(Plain Old Java Object Java数据对象)数据，可以使用OGNL(就是el表达式)解析出pojo的属性值。</li>
 <li><code>${}</code>:1.表示sql的拼接，通过<code>${}</code>接收参数，将参数的内容不加任何修饰拼接在sql中。2.<code>${}</code>也可以接收pojo数据，可以使用OGNL解析出pojo的属性值。3.缺点:不能防止sql注入。  </li>
 </ul>
 <p><strong>2.测试类代码如下:</strong>  </p>
@@ -474,14 +399,15 @@ insert into user values(null,&apos;wyr&apos;,&apos;1997-04-24&apos;,&apos;female
 <p>注意，此时我们通过name查询出来的语句为多条，故此时我们应该选择调用sqlSession对象的selectList()方法返回多条记录，输出我们查询到的第一条记录即可。若使用selectOne()方法，当返回的记录为多条时就会发生异常。</p>
 <p>这样我们便完成了查询时将sql结果输出映射到Java对象中。那如何将Java对象输入映射到sql语句中，接下来我们就来讲通过MyBatis实现增、删、改数据库。</p>
 <h3 id="4-4使用MyBatis向表中插入一条记录"><a href="#4-4使用MyBatis向表中插入一条记录" class="headerlink" title="4.4使用MyBatis向表中插入一条记录"></a>4.4使用MyBatis向表中插入一条记录</h3><p><strong>1.在User.xml中添加如下字段:</strong>  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/insertinto.png" alt=""></p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/insertinto.png" alt="">  </p>
+<p>貌似关键字为value和values都可以…</p>
 <p><strong>2.编写测试类:</strong>  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/insertintotest.png" alt="">  </p>
 <p>此时查看数据库:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/shujuku.png" alt="">  </p>
 <p>发现数据已被插入。  </p>
 <p><strong>扩展:主键返回:</strong>  </p>
-<p>在测试类中，我们没有给User对象的id属性设置值，所以我们在测试类中尝试输出User对象的id时会输出<code>id=0</code>，但是该对象通过输入映射在数据库中是有对应的id值的(因为我们为该字段设置了自增长属性)。那么我们想输出该对象在记录中的id时，又该怎么做呢？只需在User.xml文件中的<code>&lt;insert&gt;&lt;/insert&gt;</code>自断中添加如下字段即可,属性解释见图:  </p>
+<p>在测试类中，我们没有给User对象的id属性设置值，所以我们在测试类中尝试输出User对象的id时会输出<code>id=0</code>，但是该对象通过输入映射在数据库中是有对应的id值的(因为我们为该字段设置了自增长属性)。那么我们想输出该对象在记录中的id时，又该怎么做呢？只需在User.xml文件中的<code>&lt;insert&gt;&lt;/insert&gt;</code>标签中添加<code>&lt;selectKey&gt;</code>标签即可,属性解释见图:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/insert.png" alt="">  </p>
 <p>此时我们在测试类中便可输出该User对象插入在表中的记录id值了。 </p>
 <p>这里我们由于在建表时设置了id字段为自增长，采用自增长的形式生成主键，所以我们在传入User对象的id属性时可以将该属性设置为null。那么当我们使用uuid生成主键时又该怎么做呢？  </p>

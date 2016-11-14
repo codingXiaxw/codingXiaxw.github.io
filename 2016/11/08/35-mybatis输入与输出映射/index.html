@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%887.06.23.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%887.08.19.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%887.08.51.png">
-<meta property="og:updated_time" content="2016-11-10T06:26:20.000Z">
+<meta property="og:updated_time" content="2016-11-14T06:13:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis之输入(parameterType)与输出(resultType、resultMap)映射">
 <meta name="twitter:description" content="在MyBatis中，我们通过parameterType完成输入映射，通过resultType完成输出映射。接下来我们先谈谈输入映射。文件目录如下:">
@@ -360,7 +360,7 @@
 <p>可能出现的异常:如果在parameterType中指定了错误的属性名时会出现如下异常:  </p>
 <pre><code>org.apache.ibatis.exceptions.PersistenceException: ### Error querying database.  Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named &apos;userCusto&apos; in &apos;class cn.itcast.mybatis.po.UserQueryVo&apos;### Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named &apos;userCusto&apos; in &apos;class cn.itcast.mybatis.po.UserQueryVo&apos;
 </code></pre><h2 id="2-输出映射"><a href="#2-输出映射" class="headerlink" title="2.输出映射"></a>2.输出映射</h2><p>输出映射有resultType和resultMap,他们都是指定输出结果的类型(pojo、简单类型、hashmap…)，并将sql查询结果映射为java对象 。</p>
-<h3 id="2-1resultType"><a href="#2-1resultType" class="headerlink" title="2.1resultType"></a>2.1resultType</h3><p>借用上述parameter传递包装pojo对象的知识(不用parameter传递包装pojo对象的知识也行)，我们来谈谈用resultType输入简单类型。UserMapper.xml文件中添加如下配置:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.51.42.png" alt="">  </p>
+<h3 id="2-1resultType"><a href="#2-1resultType" class="headerlink" title="2.1resultType"></a>2.1resultType</h3><p>借用上述parameter传递包装pojo对象的知识(不用parameter传递包装pojo对象的知识也行)，我们来谈谈用resultType输出简单类型。UserMapper.xml文件中添加如下配置:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.51.42.png" alt="">  </p>
 <p>然后在UserMapper.java中添加如下方法:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.52.30.png" alt="">  </p>
 <p>测试:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.53.12.png" alt="">  </p>
 <p>这里因为查询的记录结果集为一条记录且该记录只有1列，所以我们使用的是返回简单类型。</p>
