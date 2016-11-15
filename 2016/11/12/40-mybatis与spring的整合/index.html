@@ -96,7 +96,6 @@
 使用spring和mybatis整合开发mapper代理及原始dao接口。自动开启事务，自动管理sqlsession">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.15.47.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.18.44.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.21.53.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.22.55.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.25.45.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.26.42.png">
@@ -106,7 +105,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%887.44.57.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%888.08.48.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%887.44.57.png">
-<meta property="og:updated_time" content="2016-11-14T11:27:19.000Z">
+<meta property="og:updated_time" content="2016-11-15T07:24:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis3.x和Spring3.x的整合">
 <meta name="twitter:description" content="1.mybatis和spring整合的思路1.让spring管理SqlSessionFactory2.让spring管理mapper对象和dao  
@@ -361,10 +360,12 @@
 </blockquote>
 <a id="more"></a>
 <p>3.让spring管理数据源(即数据库连接池)  </p>
-<h2 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2.准备工作"></a>2.准备工作</h2><h3 id="2-1创建整合工程"><a href="#2-1创建整合工程" class="headerlink" title="2.1创建整合工程"></a>2.1创建整合工程</h3><p>新建项目，拷贝前一天所建mybatis的项目，现在的项目结构为:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.15.47.png" alt="">  </p>
+<h2 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2.准备工作"></a>2.准备工作</h2><h3 id="2-1创建整合工程"><a href="#2-1创建整合工程" class="headerlink" title="2.1创建整合工程"></a>2.1创建整合工程</h3><p>新建项目，拷贝前一天所建mybatis的项目，现在的项目结构为:</p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.15.47.png" width="50%" height="30%"> </p>
 <h3 id="2-2-导入jar包"><a href="#2-2-导入jar包" class="headerlink" title="2.2.导入jar包"></a>2.2.导入jar包</h3><p>1.mybatis3.x本身的jar包<br>2.数据库驱动包<br>3.spring3.xjar包<br>4.spring和mybatis的整合包:从mybatis官方下载mybatis-spring-1.2.2.jar  </p>
-<h3 id="2-3-SqlMapConfig-xml"><a href="#2-3-SqlMapConfig-xml" class="headerlink" title="2.3.SqlMapConfig.xml"></a>2.3.SqlMapConfig.xml</h3><p>mybatis的配置文件:设置别名、settings。如下<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.18.44.png" alt="">  </p>
-<h3 id="2-4-applicationContext-xml"><a href="#2-4-applicationContext-xml" class="headerlink" title="2.4.applicationContext.xml"></a>2.4.applicationContext.xml</h3><p>spring配置文件:1.数据源(用的是dbcp连接池)。2.SqlSessionFactory。3.mapper或dao。如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.21.53.png" alt=""></p>
+<h3 id="2-3-SqlMapConfig-xml"><a href="#2-3-SqlMapConfig-xml" class="headerlink" title="2.3.SqlMapConfig.xml"></a>2.3.SqlMapConfig.xml</h3><p>mybatis的配置文件:设置别名、settings。如下<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.18.44.png" alt=""></p>
+<p>mybatis和spring整合后，mybatis配置文件中的<code>&lt;mappers&gt;</code>标签便可以去掉，因为我们在spring配置文件中进行对mapper的配置。  </p>
+<h3 id="2-4-applicationContext-xml"><a href="#2-4-applicationContext-xml" class="headerlink" title="2.4.applicationContext.xml"></a>2.4.applicationContext.xml</h3><p>spring配置文件:1.数据源(用的是dbcp连接池)。2.SqlSessionFactory。3.mapper或dao。如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span><br><span class="line">PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span><br><span class="line">"http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 定义 别名 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 批量别名定义 指定包路径，自动扫描包下边的pojo，定义别名，别名默认为类名（首字母小写或大写） --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"po"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!--由于使用了spring和mybatis整合的mapper扫描器，--&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--这里就不用配置了--&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--&lt;mappers&gt;--&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--&lt;package name="mapper"/&gt;--&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--&lt;/mappers&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="3-整合开发原始dao接口"><a href="#3-整合开发原始dao接口" class="headerlink" title="3.整合开发原始dao接口"></a>3.整合开发原始dao接口</h2><h3 id="3-1配置SqlSessionFactory"><a href="#3-1配置SqlSessionFactory" class="headerlink" title="3.1配置SqlSessionFactory"></a>3.1配置SqlSessionFactory</h3><p>在applicationContext.xml中配置SqlSessionFactory，为上图的:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.22.55.png" alt="">  </p>
 <h3 id="3-2开发原始dao"><a href="#3-2开发原始dao" class="headerlink" title="3.2开发原始dao"></a>3.2开发原始dao</h3><p>将dao接口的实现类UserDaoImpl.java继承SqlSessionDaoSupport.java，该父类中有属性的set方法并已经声明SqlSessionFactory对象，所以我们在UserDaoImpl.java中只需要写如下代码:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.25.45.png" alt="">  </p>
 <p>然后需要在spring配置文件中配置dao:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-12%20%E4%B8%8B%E5%8D%886.26.42.png" alt="">  </p>
@@ -384,7 +385,7 @@
 <li>1.将jdk版本调为1.7，我用的开发工具为IDEA，它默认下的JDK使用1.8版本，所以我需要在三个地方将jdk的版本改过来(前提是你已经下载了jdk1.7版本)，修改IDEA配置中Project的jdk版本、Modules的jdk版本、SDKs的版本，如果你用到leTomcat还需要修改Tomcat配置的jdk版本。这样jdk1.7与spring3.x才兼容。</li>
 <li>2.将spring3.x.jar换成spring4.x.jar包。这种方式比较繁琐，建议大家使用第一种方式。spring4.x与jdk1.8才兼容。</li>
 </ul>
-<p>写到这里，我们便成功的完成了spring3.x与mybatis3.x的整合。</p>
+<p>写到这里，我们便成功的完成了spring3.x与mybatis3.x的整合。整合完后我们便可以从mybatis的配置文件中删掉对mapper的配置了，因为我们已经在spring配置文件中用mapper扫描器对mapper进行了配置。</p>
 <h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
@@ -450,8 +451,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/13/42-springmvc快速入门/" rel="prev" title="Spring MVC快速入门">
-                Spring MVC快速入门 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/13/41-mybatis9逆向工程/" rel="prev" title="用IDEA开发MyBatis逆向工程">
+                用IDEA开发MyBatis逆向工程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -524,7 +525,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -532,7 +533,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -541,7 +542,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
