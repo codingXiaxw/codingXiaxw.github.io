@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8B%E8%BD%BD%E6%A1%86%E4%B8%AD%E8%A7%A3%E5%86%B3%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8javamail%E5%8F%91%E9%82%AE%E4%BB%B6.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/demo9.png">
-<meta property="og:updated_time" content="2016-11-07T12:05:55.000Z">
+<meta property="og:updated_time" content="2016-11-18T08:09:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb之上传下载与JavaMail">
 <meta name="twitter:description" content="对于JavaWeb中的上传与下载，别说你从没遇到过。  
@@ -364,17 +364,17 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="1-文件的上传"><a href="#1-文件的上传" class="headerlink" title="1.文件的上传"></a>1.文件的上传</h2><p>首先我们需要明确的是要实现上传和下载功能都要借助第三方Jar包 <code>fileupload.jar</code>,依赖jar包为:<code>commons-io.jar</code>。 </p>
-<h3 id="1-1上传对表单的限制"><a href="#1-1上传对表单的限制" class="headerlink" title="1.1上传对表单的限制"></a>1.1上传对表单的限制</h3><ul>
+<h2 id="2-实现文件的上传"><a href="#2-实现文件的上传" class="headerlink" title="2.实现文件的上传"></a>2.实现文件的上传</h2><p>首先我们需要明确的是要实现上传和下载功能都要借助第三方Jar包 <code>fileupload.jar</code>,依赖jar包为:<code>commons-io.jar</code>。 </p>
+<h3 id="2-1上传对表单的限制"><a href="#2-1上传对表单的限制" class="headerlink" title="2.1上传对表单的限制"></a>2.1上传对表单的限制</h3><ul>
 <li>1.method必须为”post”.</li>
-<li>2.必须对表单form添加<code>enctype=&quot;multipart/form-data</code>的属性。</li>
+<li>2.必须对表单form添加<code>enctype=&quot;multipart/form-data&quot;</code>的属性。</li>
 <li>3.表单中需要添加文件表单项:<code>&lt;input type=&quot;file&quot; name=&quot;xxx&quot;/&gt;</code>,除了文件表单项叫文件表单项外其他所有的input表单项都叫普通表单项。</li>
 </ul>
-<h3 id="1-2上传对servlet的限制"><a href="#1-2上传对servlet的限制" class="headerlink" title="1.2上传对servlet的限制"></a>1.2上传对servlet的限制</h3><ul>
+<h3 id="2-2上传对servlet的限制"><a href="#2-2上传对servlet的限制" class="headerlink" title="2.2上传对servlet的限制"></a>2.2上传对servlet的限制</h3><ul>
 <li>1.在servlet中通过方法<code>request.getParameter(&quot;xxx&quot;);</code>得到表单中的参数时得到返回值不再是Object对象，而是返回的null，因为文件表单form添加了<code>enctype=&quot;multipart/form-data</code>的属性。</li>
 <li>2.解决方法:在Servlet中通过方法<code>ServletInputStream request.getInputStream();</code>得到表单中的参数，然而得到的内容将是表单的整个请求体。  </li>
 </ul>
-<h3 id="1-3上传的代码实现"><a href="#1-3上传的代码实现" class="headerlink" title="1.3上传的代码实现"></a>1.3上传的代码实现</h3><p><strong>涉及到的类:</strong>  </p>
+<h3 id="2-3上传的代码实现"><a href="#2-3上传的代码实现" class="headerlink" title="2.3上传的代码实现"></a>2.3上传的代码实现</h3><p><strong>涉及到的类:</strong>  </p>
 <ul>
 <li>1.工厂类:FileItemFactory类</li>
 <li>2.解析器类:ServletFileUpload类</li>
@@ -398,7 +398,7 @@
 <li><code>void write(File file)</code>:把上传的文件内容保存到指定的文件中。</li>
 <li><code>String getContextType()</code>;</li>
 </ul>
-<h3 id="1-4上传的细节"><a href="#1-4上传的细节" class="headerlink" title="1.4上传的细节"></a>1.4上传的细节</h3><ul>
+<h3 id="2-4上传的细节"><a href="#2-4上传的细节" class="headerlink" title="2.4上传的细节"></a>2.4上传的细节</h3><ul>
 <li>1.文件必须保存到WEB-INF文件下<blockquote>
 <p>为了不让浏览器直接访问到。</p>
 </blockquote>
@@ -447,15 +447,15 @@ if(index!=-1)
 </li>
 </ul>
 <p><strong>说明:</strong>设置缓存大小与临时目录，在创建工厂时，调用DiskFileItemFactory的有参构造器:DiskFileItemFactory factory=new DiskFileItemFactory(缓存大小，硬盘临时目录路径)；。当文件正在上传时，会在硬盘的该临时目录下出现这个文件；而当文件上传完毕时，硬盘下该临时目录下的这个文件就会消失。最后保存在web-inf的target目录下。</p>
-<h2 id="2-文件的下载"><a href="#2-文件的下载" class="headerlink" title="2.文件的下载"></a>2.文件的下载</h2><p>下文文件就是向客户端响应字节数据。当不涉及文件下载时你向服务器发出一个请求时，服务器返回的响应都是html的字符数据；而当涉及到文件下载时，服务器会把一个文件变成字节数组，使用<code>response.getOutputStream();</code>来响应给浏览器。</p>
-<h3 id="2-1文件下载的要求"><a href="#2-1文件下载的要求" class="headerlink" title="2.1文件下载的要求"></a>2.1文件下载的要求</h3><p><strong>设置两个头一个流:</strong>  </p>
+<h2 id="3-实现文件的下载"><a href="#3-实现文件的下载" class="headerlink" title="3.实现文件的下载"></a>3.实现文件的下载</h2><p>下文文件就是向客户端响应字节数据。当不涉及文件下载时你向服务器发出一个请求时，服务器返回的响应都是html的字符数据；而当涉及到文件下载时，服务器会把一个文件变成字节数组，使用<code>response.getOutputStream();</code>来响应给浏览器。</p>
+<h3 id="3-1文件下载的要求"><a href="#3-1文件下载的要求" class="headerlink" title="3.1文件下载的要求"></a>3.1文件下载的要求</h3><p><strong>设置两个头一个流:</strong>  </p>
 <ul>
 <li>Content-Type:你传递给客户端的文件是什么MIME类型，例如:image/pjpeg。可以通过文件名称调用ServletContext的getMimeType()方法得到MIME类型。</li>
 <li>Content-Disposition:它的默认值为inline，表示在浏览器窗口中打开。<code>attachment;fileName=xxx;</code>在fileName后面跟随的是显示在下载框中的文件名称。</li>
 <li>流:要下载的文件数据。自己new一个输入流即可。</li>
 </ul>
-<h3 id="2-2下载Demo"><a href="#2-2下载Demo" class="headerlink" title="2.2下载Demo"></a>2.2下载Demo</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E7%9A%84%E4%BB%A3%E7%A0%81.png" alt=""></p>
-<h3 id="2-3下载的细节"><a href="#2-3下载的细节" class="headerlink" title="2.3下载的细节"></a>2.3下载的细节</h3><p>1.显示在下载框中的中文名称时，会出现乱码。  </p>
+<h3 id="3-2下载Demo"><a href="#3-2下载Demo" class="headerlink" title="3.2下载Demo"></a>3.2下载Demo</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E7%9A%84%E4%BB%A3%E7%A0%81.png" alt=""></p>
+<h3 id="3-3下载的细节"><a href="#3-3下载的细节" class="headerlink" title="3.3下载的细节"></a>3.3下载的细节</h3><p>1.显示在下载框中的中文名称时，会出现乱码。  </p>
 <ul>
 <li>FireFox:Base64编码</li>
 <li>其它大部分浏览器:url编码</li>
@@ -463,10 +463,10 @@ if(index!=-1)
 <p>通用方案:<code>frameName=new String(filename.getBytes(&quot;GBK&quot;),&quot;ISO-8859-1&quot;);</code>  </p>
 <p>代码见下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E4%B8%8B%E8%BD%BD%E6%A1%86%E4%B8%AD%E8%A7%A3%E5%86%B3%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.png" alt="">  </p>
 <p>注意downutil.jar包的使用</p>
-<h2 id="3-JavaMail"><a href="#3-JavaMail" class="headerlink" title="3.JavaMail"></a>3.JavaMail</h2><p>JavaMail是Java提供的一组API，用来发送和接收邮件。  </p>
+<h2 id="4-JavaMail"><a href="#4-JavaMail" class="headerlink" title="4.JavaMail"></a>4.JavaMail</h2><p>JavaMail是Java提供的一组API，用来发送和接收邮件。  </p>
 <p>需要导入的jar包为:1.mail.jar2.activation.jar</p>
-<h3 id="3-1与邮件相关的协议"><a href="#3-1与邮件相关的协议" class="headerlink" title="3.1与邮件相关的协议"></a>3.1与邮件相关的协议</h3><p>smtp 25–&gt;简单的邮件传输协议。<br>pop3 110–&gt;邮局协议第三版 </p>
-<h3 id="3-2核心类"><a href="#3-2核心类" class="headerlink" title="3.2核心类"></a>3.2核心类</h3><p>1.<em>Session</em>(这跟我们Servlet中的HttpSession不同哦).  </p>
+<h3 id="4-1与邮件相关的协议"><a href="#4-1与邮件相关的协议" class="headerlink" title="4.1与邮件相关的协议"></a>4.1与邮件相关的协议</h3><p>smtp 25–&gt;简单的邮件传输协议。<br>pop3 110–&gt;邮局协议第三版 </p>
+<h3 id="4-2核心类"><a href="#4-2核心类" class="headerlink" title="4.2核心类"></a>4.2核心类</h3><p>1.<em>Session</em>(这跟我们Servlet中的HttpSession不同哦).  </p>
 <p>如果你得到了它，表示已经与服务器连接上了，与Connectin的作用相似。  </p>
 <p>得到Session，需要使用<code>Session.getInstance(Properties,authenticator);</code>方法。  </p>
 <p><strong>得到Session对象的Demo如下:</strong>  </p>
@@ -483,9 +483,9 @@ protected PasswordAuthentication getPasswordAuthentication(){
 Session session=Session.getInstance(props,auth);
 </code></pre><p>2.<em>MimeMessage</em><br>它表示一个邮件对象，你可以调用它的<code>setFrom()</code>方法进行设置发件人、设置主题、设置正文。</p>
 <p>3.TransPort<br>它只有一个发邮件的功能。  </p>
-<h3 id="3-3完整Demo如下"><a href="#3-3完整Demo如下" class="headerlink" title="3.3完整Demo如下"></a>3.3完整Demo如下</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8javamail%E5%8F%91%E9%82%AE%E4%BB%B6.png" alt="">  </p>
-<h3 id="3-4带有附件的邮件"><a href="#3-4带有附件的邮件" class="headerlink" title="3.4带有附件的邮件"></a>3.4带有附件的邮件</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/demo9.png" alt=""></p>
-<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<h3 id="4-3完整Demo如下"><a href="#4-3完整Demo如下" class="headerlink" title="4.3完整Demo如下"></a>4.3完整Demo如下</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BD%BF%E7%94%A8javamail%E5%8F%91%E9%82%AE%E4%BB%B6.png" alt="">  </p>
+<h3 id="4-4带有附件的邮件"><a href="#4-4带有附件的邮件" class="headerlink" title="4.4带有附件的邮件"></a>4.4带有附件的邮件</h3><p><img src="http://od2xrf8gr.bkt.clouddn.com/demo9.png" alt=""></p>
+<h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
@@ -699,7 +699,7 @@ Session session=Session.getInstance(props,auth);
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-对于多部件表单的体的理解"><span class="nav-number">1.</span> <span class="nav-text">1.对于多部件表单的体的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-文件的上传"><span class="nav-number">2.</span> <span class="nav-text">1.文件的上传</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1上传对表单的限制"><span class="nav-number">2.1.</span> <span class="nav-text">1.1上传对表单的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2上传对servlet的限制"><span class="nav-number">2.2.</span> <span class="nav-text">1.2上传对servlet的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3上传的代码实现"><span class="nav-number">2.3.</span> <span class="nav-text">1.3上传的代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4上传的细节"><span class="nav-number">2.4.</span> <span class="nav-text">1.4上传的细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-文件的下载"><span class="nav-number">3.</span> <span class="nav-text">2.文件的下载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1文件下载的要求"><span class="nav-number">3.1.</span> <span class="nav-text">2.1文件下载的要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2下载Demo"><span class="nav-number">3.2.</span> <span class="nav-text">2.2下载Demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3下载的细节"><span class="nav-number">3.3.</span> <span class="nav-text">2.3下载的细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-JavaMail"><span class="nav-number">4.</span> <span class="nav-text">3.JavaMail</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1与邮件相关的协议"><span class="nav-number">4.1.</span> <span class="nav-text">3.1与邮件相关的协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2核心类"><span class="nav-number">4.2.</span> <span class="nav-text">3.2核心类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3完整Demo如下"><span class="nav-number">4.3.</span> <span class="nav-text">3.3完整Demo如下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4带有附件的邮件"><span class="nav-number">4.4.</span> <span class="nav-text">3.4带有附件的邮件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">5.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-对于多部件表单的体的理解"><span class="nav-number">1.</span> <span class="nav-text">1.对于多部件表单的体的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-实现文件的上传"><span class="nav-number">2.</span> <span class="nav-text">2.实现文件的上传</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1上传对表单的限制"><span class="nav-number">2.1.</span> <span class="nav-text">2.1上传对表单的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2上传对servlet的限制"><span class="nav-number">2.2.</span> <span class="nav-text">2.2上传对servlet的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3上传的代码实现"><span class="nav-number">2.3.</span> <span class="nav-text">2.3上传的代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4上传的细节"><span class="nav-number">2.4.</span> <span class="nav-text">2.4上传的细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-实现文件的下载"><span class="nav-number">3.</span> <span class="nav-text">3.实现文件的下载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1文件下载的要求"><span class="nav-number">3.1.</span> <span class="nav-text">3.1文件下载的要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2下载Demo"><span class="nav-number">3.2.</span> <span class="nav-text">3.2下载Demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3下载的细节"><span class="nav-number">3.3.</span> <span class="nav-text">3.3下载的细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-JavaMail"><span class="nav-number">4.</span> <span class="nav-text">4.JavaMail</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1与邮件相关的协议"><span class="nav-number">4.1.</span> <span class="nav-text">4.1与邮件相关的协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2核心类"><span class="nav-number">4.2.</span> <span class="nav-text">4.2核心类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3完整Demo如下"><span class="nav-number">4.3.</span> <span class="nav-text">4.3完整Demo如下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4带有附件的邮件"><span class="nav-number">4.4.</span> <span class="nav-text">4.4带有附件的邮件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-联系"><span class="nav-number">5.</span> <span class="nav-text">5.联系</span></a></li></ol></div>
             
           </div>
         </section>
