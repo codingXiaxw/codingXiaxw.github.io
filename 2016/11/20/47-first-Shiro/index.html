@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="shiro," />
 
 
 
@@ -84,25 +84,20 @@
 
 
 
-<meta name="description" content="在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  
-  今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  
-
-String字">
+<meta name="description" content="1.什么是ShiroApache Shiro是Java的一个安全框架，相比Spring框架的一个权限框架Spring Security,Spring Security和Spring的依赖过于紧密，没有Shiro使用简单，而且Shiro不依赖Spring，它不仅可以实现web应用的权限管理，还可以实现c/s系统、分布式系统权限管理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java中String、StringBuilder和StringBuffer的区别">
-<meta property="og:url" content="http://codingxiaxw.cn/2016/09/06/3-java中string、StringBuffer和StringBuilder的区别/index.html">
+<meta property="og:title" content="初识Shiro">
+<meta property="og:url" content="http://codingxiaxw.cn/2016/11/20/47-first-Shiro/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  
-  今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  
-
-String字">
-<meta property="og:updated_time" content="2016-10-17T12:53:34.000Z">
+<meta property="og:description" content="1.什么是ShiroApache Shiro是Java的一个安全框架，相比Spring框架的一个权限框架Spring Security,Spring Security和Spring的依赖过于紧密，没有Shiro使用简单，而且Shiro不依赖Spring，它不仅可以实现web应用的权限管理，还可以实现c/s系统、分布式系统权限管理。">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.41.57.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.46.22.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.53.01.png">
+<meta property="og:updated_time" content="2016-11-20T15:03:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java中String、StringBuilder和StringBuffer的区别">
-<meta name="twitter:description" content="在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  
-  今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  
-
-String字">
+<meta name="twitter:title" content="初识Shiro">
+<meta name="twitter:description" content="1.什么是ShiroApache Shiro是Java的一个安全框架，相比Spring框架的一个权限框架Spring Security,Spring Security和Spring的依赖过于紧密，没有Shiro使用简单，而且Shiro不依赖Spring，它不仅可以实现web应用的权限管理，还可以实现c/s系统、分布式系统权限管理。">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.41.57.png">
 
 
 
@@ -123,10 +118,10 @@ String字">
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/2016/09/06/3-java中string、StringBuffer和StringBuilder的区别/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/2016/11/20/47-first-Shiro/"/>
 
 
-  <title> Java中String、StringBuilder和StringBuffer的区别 | codingXiaxw's blog </title>
+  <title> 初识Shiro | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -279,7 +274,7 @@ String字">
             
             
               
-                Java中String、StringBuilder和StringBuffer的区别
+                初识Shiro
               
             
           </h1>
@@ -291,8 +286,8 @@ String字">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-06T16:25:53+08:00" content="Sep 6 2016">
-              Sep 6 2016
+            <time itemprop="dateCreated" datetime="2016-11-20T22:57:08+08:00" content="Nov 20 2016">
+              Nov 20 2016
             </time>
           </span>
 
@@ -305,8 +300,8 @@ String字">
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/shiro/" itemprop="url" rel="index">
+                    <span itemprop="name">shiro</span>
                   </a>
                 </span>
 
@@ -321,8 +316,8 @@ String字">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/06/3-java中string、StringBuffer和StringBuilder的区别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/06/3-java中string、StringBuffer和StringBuilder的区别/" itemprop="commentsCount"></span>
+                <a href="/2016/11/20/47-first-Shiro/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/20/47-first-Shiro/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -345,33 +340,63 @@ String字">
       
 
       
-        <p>  在网上查找知识点时很容易产生当时看了就会，下次又遇到这个知识点时却不得不再次上网查看这个知识点的毛病。于是打算以后将自己领悟不清的知识点写下来（相信这也是大多数人喜欢写博客的原因吧），一方面为了给后来者借鉴，另一方面也是为了自己加深印象和自己对知识的总结。  </p>
-<p>  今天就来谈谈自己对java中String、StringBuilder和StringBuffer知识点的理解。  </p>
-<ul>
-<li><strong>String字符串常量</strong>  </li>
-<li><strong>StringBuffer字符串变量(线程安全）</strong>  </li>
-<li><p><strong>StringBuilder字符串变量（非线程安全）</strong>  </p>
+        <h2 id="1-什么是Shiro"><a href="#1-什么是Shiro" class="headerlink" title="1.什么是Shiro"></a>1.什么是Shiro</h2><p>Apache Shiro是Java的一个安全框架，相比Spring框架的一个权限框架Spring Security,Spring Security和Spring的依赖过于紧密，没有Shiro使用简单，而且Shiro不依赖Spring，它不仅可以实现web应用的权限管理，还可以实现c/s系统、分布式系统权限管理。  </p>
 <a id="more"></a>
-</li>
-</ul>
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>所谓常量，即该对象的值已经被赋予了，不能再更改。若非要更改，则只能再重新创建另一个对象，在这个新创建的对象上再进行赋值。因此，每次在对String类型的对象进行改变的时候其实都等同于生成了一个新的String对象，然后将指针指向新的String对象，所以经常改变内容的字符串最好不要用String，因为每次生成对象都会对系统性能产生影响，特别当内存中无引用对象多了以后，JVM的GC就会开始工作，那速度是一定会相当慢的。  </p>
-<h2 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h2><p>所谓变量，即是可以随时变化的量。如果对StringBuffer对象进行改变，每次结果都会对StringBuffer对象进行操作，而不是生成新的对象。所以一般字符串要经常变化的话我推荐使用StringBuffer。  </p>
-<h2 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h2><p>StringBuilder和StringBuffer类功能基本相似，方法也差不多，主要区别在于StringBuffer类的方法是多线程安全的，而StringBuilder不是线程安全的，相比而言StringBuilder类会略微快一点。  </p>
-<p><strong>题外话:</strong>现在很多互联网公司面试java的面试官都喜欢问这样一个问题,</p>
-<blockquote>
-<p>请你谈谈StringBuffer和StringBuilder的区别。  </p>
-</blockquote>
-<p>大多数人肯定会直接说前者是线程安全的而后者是非线程安全的。其实这个时候才是面试官真正想问的，他会顺着你的回答又问你，那请你谈谈什么是线程…balabalabala。哈哈，要想顺利通过面试，所以对知识的了解还是全面点吧～！  </p>
-<hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<p>Shiro属于轻量框架，可以帮助我们完成:认证、授权、加密、会话管理、与Web集成、缓存等,所以越来越多企业项目开始使用Shiro。而且Shiro的API也是非常简单，其基本功能点如下图:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.41.57.png" alt="">  </p>
+<p>解释:</p>
 <ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><strong>Authentication:</strong>身份认证/登录，验证用户是不是拥有相应的身份。</li>
+<li><strong>Authorization:</strong>授权，即权限验证，验证某个已认证的用户是否拥有某个权限；即判断用户是否能做事情，常见的如：验证某个用户是否拥有某个角色。或者细粒度的验证某个用户对某个资源是否具有某个权限。</li>
+<li><strong>Session Manager:</strong>会话管理，即用户登录后就是一次会话，在没有退出之前，它的所有信息都在会话中；会话可以是普通JavaSE环境的，也可以是如Web环境的。</li>
+<li><strong>Cryptography:</strong>加密，保护数据的安全性，如密码加密存储到数据库，而不是明文(所谓明文，就是我们输入的文字例如登录列表的用户名和密码)存储。</li>
+<li><strong>Web Support:</strong>Web支持，可以非常容易的集成到Web环境。</li>
+<li><strong>Caching:</strong>缓存，比如用户登录后，其用户信息、拥有的角色/权限不必每次去查，这样可以提高效率。</li>
+<li><strong>Concurrency:</strong>shiro支持多线程应用的并发验证，即如在一个线程中开启另一个线程，能把权限自动传播过去。</li>
+<li><strong>Testing:</strong>提供测试支持。</li>
+<li><strong>Run As:</strong>允许一个用户假装为另一个用户（如果他们允许）的身份进行访问。</li>
+<li><strong>Remember Me:</strong>记住我，这个是非常常见的功能，即一次登录后，下次再来的话不用登录了。</li>
+</ul>
+<p><strong>记住一点:</strong>Shiro不会去维护用户、维护权限，这些需要我们自己去设计/提供；然后通过相应的接口注入给Shiro即可。</p>
+<p>接下来我们分别从外部和内部来看看Shiro的架构，对于一个好的框架，从外部来看应该具有非常简单易于使用的API，且API契约明确；从内部来看的话，其应该有一个可扩展的架构，即非常容易插入用户自定义实现，因为任何框架都不能满足所有需求。  </p>
+<h2 id="2-Shiro架构"><a href="#2-Shiro架构" class="headerlink" title="2.Shiro架构"></a>2.Shiro架构</h2><h3 id="2-1从外部看Shiro架构"><a href="#2-1从外部看Shiro架构" class="headerlink" title="2.1从外部看Shiro架构"></a>2.1从外部看Shiro架构</h3><p>从外部看Shiro，即从应用程序的角度来观察如何使用Shiro完成工作。如下图Apache官网为我们提供的一张Shiro的架构图:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.46.22.png" alt="">  </p>
+<p>解释:应用代码直接交互的对象是Subject，也就是说Shiro的对外API核心就是Subject；图中每个API的含义:  </p>
+<ul>
+<li><strong>Subject:</strong>主体，代表了当前“用户”，这个用户不一定是一个具体的人，与当前应用交互的任何东西都是Subject，如网络爬虫，机器人等；即一个抽象概念；所有Subject都绑定到SecurityManager，与Subject的所有交互都会委托给SecurityManager；可以把Subject认为是一个门面；SecurityManager才是实际的执行者。</li>
+<li><strong>SecurityManager:</strong>安全管理器；即所有与安全有关的操作都会与SecurityManager交互；且它管理着所有Subject；可以看出它是Shiro的核心，它负责与后边介绍的其他组件进行交互，如果学习过SpringMVC，你可以把它看成DispatcherServlet前端控制器。</li>
+<li><strong>Realm:</strong>域，Shiro从从Realm获取安全数据（如用户、角色、权限），就是说SecurityManager要验证用户身份，那么它需要从Realm获取相应的用户进行比较以确定用户身份是否合法；也需要从Realm得到用户相应的角色/权限进行验证用户是否能进行操作；可以把Realm看成DataSource，即安全数据源。</li>
+</ul>
+<p>也就是说对于我们而言，最简单的一个Shiro应用都是经过如下步骤:  </p>
+<p>1、应用代码通过Subject来进行认证和授权，而Subject又委托给SecurityManager。  </p>
+<p>2、我们需要给Shiro的SecurityManager注入Realm，从而让SecurityManager能得到合法的用户及其权限进行判断。</p>
+<p>从以上也可以看出，Shiro不提供维护用户/权限，而是通过Realm让开发人员自己注入。  </p>
+<h3 id="2-2从内部看Shiro架构"><a href="#2-2从内部看Shiro架构" class="headerlink" title="2.2从内部看Shiro架构"></a>2.2从内部看Shiro架构</h3><p>架构图如下:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.53.01.png" alt="">  </p>
+<p>分析:  </p>
+<ul>
+<li><strong>Subject:</strong>主体，可以看到主体可以是任何可以与应用交互的“用户”。</li>
+<li><strong>SecurityManager:</strong>相当于SpringMVC中的DispatcherServlet或者Struts2中的FilterDispatcher；是Shiro的心脏；所有具体的交互都通过SecurityManager进行控制；它管理着所有Subject、且负责进行认证和授权、及会话、缓存的管理。</li>
+<li><strong>Authenticator:</strong>认证器，负责主体认证的，这是一个扩展点，如果用户觉得Shiro默认的不好，可以自定义实现；其需要认证策略（Authentication Strategy），即什么情况下算用户认证通过了。</li>
+<li><strong>Authrizer:</strong>授权器，或者访问控制器，用来决定主体是否有权限进行相应的操作；即控制着用户能访问应用中的哪些功能。</li>
+<li><strong>Realm:</strong>可以有1个或多个Realm，可以认为是安全实体数据源，即用于获取安全实体的；可以是JDBC实现，也可以是LDAP实现，或者内存实现等等；由用户提供；注意：Shiro不知道你的用户/权限存储在哪及以何种格式存储；所以我们一般在应用中都需要实现自己的Realm。</li>
+<li><strong>SessionManager:</strong>如果写过Servlet就应该知道Session的概念，Session呢需要有人去管理它的生命周期，这个组件就是SessionManager；而Shiro并不仅仅可以用在Web环境，也可以用在如普通的JavaSE环境、EJB等环境；所有呢，Shiro就抽象了一个自己的Session来管理主体与应用之间交互的数据；这样的话，比如我们在Web环境用，刚开始是一台Web服务器；接着又上了台EJB服务器；这时想把两台服务器的会话数据放到一个地方，这个时候就可以实现自己的分布式会话（如把数据放到Memcached服务器）。</li>
+<li><strong>SessionDAO:</strong>DAO大家都用过，数据访问对象，用于会话的CRUD，比如我们想把Session保存到数据库，那么可以实现自己的SessionDAO，通过如JDBC写到数据库；比如想把Session放到Memcached中，可以实现自己的Memcached SessionDAO；另外SessionDAO中可以使用Cache进行缓存，以提高性能；</li>
+<li><strong>CacheManager:</strong>缓存控制器，来管理如用户、角色、权限等的缓存的；因为这些数据基本上很少去改变，放到缓存中后可以提高访问的性能。</li>
+<li><strong>Cryptography:</strong>密码模块，Shiro提高了一些常见的加密组件用于如密码加密/解密的。</li>
+</ul>
+<p>到此Shiro的架构及组件就介绍完了，接下来我将通过一个测试类带你们快速学会使用这些组件。见<a href="">一个例子快速入门Shiro组件</a>  </p>
+<p>本篇文章参考:<a href="http://jinnianshilongnian.iteye.com/blog/2018936" target="_blank" rel="external">张开涛:跟我学Shiro之Shiro简介</a>   </p>
+<p>正如孔老先生所言:你对看到的、学到的知识不加以整理，又怎么会融会贯通成为你自己的知识呢?</p>
+<h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 
       
@@ -411,7 +436,7 @@ String字">
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag">#Java</a>
+            <a href="/tags/shiro/" rel="tag">#shiro</a>
           
         </div>
       
@@ -420,17 +445,13 @@ String字">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/09/2-mac用户如何将自己的代码上传至github托管/" rel="next" title="Mac用户如何将自己的代码上传至github托管">
-                <i class="fa fa-chevron-left"></i> Mac用户如何将自己的代码上传至github托管
+              <a href="/2016/11/19/46-ssm高级开发/" rel="next" title="SSM注解开发的高级知识讲解">
+                <i class="fa fa-chevron-left"></i> SSM注解开发的高级知识讲解
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/07/4-Android中Activity的生命周期/" rel="prev" title="Android中Activity的生命周期">
-                Android中Activity的生命周期 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -456,8 +477,8 @@ String字">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/06/3-java中string、StringBuffer和StringBuilder的区别/"
-           data-title="Java中String、StringBuilder和StringBuffer的区别" data-url="http://codingxiaxw.cn/2016/09/06/3-java中string、StringBuffer和StringBuilder的区别/">
+      <div class="ds-thread" data-thread-key="2016/11/20/47-first-Shiro/"
+           data-title="初识Shiro" data-url="http://codingxiaxw.cn/2016/11/20/47-first-Shiro/">
       </div>
     
   </div>
@@ -577,7 +598,7 @@ String字">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StringBuffer"><span class="nav-number">2.</span> <span class="nav-text">StringBuffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StringBuilder"><span class="nav-number">3.</span> <span class="nav-text">StringBuilder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">4.</span> <span class="nav-text">联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是Shiro"><span class="nav-number">1.</span> <span class="nav-text">1.什么是Shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Shiro架构"><span class="nav-number">2.</span> <span class="nav-text">2.Shiro架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1从外部看Shiro架构"><span class="nav-number">2.1.</span> <span class="nav-text">2.1从外部看Shiro架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2从内部看Shiro架构"><span class="nav-number">2.2.</span> <span class="nav-text">2.2从内部看Shiro架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-联系"><span class="nav-number">3.</span> <span class="nav-text">3.联系</span></a></li></ol></div>
             
           </div>
         </section>
