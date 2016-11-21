@@ -84,20 +84,24 @@
 
 
 
-<meta name="description" content="1.什么是ShiroApache Shiro是Java的一个安全框架，相比Spring框架的一个权限框架Spring Security,Spring Security和Spring的依赖过于紧密，没有Shiro使用简单，而且Shiro不依赖Spring，它不仅可以实现web应用的权限管理，还可以实现c/s系统、分布式系统权限管理。">
+<meta name="description" content="Shiro是Apache的一个权限管理框架，鉴于很多人对权限管理的概念都不是很清楚，所以我在正式介绍Shiro前我会谈谈权限管理的概念。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识Shiro">
 <meta property="og:url" content="http://codingxiaxw.cn/2016/11/20/47-first-Shiro/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="1.什么是ShiroApache Shiro是Java的一个安全框架，相比Spring框架的一个权限框架Spring Security,Spring Security和Spring的依赖过于紧密，没有Shiro使用简单，而且Shiro不依赖Spring，它不仅可以实现web应用的权限管理，还可以实现c/s系统、分布式系统权限管理。">
+<meta property="og:description" content="Shiro是Apache的一个权限管理框架，鉴于很多人对权限管理的概念都不是很清楚，所以我在正式介绍Shiro前我会谈谈权限管理的概念。">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-21%20%E4%B8%8B%E5%8D%8810.44.10.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-21%20%E4%B8%8B%E5%8D%8810.53.58.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-21%20%E4%B8%8B%E5%8D%8811.06.37.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-21%20%E4%B8%8B%E5%8D%8811.07.47.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.41.57.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.46.22.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.53.01.png">
-<meta property="og:updated_time" content="2016-11-20T15:09:40.000Z">
+<meta property="og:updated_time" content="2016-11-21T15:20:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识Shiro">
-<meta name="twitter:description" content="1.什么是ShiroApache Shiro是Java的一个安全框架，相比Spring框架的一个权限框架Spring Security,Spring Security和Spring的依赖过于紧密，没有Shiro使用简单，而且Shiro不依赖Spring，它不仅可以实现web应用的权限管理，还可以实现c/s系统、分布式系统权限管理。">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.41.57.png">
+<meta name="twitter:description" content="Shiro是Apache的一个权限管理框架，鉴于很多人对权限管理的概念都不是很清楚，所以我在正式介绍Shiro前我会谈谈权限管理的概念。">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-21%20%E4%B8%8B%E5%8D%8810.44.10.png">
 
 
 
@@ -340,9 +344,46 @@
       
 
       
-        <h2 id="1-什么是Shiro"><a href="#1-什么是Shiro" class="headerlink" title="1.什么是Shiro"></a>1.什么是Shiro</h2><p>Apache Shiro是Java的一个安全框架，相比Spring框架的一个权限框架Spring Security,Spring Security和Spring的依赖过于紧密，没有Shiro使用简单，而且Shiro不依赖Spring，它不仅可以实现web应用的权限管理，还可以实现c/s系统、分布式系统权限管理。  </p>
+        <p>Shiro是Apache的一个权限管理框架，鉴于很多人对权限管理的概念都不是很清楚，所以我在正式介绍Shiro前我会谈谈权限管理的概念。</p>
 <a id="more"></a>
-<p>Shiro属于轻量框架，可以帮助我们完成:认证、授权、加密、会话管理、与Web集成、缓存等,所以越来越多企业项目开始使用Shiro。而且Shiro的API也是非常简单，其基本功能点如下图:  </p>
+<h2 id="1-权限管理"><a href="#1-权限管理" class="headerlink" title="1.权限管理"></a>1.权限管理</h2><h3 id="1-1什么是权限管理"><a href="#1-1什么是权限管理" class="headerlink" title="1.1什么是权限管理"></a>1.1什么是权限管理</h3><p>只要有用户参与的系统一般都要有权限管理，权限管理实现对用户访问系统的控制，按照安全规则或者安全策略<strong>控制</strong>用户可以访问而且只能访问自己被授权的<strong>资源</strong>。权限管理包括<strong>用户认证</strong>和<strong>用户授权</strong>两部分</p>
+<h3 id="1-2用户认证"><a href="#1-2用户认证" class="headerlink" title="1.2用户认证"></a>1.2用户认证</h3><p>用户认证，用户去访问系统，系统要验证用户身份的合法性。最常用的用户身份验证的方法：1、用户名密码方式。2、指纹打卡机。3、基于证书验证方法。只有当系统验证用户身份合法，用户才可访问系统的资源。</p>
+<h4 id="1-2-1用户认证流程"><a href="#1-2-1用户认证流程" class="headerlink" title="1.2.1用户认证流程"></a>1.2.1用户认证流程</h4><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-21%20%E4%B8%8B%E5%8D%8810.44.10.png" alt="">  </p>
+<h4 id="1-2-2关键对象"><a href="#1-2-2关键对象" class="headerlink" title="1.2.2关键对象"></a>1.2.2关键对象</h4><p><strong>subject:</strong>主体，理解为用户,可能是程序、网络爬虫等，都要去访问系统的资源，系统需要对subject进行身份认证。  </p>
+<p><strong>principal:</strong>身份信息，通常是唯一的，一个主体还有多个身份信息，但是都有一个主身份信息（primary principal）。  </p>
+<p><strong>credential:</strong>凭证信息，可以是密码 、证书、指纹。  </p>
+<p><strong>总结:</strong>主体在进行身份认证时需要提供身份信息和凭证信息。</p>
+<h3 id="1-3用户授权"><a href="#1-3用户授权" class="headerlink" title="1.3用户授权"></a>1.3用户授权</h3><p>用户授权，简单理解为访问控制，在用户认证通过后(注意只有当用户认证通过后才能对用户进行授权)，系统对用户访问资源进行控制，用户具有资源的访问权限方可访问。</p>
+<h4 id="1-3-1授权流程"><a href="#1-3-1授权流程" class="headerlink" title="1.3.1授权流程"></a>1.3.1授权流程</h4><p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-21%20%E4%B8%8B%E5%8D%8810.53.58.png" alt="">  </p>
+<h4 id="1-3-2关键对象"><a href="#1-3-2关键对象" class="headerlink" title="1.3.2关键对象"></a>1.3.2关键对象</h4><p>授权的过程理解为：who对what(which)进行how操作。</p>
+<p><strong>who:</strong>主体即subject，subject在认证通过后系统进行访问控制。  </p>
+<p><strong>what(which):</strong>资源(Resource)，subject必须具备资源的访问权限才可访问该 资源。资源比如：系统用户列表页面、商品修改菜单、商品id为001的商品信息。资源分为资源类型和资源实例:系统的用户信息就是资源类型，相当于java类;系统中id为001的用户就是资源实例，相当于new的java对象。  </p>
+<p><strong>how:</strong>权限/许可(permission) ，针对资源的权限或许可，subject具有permission访问资源，如何访问/操作需要定义permission，权限比如:用户添加、用户修改、商品删除。</p>
+<h4 id="1-3-3权限模型"><a href="#1-3-3权限模型" class="headerlink" title="1.3.3权限模型"></a>1.3.3权限模型</h4><p>对1.3.2节提到的主体、资源、权限通过数据模型表示,标准权限数据模型包括 :用户(账号和密码)、角色(角色名称)、权限（包括资源和权限）、用户角色关系(用户id、角色id)、角色权限关系(角色id、权限id)。如下图:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-21%20%E4%B8%8B%E5%8D%8811.06.37.png" alt="">  </p>
+<p>而通常企业开发中将资源表和权限表合并为一张权限表，如下图:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-21%20%E4%B8%8B%E5%8D%8811.07.47.png" alt="">  </p>
+<p>上图常被称为权限管理的通用模型，不过企业在开发中根据系统自身的特点还会对上图进行修改，但是用户、角色、权限、用户角色关系、角色权限关系是需要去理解的。</p>
+<h3 id="1-3-4分配权限"><a href="#1-3-4分配权限" class="headerlink" title="1.3.4分配权限"></a>1.3.4分配权限</h3><p>用户需要分配相应的权限才可访问相应的资源。权限是对于资源的操作许可。  </p>
+<p>通常给用户分配资源权限需要将权限信息持久化，比如存储在关系数据库中。  </p>
+<p>把用户信息、权限管理、用户分配的权限信息写到数据库（权限数据模型）。</p>
+<h3 id="1-3-5权限控制-授权的核心"><a href="#1-3-5权限控制-授权的核心" class="headerlink" title="1.3.5权限控制(授权的核心)"></a>1.3.5权限控制(授权的核心)</h3><p>权限的控制分为基于角色的访问控制和基于资源的访问控制。  </p>
+<p>基于角色的访问控制:RBAC((role  based  access  control)。比如:系统角色包括 :部门经理、总经理。（角色针对用户来划分）。  </p>
+<p>系统代码中的实现为:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果该user是部门经理则可以访问if中的代码</span></span><br><span class="line"><span class="keyword">if</span>(user.hasRole(<span class="string">'部门经理'</span>))&#123;</span><br><span class="line">	<span class="comment">//系统资源内容</span></span><br><span class="line">	<span class="comment">//用户报表查看</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>基于角色的访问控制出现的问题:角色针对人划分的，人作为用户在系统中属于活动内容，如果该 角色可以访问的资源出现变更，需要修改你的代码了，比如：需要变更为部门经理和总经理都可以进行用户报表查看，代码改为:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(user.hasRole(<span class="string">'部门经理'</span>) || user.hasRole(<span class="string">'总经理'</span>)  )&#123;</span><br><span class="line">	<span class="comment">//系统资源内容</span></span><br><span class="line">	<span class="comment">//用户报表查看</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可知基于角色的访问控制是不利于系统维护(可扩展性不强)。  </p>
+<p>而对于基于资源的访问控制:RBAC(Resource  based  access  control)。因为资源在系统中是不变的，比如资源有:类中的方法，页面中的按钮。对资源的访问需要具有permission权限，代码可以写为:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(user.hasPermission (<span class="string">'用户报表查看（权限标识符）'</span>))&#123;</span><br><span class="line">	<span class="comment">//系统资源内容</span></span><br><span class="line">	<span class="comment">//用户报表查看</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上边的方法就可以解决用户角色变更不用修改上边权限控制的代码。如果需要变更权限只需要在分配权限模块去操作，给部门经理或总经理增或删除权限。所以在实际开发中我们建议使用基于资源的访问控制实现权限管理。</p>
+<h3 id="1-4权限管理解决方案"><a href="#1-4权限管理解决方案" class="headerlink" title="1.4权限管理解决方案"></a>1.4权限管理解决方案</h3><h4 id="1-4-1什么是粗粒度和细粒度权限"><a href="#1-4-1什么是粗粒度和细粒度权限" class="headerlink" title="1.4.1什么是粗粒度和细粒度权限"></a>1.4.1什么是粗粒度和细粒度权限</h4><p><strong>粗粒度权限管理:</strong>对资源类型的权限管理。资源类型比如:菜单、url连接、用户添加页面、用户信息、类方法、页面中按钮。粗粒度权限管理比如:超级管理员可以访问户添加页面、用户信息等全部页面。部门管理员可以访问用户信息页面包括 页面中所有按钮。  </p>
+<p><strong>细粒度权限管理:</strong>对资源实例的权限管理。资源实例就资源类型的具体化，比如:用户id为001的修改连接，1110班的用户信息、行政部的员工。细粒度权限管理就是数据级别的权限管理。细粒度权限管理比如:部门经理只可以访问本部门的员工信息，用户只可以看到自己的菜单，大区经理只能查看本辖区的销售订单。</p>
+<p><strong>粗粒度和细粒度例子:</strong>系统有一个用户列表查询页面，对用户列表查询分权限，如果粗颗粒管理，张三和李四都有用户列表查询的权限，张三和李四都可以访问用户列表查询。<br>进一步进行细颗粒管理，张三（行政部）和李四(开发部)只可以查询自己本部门的用户信息。张三只能查看行政部 的用户信息，李四只能查看开发部门的用户信息。细粒度权限管理就是数据级别的权限管理。</p>
+<h4 id="1-4-2如何实现粗粒度和细粒度权限管理"><a href="#1-4-2如何实现粗粒度和细粒度权限管理" class="headerlink" title="1.4.2如何实现粗粒度和细粒度权限管理"></a>1.4.2如何实现粗粒度和细粒度权限管理</h4><p><strong>如何实现粗粒度权限管理？</strong>  </p>
+<p>粗粒度权限管理比较容易将权限管理的代码抽取出来在系统架构级别统一处理。比如:通过springmvc的拦截器实现授权。  </p>
+<p><strong>如何实现细粒度权限管理？</strong>  </p>
+<p>对细粒度权限管理在数据级别是没有共性可言，针对细粒度权限管理就是系统业务逻辑的一部分，如果在业务层去处理相对比较简单，如果将细粒度权限管理统一在系统架构级别去抽取，比较困难，即使抽取的功能可能也存在扩展不强。  </p>
+<p>建议细粒度权限管理在业务层去控制。比如:部门经理只查询本部门员工信息，在service接口提供一个部门id的参数，controller中根据当前用户的信息得到该 用户属于哪个部门，调用service时将部门id传入service，实现该用户只查询本部门的员工。</p>
+<h2 id="2-什么是Shiro"><a href="#2-什么是Shiro" class="headerlink" title="2.什么是Shiro"></a>2.什么是Shiro</h2><p>Apache Shiro是Java的一个权限管理框架，相比Spring框架中的权限管理框架Spring Security,Spring Security和Spring的依赖过于紧密，没有Shiro使用简单，而且Shiro不依赖Spring，它不仅可以实现web应用的权限管理，还可以实现c/s系统、分布式系统权限管理。  </p>
+<p>Shiro属于轻量框架，可以帮助我们完成:认证、授权、加密、会话管理、与Web集成、缓存等功能,所以越来越多企业项目开始使用Shiro。而且Shiro的API也是非常简单，其基本功能点如下图:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.41.57.png" alt="">  </p>
 <p>解释:</p>
 <ul>
@@ -359,7 +400,7 @@
 </ul>
 <p><strong>记住一点:</strong>Shiro不会去维护用户、维护权限，这些需要我们自己去设计/提供；然后通过相应的接口注入给Shiro即可。</p>
 <p>接下来我们分别从外部和内部来看看Shiro的架构，对于一个好的框架，从外部来看应该具有非常简单易于使用的API，且API契约明确；从内部来看的话，其应该有一个可扩展的架构，即非常容易插入用户自定义实现，因为任何框架都不能满足所有需求。  </p>
-<h2 id="2-Shiro架构"><a href="#2-Shiro架构" class="headerlink" title="2.Shiro架构"></a>2.Shiro架构</h2><h3 id="2-1从外部看Shiro架构"><a href="#2-1从外部看Shiro架构" class="headerlink" title="2.1从外部看Shiro架构"></a>2.1从外部看Shiro架构</h3><p>从外部看Shiro，即从应用程序的角度来观察如何使用Shiro完成工作。如下图Apache官网为我们提供的一张Shiro的架构图:  </p>
+<h2 id="3-Shiro架构"><a href="#3-Shiro架构" class="headerlink" title="3.Shiro架构"></a>3.Shiro架构</h2><h3 id="3-1从外部看Shiro架构"><a href="#3-1从外部看Shiro架构" class="headerlink" title="3.1从外部看Shiro架构"></a>3.1从外部看Shiro架构</h3><p>从外部看Shiro，即从应用程序的角度来观察如何使用Shiro完成工作。如下图Apache官网为我们提供的一张Shiro的架构图:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.46.22.png" alt="">  </p>
 <p>解释:应用代码直接交互的对象是Subject，也就是说Shiro的对外API核心就是Subject；图中每个API的含义:  </p>
 <ul>
@@ -371,7 +412,7 @@
 <p>1、应用代码通过Subject来进行认证和授权，而Subject又委托给SecurityManager。  </p>
 <p>2、我们需要给Shiro的SecurityManager注入Realm，从而让SecurityManager能得到合法的用户及其权限进行判断。</p>
 <p>从以上也可以看出，Shiro不提供维护用户/权限，而是通过Realm让开发人员自己注入。  </p>
-<h3 id="2-2从内部看Shiro架构"><a href="#2-2从内部看Shiro架构" class="headerlink" title="2.2从内部看Shiro架构"></a>2.2从内部看Shiro架构</h3><p>架构图如下:  </p>
+<h3 id="3-2从内部看Shiro架构"><a href="#3-2从内部看Shiro架构" class="headerlink" title="3.2从内部看Shiro架构"></a>3.2从内部看Shiro架构</h3><p>架构图如下:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8810.53.01.png" alt="">  </p>
 <p>分析:  </p>
 <ul>
@@ -385,10 +426,10 @@
 <li><strong>CacheManager:</strong>缓存控制器，来管理如用户、角色、权限等的缓存的；因为这些数据基本上很少去改变，放到缓存中后可以提高访问的性能。</li>
 <li><strong>Cryptography:</strong>密码模块，Shiro提高了一些常见的加密组件用于如密码加密/解密的。</li>
 </ul>
-<p>到此Shiro的架构及组件就介绍完了，接下来我会总结关于如何使用这些组件。见下篇文章<a href="">Shiro之实现认证</a>  </p>
+<p>到此Shiro的架构及组件就介绍完了，接下来我会总结关于如何使用这些组件。见下篇文章<a href="http://codingxiaxw.cn/2016/11/21/48-shiro-authentication/">Shiro之实现认证</a>  </p>
 <p>本篇文章参考:<a href="http://jinnianshilongnian.iteye.com/blog/2018936" target="_blank" rel="external">张开涛:跟我学Shiro之Shiro简介</a>   </p>
 <p>正如孔老先生所言:你对看到的、学到的知识不加以整理，又怎么会融会贯通成为你自己的知识呢?</p>
-<h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
@@ -602,7 +643,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是Shiro"><span class="nav-number">1.</span> <span class="nav-text">1.什么是Shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Shiro架构"><span class="nav-number">2.</span> <span class="nav-text">2.Shiro架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1从外部看Shiro架构"><span class="nav-number">2.1.</span> <span class="nav-text">2.1从外部看Shiro架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2从内部看Shiro架构"><span class="nav-number">2.2.</span> <span class="nav-text">2.2从内部看Shiro架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-联系"><span class="nav-number">3.</span> <span class="nav-text">3.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-权限管理"><span class="nav-number">1.</span> <span class="nav-text">1.权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1什么是权限管理"><span class="nav-number">1.1.</span> <span class="nav-text">1.1什么是权限管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2用户认证"><span class="nav-number">1.2.</span> <span class="nav-text">1.2用户认证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1用户认证流程"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1用户认证流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2关键对象"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2关键对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3用户授权"><span class="nav-number">1.3.</span> <span class="nav-text">1.3用户授权</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1授权流程"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1授权流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2关键对象"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2关键对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3权限模型"><span class="nav-number">1.3.3.</span> <span class="nav-text">1.3.3权限模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-4分配权限"><span class="nav-number">1.4.</span> <span class="nav-text">1.3.4分配权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-5权限控制-授权的核心"><span class="nav-number">1.5.</span> <span class="nav-text">1.3.5权限控制(授权的核心)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4权限管理解决方案"><span class="nav-number">1.6.</span> <span class="nav-text">1.4权限管理解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1什么是粗粒度和细粒度权限"><span class="nav-number">1.6.1.</span> <span class="nav-text">1.4.1什么是粗粒度和细粒度权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2如何实现粗粒度和细粒度权限管理"><span class="nav-number">1.6.2.</span> <span class="nav-text">1.4.2如何实现粗粒度和细粒度权限管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-什么是Shiro"><span class="nav-number">2.</span> <span class="nav-text">2.什么是Shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Shiro架构"><span class="nav-number">3.</span> <span class="nav-text">3.Shiro架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1从外部看Shiro架构"><span class="nav-number">3.1.</span> <span class="nav-text">3.1从外部看Shiro架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2从内部看Shiro架构"><span class="nav-number">3.2.</span> <span class="nav-text">3.2从内部看Shiro架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
             
           </div>
         </section>
