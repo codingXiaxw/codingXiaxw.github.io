@@ -1,0 +1,872 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="shiro," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="当用户的信息得到认证通过后，该用户在系统中具有哪些操作权限呢？所以在用户认证通过后，系统就要给该用户进行授权操作了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shiro之实现授权">
+<meta property="og:url" content="http://codingxiaxw.cn/2016/11/22/49-shiro-authorization/index.html">
+<meta property="og:site_name" content="codingXiaxw's blog">
+<meta property="og:description" content="当用户的信息得到认证通过后，该用户在系统中具有哪些操作权限呢？所以在用户认证通过后，系统就要给该用户进行授权操作了。">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-22%20%E4%B8%8B%E5%8D%883.43.34.png">
+<meta property="og:updated_time" content="2016-11-22T08:28:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shiro之实现授权">
+<meta name="twitter:description" content="当用户的信息得到认证通过后，该用户在系统中具有哪些操作权限呢？所以在用户认证通过后，系统就要给该用户进行授权操作了。">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-22%20%E4%B8%8B%E5%8D%883.43.34.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codingxiaxw.cn/2016/11/22/49-shiro-authorization/"/>
+
+
+  <title> Shiro之实现授权 | codingXiaxw's blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">codingXiaxw's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Life is short,just coding.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Contact
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Shiro之实现授权
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-11-22T15:07:18+08:00" content="Nov 22 2016">
+              Nov 22 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/shiro/" itemprop="url" rel="index">
+                    <span itemprop="name">shiro</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/22/49-shiro-authorization/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/22/49-shiro-authorization/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>当用户的信息得到认证通过后，该用户在系统中具有哪些操作权限呢？所以在用户认证通过后，系统就要给该用户进行授权操作了。  </p>
+<a id="more"></a>
+<p><strong>写在前面的话:</strong>同前篇文章<a href="http://codingxiaxw.cn/2016/11/21/48-shiro-authentication/">Shiro之实现认证</a>那样，本篇文章也只是通过一个入门程序教大家学会使用Shiro实现授权功能(当然只有要在该用户的信息认证通过后才能对该用户进行授权)，没有将Shiro同Spring整合起来使用(后面的文章我们会讲解Shiro整合web开发环境的项目中如何实现授权功能，见<a href=""></a>)，所以我们就采用上篇文章的工程结构即可。本篇文章的讲解结构跟前篇文章讲解结构也是一致的，便于大家理解。  </p>
+<h2 id="1-授权的概念"><a href="#1-授权的概念" class="headerlink" title="1.授权的概念"></a>1.授权的概念</h2><p>授权，也叫访问控制，即在应用中控制谁能访问哪些资源（如访问页面/编辑数据/页面操作等）。在授权中需了解的几个关键对象:主体(Subject)、资源(Resource)、权限(Permission)、角色(Role)。  </p>
+<p><strong>主体:</strong>即访问应用的用户，在Shiro中使用Subject代表该用户。用户只有授权后才允许访问相应的资源。  </p>
+<p><strong>资源:</strong>在应用中用户可以访问的任何东西，比如访问JSP页面、查看/编辑某些数据、访问某个业务方法、打印文本等等都是资源。用户只要授权后才能访问。  </p>
+<p><strong>权限:</strong>安全策略中的原子授权单位，通过权限我们可以表示在应用中用户有没有操作某个资源的权力。即权限表示在应用中用户能不能访问某个资源，如:访问用户列表页面、查看/新增/修改/删除用户数据（即很多时候都是CRUD（增查改删）式权限控制）、打印文档等等。  </p>
+<p>如上可以看出，权限代表了用户有没有操作某个资源的权利，即反映在某个资源上的操作允不允许，不反映谁去执行这个操作。所以后续还需要把权限赋予给用户，即定义哪个用户允许在某个资源上做什么操作（权限），Shiro不会去做这件事情，而是由实现人员提供。  </p>
+<p><strong>角色:</strong>角色代表了操作集合，可以理解为权限的集合，一般情况下我们会赋予用户角色而不是权限，即这样用户可以拥有一组权限，赋予权限时比较方便。典型的如:项目经理、技术总监、CTO、开发工程师等都是角色，不同的角色拥有一组不同的权限。包括隐式角色和显示角色。  </p>
+<p><strong>隐式角色:</strong>即直接通过角色来验证用户有没有操作权限，如在应用中CTO、技术总监、开发工程师可以使用打印机，假设某天不允许开发工程师使用打印机，此时需要从应用中删除相应代码；再如在应用中CTO、技术总监可以查看用户、查看权限；突然有一天不允许技术总监查看用户、查看权限了，需要在相关代码中把技术总监角色从判断逻辑中删除掉；即粒度是以角色为单位进行访问控制的，粒度较粗；如果进行修改可能造成多处代码修改。<br><strong>显示角色:</strong>在程序中通过权限控制谁能访问某个资源，角色聚合一组权限集合；这样假设哪个角色不能访问某个资源，只需要从角色代表的权限集合中移除即可；无须修改多处代码；即粒度是以资源/实例为单位的；粒度较细。  </p>
+<p>授权的核心是权限控制，而权限控制分为基于角色的访问控制和基于资源的访问控制，二者概念我在<a href="http://codingxiaxw.cn/2016/11/20/47-first-Shiro/">初识Shiro</a>的1.3.5节的权限控制中讲过，实际开发中都是采用的基于资源的访问控制。下面的介绍中，我在入门程序中会将基于角色的访问控制和基于资源的访问控制都进行讲解，但在讲到使用自定义Realm后我就只会讲解基于资源的访问控制了。</p>
+<h2 id="2-授权流程"><a href="#2-授权流程" class="headerlink" title="2.授权流程"></a>2.授权流程</h2><p>在Shiro的代码中授权的流程如下图:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-22%20%E4%B8%8B%E5%8D%883.43.34.png" alt="">  </p>
+<p>在写授权的代码时都要根据这个流程图来写。</p>
+<h2 id="3-授权的方式"><a href="#3-授权的方式" class="headerlink" title="3.授权的方式"></a>3.授权的方式</h2><p>Shiro支持三种授权的方式。  </p>
+<p>第一种:编程式:通过写if/else授权代码块完成:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Subject subject = SecurityUtils.getSubject();  </span><br><span class="line"><span class="keyword">if</span>(subject.hasRole(“admin”)) &#123;  </span><br><span class="line">    <span class="comment">//有权限  </span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">    <span class="comment">//无权限  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二种:注解式:通过在执行的Java方法上放置相应的注解完成(没有权限将抛出相应的异常):<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequiresRoles</span>(<span class="string">"admin"</span>)  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="comment">//有权限  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第三种:JSP/GSP标签:在JSP/GSP页面通过相应的标签完成:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">shiro:hasRole</span> <span class="attr">name</span>=<span class="string">"admin"</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">!—</span> 有权限 —&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">shiro:hasRole</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>对于上述授权的三种实现方式，我们只在写入门程序时使用第一种方式，在实际开发中我们使用后两种方式进行用户的授权判断。</p>
+<h2 id="4-入门程序"><a href="#4-入门程序" class="headerlink" title="4.入门程序"></a>4.入门程序</h2><p>在src包下创建一个shiro-permission.ini配置文件，用于模拟数据库中的权限数据，内容如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#基于用户的访问控制</span><br><span class="line">[users]</span><br><span class="line">#用户zhangsan的密码是123，此用户具有role1和role2两个角色;用户wang具有role2一个角色</span><br><span class="line">zhangsan=123,role1,role2</span><br><span class="line">wang=123,role2</span><br><span class="line"></span><br><span class="line">#基于权限的访问控制</span><br><span class="line">[roles]</span><br><span class="line">#角色role1对资源user拥有create、update权限</span><br><span class="line">role1=user:create,user:update</span><br><span class="line">#角色role2对资源user拥有create、delete权限</span><br><span class="line">role2=user:create,user:delete</span><br><span class="line">#角色role3对资源user拥有create权限</span><br><span class="line">role3=user:create</span><br></pre></td></tr></table></figure></p>
+<p>对配置文件中的解释如下:  </p>
+<p>权限标识符号规则：资源:操作:实例(中间使用半角:分隔)。如下:  </p>
+<p><code>user：create:01</code>,表示对用户资源的01实例进行create操作。<br><code>user:create</code>,表示对用户资源进行create操作，相当于<code>user:create:*</code>，对所有用户资源实例进行create操作。<br><code>user：*：01</code>,表示对用户资源实例01进行所有操作。</p>
+<p>然后写一个测试类Authorization.java，代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthorizationTest</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">//角色授权测试和资源授权测试</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAuthorization</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">//第一步，创建SecurityManager工厂</span></span><br><span class="line">        Factory&lt;SecurityManager&gt; factory=<span class="keyword">new</span> IniSecurityManagerFactory(<span class="string">"classpath:shiro-permission.ini"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//第二步:创建SecurityManager</span></span><br><span class="line">        SecurityManager securityManager=factory.getInstance();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//第三步，将SecurityManager设置到系统运行环境，和spring整合后会将SecurityManager配置到spring容器中，一般单例管理</span></span><br><span class="line">        SecurityUtils.setSecurityManager(securityManager);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//第四步，创建subject</span></span><br><span class="line">        Subject subject=SecurityUtils.getSubject();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建token令牌,这里的用户名和密码以后由用户输入</span></span><br><span class="line">        UsernamePasswordToken token=<span class="keyword">new</span> UsernamePasswordToken(<span class="string">"zhangsan"</span>,<span class="string">"123"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//执行认证，将用户输入的信息同数据库(即.ini配置文件)中信息进行对比</span></span><br><span class="line">            subject.login(token);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (AuthenticationException e)</span><br><span class="line">        &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"认证状态:"</span>+subject.isAuthenticated());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//认证通过后才能执行授权</span></span><br><span class="line">        <span class="comment">//第一种授权方式是基于角色的授权,hasRole传入角色的标识</span></span><br><span class="line">        <span class="keyword">boolean</span> ishasRole=subject.hasRole(<span class="string">"role1"</span>);<span class="comment">//该用户是否有role1这个角色</span></span><br><span class="line">        System.out.println(<span class="string">"单个角色判断"</span>+ishasRole);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//hasAllRoles是否拥有多个角色</span></span><br><span class="line">        <span class="keyword">boolean</span> hasAllRoles=subject.hasAllRoles(Arrays.asList(<span class="string">"role1"</span>,<span class="string">"role2"</span>));</span><br><span class="line">        System.out.println(<span class="string">"多个角色判断"</span>+hasAllRoles);<span class="comment">//角色的就讲到这里了，后面我们都是通过资源进行权限讲解</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//使用check方法进行授权，如果授权不通过会抛出异常</span></span><br><span class="line">        subject.checkRole(<span class="string">"role3"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//第二种授权方式是基于资源的授权,isPermitted传入权限标识符</span></span><br><span class="line">        <span class="keyword">boolean</span> isPermitted=subject.isPermitted(<span class="string">"user:create"</span>);<span class="comment">//该用户是否有对user资源进行创建的权限</span></span><br><span class="line">        System.out.println(<span class="string">"单个权限判断"</span>+isPermitted);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//多个权限判断</span></span><br><span class="line">        <span class="keyword">boolean</span> isPermittedAll=subject.isPermittedAll(<span class="string">"user:create:1"</span>,<span class="string">"user:update"</span>);</span><br><span class="line">        System.out.println(<span class="string">"多个权限判断:"</span>+isPermittedAll);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从测试代码中我们可以知道，只有当用户信息得到认证后才能对用户进行授权操作。  </p>
+<p>上面只是一个简单的入门程序，从代码中直接读取数据库(即配置文件)中的权限数据，然后将其与代码中的给定权限进行判断看该用户是否具有该权限，而实际操作中我们是通过Realm进行读取数据库中的数据的。所以接下来讲自定义Realm进行授权。  </p>
+<h2 id="5-自定义Realm进行授权"><a href="#5-自定义Realm进行授权" class="headerlink" title="5.自定义Realm进行授权"></a>5.自定义Realm进行授权</h2><h3 id="5-1需求"><a href="#5-1需求" class="headerlink" title="5.1需求"></a>5.1需求</h3><p>上边的程序通过shiro-permission.ini对权限信息进行静态配置，实际开发中从数据库中获取权限数据。就需要自定义realm，由realm从数据库查询权限数据。  </p>
+<p>realm根据用户身份查询权限数据，将权限数据返回给authorizer(授权器)。  </p>
+<h3 id="5-2自定义Realm"><a href="#5-2自定义Realm" class="headerlink" title="5.2自定义Realm"></a>5.2自定义Realm</h3><p>在上篇文章自定义的realm中即CustomRealm.java，修改doGetAuthorizationInfo()方法，代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//上边是进行认证的方法，在上篇文章中已完成</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//用于授权，当然首先要实现认证</span></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> AuthorizationInfo <span class="title">doGetAuthorizationInfo</span><span class="params">(PrincipalCollection principals)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//从principals获取主身份信息</span></span><br><span class="line">       <span class="comment">//将getPrimaryPrincipal方法返回值转为真实身份类型(在上边的goGetAuthenticationInfo认证通过填充到SimpleAuthenticationInfo)</span></span><br><span class="line">       String userCode= (String) principals.getPrimaryPrincipal();</span><br><span class="line"></span><br><span class="line">       <span class="comment">//根据身份信息获取权限信息,</span></span><br><span class="line">       <span class="comment">//模拟从数据库中获取到的动态权限数据</span></span><br><span class="line">       List&lt;String&gt; permissions=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       permissions.add(<span class="string">"user:create"</span>);<span class="comment">//模拟user的创建权限</span></span><br><span class="line">       permissions.add(<span class="string">"items:add"</span>);<span class="comment">//模拟商品的添加权限</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//查到权限数据，返回授权信息(包括上边的permissions)</span></span><br><span class="line">       SimpleAuthorizationInfo simpleAuthorizationInfo=<span class="keyword">new</span> SimpleAuthorizationInfo();</span><br><span class="line"></span><br><span class="line">       <span class="comment">//将上边查询到授权信息填充到simpleAuthorizationInfo对象中</span></span><br><span class="line">       simpleAuthorizationInfo.addStringPermissions(permissions);</span><br><span class="line">       <span class="keyword">return</span> simpleAuthorizationInfo;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后要对该自定义Realm进行配置，即将自定义Realm放入SecurityManager中，上篇文章中的shiro-realm.ini配置文件中我们已实现。  </p>
+<p>然后便可以进行测试了，测试代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义realm进行资源授权测试</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAuthorizationCustomRealm</span><span class="params">()</span></span><br><span class="line">   </span>&#123;</span><br><span class="line">       <span class="comment">//第一步，创建SecurityManager工厂</span></span><br><span class="line">       Factory&lt;SecurityManager&gt; factory=<span class="keyword">new</span> IniSecurityManagerFactory(<span class="string">"classpath:config/shiro-realm.ini"</span>);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//第二步:创建SecurityManager</span></span><br><span class="line">       SecurityManager securityManager=factory.getInstance();</span><br><span class="line"></span><br><span class="line">       <span class="comment">//第三步，将SecurityManager设置到系统运行环境，和spring整合后会将SecurityManager配置到spring容器中，一般单例管理</span></span><br><span class="line">       SecurityUtils.setSecurityManager(securityManager);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//第四步，创建subject</span></span><br><span class="line">       Subject subject=SecurityUtils.getSubject();</span><br><span class="line"></span><br><span class="line">       <span class="comment">//创建token令牌,这里的用户名和密码以后由用户输入</span></span><br><span class="line">       UsernamePasswordToken token=<span class="keyword">new</span> UsernamePasswordToken(<span class="string">"zhangsan"</span>,<span class="string">"111111"</span>);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="comment">//执行认证，将用户输入的信息同数据库(即.ini配置文件)中信息进行对比</span></span><br><span class="line">           subject.login(token);</span><br><span class="line">       &#125;<span class="keyword">catch</span> (AuthenticationException e)</span><br><span class="line">       &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       System.out.println(<span class="string">"认证状态:"</span>+subject.isAuthenticated());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       <span class="comment">//基于资源的授权,调用isPermitted方法会调用CustomRealm从数据库查询正确的权限数据</span></span><br><span class="line">       <span class="comment">// isPermitted传入权限标识符，判断user:create:1是否在CustomRealm查询到的权限数据之内</span></span><br><span class="line">       <span class="keyword">boolean</span> isPermitted=subject.isPermitted(<span class="string">"user:create:1"</span>);<span class="comment">//该用户是否有对user的1资源进行创建的权限</span></span><br><span class="line">       System.out.println(<span class="string">"单个权限判断"</span>+isPermitted);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//多个权限判断</span></span><br><span class="line">       <span class="keyword">boolean</span> isPermittedAll=subject.isPermittedAll(<span class="string">"user:create:1"</span>,<span class="string">"user:create"</span>);</span><br><span class="line">       System.out.println(<span class="string">"多个权限判断:"</span>+isPermittedAll);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码(即授权流程讲解)讲解如下:  </p>
+<ol>
+<li>对subject进行授权，调用方法isPermitted（”permission串”）。</li>
+<li>SecurityManager执行授权，通过ModularRealmAuthorizer执行授权。</li>
+<li>ModularRealmAuthorizer执行realm（自定义的CustomRealm）从数据库查询权限数据。即调用realm的授权方法:<code>doGetAuthorizationInfo()</code>。</li>
+<li>realm从数据库查询权限数据，返回ModularRealmAuthorizer。</li>
+<li>ModularRealmAuthorizer调用PermissionResolver进行权限串比对。</li>
+<li>如果比对后，isPermitted中”permission串”在realm查询到权限数据中，说明用户访问permission串有权限，否则 没有权限，抛出异常。</li>
+</ol>
+<p>上述我们也是对数据库中的明文进行的讲解，这里就不对数据库中的密文进行讲解了。经过如上入门程序，我们便了解了如何通过Shiro来完成授权功能了，接下来我要完成Shiro与web项目整合的各个功能讲解了，详情请见我往后的文章Shiro系列。</p>
+<h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shiro/" rel="tag">#shiro</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/21/48-shiro-authentication/" rel="next" title="Shiro之实现认证">
+                <i class="fa fa-chevron-left"></i> Shiro之实现认证
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/22/49-shiro-authorization/"
+           data-title="Shiro之实现授权" data-url="http://codingxiaxw.cn/2016/11/22/49-shiro-authorization/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
+               alt="codingXiaxw" />
+          <p class="site-author-name" itemprop="name">codingXiaxw</p>
+          <p class="site-description motion-element" itemprop="description">Life is short,just coding.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/codingXiaxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5023661572?from=hissimilar_home&refer_flag=1005050003_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com//people/e9f78fa34b8002652811ac348da3f671" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-授权的概念"><span class="nav-number">1.</span> <span class="nav-text">1.授权的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-授权流程"><span class="nav-number">2.</span> <span class="nav-text">2.授权流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-授权的方式"><span class="nav-number">3.</span> <span class="nav-text">3.授权的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-入门程序"><span class="nav-number">4.</span> <span class="nav-text">4.入门程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-自定义Realm进行授权"><span class="nav-number">5.</span> <span class="nav-text">5.自定义Realm进行授权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1需求"><span class="nav-number">5.1.</span> <span class="nav-text">5.1需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2自定义Realm"><span class="nav-number">5.2.</span> <span class="nav-text">5.2自定义Realm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-联系"><span class="nav-number">6.</span> <span class="nav-text">6.联系</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">codingXiaxw</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codingXiaxw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
