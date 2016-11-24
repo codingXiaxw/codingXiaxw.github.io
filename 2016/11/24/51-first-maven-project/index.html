@@ -1,0 +1,874 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="maven," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="我是在学完SSM框架的整合与基本开发后接触的Maven，它是一个项目管理的利器，网上也有说java后台的项目管理肯定要用到maven的。为什么要用maven?在之前学习各个框架的时候，比如用Spring框架进行开发的时候要在项目中加入Spring的各个jar包及其依赖包，用MyBatis进行开发的时候要在项目中引入MyBatis的各个jar包。这样是不是太过于繁琐?而有了maven对项目进行管理，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mac系统下的Maven安装配置及创建你的第一个Maven项目">
+<meta property="og:url" content="http://codingxiaxw.cn/2016/11/24/51-first-maven-project/index.html">
+<meta property="og:site_name" content="codingXiaxw's blog">
+<meta property="og:description" content="我是在学完SSM框架的整合与基本开发后接触的Maven，它是一个项目管理的利器，网上也有说java后台的项目管理肯定要用到maven的。为什么要用maven?在之前学习各个框架的时候，比如用Spring框架进行开发的时候要在项目中加入Spring的各个jar包及其依赖包，用MyBatis进行开发的时候要在项目中引入MyBatis的各个jar包。这样是不是太过于繁琐?而有了maven对项目进行管理，">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.06.54.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.53.04.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.48.07.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.54.44.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.58.13.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.58.10.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%886.01.54.png">
+<meta property="og:updated_time" content="2016-11-24T10:11:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mac系统下的Maven安装配置及创建你的第一个Maven项目">
+<meta name="twitter:description" content="我是在学完SSM框架的整合与基本开发后接触的Maven，它是一个项目管理的利器，网上也有说java后台的项目管理肯定要用到maven的。为什么要用maven?在之前学习各个框架的时候，比如用Spring框架进行开发的时候要在项目中加入Spring的各个jar包及其依赖包，用MyBatis进行开发的时候要在项目中引入MyBatis的各个jar包。这样是不是太过于繁琐?而有了maven对项目进行管理，">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.06.54.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codingxiaxw.cn/2016/11/24/51-first-maven-project/"/>
+
+
+  <title> mac系统下的Maven安装配置及创建你的第一个Maven项目 | codingXiaxw's blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">codingXiaxw's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Life is short,just coding.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Contact
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                mac系统下的Maven安装配置及创建你的第一个Maven项目
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-11-24T17:15:19+08:00" content="Nov 24 2016">
+              Nov 24 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/24/51-first-maven-project/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/24/51-first-maven-project/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我是在学完SSM框架的整合与基本开发后接触的Maven，它是一个项目管理的利器，网上也有说java后台的项目管理肯定要用到maven的。为什么要用maven?在之前学习各个框架的时候，比如用Spring框架进行开发的时候要在项目中加入Spring的各个jar包及其依赖包，用MyBatis进行开发的时候要在项目中引入MyBatis的各个jar包。这样是不是太过于繁琐?而有了maven对项目进行管理，就简单多了。  </p>
+<a id="more"></a>
+<p><strong>写在前面的话:</strong>此篇文章教程是在IntelliJ IDEA中搭建的环境。(建议eclipse党快点转IDEA吧，IDEA大法好。逃…)   </p>
+<h2 id="1-maven的安装"><a href="#1-maven的安装" class="headerlink" title="1.maven的安装"></a>1.maven的安装</h2><p>前往<a href="https://maven.apache.org/download.cgi" target="_blank" rel="external">Apache Maven官网</a>点击<code>apache-maven-3.3.9-bin.zip</code>链接下载3.3.9的版本即可。下载后我将该目录放到/Users/codingBoy/的目录下，文件名为apache-maven-3.3.9。这样我们便成功安装好maven管理工具，但这还不够，还需要设置maven环境变量。  </p>
+<h2 id="2-配置maven环境变量"><a href="#2-配置maven环境变量" class="headerlink" title="2.配置maven环境变量"></a>2.配置maven环境变量</h2><p>打开终端，退到根目录<code>/Users/codingBoy/</code>，输入命令:<code>$ vi ~/.bash_profile</code>打开bash_profile文件,然后添加如下两行代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export M2_HOME=/Users/robbie/apache-maven-3.3.9</span><br><span class="line">export PATH=$PATH:$M2_HOME/bin</span><br></pre></td></tr></table></figure></p>
+<p>然后继续退回到根目录，输入<code>$ source ~/.bash_profile</code>使bash_profile文件添加的内容即刻生效。  </p>
+<p>接下来在终端输入<code>mvn -v</code>,若出现如下内容，说明你的maven管理工具成功安装并成功配置:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.06.54.png" alt="">  </p>
+<p>到此，Maven在mac系统下的安装和配置即完成。接下来讲解用maven进行项目管理的一些基础知识。  </p>
+<h2 id="3-创建第一个maven项目"><a href="#3-创建第一个maven项目" class="headerlink" title="3.创建第一个maven项目"></a>3.创建第一个maven项目</h2><p>创建maven项目有两种方式，第一种是用命令行输入代码、运行即可生成；第二种是直接用IDEA创建web项目时选择创建maven的web项目即可(IDEA相比eclipse的第一个优点在此就显露:IDEA已经集成maven插件，所以我们可以直接在IDEA中创建maven项目；而eclipse中我们还要进行下载maven插件等一系列操作，简直不能再繁琐。)。 这里我们先介绍第一种在终端输入命令的方式创建maven项目。  </p>
+<h3 id="3-1使用命令行创建Maven项目"><a href="#3-1使用命令行创建Maven项目" class="headerlink" title="3.1使用命令行创建Maven项目"></a>3.1使用命令行创建Maven项目</h3><p>在终端的根目录下输入如下命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate -DgroupId=cn.codingxiaxw.helloword -DartifactId=helloworld -Dpackage=cn.codingxiaxw.helloword -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=maven-archetype-quickstart</span><br></pre></td></tr></table></figure></p>
+<p>命令解释如下:</p>
+<ul>
+<li><code>mvn</code>:表示使用的是maven命令。</li>
+<li><code>archetype:generate</code>:表示使用generate这个插件为我们的maven项目自动生成一个maven骨架，即我们项目的工程结构(如下图)。后边跟的是该插件为我们创建工程结构所需要的一连串的参数。</li>
+<li><code>-DgroupId</code>:标识项目的坐标元素之一，与DartifactId,Dpackaging,Dversion组成我们maven项目的坐标，四者唯一确定一个项目。它的值为我们的项目包名，我这里的格式用的我的博客网站后缀+我的用户名+项目名组成。</li>
+<li><code>-DartifactId</code>:标识项目的坐标元素之一，它的值为我们的项目名。我这里指定我要生成的项目名为helloword。</li>
+<li><code>-Dpackage</code>:标识项目的坐标元素之一,这里值就跟DgroupId的值保持一致即可。此属性在命令行中可选。</li>
+<li><code>-Dversion</code>:指定版本号。此属性在命令行中可选</li>
+<li><code>-DarchetypeArtifactId</code>:表示我们生成的工程结构为哪一种，这里的属性值为<code>maven-archetype-quickstart</code>表示生成工程目录结构为quickstart的结构。其值还可以为<code>maven-archetype-webapp</code>表示生成的工程目录可够味webapp型的结构。</li>
+</ul>
+<p>运行该命令，可看到终端中使用的maven命令自动为我们在下载maven的各个依赖包，执行命令的过程时间可能比较久，完成时间取决于个人网络状况。</p>
+<p>完成后我们可以在自己的根目录下发现一个名为”helloword”项目名，说明我们成功在终端使用maven命令创建出一个maven项目，打开该helloword项目，会发现我们生成的maven项目的目录布局为这样的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">helloword</span><br><span class="line">   |-src</span><br><span class="line">   |---main</span><br><span class="line">   |-----java</span><br><span class="line">   |-------cn</span><br><span class="line">   |---------codingxiaxw   </span><br><span class="line">   |-----------App.java</span><br><span class="line">   |---test|-----java</span><br><span class="line">   |-------cn</span><br><span class="line">   |---------codingxiaxw</span><br><span class="line">   |-----------AppTest.java</span><br><span class="line">   |-pom.xml</span><br></pre></td></tr></table></figure></p>
+<p>没错，这就是我们maven项目的标准骨架了，在maven项目的开发中，所有的源代码放在文件夹 <code>/src/main/java/</code>下, 所有的单元测试代码放入 <code>/src/test/java/</code>。可以参考官方网站的<a href="http://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html" target="_blank" rel="external">Maven标准目录</a> 附加的一个标准的pom.xml被生成。这个POM文件类似于Ant的build.xml文件，它描述了整个项目的信息，一切从目录结构、项目的插件、项目依赖、如何构建这个项目等，关于pom的介绍我会在下文中进行讲解，你也可以参考官方网站的<a href="http://maven.apache.org/guides/introduction/introduction-to-the-pom.html" target="_blank" rel="external">POM官方指南</a>  </p>
+<p>然后我们便可以打开IDEA-Import Project操作即可打开该maven项目。  </p>
+<p>这样我们便使用第一种使用maven命令行的方式创建了我们的maven项目。  </p>
+<h3 id="3-2使用IDEA创建Maven项目"><a href="#3-2使用IDEA创建Maven项目" class="headerlink" title="3.2使用IDEA创建Maven项目"></a>3.2使用IDEA创建Maven项目</h3><p>而第二种方式更加简单，只需打开IDEA-New Project，出现如下窗口:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.53.04.png" alt="">  </p>
+<p>选择左边的maven项目，然后点击右边框框中的任意一种模块(就是我们的项目工程结构，选择上面讲的webapp和quickstart都可)即可next到这一步:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.48.07.png" alt="">  </p>
+<p>填写我们的项目名和包名然后next到这一步:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.54.44.png" alt="">  </p>
+<p>然后继续填写我们的项目名后，点击finish完成创建，这样我们便通过第二种方式直接用IDEA创建了我们的maven项目。创建的项目工程结构如图:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.58.13.png" width="50%" height="50%"></p>
+<p>发现App.java和AppTest.java图标显示不对，因为它为我们自动生成的pop.xml文件中添加了依赖但是没有自动引入jar包，需要我们点击右下角(也许你的出现在左上角?)的<code>Enable Auto-Import</code>:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.58.10.png" alt="">  </p>
+<p>然后我们的工程才算彻底搭建好，如下:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%886.01.54.png" width="50%" height="50%">  </p>
+<p>到此我们便完成了第一个maven项目的创建，接下来我要进行Maven核心知识的讲解,见下篇文章<a href="">Maven核心知识</a>。</p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/maven/" rel="tag">#maven</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/23/50-Shiro-Integration/" rel="next" title="Shiro整合Web项目及整合后的开发">
+                <i class="fa fa-chevron-left"></i> Shiro整合Web项目及整合后的开发
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/24/51-first-maven-project/"
+           data-title="mac系统下的Maven安装配置及创建你的第一个Maven项目" data-url="http://codingxiaxw.cn/2016/11/24/51-first-maven-project/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
+               alt="codingXiaxw" />
+          <p class="site-author-name" itemprop="name">codingXiaxw</p>
+          <p class="site-description motion-element" itemprop="description">Life is short,just coding.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/codingXiaxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5023661572?from=hissimilar_home&refer_flag=1005050003_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com//people/e9f78fa34b8002652811ac348da3f671" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-maven的安装"><span class="nav-number">1.</span> <span class="nav-text">1.maven的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-配置maven环境变量"><span class="nav-number">2.</span> <span class="nav-text">2.配置maven环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-创建第一个maven项目"><span class="nav-number">3.</span> <span class="nav-text">3.创建第一个maven项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1使用命令行创建Maven项目"><span class="nav-number">3.1.</span> <span class="nav-text">3.1使用命令行创建Maven项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2使用IDEA创建Maven项目"><span class="nav-number">3.2.</span> <span class="nav-text">3.2使用IDEA创建Maven项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">codingXiaxw</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codingXiaxw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title><![CDATA[mac系统下的Maven安装配置及创建你的第一个Maven项目]]></title>
+      <url>http://codingxiaxw.cn/2016/11/24/51-first-maven-project/</url>
+      <content type="html"><![CDATA[<p>我是在学完SSM框架的整合与基本开发后接触的Maven，它是一个项目管理的利器，网上也有说java后台的项目管理肯定要用到maven的。为什么要用maven?在之前学习各个框架的时候，比如用Spring框架进行开发的时候要在项目中加入Spring的各个jar包及其依赖包，用MyBatis进行开发的时候要在项目中引入MyBatis的各个jar包。这样是不是太过于繁琐?而有了maven对项目进行管理，就简单多了。  </p>
+<a id="more"></a>
+<p><strong>写在前面的话:</strong>此篇文章教程是在IntelliJ IDEA中搭建的环境。(建议eclipse党快点转IDEA吧，IDEA大法好。逃…)   </p>
+<h2 id="1-maven的安装"><a href="#1-maven的安装" class="headerlink" title="1.maven的安装"></a>1.maven的安装</h2><p>前往<a href="https://maven.apache.org/download.cgi" target="_blank" rel="external">Apache Maven官网</a>点击<code>apache-maven-3.3.9-bin.zip</code>链接下载3.3.9的版本即可。下载后我将该目录放到/Users/codingBoy/的目录下，文件名为apache-maven-3.3.9。这样我们便成功安装好maven管理工具，但这还不够，还需要设置maven环境变量。  </p>
+<h2 id="2-配置maven环境变量"><a href="#2-配置maven环境变量" class="headerlink" title="2.配置maven环境变量"></a>2.配置maven环境变量</h2><p>打开终端，退到根目录<code>/Users/codingBoy/</code>，输入命令:<code>$ vi ~/.bash_profile</code>打开bash_profile文件,然后添加如下两行代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export M2_HOME=/Users/robbie/apache-maven-3.3.9</span><br><span class="line">export PATH=$PATH:$M2_HOME/bin</span><br></pre></td></tr></table></figure></p>
+<p>然后继续退回到根目录，输入<code>$ source ~/.bash_profile</code>使bash_profile文件添加的内容即刻生效。  </p>
+<p>接下来在终端输入<code>mvn -v</code>,若出现如下内容，说明你的maven管理工具成功安装并成功配置:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.06.54.png" alt="">  </p>
+<p>到此，Maven在mac系统下的安装和配置即完成。接下来讲解用maven进行项目管理的一些基础知识。  </p>
+<h2 id="3-创建第一个maven项目"><a href="#3-创建第一个maven项目" class="headerlink" title="3.创建第一个maven项目"></a>3.创建第一个maven项目</h2><p>创建maven项目有两种方式，第一种是用命令行输入代码、运行即可生成；第二种是直接用IDEA创建web项目时选择创建maven的web项目即可(IDEA相比eclipse的第一个优点在此就显露:IDEA已经集成maven插件，所以我们可以直接在IDEA中创建maven项目；而eclipse中我们还要进行下载maven插件等一系列操作，简直不能再繁琐。)。 这里我们先介绍第一种在终端输入命令的方式创建maven项目。  </p>
+<h3 id="3-1使用命令行创建Maven项目"><a href="#3-1使用命令行创建Maven项目" class="headerlink" title="3.1使用命令行创建Maven项目"></a>3.1使用命令行创建Maven项目</h3><p>在终端的根目录下输入如下命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate -DgroupId=cn.codingxiaxw.helloword -DartifactId=helloworld -Dpackage=cn.codingxiaxw.helloword -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=maven-archetype-quickstart</span><br></pre></td></tr></table></figure></p>
+<p>命令解释如下:</p>
+<ul>
+<li><code>mvn</code>:表示使用的是maven命令。</li>
+<li><code>archetype:generate</code>:表示使用generate这个插件为我们的maven项目自动生成一个maven骨架，即我们项目的工程结构(如下图)。后边跟的是该插件为我们创建工程结构所需要的一连串的参数。</li>
+<li><code>-DgroupId</code>:标识项目的坐标元素之一，与DartifactId,Dpackaging,Dversion组成我们maven项目的坐标，四者唯一确定一个项目。它的值为我们的项目包名，我这里的格式用的我的博客网站后缀+我的用户名+项目名组成。</li>
+<li><code>-DartifactId</code>:标识项目的坐标元素之一，它的值为我们的项目名。我这里指定我要生成的项目名为helloword。</li>
+<li><code>-Dpackage</code>:标识项目的坐标元素之一,这里值就跟DgroupId的值保持一致即可。此属性在命令行中可选。</li>
+<li><code>-Dversion</code>:指定版本号。此属性在命令行中可选</li>
+<li><code>-DarchetypeArtifactId</code>:表示我们生成的工程结构为哪一种，这里的属性值为<code>maven-archetype-quickstart</code>表示生成工程目录结构为quickstart的结构。其值还可以为<code>maven-archetype-webapp</code>表示生成的工程目录可够味webapp型的结构。</li>
+</ul>
+<p>运行该命令，可看到终端中使用的maven命令自动为我们在下载maven的各个依赖包，执行命令的过程时间可能比较久，完成时间取决于个人网络状况。</p>
+<p>完成后我们可以在自己的根目录下发现一个名为”helloword”项目名，说明我们成功在终端使用maven命令创建出一个maven项目，打开该helloword项目，会发现我们生成的maven项目的目录布局为这样的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">helloword</span><br><span class="line">   |-src</span><br><span class="line">   |---main</span><br><span class="line">   |-----java</span><br><span class="line">   |-------cn</span><br><span class="line">   |---------codingxiaxw   </span><br><span class="line">   |-----------App.java</span><br><span class="line">   |---test|-----java</span><br><span class="line">   |-------cn</span><br><span class="line">   |---------codingxiaxw</span><br><span class="line">   |-----------AppTest.java</span><br><span class="line">   |-pom.xml</span><br></pre></td></tr></table></figure></p>
+<p>没错，这就是我们maven项目的标准骨架了，在maven项目的开发中，所有的源代码放在文件夹 <code>/src/main/java/</code>下, 所有的单元测试代码放入 <code>/src/test/java/</code>。可以参考官方网站的<a href="http://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html" target="_blank" rel="external">Maven标准目录</a> 附加的一个标准的pom.xml被生成。这个POM文件类似于Ant的build.xml文件，它描述了整个项目的信息，一切从目录结构、项目的插件、项目依赖、如何构建这个项目等，关于pom的介绍我会在下文中进行讲解，你也可以参考官方网站的<a href="http://maven.apache.org/guides/introduction/introduction-to-the-pom.html" target="_blank" rel="external">POM官方指南</a>  </p>
+<p>然后我们便可以打开IDEA-Import Project操作即可打开该maven项目。  </p>
+<p>这样我们便使用第一种使用maven命令行的方式创建了我们的maven项目。  </p>
+<h3 id="3-2使用IDEA创建Maven项目"><a href="#3-2使用IDEA创建Maven项目" class="headerlink" title="3.2使用IDEA创建Maven项目"></a>3.2使用IDEA创建Maven项目</h3><p>而第二种方式更加简单，只需打开IDEA-New Project，出现如下窗口:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.53.04.png" alt="">  </p>
+<p>选择左边的maven项目，然后点击右边框框中的任意一种模块(就是我们的项目工程结构，选择上面讲的webapp和quickstart都可)即可next到这一步:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.48.07.png" alt="">  </p>
+<p>填写我们的项目名和包名然后next到这一步:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.54.44.png" alt="">  </p>
+<p>然后继续填写我们的项目名后，点击finish完成创建，这样我们便通过第二种方式直接用IDEA创建了我们的maven项目。创建的项目工程结构如图:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.58.13.png" width="50%" height="50%"></p>
+<p>发现App.java和AppTest.java图标显示不对，因为它为我们自动生成的pop.xml文件中添加了依赖但是没有自动引入jar包，需要我们点击右下角(也许你的出现在左上角?)的<code>Enable Auto-Import</code>:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%885.58.10.png" alt="">  </p>
+<p>然后我们的工程才算彻底搭建好，如下:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-24%20%E4%B8%8B%E5%8D%886.01.54.png" width="50%" height="50%">  </p>
+<p>到此我们便完成了第一个maven项目的创建，接下来我要进行Maven核心知识的讲解,见下篇文章<a href="">Maven核心知识</a>。</p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Shiro整合Web项目及整合后的开发]]></title>
       <url>http://codingxiaxw.cn/2016/11/23/50-Shiro-Integration/</url>
       <content type="html"><![CDATA[<p>将Shiro框架整合到新的web项目中很简单，就是在web项目中导入Shiro的相关jar包以及整合jar包即可完成整合(是不是很简单…哈哈就是这么简单)。难的就是整合了Shiro框架后的web项目该如何进行开发，关于这一点，我将在下方通过一个demo演示用户的登录与退出及登录后的权限管理带你入门加入了Shiro框架后的web项目开发。</p>
