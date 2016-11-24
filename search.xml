@@ -6,7 +6,7 @@
     <entry>
       <title><![CDATA[mac系统下的Maven安装配置及创建你的第一个Maven项目]]></title>
       <url>http://codingxiaxw.cn/2016/11/24/51-first-maven-project/</url>
-      <content type="html"><![CDATA[<p>我是在学完SSM框架的整合与基本开发后接触的Maven，它是一个项目管理的利器，网上也有说java后台的项目管理肯定要用到maven的。为什么要用maven?在之前学习各个框架的时候，比如用Spring框架进行开发的时候要在项目中加入Spring的各个jar包及其依赖包;<a id="more"></a>用MyBatis进行开发的时候要在项目中引入MyBatis的各个jar包。这样是不是太过于繁琐?而有了maven对项目进行管理，就简单多了。  </p>
+      <content type="html"><![CDATA[<p>我是在学完SSM框架的整合与基本开发后接触的Maven，它是一个项目管理的利器，网上也有说java后台的项目管理肯定要用到maven的。为什么要用maven?<a id="more"></a>在之前学习各个框架的时候，比如用Spring框架进行开发的时候要在项目中加入Spring的各个jar包及其依赖包;用MyBatis进行开发的时候要在项目中引入MyBatis的各个jar包。这样是不是太过于繁琐?而有了maven对项目进行管理，就简单多了。  </p>
 <p><strong>写在前面的话:</strong>此篇文章教程是在IntelliJ IDEA中搭建的环境。(建议eclipse党快点转IDEA吧，IDEA大法好。逃…)   </p>
 <h2 id="1-maven的安装"><a href="#1-maven的安装" class="headerlink" title="1.maven的安装"></a>1.maven的安装</h2><p>前往<a href="https://maven.apache.org/download.cgi" target="_blank" rel="external">Apache Maven官网</a>点击<code>apache-maven-3.3.9-bin.zip</code>链接下载3.3.9的版本即可。下载后我将该目录放到/Users/codingBoy/的目录下，文件名为apache-maven-3.3.9。这样我们便成功安装好maven管理工具，但这还不够，还需要设置maven环境变量。  </p>
 <h2 id="2-配置maven环境变量"><a href="#2-配置maven环境变量" class="headerlink" title="2.配置maven环境变量"></a>2.配置maven环境变量</h2><p>打开终端，退到根目录<code>/Users/codingBoy/</code>，输入命令:<code>$ vi ~/.bash_profile</code>打开bash_profile文件,然后添加如下两行代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export M2_HOME=/Users/robbie/apache-maven-3.3.9</span><br><span class="line">export PATH=$PATH:$M2_HOME/bin</span><br></pre></td></tr></table></figure></p>
