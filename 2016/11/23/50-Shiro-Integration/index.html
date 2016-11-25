@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://codingxiaxw.cn/2016/11/23/50-Shiro-Integration/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="将Shiro框架整合到新的web项目中很简单，就是在web项目中导入Shiro的相关jar包以及整合jar包即可完成整合(是不是很简单…哈哈就是这么简单)。难的就是整合了Shiro框架后的web项目该如何进行开发，关于这一点，我将在下方通过一个demo演示用户的登录与退出及登录后的权限管理带你入门加入了Shiro框架后的web项目开发。">
-<meta property="og:updated_time" content="2016-11-23T13:38:29.000Z">
+<meta property="og:updated_time" content="2016-11-25T07:00:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shiro整合Web项目及整合后的开发">
 <meta name="twitter:description" content="将Shiro框架整合到新的web项目中很简单，就是在web项目中导入Shiro的相关jar包以及整合jar包即可完成整合(是不是很简单…哈哈就是这么简单)。难的就是整合了Shiro框架后的web项目该如何进行开发，关于这一点，我将在下方通过一个demo演示用户的登录与退出及登录后的权限管理带你入门加入了Shiro框架后的web项目开发。">
@@ -347,7 +347,7 @@
       
         <p>将Shiro框架整合到新的web项目中很简单，就是在web项目中导入Shiro的相关jar包以及整合jar包即可完成整合(是不是很简单…哈哈就是这么简单)。难的就是整合了Shiro框架后的web项目该如何进行开发，关于这一点，我将在下方通过一个demo演示用户的登录与退出及登录后的权限管理带你入门加入了Shiro框架后的web项目开发。</p>
 <a id="more"></a>  
-<p><strong>写在前边的话:</strong>我在github上已经放了一个整合了Spring+SpringMVC+Mybatis的web项目(就是关于商品的增、删、改、查操作)，接下来我要讲解的就是如何在这个项目中整合进我的Shiro框架，整合Shiro框架前的项目源码<a href="https://github.com/codingXiaxw/ssm2" target="_blank" rel="external">请点击这里</a>前往我的github，并讲解了整合了Shiro框架后的web项目该如何进行开发，整合了Shiro框架后的完整源码<a href="https://github.com/codingXiaxw/shiro" target="_blank" rel="external">请点击这里</a>前往我的github。  </p>
+<p><strong>写在前边的话:</strong>shiro基础知识的讲解请看前面的两篇文章。另外我在github上已经放了一个整合了Spring+SpringMVC+Mybatis的web项目(就是关于商品的增、删、改、查操作)，接下来我要讲解的就是如何在这个项目中整合进我的Shiro框架，整合Shiro框架前的项目源码<a href="https://github.com/codingXiaxw/ssm2" target="_blank" rel="external">请点击这里</a>前往我的github，并讲解了整合了Shiro框架后的web项目该如何进行开发，整合了Shiro框架后的完整源码<a href="https://github.com/codingXiaxw/shiro" target="_blank" rel="external">请点击这里</a>前往我的github。  </p>
 <p>用于创建表的sql语句见github上src包下的sql包。</p>
 <h2 id="1-需求"><a href="#1-需求" class="headerlink" title="1.需求"></a>1.需求</h2><p>在一个整合了Spring+SpringMVC+Mybatis三个框架的web项目中再整合进Shiro框架，实现基于Shiro的权限管理机制。  </p>
 <h2 id="2-导入jar包"><a href="#2-导入jar包" class="headerlink" title="2.导入jar包"></a>2.导入jar包</h2><p>在原先的项目基础上只需导入三个jar包即可:1.shiro-spring.jar。2.shiro-web.jar。3.shiro-core.jar。jar包见我github上的源代码。成功导入jar包，好，下一步，整合完毕。  </p>
