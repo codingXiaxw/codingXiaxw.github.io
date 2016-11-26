@@ -4,10 +4,82 @@
   
     
     <entry>
+      <title><![CDATA[Maven核心知识]]></title>
+      <url>http://codingxiaxw.cn/2016/11/26/52-Maven-core-knowledge/</url>
+      <content type="html"><![CDATA[<p>上篇文章介绍了<a href="http://codingxiaxw.cn/2016/11/24/51-first-maven-project/">Maven的安装、配置及创建自己的第一个Maven项目</a>的两种方式。在往后的开发中我们需要用到Maven对我们的项目进行管理以简化项目开发过程，具体就是当我们的项目需要导入哪个第三方jar包时直接在Maven为我们生成的的pom.xml文件中添加相关jar包依赖就行。<a id="more"></a>接下来我想有必要总结一下学习Maven的相关核心知识，以方便大家对Maven有更好的了解。  </p>
+<h2 id="1-maven常用构建命令-了解"><a href="#1-maven常用构建命令-了解" class="headerlink" title="1.maven常用构建命令(了解)"></a>1.maven常用构建命令(了解)</h2><ul>
+<li><code>mvn -v</code>:查看maven的版本。</li>
+<li><code>mvn compile</code>:编译项目。项目经过编译后会在根目录下生成一个target包(跟src包在同一目录下)，里面保存的是编译项目时字节码文件和测试报告。</li>
+<li><code>mvn test</code>:测试。此命令在项目目录下</li>
+<li><code>mvn package</code>:打包我们的项目。</li>
+<li><code>mvn clean</code>:删除上述经过编译后生成的target包。</li>
+<li><code>mvn install</code>:将我们的项目打包到本地仓库中。例如将A项目用该命令打包到本地仓库后，就可以在B项目的pom.xml文件中配置A项目的坐标来让B项目引用A项目，见下文仓库的讲解。</li>
+</ul>
+<p>只有第一个命令<code>mvn -v</code>是在根目录下执行，其他5个命令都是在我们的maven项目包下执行的。</p>
+<p>上述知识只做了解，在实际开发中基本没有用到上述命令。  </p>
+<h2 id="2-maven自动构件骨架"><a href="#2-maven自动构件骨架" class="headerlink" title="2.maven自动构件骨架"></a>2.maven自动构件骨架</h2><p>我在<a href="http://codingxiaxw.cn/2016/11/24/51-first-maven-project/">创建第一个Maven项目</a>中就有介绍过，让maven自动为我们的项目生成一个标准的骨架有两种方式，一种是通过命令行输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate -DgroupId=cn.codingxiaxw.helloword -DartifactId=helloworld -Dpackage=cn.codingxiaxw.helloword -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=maven-archetype-quickstart</span><br></pre></td></tr></table></figure></p>
+<p>或者:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate -DgroupId=cn.codingxiaxw.helloword -DartifactId=helloworld -Dpackage=cn.codingxiaxw.helloword -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=maven-archetype-webapp</span><br></pre></td></tr></table></figure></p>
+<p>第二种方式是使用IDEA开发工具为我们生成，步骤之前讲过，大家可以点击上述链接看我在那篇文章中的介绍。这里只对上述命令进行解释，如下:</p>
+<ul>
+<li><code>mvn</code>:表示使用的是maven命令。</li>
+<li><code>archetype:generate</code>:表示使用generate这个插件为我们的maven项目自动生成一个maven骨架，即我们项目的工程结构(如下图)。后边跟的是该插件为我们创建工程结构所需要的一连串的参数。</li>
+<li><code>-DgroupId</code>:标识项目的坐标元素之一，与DartifactId,Dpackaging,Dversion组成我们maven项目的坐标，四者唯一确定一个项目。它的值为我们的项目包名，我这里的格式用的我的博客网站后缀+我的用户名+项目名组成。</li>
+<li><code>-DartifactId</code>:标识项目的坐标元素之一，它的值为我们的项目名。我这里指定我要生成的项目名为helloword。</li>
+<li><code>-Dpackage</code>:标识项目的坐标元素之一,这里值就跟DgroupId的值保持一致即可。此属性在命令行中可选。</li>
+<li><code>-Dversion</code>:指定版本号。此属性在命令行中可选</li>
+<li><code>-DarchetypeArtifactId</code>:表示我们生成的工程结构为哪一种，这里的属性值为<code>maven-archetype-quickstart</code>表示生成工程目录结构为quickstart的结构。其值还可以为<code>maven-archetype-webapp</code>表示生成的工程目录结构为webapp型的结构。</li>
+</ul>
+<h2 id="3-maven中的坐标和仓库"><a href="#3-maven中的坐标和仓库" class="headerlink" title="3.maven中的坐标和仓库"></a>3.maven中的坐标和仓库</h2><h3 id="3-1坐标"><a href="#3-1坐标" class="headerlink" title="3.1坐标"></a>3.1坐标</h3><p>在maven的世界中，maven以构件来组成基本的控制单元，而定义这个构件的标示，maven给定义为“坐标”。坐标是maven最基本的概念，它就像每个构件的身份证号码，有了它我们就可以在数以千万计的构件中定位任何一个我们感兴趣的构件。  </p>
+<p>例如我们在上篇文章中通过maven命令生成的maven项目中，其pom.xml中有这样一些配置:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.codingxiaxw.helloword<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>helloword<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>上面这样四个xml元素即即组成了一个坐标，唯一标识我们创建的这个项目。  </p>
+<p>再如若我们要在自己的项目中引入junit测试jar包，只需在pom.xml中配置如下junit的坐标:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.8.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>maven就会根据我们给出的junit的坐标在其中央仓库中为我们找到junit 的相关jar包，然后将其下载到自己的本地仓库中。这样我们便可以在自己的项目开发中运用junit类进行测试了。  </p>
+<h3 id="3-2仓库"><a href="#3-2仓库" class="headerlink" title="3.2仓库"></a>3.2仓库</h3><p>上述我们已经提到了仓库，其实当我们在自己的电脑上成功安装maven后，就已经已经生成了一个本地仓库，可以在下列地址中找到:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Users/codingBoy/.m2/repository</span><br></pre></td></tr></table></figure></p>
+<p>打开后发现里面全是各种本地仓库中的各种引用开发jar包，这里也能发现我们在pom.xml中配置的junit，可以发现已经下载到本地仓库里面了，如下:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-26%20%E4%B8%8B%E5%8D%8811.14.38.png" alt="">  </p>
+<p>只要我们在pom.xml中配置了相关jar包的坐标，maven都会根据这个坐标自动将这些jar包下载在该目录(也就是maven的本地仓库)下供我们开发过程中的直接引用。  </p>
+<p>既然有本地仓库，那么是不是还有个远程仓库的概念呢？答案是肯定的，这个远程仓库是个大仓库，叫做中央仓库，地址为:<code>https://repo.maven.apache.org/maven2</code>。感谢开源社区的贡献，在maven的中央仓库里几乎为我们下载了所有开发都需要的jar包，如下:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-26%20%E4%B8%8B%E5%8D%8811.31.10.png" alt=""></p>
+<p>要是此时我们又创建了一个maven项目helloword2，而且需要在这个项目中引用helloword项目，只要将helloword项目打包到本地仓库，然后在helloword2项目的pom.xml文件中引入helloword的坐标即可。通过如下步骤:  </p>
+<p>1.在命令行中输入命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">先cd helloword</span><br><span class="line"></span><br><span class="line">然后mvn clean</span><br></pre></td></tr></table></figure></p>
+<p>通过上述步骤清除helloword经过编译后生成的target包。  </p>
+<p>2.输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn install</span><br></pre></td></tr></table></figure></p>
+<p>将helloword项目打包并发布到本地仓库中。  </p>
+<p>3.此时helloword2就可以根据坐标来引入helloword项目了，在helloword2的pom.xml文件中添加helloword的坐标:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.codingxiaxw.helloword<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>helloword<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这样便完成了在一个项目中对另一个项目进行引用。  </p>
+<h3 id="3-3坐标和仓库的关系"><a href="#3-3坐标和仓库的关系" class="headerlink" title="3.3坐标和仓库的关系"></a>3.3坐标和仓库的关系</h3><p>有了坐标，就知道在什么位置存储构件的内容，中央仓库也是一个样，上述例子中引用的junit的可以把它的坐标描述为：junit:junit:4.8.2，在中央仓库地址中打开对应的目录果然看到了Junit的jar包:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-26%20%E4%B8%8B%E5%8D%8811.39.56.png" alt="">  </p>
+<p>有了正确的坐标,Maven才能够在正确的位置找到依赖文件并使用，上述pom.xml中为junit坐标设置的<code>&lt;scope&gt;</code>标签中的test值是用来控制该依赖只在测试时可用，与坐标无关。  </p>
+<p>正因为坐标是Maven核心的核心，因此规划正确的坐标至关重要，如果你使用了模糊不清的坐标，那么你的用户就很难找到你的构件，或者即使找到了，也容易写错。错误的使用坐标，还会造成冲突，如果你也使用junit这样的groupId，那就悲剧了。</p>
+<h2 id="4-生命周期和插件"><a href="#4-生命周期和插件" class="headerlink" title="4.生命周期和插件"></a>4.生命周期和插件</h2><p>Maven定义了三套生命周期：clean、default、site，每个生命周期都包含了一些阶段（phase）。三套生命周期相互独立，但各个生命 周期中的phase却是有顺序的，且后面的phase依赖于前面的phase。执行某个phase时，其前面的phase会依顺序执行，但不会触发另外两 套生命周期中的任何phase。  </p>
+<ul>
+<li>clean，做些清理的工作。</li>
+<li>default，最核心的周期，做初始化和构建的工作，里面分的阶段很多，主要是compllie,test, package, install等。</li>
+<li>site，生成站点的周期，包括生成文档和发布等。</li>
+</ul>
+<p>maven的生命周期是抽象的，实际需要插件来完成任务，这一过程是通过将插件的目标（goal）绑定到生命周期的具体阶段（phase）来完成的。这里就像设计模式中的模板模式，父类定义好了方法模板并规定对了执行顺序，而子类定义了每个模板方法具体要做的事情。这里的父类相当于maven，而子类就像是一个个的插件。  </p>
+<p>比如compile这个阶段，对应的是mvn complie这个命令，但是实际上是maven-compiler-plugin这个插件在起作用。  </p>
+<p>而install这个阶段,对应的mvn install命令，实际上是maven-install-plugin这个插件在起作用。  </p>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h2><p>在实际开发中，我们用到Maven对我们的项目进行管理的地方，就是通过在pom.xml文件中添加所需第三方jar包的坐标让maven在中央仓库中找到相应的jar包资源然后下载到本地仓库中为我们使用。有了maven以后，我们在用到第三方jar包时就不需要再去网上找相关的jar包进行下载然后导入到path环境中，maven为我们的项目开发进行了很好的管理。  </p>
+<p>我后面会总结自己用maven+SSM框架进行一个秒杀系统开发的全过程，详情请点击<a href="">用Maven+SSM框架写一个秒杀系统教程(待更新)</a></p>
+<h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[mac系统下的Maven安装配置及创建你的第一个Maven项目]]></title>
       <url>http://codingxiaxw.cn/2016/11/24/51-first-maven-project/</url>
-      <content type="html"><![CDATA[<p>我是在学完SSM框架的整合与基本开发后接触的Maven，它是一个项目管理的利器，网上也有说java后台的项目管理肯定要用到maven的。为什么要用maven?<a id="more"></a>在之前学习各个框架的时候，比如用Spring框架进行开发的时候要在项目中加入Spring的各个jar包及其依赖包;用MyBatis进行开发的时候要在项目中引入MyBatis的各个jar包。这样是不是太过于繁琐?而有了maven对项目进行管理，就简单多了。  </p>
-<p><strong>写在前面的话:</strong>此篇文章教程是在IntelliJ IDEA中搭建的环境。(建议eclipse党快点转IDEA吧，IDEA大法好。逃…)   </p>
+      <content type="html"><![CDATA[<p>我是在学完SSM框架的整合与基本开发后接触的Maven，它是一个项目管理的利器，网上也有说java后台的项目管理肯定要用到maven的。为什么要用maven?<a id="more"></a>在之前学习各个框架的时候，比如用Spring框架进行开发的时候要在项目中加入Spring的各个jar包及其依赖包;用MyBatis进行开发的时候要在项目中引入MyBatis的各个jar包。这样是不是太过于繁琐?而有了maven对项目进行管理，就简单多了。为什么简单多了?有了maven，这样当我们的项目需要哪个jar包时就可以直接在maven为我们生成的pom.xml文件中添加相关jar包依赖就行，而不需要导入那么多的jar包(可以看看我的这篇文章，用<a href="">用Maven+SSM框架写一个秒杀系统教程(待更新)</a>，告诉你maven是如何进行项目管理的)，而本篇文章只是教大家如何安装Maven及如何快速入门创建一个Maven项目。  </p>
+<p><strong>写在前面的话:</strong>此篇文章教程是在IntelliJ IDEA中搭建的maven项目。(建议eclipse党快点转IDEA吧，IDEA大法好。逃…)   </p>
 <h2 id="1-maven的安装"><a href="#1-maven的安装" class="headerlink" title="1.maven的安装"></a>1.maven的安装</h2><p>前往<a href="https://maven.apache.org/download.cgi" target="_blank" rel="external">Apache Maven官网</a>点击<code>apache-maven-3.3.9-bin.zip</code>链接下载3.3.9的版本即可。下载后我将该目录放到/Users/codingBoy/的目录下，文件名为apache-maven-3.3.9。这样我们便成功安装好maven管理工具，但这还不够，还需要设置maven环境变量。  </p>
 <h2 id="2-配置maven环境变量"><a href="#2-配置maven环境变量" class="headerlink" title="2.配置maven环境变量"></a>2.配置maven环境变量</h2><p>打开终端，退到根目录<code>/Users/codingBoy/</code>，输入命令:<code>$ vi ~/.bash_profile</code>打开bash_profile文件,然后添加如下两行代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export M2_HOME=/Users/robbie/apache-maven-3.3.9</span><br><span class="line">export PATH=$PATH:$M2_HOME/bin</span><br></pre></td></tr></table></figure></p>
 <p>然后继续退回到根目录，输入<code>$ source ~/.bash_profile</code>使bash_profile文件添加的内容即刻生效。  </p>
@@ -23,7 +95,7 @@
 <li><code>-DartifactId</code>:标识项目的坐标元素之一，它的值为我们的项目名。我这里指定我要生成的项目名为helloword。</li>
 <li><code>-Dpackage</code>:标识项目的坐标元素之一,这里值就跟DgroupId的值保持一致即可。此属性在命令行中可选。</li>
 <li><code>-Dversion</code>:指定版本号。此属性在命令行中可选</li>
-<li><code>-DarchetypeArtifactId</code>:表示我们生成的工程结构为哪一种，这里的属性值为<code>maven-archetype-quickstart</code>表示生成工程目录结构为quickstart的结构。其值还可以为<code>maven-archetype-webapp</code>表示生成的工程目录可够味webapp型的结构。</li>
+<li><code>-DarchetypeArtifactId</code>:表示我们生成的工程结构为哪一种，这里的属性值为<code>maven-archetype-quickstart</code>表示生成工程目录结构为quickstart的结构。其值还可以为<code>maven-archetype-webapp</code>表示生成的工程目录结构为webapp的结构。</li>
 </ul>
 <p>运行该命令，可看到终端中使用的maven命令自动为我们在下载maven的各个依赖包，执行命令的过程时间可能比较久，完成时间取决于个人网络状况。</p>
 <p>完成后我们可以在自己的根目录下发现一个名为”helloword”项目名，说明我们成功在终端使用maven命令创建出一个maven项目，打开该helloword项目，会发现我们生成的maven项目的目录布局为这样的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">helloword</span><br><span class="line">   |-src</span><br><span class="line">   |---main</span><br><span class="line">   |-----java</span><br><span class="line">   |-------cn</span><br><span class="line">   |---------codingxiaxw   </span><br><span class="line">   |-----------App.java</span><br><span class="line">   |---test|-----java</span><br><span class="line">   |-------cn</span><br><span class="line">   |---------codingxiaxw</span><br><span class="line">   |-----------AppTest.java</span><br><span class="line">   |-pom.xml</span><br></pre></td></tr></table></figure></p>
@@ -5046,13 +5118,13 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 <hr>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p> If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 ]]></content>
     </entry>
@@ -5122,13 +5194,13 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 <hr>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 ]]></content>
     </entry>
@@ -5170,13 +5242,13 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 <hr>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p> If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by clicking  these links.</p>
 <ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 ]]></content>
     </entry>
