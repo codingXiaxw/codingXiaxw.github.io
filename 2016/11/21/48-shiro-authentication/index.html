@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8811.21.08.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-20%20%E4%B8%8B%E5%8D%8811.29.24.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-21%20%E4%B8%8B%E5%8D%883.05.39.png">
-<meta property="og:updated_time" content="2016-11-22T08:13:47.000Z">
+<meta property="og:updated_time" content="2016-11-26T11:16:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shiro之实现认证">
 <meta name="twitter:description" content="与其它java开源框架类似，将shiro的jar包加入项目就可以使用shiro提供的功能了。shiro-core是核心包必须选用，还提供了与web整合的shiro-web、与spring整合的shiro-spring、与任务调度quartz整合的shiro-quartz等jar包。">
@@ -351,7 +351,7 @@
       
         <p>与其它java开源框架类似，将shiro的jar包加入项目就可以使用shiro提供的功能了。shiro-core是核心包必须选用，还提供了与web整合的shiro-web、与spring整合的shiro-spring、与任务调度quartz整合的shiro-quartz等jar包。  </p>
 <a id="more"></a>
-<p><strong>写在前面的话:</strong>本篇文章只是通过一个入门程序教大家学会使用Shiro实现认证功能(包括普通认证和经过散列算法对密码进行加密后的认证)，没有将Shiro同Spring整合起来使用(后面的文章我们会讲解Shiro整合web开发环境的项目中如何实现认证功能，见<a href=""></a>)，所以我们采用的jar包很少:shiro-core.jar、junit测试jar包、commons-logging.jar。</p>
+<p><strong>写在前面的话:</strong>本篇文章只是通过一个入门程序教大家学会使用Shiro实现认证功能(包括普通认证和经过散列算法对密码进行加密后的认证)，没有将Shiro同Spring整合起来使用(后面的文章我们会讲解Shiro整合web开发环境的项目中如何实现认证功能，见<a href="http://codingxiaxw.cn/2016/11/23/50-Shiro-Integration/">Shiro整合Web项目及整合后的开发</a>)，所以我们采用的jar包很少:shiro-core.jar、junit测试jar包、commons-logging.jar。</p>
 <h2 id="1-认证的概念"><a href="#1-认证的概念" class="headerlink" title="1.认证的概念"></a>1.认证的概念</h2><p>身份认证,即在应用中谁能证明他就是他本人。一般提供如他们的身份ID一些标识信息来表明他就是他本人，如提供身份证，用户名/密码来证明。<br>在shiro中，用户需要提供principals （身份）和credentials（证明）给shiro，从而应用能验证用户身份:  </p>
 <ul>
 <li>principals：身份，即主体的标识属性，可以是任何东西，如用户名、邮箱等，唯一即可。一个主体可以有多个principals，但只有一个Primary principals，一般是用户名/密码/手机号。</li>

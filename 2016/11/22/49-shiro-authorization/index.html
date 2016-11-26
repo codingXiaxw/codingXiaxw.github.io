@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="当用户的信息得到认证通过后，该用户在系统中具有哪些操作权限呢？所以在用户认证通过后，系统就要给该用户进行授权操作了。">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-22%20%E4%B8%8B%E5%8D%883.43.34.png">
-<meta property="og:updated_time" content="2016-11-22T08:28:12.000Z">
+<meta property="og:updated_time" content="2016-11-26T11:16:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shiro之实现授权">
 <meta name="twitter:description" content="当用户的信息得到认证通过后，该用户在系统中具有哪些操作权限呢？所以在用户认证通过后，系统就要给该用户进行授权操作了。">
@@ -349,7 +349,7 @@
       
         <p>当用户的信息得到认证通过后，该用户在系统中具有哪些操作权限呢？所以在用户认证通过后，系统就要给该用户进行授权操作了。  </p>
 <a id="more"></a>
-<p><strong>写在前面的话:</strong>同前篇文章<a href="http://codingxiaxw.cn/2016/11/21/48-shiro-authentication/">Shiro之实现认证</a>那样，本篇文章也只是通过一个入门程序教大家学会使用Shiro实现授权功能(当然只有要在该用户的信息认证通过后才能对该用户进行授权)，没有将Shiro同Spring整合起来使用(后面的文章我们会讲解Shiro整合web开发环境的项目中如何实现授权功能，见<a href=""></a>)，所以我们就采用上篇文章的工程结构即可。本篇文章的讲解结构跟前篇文章讲解结构也是一致的，便于大家理解。  </p>
+<p><strong>写在前面的话:</strong>同前篇文章<a href="http://codingxiaxw.cn/2016/11/21/48-shiro-authentication/">Shiro之实现认证</a>那样，本篇文章也只是通过一个入门程序教大家学会使用Shiro实现授权功能(当然只有要在该用户的信息认证通过后才能对该用户进行授权)，没有将Shiro同Spring整合起来使用(后面的文章我们会讲解Shiro整合web开发环境的项目中如何实现授权功能，见<a href="http://codingxiaxw.cn/2016/11/23/50-Shiro-Integration/">Shiro整合Web项目及整合后的开发</a>)，所以我们就采用上篇文章的工程结构即可。本篇文章的讲解结构跟前篇文章讲解结构也是一致的，便于大家理解。  </p>
 <h2 id="1-授权的概念"><a href="#1-授权的概念" class="headerlink" title="1.授权的概念"></a>1.授权的概念</h2><p>授权，也叫访问控制，即在应用中控制谁能访问哪些资源（如访问页面/编辑数据/页面操作等）。在授权中需了解的几个关键对象:主体(Subject)、资源(Resource)、权限(Permission)、角色(Role)。  </p>
 <p><strong>主体:</strong>即访问应用的用户，在Shiro中使用Subject代表该用户。用户只有授权后才允许访问相应的资源。  </p>
 <p><strong>资源:</strong>在应用中用户可以访问的任何东西，比如访问JSP页面、查看/编辑某些数据、访问某个业务方法、打印文本等等都是资源。用户只要授权后才能访问。  </p>
