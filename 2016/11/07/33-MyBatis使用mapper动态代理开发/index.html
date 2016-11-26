@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/namespace.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/danduo.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ceshissss.png">
-<meta property="og:updated_time" content="2016-11-14T06:01:52.000Z">
+<meta property="og:updated_time" content="2016-11-26T09:31:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis之Mapper动态代理开发">
 <meta name="twitter:description" content="1.SqlSession的使用范围1.SqlSessionFactoryBuilderSqlSessionFactoryBuilder是以工具类的方式来使用:需要创建sqlSessionFactory时就new一个 SqlSessionFactoryBuilder">
@@ -357,7 +357,8 @@
 <a id="more"></a>
 <p><strong>2.sqlSessionFactory</strong><br>正常开发时，以单例方式管理sqlSessionFactory，整个系统运行过程中sqlSessionFactory只有一个实例，将来和Spring整合后由Spring以单例方式管理sqlSessionFactory  </p>
 <p><strong>3.SqlSession</strong><br>SqlSession是一个面向用户(程序员)的接口，程序员调用 SqlSession接口的方法进行操作数据库。那么我们会思考:SqlSession能否以单例方式使用？？？由于 SqlSession是线程不安全的，所以 SqlSession最佳应用范围在方法体内。也就是说在方法体内定义局部变量 SqlSession的对象来使用。  </p>
-<h2 id="2-MyBatis开发DAO的方式"><a href="#2-MyBatis开发DAO的方式" class="headerlink" title="2.MyBatis开发DAO的方式"></a>2.MyBatis开发DAO的方式</h2><h3 id="2-1原始dao的开发方式"><a href="#2-1原始dao的开发方式" class="headerlink" title="2.1原始dao的开发方式"></a>2.1原始dao的开发方式</h3><p>程序员需要编写dao接口:<img src="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3.png" alt="">和dao接口的实现类:<img src="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E7%B1%BB.png" alt="">  </p>
+<h2 id="2-MyBatis开发DAO的方式"><a href="#2-MyBatis开发DAO的方式" class="headerlink" title="2.MyBatis开发DAO的方式"></a>2.MyBatis开发DAO的方式</h2><p>我们先来看看MyBatis原始开发dao的开发方式，发现原始开发的问题，然后再来看看MyBatis使用mapper动态代理开发dao的方式(也是MyBatis目前使用的开发dao的方式)。  </p>
+<h3 id="2-1原始dao的开发方式"><a href="#2-1原始dao的开发方式" class="headerlink" title="2.1原始dao的开发方式"></a>2.1原始dao的开发方式</h3><p>程序员需要编写dao接口:<img src="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3.png" alt="">和dao接口的实现类:<img src="http://od2xrf8gr.bkt.clouddn.com/dao%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E7%B1%BB.png" alt="">  </p>
 <p>然后就能在测试类中使用。测试类代码如下:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E6%B5%8B%E8%AF%95222.png" alt="">  </p>
 <p>我们来看看这种方式开发有什么问题?  </p>
