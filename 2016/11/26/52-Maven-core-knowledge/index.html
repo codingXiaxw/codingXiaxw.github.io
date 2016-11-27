@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-26%20%E4%B8%8B%E5%8D%8811.14.38.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-26%20%E4%B8%8B%E5%8D%8811.31.10.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-26%20%E4%B8%8B%E5%8D%8811.39.56.png">
-<meta property="og:updated_time" content="2016-11-26T15:58:41.000Z">
+<meta property="og:updated_time" content="2016-11-26T16:01:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maven核心知识">
 <meta name="twitter:description" content="上篇文章介绍了Maven的安装、配置及创建自己的第一个Maven项目的两种方式。在往后的开发中我们需要用到Maven对我们的项目进行管理以简化项目开发过程，具体就是当我们的项目需要导入哪个第三方jar包时直接在Maven为我们生成的的pom.xml文件中添加相关jar包依赖就行。">
@@ -403,7 +403,7 @@
 <p>maven的生命周期是抽象的，实际需要插件来完成任务，这一过程是通过将插件的目标（goal）绑定到生命周期的具体阶段（phase）来完成的。这里就像设计模式中的模板模式，父类定义好了方法模板并规定对了执行顺序，而子类定义了每个模板方法具体要做的事情。这里的父类相当于maven，而子类就像是一个个的插件。  </p>
 <p>比如compile这个阶段，对应的是mvn complie这个命令，但是实际上是maven-compiler-plugin这个插件在起作用。  </p>
 <p>而install这个阶段,对应的mvn install命令，实际上是maven-install-plugin这个插件在起作用。  </p>
-<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h2><p>在实际开发中，我们用到Maven对我们的项目进行管理的地方，就是通过在pom.xml文件中添加所需第三方jar包的坐标让maven在中央仓库中找到相应的jar包资源然后下载到本地仓库中为我们使用。有了maven以后，我们在用到第三方jar包时就不需要再去网上找相关的jar包进行下载然后导入到path环境中，maven为我们的项目开发进行了很好的管理。  </p>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h2><p>在实际开发中，我们用到Maven对我们的项目进行管理的地方，就是通过在pom.xml文件中添加所需第三方jar包的坐标让maven在中央仓库中找到相应的jar包资源然后下载到本地仓库中为我们使用。有了maven以后，我们在用到第三方jar包时就不需要再去网上找相关的jar包进行下载及导入到path环境中，maven为我们的项目开发进行了很好的管理。  </p>
 <p>我后面会总结自己用maven+SSM框架进行一个秒杀系统开发的全过程，详情请点击<a href="">用Maven+SSM框架写一个秒杀系统教程(待更新)</a></p>
 <h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
@@ -469,6 +469,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/27/53-maven-ssm-seckill/" rel="prev" title="Java高并发秒杀系统API之DAO层开发">
+                Java高并发秒杀系统API之DAO层开发 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -540,7 +544,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -548,7 +552,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -557,7 +561,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
