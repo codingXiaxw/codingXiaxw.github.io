@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-27%20%E4%B8%8B%E5%8D%884.07.38.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-27%20%E4%B8%8B%E5%8D%884.09.29.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-27%20%E4%B8%8B%E5%8D%884.30.36.png">
-<meta property="og:updated_time" content="2016-11-28T09:21:28.000Z">
+<meta property="og:updated_time" content="2016-11-28T14:01:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java高并发秒杀系统API(一)之DAO层开发">
 <meta name="twitter:description" content="之前写了一个用SSM框架搭建的商品查询系统,分两篇文章分别记录了自己整合SSM框架的过程以及利用SSM开发的一些基础知识，由于那时候刚学完SSM框架，所以自己觉得整合的过程总结的不够好。">
@@ -357,12 +357,12 @@
       
         <p>之前写了一个用<a href="http://codingxiaxw.cn/2016/11/15/45-smm%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">SSM框架搭建的商品查询系统</a>,分两篇文章分别记录了自己整合SSM框架的过程以及利用SSM开发的一些基础知识，由于那时候刚学完SSM框架，所以自己觉得整合的过程总结的不够好。<a id="more"></a>如今在有了一定的SSM框架开发经验后打算参考慕课网上对秒杀系统的讲解视频再写一个用Maven+SSM做的一个秒杀系统，从头到位记录自己整合SSM框架以及用SS框架M开发这个秒杀系统的过程。maven的强大之处就是你不用再像以前那样，如果在项目中用到spring框架还要到spring官网上去下载一系列的jar包，用了maven对项目进行管理之后你就可以直接在它的pom.xml文件中添加jar包的相应坐标，这样maven就能自动从它的中央仓库中为我们将这些jar包下载到其本地仓库中供我们使用。  </p>
 <p>用maven对项目进行管理的知识很简单，关于创建maven项目的知识大家看我的这篇文章便可以在几分钟内掌握:<a href="http://codingxiaxw.cn/2016/11/24/51-first-maven-project/">Maven安装配置及创建你的第一个Maven项目</a>  </p>
-<p>秒杀系统搭建环境:IDEA+Maven+SSM框架。源码<a href="">请点击这里(源码待上传)</a>前往我的github。  </p>
+<p>秒杀系统搭建环境:IDEA+Maven+SSM框架。源码<a href="https://github.com/codingXiaxw/seckill" target="_blank" rel="external">请点击这里</a>前往我的github。  </p>
 <p>完成这个秒杀系统，需要完成四个模块的代码编写，分别是:  </p>
 <ul>
-<li>1.Java高并发秒杀APi之业务分析与DAO层代码编写。</li>
-<li>2.Java高并发秒杀APi之Service层代码编写。</li>
-<li>3.Java高并发秒杀APi之Web层代码编写。</li>
+<li>1.<a href="http://codingxiaxw.cn/2016/11/27/53-maven-ssm-seckill-dao/">Java高并发秒杀APi之业务分析与DAO层代码编写</a>。</li>
+<li>2.<a href="http://codingxiaxw.cn/2016/11/28/54-seckill-service/">Java高并发秒杀APi之Service层代码编写</a>。</li>
+<li>3.<a href="">Java高并发秒杀APi之Web层代码编写</a>。</li>
 </ul>
 <p>其实完成这三个模块就可以完成我们的秒杀系统了，但对于我们的秒杀系统中一件秒杀商品，在秒杀的时候肯定会有成千上万的用户参与进来，通过上述三个模块完成的系统无法解决这么多用户的高并发操作，所以我们还需要第四个模块:  </p>
 <ul>
@@ -430,7 +430,7 @@
 <p>运行成功，测试台打印出insertCount=1的信息，即我们修改了表中的一条记录，这时查看秒杀成功明细表，发现该用户的信息已经被插入。然后再次运行该测试方法，程序没有报主键异常的错，是因为我们在编写我们的明细表的时候添加了一个联合主键的字段，它保证我们明细表中的seckillId和userPhone不能重复插入，另外在SuccessDao.xml中写的插入语句的ignore关键字也保证了这点。控制台输出0，表示没有对明细表做插入操作。然后进行queryByIdWithSeckill()方法的测试,需要在Dao层的方法中添加@Param注解:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">SuccessKilled <span class="title">queryByIdWithSeckill</span><span class="params">(@Param(<span class="string">"seckillId"</span>)</span> <span class="keyword">long</span> seckillId,@<span class="title">Param</span><span class="params">(<span class="string">"userPhone"</span>)</span> <span class="keyword">long</span> userPhone)</span>;</span><br></pre></td></tr></table></figure></p>
 <p>然后进行该方法的测试:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">queryByIdWithSeckill</span><span class="params">()</span> <span class="keyword">throws</span> Exception 	</span>&#123;</span><br><span class="line">        <span class="keyword">long</span> seckillId=<span class="number">1000L</span>;</span><br><span class="line">        <span class="keyword">long</span> userPhone=<span class="number">13476191877L</span>;</span><br><span class="line">        SuccessKilled successKilled=successKilledDao.queryByIdWithSeckill(seckillId,userPhone);</span><br><span class="line">        System.out.println(successKilled);</span><br><span class="line">        System.out.println(successKilled.getSeckill());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>运行，成功查询出我们明细表中id为1000且手机号码为13476191877的用户信息，并将表中对应的信息映射到SuccessKilled对象和Seckill对象的属性中。  </p>
-<p>到此，我们成功完成了Dao层开发及测试，接下来我们将进行Service层的开发工作，请关注我的下篇文章<a href="http://codingxiaxw.cn/2016/11/28/54-seckill-service/">Java高并发秒杀API之Service层开发</a>  </p>
+<p>到此，我们成功完成了Dao层开发及测试，接下来我们将进行Service层的开发工作，请查看我的下篇文章<a href="http://codingxiaxw.cn/2016/11/28/54-seckill-service/">Java高并发秒杀API之Service层开发</a>  </p>
 <h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
@@ -570,7 +570,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">51</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
