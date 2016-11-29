@@ -1,0 +1,1010 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="socket," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="本篇文章分为两个部分，一个部分是总结使用Socket实现TCP的编程的知识，主要就是完成服务器端和客户端两个对象的代码编写；另一个部分是通过Java写一个聊天室来对我们的Socket编程进行巩固。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Socket实现TCP编程及聊天室的编写">
+<meta property="og:url" content="http://codingxiaxw.cn/2016/11/29/57-socket-chatroom/index.html">
+<meta property="og:site_name" content="codingXiaxw's blog">
+<meta property="og:description" content="本篇文章分为两个部分，一个部分是总结使用Socket实现TCP的编程的知识，主要就是完成服务器端和客户端两个对象的代码编写；另一个部分是通过Java写一个聊天室来对我们的Socket编程进行巩固。">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-29%20%E4%B8%8B%E5%8D%887.18.56.png">
+<meta property="og:updated_time" content="2016-11-29T15:02:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Socket实现TCP编程及聊天室的编写">
+<meta name="twitter:description" content="本篇文章分为两个部分，一个部分是总结使用Socket实现TCP的编程的知识，主要就是完成服务器端和客户端两个对象的代码编写；另一个部分是通过Java写一个聊天室来对我们的Socket编程进行巩固。">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-29%20%E4%B8%8B%E5%8D%887.18.56.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codingxiaxw.cn/2016/11/29/57-socket-chatroom/"/>
+
+
+  <title> 使用Socket实现TCP编程及聊天室的编写 | codingXiaxw's blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">codingXiaxw's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Life is short,just coding.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Contact
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用Socket实现TCP编程及聊天室的编写
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-11-29T19:36:33+08:00" content="Nov 29 2016">
+              Nov 29 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/socket/" itemprop="url" rel="index">
+                    <span itemprop="name">socket</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/29/57-socket-chatroom/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/29/57-socket-chatroom/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/29/57-socket-chatroom/" class="leancloud_visitors" data-flag-title="使用Socket实现TCP编程及聊天室的编写">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇文章分为两个部分，一个部分是总结使用Socket实现TCP的编程的知识，主要就是完成服务器端和客户端两个对象的代码编写；另一个部分是通过Java写一个聊天室来对我们的Socket编程进行巩固。<a id="more"></a>  </p>
+<p><strong>文章结构:</strong>首先是对TCP的简单介绍，然后在分析Socket通信的模型后进行Java Socket实现TCP编程的代码编写，最后是利用Socket的知识编写一个简单的聊天室。  </p>
+<h2 id="1-TCP简介"><a href="#1-TCP简介" class="headerlink" title="1.TCP简介"></a>1.TCP简介</h2><p>TCP(Transmission Control Protocol 传输控制协议)是一种面向连接的、可靠的、基于字节流的传输层通信协议，由IETF的RFC 793定义。在简化的计算机网络OSI模型中，它完成第四层传输层所指定的功能，用户数据报协议（UDP，本篇文章不介绍UDP)是同一层内另一个重要的传输协议。在因特网协议族(Internet protocol suite)中，TCP层是位于IP层之上，应用层之下的中间层。不同主机的应用层之间经常需要可靠的、像管道一样的连接，但是IP层不提供这样的流机制，而是提供不可靠的包交换。  </p>
+<p>首先了解一下网络模型中的数据传递:应用层向TCP层发送用于网间传输的、用8位字节表示的数据流，然后TCP把数据流分区成适当长度的报文段(通常受该计算机连接的网络的数据链路层的最大传输单元(MTU)的限制)。之后TCP把结果包传给IP层，由它来通过网络将包传送给接收端实体的TCP层。TCP为了保证不发生丢包，就给每个包一个序号，同时序号也保证了传送到接收端实体的包的按序接收。然后接收端实体对已成功收到的包发回一个相应的确认(ACK)；如果发送端实体在合理的往返时延(RTT)内未收到确认，那么对应的数据包就被假设为已丢失将会被进行重传。TCP用一个校验和函数来检验数据是否有错误；在发送和接收时都要计算校验和。  </p>
+<h2 id="2-Socket通信模型"><a href="#2-Socket通信模型" class="headerlink" title="2.Socket通信模型"></a>2.Socket通信模型</h2><p>所谓socket 通常也称作”套接字“，用于描述IP地址和端口，是一个通信链的句柄。应用程序通常通过”套接字”向网络发出请求或者应答网络请求。首先我们看看Socket基于TCP的通信模型图:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-29%20%E4%B8%8B%E5%8D%887.18.56.png" alt=""></p>
+<p>图中通信模型的各个步骤如下:  </p>
+<ol>
+<li>在服务端建立一个ServerSocket,绑定相应的端口，并且在指定的端口进行侦听，等待客户端的连接。</li>
+<li>当客户端创建连接Socket并且向服务端发送请求。</li>
+<li>服务器收到请求，并且接受客户端的请求信息。一旦接收到客户端的连接请求后，会创建一个连接socket，用来与客户端的socket进行通信。通过相应的输入/输出流进行数据的交换，数据的发送接收以及数据的响应等等。</li>
+<li>当客户端和服务端通信完毕后，需要分别关闭socket，结束通信。</li>
+</ol>
+<p>也就是基于服务器和客户端的开发，所以在服务器端和客户端我们分别需要完成的代码就是:  </p>
+<p>对于服务器端需要完成的工作是:  </p>
+<ol>
+<li>创建ServerSocket对象，绑定监听器</li>
+<li>通过accept（）方法监听客户端请求</li>
+<li>连接建立以后通过读取客户端发送请求消息</li>
+<li>通过输出流向客户端发送响应信息</li>
+<li>关闭资源  </li>
+</ol>
+<p>ServerSocket类中涉及到的常用方法:</p>
+<ul>
+<li>ServerSocket(int port)——创建并绑定到特定端口的服务器套接字</li>
+<li>accept()——侦听并接受到此套接字的连接</li>
+<li>close()——关闭此套接字</li>
+<li>getInetAddress()——得到ServerSocket对象绑定的IP地址。如果ServerSocket对象未绑定IP地址，返回0.0.0.0</li>
+<li>getLocalPort()——返回此套接字在其上侦听的端口</li>
+</ul>
+<p>客户端需要完成的工作是:  </p>
+<ol>
+<li>创建Socket对象，指明需要连接的服务器地址和端口号(1023以后的端口,因为0~1023之间的端口号是我们系统需要使用的端口号)</li>
+<li>连接建立后，通过输出流向服务器端请求</li>
+<li>通过输入流获取服务器响应信息</li>
+<li>关闭资源</li>
+</ol>
+<p>Socket类中常用的方法:</p>
+<ul>
+<li>Socket(InetAddress address, int port)——创建一个套接字并将其连接到指定ip地址的指定端口号</li>
+<li>Socket(String host, int port)——创建一个套接字并将其连接到指定主机上的指定端口号</li>
+<li>close()——关闭此套接字</li>
+<li>getInetAddress()——返回套接字连接的地址</li>
+<li>getInputStream()——返回此套接字的输入流</li>
+<li>getOutputStream——返回此套接字的输出流</li>
+</ul>
+<p>好了，通过上述的描述，对Socket的编程就讲述的很清楚了，接下来针对上述描述进行我们服务器和客户端代码的编码工作。</p>
+<h2 id="3-基于Tcp的Socket开发代码编写"><a href="#3-基于Tcp的Socket开发代码编写" class="headerlink" title="3.基于Tcp的Socket开发代码编写"></a>3.基于Tcp的Socket开发代码编写</h2><p>首先是服务器端Server.java的代码编写:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Created by codingBoy on 16/11/29.</span><br><span class="line"> * 基于TCP协议的Socket通信，实现客户登录</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Server</span></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">//1.创建一个服务器Socket，即ServerSocket,指定绑定的端口，并坚挺</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ServerSocket serverSocket=<span class="keyword">new</span> ServerSocket(<span class="number">8888</span>);</span><br><span class="line">            <span class="comment">//2，调用accept()开始监听，等待客户端的链接</span></span><br><span class="line">            System.out.println(<span class="string">"****服务器即将启动，等待客户端的连接****"</span>);</span><br><span class="line">            Socket socket=serverSocket.accept();</span><br><span class="line">            <span class="comment">//3.获取输入流并获取客户信息</span></span><br><span class="line">            InputStream in=socket.getInputStream();</span><br><span class="line"></span><br><span class="line">            InputStreamReader isr=<span class="keyword">new</span> InputStreamReader(in,<span class="string">"utf-8"</span>);</span><br><span class="line"></span><br><span class="line">            BufferedReader br=<span class="keyword">new</span> BufferedReader(isr);</span><br><span class="line"></span><br><span class="line">            String info;</span><br><span class="line"></span><br><span class="line">            StringBuilder sb=<span class="keyword">new</span> StringBuilder();</span><br><span class="line">            <span class="keyword">while</span> ((info=br.readLine())!=<span class="keyword">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sb.append(info);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"我是服务器，客户端发来的消息为:"</span>+sb);</span><br><span class="line"></span><br><span class="line">            socket.shutdownInput();<span class="comment">//关闭输入流</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//4.获取输出流，用于响应客户端的请求</span></span><br><span class="line">            OutputStream os=socket.getOutputStream();</span><br><span class="line">            PrintWriter pw=<span class="keyword">new</span> PrintWriter(os);</span><br><span class="line">            pw.write(<span class="string">"欢迎您"</span>);</span><br><span class="line">            pw.flush();<span class="comment">//将缓冲输出</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//4.关闭相关资源</span></span><br><span class="line">            pw.close();</span><br><span class="line">            os.close();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            br.close();</span><br><span class="line">            isr.close();</span><br><span class="line">            in.close();</span><br><span class="line">            socket.close();</span><br><span class="line">            serverSocket.close();</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后是客户端Client.java的代码编写:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">//1.创建客户端Socket,指定服务器端地址和端口号</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Socket socket=<span class="keyword">new</span> Socket(<span class="string">"localhost"</span>,<span class="number">8888</span>);</span><br><span class="line">            <span class="comment">//2.获取输出流，用来向服务器端发送登录信息</span></span><br><span class="line">            OutputStream os=socket.getOutputStream();</span><br><span class="line"></span><br><span class="line">            PrintWriter pw=<span class="keyword">new</span> PrintWriter(os);<span class="comment">//将输出流打包成打印流</span></span><br><span class="line">            pw.write(<span class="string">"用户名:codingxiaxw;密码:123"</span>);</span><br><span class="line">            pw.flush();<span class="comment">//刷新缓存</span></span><br><span class="line"></span><br><span class="line">            socket.shutdownOutput();<span class="comment">//关闭输出流</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//3.获取服务器传过来的输入流，读取服务器的响应信息</span></span><br><span class="line">            InputStream in=socket.getInputStream();</span><br><span class="line">            BufferedReader br=<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(in,<span class="string">"utf-8"</span>));</span><br><span class="line">            String info;</span><br><span class="line"></span><br><span class="line">            StringBuilder sb=<span class="keyword">new</span> StringBuilder();</span><br><span class="line">            <span class="keyword">while</span> ((info=br.readLine())!=<span class="keyword">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sb.append(info);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"我是客户端，服务器给我的信息为:"</span>+sb);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="comment">//3.关闭资源</span></span><br><span class="line"></span><br><span class="line">            br.close();</span><br><span class="line">            in.close();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            pw.close();</span><br><span class="line">            os.close();</span><br><span class="line">            socket.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>此时我们的客户端和服务器端的代码便完成了，首先运行服务器Server.java，代码在执行到<code>Socket socket=serverSocket.accept();</code>时会在此阻塞，控制台输出:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">****服务器即将启动，等待客户端的连接****</span><br></pre></td></tr></table></figure></p>
+<p>直到等到客户端连接到该端口号的服务器后服务器的代码才会向下执行，此时运行客户端Client.java，客户端的控制台输出:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我是客户端，服务器给我的信息为:欢迎您</span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure></p>
+<p>然后此时切换到服务器的控制台，发现输出信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">****服务器即将启动，等待客户端的连接****</span><br><span class="line">我是服务器，客户端发来的消息为:用户名:codingxiaxw;密码:123</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure></p>
+<p>此时我们便使用Socket完成了一个服务器和一个客户端之间的通信，那么问题来了，如何实现一个服务器与多个客户端之间的通信呢？我们使用多线程服务器的方式。创建一个ServerThread.java用于编写服务器端多线程接收客户端传递过来的信息的代码编写，代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServerThread</span> <span class="keyword">extends</span> <span class="title">Thread</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Socket socket;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ServerThread</span><span class="params">(Socket socket)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.socket=socket;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">//3.获取输入流并获取客户信息</span></span><br><span class="line">        InputStream in= <span class="keyword">null</span>;</span><br><span class="line">        InputStreamReader isr=<span class="keyword">null</span>;</span><br><span class="line">        BufferedReader br=<span class="keyword">null</span>;</span><br><span class="line">        OutputStream os=<span class="keyword">null</span>;</span><br><span class="line">        PrintWriter pw=<span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            in = socket.getInputStream();</span><br><span class="line">            isr=<span class="keyword">new</span> InputStreamReader(in,<span class="string">"utf-8"</span>);</span><br><span class="line">            br=<span class="keyword">new</span> BufferedReader(isr);</span><br><span class="line"></span><br><span class="line">            String info;</span><br><span class="line"></span><br><span class="line">            StringBuilder sb=<span class="keyword">new</span> StringBuilder();</span><br><span class="line">            <span class="keyword">while</span> ((info=br.readLine())!=<span class="keyword">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sb.append(info);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"我是服务器，客户端发来的消息为:"</span>+sb);</span><br><span class="line"></span><br><span class="line">            socket.shutdownInput();<span class="comment">//关闭输入流</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//4.获取输出流，用于响应客户端的请求</span></span><br><span class="line">            os=socket.getOutputStream();</span><br><span class="line">            pw=<span class="keyword">new</span> PrintWriter(os);</span><br><span class="line">            pw.write(<span class="string">"欢迎您"</span>);</span><br><span class="line">            pw.flush();<span class="comment">//将缓冲输出</span></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">//4.关闭相关资源</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (pw!=<span class="keyword">null</span>) pw.close();</span><br><span class="line">                <span class="keyword">if</span> (os!=<span class="keyword">null</span>) os.close();</span><br><span class="line">                <span class="keyword">if</span> (br!=<span class="keyword">null</span>) br.close();</span><br><span class="line">                <span class="keyword">if</span> (isr!=<span class="keyword">null</span>) isr.close();</span><br><span class="line">                <span class="keyword">if</span> (in!=<span class="keyword">null</span>) in.close();</span><br><span class="line">                <span class="keyword">if</span> (socket!=<span class="keyword">null</span>) socket.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (Exception e)</span><br><span class="line">            &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>实际上我们就是将之前写在Server.java中获取客户端传递过来的信息的那部分代码拿出来写在了该线程中，然后修改Server.java中的代码为:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Server</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">//1.创建一个服务器Socket，即ServerSocket,指定绑定的端口，并坚挺</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ServerSocket serverSocket=<span class="keyword">new</span> ServerSocket(<span class="number">8888</span>);</span><br><span class="line">            <span class="comment">//2，调用accept()开始监听，等待客户端的链接</span></span><br><span class="line">            System.out.println(<span class="string">"****服务器即将启动，等待客户端的连接****"</span>);</span><br><span class="line">            <span class="comment">//记录客户端的数量</span></span><br><span class="line">            <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="comment">//调用accept()方法开始监听，等待客户端的连接</span></span><br><span class="line">                Socket socket = serverSocket.accept();</span><br><span class="line">                <span class="comment">//创建一个新的线程</span></span><br><span class="line">                ServerThread serverThread=<span class="keyword">new</span> ServerThread(socket);</span><br><span class="line">                <span class="comment">//启动线程</span></span><br><span class="line">                serverThread.run();</span><br><span class="line"></span><br><span class="line">                count++;<span class="comment">//统计客户端的数量</span></span><br><span class="line">                System.out.println(<span class="string">"客户端的数量："</span>+count);</span><br><span class="line"></span><br><span class="line">                InetAddress address=socket.getInetAddress();</span><br><span class="line">                System.out.println(<span class="string">"当前客户端的IP："</span>+address.getHostAddress());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行Server.java，服务器控制台输出信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">****服务器即将启动，等待客户端的连接****</span><br></pre></td></tr></table></figure></p>
+<p>然后运行Client.java，客户端控制台输出信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我是客户端，服务器给我的信息为:欢迎您</span><br></pre></td></tr></table></figure></p>
+<p>此时跳转到服务器控制台，信息变为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">****服务器即将启动，等待客户端的连接****</span><br><span class="line">我是服务器，客户端发来的消息为:用户名:codingxiaxw;密码:123</span><br><span class="line">客户端的数量：1</span><br><span class="line">当前客户端的IP：127.0.0.1</span><br></pre></td></tr></table></figure></p>
+<p>然后更改Client.java中传递给服务器的数据代码为:<code>pw.write(&quot;用户名:codingxiaxw;密码:456&quot;);</code>，再运行Client.java，发现服务器的控制台输出信息变为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">****服务器即将启动，等待客户端的连接****</span><br><span class="line">我是服务器，客户端发来的消息为:用户名:codingxiaxw;密码:13</span><br><span class="line">客户端的数量：1</span><br><span class="line">当前客户端的IP：127.0.0.1</span><br><span class="line">我是服务器，客户端发来的消息为:用户名:codingxiaxw;密码:456</span><br><span class="line">客户端的数量：2</span><br><span class="line">当前客户端的IP：127.0.0.1</span><br></pre></td></tr></table></figure></p>
+<p>这样我们便完成了多线程服务器的编码工作，到此我们便成功使用Socket完成了基于TCP协议的编程。接下来趁热打铁，用Socket实现一个简单的聊天室功能。  </p>
+<h2 id="4-使用Socket实现一个简单的聊天室"><a href="#4-使用Socket实现一个简单的聊天室" class="headerlink" title="4.使用Socket实现一个简单的聊天室"></a>4.使用Socket实现一个简单的聊天室</h2><p>功能概述:客户端用于发送信息,将在控制台输出的信息转换为输出流输出到服务器端，服务器通过<code>socket.getOutputStream()</code>方法接收客户端传来的信息，并将发送该信息的客户端地址及信息发送在控制台中，这样我们便简单的实现了我们的聊天室。  </p>
+<p>类比到目前最火的微信、qq聊天，他们的功能也基本是这样实现。例如qq中的用户A发送信息给用户B，过程是这样的:当A打开和B的聊天窗口时即和B还有服务器建立了一个聊天室(同时服务器和客户端开启连接)，A发送信息，其实是发送到了qq聊天室服务器的接收容器中，然后qq服务器将该客户端地址(即qq头像)和信息内容显示在聊天室中(即聊天窗口)，你每和一个好友进行聊天打开一个窗口就等于和她(另一个客户端)还有我们的qq服务器组成了一个聊天室(当然聊天室的服务器肯定是多线程的)。qq上还有多人聊天的功能，实现道理也是这样，只是该聊天室中有多个客户端给服务器发送消息罢了。  </p>
+<p>分析了功能后接下来进行我们服务器端和客户端代码的编写，首先创建一个ChatRoom.java，运行后用于开启服务器和客户端的连接，代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待更新。</span><br></pre></td></tr></table></figure></p>
+<p>待更新。</p>
+<h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/socket/" rel="tag">#socket</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/28/55-seckill-web/" rel="next" title="Java高并发秒杀系统API(三)之Web层开发">
+                <i class="fa fa-chevron-left"></i> Java高并发秒杀系统API(三)之Web层开发
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/29/57-socket-chatroom/"
+           data-title="使用Socket实现TCP编程及聊天室的编写" data-url="http://codingxiaxw.cn/2016/11/29/57-socket-chatroom/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
+               alt="codingXiaxw" />
+          <p class="site-author-name" itemprop="name">codingXiaxw</p>
+          <p class="site-description motion-element" itemprop="description">Life is short,just coding.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/codingXiaxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5023661572?from=hissimilar_home&refer_flag=1005050003_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com//people/e9f78fa34b8002652811ac348da3f671" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-TCP简介"><span class="nav-number">1.</span> <span class="nav-text">1.TCP简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Socket通信模型"><span class="nav-number">2.</span> <span class="nav-text">2.Socket通信模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-基于Tcp的Socket开发代码编写"><span class="nav-number">3.</span> <span class="nav-text">3.基于Tcp的Socket开发代码编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-使用Socket实现一个简单的聊天室"><span class="nav-number">4.</span> <span class="nav-text">4.使用Socket实现一个简单的聊天室</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-联系"><span class="nav-number">5.</span> <span class="nav-text">5.联系</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">codingXiaxw</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codingXiaxw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("G9m3Gnu7lbpyUM0MJAyJFK9g-gzGzoHsz", "E72YIgigcKXLV4XC5x7GgYDt");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

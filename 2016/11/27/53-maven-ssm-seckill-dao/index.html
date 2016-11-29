@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-27%20%E4%B8%8B%E5%8D%884.07.38.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-27%20%E4%B8%8B%E5%8D%884.09.29.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-27%20%E4%B8%8B%E5%8D%884.30.36.png">
-<meta property="og:updated_time" content="2016-11-28T14:01:46.000Z">
+<meta property="og:updated_time" content="2016-11-28T14:13:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java高并发秒杀系统API(一)之DAO层开发">
 <meta name="twitter:description" content="之前写了一个用SSM框架搭建的商品查询系统,分两篇文章分别记录了自己整合SSM框架的过程以及利用SSM开发的一些基础知识，由于那时候刚学完SSM框架，所以自己觉得整合的过程总结的不够好。">
@@ -362,13 +362,13 @@
 <ul>
 <li>1.<a href="http://codingxiaxw.cn/2016/11/27/53-maven-ssm-seckill-dao/">Java高并发秒杀APi之业务分析与DAO层代码编写</a>。</li>
 <li>2.<a href="http://codingxiaxw.cn/2016/11/28/54-seckill-service/">Java高并发秒杀APi之Service层代码编写</a>。</li>
-<li>3.<a href="">Java高并发秒杀APi之Web层代码编写</a>。</li>
+<li>3.<a href="http://codingxiaxw.cn/2016/11/28/55-seckill-web/">Java高并发秒杀APi之Web层代码编写</a>。</li>
 </ul>
 <p>其实完成这三个模块就可以完成我们的秒杀系统了，但对于我们的秒杀系统中一件秒杀商品，在秒杀的时候肯定会有成千上万的用户参与进来，通过上述三个模块完成的系统无法解决这么多用户的高并发操作，所以我们还需要第四个模块:  </p>
 <ul>
 <li>4.Java高并发秒杀APi之高并发优化。</li>
 </ul>
-<p>该系统我将按照上述4个模块通过4篇文章来完成介绍，本篇文章进行项目的介绍以及Dao层编码的开发。首先看看我们项目的效果图:  </p>
+<p>该系统我将按照上述4个模块通过4篇文章来完成介绍，本篇文章进行第一个模块的讲解及项目的介绍以及Dao层编码的开发。首先看看我们项目的效果图:  </p>
 <p>列表页:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-27%20%E4%B8%8B%E5%8D%883.24.50.png" alt="">  </p>
 <p>详情页:  </p>
@@ -570,7 +570,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -578,7 +578,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -587,7 +587,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

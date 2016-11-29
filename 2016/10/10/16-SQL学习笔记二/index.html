@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="1.解决中文乱码问题1.1查看MySQL数据库编码在命令行中输入:SHOW VARIABLES LIKE &amp;#39;CHAR%&amp;#39;;  回车可看到如下内容:">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%98%E5%90%97.png">
-<meta property="og:updated_time" content="2016-11-19T14:38:36.000Z">
+<meta property="og:updated_time" content="2016-11-29T05:40:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL学习笔记二之单表查询与多表查询">
 <meta name="twitter:description" content="1.解决中文乱码问题1.1查看MySQL数据库编码在命令行中输入:SHOW VARIABLES LIKE &amp;#39;CHAR%&amp;#39;;  回车可看到如下内容:">
@@ -369,7 +369,7 @@
 <p>而对于我的mac系统:由于mac的控制台默认编码不是gbk(我也不知道mac系统默认是什么编码格式)，我为什么知道它的默认编码不是gbk呢，因为我修改了client和results的编码格式为gbk后，在控制台中输入中文仍显示乱码，所以我才知道它的默认编码格式不是gbk。针对mac用户我也提供如下两种方法:  </p>
 <ul>
 <li>1.在命令行中输入<code>set character_set_client=gbk;</code>和<code>set character_set_results=gbk;</code>来设置client和results的编码格式为gbk，然后再修改控制台的编码格式为gbk。那么如何修改控制台的编码格式呢?mac的控制台编码格式是与编写sql语句的可视化工具连在一起的，修改可视化工具的编码格式便可以修改控制台的编码格式。而我用的可视化工具为MySQL Workbench，所以我在MySQL Workbench中创建数据库时指定创建数据库的编码格式为gbk并在创建表时也设置表的编码格式为gbk,这样便保持了它们编码格式的一致，成功解决中文乱码问题。</li>
-<li>2.保持client和results的编码格式继续为utf-8,然后修改可视化工具创建数据库时的编码格式为utf-8并在创建表时也指定表的编码格式为utf-8,通过这种方式也保持了它们三者编码格式的一致，成功解决编码乱码的问题。以后便可在控制台或者可视化工具中尽情的输入中文了。(ps:乱码问题真是烦了我学习javaweb的整个历程，后来在做项目时因为要向数据库中插入中文数据所依我不得不去解决这个问题，经过很长时间的奋斗，终于得到解决，所以希望我总结的经验能够帮助到正在看这篇文章的你).</li>
+<li>2.保持client和results的编码格式继续为utf-8,然后修改可视化工具创建数据库时的编码格式为utf-8并在创建表时也指定表的编码格式为utf-8,通过这种方式也保持了它们三者编码格式的一致，成功解决编码乱码的问题。以后便可在控制台或者可视化工具中尽情的输入中文了。(ps:乱码问题真是烦了我学习javaweb的整个历程，后来在做项目时因为要向数据库中插入中文数据所以我不得不去解决这个问题，经过很长时间的奋斗，终于得到解决，所以希望我总结的经验能够帮助到正在看这篇文章的你).</li>
 </ul>
 <h2 id="2-备份数据库与恢复数据库"><a href="#2-备份数据库与恢复数据库" class="headerlink" title="2.备份数据库与恢复数据库"></a>2.备份数据库与恢复数据库</h2><h3 id="2-1备份数据库"><a href="#2-1备份数据库" class="headerlink" title="2.1备份数据库"></a>2.1备份数据库</h3><p>备份就是将数据库导出为sql脚本。在命令行中输入:<code>mysqldump -u用户名 -p密码 数据库名&gt;导出文件路径</code>  </p>
 <blockquote>
@@ -714,7 +714,7 @@ where sal=max(sal);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -722,7 +722,7 @@ where sal=max(sal);
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -731,7 +731,7 @@ where sal=max(sal);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
