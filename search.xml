@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title><![CDATA[mac下常用软件相关命令]]></title>
+      <url>http://codingxiaxw.cn/2016/12/02/58-mac-commands/</url>
+      <content type="html"><![CDATA[<p>因为mac上的很多功能都涉及到命令行的工作，然而记性差的我总是一次熟两次生，第三次就要…google，所以下面总结下自己在使用自己电脑上相关软件时涉及到的一些命令，以供自己日后参考。<a id="more"></a></p>
+<h2 id="hexo篇"><a href="#hexo篇" class="headerlink" title="hexo篇"></a>hexo篇</h2><p>很多人在Contact列表问我我的博客很怎样搭建的，很多朋友说很炫酷，还有朋友问我是不是自己写的。我想告诉大家的是，我目前只是从事Java开发人员中的一只咸鱼，这么炫酷的博客我肯定是写不出来的啦！所以现在统一回复那些志同道合但是还没有接触过hexo这块的朋友们，百度或者goole”如何用hexo在github上搭建博客”，很快你们就会拥有像我这样炫酷的博客。然后再搜一下”hexo 主题”，大把博客主题让你选。(不要太爱我)  </p>
+<p>然后总结一下自己在使用hexo时使用到的也是最常用的一些命令啦(因为其他的根本不怎么用…)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo clean或者是hexo c  //清除缓存</span><br><span class="line"></span><br><span class="line">hexo server或者是hexo s //将博客在本地服务器上部署</span><br><span class="line"></span><br><span class="line">hexo generator或者是hexo g  //将本地博客相关配置大包成一个public目录</span><br><span class="line"></span><br><span class="line">hexo deploy或者是hexo h  //将本地博客部署到远程github上</span><br></pre></td></tr></table></figure></p>
+<p>讲真，掌握好这四条命令就够了。当然走在进阶道路上的伙伴们请自行跳过本篇。</p>
+<h2 id="github篇"><a href="#github篇" class="headerlink" title="github篇"></a>github篇</h2><p>github大法好啊，上面有各种开源项目供你下载供你使用。我当然要跟上潮流啊，所以我去年3月份也注册了个账号，然后开始将自己的项目源码都推到上面供那些需要项目源码的朋友学习，另一方面自己也经常在上面搜索流行开源项目进行学习。  </p>
+<p>首先在github上创建一个repository，然后进去该repository，复制仓库地址，在本地命令行中执行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 仓库地址    //表示将github上的仓库拷贝到本地</span><br></pre></td></tr></table></figure></p>
+<p>然后这时你就会在根目录下看到一个跟该仓库名一样的文件夹,将本地项目的源码拷贝到这个文件夹下，在命令行中依次执行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git add .       //表示将拷贝的该仓库中的所有文件添加到github上</span><br><span class="line"></span><br><span class="line">git add 新添加的文件名  //有时候我们不需要将已经在github上的文件重新推至github而只需将新添加进该仓库的文件推至github，所以就要使用这个命令</span><br><span class="line"></span><br><span class="line">git commit -m &quot;说明&quot;  //对本次推至github上文件的说明</span><br><span class="line"></span><br><span class="line">git push origin master  //将本地仓库推至对应的远程仓库</span><br></pre></td></tr></table></figure></p>
+<h2 id="eclipse篇"><a href="#eclipse篇" class="headerlink" title="eclipse篇"></a>eclipse篇</h2><p>其实我是IDEA党啦，之前还让eclipse党快点转IDEA的，结果现在我自己又转回到eclipse了。绝对不是因为现在自己又觉得eclipse更好了，大家不要误会！IDEA大法好，我是因为现在工作的一家公司的开发人员都在使用eclipse，所以我是不得不转回来呀！说下我在使用eclipse时遇到一些必须使用命令行的坑。  </p>
+<p>运行maven项目用到一个tamcat插件时或者一个普通web项目启动tomcat时常遇到端口被占用的问题，输入<code>lsof -i:占用端口号</code>，这个命令可以帮助你看到电脑上哪些程序正在占用这个端口号。然后输入<code>kill -9:PID</code>，将占用该端口号的程序杀死即可重新启动tomcat。</p>
+<h2 id="Linux篇"><a href="#Linux篇" class="headerlink" title="Linux篇"></a>Linux篇</h2><p>大家都知道mac OSX系统的前身是Linux(到底是不是的????)，所以在mac上运行linux命令是必不可少啦。我常用到的Linux命令有:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd   //切换到根目录下</span><br><span class="line">cd 文件名A  //切换到文件A目录下</span><br><span class="line">ls  //列出当前文件夹下所有文件</span><br></pre></td></tr></table></figure></p>
+<p>貌似只用到这三个….哈哈，我不是一个好的Linux开发者，目前正在恶补&lt;&lt;鸟叔的Linux私房菜呢&gt;&gt;,求不要嘲笑…</p>
+<h2 id="mysql篇"><a href="#mysql篇" class="headerlink" title="mysql篇"></a>mysql篇</h2><p>mysql是目前市场上最火的一款数据库，而且还是免费开源给大家的，所以你要是不使用它总觉得自己亏了不少！就像库克要是有一天库克宣布以后出来的iphone都免费提供给你，你难道不会抛弃掉手中的小米或者华为而选择它？？？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql -u用户名 -p密码;  //登录进mysql服务器</span><br><span class="line"></span><br><span class="line">source sql脚本路径;   //在数据库中导入sql语句</span><br><span class="line"></span><br><span class="line">quit 或者  exit;  //退出mysql服务器</span><br></pre></td></tr></table></figure>
+<p>关于sql语句这一块更多的命令请点击链接前往我博客<a href="http://codingxiaxw.cn/2016/10/09/15-SQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">mysql学习笔记</a>下进行学习吧。 </p>
+<h2 id="系统篇"><a href="#系统篇" class="headerlink" title="系统篇"></a>系统篇</h2><p>另外我有时候需要查看隐藏目录，你要是告诉我在Finder中如何如何进行设置就好…这也太low了吧！即使我很菜我也是有追求的人好吗?不多说了附上命令快上车:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">隐藏Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles -bool false</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">显示Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles -bool true</span><br></pre></td></tr></table></figure></p>
+<p>运行命令后可能仍然无法显示/隐藏mac下的隐藏文件，你需要按住option然后双击Finder选择重新启动Finder即可。</p>
+<p>嗯，目前想到的自己经常用到的命令就这些。不要笑我，正在恶补Linux相关命令，以后会继续在该篇文章下添加自己用到的命令。另外，此篇文章仅供自己参考(你想参考我也不能禁止，毕竟这个系统不是我写的哈哈)。</p>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[使用Socket实现TCP编程及聊天室的编写]]></title>
       <url>http://codingxiaxw.cn/2016/11/29/57-socket-chatroom/</url>
       <content type="html"><![CDATA[<p>本篇文章分为两个部分，一个部分是总结使用Socket实现TCP的编程的知识，主要就是完成服务器端和客户端两个对象的代码编写；另一个部分是通过Java写一个聊天室来对我们的Socket编程进行巩固。<a id="more"></a>  </p>
@@ -5316,17 +5349,16 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 <h3 id="2-3-继承HttpServlet类"><a href="#2-3-继承HttpServlet类" class="headerlink" title="2.3.继承HttpServlet类"></a>2.3.继承HttpServlet类</h3><p>HttpServlet类是我们用到次数最多的，也是最简单的。由类名可知，该类总是跟http协议相关的。  </p>
 <p>HttpServlet类中的方法如下图:<br><img src="http://od2xrf8gr.bkt.clouddn.com/httpservlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95.png" alt=""><br>方法中值得我们注意的有doGet()、doPost()、还有两个service()方法。其中doGet()和doPost()方法是需要我们重写的，我来解释下两个service()方法的区别。  </p>
 <p>估计你们从方法中的参数就知道他们的区别了吧，其中一个service()方法是Serlvet接口中的生命周期方法，另外一个是跟http协议有关的方法。二者方法的解释见下两站图的说明(图1中指出HttpServlet类是继承自GenderServlet类):<br><img src="http://od2xrf8gr.bkt.clouddn.com/httpServlet%E4%B8%AD%E5%AF%B9service%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%A3%E9%87%8A.png" alt=""><br>uml(时序图)如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt=""><br>图中405的含义是说服务器不支持客户端(即浏览器)用此种方法访问。因为HttpServlet类的源代码中的doGet()和doPost()方法体里面就是这样写的，你在定义的xxxservlet中如果不重新重写这两个方法就会出现405的响应状态码。接下来我们看看如何继承HttpServlet类:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0httpservlet%E7%B1%BB.png" alt=""><br>FServlet即为我们自己定义的servlet类，在doGet()方法和doPost()方法中即可写具体要进行的操作。  </p>
-<p>如上三种方式便可实现我们自己定义的Servlet类。  </p>
-<hr>
+<p>如上三种方式便可实现我们自己定义的Servlet类，但实际开发中我们只需要使用第三种方式即继承HttpServlet类完成我们的自定义xxxServlet就好(另外等学了SSM框架中的Spring MVC框架后，就用不着我们再这样实现Servlet了，哈哈！当然这是后话)。  </p>
 <h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
 <li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
 <li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 ]]></content>
     </entry>
