@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="本篇文章分为两个部分，一个部分是总结使用Socket实现TCP的编程的知识，主要就是完成服务器端和客户端两个对象的代码编写；另一个部分是通过Java写一个聊天室来对我们的Socket编程进行巩固。">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-29%20%E4%B8%8B%E5%8D%887.18.56.png">
-<meta property="og:updated_time" content="2016-11-29T15:02:39.000Z">
+<meta property="og:updated_time" content="2016-12-04T06:18:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Socket实现TCP编程及聊天室的编写">
 <meta name="twitter:description" content="本篇文章分为两个部分，一个部分是总结使用Socket实现TCP的编程的知识，主要就是完成服务器端和客户端两个对象的代码编写；另一个部分是通过Java写一个聊天室来对我们的Socket编程进行巩固。">
@@ -405,8 +405,10 @@
 <p>此时跳转到服务器控制台，信息变为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">****服务器即将启动，等待客户端的连接****</span><br><span class="line">我是服务器，客户端发来的消息为:用户名:codingxiaxw;密码:123</span><br><span class="line">客户端的数量：1</span><br><span class="line">当前客户端的IP：127.0.0.1</span><br></pre></td></tr></table></figure></p>
 <p>然后更改Client.java中传递给服务器的数据代码为:<code>pw.write(&quot;用户名:codingxiaxw;密码:456&quot;);</code>，再运行Client.java，发现服务器的控制台输出信息变为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">****服务器即将启动，等待客户端的连接****</span><br><span class="line">我是服务器，客户端发来的消息为:用户名:codingxiaxw;密码:13</span><br><span class="line">客户端的数量：1</span><br><span class="line">当前客户端的IP：127.0.0.1</span><br><span class="line">我是服务器，客户端发来的消息为:用户名:codingxiaxw;密码:456</span><br><span class="line">客户端的数量：2</span><br><span class="line">当前客户端的IP：127.0.0.1</span><br></pre></td></tr></table></figure></p>
 <p>这样我们便完成了多线程服务器的编码工作，到此我们便成功使用Socket完成了基于TCP协议的编程。接下来趁热打铁，用Socket实现一个简单的聊天室功能。  </p>
-<h2 id="4-使用Socket实现一个简单的聊天室"><a href="#4-使用Socket实现一个简单的聊天室" class="headerlink" title="4.使用Socket实现一个简单的聊天室"></a>4.使用Socket实现一个简单的聊天室</h2><p>功能概述:客户端用于发送信息,将在控制台输出的信息转换为输出流输出到服务器端，服务器通过<code>socket.getOutputStream()</code>方法接收客户端传来的信息，并将发送该信息的客户端地址及信息发送在控制台中，这样我们便简单的实现了我们的聊天室。  </p>
-<p>类比到目前最火的微信、qq聊天，他们的功能也基本是这样实现。例如qq中的用户A发送信息给用户B，过程是这样的:当A打开和B的聊天窗口时即和B还有服务器建立了一个聊天室(同时服务器和客户端开启连接)，A发送信息，其实是发送到了qq聊天室服务器的接收容器中，然后qq服务器将该客户端地址(即qq头像)和信息内容显示在聊天室中(即聊天窗口)，你每和一个好友进行聊天打开一个窗口就等于和她(另一个客户端)还有我们的qq服务器组成了一个聊天室(当然聊天室的服务器肯定是多线程的)。qq上还有多人聊天的功能，实现道理也是这样，只是该聊天室中有多个客户端给服务器发送消息罢了。  </p>
+<h2 id="4-使用Socket实现一个简单的聊天室"><a href="#4-使用Socket实现一个简单的聊天室" class="headerlink" title="4.使用Socket实现一个简单的聊天室"></a>4.使用Socket实现一个简单的聊天室</h2><p>功能概述:客户端用于发送信息(在控制台中发送信息),将在控制台输出的信息转换为输出流输出到服务器端，服务器通过<code>socket.getOutputStream()</code>方法接收客户端传来的信息，并将发送该信息的客户端地址及信息发送在控制台中，这样我们便简单的实现了我们的聊天室。  </p>
+<p>这里给大家讲讲qq通信的原理:qq使用c/s模式进行通信，qq中的用户A发送信息给用户B，过程是这样的:当A打开和B的聊天窗口时即和B还有服务器建立了一个聊天室(同时服务器和客户端开启连接)，A发送信息，其实是发送到了qq聊天室服务器的接收容器中，然后qq服务器将该客户端地址(即qq头像)和信息内容显示在聊天室中(即聊天窗口)，你每和一个好友进行聊天打开一个窗口就等于和她(另一个客户端)还有我们的qq服务器组成了一个聊天室(当然聊天室的服务器肯定是多线程的)。qq上还有多人聊天的功能，实现道理也是这样，只是该聊天室中有多个客户端给服务器发送消息罢了。(这是qq刚兴起时的聊天功能设计，也就是我们本篇文章需要实现的简单的聊天室功能，下面的内容与设计聊天室无关，但是我觉得还是有必要跟大家介绍清楚如今的qq时怎样工作的，了解便可)  </p>
+<p>qq服务器挂在腾讯的某台主机上，相当于起了一个中转站的成分，这种聊天功能的实现对于客户端数量比较少时服务器端还能接受，但是在客户端数量很多时服务器肯定要瘫痪。  </p>
+<p>所以为了减少服务器端的压力，需要实现客户端和客户端之间的直接通信，这样客户端上的qq既要实现服务器端的功能(用于接收信息)又要实现客户端的功能(用于发送信息)。此时qq服务器就不再作为一个中转站的功能了，它主要用于:用于客户端程序登陆,验证用户名密码,获取其他在线好友信息等等。</p>
 <p>分析了功能后接下来进行我们服务器端和客户端代码的编写，首先创建一个ChatRoom.java，运行后用于开启服务器和客户端的连接，代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待更新。</span><br></pre></td></tr></table></figure></p>
 <p>待更新。</p>
 <h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
