@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java Web," />
+  <meta name="keywords" content="Hadoop," />
 
 
 
@@ -84,44 +84,20 @@
 
 
 
-<meta name="description" content="Java随机生成图片用Java语言生成一个带有字符串文本的图片总结来说只需要如下四步:
-
-1.创建图片缓冲区
-2.设置图片缓冲区的宽高及保存图片的类型
-3.得到这个图片的绘制环境(拿到画笔)
-4.将图片保存起来
-
-代码如下:">
+<meta name="description" content="最近接触大数据，觉得有必要学习下Hadoop和Spark的知识。Spark是Apache目前最火的一款快速处理大数据的开源框架，当然Hadoop也是一款处理大数据的框架，只是Sparck青出于蓝，所以有学者说日后Spark可能会将Hadoop淘汰。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java随机生成图片与HTML表单中的验证码实现">
-<meta property="og:url" content="http://codingxiaxw.cn/2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/index.html">
+<meta property="og:title" content="mac下安装Hadoop">
+<meta property="og:url" content="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="Java随机生成图片用Java语言生成一个带有字符串文本的图片总结来说只需要如下四步:
-
-1.创建图片缓冲区
-2.设置图片缓冲区的宽高及保存图片的类型
-3.得到这个图片的绘制环境(拿到画笔)
-4.将图片保存起来
-
-代码如下:">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/verify1.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/verify2.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/verify3.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/verifyServlet.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/LoginServlet2.png">
-<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/loginJsp.png">
-<meta property="og:updated_time" content="2016-10-17T12:52:38.000Z">
+<meta property="og:description" content="最近接触大数据，觉得有必要学习下Hadoop和Spark的知识。Spark是Apache目前最火的一款快速处理大数据的开源框架，当然Hadoop也是一款处理大数据的框架，只是Sparck青出于蓝，所以有学者说日后Spark可能会将Hadoop淘汰。">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-06%20%E4%B8%8B%E5%8D%882.11.28.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-06%20%E4%B8%8B%E5%8D%882.16.05.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-06%20%E4%B8%8B%E5%8D%882.16.19.png">
+<meta property="og:updated_time" content="2016-12-06T06:18:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java随机生成图片与HTML表单中的验证码实现">
-<meta name="twitter:description" content="Java随机生成图片用Java语言生成一个带有字符串文本的图片总结来说只需要如下四步:
-
-1.创建图片缓冲区
-2.设置图片缓冲区的宽高及保存图片的类型
-3.得到这个图片的绘制环境(拿到画笔)
-4.将图片保存起来
-
-代码如下:">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/verify1.png">
+<meta name="twitter:title" content="mac下安装Hadoop">
+<meta name="twitter:description" content="最近接触大数据，觉得有必要学习下Hadoop和Spark的知识。Spark是Apache目前最火的一款快速处理大数据的开源框架，当然Hadoop也是一款处理大数据的框架，只是Sparck青出于蓝，所以有学者说日后Spark可能会将Hadoop淘汰。">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-06%20%E4%B8%8B%E5%8D%882.11.28.png">
 
 
 
@@ -142,10 +118,10 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/"/>
 
 
-  <title> Java随机生成图片与HTML表单中的验证码实现 | codingXiaxw's blog </title>
+  <title> mac下安装Hadoop | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -298,7 +274,7 @@
             
             
               
-                Java随机生成图片与HTML表单中的验证码实现
+                mac下安装Hadoop
               
             
           </h1>
@@ -310,8 +286,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-30T18:21:28+08:00" content="Sep 30 2016">
-              Sep 30 2016
+            <time itemprop="dateCreated" datetime="2016-12-06T12:07:57+08:00" content="Dec 6 2016">
+              Dec 6 2016
             </time>
           </span>
 
@@ -324,8 +300,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/HTML/" itemprop="url" rel="index">
-                    <span itemprop="name">HTML</span>
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
                   </a>
                 </span>
 
@@ -340,8 +316,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/" itemprop="commentsCount"></span>
+                <a href="/2016/12/06/59-mac-hadoop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/06/59-mac-hadoop/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -351,7 +327,7 @@
 
           
           
-             <span id="/2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/" class="leancloud_visitors" data-flag-title="Java随机生成图片与HTML表单中的验证码实现">
+             <span id="/2016/12/06/59-mac-hadoop/" class="leancloud_visitors" data-flag-title="mac下安装Hadoop">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -373,52 +349,45 @@
       
 
       
-        <h2 id="Java随机生成图片"><a href="#Java随机生成图片" class="headerlink" title="Java随机生成图片"></a>Java随机生成图片</h2><p>用Java语言生成一个带有字符串文本的图片总结来说只需要如下四步:</p>
+        <p>最近接触大数据，觉得有必要学习下Hadoop和Spark的知识。Spark是Apache目前最火的一款快速处理大数据的开源框架，当然Hadoop也是一款处理大数据的框架，只是Sparck青出于蓝，所以有学者说日后Spark可能会将Hadoop淘汰。<a id="more"></a>  </p>
+<p>至于Hadoop与Spark的关系，就像是svn与git的关系，后者都是较前者后几年出来且火于前者的一款工具。至于学习大数据的处理框架时有很人多有这样一个疑惑:既然Hadoop是先于Spark出来的，那么我要不要先学习Hadoop呢?这样我们先看看git与svn，svn是早于git好些年初年的版本控制工具，虽然二者性质都一样，但是学习git不一定要有svn的知识，所以Hadoop与Spark的关系也是这样，直接从Spark开始学习就好。我也是直接从Spark开始学起的，由于是新手，所以在前方给大家探路打算先学习一下Hadoop，等学完后再来对本篇文章进行改正。关于Hadoop的知识介绍大家可以直接google或者百度，本篇文章只介绍mac环境下Hadoop的安装与使用。</p>
+<h2 id="1-安装Homebrew与Cask"><a href="#1-安装Homebrew与Cask" class="headerlink" title="1.安装Homebrew与Cask"></a>1.安装Homebrew与Cask</h2><p>关于Homebrew的一些命令我在这篇文章中有详细介绍<a href="http://codingxiaxw.cn/2016/12/02/58-mac-commands/">mac下常用软件相关命令</a>,当然本篇文章也会基于本篇文章的目的进行专一性介绍。  </p>
+<p>打开Mac终端，安装OS X 不可或缺的套件管理器homebrew和homebrew cask:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure></p>
+<p>执行过程需要输入root命令，当控制台出现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.......</span><br><span class="line">==&gt; Installation successful!</span><br><span class="line">.......</span><br></pre></td></tr></table></figure></p>
+<p>恭喜你，成功安装homebrew。接下来安装homebrew cask,在终端输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install caskroom/cask/brew-cask</span><br></pre></td></tr></table></figure></p>
+<p>根据提示进行安装。  </p>
+<h2 id="2-安装Java"><a href="#2-安装Java" class="headerlink" title="2.安装Java"></a>2.安装Java</h2><p>这一步搞java开发的人请自行跳过，因为我相信你们早就已经成功的安装了java(其实mac系统已自动为我们集成)并成功配置了环境变量。  </p>
+<h2 id="3-配置SSH"><a href="#3-配置SSH" class="headerlink" title="3.配置SSH"></a>3.配置SSH</h2><p>为了确保在远程管理Hadoop以及Hadoop节点用户共享时的安全性, Hadoop需要配置使用SSH协议。  </p>
+<p>首先在系统偏好设置-&gt;共享-&gt;打开远程登录服务-&gt;右侧选择允许所有用户访问。  </p>
+<p>首先在终端输入:<code>ssh localhost</code>，如果终端有返回``，说明你之前成功配置了SSH keys,如果没有，请按下述步骤新建一个配置:</p>
+<p>在终端输入:<code>$ ssh-keygen -t rsa</code>  </p>
+<p>执行上述命令会在当前用户目录下的.ssh文件夹(是一个隐藏文件)中生成id_rsa文件, 然后继续执行如下命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>用于授权你的公钥到本地可以避免每次登陆时都要询问你的密码,再次输入<code>ssh localhost</code>若返回<code>Last login: Tue Dec  6 11:47:39 2016 from ::1</code>，恭喜你，成功完成ssh的配置。</p>
+<h2 id="4-安装Hodoop"><a href="#4-安装Hodoop" class="headerlink" title="4.安装Hodoop"></a>4.安装Hodoop</h2><p>之前的三步骤都是安装Hadoop前的准备，有了前期的准备，安装Hadoop也简单了，执行命令<code>brew install hadoop</code>，等待系统安装，完成后Hadoop会被安装到<code>/usr/local/Cellar/hadoop</code>下。然后需要进行如下配置才能算成功安装Hadoop。  </p>
+<h3 id="4-1配置Hadoop"><a href="#4-1配置Hadoop" class="headerlink" title="4.1配置Hadoop"></a>4.1配置Hadoop</h3><p>1.找到<code>usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop</code>目录下，打开<code>hadoop-env.sh</code>文件，找到其中一行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.net.preferIPv4Stack=true&quot;</span><br></pre></td></tr></table></figure></p>
+<p>将其修改为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.net.preferIPv4Stack=true -Djava.security.krb5.realm= -Djava.security.krb5.kdc=&quot;</span><br><span class="line">export JAVA_HOME=&quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home&quot; #改为自己JDK目录</span><br></pre></td></tr></table></figure></p>
+<p>2.在<code>usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop</code>目录下，打开<code>core-site.xml</code>，会发现<code>core-site.xml</code>文件中的<code>&lt;configuration&gt;&lt;/configuration&gt;</code>标签中间的内容为空，需要我们自己加入如下配置信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Put site-specific property overrides in this file. --&gt;</span><br><span class="line"> &lt;configuration&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">     &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line">&lt;value&gt;/usr/local/Cellar/hadoop/hdfs/tmp&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;A base for other temporary directories.&lt;/description&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">     &lt;name&gt;fs.default.name&lt;/name&gt;</span><br><span class="line">     &lt;value&gt;hdfs://localhost:8020&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
+<p>3.在目录<code>usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop</code>下，找到<code>mapred-site.xml</code>文件，在其内加上:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">      &lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapred.job.tracker&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;localhost:8021&lt;/value&gt;</span><br><span class="line">      &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
+<p>4.在目录<code>usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop</code>下，找到<code>hdfs-site.xml</code>文件，在其内加上:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">   &lt;property&gt;</span><br><span class="line">     &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">     &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
+<p>5.在运行后台程序前, 必须格式化新安装的HDFS, 并通过创建存储目录和初始化元数据创新空的文件系统, 执行命令:<code>$ hdfs namenode -format</code>  </p>
+<p>在控制台出现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#生成类似下面的字符串:</span><br><span class="line">...</span><br><span class="line">#此书省略大部分</span><br><span class="line">STARTUP_MSG:   java = 1.6.0_65</span><br><span class="line">************************************************************</span><br><span class="line">/************************************************************</span><br><span class="line">SHUTDOWN_MSG: Shutting down NameNode at Andrew-liudeMacBook-Pro.local/192.168.1.100</span><br><span class="line">************************************************************/</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-2启动后台程序"><a href="#4-2启动后台程序" class="headerlink" title="4.2启动后台程序"></a>4.2启动后台程序</h3><p>在<code>/usr/local/Cellar/hadoop/2.7.3/sbin</code>目录下执行如下命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./start-dfs.sh            //启动HDFS</span><br><span class="line">./stop-dfs.sh           //停止HDFS</span><br></pre></td></tr></table></figure></p>
+<p>执行启动HDFS的命令，控制台输出信息如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Starting namenodes on [localhost]</span><br><span class="line">localhost: starting namenode, logging to /usr/local/Cellar/hadoop/2.7.3/libexec/logs/hadoop-tony-namenode-tonys-MacBook-Pro-2.local.out</span><br><span class="line">localhost: starting datanode, logging to /usr/local/Cellar/hadoop/2.7.3/libexec/logs/hadoop-tony-datanode-tonys-MacBook-Pro-2.local.out</span><br><span class="line">Starting secondary namenodes [0.0.0.0]</span><br></pre></td></tr></table></figure></p>
+<p>说明成功启动本地服务，此时在浏览器中打开Resource Manager输入如下网址:<code>http://localhost:50070</code>可以看到Hadoop的页面<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-06%20%E4%B8%8B%E5%8D%882.11.28.png" alt="">  </p>
+<p>还可以继续在命令行中(依旧在<code>/usr/local/Cellar/hadoop/2.7.3/sbin</code>目录下)执行如下启动脚本命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./start-yarn.sh        //启动yarn，一个MapReduce框架</span><br><span class="line">./stop-yarn.sh        //停止yarn</span><br></pre></td></tr></table></figure></p>
+<p>此时在浏览器中打开JobTracker: <code>http://localhost:8088</code>、Specific Node Information: <code>http://localhost:8042</code>可以分别看到如下界面:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-06%20%E4%B8%8B%E5%8D%882.16.05.png" alt="">  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-06%20%E4%B8%8B%E5%8D%882.16.19.png" alt="">  </p>
+<p>到此，我们便成功在mac环境下安装Hadoop.  </p>
+<h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
-<li>1.创建图片缓冲区</li>
-<li>2.设置图片缓冲区的宽高及保存图片的类型</li>
-<li>3.得到这个图片的绘制环境(拿到画笔)</li>
-<li>4.将图片保存起来</li>
-</ul>
-<p>代码如下:<br><a id="more"></a></p>
-<pre><code>//第一、二步，传入参数为缓冲区宽、高、保存图片类型
-BufferedImage image=new BufferedImage(width1,height1,BufferedImage.TYPE_INT_RGB);
-
-//第三步，得到绘制环境(需要用到Graphics类)
-Graphics paint=image.getGraphics();
-paint.setColor(Color.WHITE);//设置画笔颜色为白色
-paint.fillRect(start,end,width2,height2);//绘制矩形并填充，将图片缓冲区的(start,end)坐标作为绘制图片的左上角坐标，绘制图片宽为width2、高为height2
-paint.setColor(Color.RED);//设置画笔颜色为红色
-paint.drawString(str,x,y);//设置需要绘制在图片上的文本，参数为字符串、字符串所在的x坐标和y坐标
-
-//第四步，将图片保存起来(需要用到ImageIO类)
-ImageIO.write(image,&quot;JPEG&quot;,out);//参数为图片缓冲区、图片类型、输出流  
-</code></pre><p>通过以上代码便可实现用java语言生成一个简易的带有字符串文本的图片，具体实现如下，首先在IDEA中创建VerifyCode.java类:<br>    <img src="http://od2xrf8gr.bkt.clouddn.com/verify1.png" alt=""><br>    有错误，请将g.drawStrig(sb.toString(),width/4,height-5);改为g.drawString(str,i*width/4,height-5);<br>    <img src="http://od2xrf8gr.bkt.clouddn.com/verify2.png" alt=""><br>    <img src="http://od2xrf8gr.bkt.clouddn.com/verify3.png" alt="">  </p>
-<p>通过代码<code>VerifyCode vc=new VerifyCode();</code>创建VerifyCode对象后就可以调用上述所有方法便可以实现随机验证码的图片了。  </p>
-<h2 id="在HTML表单中实现验证码"><a href="#在HTML表单中实现验证码" class="headerlink" title="在HTML表单中实现验证码"></a>在HTML表单中实现验证码</h2><p>借用上篇<a href="">Java Web学习笔记之session入门</a>中的保存用户登录信息案例中的代码，新增:  </p>
-<ul>
-<li>VerifyServlet.java:生成图片，保存图片上的文本到session域中，将图片响应给客户端。</li>
-<li>LoginServlet.java中新增作用:判断用户输入的验证码是否正确，若正确则跳转至下一链接，若错误则保存错误信息到request域中，然后请求转发至login.jsp登录页面。  </li>
-</ul>
-<p>代码如下图:  </p>
-<div align="center">VerifyServlet.java</div>
-
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/verifyServlet.png" alt="">  </p>
-<div align="center">LoginServlet.java</div>  
-
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/LoginServlet2.png" alt="">  </p>
-<p><div align="center">login.jsp(用到了javascript语法来更换验证码)</div><br><img src="http://od2xrf8gr.bkt.clouddn.com/loginJsp.png" alt=""><br>10月8日更正:途中的js代码有错误，将”ducument”改为”document”。  </p>
-<p>通过如上代码便可实现HTML中的验证码效果。</p>
-<hr>
-<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
-<ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
-<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+<li><p><a href="http://weibo.com/u/5023661572" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
-<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+<li><p><a href="https://www.zhihu.com/people/xia-xun-wu-56/" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 
       
@@ -458,7 +427,7 @@ ImageIO.write(image,&quot;JPEG&quot;,out);//参数为图片缓冲区、图片类
       
         <div class="post-tags">
           
-            <a href="/tags/Java-Web/" rel="tag">#Java Web</a>
+            <a href="/tags/Hadoop/" rel="tag">#Hadoop</a>
           
         </div>
       
@@ -467,17 +436,13 @@ ImageIO.write(image,&quot;JPEG&quot;,out);//参数为图片缓冲区、图片类
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/27/9-java-web学习笔记之session入门/" rel="next" title="Java Web学习笔记之session入门">
-                <i class="fa fa-chevron-left"></i> Java Web学习笔记之session入门
+              <a href="/2016/12/02/58-mac-commands/" rel="next" title="mac下常用软件相关命令">
+                <i class="fa fa-chevron-left"></i> mac下常用软件相关命令
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/02/11-java学习笔记之反射机制/" rel="prev" title="Java学习笔记之反射机制">
-                Java学习笔记之反射机制 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -503,8 +468,8 @@ ImageIO.write(image,&quot;JPEG&quot;,out);//参数为图片缓冲区、图片类
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/"
-           data-title="Java随机生成图片与HTML表单中的验证码实现" data-url="http://codingxiaxw.cn/2016/09/30/10-Java随机生成图片与HTML表单中的验证码实现介绍/">
+      <div class="ds-thread" data-thread-key="2016/12/06/59-mac-hadoop/"
+           data-title="mac下安装Hadoop" data-url="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/">
       </div>
     
   </div>
@@ -624,7 +589,7 @@ ImageIO.write(image,&quot;JPEG&quot;,out);//参数为图片缓冲区、图片类
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java随机生成图片"><span class="nav-number">1.</span> <span class="nav-text">Java随机生成图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在HTML表单中实现验证码"><span class="nav-number">2.</span> <span class="nav-text">在HTML表单中实现验证码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">3.</span> <span class="nav-text">联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装Homebrew与Cask"><span class="nav-number">1.</span> <span class="nav-text">1.安装Homebrew与Cask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装Java"><span class="nav-number">2.</span> <span class="nav-text">2.安装Java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-配置SSH"><span class="nav-number">3.</span> <span class="nav-text">3.配置SSH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-安装Hodoop"><span class="nav-number">4.</span> <span class="nav-text">4.安装Hodoop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1配置Hadoop"><span class="nav-number">4.1.</span> <span class="nav-text">4.1配置Hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2启动后台程序"><span class="nav-number">4.2.</span> <span class="nav-text">4.2启动后台程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-联系"><span class="nav-number">5.</span> <span class="nav-text">5.联系</span></a></li></ol></div>
             
           </div>
         </section>
