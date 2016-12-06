@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://codingxiaxw.cn/2016/12/02/58-mac-commands/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="因为mac上的很多功能都涉及到命令行的工作，然而记性差的我总是一次熟两次生，第三次就要…google，所以下面总结下自己在使用自己电脑上相关软件时涉及到的一些命令，以供自己日后参考。">
-<meta property="og:updated_time" content="2016-12-05T02:53:23.000Z">
+<meta property="og:updated_time" content="2016-12-06T03:57:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac下常用软件相关命令">
 <meta name="twitter:description" content="因为mac上的很多功能都涉及到命令行的工作，然而记性差的我总是一次熟两次生，第三次就要…google，所以下面总结下自己在使用自己电脑上相关软件时涉及到的一些命令，以供自己日后参考。">
@@ -346,6 +346,7 @@
 
       
         <p>因为mac上的很多功能都涉及到命令行的工作，然而记性差的我总是一次熟两次生，第三次就要…google，所以下面总结下自己在使用自己电脑上相关软件时涉及到的一些命令，以供自己日后参考。<a id="more"></a></p>
+<p>也只是介绍了一些常用开发软件的常用命令，还有很多命令由于在其他文章中都有介绍到所以我在此篇文章中就没有列举出来。</p>
 <h2 id="hexo篇"><a href="#hexo篇" class="headerlink" title="hexo篇"></a>hexo篇</h2><p>很多人在Contact列表问我我的博客很怎样搭建的，很多朋友说很炫酷，还有朋友问我是不是自己写的。我想告诉大家的是，我目前只是从事Java开发人员中的一只咸鱼，这么炫酷的博客我肯定是写不出来的啦！所以现在统一回复那些志同道合但是还没有接触过hexo这块的朋友们，百度或者goole”如何用hexo在github上搭建博客”，很快你们就会拥有像我这样炫酷的博客。然后再搜一下”hexo 主题”，大把博客主题让你选。(不要太爱我)当然你要是喜欢我的主题，直接<a href="https://github.com/codingXiaxw/codingXiaxw.github" target="_blank" rel="external">点击这里</a>进入我github上fork我博客的相关文件codingXiaxw.github.io，然后更改相关配置就成为你的博客配置咯。  </p>
 <p>然后总结一下自己在使用hexo时使用到的也是最常用的一些命令啦(因为其他的根本不怎么用…)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo clean或者是hexo c  //清除缓存</span><br><span class="line"></span><br><span class="line">hexo server或者是hexo s //将博客在本地服务器上部署</span><br><span class="line"></span><br><span class="line">hexo generator或者是hexo g  //将本地博客相关配置大包成一个public目录</span><br><span class="line"></span><br><span class="line">hexo deploy或者是hexo h  //将本地博客部署到远程github上</span><br></pre></td></tr></table></figure></p>
 <p>讲真，掌握好这四条命令就够了。当然走在进阶道路上的伙伴们请自行跳过本篇。</p>
@@ -354,21 +355,36 @@
 <p>然后这时你就会在根目录下看到一个跟该仓库名一样的文件夹,将本地项目的源码拷贝到这个文件夹下，在命令行中依次执行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git add .       //表示将拷贝的该仓库中的所有文件添加到github上</span><br><span class="line"></span><br><span class="line">git add 新添加的文件名  //有时候我们不需要将已经在github上的文件重新推至github而只需将新添加进该仓库的文件推至github，所以就要使用这个命令</span><br><span class="line"></span><br><span class="line">git commit -m &quot;说明&quot;  //对本次推至github上文件的说明</span><br><span class="line"></span><br><span class="line">git push origin master  //将本地仓库推至对应的远程仓库</span><br></pre></td></tr></table></figure></p>
 <h2 id="eclipse篇"><a href="#eclipse篇" class="headerlink" title="eclipse篇"></a>eclipse篇</h2><p>其实我是IDEA党啦，之前还让eclipse党快点转IDEA的，结果现在我自己又转回到eclipse了。绝对不是因为现在自己又觉得eclipse更好了，大家不要误会！IDEA大法好，只是因为一些社会因素…所以我是不得不转回来呀！说下我在使用eclipse时遇到一些必须使用命令行的坑。  </p>
 <p>运行maven项目用到一个tamcat插件时或者一个普通web项目启动tomcat时常遇到端口被占用的问题，输入<code>lsof -i:占用端口号</code>，这个命令可以帮助你看到电脑上哪些程序正在占用这个端口号。然后输入<code>kill -9:PID</code>，将占用该端口号的程序杀死即可重新启动tomcat。</p>
-<h2 id="Linux篇"><a href="#Linux篇" class="headerlink" title="Linux篇"></a>Linux篇</h2><p>大家都知道mac OSX系统的前身是Linux(到底是不是的????)，所以在mac上运行linux命令是必不可少啦。我常用到的Linux命令有:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd   //切换到根目录下</span><br><span class="line">cd 文件名A  //切换到文件A目录下</span><br><span class="line">ls  //列出当前文件夹下所有文件</span><br></pre></td></tr></table></figure></p>
-<p>貌似只用到这三个….哈哈，我不是一个好的Linux开发者，目前正在恶补&lt;&lt;鸟叔的Linux私房菜呢&gt;&gt;,求不要嘲笑…</p>
+<h2 id="Homebrew篇"><a href="#Homebrew篇" class="headerlink" title="Homebrew篇"></a>Homebrew篇</h2><p>相信很多的人都没有听说过Homebrew吧，我也是刚刚接触。这里先给大家讲讲Homebrew的由来，Homebrew是用来干嘛的?  </p>
+<p>Mac OS X是基于Unix的操作系统，可以安装大部分为Unix/Linux开发的软件。然而，如果只是以使用为目的，对每个软件都进行手工编译不是很方便，也不利于管理已安装的软件，于是出现了类似于Linux中APT、Yum等类似的软件包管理系统，其中最著名的有MacPorts、Fink、Homebrew等。  </p>
+<p>Homebrew的原则是:它尽可能地利用系统自带的各种库，使得软件包的编译时间大为缩短；同时由于几乎不会造成冗余，软件包的管理也清晰、灵活了许多。Homebrew的另一个特点是使用Ruby定义软件包安装配置（叫做formula），定制非常简单。MacPorts、Fink大家自行了解，以上进行了Homebrew的相关知识介绍，下面介绍Homebrew的常用命令。  </p>
+<p>要实用Homebrew的命令对mac上已安装的软件进行管理，所以首先我们要安装Homebrew:<code>ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&quot;</code>  </p>
+<p>执行过程需要输入root命令，当控制台出现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.......</span><br><span class="line">==&gt; Installation successful!</span><br><span class="line">.......</span><br></pre></td></tr></table></figure></p>
+<p>的信息时，说明Homebrew安装成功，然后便可以使用Homebrew的相关命令对mac上的软件执行管理了。以软件wget为例，查看其相关信息的命令为:  </p>
+<p>查找wget软件包:<code>brew search wget</code>  </p>
+<p>安装wget软件包:<code>brew install wget</code>  </p>
+<p>删除wget软件包:<code>brew remove wget</code>  </p>
+<p>查看wget软件包信息:<code>brew info wget</code>  </p>
+<p>列出wget软件包的依赖关系:<code>brew deps wget</code>  </p>
+<p>列出系统中已经安装的软件包:<code>brew list</code>  </p>
+<p>更新brew:<code>brew update</code>  </p>
+<p>列出过时的软件包（已安装但不是最新版本）:<code>brew outdated</code>  </p>
+<p>更新过时的软件包（全部或指定):<code>brew upgrade</code> 或 <code>brew upgrade wget</code></p>
+<h2 id="Linux篇"><a href="#Linux篇" class="headerlink" title="Linux篇"></a>Linux篇</h2><p>大家都知道mac OSX系统的前身是Linux(到底是不是的????)，所以在mac上运行linux命令是必不可少啦。我常用到的Linux命令有:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd   //切换到根目录下</span><br><span class="line">cd 文件名A  //切换到文件A目录下</span><br><span class="line">ls  //列出当前文件夹下所有文件</span><br><span class="line">ls -l //列出长数据串，包含文件的属性与权限数据等</span><br></pre></td></tr></table></figure></p>
+<p>貌似只用到这几个….哈哈，我不是一个好的Linux开发者，目前正在恶补&lt;&lt;鸟叔的Linux私房菜呢&gt;&gt;,求不要嘲笑…</p>
 <h2 id="mysql篇"><a href="#mysql篇" class="headerlink" title="mysql篇"></a>mysql篇</h2><p>mysql是目前市场上最火的一款数据库，而且还是免费开源给大家的，所以你要是不使用它总觉得自己亏了不少！就像库克要是有一天库克宣布以后出来的iphone都免费提供给你，你难道不会抛弃掉手中的小米或者华为而选择它？？？</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql -u用户名 -p密码;  //登录进mysql服务器</span><br><span class="line"></span><br><span class="line">source sql脚本路径;   //在数据库中导入sql语句</span><br><span class="line"></span><br><span class="line">quit 或者  exit;  //退出mysql服务器</span><br></pre></td></tr></table></figure>
 <p>关于sql语句这一块更多的命令请点击链接前往我博客<a href="http://codingxiaxw.cn/2016/10/09/15-SQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">mysql学习笔记</a>下进行学习吧。 </p>
 <h2 id="系统篇"><a href="#系统篇" class="headerlink" title="系统篇"></a>系统篇</h2><p>另外我有时候需要查看隐藏目录，你要是告诉我在Finder中如何如何进行设置就好…这也太low了吧！即使我很菜我也是有追求的人好吗?不多说了附上命令快上车:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">隐藏Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles -bool false</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">显示Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles -bool true</span><br></pre></td></tr></table></figure></p>
-<p>运行命令后可能仍然无法显示/隐藏mac下的隐藏文件，你需要按住option然后双击Finder选择重新启动Finder即可。</p>
-<p>嗯，目前想到的自己经常用到的命令就这些。不要笑我，正在恶补Linux相关命令，以后会继续在该篇文章下添加自己用到的命令。另外，此篇文章仅供自己参考(你想参考我也不能禁止，毕竟这个系统不是我写的哈哈)。</p>
+<p>运行命令后可能仍然无法显示/隐藏mac下的隐藏文件，你需要按住option然后双击Finder选择重新启动Finder即可。还有很多我用到的系统命令在其他文章中都有复述到，所以这里就不重复累赘的进行一一介绍了。</p>
+<p>嗯，目前想到的自己经常用到的命令就这些。不要笑我，正在恶补Linux相关命令，以后会继续在该篇文章下添加自己用到的命令。另外，此篇文章仅供自己参考(你想参考我也不能禁止，毕竟我不能把正在看这篇文章的你列入黑名单啊哈)。</p>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
-<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+<li><p><a href="http://weibo.com/u/5023661572" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
-<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+<li><p><a href="https://www.zhihu.com/people/xia-xun-wu-56/" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
 <li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
@@ -572,7 +588,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo篇"><span class="nav-number">1.</span> <span class="nav-text">hexo篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github篇"><span class="nav-number">2.</span> <span class="nav-text">github篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eclipse篇"><span class="nav-number">3.</span> <span class="nav-text">eclipse篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux篇"><span class="nav-number">4.</span> <span class="nav-text">Linux篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql篇"><span class="nav-number">5.</span> <span class="nav-text">mysql篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统篇"><span class="nav-number">6.</span> <span class="nav-text">系统篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">7.</span> <span class="nav-text">联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo篇"><span class="nav-number">1.</span> <span class="nav-text">hexo篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github篇"><span class="nav-number">2.</span> <span class="nav-text">github篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eclipse篇"><span class="nav-number">3.</span> <span class="nav-text">eclipse篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Homebrew篇"><span class="nav-number">4.</span> <span class="nav-text">Homebrew篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux篇"><span class="nav-number">5.</span> <span class="nav-text">Linux篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql篇"><span class="nav-number">6.</span> <span class="nav-text">mysql篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统篇"><span class="nav-number">7.</span> <span class="nav-text">系统篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">8.</span> <span class="nav-text">联系</span></a></li></ol></div>
             
           </div>
         </section>
