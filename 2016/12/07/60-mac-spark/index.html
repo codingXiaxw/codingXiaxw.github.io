@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java Web," />
+  <meta name="keywords" content="Spark," />
 
 
 
@@ -84,25 +84,22 @@
 
 
 
-<meta name="description" content="1.Http协议与Cookie(了解)
-Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。
-由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;例如:  
-response.addHea">
+<meta name="description" content="每次接触一个新的知识之前我都抱有恐惧之心，因为总认为自己没有接触到的知识都很高大上，比如上篇介绍到的Hadoop的安装与使用与本篇要介绍的Spark,其实在自己真正琢磨以后才发现本以为高大上的知识其实也不过如此。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java Web读书笔记之Cookie入门">
-<meta property="og:url" content="http://codingxiaxw.cn/2016/09/27/8-java-web学习笔记之Cookie入门/index.html">
+<meta property="og:title" content="how to install Spark on Mac OS X">
+<meta property="og:url" content="http://codingxiaxw.cn/2016/12/07/60-mac-spark/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="1.Http协议与Cookie(了解)
-Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。
-由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;例如:  
-response.addHea">
-<meta property="og:updated_time" content="2016-10-17T12:53:04.000Z">
+<meta property="og:description" content="每次接触一个新的知识之前我都抱有恐惧之心，因为总认为自己没有接触到的知识都很高大上，比如上篇介绍到的Hadoop的安装与使用与本篇要介绍的Spark,其实在自己真正琢磨以后才发现本以为高大上的知识其实也不过如此。">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%883.27.59.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%884.50.39.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8A%E5%8D%8811.33.53.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%883.56.26.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%883.59.58.png">
+<meta property="og:updated_time" content="2016-12-07T08:57:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java Web读书笔记之Cookie入门">
-<meta name="twitter:description" content="1.Http协议与Cookie(了解)
-Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。
-由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;例如:  
-response.addHea">
+<meta name="twitter:title" content="how to install Spark on Mac OS X">
+<meta name="twitter:description" content="每次接触一个新的知识之前我都抱有恐惧之心，因为总认为自己没有接触到的知识都很高大上，比如上篇介绍到的Hadoop的安装与使用与本篇要介绍的Spark,其实在自己真正琢磨以后才发现本以为高大上的知识其实也不过如此。">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%883.27.59.png">
 
 
 
@@ -123,10 +120,10 @@ response.addHea">
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/2016/09/27/8-java-web学习笔记之Cookie入门/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/2016/12/07/60-mac-spark/"/>
 
 
-  <title> Java Web读书笔记之Cookie入门 | codingXiaxw's blog </title>
+  <title> how to install Spark on Mac OS X | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -279,7 +276,7 @@ response.addHea">
             
             
               
-                Java Web读书笔记之Cookie入门
+                how to install Spark on Mac OS X
               
             
           </h1>
@@ -291,8 +288,8 @@ response.addHea">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-27T23:50:53+08:00" content="Sep 27 2016">
-              Sep 27 2016
+            <time itemprop="dateCreated" datetime="2016-12-07T09:50:29+08:00" content="Dec 7 2016">
+              Dec 7 2016
             </time>
           </span>
 
@@ -305,8 +302,8 @@ response.addHea">
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java-Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Java Web</span>
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
                   </a>
                 </span>
 
@@ -321,8 +318,8 @@ response.addHea">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/27/8-java-web学习笔记之Cookie入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/8-java-web学习笔记之Cookie入门/" itemprop="commentsCount"></span>
+                <a href="/2016/12/07/60-mac-spark/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/07/60-mac-spark/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -332,7 +329,7 @@ response.addHea">
 
           
           
-             <span id="/2016/09/27/8-java-web学习笔记之Cookie入门/" class="leancloud_visitors" data-flag-title="Java Web读书笔记之Cookie入门">
+             <span id="/2016/12/07/60-mac-spark/" class="leancloud_visitors" data-flag-title="how to install Spark on Mac OS X">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -354,59 +351,56 @@ response.addHea">
       
 
       
-        <h2 id="1-Http协议与Cookie-了解"><a href="#1-Http协议与Cookie-了解" class="headerlink" title="1.Http协议与Cookie(了解)"></a>1.Http协议与Cookie(了解)</h2><ol>
-<li>Cookie是Http协议制定的。先有服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到的Cookie归还给服务器。</li>
-<li><p>由服务器创建保存到客户端的一个键值对。服务器保存Cookie的响应头,使用response发送响应头:Set-Cookie:aaa=AAA;Set-Cookie:bbb=BBB;例如:  </p>
-<pre><code>response.addHeader(&quot;Set-Cookie&quot;,&quot;aaa=AAA&quot;);
-response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
-</code></pre></li>
-</ol>
- <a id="more"></a>
-<ol>
-<li>当浏览器请求服务器时，会把该服务器保存的Cookie随请求发送给服务器。浏览器归还Cookie的请求头:Cookie:aaa=AAA;bbb=BBB。多个键值对间用分号隔开。</li>
-<li>Http协议规定(为了不给浏览器太大压力)  <ul>
-<li>1个Cookie最大4KB</li>
-<li>1个服务器最多向1个浏览器保存20个Cookie</li>
-<li>1个浏览器最多可以保存300个Cookie  </li>
-</ul>
-</li>
-</ol>
-<h2 id="2-Cookie的用途"><a href="#2-Cookie的用途" class="headerlink" title="2.Cookie的用途"></a>2.Cookie的用途</h2><ul>
-<li>服务器使用Cookie来跟踪客户端状态。</li>
-<li>保存购物车(购物车中的商品不能使用request域来保存，因为它是一个用户向服务器发送的多个请求信息)</li>
-<li>显示上次登录用户名(并记住密码)  </li>
-</ul>
-<h2 id="3-Java-Web中使用Cookie"><a href="#3-Java-Web中使用Cookie" class="headerlink" title="3.Java Web中使用Cookie"></a>3.Java Web中使用Cookie</h2><ul>
-<li>原始的方式:  <ul>
-<li>使用response发送Set-Cookie响应头。</li>
-<li>使用request获取请求头。</li>
-</ul>
-</li>
-<li>便捷方式:<ul>
-<li>使用response.addCookie()方法向浏览器保存Cookie。</li>
-<li>使用request.getCookies()方法获取浏览器归还的Cookie，返回的对象为Cookie数组。若没有Cookie则返回NULL。  </li>
-</ul>
-</li>
-</ul>
-<h2 id="4-Cookie详解"><a href="#4-Cookie详解" class="headerlink" title="4.Cookie详解"></a>4.Cookie详解</h2><ol>
-<li>Cookie不只有name和value两个属性。</li>
-<li>Cookie的maxAge:指Cookie的最大生命，即Cookie可保存在客户端中的最大时长，以秒为单位。<ul>
-<li>maxAge&gt;0:浏览器会把Cookie保存到客户端硬盘上，有效时长为maxAge的值决定，例如:cookie.setMaxAge(60)表示这个Cookie会被浏览器保存到硬盘上60秒。</li>
-<li>maxAge&lt;0:Cookie只会在浏览器内存中存在，当用户关闭浏览器时浏览器进程结束，同时Cookie也就死亡了。</li>
-<li>maxAge=0:浏览器会马上删除这个Cookie。  </li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+        <p>每次接触一个新的知识之前我都抱有恐惧之心，因为总认为自己没有接触到的知识都很高大上，比如上篇介绍到的<a href="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/">Hadoop的安装与使用</a>与本篇要介绍的Spark,其实在自己真正琢磨以后才发现本以为高大上的知识其实也不过如此。<a id="more"></a></p>
+<p>由于Spark是最新火起来的处理大数据的框架，国内教程资源少之甚少，所以本篇文章是本人在看了<a href="http://spark.apache.org/docs/latest/quick-start.html" target="_blank" rel="external">Spark官网的快速入门</a>教程后总结下来的经验，由于Spark同Hadoop一样可以运行在多种模式下，而本人又比较穷只有一台电脑，所以本篇文章为大家介绍如何在mac系统的本地模式下安装Spark以及安装后如何用Spark来进行交互式分析。  </p>
+<h2 id="1-Spark的运行模式"><a href="#1-Spark的运行模式" class="headerlink" title="1.Spark的运行模式"></a>1.Spark的运行模式</h2><p>在正式安装Spark之前，先给大家介绍下Spark可以在哪几种模式下运行。同上篇<a href="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/">Hadoop的安装与使用</a>中介绍的Hadoop可以运行在其3种模式中的任意一种模式之上，Spark也可以运行在多种模式之上，主要有以下4种运行模式:  </p>
 <ul>
-<li><p><a href="http://codingxiaxw.cn">blog@codingXiaxw’s blog</a></p>
+<li>1.<code>local</code>: 本地单进程模式，用于本地开发测试Spark代码。</li>
+<li>2.<code>standalone</code>:分布式集群模式，Master-Worker架构，Master负责调度，Worker负责具体Task的执行。</li>
+<li>3.<code>on yarn/mesos</code>:运行在yarn/mesos等资源管理框架之上，yarn/mesos提供资源管理，spark提供计算调度，并可与其他计算框架(如MapReduce/MPI/Storm)共同运行在同一个集群之上。</li>
+<li>4.<code>on cloud(EC2)</code>: 运行在AWS的EC2之上</li>
+</ul>
+<p>由于博主比较穷，所以下面为大家介绍本地模式下Spark的安装与使用。</p>
+<h2 id="2-Spark的安装"><a href="#2-Spark的安装" class="headerlink" title="2.Spark的安装"></a>2.Spark的安装</h2><h3 id="2-1准备工作"><a href="#2-1准备工作" class="headerlink" title="2.1准备工作"></a>2.1准备工作</h3><p><strong>第一步:</strong>安装Java JDK 1.7及以上版本，并配置好环境变量。本电脑安装的jdk是1.7.0_79版本的。  </p>
+<p><strong>第二步:</strong>安装Hadoop。本电脑安装的Hadoop是2.7.3版本的。</p>
+<p><strong>疑惑:</strong>上篇文章说到可以不学Hadoop直接学习Spark，那为什么还要安装Hadoop?亲，我的意思是不用学习Hadoop的相关知识例如它的API啥的，但是没说不用先搭建Hadoop的环境呀！<br><strong>合理解释:</strong>Spark会用到HDFS与YARN，因此请先安装Hadoop，关于Hadoop的安装请参考我的上篇博文<a href="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/">mac下Hadoop的安装与使用</a>，在此就不再复述。  </p>
+<p><strong>第三步:</strong>安装Scala 2.9.3以上版本。这里介绍下Scala在mac下的安装与环境变量的配置。点击链接进入<a href="http://www.scala-lang.org/download/" target="_blank" rel="external">scala官方网站</a>的下载页，下载2.11.8版本(第一次操作的时候我下载了最新版2.12.1，后来测试spark-shell命令时发现最新版本的scala与1.7版本的jdk不兼容，所以后来换成了2.11.8版本)的Scala:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%883.27.59.png" alt="">  </p>
+<p>点击图上下载链接会自动将scala下载到Dowmloads目录下，文件名为:<code>scala-2.12.1.tgz</code>，还有一种下载方法就是直接在命令行使用homebrew命令(作为一个Linux开发人员我建议使用这种方式)进行下载:<code>brew install scala</code>，该命令会自动帮你把scala下载到<code>/usr/local</code>目录下。使用在官网点击链接下载的方式的话，我们也要将该scala文件加到<code>/usr/local</code>目录下，你可以直接拷贝过去，当然作为一个Linux开发人员你可以直接使用一条命令完成将该压缩包进行<strong>解压</strong>并<strong>移动</strong>到<code>/usr/local/</code>目录下:<code>sudo tar -zxf ~/downloads/scala-2.12.1.tgz -C /usr/local/</code>，然后使用命令<code>cd /usr/local</code>进入到该目录下，由于解压后的文件名为:<code>scala-2.12.1</code>，所以为了之后配置的方便我们使用命令:<code>sudo mv ./scala-2.12.1 ./scala</code>将文件名修改为scala。因为该目录属于管理员级别的目录所以如果当前用户不是管理员的话应该在命令前面使用<code>sudo</code>关键字表示使用管理员权限。  </p>
+<p>这样scala的安装便完成，但是还要配置scala的环境变量，使用命令:<code>sudo vim ./etc/profile</code>打开系统中配置环境变量的文件，在里面添加如下内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export SCALA_HOME=/usr/local/scala</span><br><span class="line">export PATH=$PATH:$SCALA_HOME/bin</span><br></pre></td></tr></table></figure></p>
+<p>然后<code>:wq!</code>保存并退出该文件，输入命令使该文件的内容立刻生效:<code>source /etc/profile</code>，接下来在(根目录下)命令行输入:<code>scala</code>并敲击回车，看到控制台打印如下信息说明我们的scala安装并成功配置了环境变量:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%884.50.39.png" alt="">  </p>
+<p>图中信息即表明我们使用的scala版本为2.11.8，jdk版本为1.7.0_79。</p>
+<p>使用命令行快捷键<code>control+c</code>退出scala shell环境(网上教程有说使用exit命令可以退出scala shell环境，我试了但貌似不行)。</p>
+<p><strong>疑惑:</strong>既然Spark提供了Scala、Python、Java三种程序设计语言的API，那么我直接用java不就好了，为什么还要下载Scala呢？是因为等会我们会使用Spark shell连接到Spark引擎进行交互式数据分析，而Spark shell只支持Scala和Python两种语言。Java不支持交互式的Shell，因此这一功能暂未在Java语言中实现(当然你也可以不使用shell编程，直接在IDE中用java编程语言连接到Spark引擎进行交互式数据分析也是可以的)。所以建议大家还是老老实实在电脑上面下载好scala并配置好环境变量，反正也占不了多大空间啊，而且万一哪天用到这东西了呢?所以下面我都是采用的scala支持的shell来配置的Spark，之后我也会使用scala运行spark-shell进行交互式数据分析的一个小示例带大家快速入门。</p>
+<p>准备好如上环境后，接下来就可以进行Spark的安装与相关配置操作了。  </p>
+<h3 id="2-2安装Spark并配置"><a href="#2-2安装Spark并配置" class="headerlink" title="2.2安装Spark并配置"></a>2.2安装Spark并配置</h3><p>接下来才是正题，进入<a href="http://spark.apache.org/downloads.html" target="_blank" rel="external">Apache Spark官方网站</a>进行Spark的下载，看到如下页面:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8A%E5%8D%8811.33.53.png" alt="">  </p>
+<p>第2条你要是选择的是Hadoop2.7的话，你要保证你之前安装的Hadoop版本也是2.7版本。选择第4条的下载链接即可(当然你也可以直接用Homebrew命令进行下载)，系统会将下好的文件放在Dowmloads文件目录下，文件名为:<code>spark-2.0.2-bin-hadoop2.7.tgz</code>，同scala的安装方法一样，我们使用命令:<code>sudo tar -zxf ~/Dowmloads/spark-2.0.2-bin-hadoop2.7.tgz -C /usr/local/</code>直接将该压缩包解压并移动到<code>/usr/local/</code>目录下，然后我们<code>cd /usr/local</code>进入到<code>/usr/local</code>目录下，使用命令更改该目录下的spark文件名:<code>sudo mv ./spark-2.0.2-bin-hadoop2.7 ./spark</code>将文件名改为<code>spark</code>。  </p>
+<p>经过上述步骤从官网下载到Spark的文件，这样我们便完成了Spark的安装，但是Spark也是要进行相应的环境变量配置的，所以接下来我们进行Spark环境变量的配置。  </p>
+<p>使用命令:<code>sudo vim /etc/profile</code>，在文件中加入Spark的环境变量:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export SPARK_HOME=/usr/local/spark</span><br><span class="line">export PATH=$PATH:$SPARK_HOME/bin</span><br></pre></td></tr></table></figure></p>
+<p>然后我们进入到Spark目录的conf配置文件中:<code>cd /usr/local/spark/conf</code>，执行命令:<code>cp spark-env.sh.template spark-env.sh</code>将spark-env.sh.template拷贝一份，然后打开拷贝后的spark-env.sh文件:<code>vim spark-env.sh</code>，在里面加入如下内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export SCALA_HOME=/usr/local/scala</span><br><span class="line"></span><br><span class="line">export SPARK_MASTER_IP=localhost</span><br><span class="line"></span><br><span class="line">export SPARK_WORKER_MEMORY=4g</span><br></pre></td></tr></table></figure></p>
+<p>这样我们便完成了Spark环境变量的配置，接下来测试测试一下Spark,在根目录(因为我们配置了spark环境变量，所以可以直接在根目录)下输入命令:<code>spark-shell</code>，看到控制台输出如下信息:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%883.56.26.png" alt="">  </p>
+<p>恭喜你，尽情享受Spark吧。</p>
+<h2 id="3-安装过程出现的问题分析"><a href="#3-安装过程出现的问题分析" class="headerlink" title="3.安装过程出现的问题分析"></a>3.安装过程出现的问题分析</h2><p>1.运行<code>spark-shell</code>命令时控制台出现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">..我忘了是啥报错了.connection out.中间报错信息是这个..</span><br></pre></td></tr></table></figure></p>
+<p>的错误，说明没有配置SSH，配置SSH请参考我上篇文章中Hadoop安装的配置过程。</p>
+<p>2.运行命令:<code>scala</code>时控制台出现:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%883.59.58.png" alt="">  </p>
+<p>的错误信息，表示scala没有成功安装，或者安装的scala与jdk不兼容，所以这里我建议你们就按本教程的2.11.8scala版本与1.7jdk版本来操作吧。这些坑我都试过了，所以才能为你们总结经验。(大哭脸)</p>
+<p>3.其他错误，有以下原因，你们一定要一一进行检查:  </p>
+<ul>
+<li><p>1.关于JDK:JDK版本不对，所以我建议大家用1.7;或者是JDK版本正确但是没有成功配置它的环境变量，我配置时更改了两个文件的环境变量:一个是<code>/etc/profile</code>目录下的，一个是<code>.bash_profile</code>文件中的，配置环境变量信息如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home</span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+<li><p>2.关于scala:Scala版本不对，所以我建议大家用2.11.8;或者是没有成功配置scala的环境变量，配置环境变量按照文中介绍的即可。</p>
 </li>
-<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+<li>3.Hadoop版本与Spark版本不兼容:所以大家在Spark官网下载Spark的时候一定要注意下载Spark时选择的第二条信息的Hadoop版本要与电脑上面已经安装的Hadoop一致才行。</li>
+</ul>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
-<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">github@codingXiaxw</a></li>
+<li><p><a href="http://weibo.com/u/5023661572" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="https://www.zhihu.com/people/xia-xun-wu-56/" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
 
       
@@ -446,7 +440,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
       
         <div class="post-tags">
           
-            <a href="/tags/Java-Web/" rel="tag">#Java Web</a>
+            <a href="/tags/Spark/" rel="tag">#Spark</a>
           
         </div>
       
@@ -455,17 +449,13 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/26/7-java-web中的Servlet请求转发与请求包含/" rel="next" title="Java Web中的Servlet请求转发和请求包含">
-                <i class="fa fa-chevron-left"></i> Java Web中的Servlet请求转发和请求包含
+              <a href="/2016/12/06/59-mac-hadoop/" rel="next" title="how to install Hadoop on Mac OS X">
+                <i class="fa fa-chevron-left"></i> how to install Hadoop on Mac OS X
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/27/9-java-web学习笔记之session入门/" rel="prev" title="Java Web学习笔记之session入门">
-                Java Web学习笔记之session入门 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -491,8 +481,8 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/27/8-java-web学习笔记之Cookie入门/"
-           data-title="Java Web读书笔记之Cookie入门" data-url="http://codingxiaxw.cn/2016/09/27/8-java-web学习笔记之Cookie入门/">
+      <div class="ds-thread" data-thread-key="2016/12/07/60-mac-spark/"
+           data-title="how to install Spark on Mac OS X" data-url="http://codingxiaxw.cn/2016/12/07/60-mac-spark/">
       </div>
     
   </div>
@@ -612,7 +602,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Http协议与Cookie-了解"><span class="nav-number">1.</span> <span class="nav-text">1.Http协议与Cookie(了解)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Cookie的用途"><span class="nav-number">2.</span> <span class="nav-text">2.Cookie的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Java-Web中使用Cookie"><span class="nav-number">3.</span> <span class="nav-text">3.Java Web中使用Cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Cookie详解"><span class="nav-number">4.</span> <span class="nav-text">4.Cookie详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-联系"><span class="nav-number">5.</span> <span class="nav-text">5.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Spark的运行模式"><span class="nav-number">1.</span> <span class="nav-text">1.Spark的运行模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Spark的安装"><span class="nav-number">2.</span> <span class="nav-text">2.Spark的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1准备工作"><span class="nav-number">2.1.</span> <span class="nav-text">2.1准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2安装Spark并配置"><span class="nav-number">2.2.</span> <span class="nav-text">2.2安装Spark并配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-安装过程出现的问题分析"><span class="nav-number">3.</span> <span class="nav-text">3.安装过程出现的问题分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
             
           </div>
         </section>
