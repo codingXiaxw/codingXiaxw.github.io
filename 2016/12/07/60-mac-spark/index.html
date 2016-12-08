@@ -86,7 +86,7 @@
 
 <meta name="description" content="每次接触一个新的知识之前我都抱有恐惧之心，因为总认为自己没有接触到的知识都很高大上，比如上篇介绍到的Hadoop的安装与使用与本篇要介绍的Spark,其实在自己真正琢磨以后才发现本以为高大上的知识其实也不过如此。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="how to install Spark on Mac OS X">
+<meta property="og:title" content="mac下Spark的安装与使用">
 <meta property="og:url" content="http://codingxiaxw.cn/2016/12/07/60-mac-spark/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="每次接触一个新的知识之前我都抱有恐惧之心，因为总认为自己没有接触到的知识都很高大上，比如上篇介绍到的Hadoop的安装与使用与本篇要介绍的Spark,其实在自己真正琢磨以后才发现本以为高大上的知识其实也不过如此。">
@@ -95,9 +95,9 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8A%E5%8D%8811.33.53.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%883.56.26.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%883.59.58.png">
-<meta property="og:updated_time" content="2016-12-07T08:57:13.000Z">
+<meta property="og:updated_time" content="2016-12-08T13:44:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="how to install Spark on Mac OS X">
+<meta name="twitter:title" content="mac下Spark的安装与使用">
 <meta name="twitter:description" content="每次接触一个新的知识之前我都抱有恐惧之心，因为总认为自己没有接触到的知识都很高大上，比如上篇介绍到的Hadoop的安装与使用与本篇要介绍的Spark,其实在自己真正琢磨以后才发现本以为高大上的知识其实也不过如此。">
 <meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%883.27.59.png">
 
@@ -123,7 +123,7 @@
   <link rel="canonical" href="http://codingxiaxw.cn/2016/12/07/60-mac-spark/"/>
 
 
-  <title> how to install Spark on Mac OS X | codingXiaxw's blog </title>
+  <title> mac下Spark的安装与使用 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -276,7 +276,7 @@
             
             
               
-                how to install Spark on Mac OS X
+                mac下Spark的安装与使用
               
             
           </h1>
@@ -329,7 +329,7 @@
 
           
           
-             <span id="/2016/12/07/60-mac-spark/" class="leancloud_visitors" data-flag-title="how to install Spark on Mac OS X">
+             <span id="/2016/12/07/60-mac-spark/" class="leancloud_visitors" data-flag-title="mac下Spark的安装与使用">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -369,7 +369,7 @@
 <p>这样scala的安装便完成，但是还要配置scala的环境变量，使用命令:<code>sudo vim ./etc/profile</code>打开系统中配置环境变量的文件，在里面添加如下内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export SCALA_HOME=/usr/local/scala</span><br><span class="line">export PATH=$PATH:$SCALA_HOME/bin</span><br></pre></td></tr></table></figure></p>
 <p>然后<code>:wq!</code>保存并退出该文件，输入命令使该文件的内容立刻生效:<code>source /etc/profile</code>，接下来在(根目录下)命令行输入:<code>scala</code>并敲击回车，看到控制台打印如下信息说明我们的scala安装并成功配置了环境变量:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%884.50.39.png" alt="">  </p>
 <p>图中信息即表明我们使用的scala版本为2.11.8，jdk版本为1.7.0_79。</p>
-<p>使用命令行快捷键<code>control+c</code>退出scala shell环境(网上教程有说使用exit命令可以退出scala shell环境，我试了但貌似不行)。</p>
+<p>使用命令行快捷键<code>control+c</code>或者<code>:quit</code>退出scala shell环境(网上教程有说使用exit命令可以退出scala shell环境，我试了但貌似不行)。</p>
 <p><strong>疑惑:</strong>既然Spark提供了Scala、Python、Java三种程序设计语言的API，那么我直接用java不就好了，为什么还要下载Scala呢？是因为等会我们会使用Spark shell连接到Spark引擎进行交互式数据分析，而Spark shell只支持Scala和Python两种语言。Java不支持交互式的Shell，因此这一功能暂未在Java语言中实现(当然你也可以不使用shell编程，直接在IDE中用java编程语言连接到Spark引擎进行交互式数据分析也是可以的)。所以建议大家还是老老实实在电脑上面下载好scala并配置好环境变量，反正也占不了多大空间啊，而且万一哪天用到这东西了呢?所以下面我都是采用的scala支持的shell来配置的Spark，之后我也会使用scala运行spark-shell进行交互式数据分析的一个小示例带大家快速入门。</p>
 <p>准备好如上环境后，接下来就可以进行Spark的安装与相关配置操作了。  </p>
 <h3 id="2-2安装Spark并配置"><a href="#2-2安装Spark并配置" class="headerlink" title="2.2安装Spark并配置"></a>2.2安装Spark并配置</h3><p>接下来才是正题，进入<a href="http://spark.apache.org/downloads.html" target="_blank" rel="external">Apache Spark官方网站</a>进行Spark的下载，看到如下页面:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8A%E5%8D%8811.33.53.png" alt="">  </p>
@@ -392,6 +392,7 @@
 </li>
 <li>3.Hadoop版本与Spark版本不兼容:所以大家在Spark官网下载Spark的时候一定要注意下载Spark时选择的第二条信息的Hadoop版本要与电脑上面已经安装的Hadoop一致才行。</li>
 </ul>
+<p>关于学习Spark相关API的知识我将在下篇文章<a href="">通过 Spark Shell 进行交互分析(待更新)</a>中带大家快速入门Spark。</p>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
@@ -449,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/06/59-mac-hadoop/" rel="next" title="how to install Hadoop on Mac OS X">
-                <i class="fa fa-chevron-left"></i> how to install Hadoop on Mac OS X
+              <a href="/2016/12/06/59-mac-hadoop/" rel="next" title="mac下Hadoop的安装与使用">
+                <i class="fa fa-chevron-left"></i> mac下Hadoop的安装与使用
               </a>
             
           </div>
@@ -482,7 +483,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/12/07/60-mac-spark/"
-           data-title="how to install Spark on Mac OS X" data-url="http://codingxiaxw.cn/2016/12/07/60-mac-spark/">
+           data-title="mac下Spark的安装与使用" data-url="http://codingxiaxw.cn/2016/12/07/60-mac-spark/">
       </div>
     
   </div>

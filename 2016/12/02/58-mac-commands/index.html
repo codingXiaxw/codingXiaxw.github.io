@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://codingxiaxw.cn/2016/12/02/58-mac-commands/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="因为mac上的很多功能都涉及到命令行的工作，然而记性差的我总是一次熟两次生，第三次就要…google，所以下面总结下自己在使用自己电脑上相关软件时涉及到的一些命令，以供自己日后参考。">
-<meta property="og:updated_time" content="2016-12-07T05:42:15.000Z">
+<meta property="og:updated_time" content="2016-12-08T11:08:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac下常用软件相关命令">
 <meta name="twitter:description" content="因为mac上的很多功能都涉及到命令行的工作，然而记性差的我总是一次熟两次生，第三次就要…google，所以下面总结下自己在使用自己电脑上相关软件时涉及到的一些命令，以供自己日后参考。">
@@ -354,6 +354,7 @@
 <p>关闭Hadoop:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./stop-dfs.sh</span><br></pre></td></tr></table></figure></p>
 <p>还可以继续在命令行中(依旧在<code>/usr/local/Cellar/hadoop/2.7.3/sbin</code>目录下)执行如下启动/关闭脚本命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./start-yarn.sh        //启动yarn，一个MapReduce框架</span><br><span class="line">./stop-yarn.sh        //停止yarn</span><br></pre></td></tr></table></figure></p>
 <p>当然上述两个命令可以直接通过如下命令直接开启全部服务:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">启动Hadoop ./start-all.sh</span><br><span class="line">停止Hadoop ./stop-all.sh</span><br></pre></td></tr></table></figure></p>
+<p>当然要是在配置了Hadoop的环境变量后就不用在进去<code>/usr/local/Cellar/hadoop/2.7.3/sbin</code>目录而是可以直接在当前用户目录使用上述命令了。</p>
 <p>在某一目录下执行命令:<code>jps</code>可以查看当前正在运行的java进程。</p>
 <p>查看hadoop版本:<code>hadoop version</code></p>
 <h2 id="github篇"><a href="#github篇" class="headerlink" title="github篇"></a>github篇</h2><p>github大法好啊，上面有各种开源项目供你下载供你使用。我当然要跟上潮流啊，所以我去年3月份也注册了个账号，然后开始将自己的项目源码都推到上面供那些需要项目源码的朋友学习，另一方面自己也经常在上面搜索流行开源项目进行学习。  </p>
@@ -387,7 +388,11 @@
 <p>关于sql语句这一块更多的命令请点击链接前往我博客<a href="http://codingxiaxw.cn/2016/10/09/15-SQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">mysql学习笔记</a>下进行学习吧。 </p>
 <h2 id="系统篇"><a href="#系统篇" class="headerlink" title="系统篇"></a>系统篇</h2><p>另外我有时候需要查看隐藏目录，你要是告诉我在Finder中如何如何进行设置就好…这也太low了吧！即使我很菜我也是有追求的人好吗?不多说了附上命令快上车:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">隐藏Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles -bool false</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">显示Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles -bool true</span><br></pre></td></tr></table></figure></p>
 <p>运行命令后可能仍然无法显示/隐藏mac下的隐藏文件，你需要按住option然后双击Finder选择重新启动Finder即可。还有很多我用到的系统命令在其他文章中都有复述到，所以这里就不重复累赘的进行一一介绍了。</p>
+<p><code>echo $PATH</code>，查看系统环境变量。</p>
 <p>嗯，目前想到的自己经常用到的命令就这些。不要笑我，正在恶补Linux相关命令，以后会继续在该篇文章下添加自己用到的命令。另外，此篇文章仅供自己参考(你想参考我也不能禁止，毕竟我不能把正在看这篇文章的你列入黑名单啊哈)。</p>
+<h2 id="分布式篇"><a href="#分布式篇" class="headerlink" title="分布式篇"></a>分布式篇</h2><p><code>hadoop fs -ls /</code>:列出远程Hadoop机的根目录下文件<br><code>hadoop fs -lsr /</code>:递归列出远程Hadoop机的根目录下所有文件</p>
+<p><code>hadoop fs -put ~/A文件名 /</code>:将本机根目录下的文件A推到远程Hadoop机的根目录下。</p>
+<h2 id="zsh篇"><a href="#zsh篇" class="headerlink" title="zsh篇"></a>zsh篇</h2><p>输入:<code>cat /etc/shells</code>查看当前系统有几种shell。  </p>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
@@ -453,8 +458,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/06/59-mac-hadoop/" rel="prev" title="how to install Hadoop on Mac OS X">
-                how to install Hadoop on Mac OS X <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/06/59-mac-hadoop/" rel="prev" title="mac下Hadoop的安装与使用">
+                mac下Hadoop的安装与使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -602,7 +607,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo篇"><span class="nav-number">1.</span> <span class="nav-text">hexo篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop篇"><span class="nav-number">2.</span> <span class="nav-text">Hadoop篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github篇"><span class="nav-number">3.</span> <span class="nav-text">github篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eclipse篇"><span class="nav-number">4.</span> <span class="nav-text">eclipse篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Homebrew篇"><span class="nav-number">5.</span> <span class="nav-text">Homebrew篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux篇"><span class="nav-number">6.</span> <span class="nav-text">Linux篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql篇"><span class="nav-number">7.</span> <span class="nav-text">mysql篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统篇"><span class="nav-number">8.</span> <span class="nav-text">系统篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">9.</span> <span class="nav-text">联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo篇"><span class="nav-number">1.</span> <span class="nav-text">hexo篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop篇"><span class="nav-number">2.</span> <span class="nav-text">Hadoop篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github篇"><span class="nav-number">3.</span> <span class="nav-text">github篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eclipse篇"><span class="nav-number">4.</span> <span class="nav-text">eclipse篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Homebrew篇"><span class="nav-number">5.</span> <span class="nav-text">Homebrew篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux篇"><span class="nav-number">6.</span> <span class="nav-text">Linux篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql篇"><span class="nav-number">7.</span> <span class="nav-text">mysql篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统篇"><span class="nav-number">8.</span> <span class="nav-text">系统篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式篇"><span class="nav-number">9.</span> <span class="nav-text">分布式篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh篇"><span class="nav-number">10.</span> <span class="nav-text">zsh篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">11.</span> <span class="nav-text">联系</span></a></li></ol></div>
             
           </div>
         </section>

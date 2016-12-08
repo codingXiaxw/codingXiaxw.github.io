@@ -86,16 +86,16 @@
 
 <meta name="description" content="最近接触大数据，所以当然有必要学习下Hadoop和Spark(概念请自行百google或者百度)。Spark是Apache目前最火的一款快速处理大数据的开源框架，当然Hadoop也是一款处理大数据的框架，只是Sparck青出于蓝而胜于蓝，在出生之后就得到迅猛发展，所以有学者说日后Spark可能会将Hadoop淘汰(不是我说的，是学者说的哦)。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="how to install Hadoop on Mac OS X">
+<meta property="og:title" content="mac下Hadoop的安装与使用">
 <meta property="og:url" content="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="最近接触大数据，所以当然有必要学习下Hadoop和Spark(概念请自行百google或者百度)。Spark是Apache目前最火的一款快速处理大数据的开源框架，当然Hadoop也是一款处理大数据的框架，只是Sparck青出于蓝而胜于蓝，在出生之后就得到迅猛发展，所以有学者说日后Spark可能会将Hadoop淘汰(不是我说的，是学者说的哦)。">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-06%20%E4%B8%8B%E5%8D%882.11.28.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-06%20%E4%B8%8B%E5%8D%882.16.05.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-06%20%E4%B8%8B%E5%8D%882.16.19.png">
-<meta property="og:updated_time" content="2016-12-07T08:44:53.000Z">
+<meta property="og:updated_time" content="2016-12-08T13:44:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="how to install Hadoop on Mac OS X">
+<meta name="twitter:title" content="mac下Hadoop的安装与使用">
 <meta name="twitter:description" content="最近接触大数据，所以当然有必要学习下Hadoop和Spark(概念请自行百google或者百度)。Spark是Apache目前最火的一款快速处理大数据的开源框架，当然Hadoop也是一款处理大数据的框架，只是Sparck青出于蓝而胜于蓝，在出生之后就得到迅猛发展，所以有学者说日后Spark可能会将Hadoop淘汰(不是我说的，是学者说的哦)。">
 <meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-06%20%E4%B8%8B%E5%8D%882.11.28.png">
 
@@ -121,7 +121,7 @@
   <link rel="canonical" href="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/"/>
 
 
-  <title> how to install Hadoop on Mac OS X | codingXiaxw's blog </title>
+  <title> mac下Hadoop的安装与使用 | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -274,7 +274,7 @@
             
             
               
-                how to install Hadoop on Mac OS X
+                mac下Hadoop的安装与使用
               
             
           </h1>
@@ -327,7 +327,7 @@
 
           
           
-             <span id="/2016/12/06/59-mac-hadoop/" class="leancloud_visitors" data-flag-title="how to install Hadoop on Mac OS X">
+             <span id="/2016/12/06/59-mac-hadoop/" class="leancloud_visitors" data-flag-title="mac下Hadoop的安装与使用">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -366,13 +366,13 @@
 <p>执行上述命令会在当前用户目录下的.ssh文件夹(是一个隐藏文件)中生成一个id_rsa文件, 然后继续执行如下命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
 <p>用于授权你的公钥到本地可以避免每次登陆时都要询问你的密码,再次输入<code>ssh localhost</code>若返回<code>Last login: Tue Dec  6 11:47:39 2016 from ::1</code>，恭喜你，成功完成ssh的配置。</p>
 <h2 id="4-安装Hodoop"><a href="#4-安装Hodoop" class="headerlink" title="4.安装Hodoop"></a>4.安装Hodoop</h2><p>之前的三步骤都是安装Hadoop前的准备，有了前期的准备，安装Hadoop也简单了，执行命令<code>brew install hadoop</code>，等待系统安装，完成后Hadoop会被安装到<code>/usr/local/Cellar/hadoop</code>下。然后需要进行如下配置才能算成功安装Hadoop。  </p>
-<h3 id="4-1配置Hadoop"><a href="#4-1配置Hadoop" class="headerlink" title="4.1配置Hadoop"></a>4.1配置Hadoop</h3><p>1.找到<code>usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop</code>目录下，打开<code>hadoop-env.sh</code>文件，找到其中一行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.net.preferIPv4Stack=true&quot;</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-1配置Hadoop"><a href="#4-1配置Hadoop" class="headerlink" title="4.1配置Hadoop"></a>4.1配置Hadoop</h3><p>1.首先更改Hadoop的配置文件信息，找到<code>usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop</code>目录下，打开<code>hadoop-env.sh</code>文件，找到其中一行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.net.preferIPv4Stack=true&quot;</span><br></pre></td></tr></table></figure></p>
 <p>将其修改为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.net.preferIPv4Stack=true -Djava.security.krb5.realm= -Djava.security.krb5.kdc=&quot;</span><br><span class="line">export JAVA_HOME=&quot;/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home&quot; #改为自己JDK目录</span><br></pre></td></tr></table></figure></p>
-<p>2.在<code>usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop</code>目录下，打开<code>core-site.xml</code>，会发现<code>core-site.xml</code>文件中的<code>&lt;configuration&gt;&lt;/configuration&gt;</code>标签中间的内容为空，需要我们自己加入如下配置信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Put site-specific property overrides in this file. --&gt;</span><br><span class="line"> &lt;configuration&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">     &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line">&lt;value&gt;/usr/local/Cellar/hadoop/hdfs/tmp&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;A base for other temporary directories.&lt;/description&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">     &lt;name&gt;fs.default.name&lt;/name&gt;</span><br><span class="line">     &lt;value&gt;hdfs://localhost:8020&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
-<p>3.在目录<code>usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop</code>下，找到<code>mapred-site.xml</code>文件，在其内加上:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">      &lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapred.job.tracker&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;localhost:8021&lt;/value&gt;</span><br><span class="line">      &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
-<p>4.在目录<code>usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop</code>下，找到<code>hdfs-site.xml</code>文件，在其内加上:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">   &lt;property&gt;</span><br><span class="line">     &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">     &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
-<p>5.在运行后台程序前, 必须格式化新安装的HDFS, 并通过创建存储目录和初始化元数据创新空的文件系统, 执行命令:<code>$ hdfs namenode -format</code>  </p>
-<p>在控制台出现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#生成类似下面的字符串:</span><br><span class="line">...</span><br><span class="line">#此处省略大部分信息</span><br><span class="line">STARTUP_MSG:   java = 1.6.0_65</span><br><span class="line">************************************************************</span><br><span class="line">/************************************************************</span><br><span class="line">SHUTDOWN_MSG: Shutting down NameNode at Andrew-liudeMacBook-Pro.local/192.168.1.100</span><br><span class="line">************************************************************/</span><br></pre></td></tr></table></figure></p>
+<p>2.然后要配置hdfs的地址和端口号，在<code>usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop</code>目录下，打开<code>core-site.xml</code>，会发现<code>core-site.xml</code>文件中的<code>&lt;configuration&gt;&lt;/configuration&gt;</code>标签中间的内容为空，需要我们自己加入如下配置信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Put site-specific property overrides in this file. --&gt;</span><br><span class="line"> &lt;configuration&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">     &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line">&lt;value&gt;/usr/local/Cellar/hadoop/hdfs/tmp&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;A base for other temporary directories.&lt;/description&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">     &lt;name&gt;fs.default.name&lt;/name&gt;</span><br><span class="line">     &lt;value&gt;hdfs://localhost:8020&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
+<p>3.再然后就是设置map-reduce中jobtracker的地址和端口号，在目录<code>usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop</code>下，找到<code>mapred-site.xml</code>文件，在其内加上:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">      &lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapred.job.tracker&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;localhost:8021&lt;/value&gt;</span><br><span class="line">      &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
+<p>4.最后要设置hdfs的默认备份方式，默认值是3，在伪分布式系统中，需要修改为1。在目录<code>usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop</code>下，找到<code>hdfs-site.xml</code>文件，在其内加上:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">   &lt;property&gt;</span><br><span class="line">     &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">     &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
+<p>5.在运行后台程序前, 必须格式化新安装的HDFS, 并通过创建存储目录和初始化元数据创新空的文件系统, (在上述目录下)执行命令:<code>hdfs namenode -format</code>  </p>
+<p>在控制台出现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#生成类似下面的字符串:</span><br><span class="line">...</span><br><span class="line">#此处省略大部分信息</span><br><span class="line">STARTUP_MSG:   java = 1.7.0_79</span><br><span class="line">************************************************************</span><br><span class="line">/************************************************************</span><br><span class="line">SHUTDOWN_MSG: Shutting down NameNode at Andrew-liudeMacBook-Pro.local/192.168.1.100</span><br><span class="line">************************************************************/</span><br></pre></td></tr></table></figure></p>
 <p>这样我们便完成Hadoop的配置，可以启动Hadoop了。  </p>
 <h3 id="4-2启动后台程序"><a href="#4-2启动后台程序" class="headerlink" title="4.2启动后台程序"></a>4.2启动后台程序</h3><p>在<code>/usr/local/Cellar/hadoop/2.7.3/sbin</code>目录下执行如下命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./start-dfs.sh            //启动HDFS</span><br><span class="line">./stop-dfs.sh           //停止HDFS</span><br></pre></td></tr></table></figure></p>
 <p>执行启动/关闭HDFS的命令，控制台输出信息如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Starting namenodes on [localhost]</span><br><span class="line">localhost: starting namenode, logging to /usr/local/Cellar/hadoop/2.7.3/libexec/logs/hadoop-tony-namenode-tonys-MacBook-Pro-2.local.out</span><br><span class="line">localhost: starting datanode, logging to /usr/local/Cellar/hadoop/2.7.3/libexec/logs/hadoop-tony-datanode-tonys-MacBook-Pro-2.local.out</span><br><span class="line">Starting secondary namenodes [0.0.0.0]</span><br></pre></td></tr></table></figure></p>
@@ -383,6 +383,8 @@
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-06%20%E4%B8%8B%E5%8D%882.16.19.png" alt="">  </p>
 <p>或者直接运行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./start-all.sh    ##启动Hadoop </span><br><span class="line">./stop-all.sh     ##停止Hadoop</span><br></pre></td></tr></table></figure></p>
 <p>该命令可以同时开启/关闭上述三个本地服务。</p>
+<p>但是每次执行上述命令都必须要进入到<code>/usr/local/Cellar/hadoop/2.7.3/sbin</code>目录，为了方便所以我们需要进行Hadoop环境变量配置。使用命令:<code>sudo vim /etc/profile</code>，在其中加入Hadoop环境变量的配置信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_HOME=/usr/local/Cellar/hadoop/2.7.3  #你Hadoop的安装路径</span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin</span><br></pre></td></tr></table></figure></p>
+<p>然后输入命令:<code>source /etc/profile</code>使该文件生效，这样以后你就可以在用户目录下直接使用上述<code>start-dfs.sh</code>命令来启动Hadoop了。  </p>
 <p>到此，尽情享受Hadoop吧。最后我来个Hadoop的小结。  </p>
 <h2 id="5-小结"><a href="#5-小结" class="headerlink" title="5.小结"></a>5.小结</h2><p>Hadoop是Apache基金会下的项目，它能够处理非常大的数据集在分布式计算环境，它可以运行在三种模式下:  </p>
 <ul>
@@ -390,7 +392,7 @@
 <li>2.伪分布式:Hadoop做为后台应用运行在本地机器，模拟小集群。</li>
 <li>3.全分布式:Hadoop做为后台应用运行真实的集群电脑中。</li>
 </ul>
-<p>因为本人只有一台电脑，所以本篇文章介绍的就是在伪分布式模式下进行的Hadoop的安装介绍。到这里，你可能会有疑惑:独立式、伪分布式、全分布式三种模式又有什么区别呢? 呃…自行google吧，或者点击我已经给你找好的资料链接<a href="http://www.voidcn.com/blog/36006798/article/p-6311893.html" target="_blank" rel="external">hadoop的单机、伪分布式、分布式区别</a>，不要太爱我，因为我已经有人爱了。  </p>
+<p>因为本人只有一台电脑，所以本篇文章介绍的就是在伪分布式模式下进行的Hadoop的安装介绍。到这里，你可能会有疑惑:独立式、伪分布式、全分布式三种模式又有什么区别呢? 呃…自行google吧，或者点击我已经给你找好的资料链接<a href="http://www.aboutyun.com/thread-6839-1-1.html" target="_blank" rel="external">hadoop的单机、伪分布式、分布式区别</a>，不要太爱我，因为我已经有人爱了。  </p>
 <p><strong>疑惑:</strong><br>很多人问我，在自己电脑上搭建好Hadoop环境以后，下一步该怎么利用Hadoop呢？亲，搭建好Hadoop后当然就可以利用Hadoop相关类对大数据进行处理了撒！  </p>
 <p>如何利用Hadoop相关类?首先你得有一款能写Hadoop代码的工具吧(当然你要是想装X的话也可以跳过IDE直接通过命令行编写Hadoop相关类操作)！我这里用的eclipse(别问我为什么我还没转IDEA,我是从IDEA转过来的好嘛。。。虽然我不情愿。。。大哭)，所以就可以在eclipse中通过编写Hadoop的相关类，然后就能对大数据进行处理咯。例子可以进Apache Hadoop官网，里面有很多简单的Examples让你快速入门Hadoop编程哦(由于我赞成大家直接学习Spark，所以就不给学习Hadoop相关知识的资料链接给大家咯)。  </p>
 <p>当然我本意是要学习Spark的，然而由于是新手，等好不容易在电脑上搭建完Hadoop，才知道如今学习Spark的话是得重新在电脑上搭建Spark环境的(<strong>括号内容是我学习Spark后又跑过来更的:</strong>废话！使用Spark前不搭建Spark的话那如何使用Spark?所以肯定要先搭建Spark环境了才能使用Spark啊)。。。由于下篇讲mac环境下Spark的搭建的文章<a href="http://codingxiaxw.cn/2016/12/07/60-mac-spark/">how to install Spark on Mac</a>时需要我们先搭建Hadoop的环境(为什么？点击链接看下篇文章是如何介绍的吧)，所以还是规规矩矩的按照本教程先完成Hadoop的搭建吧!</p>
@@ -459,8 +461,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/07/60-mac-spark/" rel="prev" title="how to install Spark on Mac OS X">
-                how to install Spark on Mac OS X <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/07/60-mac-spark/" rel="prev" title="mac下Spark的安装与使用">
+                mac下Spark的安装与使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -488,7 +490,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/12/06/59-mac-hadoop/"
-           data-title="how to install Hadoop on Mac OS X" data-url="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/">
+           data-title="mac下Hadoop的安装与使用" data-url="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/">
       </div>
     
   </div>
