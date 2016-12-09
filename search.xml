@@ -172,8 +172,9 @@
 <p>运行命令后可能仍然无法显示/隐藏mac下的隐藏文件，你需要按住option然后双击Finder选择重新启动Finder即可。还有很多我用到的系统命令在其他文章中都有复述到，所以这里就不重复累赘的进行一一介绍了。</p>
 <p><code>echo $PATH</code>，查看系统环境变量。</p>
 <p>嗯，目前想到的自己经常用到的命令就这些。不要笑我，正在恶补Linux相关命令，以后会继续在该篇文章下添加自己用到的命令。另外，此篇文章仅供自己参考(你想参考我也不能禁止，毕竟我不能把正在看这篇文章的你列入黑名单啊哈)。</p>
-<h2 id="分布式篇"><a href="#分布式篇" class="headerlink" title="分布式篇"></a>分布式篇</h2><p><code>hadoop fs -ls /</code>:列出远程Hadoop机的根目录下文件<br><code>hadoop fs -lsr /</code>:递归列出远程Hadoop机的根目录下所有文件</p>
+<h2 id="Hadoop伪分布式篇"><a href="#Hadoop伪分布式篇" class="headerlink" title="Hadoop伪分布式篇"></a>Hadoop伪分布式篇</h2><p><code>hadoop fs -ls /</code>:列出远程Hadoop机的根目录下文件<br><code>hadoop fs -lsr /</code>:递归列出远程Hadoop机的根目录下所有文件</p>
 <p><code>hadoop fs -put ~/A文件名 /</code>:将本机根目录下的文件A推到远程Hadoop机的根目录下。</p>
+<p><code>hadoop fs -mkdir 文件夹路径/文件夹名</code>:在远程主机上创建文件夹</p>
 <h2 id="zsh篇"><a href="#zsh篇" class="headerlink" title="zsh篇"></a>zsh篇</h2><p>输入:<code>cat /etc/shells</code>查看当前系统有几种shell。  </p>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
@@ -350,7 +351,8 @@
     <entry>
       <title><![CDATA[Java高并发秒杀系统API(一)之DAO层开发]]></title>
       <url>http://codingxiaxw.cn/2016/11/27/53-maven-ssm-seckill-dao/</url>
-      <content type="html"><![CDATA[<p>之前写了一个用<a href="http://codingxiaxw.cn/2016/11/15/45-smm%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">SSM框架搭建的商品查询系统</a>,分两篇文章分别记录了自己整合SSM框架的过程以及利用SSM开发的一些基础知识，由于那时候刚学完SSM框架，所以自己觉得整合的过程总结的不够好。<a id="more"></a>如今在有了一定的SSM框架开发经验后打算参考慕课网上对秒杀系统的讲解视频再写一个用Maven+SSM做的一个秒杀系统，从头到位记录自己整合SSM框架以及用SS框架M开发这个秒杀系统的过程。maven的强大之处就是你不用再像以前那样，如果在项目中用到spring框架还要到spring官网上去下载一系列的jar包，用了maven对项目进行管理之后你就可以直接在它的pom.xml文件中添加jar包的相应坐标，这样maven就能自动从它的中央仓库中为我们将这些jar包下载到其本地仓库中供我们使用。  </p>
+      <content type="html"><![CDATA[<p>之前写了一个用<a href="http://codingxiaxw.cn/2016/11/15/45-smm%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">SSM框架搭建的商品查询系统</a>,分两篇文章分别记录了自己整合SSM框架的过程以及利用SSM开发的一些基础知识，由于那时候刚学完SSM框架，所以自己觉得整合的过程总结的不够好。<a id="more"></a>如今在有了一定的SSM框架开发经验后打算参考慕课网上对秒杀系统的讲解视频再写一个用Maven+SSM做的一个秒杀系统，从头到位记录自己整合SSM框架以及用SS框架M开发这个秒杀系统的过程。  </p>
+<p>为什么要用maven?这个工具真是让你用了以后就爱不释手。这样给你简单的说说maven,它的强大之处就是你不用再像以前那样，如果在项目中用到spring框架还要到spring官网上去下载一系列的jar包，用了maven对项目进行管理之后你就可以直接在它的pom.xml文件中添加jar包的相应坐标，这样maven就能自动从它的中央仓库中为我们将这些jar包下载到其本地仓库中供我们使用。  </p>
 <p>用maven对项目进行管理的知识很简单，关于创建maven项目的知识大家看我的这篇文章便可以在几分钟内掌握:<a href="http://codingxiaxw.cn/2016/11/24/51-first-maven-project/">Maven安装配置及创建你的第一个Maven项目</a>  </p>
 <p>秒杀系统搭建环境:IDEA+Maven+SSM框架。源码<a href="https://github.com/codingXiaxw/seckill" target="_blank" rel="external">请点击这里</a>前往我的github。  </p>
 <p>完成这个秒杀系统，需要完成四个模块的代码编写，分别是:  </p>
@@ -361,7 +363,7 @@
 </ul>
 <p>其实完成这三个模块就可以完成我们的秒杀系统了，但对于我们的秒杀系统中一件秒杀商品，在秒杀的时候肯定会有成千上万的用户参与进来，通过上述三个模块完成的系统无法解决这么多用户的高并发操作，所以我们还需要第四个模块:  </p>
 <ul>
-<li>4.Java高并发秒杀APi之高并发优化。</li>
+<li>4.<a href="">Java高并发秒杀APi之高并发优化(待更新)</a>。</li>
 </ul>
 <p>该系统我将按照上述4个模块通过4篇文章来完成介绍，本篇文章进行第一个模块的讲解及项目的介绍以及Dao层编码的开发。首先看看我们项目的效果图:  </p>
 <p>列表页:  </p>
