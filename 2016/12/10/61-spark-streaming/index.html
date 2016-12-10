@@ -1,0 +1,1052 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Spark," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="在上篇文章mac下Spark的安装与使用的一个示例中，我们使用RDD的Map和Reduce操作对一个文本中的文字做了简单的字数检查。本篇文章的目的是讲述Spark 中的流数据处理。结构分为三个部分:第一部分简单对Spark进行介绍，第二部分介绍Spark Streaming，最后一部分通过一个简单的Demo讲讲Spark是如何通过Spark Streaming进行流式数据的处理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Spark Streaming处理流式数据">
+<meta property="og:url" content="http://codingxiaxw.cn/2016/12/10/61-spark-streaming/index.html">
+<meta property="og:site_name" content="codingXiaxw's blog">
+<meta property="og:description" content="在上篇文章mac下Spark的安装与使用的一个示例中，我们使用RDD的Map和Reduce操作对一个文本中的文字做了简单的字数检查。本篇文章的目的是讲述Spark 中的流数据处理。结构分为三个部分:第一部分简单对Spark进行介绍，第二部分介绍Spark Streaming，最后一部分通过一个简单的Demo讲讲Spark是如何通过Spark Streaming进行流式数据的处理。">
+<meta property="og:image" content="http://cdn4.infoqstatic.com/statics_s1_20161208-0302u1/resource/articles/apache-spark-introduction/zh/resources/0304081.png">
+<meta property="og:image" content="http://cdn2.infoqstatic.com/statics_s1_20161208-0302u1/resource/articles/apache-spark-streaming/zh/resources/0000.png">
+<meta property="og:image" content="http://cdn2.infoqstatic.com/statics_s1_20161208-0302u1/resource/articles/apache-spark-streaming/zh/resources/0001.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/streaming.gif">
+<meta property="og:updated_time" content="2016-12-10T05:56:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Spark Streaming处理流式数据">
+<meta name="twitter:description" content="在上篇文章mac下Spark的安装与使用的一个示例中，我们使用RDD的Map和Reduce操作对一个文本中的文字做了简单的字数检查。本篇文章的目的是讲述Spark 中的流数据处理。结构分为三个部分:第一部分简单对Spark进行介绍，第二部分介绍Spark Streaming，最后一部分通过一个简单的Demo讲讲Spark是如何通过Spark Streaming进行流式数据的处理。">
+<meta name="twitter:image" content="http://cdn4.infoqstatic.com/statics_s1_20161208-0302u1/resource/articles/apache-spark-introduction/zh/resources/0304081.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codingxiaxw.cn/2016/12/10/61-spark-streaming/"/>
+
+
+  <title> 使用Spark Streaming处理流式数据 | codingXiaxw's blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">codingXiaxw's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Life is short,just coding.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Contact
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用Spark Streaming处理流式数据
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-12-10T12:57:11+08:00" content="Dec 10 2016">
+              Dec 10 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/10/61-spark-streaming/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/10/61-spark-streaming/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/10/61-spark-streaming/" class="leancloud_visitors" data-flag-title="使用Spark Streaming处理流式数据">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在上篇文章<a href="http://codingxiaxw.cn/2016/12/07/60-mac-spark/">mac下Spark的安装与使用</a>的一个示例中，我们使用RDD的Map和Reduce操作对一个文本中的文字做了简单的字数检查。本篇文章的目的是讲述Spark 中的流数据处理。结构分为三个部分:第一部分简单对Spark进行介绍，第二部分介绍Spark Streaming，最后一部分通过一个简单的Demo讲讲Spark是如何通过Spark Streaming进行流式数据的处理。<a id="more"></a>  </p>
+<h2 id="1-简单介绍Spark"><a href="#1-简单介绍Spark" class="headerlink" title="1.简单介绍Spark"></a>1.简单介绍Spark</h2><p>查看Spark官方文档，发现Spark除了Map和Reduce操作之外，它还支持SQL查询(Spark SQL)，流数据(Spark Streaming)，机器学习(Spark MLlib)和图表数据处理(Spark GraphX),也就是Spark的一些Api。开发者可以在一个数据管道用例中单独使用某一能力或者将这些能力结合在一起使用。  </p>
+<h3 id="1-1Spark生态系统"><a href="#1-1Spark生态系统" class="headerlink" title="1.1Spark生态系统"></a>1.1Spark生态系统</h3><p>除了Spark核心API之外，Spark生态系统中还包括其他附加库，可以在大数据分析和机器学习领域提供更多的能力。这些库的介绍如下:  </p>
+<ul>
+<li><strong>Spark Streaming:</strong><ul>
+<li>Spark Streaming基于微批量方式的计算和处理，可以用于处理实时的流数据。它使用DStream，简单来说就是一个弹性分布式数据集（RDD）系列，处理实时数据。</li>
+</ul>
+</li>
+<li><strong>Spark SQL:</strong><ul>
+<li>Spark SQL可以通过JDBC API将Spark数据集暴露出去，而且还可以用传统的BI和可视化工具在Spark数据上执行类似SQL的查询。用户还可以用Spark SQL对不同格式的数据（如JSON，Parquet以及数据库等）执行ETL，将其转化，然后暴露给特定的查询。</li>
+</ul>
+</li>
+<li><strong>Spark MLlib:</strong><ul>
+<li>MLlib是一个可扩展的Spark机器学习库，由通用的学习算法和工具组成，包括二元分类、线性回归、聚类、协同过滤、梯度下降以及底层优化原语。</li>
+</ul>
+</li>
+<li><strong>Spark GraphX:</strong><ul>
+<li>GraphX是用于图计算和并行图计算的新的（alpha）Spark API。通过引入弹性分布式属性图（Resilient Distributed Property Graph），一种顶点和边都带有属性的有向多重图，扩展了Spark RDD。为了支持图计算，GraphX暴露了一个基础操作符集合（如subgraph，joinVertices和aggregateMessages）和一个经过优化的Pregel API变体。此外，GraphX还包括一个持续增长的用于简化图分析任务的图算法和构建器集合。  </li>
+</ul>
+</li>
+</ul>
+<p>除了这些库以外，还有一些其他的库，如BlinkDB和Tachyon。  </p>
+<ul>
+<li><strong>BlinkDB:</strong><ul>
+<li>BlinkDB是一个近似查询引擎，用于在海量数据上执行交互式SQL查询。BlinkDB可以通过牺牲数据精度来提升查询响应时间。通过在数据样本上执行查询并展示包含有意义的错误线注解的结果，操作大数据集合。  </li>
+</ul>
+</li>
+<li><strong>Tachyon:</strong><ul>
+<li>Tachyon是一个以内存为中心的分布式文件系统，能够提供内存级别速度的跨集群框架（如Spark和MapReduce）的可信文件共享。它将工作集文件缓存在内存中，从而避免到磁盘中加载需要经常读取的数据集。通过这一机制，不同的作业/查询和框架可以以内存级的速度访问缓存的文件。<br>此外，还有一些用于与其他产品集成的适配器，如Cassandra（Spark Cassandra 连接器）和R（SparkR）。Cassandra Connector可用于访问存储在Cassandra数据库中的数据并在这些数据上执行数据分析。</li>
+</ul>
+</li>
+</ul>
+<p>下图展示了在Spark生态系统中，这些不同的库之间的相互关联:  </p>
+<p><img src="http://cdn4.infoqstatic.com/statics_s1_20161208-0302u1/resource/articles/apache-spark-introduction/zh/resources/0304081.png" alt="">  </p>
+<p>本篇文章只进行Spark Streaming的介绍。  </p>
+<h3 id="1-2Spark体系架构"><a href="#1-2Spark体系架构" class="headerlink" title="1.2Spark体系架构"></a>1.2Spark体系架构</h3><p>Spark体系架构包括如下三个主要组件:  </p>
+<ul>
+<li>1.数据存储。<ul>
+<li>Spark用HDFS文件系统存储数据(这也就是我们在上问中提到为什么安装Spark要在安装Hadoop之后进行)。它可用于存储任何兼容于Hadoop的数据源，包括一些内置数据源如HDFS、TCP sockets和一些外置数据源如Twitter、Kafka等。</li>
+</ul>
+</li>
+<li>2.API。<ul>
+<li>利用API，应用开发者可以用标准的API接口创建基于Spark的应用。Spark提供Scala，Java和Python三种程序设计语言的API。</li>
+</ul>
+</li>
+<li>3.资源管理。  <ul>
+<li>Spark既可以部署在一个单独的服务器也可以部署在像Mesos或YARN这样的分布式计算框架之上。</li>
+</ul>
+</li>
+</ul>
+<p>如上对Spark进行了简单的介绍，接下来我们就基于Spark对其中的库Spark Streaming来进行介绍。</p>
+<h2 id="2-Spark-Streaming的简单介绍"><a href="#2-Spark-Streaming的简单介绍" class="headerlink" title="2.Spark Streaming的简单介绍"></a>2.Spark Streaming的简单介绍</h2><p>上篇文章中的demo中我们对一个文件中的字数基于批处理模式下进行了静态信息处理，比如作为一个按小时或天运行的任务。但若是在数据驱动的业务决策场景下，当需要飞快地分析实时数据流以执行分析并创建决策支持时，又该如何呢？  </p>
+<p>使用流式数据处理，一旦数据到达计算就会被实时完成，而非作为批处理任务。实时数据处理与分析正在变为大多数组织的大数据战略中至关重要的一个组件。接下来，我们将会学习到如何使用Apache Spark中一个被称为Spark流的库进行实时数据分析。  </p>
+<h3 id="2-1流数据分析"><a href="#2-1流数据分析" class="headerlink" title="2.1流数据分析"></a>2.1流数据分析</h3><p>流数据基本上是一组连续的数据记录，它们通常产生于诸如传感器、服务器流量与在线搜索等数据源。常见的流数据的例子有网站上的用户行为、监控数据、服务器日志与其他事件数据。  </p>
+<p>流数据处理应用会有助于现场面板、实时在线推荐与即时诈骗检测。<br>如果我们正在构建一个实时收集、处理与分析流数据的应用，我们需要按照与批处理数据应用不同的设计视角进行考虑。  </p>
+<p>下面列出了三种不同的流数据处理框架：</p>
+<ul>
+<li>Apache Samza</li>
+<li>Storm</li>
+<li>Spark流<br>在本文中我们将专注于Spark流，即Spark Streaming。</li>
+</ul>
+<h3 id="2-2Spark流"><a href="#2-2Spark流" class="headerlink" title="2.2Spark流"></a>2.2Spark流</h3><p>Spark流是核心Spark API的扩展。Spark流使得基于实时数据流构建容错性处理变得更加简单。下图(就是上面介绍到的Spark生态系统图)展示了Spark流是如何融入到整个Apache Spark生态系统中:  </p>
+<p><img src="http://cdn2.infoqstatic.com/statics_s1_20161208-0302u1/resource/articles/apache-spark-streaming/zh/resources/0000.png" alt="">  </p>
+<p>Spark流工作的方式是将数据流按照预先定义的间隔(N秒)划分为批(称微批次)然后将每批数据视为一个弹性分布式数据集(Resilient Distributed Datasets，RDDs)。随后我们就可以使用诸如map、reduce、reduceByKey、join和window这样的操作来处理这些RDDs。这些RDD操作的结果会以批的形式返回。通常我们会将这些结果保存到数据存储中以供未来分析并生成报表与面板，或是发送基于事件的预警。  </p>
+<p>为Spark流决定时间间隔是很重要的，这需要基于你的用例与数据处理要求。如果值N太低，那么在分析阶段微批次就没有足够的数据以给出有意义的结果。  </p>
+<p>与Spark流相比，其他流处理框架是基于每个事件而非一个微批次来处理数据流的。用微批次的方法，我们可以在同一应用下使用Spark流API来应用其他Spark库(比如核心、机器学习等)。  </p>
+<p>流数据可以来源于许多不同的数据源，一些内置数据源如HDFS、TCP sockets和一些外置数据源如Twitter、Kafka等。  </p>
+<p>使用诸如Apache Spark这种大数据处理框架的另外一个优势就是我们可以在同一系统中组合批处理与流处理。我们也可以在数据流上应用Spark的机器学习与图处理算法，Spark流结构如下图所示:<br><img src="http://cdn2.infoqstatic.com/statics_s1_20161208-0302u1/resource/articles/apache-spark-streaming/zh/resources/0001.png" alt="">  </p>
+<h3 id="2-3Spark流用例"><a href="#2-3Spark流用例" class="headerlink" title="2.3Spark流用例"></a>2.3Spark流用例</h3><p>Spark流正在变为实现实时数据处理与分析方案的首选平台，这些实时数据往往来源于物联网(Internet of Things，IoT)和传感器。它被用于各种用例与商业应用。下面是一些最有趣的Spark流用例:</p>
+<ul>
+<li>Uber:车驾共享服务背后的公司，在他们的持续流式ETL管道中使用了Spark流以每天从其移动用户处收集TB级的事件数据来进行实时遥测分析。</li>
+<li>Pinterest:可视化书签工具背后的公司，使用Spark流、MemSQL与Apache Kafka技术以实时地深入了解他们全球的用户是怎样使用Pins的。</li>
+<li>Netflix:使用Kafka与Spark流来构建一个实时在线电影推荐与数据监控解决方案，该方案每天要处理来自于不同数据源的数十亿条事件。</li>
+</ul>
+<p>Spark流其他现实世界的样例还包括:  </p>
+<ul>
+<li>供应链分析</li>
+<li>实时安全情报操作以寻找威胁</li>
+<li>广告竞价平台</li>
+<li>实时视频分析，以帮助观看者实现个性化与互动体验</li>
+</ul>
+<h3 id="2-4Spark流架构与API"><a href="#2-4Spark流架构与API" class="headerlink" title="2.4Spark流架构与API"></a>2.4Spark流架构与API</h3><p>让我们看一下Spark流的架构与API方法。若要编写Spark流程序，我们需要知晓两个组件:DStream与流上下文。  </p>
+<h4 id="2-4-1DStream"><a href="#2-4-1DStream" class="headerlink" title="2.4.1DStream"></a>2.4.1DStream</h4><p>Dstream(离散流，Discretized Stream，的缩写)是Spark流中最基本的抽象，它描述了一个持续的数据流。DStream既可以从诸如Kafka、Flume与Kinesis这样的数据源中创建，也可以对其他DStream实施操作。在内部，一个DStream被描述为一个RDD对象的序列。与RDDs上的转换与动作操作类似，DStream支持的操作有:map、flatMap、filter、count、reduce、countByValue、reduceByKey、join、updateStateByKey。</p>
+<h4 id="2-4-2流上下文"><a href="#2-4-2流上下文" class="headerlink" title="2.4.2流上下文"></a>2.4.2流上下文</h4><p>与Spark中的Spark上下文(SparkContext)相似，流上下文(StreamingContext)是所有流功能的主入口。  </p>
+<p>流上下文拥有内置方法可以将流数据接收到Spark流程序中。使用该上下文，我们可以创建一个描述基于TCP数据源的流数据的DStream，可以用主机名与端口号指定TCP数据源。比如，如果我们使用像netcat这样的工具来测试Spark流程序的话，我们将会从运行netcat的机器(比如localhost)的9999端口上接收到数据流。(下面的demo中我们以HDFS上的数据作为数据源)  </p>
+<p>当代码被执行，在启动时，Spark流仅是设置将要执行的计算，此时还没有进行实时处理。在所有的转换都被设置完毕后，为了启动处理，我们最终会调用start()方法来启动计算，还有awaitTermination()方法来等待计算终结。</p>
+<h4 id="2-4-3Spark流Api"><a href="#2-4-3Spark流Api" class="headerlink" title="2.4.3Spark流Api"></a>2.4.3Spark流Api</h4><p>由于我是搞java开发的，所以这里就只附上Spark提供的关于<a href="https://spark.apache.org/docs/1.3.0/api/java/index.html?org/apache/spark/sql/api/java/package-summary.html" target="_blank" rel="external">Java Api</a>的官方链接啦，小伙伴自行查看吧。  </p>
+<h3 id="2-5Spark编程的步骤"><a href="#2-5Spark编程的步骤" class="headerlink" title="2.5Spark编程的步骤"></a>2.5Spark编程的步骤</h3><p>在展现出用demo应用之前，先来看看Spark流编程中与众不同的步骤:</p>
+<ul>
+<li>1.Spark流上下文被用于处理实时数据流。因此，第一步就是用两个参数初始化流上下文对象，Spark上下文和切片间隔时间。切片间隔设置了流中我们处理输入数据的更新窗口。一旦上下文被初始化，就无法再向已经存在的上下文中定义或添加新的计算。并且，在同一时间只有一个流上下文对象可以被激活。</li>
+<li>2.当Spark流上下文被定义后，我们通过创建输入DStreams来指定输入数据源。在我们的样例应用中，输入数据源是一个使用了Apache Kafka分布式数据库和消息系统的日志消息生成器。日志生成器程序创建随机日志消息以模拟网络服务器的运行时环境，作为各种网络应用服务用户而产生的流量，日志消息被持续不断地生成。</li>
+<li>3.使用map和reduce这样的Spark流变换API为DStreams定义计算。<br>当流计算逻辑被定义好后，我们可以使用先前创建的流上下文对象中的start方法来开始接收并处理数据。</li>
+<li>4.最终，我们使用流上下文对象的awaitTermination方法等待流数据处理完毕并停止它。</li>
+</ul>
+<p>好了，上述讲了这么多大道理，你不烦我都烦了，接下来通过上述介绍的编程步骤直接附上我的demo吧。</p>
+<h2 id="3-Spark处理流数据demo"><a href="#3-Spark处理流数据demo" class="headerlink" title="3.Spark处理流数据demo"></a>3.Spark处理流数据demo</h2><p>这里我们使用IDEA创建一个maven项目，在pom.xml文件中添加上Spark相关API jar包的坐标如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.codingxiaxw.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-mvn<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>spark-mvn Maven Webapp<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span> <span class="comment">&lt;!-- Spark dependency --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-core_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-streaming_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>spark-mvn<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后创建一个WordCountStreaming.java，代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.codingxiaxw.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.api.java.function.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.api.java.JavaDStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.api.java.JavaPairDStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.api.java.JavaReceiverInputDStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.api.java.JavaStreamingContext;</span><br><span class="line"><span class="keyword">import</span> scala.Tuple2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * Created by codingBoy on 16/12/8.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WorldCountStreaming</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建RDD</span></span><br><span class="line">        SparkConf sparkConf=<span class="keyword">new</span> SparkConf().setMaster(<span class="string">"local[2]"</span>).setAppName(<span class="string">"NetworkWorldCount"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         *</span><br><span class="line">         *</span><br><span class="line">         * 创建StreamingContext对象: 同Spark初始化需要创建SparkContext对象一样，</span><br><span class="line">         * 使用Spark Streaming就需要创建StreamingContext对象。创建StreamingContext对象所需的参数与SparkContext基本一致，</span><br><span class="line">         * 包括指明Master，设定名称(如NetworkWordCount)。需要注意的是参数Seconds(1)，Spark Streaming需要指定处理数据的时间间隔，</span><br><span class="line">         * 如上例所示的1s，那么Spark Streaming会以1s为时间窗口进行数据处理。此参数需要根据用户的需求和集群的处理能力进行适当的设置；</span><br><span class="line">         *</span><br><span class="line">         * 与Spark中的Spark上下文(SparkContext)相似，流上下文(StreamingContext)是所有流功能的主入口。</span><br><span class="line">         */</span></span><br><span class="line">        JavaStreamingContext jsc=<span class="keyword">new</span> JavaStreamingContext(sparkConf,Durations.seconds(<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * 创建InputDStream:如同Storm的Spout，Spark Streaming需要指明数据源。如上例所示的socketTextStream，Spark Streaming以</span><br><span class="line">         * socket连接作为数据源读取数据。当然Spark Streaming支持多种不同的数据源，包括Kafka、 Flume、HDFS/S3、Kinesis和Twitter</span><br><span class="line">         * 等数据源</span><br><span class="line">         */</span></span><br><span class="line">        JavaReceiverInputDStream&lt;String&gt; lines=jsc.socketTextStream(<span class="string">"localhost"</span>,<span class="number">8020</span>);</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//        JavaReceiverInputDStream&lt;String&gt; lines= (JavaReceiverInputDStream&lt;String&gt;) jsc.textFileStream("hdfs://localhost:8020/directory");</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * 操作DStream:对于从数据源得到的DStream，用户可以在其基础上进行各种操作，</span><br><span class="line">         * 对于当前时间窗口内从数据源得到的数据首先进行分割，然后利用Map和ReduceByKey方法进行计算，当然最后还有使用print()方法输出结果；</span><br><span class="line">         */</span></span><br><span class="line">        JavaDStream&lt;String&gt; words=lines.flatMap(</span><br><span class="line">                <span class="keyword">new</span> FlatMapFunction&lt;String, String&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> Iterator&lt;String&gt; <span class="title">call</span><span class="params">(String s)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> Arrays.asList(s.split(<span class="string">" "</span>)).iterator();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * 启动Spark Streaming之前所作的所有步骤只是创建了执行流程，程序没有真正连接上数据源，</span><br><span class="line">         * 也没有对数据进行任何操作，只是设定好了所有的执行计划，当ssc.start()启动后程序才真正进行所有预期的操作。</span><br><span class="line">         */</span></span><br><span class="line">        JavaPairDStream&lt;String,Integer&gt; pairs=words.mapToPair(</span><br><span class="line">                <span class="keyword">new</span> PairFunction&lt;String, String, Integer&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> Tuple2&lt;String, Integer&gt; <span class="title">call</span><span class="params">(String s)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">new</span> Tuple2&lt;&gt;(s,<span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        JavaPairDStream&lt;String,Integer&gt; wordCounts=pairs.reduceByKey(</span><br><span class="line">                <span class="keyword">new</span> Function2&lt;Integer, Integer, Integer&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">(Integer integer, Integer integer2)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> integer+integer2;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        wordCounts.print();</span><br><span class="line"></span><br><span class="line">        jsc.start();</span><br><span class="line">        jsc.awaitTermination();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过运行main函数实现Spark对流式数据的处理，代码中我们指定数据源为localhost上的文件(有疑惑？听我慢慢道来)，计算远程主机上某个文件内容的字数，发现控制台每隔1秒就输出如下图内容(即Spark每隔一秒就处理数据源的数据):<img src="http://od2xrf8gr.bkt.clouddn.com/streaming.gif" alt="">  </p>
+<p>有人就有疑惑了，为什么控制台只输出了当前处理的时间而没有输出对数据源的操作信息(如这里我们是对数据源中的内容进行计数，为什么没有计数信息)呢?因为上述代码中我们没有指定正确的数据源，使用<code>JavaReceiverInputDStream&lt;String&gt; lines= (JavaReceiverInputDStream&lt;String&gt;) jsc.textFileStream(&quot;hdfs://localhost:8020/directory&quot;);</code>代替掉代码<code>JavaReceiverInputDStream&lt;String&gt; lines=jsc.socketTextStream(&quot;localhost&quot;,8020);</code>，括号中输入正确的数据源，这样就能实现实时监听数据源中变化的操作咯。至于数据源，你想用内置数据源，还是外置数据源就看你的实际需要咯！  </p>
+<p>到此，我们便完成了如果通过Spark来处理流式数据的demo。   </p>
+<p>参考:<a href="http://www.infoq.com/cn/articles/apache-spark-streaming" target="_blank" rel="external">用Apache Spark进行大数据处理——第三部分：Spark流</a></p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="https://www.zhihu.com/people/xia-xun-wu-56/" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spark/" rel="tag">#Spark</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/07/60-mac-spark/" rel="next" title="mac下Spark的安装与使用">
+                <i class="fa fa-chevron-left"></i> mac下Spark的安装与使用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/10/61-spark-streaming/"
+           data-title="使用Spark Streaming处理流式数据" data-url="http://codingxiaxw.cn/2016/12/10/61-spark-streaming/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
+               alt="codingXiaxw" />
+          <p class="site-author-name" itemprop="name">codingXiaxw</p>
+          <p class="site-description motion-element" itemprop="description">Life is short,just coding.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/codingXiaxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5023661572?from=hissimilar_home&refer_flag=1005050003_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com//people/e9f78fa34b8002652811ac348da3f671" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-简单介绍Spark"><span class="nav-number">1.</span> <span class="nav-text">1.简单介绍Spark</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1Spark生态系统"><span class="nav-number">1.1.</span> <span class="nav-text">1.1Spark生态系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2Spark体系架构"><span class="nav-number">1.2.</span> <span class="nav-text">1.2Spark体系架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Spark-Streaming的简单介绍"><span class="nav-number">2.</span> <span class="nav-text">2.Spark Streaming的简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1流数据分析"><span class="nav-number">2.1.</span> <span class="nav-text">2.1流数据分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2Spark流"><span class="nav-number">2.2.</span> <span class="nav-text">2.2Spark流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3Spark流用例"><span class="nav-number">2.3.</span> <span class="nav-text">2.3Spark流用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4Spark流架构与API"><span class="nav-number">2.4.</span> <span class="nav-text">2.4Spark流架构与API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1DStream"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1DStream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2流上下文"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.4.2流上下文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3Spark流Api"><span class="nav-number">2.4.3.</span> <span class="nav-text">2.4.3Spark流Api</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5Spark编程的步骤"><span class="nav-number">2.5.</span> <span class="nav-text">2.5Spark编程的步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Spark处理流数据demo"><span class="nav-number">3.</span> <span class="nav-text">3.Spark处理流数据demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">codingXiaxw</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codingXiaxw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("G9m3Gnu7lbpyUM0MJAyJFK9g-gzGzoHsz", "E72YIgigcKXLV4XC5x7GgYDt");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
