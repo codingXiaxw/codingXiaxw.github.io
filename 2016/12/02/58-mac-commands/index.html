@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://codingxiaxw.cn/2016/12/02/58-mac-commands/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="因为mac上的很多功能都涉及到命令行的工作，然而记性差的我总是一次熟两次生，第三次就要…google，所以下面总结下自己在使用自己电脑上相关软件时涉及到的一些命令，以供自己日后参考。">
-<meta property="og:updated_time" content="2016-12-10T06:30:47.000Z">
+<meta property="og:updated_time" content="2016-12-12T13:17:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac下常用软件相关命令">
 <meta name="twitter:description" content="因为mac上的很多功能都涉及到命令行的工作，然而记性差的我总是一次熟两次生，第三次就要…google，所以下面总结下自己在使用自己电脑上相关软件时涉及到的一些命令，以供自己日后参考。">
@@ -363,7 +363,7 @@
 <h2 id="eclipse篇"><a href="#eclipse篇" class="headerlink" title="eclipse篇"></a>eclipse篇</h2><p>其实我是IDEA党啦，之前还让eclipse党快点转IDEA的，结果现在我自己又转回到eclipse了。绝对不是因为现在自己又觉得eclipse更好了，大家不要误会！IDEA大法好，只是因为一些社会因素…所以我是不得不转回来呀！说下我在使用eclipse时遇到一些必须使用命令行的坑。  </p>
 <p>运行maven项目用到一个tamcat插件时或者一个普通web项目启动tomcat时常遇到端口被占用的问题，输入<code>lsof -i:占用端口号</code>，这个命令可以帮助你看到电脑上哪些程序正在占用这个端口号。然后输入<code>kill -9:PID</code>，将占用该端口号的程序杀死即可重新启动tomcat。  </p>
 <p>查看Java版本，在命令行输入:<code>java -version</code></p>
-<p>查看JAVA_HOME环境变量配置的路径:<code>echo $JAVA_HOME</code><br>查看SCALA_HOME(scala语言的环境变量)配置路径:<code>echo $SCALA_HOME</code></p>
+<p>查看JAVA_HOME环境变量配置的路径:<code>echo $JAVA_HOME</code><br>查看SCALA_HOME(scala语言的环境变量)配置路径:<code>echo $SCALA_HOME</code><br>查看ant环境变量路径:<code>echo $ANT_HOME</code></p>
 <h2 id="Homebrew篇"><a href="#Homebrew篇" class="headerlink" title="Homebrew篇"></a>Homebrew篇</h2><p>相信很多的人都没有听说过Homebrew吧，我也是刚刚接触。这里先给大家讲讲Homebrew的由来，Homebrew是用来干嘛的?  </p>
 <p>Mac OS X是基于Unix的操作系统，可以安装大部分为Unix/Linux开发的软件。然而，如果只是以使用为目的，对每个软件都进行手工编译不是很方便，也不利于管理已安装的软件，于是出现了类似于Linux中APT、Yum等类似的软件包管理系统，其中最著名的有MacPorts、Fink、Homebrew等。  </p>
 <p>Homebrew的原则是:它尽可能地利用系统自带的各种库，使得软件包的编译时间大为缩短；同时由于几乎不会造成冗余，软件包的管理也清晰、灵活了许多。Homebrew的另一个特点是使用Ruby定义软件包安装配置（叫做formula），定制非常简单。MacPorts、Fink大家自行了解，以上进行了Homebrew的相关知识介绍，下面介绍Homebrew的常用命令。  </p>
