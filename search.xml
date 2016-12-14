@@ -4,6 +4,41 @@
   
     
     <entry>
+      <title><![CDATA[javacv之调用本机摄像头]]></title>
+      <url>http://codingxiaxw.cn/2016/12/14/62-javacv/</url>
+      <content type="html"><![CDATA[<p>最近学习用java语言如何进行人脸识别的功能，人脸检测有助于在任何数字图像上识别人脸，在做了一些研究后，我发现OpenCV的库可以帮我检测图像中的人脸，所以接触到了opencv这门技术。  <a id="more"></a></p>
+<p>什么是opencv? OpenCV(Open Source Computer Vision) 是一个开源的计算机视觉算法库。是用C/C++写的，旨在发挥多核心的优势。它提供C++、C、Python和Java的接口，并支持所有主流操作系统平台，包括Windows、Linux、Mac OS、iOS及Android。  </p>
+<h2 id="1-写在前面的话"><a href="#1-写在前面的话" class="headerlink" title="1.写在前面的话"></a>1.写在前面的话</h2><p><strong>因为博主在用java开发人脸识别功能时走了不少的弯路，所以有些话我要写在前面，避免你走不少的弯路:</strong>  </p>
+<ul>
+<li><p>1.因为opencv是用c++写的，所以你要是打算用c++或者python在opencv上进行开发，那么你首先需要的就是在自己的电脑上搭建opencv的开发环境，若是mac系统搜”mac下opencv的搭建”，windows系统搜”windows下opencv的搭建”即可。若是你真的采用上面所说的两种语言开发的，那么本篇文章你就可以跳过去了，因为本篇文章是在java环境下描述的。</p>
+</li>
+<li><p>2.如果你像我一样打算用java去完成人脸识别，那么恭喜你，opencv的环境就不用你亲自动手去搭建了，本篇文章也很适合你。或许有人会问:opencv是用c++写的嘛，所以自然而言我们要用c++去调用它的相关方法嘛，那么用java如何调用呢?opencv是从2.2.4版本开始后就提供了java语言编写的相关接口，使得java开发人员可以通过JNI去调用opencv的相关库，这里有个很酷的库叫javacv，从javacv0.8版本以后，就完全将opencv的功能封装在自己的库中，所以我们可以直接通过引用opencv对应的系统平台的引用包而不用再搭建繁琐的opencv环境咯。首先<a href="http://search.maven.org/remotecontent?filepath=org/bytedeco/javacv-platform/1.3/javacv-platform-1.3-bin.zip" target="_blank" rel="external">点击链接下载javacv中所有的jar包</a>，解压后里面有所有的javacv开发的相关jar包，本篇文章我们需要的jar包只有4个:opencv.jar、javacv.jar、javacpp.jar、opencv-macosx-x86_64.jar(这个jar包要跟自己的操作系统相同，你要是是windows系统就选择相应的opencv-windows-x86_64位或者32位jar包)，其他的jar包当遇到时我会再说。</p>
+</li>
+</ul>
+<p>这里说说我遇到的坑，网上很多关于javacv的搭建环境的教程，然后都是大同小异先教你搭建opencv的环境，然后给你一个实例让你测试自己的opencv环境是否成功搭建。说到这里我就想骂人了，那些教需要在电脑上搭建opencv环境的，你不知道javacv0.8版本之后就不用再搭建opencv的环境了吗？麻烦你知道了就快点把博客内容改改吧，不要再耽误我们这些java开发人员的时间了好吗？我看了你们的教程可是关搭建opencv的环境就浪费了两天时间…  </p>
+<p>另外本篇文章是在mac环境下运行的，windows系统也同样能参考我这篇文章。</p>
+<h2 id="2-准备环境"><a href="#2-准备环境" class="headerlink" title="2.准备环境"></a>2.准备环境</h2><p>1.相关jar包，本篇文章只需要4个jar包即可:  </p>
+<p><strong>mac系统:</strong>javacpp.jar，javacv.jar,opencv.jar,opencv-macosx-x86_64.jar。<br><strong>windows系统:</strong>javacpp.jar，javacv.jar,opencv.jar,oepncv-windows-x86_64.jar(或者oepncv-windows-x86.jar)。<br><strong>Linux系统:</strong>javacpp.jar，javacv.jar,opencv.jar,,opencv-linux-x86_64.jar。  </p>
+<p>2.貌似准备环境只需要上述四个jar包即可。。。本地opencv的环境已不再需要你在自己的电脑上搭建。。。当然开发工具eclipse和IDEA都可以。  </p>
+<h2 id="3-Demo-java通过javacv获取本机电脑摄像头"><a href="#3-Demo-java通过javacv获取本机电脑摄像头" class="headerlink" title="3.Demo:java通过javacv获取本机电脑摄像头"></a>3.Demo:java通过javacv获取本机电脑摄像头</h2><p>好了废话不要那么多，直接开始coding吧。新建一个java项目，普通项目即可，创建一个JavacvCameraTest.java，代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//import相关类</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavacvCameraTest</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception, InterruptedException  </span><br><span class="line"></span>&#123;  </span><br><span class="line">    OpenCVFrameGrabber grabber = <span class="keyword">new</span> OpenCVFrameGrabber(<span class="number">0</span>);    </span><br><span class="line">    grabber.start();   <span class="comment">//开始获取摄像头数据  </span></span><br><span class="line">    CanvasFrame canvas = <span class="keyword">new</span> CanvasFrame(<span class="string">"摄像头"</span>);<span class="comment">//新建一个窗口  </span></span><br><span class="line">    canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  </span><br><span class="line">    canvas.setAlwaysOnTop(<span class="keyword">true</span>);  </span><br><span class="line">      </span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="keyword">if</span>(!canvas.isDisplayable())  </span><br><span class="line">        &#123;<span class="comment">//窗口是否关闭  </span></span><br><span class="line">            grabber.stop();<span class="comment">//停止抓取  </span></span><br><span class="line">            System.exit(<span class="number">2</span>);<span class="comment">//退出  </span></span><br><span class="line">        &#125;  </span><br><span class="line">        canvas.showImage(grabber.grab());<span class="comment">//获取摄像头图像并放到窗口上显示， 这里的Frame frame=grabber.grab(); frame是一帧视频图像  </span></span><br><span class="line">  </span><br><span class="line">        Thread.sleep(<span class="number">50</span>);<span class="comment">//50毫秒刷新一次图像  </span></span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后运行程序，过不了几秒神奇的事就会发生了…我说几秒钟你会出现在你自己的电脑屏幕上你信吗。</p>
+<p><strong>后话:</strong>本来上级布下任务，要使用javacv完成人脸识别的功能。老实说，用javacv这个东西完全没有人带，网上资料少之又少，可是没办法，领导布置的任务必须要完成。所以自己确实走了不少的弯路，希望总结下来为你解决不少的问题。  </p>
+<p>当然这里又会有人问，既然是要用javacv做视频流转换成图片的功能，那这篇文章为啥要写用它调用本机摄像头的功能实现呢?亲，你总得先学会使用它的相关API吧！期待我下篇关于javacv的相关API的文章吧！</p>
+<p>若是我没有更新，请参考某位大神写的关于javacv的系列文章，<a href="http://blog.csdn.net/eguid_1/article/details/51659578" target="_blank" rel="external">javacv开发详解之1：调用本机摄像头视频</a>,还有详解2、详解3…详解7，很有参考价值!</p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="https://www.zhihu.com/people/xia-xun-wu-56/" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[使用Spark Streaming处理流式数据]]></title>
       <url>http://codingxiaxw.cn/2016/12/10/61-spark-streaming/</url>
       <content type="html"><![CDATA[<p>在上篇文章<a href="http://codingxiaxw.cn/2016/12/07/60-mac-spark/">mac下Spark的安装与使用</a>的一个示例中，我们使用RDD的Map和Reduce操作对一个文本中的文字做了简单的字数检查。本篇文章的目的是讲述Spark 中的流数据处理。结构分为三个部分:第一部分简单对Spark进行介绍，第二部分介绍Spark Streaming，最后一部分通过一个简单的Demo讲讲Spark是如何通过Spark Streaming进行流式数据的处理。<a id="more"></a>  </p>
@@ -303,7 +338,7 @@
 <p>对于上述命令，若是在只有管理员才能权限操作的文件下，需要在命令前面加上<code>sudo</code> 关键字获取管理员权限然后才能对文件进行更改。</p>
 <p>貌似只用到这几个….哈哈，我不是一个好的Linux开发者，目前正在恶补&lt;&lt;鸟叔的Linux私房菜呢&gt;&gt;,求不要嘲笑…</p>
 <h2 id="mysql篇"><a href="#mysql篇" class="headerlink" title="mysql篇"></a>mysql篇</h2><p>mysql是目前市场上最火的一款数据库，而且还是免费开源给大家的，所以你要是不使用它总觉得自己亏了不少！就像库克要是有一天库克宣布以后出来的iphone都免费提供给你，你难道不会抛弃掉手中的小米或者华为而选择它？？？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql -u用户名 -p密码;  //登录进mysql服务器</span><br><span class="line"></span><br><span class="line">source sql脚本路径;   //在数据库中导入sql语句</span><br><span class="line"></span><br><span class="line">quit 或者  exit;  //退出mysql服务器</span><br><span class="line"></span><br><span class="line">mysql -V;   //查看mysql版本</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql -u用户名 -p密码;  //登录进mysql服务器</span><br><span class="line"></span><br><span class="line">source sql脚本路径;   //在数据库中导入sql语句</span><br><span class="line"></span><br><span class="line">quit 或者  exit;  //退出mysql服务器</span><br><span class="line"></span><br><span class="line">mysql -V;   //查看mysql版本,我的版本是5.7.15</span><br></pre></td></tr></table></figure>
 <p>关于sql语句这一块更多的命令请点击链接前往我博客<a href="http://codingxiaxw.cn/2016/10/09/15-SQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">mysql学习笔记</a>下进行学习吧。 </p>
 <h2 id="系统篇"><a href="#系统篇" class="headerlink" title="系统篇"></a>系统篇</h2><p>另外我有时候需要查看隐藏目录，你要是告诉我在Finder中如何如何进行设置就好…这也太low了吧！即使我很菜我也是有追求的人好吗?不多说了附上命令快上车:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">隐藏Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles -bool false</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">显示Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles -bool true</span><br></pre></td></tr></table></figure></p>
 <p>运行命令后可能仍然无法显示/隐藏mac下的隐藏文件，你需要按住option然后双击Finder选择重新启动Finder即可。还有很多我用到的系统命令在其他文章中都有复述到，所以这里就不重复累赘的进行一一介绍了。</p>
