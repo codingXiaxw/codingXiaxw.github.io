@@ -98,7 +98,7 @@
 2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录:增、删、改表记录。
 3.DCL(Data Control Language):数据控制语言，用来定义访问权限和安全级别。
 4.DQ">
-<meta property="og:updated_time" content="2016-12-16T07:00:58.000Z">
+<meta property="og:updated_time" content="2016-12-18T03:09:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL学习笔记一之MySQL语法">
 <meta name="twitter:description" content="1.SQL语句分类
@@ -409,7 +409,7 @@
 </ul>
 <h3 id="3-2DML-数据操作语言-语法"><a href="#3-2DML-数据操作语言-语法" class="headerlink" title="3.2DML(数据操作语言)语法"></a>3.2DML(数据操作语言)语法</h3><p>该语言用来对表记录操作(增、删、改)。  </p>
 <h4 id="3-2-1插入数据-一次插入就是插入一行"><a href="#3-2-1插入数据-一次插入就是插入一行" class="headerlink" title="3.2.1插入数据(一次插入就是插入一行)"></a>3.2.1插入数据(一次插入就是插入一行)</h4><p><code>insert into 表名 (列名1，列名2，列名3) values (列值1，列值2，列值3)</code>  </p>
-<p>说明:1.在数据库中所有的字符串类型，必须使用单引号。2.(列名1，列名2，列名3)可省略，表示按照表中的顺序插入。但不建议采取这种写法，因为降低了程序的可读性。3.在命令行插入记录不要写中文，否则会出现乱码。  </p>
+<p>说明:1.在数据库中所有的字符串类型，必须使用单引号。2.(列名1，列名2，列名3)可省略，表示按照表中的顺序插入。但不建议采取这种写法，因为降低了程序的可读性。3.在命令行插入记录不要写中文，否则会出现乱码(解决控制台的乱码问题后便可插入中文，至于如何解决乱码问题请参考我的下篇文章)。  </p>
 <h4 id="3-2-2修改记录-不会修改一行"><a href="#3-2-2修改记录-不会修改一行" class="headerlink" title="3.2.2修改记录(不会修改一行)"></a>3.2.2修改记录(不会修改一行)</h4><p>修改某列的全部值:<code>update 表名 set 列名1=列值1(，列名2=列值2);</code>  </p>
 <p>修改(某行或者多行记录的)列的指定值:<code>update 表名 set 列名1=列值1 where 列名2=列值2 or 列名3=列值3;</code>  </p>
 <p>运算符:<code>=、!=、&lt;&gt;、&lt;、&gt;、&gt;=、&lt;=、between...and、in(…)、is null、not、or、and</code>，其中in(…)的用法表示集合。例如:<code>update 表名 set 列名1=列值1 where 列名2=列值2 or 列名2=列值22</code>用in(…)写成<code>update 表名 set 列名1=列值1 where 列名2 in(列值2，列值3)</code>  </p>
