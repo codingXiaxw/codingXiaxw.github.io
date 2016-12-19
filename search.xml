@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[javacv之调用本机摄像头]]></title>
+      <title><![CDATA[『 JavaCV 』JavaCV之调用本机摄像头]]></title>
       <url>http://codingxiaxw.cn/2016/12/14/62-javacv/</url>
       <content type="html"><![CDATA[<p>最近学习用java语言如何进行人脸识别的功能，人脸检测有助于在任何数字图像上识别人脸，在做了一些研究后，我发现OpenCV的库可以帮我检测图像中的人脸，所以接触到了opencv这门技术。  <a id="more"></a></p>
 <p>什么是opencv? OpenCV(Open Source Computer Vision) 是一个开源的计算机视觉算法库。是用C/C++写的，旨在发挥多核心的优势。它提供C++、C、Python和Java的接口，并支持所有主流操作系统平台，包括Windows、Linux、Mac OS、iOS及Android。  </p>
@@ -39,7 +39,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[使用Spark Streaming处理流式数据]]></title>
+      <title><![CDATA[『 Spark 』使用Spark Streaming处理流式数据]]></title>
       <url>http://codingxiaxw.cn/2016/12/10/61-spark-streaming/</url>
       <content type="html"><![CDATA[<p>在上篇文章<a href="http://codingxiaxw.cn/2016/12/07/60-mac-spark/">mac下Spark的安装与使用</a>的一个示例中，我们使用RDD的Map和Reduce操作对一个文本中的文字做了简单的字数检查。本篇文章的目的是讲述Spark 中的流数据处理。结构分为三个部分:第一部分简单对Spark进行介绍，第二部分介绍Spark Streaming，最后一部分通过一个简单的Demo讲讲Spark是如何通过Spark Streaming进行流式数据的处理。<a id="more"></a>  </p>
 <h2 id="1-简单介绍Spark"><a href="#1-简单介绍Spark" class="headerlink" title="1.简单介绍Spark"></a>1.简单介绍Spark</h2><p>查看Spark官方文档，发现Spark除了Map和Reduce操作之外，它还支持SQL查询(Spark SQL)，流数据(Spark Streaming)，机器学习(Spark MLlib)和图表数据处理(Spark GraphX),也就是Spark的一些Api。开发者可以在一个数据管道用例中单独使用某一能力或者将这些能力结合在一起使用。  </p>
@@ -156,7 +156,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[mac下Spark的安装与使用]]></title>
+      <title><![CDATA[『 Spark 』mac下Spark的安装与使用]]></title>
       <url>http://codingxiaxw.cn/2016/12/07/60-mac-spark/</url>
       <content type="html"><![CDATA[<p>每次接触一个新的知识之前我都抱有恐惧之心，因为总认为自己没有接触到的知识都很高大上，比如上篇介绍到的<a href="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/">Hadoop的安装与使用</a>与本篇要介绍的Spark,其实在自己真正琢磨以后才发现本以为高大上的知识其实也不过如此。<a id="more"></a></p>
 <p>由于Spark是最新火起来的处理大数据的框架，国内教程资源少之甚少，所以本篇文章是本人在看了<a href="http://spark.apache.org/docs/latest/quick-start.html" target="_blank" rel="external">Spark官网的快速入门</a>教程后总结下来的经验，由于Spark同Hadoop一样可以运行在多种模式下，而本人又比较穷只有一台电脑，所以本篇文章为大家介绍如何在mac系统的本地模式下安装Spark以及安装后如何用Spark来进行交互式分析。  </p>
@@ -234,7 +234,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[mac下Hadoop的安装与使用]]></title>
+      <title><![CDATA[『 Hadoop 』mac下Hadoop的安装与使用]]></title>
       <url>http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/</url>
       <content type="html"><![CDATA[<p>最近接触大数据，所以当然有必要学习下Hadoop和Spark(概念请自行百google或者百度)。Spark是Apache目前最火的一款快速处理大数据的开源框架，当然Hadoop也是一款处理大数据的框架，只是Sparck青出于蓝而胜于蓝，在出生之后就得到迅猛发展，所以有学者说日后Spark可能会将Hadoop淘汰(不是我说的，是学者说的哦)。<a id="more"></a>  </p>
 <p>至于Hadoop与Spark的关系，就像是svn与git的关系，后者都是较前者后几年出来且火于前者的一款工具。那么学习大数据的处理框架时就会有很多人有这样一个疑惑:既然Hadoop是先于Spark出来的，那么我要不要先学习Hadoop呢，还是跳过Hadoop直接从Spark学习起?  </p>
@@ -370,7 +370,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[使用Socket实现TCP编程及聊天室的编写]]></title>
+      <title><![CDATA[『 Socket 』使用Socket实现TCP编程及聊天室的编写]]></title>
       <url>http://codingxiaxw.cn/2016/11/29/57-socket-chatroom/</url>
       <content type="html"><![CDATA[<p>本篇文章分为两个部分，一个部分是总结使用Socket实现TCP的编程的知识，主要就是完成服务器端和客户端两个对象的代码编写；另一个部分是通过Java写一个聊天室来对我们的Socket编程进行巩固。<a id="more"></a>  </p>
 <p><strong>文章结构:</strong>首先是对TCP的简单介绍，然后在分析Socket通信的模型后进行Java Socket实现TCP编程的代码编写，最后是利用Socket的知识编写一个简单的聊天室。  </p>
