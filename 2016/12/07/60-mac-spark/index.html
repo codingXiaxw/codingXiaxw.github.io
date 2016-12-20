@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%883.59.58.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-10%20%E4%B8%8B%E5%8D%882.11.20.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-10%20%E4%B8%8B%E5%8D%882.42.45.png">
-<meta property="og:updated_time" content="2016-12-19T09:54:58.000Z">
+<meta property="og:updated_time" content="2016-12-19T14:16:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="『 Spark 』mac下Spark的安装与使用">
 <meta name="twitter:description" content="每次接触一个新的知识之前我都抱有恐惧之心，因为总认为自己没有接触到的知识都很高大上，比如上篇介绍到的Hadoop的安装与使用与本篇要介绍的Spark,其实在自己真正琢磨以后才发现本以为高大上的知识其实也不过如此。">
@@ -399,8 +399,8 @@
 <h3 id="4-1使用spark-shell完成单词统计功能"><a href="#4-1使用spark-shell完成单词统计功能" class="headerlink" title="4.1使用spark-shell完成单词统计功能"></a>4.1使用spark-shell完成单词统计功能</h3><p>由于spark-shell只支持scala和python两种语言的编写，不支持Java，所以我在spark-shell中通过scala的语法来进行简单测试。  </p>
 <p>在配置好Spark环境变量之后，我们打开命令行，直接在当前用户目录下输入命令<code>spark-shell</code>进入scala编写环境(当然前提是你首先使用命令<code>start-all.sh</code>命令开启了Spark):<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-10%20%E4%B8%8B%E5%8D%882.11.20.png" alt="">  </p>
 <p>我们从 <code>/usr/local/spark/README.md</code> 文件新建一个 RDD，代码如下（本文出现的 Spark 交互式命令代码中，第一行为代码及其解释，第二行及以后是控制台返回的结果):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val textFile = sc.textFile(&quot;file:///usr/local/spark/README.md&quot;)</span><br><span class="line">&gt;textFile: org.apache.spark.rdd.RDD[String] = file:///usr/local/spark/README.md MapPartitionsRDD[1] at textFile at &lt;console&gt;:24</span><br></pre></td></tr></table></figure></p>
-<p>代码中通过 <code>file://</code> 前缀指定读取本地文件。网上查看教程说Spark shell 默认是读取 HDFS 中的文件，需要先上传文件到 HDFS 中(至于如何上传，后面的demo中我们会进行讲解)，否则会有<code>org.apache.hadoop.mapred.InvalidInputException: Input path does not exist: hdfs://localhost:9000/user/hadoop/README.md</code>的错误。但是我在运行上述命令前并没有上传REDEME.md文件到HDFS上，运行命令却没有报错。难道是因为我加了<code>file://</code>前缀表示读取本地文件的缘故吗？所以到底要不要加<code>file://</code>前缀或者到底要不要使用hadoop命令先上传文件到远程这得你自己去试试了  </p>
-<p>RDDs 支持两种类型的操作:1.actions: 在数据集上运行计算后返回值。2.transformations: 转换, 从现有数据集创建一个新的数据集。  </p>
+<p>代码中通过 <code>file://</code> 前缀或者不加 <code>file://</code> 前缀表示指定读取本地文件。如果你这里传入的路径写的是HDFS上的文件路径，例如<code>hdfs://远程主机名:Hadoop端口号我/文件名</code>代表你要是读取的是 HDFS 中的文件，你需要先上传文件到 HDFS 中(至于如何上传，后面的demo中我们会进行讲解)，否则会有<code>org.apache.hadoop.mapred.InvalidInputException: Input path does not exist: hdfs://localhost:9000/user/hadoop/README.md</code>的错误。这里我们就以读取本地文件进行讲解。  </p>
+<p>RDDs 支持两种类型的操作:1.actions: 在数据集上运行计算后返回值。2.transformations: 转换, 从现有数据集上创建一个新的数据集。  </p>
 <p>使用上述命令创建好的RDD对象,下面我们就来通过该对象演示 count() 和 first() 操作:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">textFile.count()  // RDD 中的 item 数量，对于文本文件，就是总行数</span><br><span class="line">&gt;res0: Long = 95</span><br><span class="line"> </span><br><span class="line">textFile.first() // RDD 中的第一个 item，对于文本文件，就是第一行内容</span><br><span class="line">&gt;res1: String = # Apache Spark</span><br></pre></td></tr></table></figure></p>
 <p>接着演示 transformation，通过 filter transformation 来返回一个新的 RDD，代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val linesWithSpark = textFile.filter(line =&gt; line.contains(&quot;Spark&quot;))   // 筛选出包含 Spark 的行</span><br><span class="line">&gt;linesWithSpark: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[2] at filter at &lt;console&gt;:26</span><br><span class="line"> </span><br><span class="line">linesWithSpark.count()       // 统计行数</span><br><span class="line">&gt;res4: Long = 17</span><br></pre></td></tr></table></figure></p>
 <p>上述我们完成了RDD的简单计算，而RDD 的 actions 和 transformations 其实可用在更复杂的计算中，例如通过如下代码可以找到包含单词最多的那一行内容共有几个单词:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">textFile.map(line =&gt; line.split(&quot; &quot;).size).reduce((a, b) =&gt; if (a &gt; b) a else b)</span><br><span class="line">&gt;res1: Int = 22</span><br></pre></td></tr></table></figure></p>
@@ -554,7 +554,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
