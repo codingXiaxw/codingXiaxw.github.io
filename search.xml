@@ -310,7 +310,7 @@
 <h2 id="eclipse篇"><a href="#eclipse篇" class="headerlink" title="eclipse篇"></a>eclipse篇</h2><p>其实我是IDEA党啦，之前还让eclipse党快点转IDEA的，结果现在我自己又转回到eclipse了。绝对不是因为现在自己又觉得eclipse更好了，大家不要误会！IDEA大法好，只是因为一些社会因素…所以我是不得不转回来呀！说下我在使用eclipse时遇到一些必须使用命令行的坑。  </p>
 <p>运行maven项目用到一个tamcat插件时或者一个普通web项目启动tomcat时常遇到端口被占用的问题，输入<code>lsof -i:占用端口号</code>，这个命令可以帮助你看到电脑上哪些程序正在占用这个端口号。然后输入<code>kill -9:PID</code>，将占用该端口号的程序杀死即可重新启动tomcat。  </p>
 <p>查看Java版本，在命令行输入:<code>java -version</code></p>
-<p>查看JAVA_HOME环境变量配置的路径:<code>echo $JAVA_HOME</code><br>查看SCALA_HOME(scala语言的环境变量)配置路径:<code>echo $SCALA_HOME</code><br>查看ant环境变量路径:<code>echo $ANT_HOME</code></p>
+<p>查看JAVA_HOME环境变量配置的路径:<code>echo $JAVA_HOME</code><br>查看SCALA_HOME(scala语言的环境变量)配置路径:<code>echo $SCALA_HOME</code><br>查看ant环境变量路径:<code>echo $ANT_HOME</code><br>查看系统环境变量:<code>echo $PATH</code></p>
 <h2 id="Homebrew篇"><a href="#Homebrew篇" class="headerlink" title="Homebrew篇"></a>Homebrew篇</h2><p>相信很多的人都没有听说过Homebrew吧，我也是刚刚接触。这里先给大家讲讲Homebrew的由来，Homebrew是用来干嘛的?  </p>
 <p>Mac OS X是基于Unix的操作系统，可以安装大部分为Unix/Linux开发的软件。然而，如果只是以使用为目的，对每个软件都进行手工编译不是很方便，也不利于管理已安装的软件，于是出现了类似于Linux中APT、Yum等类似的软件包管理系统，其中最著名的有MacPorts、Fink、Homebrew等。  </p>
 <p>Homebrew的原则是:它尽可能地利用系统自带的各种库，使得软件包的编译时间大为缩短；同时由于几乎不会造成冗余，软件包的管理也清晰、灵活了许多。Homebrew的另一个特点是使用Ruby定义软件包安装配置（叫做formula），定制非常简单。MacPorts、Fink大家自行了解，以上进行了Homebrew的相关知识介绍，下面介绍Homebrew的常用命令。  </p>
@@ -331,7 +331,8 @@
 <p>关于sql语句这一块更多的命令请点击链接前往我博客<a href="http://codingxiaxw.cn/2016/10/09/15-SQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">mysql学习笔记</a>下进行学习吧。 </p>
 <h2 id="系统篇"><a href="#系统篇" class="headerlink" title="系统篇"></a>系统篇</h2><p>另外我有时候需要查看隐藏目录，你要是告诉我在Finder中如何如何进行设置就好…这也太low了吧！即使我很菜我也是有追求的人好吗?不多说了附上命令快上车:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">隐藏Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles -bool false</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">显示Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles -bool true</span><br></pre></td></tr></table></figure></p>
 <p>运行命令后可能仍然无法显示/隐藏mac下的隐藏文件，你需要按住option然后双击Finder选择重新启动Finder即可。还有很多我用到的系统命令在其他文章中都有复述到，所以这里就不重复累赘的进行一一介绍了。</p>
-<p><code>echo $PATH</code>，查看系统环境变量。</p>
+<p><code>echo $PATH</code>，查看系统环境变量。  </p>
+<p>查看当前主机名:<code>echo $HOST</code>,网上有说是<code>echo $HOSTNAME</code>，我试过不行。</p>
 <h2 id="Hadoop安装搭建篇"><a href="#Hadoop安装搭建篇" class="headerlink" title="Hadoop安装搭建篇"></a>Hadoop安装搭建篇</h2><p>启动Hadoop，进入到<code>/usr/local/Cellar/hadoop/2.7.3/sbin</code>目录，然后执行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start-dfs.sh</span><br></pre></td></tr></table></figure></p>
 <p>关闭Hadoop:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./stop-dfs.sh</span><br></pre></td></tr></table></figure></p>
 <p>还可以继续在命令行中(依旧在<code>/usr/local/Cellar/hadoop/2.7.3/sbin</code>目录下)执行如下启动/关闭脚本命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./start-yarn.sh        //启动yarn，一个MapReduce框架</span><br><span class="line">./stop-yarn.sh        //停止yarn</span><br></pre></td></tr></table></figure></p>
@@ -343,15 +344,15 @@
 <h2 id="Hadoop命令篇"><a href="#Hadoop命令篇" class="headerlink" title="Hadoop命令篇"></a>Hadoop命令篇</h2><p><code>hadoop fs -ls /</code>:列出远程Hadoop机的根目录下文件<br><code>hadoop fs -lsr /</code>:递归列出远程Hadoop机的根目录下所有文件</p>
 <p><code>hadoop fs -put ~/A文件名 /</code>:将本机根目录下的文件A推到远程Hadoop机的根目录下。</p>
 <p><code>hadoop fs -mkdir 文件夹路径/文件夹名</code>:在远程主机上创建文件夹</p>
-<h2 id="zsh篇"><a href="#zsh篇" class="headerlink" title="zsh篇"></a>zsh篇</h2><p>输入:<code>cat /etc/shells</code>查看当前系统有几种shell。<br>启动iTerm 2 默认使用bash改用zsh解决方法:<code>chsh -s /bin/zsh</code></p>
+<h2 id="zsh篇"><a href="#zsh篇" class="headerlink" title="zsh篇"></a>zsh篇</h2><p>输入:<code>cat /etc/shells</code>查看当前系统有几种shell。<br>启动iTerm 2 默认使用bash改用zsh解决方法:<code>chsh -s /bin/zsh</code>，当然这个命令中的<code>/bin/zsh</code>要跟<code>/etc/shells</code>文件中的zsh的路径一致<br>查看当前zsh版本:<code>zsh --version</code>或者 <code>echo $ZSH_VERSION</code>  </p>
 <h2 id="Linux篇"><a href="#Linux篇" class="headerlink" title="Linux篇"></a>Linux篇</h2><p>大家都知道mac OSX系统的前身是Linux(到底是不是的????)，所以在mac上运行linux命令是必不可少啦。我常用到的Linux命令有:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cd   //切换到根目录下</span><br><span class="line">cd 文件名A  //切换到文件A目录下</span><br><span class="line">cd .. //退回到上一目录</span><br><span class="line">cd ./文件A   //切换到当前目录下的A目录下</span><br><span class="line"></span><br><span class="line">ls  //列出当前文件夹下所有文件</span><br><span class="line">ls -l //列出长数据串，包含文件的属性与权限数据等 </span><br><span class="line"></span><br><span class="line">mv A文件所在路径 B路径/  //将文件A从A文件所在路径下移动到B路径下</span><br><span class="line">mv ./A文件名 ./B文件名  //将文件A的文件名改为B文件名</span><br><span class="line"></span><br><span class="line">cp A文件 B文件  //将A文件拷贝一份并以B文件名命名</span><br></pre></td></tr></table></figure></p>
 <p>解压.tgz压缩文件到当前目录:<code>tar -zfx 文件名.tgz</code>或者是:<code>tar zxvf 文件名.tgz</code><br>解压.tgz压缩文件到目标目录:<code>tar 文件名.tgz -C 目标路径</code></p>
 <p>显示日历:<code>cal [year]</code>或者:<code>cal [month][year]</code>  </p>
 <p>显示时间:<code>date</code></p>
 <p>显示当前终端的语言:<code>locale</code><br>更改当前终端的语言:<code>LANG=en_US.utf8</code>，修改中文的:<code>LANG=zh_CN.utf8</code>  </p>
 <p>退出终端:<code>exit</code>或者快捷键<code>control+d</code>  </p>
-<p>翻页:尽量不要使用鼠标滚动把，使用组合键<code>shift+page up(down)</code>  </p>
-<p>求助:<code>指令 --help</code>或者<code>man 指令</code></p>
+<p>翻页:尽量不要使用鼠标滚动，使用组合键<code>shift+page up(down)</code>实现翻页。貌似我在mac上只能使用<code>fn+page up(down)</code>实现翻页  </p>
+<p>求助:<code>指令 --help</code>或者<code>man 指令</code>，直接输入<code>q</code>回到终端</p>
 <p>使用计算机:<code>bc</code>,/表示除法，^指数，%余数，若要支持小数点结果应在计算前输入:<code>scale=number</code>命令，number表示保留小数点位数，使用<code>quit</code>命令离开bc环境,输入<code>exit</code>命令bc环境返回0。</p>
 <p>对于上述命令，若是在只有管理员才能权限操作的文件下，需要在命令前面加上<code>sudo</code> 关键字获取管理员权限然后才能对文件进行更改。</p>
 <p>上述Linux命令大家只是看的话估计没有什么效果，照着我的笔记敲效果也很低下，建议买一本&lt;&lt;鸟叔的Linux私房菜&gt;&gt;去学习Linux及其相关命令,博主目前也在恶补学习…</p>
