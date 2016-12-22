@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://codingxiaxw.cn/2016/12/21/63-javacv-ffmpeg/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="研究了接近一个星期的流媒体技术，等到不容易有点成就的时候又被领导派去学习spark分布式计算框架了…关于流媒体的技术，之前写了一篇使用JavaCV调用本机摄像头的文章,趁着工作之余，也更新下第二篇关于流媒体的博客。本篇文章介绍使用JavaCV和FFmpeg完成视频的推流及拉流。">
-<meta property="og:updated_time" content="2016-12-21T14:53:23.000Z">
+<meta property="og:updated_time" content="2016-12-21T15:12:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="『 JavaCV 』JavaCV+FFmpeg实现推流和拉流">
 <meta name="twitter:description" content="研究了接近一个星期的流媒体技术，等到不容易有点成就的时候又被领导派去学习spark分布式计算框架了…关于流媒体的技术，之前写了一篇使用JavaCV调用本机摄像头的文章,趁着工作之余，也更新下第二篇关于流媒体的博客。本篇文章介绍使用JavaCV和FFmpeg完成视频的推流及拉流。">
@@ -345,7 +345,7 @@
       
 
       
-        <p>研究了接近一个星期的流媒体技术，等到不容易有点成就的时候又被领导派去学习spark分布式计算框架了…关于流媒体的技术，之前写了一篇使用<a href="">JavaCV调用本机摄像头</a>的文章,趁着工作之余，也更新下第二篇关于流媒体的博客。本篇文章介绍使用JavaCV和FFmpeg完成视频的推流及拉流。<a id="more"></a>  </p>
+        <p>研究了接近一个星期的流媒体技术，等到不容易有点成就的时候又被领导派去学习spark分布式计算框架了…关于流媒体的技术，之前写了一篇使用<a href="http://codingxiaxw.cn/2016/12/14/62-javacv/">JavaCV调用本机摄像头</a>的文章,趁着工作之余，也更新下第二篇关于流媒体的博客。本篇文章介绍使用JavaCV和FFmpeg完成视频的推流及拉流。<a id="more"></a>  </p>
 <p>啥是推流啥是拉流？＝＝。直播听过吗？直播就是一个将推流及拉流运用到极致的一个产品。那么直播是如何表现出推流和拉流功能的？我还是简短的介绍一下吧，详细介绍请自行google。  </p>
 <p>1.推流:将录制视频进行采集、编码、美颜处理后推送给直播服务器进行处理。将视频推送到服务器的这一功能就叫做推流。  </p>
 <p>2.拉流:服务器对传送过来的视频进行处理例如转码、录制、截图、鉴黄后将视频分发给正在观看直播的客户(播放器)。服务器将视频分发给客户端的这一过程就叫做拉流咯。  </p>
