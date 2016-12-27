@@ -6,7 +6,8 @@
     <entry>
       <title><![CDATA[基于Hadoop、Storm和Spark的技术验证]]></title>
       <url>http://codingxiaxw.cn/2016/12/27/64-Hadoop-Storm-Spark/</url>
-      <content type="html"><![CDATA[<h2 id="1-Hadoop技术验证"><a href="#1-Hadoop技术验证" class="headerlink" title="1.Hadoop技术验证"></a>1.Hadoop技术验证</h2><h3 id="1-1介绍"><a href="#1-1介绍" class="headerlink" title="1.1介绍"></a>1.1介绍</h3><p>以MapReduce为处理引擎,专用于批处理的处理框架。<a id="more"></a></p>
+      <content type="html"><![CDATA[<p>本文基于目前自己负责的视频管理平台，继续探讨Hadoop、Storm以及Spark三种大数据处理框架结合此平台的数据处理，进行功能的比较，然后择优进行开发及使用。<a id="more"></a></p>
+<h2 id="1-Hadoop技术验证"><a href="#1-Hadoop技术验证" class="headerlink" title="1.Hadoop技术验证"></a>1.Hadoop技术验证</h2><h3 id="1-1介绍"><a href="#1-1介绍" class="headerlink" title="1.1介绍"></a>1.1介绍</h3><p>以MapReduce为处理引擎,专用于批处理的处理框架。</p>
 <h3 id="1-2技术特性"><a href="#1-2技术特性" class="headerlink" title="1.2技术特性"></a>1.2技术特性</h3><p>其包含多个组件，即多个层，通过配合使用可处理批数据。</p>
 <ul>
 <li><strong>HDFS：</strong>HDFS是一种分布式文件系统层，可对集群节点间的存储和复制进行协调。HDFS确保了无法避免的节点故障发生后数据依然可用，可将其用作数据来源，可用于存储中间态的处理结果，并可存储计算的最终结果。</li>
