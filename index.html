@@ -272,6 +272,217 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/27/64-Hadoop-Storm-Spark/" itemprop="url">
+                  基于Hadoop、Storm和Spark的技术验证
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-12-27T10:20:26+08:00" content="Dec 27 2016">
+              Dec 27 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/spark/" itemprop="url" rel="index">
+                    <span itemprop="name">spark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/27/64-Hadoop-Storm-Spark/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/27/64-Hadoop-Storm-Spark/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/27/64-Hadoop-Storm-Spark/" class="leancloud_visitors" data-flag-title="基于Hadoop、Storm和Spark的技术验证">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-Hadoop技术验证"><a href="#1-Hadoop技术验证" class="headerlink" title="1.Hadoop技术验证"></a>1.Hadoop技术验证</h2><h3 id="1-1介绍"><a href="#1-1介绍" class="headerlink" title="1.1介绍"></a>1.1介绍</h3><p>以MapReduce为处理引擎,专用于批处理的处理框架。</p>
+<h3 id="1-2技术特性"><a href="#1-2技术特性" class="headerlink" title="1.2技术特性"></a>1.2技术特性</h3><p>其包含多个组件，即多个层，通过配合使用可处理批数据。</p>
+<ul>
+<li><strong>HDFS：</strong>HDFS是一种分布式文件系统层，可对集群节点间的存储和复制进行协调。HDFS确保了无法避免的节点故障发生后数据依然可用，可将其用作数据来源，可用于存储中间态的处理结果，并可存储计算的最终结果。</li>
+<li><strong>YARN：</strong>YARN是Yet Another Resource Negotiator（另一个资源管理器）的缩写，可充当Hadoop堆栈的集群协调组件。该组件负责协调并管理底层资源和调度作业的运行。通过充当集群资源的接口，YARN使得用户能在Hadoop集群中使用比以往的迭代方式运行更多类型的工作负载。</li>
+<li><strong>MapReduce：</strong>MapReduce是Hadoop的原生批处理引擎。其处理过程为:<ul>
+<li>1.从HDFS文件系统读取数据集</li>
+<li>2.将数据集拆分成小块并分配给所有可用节点</li>
+<li>3.针对每个节点上的数据子集进行计算（计算的中间态结果会重新写入HDFS）</li>
+<li>4.重新分配中间态结果并按照键进行分组</li>
+<li>5.通过对每个节点计算的结果进行汇总和组合对每个键的值进行“Reducing”(简化)</li>
+<li>6.将计算而来的最终结果重新写入 HDFS</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3使用场景"><a href="#1-3使用场景" class="headerlink" title="1.3使用场景"></a>1.3使用场景</h3><p>对数据集的要求:  </p>
+<ul>
+<li><strong>有界：</strong>批处理数据集代表数据的有限集合</li>
+<li><strong>持久：</strong>数据通常始终存储在某种类型的持久存储位置中</li>
+<li><strong>大量：</strong>批处理操作通常是处理极为海量数据集的唯一方法</li>
+</ul>
+<p>批处理非常适合<strong>需要访问全套记录才能完成的计算工作</strong>。例如在计算总数和平均数时，必须将数据集作为一个整体加以处理，而不能将其视作多条记录的集合。这些操作要求在计算进行过程中数据维持自己的状态。</p>
+<p>需要处理大量数据的任务通常最适合用批处理操作进行处理。无论直接从持久存储设备处理数据集，或首先将数据集载入内存，批处理系统在设计过程中就充分考虑了数据的量，可提供充足的处理资源。由于批处理在应对大量持久数据方面的表现极为出色，因此经常被用于对历史数据进行分析。</p>
+<p>大量数据的处理需要付出大量时间，因此批处理不适合对处理时间要求较高的场合。</p>
+<h3 id="1-4验证过程"><a href="#1-4验证过程" class="headerlink" title="1.4验证过程"></a>1.4验证过程</h3><p>本机mac OSX系统，基于Unix，在本机上搭建Hadoop环境相对Windows容易。所以在本机上搭建伪分布式集群环境，通过将HDFS作为数据源，从本机上向HDFS传入文本数据，然后在本机上写代码，对读取到的HDFS上的文本数据进行计算，例如计数(文本单词总数、文本内容行数)、查出某个特定单词出现的频率。</p>
+<h3 id="1-5验证结果"><a href="#1-5验证结果" class="headerlink" title="1.5验证结果"></a>1.5验证结果</h3><p>由于Hadoop是一款批处理框架，其处理数据过程必须符合其约束，即处理过程中数据集要始终维持自己的状态(处理过程中不能对数据集进行增、删、改等操作)。而我们的视频管理平台提供的数据源肯定是时刻需要更新的，所以此框架不予采用。</p>
+<h2 id="2-Storm技术验证"><a href="#2-Storm技术验证" class="headerlink" title="2.Storm技术验证"></a>2.Storm技术验证</h2><h3 id="2-1介绍"><a href="#2-1介绍" class="headerlink" title="2.1介绍"></a>2.1介绍</h3><p>Apache Storm是一种侧重于极低延迟的流处理框架，也许是要求近实时处理的工作负载的最佳选择。该技术可处理非常大量的数据，通过比其他解决方案更低的延迟提供结果。</p>
+<h3 id="2-2技术特性"><a href="#2-2技术特性" class="headerlink" title="2.2技术特性"></a>2.2技术特性</h3><p>Storm的流处理可对框架中名为Topology（拓扑）的DAG（Directed Acyclic Graph，有向无环图）进行编排。这些拓扑描述了当数据片段进入系统后，需要对每个传入的片段执行的不同转换或步骤。</p>
+<p>拓扑包含：</p>
+<ul>
+<li><strong>Stream：</strong>普通的数据流，这是一种会持续抵达系统的无边界数据。</li>
+<li><strong>Spout：</strong>位于拓扑边缘的数据流来源，例如可以是API或查询等，从这里可以产生待处理的数据。</li>
+<li><strong>Bolt：</strong>Bolt代表需要消耗流数据，对其应用操作，并将结果以流的形式进行输出的处理步骤。Bolt需要与每个Spout建立连接，随后相互连接以组成所有必要的处理。在拓扑的尾部，可以使用最终的Bolt输出作为相互连接的其他系统的输入。</li>
+</ul>
+<p>Storm背后的想法是使用上述组件定义大量小型的离散操作，随后将多个组件组成所需拓扑。默认情况下Storm提供了“至少一次”的处理保证，这意味着可以确保每条消息至少可以被处理一次(Trident 抽象)，但某些情况下如果遇到失败可能会处理多次(Core Storm)。Storm无法确保可以按照特定顺序处理消息。</p>
+<p>为了实现严格的一次处理，即有状态处理，可以使用一种名为Trident的抽象。严格来说不使用Trident的Storm通常可称之为Core Storm。Trident会对Storm的处理能力产生极大影响，会增加延迟，为处理提供状态，使用微批模式代替逐项处理的纯粹流处理模式。</p>
+<p>为避免这些问题，通常建议Storm用户尽可能使用Core Storm。然而也要注意，Trident对内容严格的一次处理保证在某些情况下也比较有用，例如系统无法智能地处理重复消息时。如果需要在项之间维持状态，例如想要计算一个小时内有多少用户点击了某个链接，此时Trident将是你唯一的选择。尽管不能充分发挥框架与生俱来的优势，但Trident提高了Storm的灵活性。</p>
+<p>Trident拓扑包含:</p>
+<ul>
+<li>流批（Stream batch）：这是指流数据的微批，可通过分块提供批处理语义。</li>
+<li>操作（Operation）：是指可以对数据执行的批处理过程。</li>
+</ul>
+<h3 id="2-3使用场景"><a href="#2-3使用场景" class="headerlink" title="2.3使用场景"></a>2.3使用场景</h3><p>流处理系统会对随时进入系统的数据进行计算。相比批处理模式，这是一种截然不同的处理方式。流处理方式无需针对整个数据集执行操作，而是对通过系统传输的每个数据项执行操作。流处理中的数据集是“无边界”的，这就产生了几个重要的影响:</p>
+<ul>
+<li>完整数据集只能代表截至目前已经进入到系统中的数据总量。</li>
+<li>工作数据集也许更相关，在特定时间只能代表某个单一数据项。</li>
+<li>处理工作是基于事件的，除非明确停止否则没有“尽头”。处理结果立刻可用，并会随着新数据的抵达继续更新。</li>
+</ul>
+<p>流处理系统可以处理几乎无限量的数据，但同一时间只能处理一条（真正的流处理）或很少量（微批处理，Micro-batch Processing）数据，不同记录间只维持最少量的状态。虽然大部分系统提供了用于维持某些状态的方法，但流处理主要针对副作用更少，更加功能性的处理（Functional processing）进行优化。</p>
+<p>功能性操作主要侧重于状态或副作用有限的离散步骤。针对同一个数据执行同一个操作会或略其他因素产生相同的结果，此类处理非常适合流处理，因为不同项的状态通常是某些困难、限制，以及某些情况下不需要的结果的结合体。因此虽然某些类型的状态管理通常是可行的，但这些框架通常在不具备状态管理机制时更简单也更高效。</p>
+<p>此类处理非常适合某些类型的工作负载。有近实时处理需求的任务很适合使用流处理模式。分析、服务器或应用程序错误日志，以及其他基于时间的衡量指标是最适合的类型，因为对这些领域的数据变化做出响应对于业务职能来说是极为关键的。流处理很适合用来处理必须对变动或峰值做出响应，并且关注一段时间内变化趋势的数据。</p>
+<h4 id="2-3-1优势和局限"><a href="#2-3-1优势和局限" class="headerlink" title="2.3.1优势和局限"></a>2.3.1优势和局限</h4><p>目前来说Storm可能是近实时处理领域的最佳解决方案。该技术可以用极低延迟处理数据，可用于希望获得最低延迟的工作负载。如果处理速度直接影响用户体验，例如需要将处理结果直接提供给访客打开的网站页面，此时Storm将会是一个很好的选择。</p>
+<p>Storm与Trident配合使得用户可以用微批代替纯粹的流处理。虽然借此用户可以获得更大灵活性打造更符合要求的工具，但同时这种做法会削弱该技术相比其他解决方案最大的优势。话虽如此，但多一种流处理方式总是好的。</p>
+<p>Core Storm无法保证消息的处理顺序。Core Storm为消息提供了“至少一次”的处理保证，这意味着可以保证每条消息都能被处理，但也可能发生重复。Trident提供了严格的一次处理保证，可以在不同批之间提供顺序处理，但无法在一个批内部实现顺序处理。</p>
+<p>在互操作性方面，Storm可与Hadoop的YARN资源管理器进行集成，因此可以很方便地融入现有Hadoop部署。除了支持大部分处理框架，Storm还可支持多种语言，为用户的拓扑定义提供了更多选择。</p>
+<h4 id="2-3-2总结"><a href="#2-3-2总结" class="headerlink" title="2.3.2总结"></a>2.3.2总结</h4><p>对于延迟需求很高的纯粹的流处理工作负载，Storm可能是最适合的技术。该技术可以保证每条消息都被处理，可配合多种编程语言使用。由于Storm无法进行批处理，如果需要这些能力可能还需要使用其他软件。如果对严格的一次处理保证有比较高的要求，此时可考虑使用Trident。不过这种情况下其他流处理框架也许更适合。</p>
+<h3 id="2-4验证过程"><a href="#2-4验证过程" class="headerlink" title="2.4验证过程"></a>2.4验证过程</h3><h3 id="2-5验证结果"><a href="#2-5验证结果" class="headerlink" title="2.5验证结果"></a>2.5验证结果</h3><p>基于Storm的实时处理性，</p>
+<h2 id="3-Spark技术验证"><a href="#3-Spark技术验证" class="headerlink" title="3.Spark技术验证"></a>3.Spark技术验证</h2><h3 id="3-1介绍"><a href="#3-1介绍" class="headerlink" title="3.1介绍"></a>3.1介绍</h3><p>Apache Spark是一种包含<strong>流处理能力</strong>的下一代<strong>批处理框架</strong>。与Hadoop的MapReduce引擎基于各种相同原则开发而来的Spark主要侧重于通过完善的内存计算和处理优化机制加快批处理工作负载的运行速度。</p>
+<p>Spark可作为独立集群部署（需要相应存储层的配合），或可与Hadoop集成并取代MapReduce引擎。我这里采用与Hadoop集成部署的结构，在本机上搭建的spark伪分布式环境。</p>
+<h3 id="3-2技术特性"><a href="#3-2技术特性" class="headerlink" title="3.2技术特性"></a>3.2技术特性</h3><p>既然Spark是一种包含<strong>流处理能力</strong>的下一代<strong>批处理框架</strong>，那么它就具备同时处理批处理和流处理工作负载的技术。</p>
+<h4 id="3-2-1批处理模式"><a href="#3-2-1批处理模式" class="headerlink" title="3.2.1批处理模式"></a>3.2.1批处理模式</h4><p>与MapReduce不同，Spark的数据处理工作全部在内存中进行，只在一开始将数据读入内存，以及将最终结果持久存储时需要与存储层交互。所有中间态的处理结果均存储在内存中。</p>
+<p>虽然内存中处理方式可大幅改善性能，Spark在处理与磁盘有关的任务时速度也有很大提升，因为通过提前对整个任务集进行分析可以实现更完善的整体式优化。为此Spark可创建代表所需执行的全部操作，需要操作的数据，以及操作和数据之间关系的Directed Acyclic Graph（有向无环图），即DAG，借此处理器可以对任务进行更智能的协调。</p>
+<p>为了实现内存中批计算，Spark会使用一种名为Resilient Distributed Dataset（弹性分布式数据集），即RDD的模型来处理数据。这是一种代表数据集，只位于内存中，永恒不变的结构。针对RDD执行的操作可生成新的RDD。每个RDD可通过世系（Lineage）回溯至父级RDD，并最终回溯至磁盘上的数据。Spark可通过RDD在无需将每个操作的结果写回磁盘的前提下实现容错。</p>
+<h4 id="3-2-2流处理模式"><a href="#3-2-2流处理模式" class="headerlink" title="3.2.2流处理模式"></a>3.2.2流处理模式</h4><p>流处理能力是由Spark Streaming实现的。Spark本身在设计上主要面向批处理工作负载，为了弥补引擎设计和流处理工作负载特征方面的差异，Spark实现了一种叫做微批（Micro-batch）*的概念。在具体策略方面该技术可以将数据流视作一系列非常小的“批”，借此即可通过批处理引擎的原生语义进行处理。</p>
+<p>Spark Streaming会以亚秒级增量对流进行缓冲，随后这些缓冲会作为小规模的固定数据集进行批处理。</p>
+<h3 id="3-3使用场景"><a href="#3-3使用场景" class="headerlink" title="3.3使用场景"></a>3.3使用场景</h3><p>使用Spark而非Hadoop MapReduce的主要原因是速度。在内存计算策略和先进的DAG调度等机制的帮助下，Spark可以用更快速度处理相同的数据集。</p>
+<p>Spark的另一个重要优势在于多样性。该产品可作为独立集群部署，或与现有Hadoop集群集成。该产品可运行批处理和流处理，运行一个集群即可处理不同类型的任务。</p>
+<p>除了引擎自身的能力外，围绕Spark还建立了包含各种库的生态系统，可为机器学习、交互式查询等任务提供更好的支持。相比MapReduce，Spark任务更是“众所周知”地易于编写，因此可大幅提高生产力。</p>
+<p>为流处理系统采用批处理的方法，需要对进入系统的数据进行缓冲。缓冲机制使得该技术可以处理非常大量的传入数据，提高整体吞吐率，但等待缓冲区清空也会导致延迟增高。这意味着Spark Streaming可能不适合处理对延迟有较高要求的工作负载。</p>
+<p>由于内存通常比磁盘空间更贵，因此相比基于磁盘的系统，Spark成本更高。然而处理速度的提升意味着可以更快速完成任务，在需要按照小时数为资源付费的环境中，这一特性通常可以抵消增加的成本。</p>
+<p>Spark内存计算这一设计的另一个后果是，如果部署在共享的集群中可能会遇到资源不足的问题。相比Hadoop MapReduce，Spark的资源消耗更大，可能会对需要在同一时间使用集群的其他任务产生影响。从本质来看，Spark更不适合与Hadoop堆栈的其他组件共存一处。</p>
+<h3 id="3-4验证过程"><a href="#3-4验证过程" class="headerlink" title="3.4验证过程"></a>3.4验证过程</h3><p>在本机上搭建Spark伪分布式环境，和Hadoop进行集成，通过将HDFS作为数据源，从本机上向HDFS传入文本数据，然后在本机上写代码，对读取到的HDFS上的文本数据进行计算，例如计数(文本单词总数、文本内容行数)、查出某个特定单词出现的频率。与Hadoop验证过程的区别在于代码的不同，Hadoop采用的MapReduce作为引擎进行对批数据的处理，而Spark是基于RDD(弹性分布式数据集)的模型(action和transformation操作)来处理批数据、spark Streaming来处理流数据。</p>
+<h3 id="3-5验证结果"><a href="#3-5验证结果" class="headerlink" title="3.5验证结果"></a>3.5验证结果</h3><p>集批数据处理和流数据处理于一体的Spark处理框架，是多样化工作负载处理任务的最佳选择。Spark批处理能力以更高内存占用为代价提供了无与伦比的速度优势。对于重视吞吐率而非延迟的工作负载，则比较适合使用Spark Streaming作为流处理解决方案。</p>
+<h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="https://www.zhihu.com/people/xia-xun-wu-56/" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/21/63-javacv-ffmpeg/" itemprop="url">
                   『 JavaCV 』JavaCV+FFmpeg实现推流和拉流
                 </a>
@@ -1430,137 +1641,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/27/53-maven-ssm-seckill-dao/" itemprop="url">
-                  Java高并发秒杀系统API(一)之DAO层开发
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-11-27T15:12:23+08:00" content="Nov 27 2016">
-              Nov 27 2016
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/maven-ssm/" itemprop="url" rel="index">
-                    <span itemprop="name">maven ssm</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/27/53-maven-ssm-seckill-dao/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/27/53-maven-ssm-seckill-dao/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/11/27/53-maven-ssm-seckill-dao/" class="leancloud_visitors" data-flag-title="Java高并发秒杀系统API(一)之DAO层开发">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">visitors </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>之前写了一个用<a href="http://codingxiaxw.cn/2016/11/15/45-smm%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">SSM框架搭建的商品查询系统</a>,分两篇文章分别记录了自己整合SSM框架的过程以及利用SSM开发的一些基础知识，由于那时候刚学完SSM框架，所以自己觉得整合的过程总结的不够好。
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/27/53-maven-ssm-seckill-dao/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1606,7 +1686,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1614,7 +1694,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -1623,7 +1703,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
