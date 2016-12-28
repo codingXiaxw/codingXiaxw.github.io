@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://codingxiaxw.cn/2016/12/27/64-Hadoop-Storm-Spark/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="本文基于目前自己负责的视频管理平台，继续探讨Hadoop、Storm以及Spark三种大数据处理框架结合此平台的数据处理，进行功能的比较，然后择优进行开发及使用。">
-<meta property="og:updated_time" content="2016-12-27T03:57:43.000Z">
+<meta property="og:updated_time" content="2016-12-28T10:11:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Hadoop、Storm和Spark的技术验证">
 <meta name="twitter:description" content="本文基于目前自己负责的视频管理平台，继续探讨Hadoop、Storm以及Spark三种大数据处理框架结合此平台的数据处理，进行功能的比较，然后择优进行开发及使用。">
@@ -419,6 +419,7 @@
 <p>Spark内存计算这一设计的另一个后果是，如果部署在共享的集群中可能会遇到资源不足的问题。相比Hadoop MapReduce，Spark的资源消耗更大，可能会对需要在同一时间使用集群的其他任务产生影响。从本质来看，Spark更不适合与Hadoop堆栈的其他组件共存一处。</p>
 <h3 id="3-4验证过程"><a href="#3-4验证过程" class="headerlink" title="3.4验证过程"></a>3.4验证过程</h3><p>在本机上搭建Spark伪分布式环境，和Hadoop进行集成，通过将HDFS作为数据源，从本机上向HDFS传入文本数据，然后在本机上写代码，对读取到的HDFS上的文本数据进行计算，例如计数(文本单词总数、文本内容行数)、查出某个特定单词出现的频率。与Hadoop验证过程的区别在于代码的不同，Hadoop采用的MapReduce作为引擎进行对批数据的处理，而Spark是基于RDD(弹性分布式数据集)的模型(action和transformation操作)来处理批数据、spark Streaming来处理流数据。</p>
 <h3 id="3-5验证结果"><a href="#3-5验证结果" class="headerlink" title="3.5验证结果"></a>3.5验证结果</h3><p>集批数据处理和流数据处理于一体的Spark处理框架，是多样化工作负载处理任务的最佳选择。Spark批处理能力以更高内存占用为代价提供了无与伦比的速度优势。对于重视吞吐率而非延迟的工作负载，则比较适合使用Spark Streaming作为流处理解决方案。</p>
+<p><strong>本文参考:</strong><a href="http://www.infoq.com/cn/articles/hadoop-storm-samza-spark-flink" target="_blank" rel="external">大数据框架对比：Hadoop、Storm、Samza、Spark和Flink</a></p>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
