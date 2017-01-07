@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://codingxiaxw.cn/2016/12/27/64-Hadoop-Storm-Spark/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="本文基于目前自己负责的视频管理平台，继续探讨Hadoop、Storm以及Spark三种大数据处理框架结合此平台的数据处理，进行功能的比较，然后择优进行开发及使用。">
-<meta property="og:updated_time" content="2016-12-28T10:11:33.000Z">
+<meta property="og:updated_time" content="2017-01-07T12:27:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Hadoop、Storm和Spark的技术验证">
 <meta name="twitter:description" content="本文基于目前自己负责的视频管理平台，继续探讨Hadoop、Storm以及Spark三种大数据处理框架结合此平台的数据处理，进行功能的比较，然后择优进行开发及使用。">
@@ -402,7 +402,8 @@
 <p>Core Storm无法保证消息的处理顺序。Core Storm为消息提供了“至少一次”的处理保证，这意味着可以保证每条消息都能被处理，但也可能发生重复。Trident提供了严格的一次处理保证，可以在不同批之间提供顺序处理，但无法在一个批内部实现顺序处理。</p>
 <p>在互操作性方面，Storm可与Hadoop的YARN资源管理器进行集成，因此可以很方便地融入现有Hadoop部署。除了支持大部分处理框架，Storm还可支持多种语言，为用户的拓扑定义提供了更多选择。</p>
 <h4 id="2-3-2总结"><a href="#2-3-2总结" class="headerlink" title="2.3.2总结"></a>2.3.2总结</h4><p>对于延迟需求很高的纯粹的流处理工作负载，Storm可能是最适合的技术。该技术可以保证每条消息都被处理，可配合多种编程语言使用。由于Storm无法进行批处理，如果需要这些能力可能还需要使用其他软件。如果对严格的一次处理保证有比较高的要求，此时可考虑使用Trident。不过这种情况下其他流处理框架也许更适合。</p>
-<h3 id="2-4验证过程"><a href="#2-4验证过程" class="headerlink" title="2.4验证过程"></a>2.4验证过程</h3><h3 id="2-5验证结果"><a href="#2-5验证结果" class="headerlink" title="2.5验证结果"></a>2.5验证结果</h3><p>基于Storm的实时处理性，</p>
+<h3 id="2-4验证过程"><a href="#2-4验证过程" class="headerlink" title="2.4验证过程"></a>2.4验证过程</h3><p>待验证。</p>
+<h3 id="2-5验证结果"><a href="#2-5验证结果" class="headerlink" title="2.5验证结果"></a>2.5验证结果</h3><p>基于Storm的实时处理性，待验证。</p>
 <h2 id="3-Spark技术验证"><a href="#3-Spark技术验证" class="headerlink" title="3.Spark技术验证"></a>3.Spark技术验证</h2><h3 id="3-1介绍"><a href="#3-1介绍" class="headerlink" title="3.1介绍"></a>3.1介绍</h3><p>Apache Spark是一种包含<strong>流处理能力</strong>的下一代<strong>批处理框架</strong>。与Hadoop的MapReduce引擎基于各种相同原则开发而来的Spark主要侧重于通过完善的内存计算和处理优化机制加快批处理工作负载的运行速度。</p>
 <p>Spark可作为独立集群部署（需要相应存储层的配合），或可与Hadoop集成并取代MapReduce引擎。我这里采用与Hadoop集成部署的结构，在本机上搭建的spark伪分布式环境。</p>
 <h3 id="3-2技术特性"><a href="#3-2技术特性" class="headerlink" title="3.2技术特性"></a>3.2技术特性</h3><p>既然Spark是一种包含<strong>流处理能力</strong>的下一代<strong>批处理框架</strong>，那么它就具备同时处理批处理和流处理工作负载的技术。</p>
@@ -485,6 +486,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/01/07/65-leetcodeSort/" rel="prev" title="『 LeetCode 』LeetCode之旅——排序算法">
+                『 LeetCode 』LeetCode之旅——排序算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -555,7 +560,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -563,7 +568,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -572,7 +577,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
