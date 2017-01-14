@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="leetcode," />
 
 
 
@@ -84,15 +84,16 @@
 
 
 
-<meta name="description" content="Life is short,just coding.">
-<meta property="og:type" content="website">
+<meta name="description" content="上周写了一篇有关排序的几种算法实现，有排序当然就有查找咯，所以本篇文章对我们常用的几种查找算法进行介绍。源码请参见我的github。">
+<meta property="og:type" content="article">
 <meta property="og:title" content="codingXiaxw's blog">
-<meta property="og:url" content="http://codingxiaxw.cn/categories/Hadoop/index.html">
+<meta property="og:url" content="http://codingxiaxw.cn/2017/01/14/66-leetcode-find/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="Life is short,just coding.">
+<meta property="og:description" content="上周写了一篇有关排序的几种算法实现，有排序当然就有查找咯，所以本篇文章对我们常用的几种查找算法进行介绍。源码请参见我的github。">
+<meta property="og:updated_time" content="2017-01-14T10:51:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="codingXiaxw's blog">
-<meta name="twitter:description" content="Life is short,just coding.">
+<meta name="twitter:description" content="上周写了一篇有关排序的几种算法实现，有排序当然就有查找咯，所以本篇文章对我们常用的几种查找算法进行介绍。源码请参见我的github。">
 
 
 
@@ -113,10 +114,10 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/categories/Hadoop/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/2017/01/14/66-leetcode-find/"/>
 
 
-  <title> Category: Hadoop | codingXiaxw's blog </title>
+  <title>  | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -137,7 +138,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -248,47 +249,188 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Hadoop
-        <small>Category</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2017-01-14T13:21:11+08:00" content="Jan 14 2017">
+              Jan 14 2017
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/14/66-leetcode-find/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/14/66-leetcode-find/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/01/14/66-leetcode-find/" class="leancloud_visitors" data-flag-title="">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+      
+        <p>上周写了一篇有关排序的几种算法实现，有排序当然就有查找咯，所以本篇文章对我们常用的几种查找算法进行介绍。源码请参见<a href="https://github.com/codingXiaxw" target="_blank" rel="external">我的github。</a><a id="more"></a></p>
+<h2 id="关于查找，你必须要知道的一些概念"><a href="#关于查找，你必须要知道的一些概念" class="headerlink" title="关于查找，你必须要知道的一些概念"></a>关于查找，你必须要知道的一些概念</h2><p>查找是在大量的信息中寻找一个特定的信息元素，在计算机应用中，查找是常用的基本运算，例如编译程序中符号表的查找。本文简单概括性的介绍了常见的七种查找算法，说是七种，其实二分查找、插值查找以及斐波那契查找都可以归为一类——插值查找。插值查找和斐波那契查找是在二分查找的基础上的优化查找算法。</p>
+<p><strong>查找定义：</strong>根据给定的某个值，在查找表中确定一个其关键字等于给定值的数据元素（或记录）。  </p>
+<p><strong>查找算法分类：</strong></p>
+<ul>
+<li>1.静态查找和动态查找；<ul>
+<li>静态或者动态都是针对查找表而言的;</li>
+<li>动态表指查找表中有删除和插入操作的表。</li>
+</ul>
+</li>
+<li>无序查找和有序查找。<ul>
+<li>无序查找：被查找数列有序无序均可；</li>
+<li>有序查找：被查找数列必须为有序数列。</li>
+</ul>
+</li>
+</ul>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/12/06/59-mac-hadoop/" itemprop="url">
-              
-                <span itemprop="name">『 Hadoop 』mac下Hadoop的安装与使用</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-12-06T12:07:57+08:00"
-              content="Dec 6 2016" >
-          12-06
-        </time>
-      </div>
 
-    </header>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag">#leetcode</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/07/65-leetcodeSort/" rel="next" title="『 LeetCode 』LeetCode之旅——排序算法">
+                <i class="fa fa-chevron-left"></i> 『 LeetCode 』LeetCode之旅——排序算法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </section>
 
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -296,6 +438,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/14/66-leetcode-find/"
+           data-title="" data-url="http://codingxiaxw.cn/2017/01/14/66-leetcode-find/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -315,8 +465,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
@@ -395,6 +554,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于查找，你必须要知道的一些概念"><span class="nav-number">1.</span> <span class="nav-text">关于查找，你必须要知道的一些概念</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -491,6 +661,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
