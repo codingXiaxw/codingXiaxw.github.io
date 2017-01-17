@@ -101,7 +101,7 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%ABtwo.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/request%E5%9F%9F%E6%96%B9%E6%B3%95.png">
-<meta property="og:updated_time" content="2016-10-17T12:52:57.000Z">
+<meta property="og:updated_time" content="2017-01-17T05:34:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Web中的Servlet请求转发和请求包含">
 <meta name="twitter:description" content="为什么需要这样的操作呢？因为很多时候一个请求需要多个Servlet协作才能完成，所以需要在一个Servlet中跳转到另一个Servlet中处理。  
@@ -387,7 +387,7 @@ ResquestDispatcher rd=request.getRequestDispatcher(&amp;">
 <li>请求转发是一个请求一次响应，而重定向是两次请求两次响应。</li>
 <li>请求转发地址栏不变化，而重定向会显示后一个请求的地址。 </li>
 <li>请求转发智能转发到本项目其他Servlet，而重定向不只能重定向到本项目的其它Servlet，还能定向到其它项目。</li>
-<li>请求转发是服务器端行为，只需各处转发的Servlet路径，而重定向需要给出requestURI,即包含项目名。</li>
+<li>请求转发是服务器端行为，只需给出转发的Servlet路径，而重定向需要给出requestURI,即包含项目名。</li>
 <li>请求转发和重定向二者效率前者高，因为前者只发出一个请求。  <blockquote>
 <p>很多时候我们需要地址栏发生变化，那时候必须使用重定向。<br>需要在下一个Servlet中获取到request域中的数据，必须用请求转发。  </p>
 </blockquote>

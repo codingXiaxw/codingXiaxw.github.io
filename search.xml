@@ -4939,92 +4939,20 @@ interface RsHandler&lt;T&gt;
 <li>username:mysql用户名</li>
 <li>password:mysql密码</li>
 </ul>
-<p><strong>Demo:</strong></p>
-<pre><code>public class Demo{
-    public void main(String[] args) throws ClassNotFoundException,SQLException{
-
-        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);//加载驱动类。
-        String url=&quot;jdbc:mysql://localhost:3306/数据库名&quot;;
-        String username=&quot;root&quot;;
-        String password=&quot;123&quot;;
-
-        Connection con=DriverManager.getConnection(url,username,password);
-    }
-}
-</code></pre><p><strong>代码分析:</strong>  </p>
+<p><strong>Demo:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException,SQLException</span>&#123;</span><br><span class="line">	</span><br><span class="line">		Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);<span class="comment">//加载驱动类。</span></span><br><span class="line">		String url=<span class="string">"jdbc:mysql://localhost:3306/数据库名"</span>;</span><br><span class="line">		String username=<span class="string">"root"</span>;</span><br><span class="line">		String password=<span class="string">"123"</span>;</span><br><span class="line">		</span><br><span class="line">		Connection con=DriverManager.getConnection(url,username,password);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码分析:</strong>  </p>
 <ol>
 <li>url的格式为–jdbc:厂商名称:子协议(由厂商自己来规定)。对于mysql而言，它的子协议结构的格式为://localhost:3306/数据库名。</li>
 <li>出现SQLException的原因:1.url username password 是否正确。2.检查是否打开了sql服务器</li>
 <li>出现ClassNotFoundException的原因:1.没导入驱动包。2.Class.forName()传入的字符串参数错误。</li>
 </ol>
-<h2 id="3-Jdbc对数据库进行增、删、改、查"><a href="#3-Jdbc对数据库进行增、删、改、查" class="headerlink" title="3.Jdbc对数据库进行增、删、改、查"></a>3.Jdbc对数据库进行增、删、改、查</h2><h3 id="3-1增、删、改"><a href="#3-1增、删、改" class="headerlink" title="3.1增、删、改"></a>3.1增、删、改</h3><pre><code>public class Demo{
-    public void main(String[] args) throws ClassNotFoundException,SQLException{
-
-        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);//加载驱动类。
-        String url=&quot;jdbc:mysql://localhost:3306/数据库名&quot;;
-        String username=&quot;root&quot;;
-        String password=&quot;123&quot;;
-
-        Connection con=DriverManager.getConnection(url,username,password);
-
-        Statement stmt=con.createStatement();//调用Connection的方法创建Statement对象，它是sql语句的发送器，功能就是向数据库发送sql语句
-        String sql＝&quot;insert into stu values(&apos;...&apos;,&apos;...&apos;,&apos;...&apos;,&apos;...&apos;)&quot;;//右括号不需要打分号，打了就会出错，因为程序会自动帮我们加。
-        stmt.executeUpdate(sql);//调用此方法向数据库发送sql语句。该语句返回的值为改变数据库的行数。
-    }
-}
-</code></pre><p><strong>注意:</strong>上述中出现的Connection和Statement都应该导入java.mysql下的包，而不是java.jdbc下的包。</p>
-<h3 id="3-2查询"><a href="#3-2查询" class="headerlink" title="3.2查询"></a>3.2查询</h3><p><strong>Demo:</strong></p>
-<pre><code>public class Demo{
-    public void main(String[] args) throws ClassNotFoundException,SQLException{
-
-        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);//加载驱动类。
-        String url=&quot;jdbc:mysql://localhost:3306/数据库名&quot;;
-        String username=&quot;root&quot;;
-        String password=&quot;123&quot;;
-
-        Connection con=DriverManager.getConnection(url,username,password);
-
-        Statement stmt=con.createStatement();
-
-        String sql=&quot;selece * from stu&quot;;
-
-        ResultSet rs=stmt.execute(sql);
-
-        /*
-         *解析ResultSet
-         *ResultSet提供了一系列的getXxx()方法
-         */
-         while(rs.next())//第一次调用next()方法是将光标移动到该表的第一行
-         {
-             rs.getInt(1);//通过列编号来获取该列的值
-             rs.getString(&quot;name&quot;);//通过列名称来获取该列的值。
-         }
-    }
-}
-</code></pre><h2 id="4-关闭资源"><a href="#4-关闭资源" class="headerlink" title="4.关闭资源"></a>4.关闭资源</h2><p>关闭资源时采用倒关的手法将对象进行处理:即先得到的对象后关，后得到的对象先关。  </p>
-<pre><code>rs.close();
-stmt.close();
-con.close();
-</code></pre><p>为了注意代码的规范化:在try外给出引用的定义，在try内位对象实例化，在finally中对资源进行关闭。</p>
-<h2 id="5-PreparedStatement-预处理"><a href="#5-PreparedStatement-预处理" class="headerlink" title="5.PreparedStatement(预处理)"></a>5.PreparedStatement(预处理)</h2><h3 id="5-1介绍"><a href="#5-1介绍" class="headerlink" title="5.1介绍"></a>5.1介绍</h3><p>PrepaerdStatement是Statement的子接口。下面通过一个例子学习PreparedStatement，注意与上述例子中Statement的区别。             </p>
-<pre><code>public class Demo{
-    public void main(String[] args) throws ClassNotFoundException,SQLException{
-
-        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);//加载驱动类。
-        String url=&quot;jdbc:mysql://localhost:3306/数据库名&quot;;            String username=&quot;root&quot;;
-        String password=&quot;123&quot;;
-
-        Connection con=DriverManager.getConnection(url,username,password);
-
-        String sql=&quot;insert into stu where username=? and password=?&quot;;//定义sql模板，即参数以问号的形式给出
-
-        PreparedStatement pst=con.prepaerStatement(sql);
-        pst.setString(1,username);//数字1代表第一个问号
-        pst.setString(2.password);//数字2代表第二个问号
-        pst.executeUpdate();//向数据库发送sql语句
-    }
-}
-</code></pre><h3 id="5-2预处理的原理"><a href="#5-2预处理的原理" class="headerlink" title="5.2预处理的原理"></a>5.2预处理的原理</h3><p>服务器的工作:</p>
+<h2 id="3-Jdbc对数据库进行增、删、改、查"><a href="#3-Jdbc对数据库进行增、删、改、查" class="headerlink" title="3.Jdbc对数据库进行增、删、改、查"></a>3.Jdbc对数据库进行增、删、改、查</h2><h3 id="3-1增、删、改"><a href="#3-1增、删、改" class="headerlink" title="3.1增、删、改"></a>3.1增、删、改</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException,SQLException</span>&#123;</span><br><span class="line">	</span><br><span class="line">		Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);<span class="comment">//加载驱动类。</span></span><br><span class="line">		String url=<span class="string">"jdbc:mysql://localhost:3306/数据库名"</span>;</span><br><span class="line">		String username=<span class="string">"root"</span>;</span><br><span class="line">		String password=<span class="string">"123"</span>;</span><br><span class="line">		</span><br><span class="line">		Connection con=DriverManager.getConnection(url,username,password);</span><br><span class="line">		</span><br><span class="line">		Statement stmt=con.createStatement();<span class="comment">//调用Connection的方法创建Statement对象，它是sql语句的发送器，功能就是向数据库发送sql语句</span></span><br><span class="line">		String sql＝<span class="string">"insert into stu values('...','...','...','...')"</span>;<span class="comment">//右括号不需要打分号，打了就会出错，因为程序会自动帮我们加。</span></span><br><span class="line">		stmt.executeUpdate(sql);<span class="comment">//调用此方法向数据库发送sql语句。该语句返回的值为改变数据库的行数。</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意:</strong>上述中出现的Connection和Statement都应该导入java.mysql下的包，而不是java.jdbc下的包。</p>
+<h3 id="3-2查询"><a href="#3-2查询" class="headerlink" title="3.2查询"></a>3.2查询</h3><p><strong>Demo:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException,SQLException</span>&#123;</span><br><span class="line">	</span><br><span class="line">		Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);<span class="comment">//加载驱动类。</span></span><br><span class="line">		String url=<span class="string">"jdbc:mysql://localhost:3306/数据库名"</span>;</span><br><span class="line">		String username=<span class="string">"root"</span>;</span><br><span class="line">		String password=<span class="string">"123"</span>;</span><br><span class="line">		</span><br><span class="line">		Connection con=DriverManager.getConnection(url,username,password);</span><br><span class="line">		</span><br><span class="line">		Statement stmt=con.createStatement();</span><br><span class="line">		</span><br><span class="line">		String sql=<span class="string">"selece * from stu"</span>;</span><br><span class="line">		</span><br><span class="line">		ResultSet rs=stmt.execute(sql);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/*</span><br><span class="line">		 *解析ResultSet</span><br><span class="line">		 *ResultSet提供了一系列的getXxx()方法</span><br><span class="line">		 */</span></span><br><span class="line">		 <span class="keyword">while</span>(rs.next())<span class="comment">//第一次调用next()方法是将光标移动到该表的第一行</span></span><br><span class="line">		 &#123;</span><br><span class="line">		 	rs.getInt(<span class="number">1</span>);<span class="comment">//通过列编号来获取该列的值</span></span><br><span class="line">		 	rs.getString(<span class="string">"name"</span>);<span class="comment">//通过列名称来获取该列的值。</span></span><br><span class="line">		 &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-关闭资源"><a href="#4-关闭资源" class="headerlink" title="4.关闭资源"></a>4.关闭资源</h2><p>关闭资源时采用倒关的手法将对象进行处理:即先得到的对象后关，后得到的对象先关。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rs.close();</span><br><span class="line">stmt.close();</span><br><span class="line">con.close();</span><br></pre></td></tr></table></figure></p>
+<p>为了注意代码的规范化:在try外给出引用的定义，在try内位对象实例化，在finally中对资源进行关闭。</p>
+<h2 id="5-PreparedStatement-预处理"><a href="#5-PreparedStatement-预处理" class="headerlink" title="5.PreparedStatement(预处理)"></a>5.PreparedStatement(预处理)</h2><h3 id="5-1介绍"><a href="#5-1介绍" class="headerlink" title="5.1介绍"></a>5.1介绍</h3><p>PrepaerdStatement是Statement的子接口。下面通过一个例子学习PreparedStatement，注意与上述例子中Statement的区别。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException,SQLException</span>&#123;</span><br><span class="line">	</span><br><span class="line">		Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);<span class="comment">//加载驱动类。</span></span><br><span class="line">		String url=<span class="string">"jdbc:mysql://localhost:3306/数据库名"</span>;			String username=<span class="string">"root"</span>;</span><br><span class="line">		String password=<span class="string">"123"</span>;</span><br><span class="line">		</span><br><span class="line">		Connection con=DriverManager.getConnection(url,username,password);</span><br><span class="line">		</span><br><span class="line">		String sql=<span class="string">"insert into stu where username=? and password=?"</span>;<span class="comment">//定义sql模板，即参数以问号的形式给出</span></span><br><span class="line">		</span><br><span class="line">		PreparedStatement pst=con.prepaerStatement(sql);</span><br><span class="line">		pst.setString(<span class="number">1</span>,username);<span class="comment">//数字1代表第一个问号</span></span><br><span class="line">		pst.setString(<span class="number">2</span>.password);<span class="comment">//数字2代表第二个问号</span></span><br><span class="line">		pst.executeUpdate();<span class="comment">//向数据库发送sql语句</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-2预处理的原理"><a href="#5-2预处理的原理" class="headerlink" title="5.2预处理的原理"></a>5.2预处理的原理</h3><p>服务器的工作:</p>
 <ul>
 <li>1.检验sql语句的语法</li>
 <li>2.编译：一个与函数相似的东西</li>
@@ -5049,11 +4977,8 @@ con.close();
 </blockquote>
 </li>
 </ul>
-<h4 id="6-2-2将sql包下的Date、Time、Timestamp转换为util包下的Date"><a href="#6-2-2将sql包下的Date、Time、Timestamp转换为util包下的Date" class="headerlink" title="6.2.2将sql包下的Date、Time、Timestamp转换为util包下的Date"></a>6.2.2将sql包下的Date、Time、Timestamp转换为util包下的Date</h4><p>这一步不需要处理了，因为sql包下的Date、Time、和Timestamp继承自util包下的Date。所以可以直接用:  </p>
-<pre><code>new java.util.Date()=new java.sql.Date();或
-new java.util.Date()=new java.sql.Time();或
-new java.util.Date()=new java.sql.Timestamp();  
-</code></pre><h2 id="7-大数据"><a href="#7-大数据" class="headerlink" title="7.大数据"></a>7.大数据</h2><p>将大数据的歌曲存入数据库。代码日后补上。</p>
+<h4 id="6-2-2将sql包下的Date、Time、Timestamp转换为util包下的Date"><a href="#6-2-2将sql包下的Date、Time、Timestamp转换为util包下的Date" class="headerlink" title="6.2.2将sql包下的Date、Time、Timestamp转换为util包下的Date"></a>6.2.2将sql包下的Date、Time、Timestamp转换为util包下的Date</h4><p>这一步不需要处理了，因为sql包下的Date、Time、和Timestamp继承自util包下的Date。所以可以直接用:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> java.util.Date()=<span class="keyword">new</span> java.sql.Date();或</span><br><span class="line"><span class="keyword">new</span> java.util.Date()=<span class="keyword">new</span> java.sql.Time();或</span><br><span class="line"><span class="keyword">new</span> java.util.Date()=<span class="keyword">new</span> java.sql.Timestamp();</span><br></pre></td></tr></table></figure></p>
+<h2 id="7-大数据"><a href="#7-大数据" class="headerlink" title="7.大数据"></a>7.大数据</h2><p>将大数据的歌曲存入数据库。代码日后补上。</p>
 <h2 id="8-批处理"><a href="#8-批处理" class="headerlink" title="8.批处理"></a>8.批处理</h2><h3 id="8-1Statement批处理"><a href="#8-1Statement批处理" class="headerlink" title="8.1Statement批处理"></a>8.1Statement批处理</h3><p>批处理就是一批一批的处理，而不是一个一个的处理。  </p>
 <p>当你有10条sql语句要执行时，一次向服务器发送一条语句，这么做效率很差。处理的方案是用批处理，即一次向服务器发送多条sql语句，然后由服务器一次性处理。  </p>
 <p>批处理只针对更新(增、删、改),没有查询什么事。  </p>
@@ -5507,46 +5432,12 @@ if(stu!=null) out.println(stu.getName());
 <li>cookie:封装cookie的<code>Map&lt;String,Cookie&gt;</code>，key为cookie的name属性，value为cookie对象本身。</li>
 <li>initParam:初始化参数的Map，在web.xml中的context-param元素中定义的初始化参数。</li>
 </ul>
-<h3 id="2-4自定义EL函数。"><a href="#2-4自定义EL函数。" class="headerlink" title="2.4自定义EL函数。"></a>2.4自定义EL函数。</h3><h4 id="第一步：定义一个有静态方法的类。"><a href="#第一步：定义一个有静态方法的类。" class="headerlink" title="第一步：定义一个有静态方法的类。"></a>第一步：定义一个有静态方法的类。</h4><pre><code>package net.codingXiax.util;  
-
-public class StringUtil{  
-  public static String toUppercase(String str){  
-     return &quot;字符串&quot;;  
-     }  
-   }
-</code></pre><h4 id="第二步-配置tld。"><a href="#第二步-配置tld。" class="headerlink" title="第二步:配置tld。"></a>第二步:配置tld。</h4><p>在Web-INF目录下(也可以在其他目录下，该目录下建立安全性更高)，建立一个扩展名为tld的xml文件。  </p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
-&lt;taglib xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;  
-        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;  
-        xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd&quot;  
-        version=&quot;2.0&quot;&gt;  
-        &lt;tlib-version&gt;1.0&lt;/tlib-version&gt;  
-        &lt;short-name&gt;myfn&lt;/short-name&gt;  
-        &lt;uri&gt;http://www.yrom.net/jsp/string/fn&lt;/uri&gt;  
-        &lt;function&gt;  
-              &lt;name&gt;toUppercase&lt;/name&gt;  
-              &lt;function-class&gt;net.yrom.util.StringUtil&lt;/function-class&gt;  
-              &lt;function-signature&gt;java.lang.String toUpperCase( java.lang.String )&lt;/function-signature&gt;  
-        &lt;/function&gt;  
-&lt;/taglib&gt;
-</code></pre><h4 id="第三步-配置web-xml"><a href="#第三步-配置web-xml" class="headerlink" title="第三步:配置web.xml."></a>第三步:配置web.xml.</h4><p>如果tld文件是在Web-INF目录或类路径下，此步可跳过。  </p>
-<pre><code>&lt;jsp-config&gt;
-&lt;taglib&gt;
-    &lt;taglib-uri&gt;http://www.yrom.net/jsp/string/fn&lt;/taglib-uri&gt;
-    &lt;taglib-location&gt;/WEB-INF/myfn.tld&lt;/taglib-location&gt;
-&lt;/taglib&gt;  
-&lt;/jsp-config&gt;
-</code></pre><h4 id="第四步：在JSP中使用。"><a href="#第四步：在JSP中使用。" class="headerlink" title="第四步：在JSP中使用。"></a>第四步：在JSP中使用。</h4><p>注意应先用taglib指令引入该uri。  </p>
-<pre><code>&lt;%@ taglib uri=&quot;/该tld所在位置&quot; prefix=&quot;myfn&quot; %&gt;  
-...  
-&lt;body&gt;  
-&lt;%  
-   pageContext.setAttribute(&quot;a&quot;,&quot;aaa&quot;);  
-%&gt;  
-   ${myfn:toUppercase(a)}  
-&lt;/body&gt;  
-...  
-</code></pre><h3 id="2-5JSTL标签库"><a href="#2-5JSTL标签库" class="headerlink" title="2.5JSTL标签库"></a>2.5JSTL标签库</h3><p>JSTL标签库将在下篇文章<a href="">JavaWeb学习笔记之JSTL标签库</a>中详细介绍。</p>
+<h3 id="2-4自定义EL函数。"><a href="#2-4自定义EL函数。" class="headerlink" title="2.4自定义EL函数。"></a>2.4自定义EL函数。</h3><h4 id="第一步：定义一个有静态方法的类。"><a href="#第一步：定义一个有静态方法的类。" class="headerlink" title="第一步：定义一个有静态方法的类。"></a>第一步：定义一个有静态方法的类。</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> net.codingXiax.util;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringUtil</span></span>&#123;  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toUppercase</span><span class="params">(String str)</span></span>&#123;  </span><br><span class="line">     <span class="keyword">return</span> <span class="string">"字符串"</span>;  </span><br><span class="line">     &#125;  </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="第二步-配置tld。"><a href="#第二步-配置tld。" class="headerlink" title="第二步:配置tld。"></a>第二步:配置tld。</h4><p>在Web-INF目录下(也可以在其他目录下，该目录下建立安全性更高)，建立一个扩展名为tld的xml文件。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  </span><br><span class="line"><span class="tag">&lt;<span class="name">taglib</span> <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee"</span>  </span><br><span class="line">        <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>  </span><br><span class="line">        <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"</span>  </span><br><span class="line">        <span class="attr">version</span>=<span class="string">"2.0"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">tlib-version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">tlib-version</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">short-name</span>&gt;</span>myfn<span class="tag">&lt;/<span class="name">short-name</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">uri</span>&gt;</span>http://www.yrom.net/jsp/string/fn<span class="tag">&lt;/<span class="name">uri</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">function</span>&gt;</span>  </span><br><span class="line">              <span class="tag">&lt;<span class="name">name</span>&gt;</span>toUppercase<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">              <span class="tag">&lt;<span class="name">function-class</span>&gt;</span>net.yrom.util.StringUtil<span class="tag">&lt;/<span class="name">function-class</span>&gt;</span>  </span><br><span class="line">              <span class="tag">&lt;<span class="name">function-signature</span>&gt;</span>java.lang.String toUpperCase( java.lang.String )<span class="tag">&lt;/<span class="name">function-signature</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">function</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;/<span class="name">taglib</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="第三步-配置web-xml"><a href="#第三步-配置web-xml" class="headerlink" title="第三步:配置web.xml."></a>第三步:配置web.xml.</h4><p>如果tld文件是在Web-INF目录或类路径下，此步可跳过。  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">jsp-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">taglib</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">taglib-uri</span>&gt;</span>http://www.yrom.net/jsp/string/fn<span class="tag">&lt;/<span class="name">taglib-uri</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">taglib-location</span>&gt;</span>/WEB-INF/myfn.tld<span class="tag">&lt;/<span class="name">taglib-location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">taglib</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">jsp-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="第四步：在JSP中使用。"><a href="#第四步：在JSP中使用。" class="headerlink" title="第四步：在JSP中使用。"></a>第四步：在JSP中使用。</h4><p>注意应先用taglib指令引入该uri。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">taglib</span> <span class="attr">uri</span>=<span class="string">"/该tld所在位置"</span> <span class="attr">prefix</span>=<span class="string">"myfn"</span> %&gt;</span>  </span><br><span class="line">...  </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">%</span>  </span><br><span class="line">   <span class="attr">pageContext.setAttribute</span>("<span class="attr">a</span>","<span class="attr">aaa</span>");  </span><br><span class="line">%&gt;</span>  </span><br><span class="line">   $&#123;myfn:toUppercase(a)&#125;  </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-5JSTL标签库"><a href="#2-5JSTL标签库" class="headerlink" title="2.5JSTL标签库"></a>2.5JSTL标签库</h3><p>JSTL标签库将在下篇文章<a href="">JavaWeb学习笔记之JSTL标签库</a>中详细介绍。</p>
 <hr>
 <h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
@@ -5856,7 +5747,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 <li>请求转发是一个请求一次响应，而重定向是两次请求两次响应。</li>
 <li>请求转发地址栏不变化，而重定向会显示后一个请求的地址。 </li>
 <li>请求转发智能转发到本项目其他Servlet，而重定向不只能重定向到本项目的其它Servlet，还能定向到其它项目。</li>
-<li>请求转发是服务器端行为，只需各处转发的Servlet路径，而重定向需要给出requestURI,即包含项目名。</li>
+<li>请求转发是服务器端行为，只需给出转发的Servlet路径，而重定向需要给出requestURI,即包含项目名。</li>
 <li>请求转发和重定向二者效率前者高，因为前者只发出一个请求。  <blockquote>
 <p>很多时候我们需要地址栏发生变化，那时候必须使用重定向。<br>需要在下一个Servlet中获取到request域中的数据，必须用请求转发。  </p>
 </blockquote>

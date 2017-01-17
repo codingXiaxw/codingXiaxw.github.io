@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://codingxiaxw.cn/2016/10/12/17-JavaWeb学习笔记之Jdbc一/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="1.概念Jdbc(java database connectivity):Java数据库连接，就是用Java语言来操作数据库。原来我们操作数据库是在控制台中通过sql语句来操作数据库，而Jdbc是用Java语言来向数据库发送sql语句来操作数据库。">
-<meta property="og:updated_time" content="2016-10-18T07:57:19.000Z">
+<meta property="og:updated_time" content="2017-01-17T05:41:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb学习笔记之Jdbc(一)">
 <meta name="twitter:description" content="1.概念Jdbc(java database connectivity):Java数据库连接，就是用Java语言来操作数据库。原来我们操作数据库是在控制台中通过sql语句来操作数据库，而Jdbc是用Java语言来向数据库发送sql语句来操作数据库。">
@@ -360,92 +360,20 @@
 <li>username:mysql用户名</li>
 <li>password:mysql密码</li>
 </ul>
-<p><strong>Demo:</strong></p>
-<pre><code>public class Demo{
-    public void main(String[] args) throws ClassNotFoundException,SQLException{
-
-        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);//加载驱动类。
-        String url=&quot;jdbc:mysql://localhost:3306/数据库名&quot;;
-        String username=&quot;root&quot;;
-        String password=&quot;123&quot;;
-
-        Connection con=DriverManager.getConnection(url,username,password);
-    }
-}
-</code></pre><p><strong>代码分析:</strong>  </p>
+<p><strong>Demo:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException,SQLException</span>&#123;</span><br><span class="line">	</span><br><span class="line">		Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);<span class="comment">//加载驱动类。</span></span><br><span class="line">		String url=<span class="string">"jdbc:mysql://localhost:3306/数据库名"</span>;</span><br><span class="line">		String username=<span class="string">"root"</span>;</span><br><span class="line">		String password=<span class="string">"123"</span>;</span><br><span class="line">		</span><br><span class="line">		Connection con=DriverManager.getConnection(url,username,password);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码分析:</strong>  </p>
 <ol>
 <li>url的格式为–jdbc:厂商名称:子协议(由厂商自己来规定)。对于mysql而言，它的子协议结构的格式为://localhost:3306/数据库名。</li>
 <li>出现SQLException的原因:1.url username password 是否正确。2.检查是否打开了sql服务器</li>
 <li>出现ClassNotFoundException的原因:1.没导入驱动包。2.Class.forName()传入的字符串参数错误。</li>
 </ol>
-<h2 id="3-Jdbc对数据库进行增、删、改、查"><a href="#3-Jdbc对数据库进行增、删、改、查" class="headerlink" title="3.Jdbc对数据库进行增、删、改、查"></a>3.Jdbc对数据库进行增、删、改、查</h2><h3 id="3-1增、删、改"><a href="#3-1增、删、改" class="headerlink" title="3.1增、删、改"></a>3.1增、删、改</h3><pre><code>public class Demo{
-    public void main(String[] args) throws ClassNotFoundException,SQLException{
-
-        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);//加载驱动类。
-        String url=&quot;jdbc:mysql://localhost:3306/数据库名&quot;;
-        String username=&quot;root&quot;;
-        String password=&quot;123&quot;;
-
-        Connection con=DriverManager.getConnection(url,username,password);
-
-        Statement stmt=con.createStatement();//调用Connection的方法创建Statement对象，它是sql语句的发送器，功能就是向数据库发送sql语句
-        String sql＝&quot;insert into stu values(&apos;...&apos;,&apos;...&apos;,&apos;...&apos;,&apos;...&apos;)&quot;;//右括号不需要打分号，打了就会出错，因为程序会自动帮我们加。
-        stmt.executeUpdate(sql);//调用此方法向数据库发送sql语句。该语句返回的值为改变数据库的行数。
-    }
-}
-</code></pre><p><strong>注意:</strong>上述中出现的Connection和Statement都应该导入java.mysql下的包，而不是java.jdbc下的包。</p>
-<h3 id="3-2查询"><a href="#3-2查询" class="headerlink" title="3.2查询"></a>3.2查询</h3><p><strong>Demo:</strong></p>
-<pre><code>public class Demo{
-    public void main(String[] args) throws ClassNotFoundException,SQLException{
-
-        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);//加载驱动类。
-        String url=&quot;jdbc:mysql://localhost:3306/数据库名&quot;;
-        String username=&quot;root&quot;;
-        String password=&quot;123&quot;;
-
-        Connection con=DriverManager.getConnection(url,username,password);
-
-        Statement stmt=con.createStatement();
-
-        String sql=&quot;selece * from stu&quot;;
-
-        ResultSet rs=stmt.execute(sql);
-
-        /*
-         *解析ResultSet
-         *ResultSet提供了一系列的getXxx()方法
-         */
-         while(rs.next())//第一次调用next()方法是将光标移动到该表的第一行
-         {
-             rs.getInt(1);//通过列编号来获取该列的值
-             rs.getString(&quot;name&quot;);//通过列名称来获取该列的值。
-         }
-    }
-}
-</code></pre><h2 id="4-关闭资源"><a href="#4-关闭资源" class="headerlink" title="4.关闭资源"></a>4.关闭资源</h2><p>关闭资源时采用倒关的手法将对象进行处理:即先得到的对象后关，后得到的对象先关。  </p>
-<pre><code>rs.close();
-stmt.close();
-con.close();
-</code></pre><p>为了注意代码的规范化:在try外给出引用的定义，在try内位对象实例化，在finally中对资源进行关闭。</p>
-<h2 id="5-PreparedStatement-预处理"><a href="#5-PreparedStatement-预处理" class="headerlink" title="5.PreparedStatement(预处理)"></a>5.PreparedStatement(预处理)</h2><h3 id="5-1介绍"><a href="#5-1介绍" class="headerlink" title="5.1介绍"></a>5.1介绍</h3><p>PrepaerdStatement是Statement的子接口。下面通过一个例子学习PreparedStatement，注意与上述例子中Statement的区别。             </p>
-<pre><code>public class Demo{
-    public void main(String[] args) throws ClassNotFoundException,SQLException{
-
-        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);//加载驱动类。
-        String url=&quot;jdbc:mysql://localhost:3306/数据库名&quot;;            String username=&quot;root&quot;;
-        String password=&quot;123&quot;;
-
-        Connection con=DriverManager.getConnection(url,username,password);
-
-        String sql=&quot;insert into stu where username=? and password=?&quot;;//定义sql模板，即参数以问号的形式给出
-
-        PreparedStatement pst=con.prepaerStatement(sql);
-        pst.setString(1,username);//数字1代表第一个问号
-        pst.setString(2.password);//数字2代表第二个问号
-        pst.executeUpdate();//向数据库发送sql语句
-    }
-}
-</code></pre><h3 id="5-2预处理的原理"><a href="#5-2预处理的原理" class="headerlink" title="5.2预处理的原理"></a>5.2预处理的原理</h3><p>服务器的工作:</p>
+<h2 id="3-Jdbc对数据库进行增、删、改、查"><a href="#3-Jdbc对数据库进行增、删、改、查" class="headerlink" title="3.Jdbc对数据库进行增、删、改、查"></a>3.Jdbc对数据库进行增、删、改、查</h2><h3 id="3-1增、删、改"><a href="#3-1增、删、改" class="headerlink" title="3.1增、删、改"></a>3.1增、删、改</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException,SQLException</span>&#123;</span><br><span class="line">	</span><br><span class="line">		Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);<span class="comment">//加载驱动类。</span></span><br><span class="line">		String url=<span class="string">"jdbc:mysql://localhost:3306/数据库名"</span>;</span><br><span class="line">		String username=<span class="string">"root"</span>;</span><br><span class="line">		String password=<span class="string">"123"</span>;</span><br><span class="line">		</span><br><span class="line">		Connection con=DriverManager.getConnection(url,username,password);</span><br><span class="line">		</span><br><span class="line">		Statement stmt=con.createStatement();<span class="comment">//调用Connection的方法创建Statement对象，它是sql语句的发送器，功能就是向数据库发送sql语句</span></span><br><span class="line">		String sql＝<span class="string">"insert into stu values('...','...','...','...')"</span>;<span class="comment">//右括号不需要打分号，打了就会出错，因为程序会自动帮我们加。</span></span><br><span class="line">		stmt.executeUpdate(sql);<span class="comment">//调用此方法向数据库发送sql语句。该语句返回的值为改变数据库的行数。</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意:</strong>上述中出现的Connection和Statement都应该导入java.mysql下的包，而不是java.jdbc下的包。</p>
+<h3 id="3-2查询"><a href="#3-2查询" class="headerlink" title="3.2查询"></a>3.2查询</h3><p><strong>Demo:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException,SQLException</span>&#123;</span><br><span class="line">	</span><br><span class="line">		Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);<span class="comment">//加载驱动类。</span></span><br><span class="line">		String url=<span class="string">"jdbc:mysql://localhost:3306/数据库名"</span>;</span><br><span class="line">		String username=<span class="string">"root"</span>;</span><br><span class="line">		String password=<span class="string">"123"</span>;</span><br><span class="line">		</span><br><span class="line">		Connection con=DriverManager.getConnection(url,username,password);</span><br><span class="line">		</span><br><span class="line">		Statement stmt=con.createStatement();</span><br><span class="line">		</span><br><span class="line">		String sql=<span class="string">"selece * from stu"</span>;</span><br><span class="line">		</span><br><span class="line">		ResultSet rs=stmt.execute(sql);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/*</span><br><span class="line">		 *解析ResultSet</span><br><span class="line">		 *ResultSet提供了一系列的getXxx()方法</span><br><span class="line">		 */</span></span><br><span class="line">		 <span class="keyword">while</span>(rs.next())<span class="comment">//第一次调用next()方法是将光标移动到该表的第一行</span></span><br><span class="line">		 &#123;</span><br><span class="line">		 	rs.getInt(<span class="number">1</span>);<span class="comment">//通过列编号来获取该列的值</span></span><br><span class="line">		 	rs.getString(<span class="string">"name"</span>);<span class="comment">//通过列名称来获取该列的值。</span></span><br><span class="line">		 &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-关闭资源"><a href="#4-关闭资源" class="headerlink" title="4.关闭资源"></a>4.关闭资源</h2><p>关闭资源时采用倒关的手法将对象进行处理:即先得到的对象后关，后得到的对象先关。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rs.close();</span><br><span class="line">stmt.close();</span><br><span class="line">con.close();</span><br></pre></td></tr></table></figure></p>
+<p>为了注意代码的规范化:在try外给出引用的定义，在try内位对象实例化，在finally中对资源进行关闭。</p>
+<h2 id="5-PreparedStatement-预处理"><a href="#5-PreparedStatement-预处理" class="headerlink" title="5.PreparedStatement(预处理)"></a>5.PreparedStatement(预处理)</h2><h3 id="5-1介绍"><a href="#5-1介绍" class="headerlink" title="5.1介绍"></a>5.1介绍</h3><p>PrepaerdStatement是Statement的子接口。下面通过一个例子学习PreparedStatement，注意与上述例子中Statement的区别。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException,SQLException</span>&#123;</span><br><span class="line">	</span><br><span class="line">		Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);<span class="comment">//加载驱动类。</span></span><br><span class="line">		String url=<span class="string">"jdbc:mysql://localhost:3306/数据库名"</span>;			String username=<span class="string">"root"</span>;</span><br><span class="line">		String password=<span class="string">"123"</span>;</span><br><span class="line">		</span><br><span class="line">		Connection con=DriverManager.getConnection(url,username,password);</span><br><span class="line">		</span><br><span class="line">		String sql=<span class="string">"insert into stu where username=? and password=?"</span>;<span class="comment">//定义sql模板，即参数以问号的形式给出</span></span><br><span class="line">		</span><br><span class="line">		PreparedStatement pst=con.prepaerStatement(sql);</span><br><span class="line">		pst.setString(<span class="number">1</span>,username);<span class="comment">//数字1代表第一个问号</span></span><br><span class="line">		pst.setString(<span class="number">2</span>.password);<span class="comment">//数字2代表第二个问号</span></span><br><span class="line">		pst.executeUpdate();<span class="comment">//向数据库发送sql语句</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-2预处理的原理"><a href="#5-2预处理的原理" class="headerlink" title="5.2预处理的原理"></a>5.2预处理的原理</h3><p>服务器的工作:</p>
 <ul>
 <li>1.检验sql语句的语法</li>
 <li>2.编译：一个与函数相似的东西</li>
@@ -470,11 +398,8 @@ con.close();
 </blockquote>
 </li>
 </ul>
-<h4 id="6-2-2将sql包下的Date、Time、Timestamp转换为util包下的Date"><a href="#6-2-2将sql包下的Date、Time、Timestamp转换为util包下的Date" class="headerlink" title="6.2.2将sql包下的Date、Time、Timestamp转换为util包下的Date"></a>6.2.2将sql包下的Date、Time、Timestamp转换为util包下的Date</h4><p>这一步不需要处理了，因为sql包下的Date、Time、和Timestamp继承自util包下的Date。所以可以直接用:  </p>
-<pre><code>new java.util.Date()=new java.sql.Date();或
-new java.util.Date()=new java.sql.Time();或
-new java.util.Date()=new java.sql.Timestamp();  
-</code></pre><h2 id="7-大数据"><a href="#7-大数据" class="headerlink" title="7.大数据"></a>7.大数据</h2><p>将大数据的歌曲存入数据库。代码日后补上。</p>
+<h4 id="6-2-2将sql包下的Date、Time、Timestamp转换为util包下的Date"><a href="#6-2-2将sql包下的Date、Time、Timestamp转换为util包下的Date" class="headerlink" title="6.2.2将sql包下的Date、Time、Timestamp转换为util包下的Date"></a>6.2.2将sql包下的Date、Time、Timestamp转换为util包下的Date</h4><p>这一步不需要处理了，因为sql包下的Date、Time、和Timestamp继承自util包下的Date。所以可以直接用:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> java.util.Date()=<span class="keyword">new</span> java.sql.Date();或</span><br><span class="line"><span class="keyword">new</span> java.util.Date()=<span class="keyword">new</span> java.sql.Time();或</span><br><span class="line"><span class="keyword">new</span> java.util.Date()=<span class="keyword">new</span> java.sql.Timestamp();</span><br></pre></td></tr></table></figure></p>
+<h2 id="7-大数据"><a href="#7-大数据" class="headerlink" title="7.大数据"></a>7.大数据</h2><p>将大数据的歌曲存入数据库。代码日后补上。</p>
 <h2 id="8-批处理"><a href="#8-批处理" class="headerlink" title="8.批处理"></a>8.批处理</h2><h3 id="8-1Statement批处理"><a href="#8-1Statement批处理" class="headerlink" title="8.1Statement批处理"></a>8.1Statement批处理</h3><p>批处理就是一批一批的处理，而不是一个一个的处理。  </p>
 <p>当你有10条sql语句要执行时，一次向服务器发送一条语句，这么做效率很差。处理的方案是用批处理，即一次向服务器发送多条sql语句，然后由服务器一次性处理。  </p>
 <p>批处理只针对更新(增、删、改),没有查询什么事。  </p>

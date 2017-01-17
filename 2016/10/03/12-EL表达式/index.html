@@ -92,7 +92,7 @@ JSP中的表达式:Java脚本表达式&amp;lt;%=Java表达式%&amp;gt;;EL表达�
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="1.概述EL，即Expression Language。在JavaWeb中属于JSP技术。  
 JSP中的表达式:Java脚本表达式&amp;lt;%=Java表达式%&amp;gt;;EL表达式${EL表达式}。">
-<meta property="og:updated_time" content="2016-10-29T13:10:13.000Z">
+<meta property="og:updated_time" content="2017-01-17T05:40:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb学习笔记之EL表达式">
 <meta name="twitter:description" content="1.概述EL，即Expression Language。在JavaWeb中属于JSP技术。  
@@ -384,46 +384,12 @@ if(stu!=null) out.println(stu.getName());
 <li>cookie:封装cookie的<code>Map&lt;String,Cookie&gt;</code>，key为cookie的name属性，value为cookie对象本身。</li>
 <li>initParam:初始化参数的Map，在web.xml中的context-param元素中定义的初始化参数。</li>
 </ul>
-<h3 id="2-4自定义EL函数。"><a href="#2-4自定义EL函数。" class="headerlink" title="2.4自定义EL函数。"></a>2.4自定义EL函数。</h3><h4 id="第一步：定义一个有静态方法的类。"><a href="#第一步：定义一个有静态方法的类。" class="headerlink" title="第一步：定义一个有静态方法的类。"></a>第一步：定义一个有静态方法的类。</h4><pre><code>package net.codingXiax.util;  
-
-public class StringUtil{  
-  public static String toUppercase(String str){  
-     return &quot;字符串&quot;;  
-     }  
-   }
-</code></pre><h4 id="第二步-配置tld。"><a href="#第二步-配置tld。" class="headerlink" title="第二步:配置tld。"></a>第二步:配置tld。</h4><p>在Web-INF目录下(也可以在其他目录下，该目录下建立安全性更高)，建立一个扩展名为tld的xml文件。  </p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
-&lt;taglib xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;  
-        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;  
-        xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd&quot;  
-        version=&quot;2.0&quot;&gt;  
-        &lt;tlib-version&gt;1.0&lt;/tlib-version&gt;  
-        &lt;short-name&gt;myfn&lt;/short-name&gt;  
-        &lt;uri&gt;http://www.yrom.net/jsp/string/fn&lt;/uri&gt;  
-        &lt;function&gt;  
-              &lt;name&gt;toUppercase&lt;/name&gt;  
-              &lt;function-class&gt;net.yrom.util.StringUtil&lt;/function-class&gt;  
-              &lt;function-signature&gt;java.lang.String toUpperCase( java.lang.String )&lt;/function-signature&gt;  
-        &lt;/function&gt;  
-&lt;/taglib&gt;
-</code></pre><h4 id="第三步-配置web-xml"><a href="#第三步-配置web-xml" class="headerlink" title="第三步:配置web.xml."></a>第三步:配置web.xml.</h4><p>如果tld文件是在Web-INF目录或类路径下，此步可跳过。  </p>
-<pre><code>&lt;jsp-config&gt;
-&lt;taglib&gt;
-    &lt;taglib-uri&gt;http://www.yrom.net/jsp/string/fn&lt;/taglib-uri&gt;
-    &lt;taglib-location&gt;/WEB-INF/myfn.tld&lt;/taglib-location&gt;
-&lt;/taglib&gt;  
-&lt;/jsp-config&gt;
-</code></pre><h4 id="第四步：在JSP中使用。"><a href="#第四步：在JSP中使用。" class="headerlink" title="第四步：在JSP中使用。"></a>第四步：在JSP中使用。</h4><p>注意应先用taglib指令引入该uri。  </p>
-<pre><code>&lt;%@ taglib uri=&quot;/该tld所在位置&quot; prefix=&quot;myfn&quot; %&gt;  
-...  
-&lt;body&gt;  
-&lt;%  
-   pageContext.setAttribute(&quot;a&quot;,&quot;aaa&quot;);  
-%&gt;  
-   ${myfn:toUppercase(a)}  
-&lt;/body&gt;  
-...  
-</code></pre><h3 id="2-5JSTL标签库"><a href="#2-5JSTL标签库" class="headerlink" title="2.5JSTL标签库"></a>2.5JSTL标签库</h3><p>JSTL标签库将在下篇文章<a href="">JavaWeb学习笔记之JSTL标签库</a>中详细介绍。</p>
+<h3 id="2-4自定义EL函数。"><a href="#2-4自定义EL函数。" class="headerlink" title="2.4自定义EL函数。"></a>2.4自定义EL函数。</h3><h4 id="第一步：定义一个有静态方法的类。"><a href="#第一步：定义一个有静态方法的类。" class="headerlink" title="第一步：定义一个有静态方法的类。"></a>第一步：定义一个有静态方法的类。</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> net.codingXiax.util;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringUtil</span></span>&#123;  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toUppercase</span><span class="params">(String str)</span></span>&#123;  </span><br><span class="line">     <span class="keyword">return</span> <span class="string">"字符串"</span>;  </span><br><span class="line">     &#125;  </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="第二步-配置tld。"><a href="#第二步-配置tld。" class="headerlink" title="第二步:配置tld。"></a>第二步:配置tld。</h4><p>在Web-INF目录下(也可以在其他目录下，该目录下建立安全性更高)，建立一个扩展名为tld的xml文件。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  </span><br><span class="line"><span class="tag">&lt;<span class="name">taglib</span> <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee"</span>  </span><br><span class="line">        <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>  </span><br><span class="line">        <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"</span>  </span><br><span class="line">        <span class="attr">version</span>=<span class="string">"2.0"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">tlib-version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">tlib-version</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">short-name</span>&gt;</span>myfn<span class="tag">&lt;/<span class="name">short-name</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">uri</span>&gt;</span>http://www.yrom.net/jsp/string/fn<span class="tag">&lt;/<span class="name">uri</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">function</span>&gt;</span>  </span><br><span class="line">              <span class="tag">&lt;<span class="name">name</span>&gt;</span>toUppercase<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">              <span class="tag">&lt;<span class="name">function-class</span>&gt;</span>net.yrom.util.StringUtil<span class="tag">&lt;/<span class="name">function-class</span>&gt;</span>  </span><br><span class="line">              <span class="tag">&lt;<span class="name">function-signature</span>&gt;</span>java.lang.String toUpperCase( java.lang.String )<span class="tag">&lt;/<span class="name">function-signature</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">function</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;/<span class="name">taglib</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="第三步-配置web-xml"><a href="#第三步-配置web-xml" class="headerlink" title="第三步:配置web.xml."></a>第三步:配置web.xml.</h4><p>如果tld文件是在Web-INF目录或类路径下，此步可跳过。  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">jsp-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">taglib</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">taglib-uri</span>&gt;</span>http://www.yrom.net/jsp/string/fn<span class="tag">&lt;/<span class="name">taglib-uri</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">taglib-location</span>&gt;</span>/WEB-INF/myfn.tld<span class="tag">&lt;/<span class="name">taglib-location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">taglib</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">jsp-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="第四步：在JSP中使用。"><a href="#第四步：在JSP中使用。" class="headerlink" title="第四步：在JSP中使用。"></a>第四步：在JSP中使用。</h4><p>注意应先用taglib指令引入该uri。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">taglib</span> <span class="attr">uri</span>=<span class="string">"/该tld所在位置"</span> <span class="attr">prefix</span>=<span class="string">"myfn"</span> %&gt;</span>  </span><br><span class="line">...  </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">%</span>  </span><br><span class="line">   <span class="attr">pageContext.setAttribute</span>("<span class="attr">a</span>","<span class="attr">aaa</span>");  </span><br><span class="line">%&gt;</span>  </span><br><span class="line">   $&#123;myfn:toUppercase(a)&#125;  </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-5JSTL标签库"><a href="#2-5JSTL标签库" class="headerlink" title="2.5JSTL标签库"></a>2.5JSTL标签库</h3><p>JSTL标签库将在下篇文章<a href="">JavaWeb学习笔记之JSTL标签库</a>中详细介绍。</p>
 <hr>
 <h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
