@@ -4639,94 +4639,26 @@ public class Example{
 <li>Commons-dbcp.jar：连接池的实现</li>
 <li>Commons-pool.jar：连接池实现的依赖库</li>
 </ul>
-<p><strong>Demo:</strong></p>
-<pre><code>public class Demo{
-    public static void main(String[] args)
-    {
-        /*
-         *1.创建连接池对象
-         *2.配置四大参数
-         *3.配置池参数
-         *4.得到连接对象
-         */
-        BasicDataSource dataSource=new BasicDataSource();
-
-        dataSource.setDriverClassName(“com.mysql.jdbc.Driver”);
-        dataSource.setUrl(“jdbc:mysql://localhost:3306/mydb”);
-        dataSource.setUsername(“root”);
-        dataSource.setPassword(123);
-
-        dataSource.setMaxActive(20);
-        dataSource.setMinIdle(3);
-        dataSource.setMaxWait(1000);
-
-        Connection con=dataSource.getConnection();
-        System.out.println(con);
-
-      /*
-        *连接池内部使用四大参数创建了连接对象，即mysql驱动提供的Connection
-        *连接池使用mysql的连接对象进行了装饰，只对close()方法进行了增强！
-        *装饰之后的Connection的close()方法，用来把当前连接归还给池
-        */
-        con.close();//把连接归还给池。
-    }
-}
-</code></pre><p>既然谈到装饰，那下面我们就在下文3.7中来谈谈装饰者模式。  </p>
+<p><strong>Demo:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="comment">/*</span><br><span class="line">		 *1.创建连接池对象</span><br><span class="line">		 *2.配置四大参数</span><br><span class="line">		 *3.配置池参数</span><br><span class="line">		 *4.得到连接对象</span><br><span class="line">		 */</span></span><br><span class="line">		BasicDataSource dataSource=<span class="keyword">new</span> BasicDataSource();</span><br><span class="line">		</span><br><span class="line">		dataSource.setDriverClassName(“com.mysql.jdbc.Driver”);</span><br><span class="line">		dataSource.setUrl(“jdbc:mysql:<span class="comment">//localhost:3306/mydb”);</span></span><br><span class="line">		dataSource.setUsername(“root”);</span><br><span class="line">		dataSource.setPassword(<span class="number">123</span>);</span><br><span class="line">		</span><br><span class="line">		dataSource.setMaxActive(<span class="number">20</span>);</span><br><span class="line">		dataSource.setMinIdle(<span class="number">3</span>);</span><br><span class="line">		dataSource.setMaxWait(<span class="number">1000</span>);</span><br><span class="line">		</span><br><span class="line">		Connection con=dataSource.getConnection();</span><br><span class="line">		System.out.println(con);</span><br><span class="line">		</span><br><span class="line">	  <span class="comment">/*</span><br><span class="line">		*连接池内部使用四大参数创建了连接对象，即mysql驱动提供的Connection</span><br><span class="line">		*连接池使用mysql的连接对象进行了装饰，只对close()方法进行了增强！</span><br><span class="line">		*装饰之后的Connection的close()方法，用来把当前连接归还给池</span><br><span class="line">		*/</span></span><br><span class="line">		con.close();<span class="comment">//把连接归还给池。</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>既然谈到装饰，那下面我们就在下文3.7中来谈谈装饰者模式。  </p>
 <h3 id="3-5c3p0数据库连接池"><a href="#3-5c3p0数据库连接池" class="headerlink" title="3.5c3p0数据库连接池"></a>3.5c3p0数据库连接池</h3><p>c3p0,全名叫ComboPooledDataSource;   </p>
 <p>需要导入的jar包:</p>
 <ul>
 <li>连接池的实现:c3p0-0.9.5.2.jar</li>
 <li>依赖库:mchange－commons.jar   </li>
 </ul>
-<p><strong>Demo:</strong></p>
-<pre><code>public class Demo{
-    public static void main(String[] args)
-    {
-        //创建连接池对象
-        ComboPooledDataSource dataSource=new ComboPooledDataSource();
-
-        //进行四大参数的配置
-        dataSource.setDriverClass(“com.mysql.jdbc.Driver”);
-        dataSource.setJdbcUrl(“jdbc:mysql://localhost:3306/mydb”);
-        dataSource.setUser(&quot;root&quot;);
-        dataSource.setPassword(&quot;123&quot;);
-
-        //池配置
-        dataSource.setAcquireIncrement(5);
-        dataSource.setInitialPoolSize(20);
-        dataSource.setMinPoolSize(2);
-        dataSource.setMaxPoolSize(50);
-
-        Connection con=dataSource.getConnection();
-        System.out.println(con);
-
-        con.close();
-    }
-}
-</code></pre><h4 id="3-5-1c3p0配置文件的使用"><a href="#3-5-1c3p0配置文件的使用" class="headerlink" title="3.5.1c3p0配置文件的使用"></a>3.5.1c3p0配置文件的使用</h4><p>配置文件要求:</p>
+<p><strong>Demo:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="comment">//创建连接池对象</span></span><br><span class="line">		ComboPooledDataSource dataSource=<span class="keyword">new</span> ComboPooledDataSource();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//进行四大参数的配置</span></span><br><span class="line">		dataSource.setDriverClass(“com.mysql.jdbc.Driver”);</span><br><span class="line">		dataSource.setJdbcUrl(“jdbc:mysql:<span class="comment">//localhost:3306/mydb”);</span></span><br><span class="line">		dataSource.setUser(<span class="string">"root"</span>);</span><br><span class="line">		dataSource.setPassword(<span class="string">"123"</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//池配置</span></span><br><span class="line">		dataSource.setAcquireIncrement(<span class="number">5</span>);</span><br><span class="line">		dataSource.setInitialPoolSize(<span class="number">20</span>);</span><br><span class="line">		dataSource.setMinPoolSize(<span class="number">2</span>);</span><br><span class="line">		dataSource.setMaxPoolSize(<span class="number">50</span>);</span><br><span class="line">		</span><br><span class="line">		Connection con=dataSource.getConnection();</span><br><span class="line">		System.out.println(con);</span><br><span class="line">		</span><br><span class="line">		con.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-5-1c3p0配置文件的使用"><a href="#3-5-1c3p0配置文件的使用" class="headerlink" title="3.5.1c3p0配置文件的使用"></a>3.5.1c3p0配置文件的使用</h4><p>配置文件要求:</p>
 <blockquote>
 <p>文件名称:必须叫c3p0-config.xml。<br>文件的位置:必须在src下。  </p>
 </blockquote>
 <p><strong>c3p0配置文件:</strong><br><img src="http://od2xrf8gr.bkt.clouddn.com/c3p0%E9%85%8D%E7%BD%AE.png" alt="">  </p>
-<p><strong>写入配置文件后的Demo:</strong>  </p>
-<pre><code>public class Demo{
-    public static void main(String[] args)
-    {
-        //在创建连接池对象时，这个对象就会自动加载配置文件，不用我们来指定。
-        ComboPooledDataSource data=new comboPooledDataSource();
-        Connection con=data.getConnection();
-        System.out.println(con);
-    }
-}
-</code></pre><h3 id="3-6Tomcat配置数据库连接池"><a href="#3-6Tomcat配置数据库连接池" class="headerlink" title="3.6Tomcat配置数据库连接池"></a>3.6Tomcat配置数据库连接池</h3><h4 id="3-6-1Tomcat配置JNDI资源"><a href="#3-6-1Tomcat配置JNDI资源" class="headerlink" title="3.6.1Tomcat配置JNDI资源"></a>3.6.1Tomcat配置JNDI资源</h4><p><strong>JNDI:</strong>java命名和目录接口。作用:在服务器上配置资源，然后通过统一的方式来获取配置的资源。  </p>
+<p><strong>写入配置文件后的Demo:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="comment">//在创建连接池对象时，这个对象就会自动加载配置文件，不用我们来指定。</span></span><br><span class="line">		ComboPooledDataSource data=<span class="keyword">new</span> comboPooledDataSource();</span><br><span class="line">		Connection con=data.getConnection();</span><br><span class="line">		System.out.println(con);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-6Tomcat配置数据库连接池"><a href="#3-6Tomcat配置数据库连接池" class="headerlink" title="3.6Tomcat配置数据库连接池"></a>3.6Tomcat配置数据库连接池</h3><h4 id="3-6-1Tomcat配置JNDI资源"><a href="#3-6-1Tomcat配置JNDI资源" class="headerlink" title="3.6.1Tomcat配置JNDI资源"></a>3.6.1Tomcat配置JNDI资源</h4><p><strong>JNDI:</strong>java命名和目录接口。作用:在服务器上配置资源，然后通过统一的方式来获取配置的资源。  </p>
 <p>首先需要在Tomcat/conf/Catelina/localhost目录下新建文件名: 项目名.xml  </p>
 <p>在该.xml文件中写入以下内容<br><img src="http://od2xrf8gr.bkt.clouddn.com/jdni.png" alt="">  </p>
-<h4 id="3-6-1获取资源的代码"><a href="#3-6-1获取资源的代码" class="headerlink" title="3.6.1获取资源的代码"></a>3.6.1获取资源的代码</h4><pre><code>Context initCtx=new InitialContext();//创建一个上下文。
-
-Context envCtx=(Context) initCtx.lookup(“java:comp/env”);//这个路径是固定的不能改。
-
-MyBean bean=(MyBean)envCtx.lookup(“bean/MyBeanFactory”);//通过该上下文进行二次查找才能找到资源。
-</code></pre><p><strong>Demo:测试类</strong></p>
+<h4 id="3-6-1获取资源的代码"><a href="#3-6-1获取资源的代码" class="headerlink" title="3.6.1获取资源的代码"></a>3.6.1获取资源的代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Context initCtx=<span class="keyword">new</span> InitialContext();<span class="comment">//创建一个上下文。</span></span><br><span class="line"></span><br><span class="line">Context envCtx=(Context) initCtx.lookup(“java:comp/env”);<span class="comment">//这个路径是固定的不能改。</span></span><br><span class="line"></span><br><span class="line">MyBean bean=(MyBean)envCtx.lookup(“bean/MyBeanFactory”);<span class="comment">//通过该上下文进行二次查找才能找到资源。</span></span><br></pre></td></tr></table></figure>
+<p><strong>Demo:测试类</strong></p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-17%20%E4%B8%8B%E5%8D%888.43.16.png" alt=""></p>
 <h3 id="3-7装饰者模式"><a href="#3-7装饰者模式" class="headerlink" title="3.7装饰者模式"></a>3.7装饰者模式</h3><p>将对象增强的手段有:</p>
 <ul>
@@ -4756,25 +4688,8 @@ class 加盐咖啡 extends 咖啡类 {};
 <li>Object get();该方法返回当前线程所对应的线程局部变量。</li>
 <li>void remove();将当前线程局部变量的值删除，目的是为了减少内存的占用。需要指出的是，当线程结束后，对应该线程的局部变量将自动被垃圾回收，所以显式调用该方法清除线程的局部变量并不是必须的操作，但它可以加快内存回收的速度。  </li>
 </ul>
-<h3 id="4-2ThreadLocal内部结构"><a href="#4-2ThreadLocal内部结构" class="headerlink" title="4.2ThreadLocal内部结构"></a>4.2ThreadLocal内部结构</h3><p>ThreadLocal内部用Map来保存数据。虽然在使用上述API时没有给出键，但其实它内部使用了当前线程作为键。内部结构见下面demo:</p>
-<pre><code>class ThreadLocal
-{
-    private Map&lt;Thread,T&gt; map=new HashMap&lt;Thread,T&gt;();
-
-    public void set(T value){
-
-        map.put(Thread.currentThread(),value);
-    }
-
-    public void remove(){
-        map.remove(Thread.currentThread());
-    }
-
-    public T get(){
-        return map.get(Thread.currentThread());
-    }
-}
-</code></pre><h2 id="5-dbtils结果集处理器介绍"><a href="#5-dbtils结果集处理器介绍" class="headerlink" title="5.dbtils结果集处理器介绍"></a>5.dbtils结果集处理器介绍</h2><p>需要导入的jar包:</p>
+<h3 id="4-2ThreadLocal内部结构"><a href="#4-2ThreadLocal内部结构" class="headerlink" title="4.2ThreadLocal内部结构"></a>4.2ThreadLocal内部结构</h3><p>ThreadLocal内部用Map来保存数据。虽然在使用上述API时没有给出键，但其实它内部使用了当前线程作为键。内部结构见下面demo:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadLocal</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Map&lt;Thread,T&gt; map=<span class="keyword">new</span> HashMap&lt;Thread,T&gt;();</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T value)</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">		map.put(Thread.currentThread(),value);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span></span>&#123;</span><br><span class="line">		map.remove(Thread.currentThread());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> map.get(Thread.currentThread());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5-dbtils结果集处理器介绍"><a href="#5-dbtils结果集处理器介绍" class="headerlink" title="5.dbtils结果集处理器介绍"></a>5.dbtils结果集处理器介绍</h2><p>需要导入的jar包:</p>
 <ul>
 <li>common-dbutil.jar</li>
 <li>c3p0.jar</li>
@@ -4798,113 +4713,10 @@ class 加盐咖啡 extends 咖啡类 {};
 </blockquote>
 </li>
 </ul>
-<p><strong>dbutil结果处理集原理代码:</strong>  </p>
-<pre><code>package demo;
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-/**
- * Created by codingBoy on 16/10/19.
- */
- public class QR&lt;T&gt;
- {
-    private DataSource dataSource;
-
-public QR(DataSource dataSource)
-{
-    this.dataSource=dataSource;
-}
-
-public QR(){
-    super();
-}
-
-public int update(String sql,Object... params)
-{
-    Connection con=null;
-    PreparedStatement pstmt=null;
-
-    try
-    {
-        con=dataSource.getConnection();//通过连接池得到连接对象
-        pstmt=con.prepareStatement(sql);
-
-        initParams(pstmt,params);//给出参数
-
-        return pstmt.executeUpdate();//调用update执行增、删、该
-    }catch (Exception e)
-    {
-        throw new RuntimeException(e);
-    }finally {
-        try{
-            if (pstmt!=null) pstmt.close();
-            if (con!=null) con.close();
-        }catch (SQLException e){}
-    }
-}
-
-//给参数赋值
-public void initParams(PreparedStatement pstmt,Object... params) throws SQLException {
-    for (int i = 0; i &lt; params.length; i++)
-    {
-        pstmt.setObject(i+1,params[i]);
-    }
-}
-
-public T query(String sql,RsHandler&lt;T&gt; rh,Object... params) throws SQLException {
-    Connection con=null;
-    PreparedStatement pstmt=null;
-    ResultSet rs=null;
-
-    try
-    {
-        con=dataSource.getConnection();//通过连接池得到连接对象
-        pstmt=con.prepareStatement(sql);
-
-        initParams(pstmt,params);//给出参数
-
-        rs=pstmt.executeQuery();//调用update执行增、删、该
-
-        return rh.handle(rs);
-    }catch (Exception e)
-    {
-        throw new RuntimeException(e);
-    }finally {
-
-        if (rs!=null) rs.close();
-        if (pstmt!=null) pstmt.close();
-        if (con!=null) con.close();
-
-    }
-}
-
-interface RsHandler&lt;T&gt;
-{
-    public T handle(ResultSet rs);
-}
-}
-</code></pre><p>这样我们以后对数据库进行增、删、改操作时，只需写以下代码即可:</p>
-<pre><code>1.QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource);//创建QueryRunner对象，并传入连接池对象
-
-2.String sql=&quot;insert into user values(?,?,?,?);//给出sql语句模板
-3.Object[] params={参数1，参数2，参数3，参数4};//传入参数
-4.qr.update(sql,params);//调用qr方法。
-</code></pre><p>通过这简单的四步就可以对数据库进行增删改了。  </p>
-<p>对数据库进行查询操作时，只需写以下代码:  </p>
-<pre><code>1.QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource);//创建QueryRunner对象，并传入连接池对象
-2.String sql=&quot;select * from user where id=?&quot;;//给出sql语句模板
-3. Object[] params={参数};//传入参数
-//4. ResultSetHandler&lt;Object&gt; rsh=new ResultSetHandler(){
-//        @Override
-//        public Object handle(Result rs) throws SQLException{
-//            return null;
-//        }
-//    };
-5.Object object=qr.query(sql,new BeanHandler&lt;Object&gt;(Object.class),params);
-</code></pre><p>通过这几步即可实现对数据的查询操作了。  </p>
+<p><strong>dbutil结果处理集原理代码:</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">	package demo;</span><br><span class="line">	import javax.sql.DataSource;</span><br><span class="line">	import java.sql.Connection;</span><br><span class="line">	import java.sql.PreparedStatement;</span><br><span class="line">	import java.sql.ResultSet;</span><br><span class="line">	import java.sql.SQLException;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * Created by codingBoy on 16/10/19.</span><br><span class="line">	 */</span><br><span class="line">	 public class QR&lt;T&gt;</span><br><span class="line">	 &#123;</span><br><span class="line">    	private DataSource dataSource;</span><br><span class="line"></span><br><span class="line">    public QR(DataSource dataSource)</span><br><span class="line">    &#123;</span><br><span class="line">        this.dataSource=dataSource;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public QR()&#123;</span><br><span class="line">        super();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int update(String sql,Object... params)</span><br><span class="line">    &#123;</span><br><span class="line">        Connection con=null;</span><br><span class="line">        PreparedStatement pstmt=null;</span><br><span class="line"></span><br><span class="line">        try</span><br><span class="line">        &#123;</span><br><span class="line">            con=dataSource.getConnection();//通过连接池得到连接对象</span><br><span class="line">            pstmt=con.prepareStatement(sql);</span><br><span class="line"></span><br><span class="line">            initParams(pstmt,params);//给出参数</span><br><span class="line"></span><br><span class="line">            return pstmt.executeUpdate();//调用update执行增、删、该</span><br><span class="line">        &#125;catch (Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            throw new RuntimeException(e);</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            try&#123;</span><br><span class="line">                if (pstmt!=null) pstmt.close();</span><br><span class="line">                if (con!=null) con.close();</span><br><span class="line">            &#125;catch (SQLException e)&#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //给参数赋值</span><br><span class="line">    public void initParams(PreparedStatement pstmt,Object... params) throws SQLException &#123;</span><br><span class="line">        for (int i = 0; i &lt; params.length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            pstmt.setObject(i+1,params[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public T query(String sql,RsHandler&lt;T&gt; rh,Object... params) throws SQLException &#123;</span><br><span class="line">        Connection con=null;</span><br><span class="line">        PreparedStatement pstmt=null;</span><br><span class="line">        ResultSet rs=null;</span><br><span class="line"></span><br><span class="line">        try</span><br><span class="line">        &#123;</span><br><span class="line">            con=dataSource.getConnection();//通过连接池得到连接对象</span><br><span class="line">            pstmt=con.prepareStatement(sql);</span><br><span class="line"></span><br><span class="line">            initParams(pstmt,params);//给出参数</span><br><span class="line"></span><br><span class="line">            rs=pstmt.executeQuery();//调用update执行增、删、该</span><br><span class="line"></span><br><span class="line">            return rh.handle(rs);</span><br><span class="line">        &#125;catch (Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            throw new RuntimeException(e);</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            </span><br><span class="line">            if (rs!=null) rs.close();</span><br><span class="line">            if (pstmt!=null) pstmt.close();</span><br><span class="line">            if (con!=null) con.close();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    interface RsHandler&lt;T&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        public T handle(ResultSet rs);</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">```    </span><br><span class="line">这样我们以后对数据库进行增、删、改操作时，只需写以下代码即可:</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">	1.QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource);//创建QueryRunner对象，并传入连接池对象</span><br><span class="line">	</span><br><span class="line">	2.String sql="insert into user values(?,?,?,?);//给出sql语句模板</span><br><span class="line">	3.Object[] params=&#123;参数1，参数2，参数3，参数4&#125;;//传入参数</span><br><span class="line">	4.qr.update(sql,params);//调用qr方法。</span><br></pre></td></tr></table></figure></p>
+<p>通过这简单的四步就可以对数据库进行增删改了。  </p>
+<p>对数据库进行查询操作时，只需写以下代码:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.QueryRunner qr=<span class="keyword">new</span> QueryRunner(JdbcUtils.getDataSource);<span class="comment">//创建QueryRunner对象，并传入连接池对象</span></span><br><span class="line"><span class="number">2</span>.String sql=<span class="string">"select * from user where id=?"</span>;<span class="comment">//给出sql语句模板</span></span><br><span class="line"><span class="number">3</span>. Object[] params=&#123;参数&#125;;<span class="comment">//传入参数</span></span><br><span class="line"><span class="comment">//4. ResultSetHandler&lt;Object&gt; rsh=new ResultSetHandler()&#123;</span></span><br><span class="line"><span class="comment">//		@Override</span></span><br><span class="line"><span class="comment">//		public Object handle(Result rs) throws SQLException&#123;</span></span><br><span class="line"><span class="comment">//			return null;</span></span><br><span class="line"><span class="comment">//		&#125;</span></span><br><span class="line"><span class="comment">//	&#125;;</span></span><br><span class="line"><span class="number">5</span>.Object object=qr.query(sql,<span class="keyword">new</span> BeanHandler&lt;Object&gt;(Object.class),params);</span><br></pre></td></tr></table></figure></p>
+<p>通过这几步即可实现对数据的查询操作了。  </p>
 <p><strong>下面的解释写给自己看的:关于connection是否关闭的问题</strong>  </p>
 <p>在jar包中，QueryRunner类的update(没有connection参数的)方法，在finally中将connection进行了关闭;在update(有connection参数的)方法中，在finally中没有对connection进行关闭(暂时这么记吧，不然要是进行关闭了的话，在传智播客写的小工具封装类TxQueryRunner中将connection传入JdbcUtils的releaseConnecion()方法中对connection进行关闭时会出现报错)。</p>
 <p>在讲到事务时，我们会对QueryRunner进行再次封装。上述写出的QueryRunner的代码只是包中的QueryRunner源码方法的一部分(因为源码中还有很多的重载方法)，我们会通过另一个类TxQueryRunner(较QueryRunner多出的一个功能就是它支持事务)继承该类，在TxQueryrunner类中，对connection进行了判断:若connection为事务中的connection则在TxqueryRunner的update()方法中不对connection进行关闭，而是在commitTransaction()即提交事务时进行关闭;若connection为普通连接，则将connection进行关闭。那么以后我们在DAO中要获取的就不是QueryRunner对象，而是通过<code>QueryRunner qr=new TxQueryRunner();</code>获取TxQueryRunner对象了。</p>
