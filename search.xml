@@ -761,6 +761,7 @@
 <p><code>alias 别名=&#39;原来的命令&#39;</code>，进行别名的设置<br><code>unalias 别名</code>，移除别名</p>
 <p><code>ifconfig</code>,mac下查看本机ip地址。<br><code>ipconfig</code>,windows下查看本机ip地址。<br><code>ping 同局域网下另一台机器ip</code>,和同局域网下另一台机器通信。</p>
 <p><code>passwd (机器用户名)</code>,修改本机(或者另外一台机器)登陆密码。<br><code>passwd -d (机器用户名)</code>,删除本机(或者另外一台机器)登陆密码。</p>
+<p><code>su -</code>,从普通用户切换到root用户。<br><code>exit</code>，从root用户切换到普通用户。</p>
 <p>上述Linux命令大家只是看的话估计没有什么效果，照着我的笔记敲效果也很低下，建议买一本&lt;&lt;鸟叔的Linux私房菜&gt;&gt;去学习Linux及其相关命令,博主目前也在恶补学习…</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>博主目前使用到相关软件的命令就这么多，以后用到又觉得比较重要的我会经常更新的，希望对你有所帮助吧。  </p>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
