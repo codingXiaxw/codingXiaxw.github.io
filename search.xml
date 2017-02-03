@@ -6,7 +6,7 @@
     <entry>
       <title><![CDATA[『 LeetCode 』LeetCode之旅——查找算法]]></title>
       <url>http://codingxiaxw.cn/2017/01/14/66-leetcode-find/</url>
-      <content type="html"><![CDATA[<p>上周写了一篇有关排序的几种算法实现，有排序当然就有查找咯，所以本篇文章对我们常用的几种查找算法进行介绍。源码请参见<a href="https://github.com/codingXiaxw" target="_blank" rel="external">我的github。</a><a id="more"></a></p>
+      <content type="html"><![CDATA[<p>上周写了一篇有关排序的几种算法实现，有排序当然就有查找咯，所以本篇文章对我们常用的几种查找算法进行介绍。源码请参见<a href="https://github.com/codingXiaxw/leetcode" target="_blank" rel="external">我的github。</a>，欢迎star和fork。<a id="more"></a></p>
 <h2 id="关于查找，你必须要知道的一些概念"><a href="#关于查找，你必须要知道的一些概念" class="headerlink" title="关于查找，你必须要知道的一些概念"></a>关于查找，你必须要知道的一些概念</h2><p>查找是在大量的信息中寻找一个特定的信息元素，在计算机应用中，查找是常用的基本运算，例如编译程序中符号表的查找。本文简单概括性的介绍了常见的七种查找算法，说是七种，其实二分查找、插值查找以及斐波那契查找都可以归为一类——插值查找。插值查找和斐波那契查找是在二分查找的基础上的优化查找算法。  </p>
 <p><strong>查找定义：</strong>根据给定的某个值，在查找表中确定一个其关键字等于给定值的数据元素（或记录）。  </p>
 <p><strong>查找算法分类：</strong></p>
@@ -158,7 +158,7 @@
     <entry>
       <title><![CDATA[『 LeetCode 』LeetCode之旅——排序算法]]></title>
       <url>http://codingxiaxw.cn/2017/01/07/65-leetcodeSort/</url>
-      <content type="html"><![CDATA[<p>忙碌了一整个星期公司布置的任务，如今周末终于能抽出时间继续自己在互联网技术上的学习，尽管现阶段是学校安排的考试周，但也无法阻止我对新技术的学习热情。<a id="more"></a>因为计划是寒假就开始leetcode的学习之旅，所以今天先总结一篇学习到的关于排序的算法，后面也会继续记录自己在刷leetcode时的感悟，代码将上传至<a href="https://github.com/codingXiaxw" target="_blank" rel="external">我的github</a>。  </p>
+      <content type="html"><![CDATA[<p>忙碌了一整个星期公司布置的任务，如今周末终于能抽出时间继续自己在互联网技术上的学习，尽管现阶段是学校安排的考试周，但也无法阻止我对新技术的学习热情。<a id="more"></a>因为计划是寒假就开始leetcode的学习之旅，所以今天先总结一篇学习到的关于排序的算法，后面也会继续记录自己在刷leetcode时的感悟，代码将上传至<a href="https://github.com/codingXiaxw/leetcode" target="_blank" rel="external">我的github</a>，欢迎star和fork。  </p>
 <p>当然，作为一个Java工程师，所以里面的算法都是用Java语言实现的，不过其实不管你用的是哪种语言，实现该算法的思路都是一样的，所以借鉴此篇文章的你即使用的不是Java，看完此片文章的实现思路及其实现代码后你也是可以用其他语言实现的～</p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>查找和排序算法是算法的入门知识，其经典思想可以用于很多算法当中，但万变不离其宗，只要熟悉了思想，灵活运用也不是难事。那么常用的排序算法有哪些呢？本篇文章要介绍的排序算法，按照排序的效率分有以下10种:</p>
 <ul>
