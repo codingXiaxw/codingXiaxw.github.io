@@ -1,0 +1,1117 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="leetcode," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="许久没更了，新的一年我也将更新我2017的第一篇博客。趁新年放假之际，我又重新将LeetCode上面的题目刷了一遍，不同于之前的是，这次我详细记录了自己刷题时候的感想心得、被系统accept的答案、自己的思路以及错题反思以供大家参考。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跟我一起刷LeetCode(持续更新)">
+<meta property="og:url" content="http://codingxiaxw.cn/2017/02/06/67-follow-me-in-leetcode/index.html">
+<meta property="og:site_name" content="codingXiaxw's blog">
+<meta property="og:description" content="许久没更了，新的一年我也将更新我2017的第一篇博客。趁新年放假之际，我又重新将LeetCode上面的题目刷了一遍，不同于之前的是，这次我详细记录了自己刷题时候的感想心得、被系统accept的答案、自己的思路以及错题反思以供大家参考。">
+<meta property="og:image" content="http://xuelangzf-github.qiniudn.com/20160724_leetcode_guide_1.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%889.54.18.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%889.57.54.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%889.58.24.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.00.05.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.02.38.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.22.14.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.22.19.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.22.29.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.22.35.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.22.39.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.22.48.png">
+<meta property="og:updated_time" content="2017-02-06T14:50:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="跟我一起刷LeetCode(持续更新)">
+<meta name="twitter:description" content="许久没更了，新的一年我也将更新我2017的第一篇博客。趁新年放假之际，我又重新将LeetCode上面的题目刷了一遍，不同于之前的是，这次我详细记录了自己刷题时候的感想心得、被系统accept的答案、自己的思路以及错题反思以供大家参考。">
+<meta name="twitter:image" content="http://xuelangzf-github.qiniudn.com/20160724_leetcode_guide_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codingxiaxw.cn/2017/02/06/67-follow-me-in-leetcode/"/>
+
+
+  <title> 跟我一起刷LeetCode(持续更新) | codingXiaxw's blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">codingXiaxw's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Life is short,just coding.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Contact
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                跟我一起刷LeetCode(持续更新)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2017-02-06T15:58:31+08:00" content="Feb 6 2017">
+              Feb 6 2017
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/06/67-follow-me-in-leetcode/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/06/67-follow-me-in-leetcode/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/06/67-follow-me-in-leetcode/" class="leancloud_visitors" data-flag-title="跟我一起刷LeetCode(持续更新)">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>许久没更了，新的一年我也将更新我2017的第一篇博客。趁新年放假之际，我又重新将<a href="https://leetcode.com/" target="_blank" rel="external">LeetCode</a>上面的题目刷了一遍，不同于之前的是，这次我详细记录了自己刷题时候的感想心得、被系统accept的答案、自己的思路以及错题反思以供大家参考。<a id="more"></a>为了让大家跟我一个步伐，所以我从难易程度为easy的题目再一次刷起，希望算法能力有所提高的小伙伴来跟我一起同步再刷一次LeetCode吧！</p>
+<p>所做过的题目答案已上传到我的Github, <a href="https://github.com/codingXiaxw/leetcode" target="_blank" rel="external">Click here!</a> <!--为了追赶上潮流，github中的README.md采用全英文书写，以后的README.md估计都采用全英文了吧，希望小伙伴们能跟着我一起提高品味hhh。  --></p>
+<h2 id="为什么要刷题"><a href="#为什么要刷题" class="headerlink" title="为什么要刷题"></a>为什么要刷题</h2><p>虽然刷题一直饱受诟病，不过不可否认刷题确实能锻炼我们的编程能力，相信每个认真刷题的人都会有体会。现在提供在线编程评测的平台有很多，比较有名的有 <a href="http://hihocoder.com/" target="_blank" rel="external">hihocoder</a>，<a href="http://www.lintcode.com/zh-cn/" target="_blank" rel="external">LintCode</a>，以及这里我们关注的 <a href="https://leetcode.com" target="_blank" rel="external">LeetCode</a>。  </p>
+<p>下图是LeetCode平台上统计的各种编程语言在LeetCode上提交的算法解决方法运行时间长短:  </p>
+<p><img src="http://xuelangzf-github.qiniudn.com/20160724_leetcode_guide_1.png" alt=""></p>
+<p>LeetCode 是一个非常棒的 OJ（Online Judge）平台，收集了许多公司的面试题目。相对其他 OJ 平台而言，有着下面的几个优点：</p>
+<ul>
+<li>题目全部来自业内大公司的真实面试</li>
+<li>不用处理输入输出，精力全放在解决具体问题上</li>
+<li>题目有丰富的讨论，可以参考别人的思路</li>
+<li>精确了解自己代码在所有提交代码中运行效率的排名</li>
+<li>支持多种主流语言：C/C++，Python, Java</li>
+<li>可以在线进行测试，方便调试</li>
+</ul>
+<p>为什么要这么看重算法还需要特地刷LeetCode甚至5、6遍 ? 一句话:可能这就是区分程序员和码农很大的特点吧。</p>
+<p>下面是我刷 LeetCode 的一些收获以及文章开头附上的自己用Java解决LeetCode上算法的源码，希望能够引诱大家有空时刷刷题目。</p>
+<h2 id="如何合理利用LeetCode"><a href="#如何合理利用LeetCode" class="headerlink" title="如何合理利用LeetCode"></a>如何合理利用LeetCode</h2><p>我当初进入leetcode是完全蒙蔽的，全英文的界面、全英文的题目，总之一切都是全英文的，然而你要相信的是:了解一个工具或者平台，真的只需要几分钟的时间。</p>
+<p>看了很多人写了关于LeetCode指南的文章，共同的特点就是:介绍刷LeetCode对提高自己的算法能力如何如何重要，再就是给你介绍介绍LeetCode平台的特征等等…然后也没人教你第一步也就是如何去使用这个平台，例如点击这个按钮能干嘛能干嘛，如何进入刷题系统等等…(很多人会想，都进入LeetCode官网了，难道会不知道咋进入刷题页面吗？没错，第一次进入该平台的我面对如此庞大的全英文，确实是摸不到头脑。然而我的文章一向保持着照顾新人的态度来书写的)也难怪，毕竟大神是不必在乎这些小细节的…我这里就不厌其烦的对自己第一次使用LeetCode平台时的感受浅谈几点吧。 </p>
+<p>第一次进入<a href="https://leetcode.com" target="_blank" rel="external">LeetCode</a>官网，首先肯定是要点击<strong>Sign in</strong>按钮输入自己的账号和密码的，建议快速登录选择使用github登录，好处不用我多说，登录系统后出现下面这个界面:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%889.54.18.png" alt="">  </p>
+<p>然后点击左下方的<strong>Start coding now</strong>按钮，这时页面会跳转到另一个随机出现的题目，例如下图:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%889.57.54.png" alt="">  </p>
+<p>这时咋办？鼠标移到上方<strong>Problems</strong>菜单栏，选择<strong>Algorithms</strong>:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%889.58.24.png" alt="">  </p>
+<p>就可以跳转到LeetCode所有题的列表页了，如下:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.00.05.png" alt="">  </p>
+<p>然后便可以选择相应的题目进行答题了，建议从难易程度为<strong>easy</strong>的题目刷起，这样往后你就会越刷越有信心，当然有个把题目你要是想了1、2两个小时，这都是正常的不要害怕，刷着刷着你的算法能力就上去了，刷着刷着你的速度也快了。例如我这里选择第一题<strong><a href="https://leetcode.com/problems/two-sum/" target="_blank" rel="external">Two Sum</a></strong>然后进入如下页面，这个页面我要给大家讲讲相应的界面元素:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.02.38.png" alt="">  </p>
+<p>上面这行英文字母当然就是系统为你布置的题目啦:</p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.22.14.png" alt="">  </p>
+<p>英文底子不好的连题目都看不懂的，建议安装一款插件，我用的浏览器是Chrome，用了一款叫<strong>划词翻译</strong>的插件，还是挺不错的，选择页面中相应的英文或其它不是中文的文然后点击下面出现的”译”就可以将文字翻译成相对准确的中文了。(要是没有相关条件的人，可以看看我传在github中的代码答案，因为我在代码中把题目都翻译成了中文并写在了代码中)  </p>
+<p>下面的<strong>Example</strong>，当然就是系统给你举的例子了，例如给你一个输入，然后通过你编写的算法应该得出与它一致的输出:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.22.19.png" alt="">  </p>
+<p>下方的这个框框就是你的答题区域咯，你可以选择相应的编程语言了然后进行答题:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.22.29.png" alt="">  </p>
+<p>编写完成后，你就可以点击下面的按钮:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.22.35.png" alt="">  </p>
+<p>点击这个<strong>Run Code</strong>按钮表示运行一下你的代码，然后系统检测通过上面给出的<strong>Example</strong>粗略判断你的代码是否符合要求，待出现的<strong>output</strong>和<strong>expected output</strong>一致后你就可以点击下面这个<strong>Submit Solution</strong>按钮进行提交自己的代码至系统了:</p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.22.39.png" alt="">  </p>
+<p>有趣的是点击这个按钮后若你的算法代码被系统<strong>Accepted</strong>后，还会给你生成一幅你这个算法时间复杂度的一个图表，是不是很高大上！  </p>
+<p>当然，当你要是实在对题目没有头绪时，不妨点击中间的<strong>discuss</strong>按钮:  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-06%20%E4%B8%8B%E5%8D%8810.22.48.png" alt=""></p>
+<p>点击后，你就可以进入这个题目背后各种LeetCode好友提供的自己的答案，还可以为你觉得写的好的答案支持一下，支持数越多的答案当然就会被排在前面。  </p>
+<p>那么问题来了，既然这个界面有每个题目的答案，我又为什么要在github上提供自己的答案呢？很简单啊，因为我在将我的代码上传至github之前我当然也拿自己的答案和上面的答案进行对比了，我的答案多了这些:</p>
+<ul>
+<li>1.<strong>多种</strong>合适当前题目的时间复杂度最低又好理解的答案。</li>
+<li>2.我自己没被通过的答案，以及我的反思，自己错在哪里。</li>
+<li>3.最重要的是我将题目都在答案中抄了一遍，中英文都有哦。</li>
+</ul>
+<p>说了这么多功能，当然更多的是需要你自己去摸索了，点击的次数多了，遇到的坑多了，自己自然也就熟悉了。</p>
+<p>至于我上传在github上的源码，那逼格可高多啦，除了记录了我详细的解题思路，最重要的是README.md可是采用全英文写的呢! <strong>like this :</strong> </p>
+<h2 id="LeetCode-Algorithm"><a href="#LeetCode-Algorithm" class="headerlink" title="LeetCode Algorithm"></a>LeetCode Algorithm</h2><p><strong>This form includes:</strong></p>
+<ul>
+<li>1.the question’s numbers marking by “#”.</li>
+<li>2.the question’s title with its address in <a href="https://leetcode.com/" target="_blank" rel="external">LeetCode</a> marking by “Title”.</li>
+<li>3.the question’s Java algorithm solutions with its address in my github marking by “Solution”.</li>
+<li>4.the difficulty about this question.</li>
+</ul>
+<p><strong>And in my solutions code , it includes:</strong></p>
+<ul>
+<li>1.the title about this question with English and Chinese version.</li>
+<li>2.the right questions more than one.</li>
+<li>3.the wrong question that I did the first time.</li>
+<li>4.why I did the wrong answer,how I think in that time.</li>
+</ul>
+<p><strong>others:”＊”</strong> represents something I didn’t finish.</p>
+<p>Hope it helps you in algorithm learning. <strong>Have fun!</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Title</th>
+<th>Solution</th>
+<th>Difficulty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://leetcode.com/problems/two-sum/" target="_blank" rel="external">Two Sum</a></td>
+<td><a href="https://github.com/codingXiaxw/leetcode/blob/master/algorithms/Java/two_sum.java" target="_blank" rel="external">Java</a></td>
+<td>easy</td>
+</tr>
+<tr>
+<td>2</td>
+<td>＊<a href="https://leetcode.com/problems/add-two-numbers/" target="_blank" rel="external">Add Two Numbers</a></td>
+<td><a href="">Java</a></td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="https://leetcode.com/problems/reverse-integer/" target="_blank" rel="external">Reverse Integer</a></td>
+<td><a href="https://github.com/codingXiaxw/leetcode/blob/master/algorithms/Java/reverse.java" target="_blank" rel="external">Java</a></td>
+<td>easy</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="https://leetcode.com/problems/palindrome-number/" target="_blank" rel="external">Palindrome Number</a></td>
+<td><a href="https://github.com/codingXiaxw/leetcode/blob/master/algorithms/Java/palindromeNumber.java" target="_blank" rel="external">Java</a></td>
+<td>easy</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="">Roman to Integer</a></td>
+<td><a href="https://github.com/codingXiaxw/leetcode/blob/master/algorithms/Java/romanToInteger.java" target="_blank" rel="external">Java</a></td>
+<td>easy</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="https://leetcode.com/problems/longest-common-prefix/" target="_blank" rel="external">Longest Common Prefix</a></td>
+<td><a href="https://github.com/codingXiaxw/leetcode/blob/master/algorithms/Java/longestCommonPrefix.java" target="_blank" rel="external">Java</a></td>
+<td>easy</td>
+</tr>
+<tr>
+<td>20</td>
+<td><a href="https://leetcode.com/problems/valid-parentheses/" target="_blank" rel="external">Valid Parentheses</a></td>
+<td><a href="https://github.com/codingXiaxw/leetcode/blob/master/algorithms/Java/validParentheses.java" target="_blank" rel="external">Java</a></td>
+<td>easy</td>
+</tr>
+<tr>
+<td>21</td>
+<td>＊<a href="">Merge Two Sorted Lists</a></td>
+<td><a href="https://github.com/codingXiaxw/leetcode/blob/master/algorithms/Java/mergeTwoSortedLists.java" target="_blank" rel="external">Java</a></td>
+<td>easy</td>
+</tr>
+<tr>
+<td>26</td>
+<td><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="external">Remove Duplicates from Sorted Array</a></td>
+<td><a href="https://github.com/codingXiaxw/leetcode/blob/master/algorithms/Java/removeDuplicatesFromSortedArray.java" target="_blank" rel="external">Java</a></td>
+<td>easy</td>
+</tr>
+<tr>
+<td>27</td>
+<td><a href="https://leetcode.com/problems/remove-element/" target="_blank" rel="external">Remove Element</a></td>
+<td><a href="https://github.com/codingXiaxw/leetcode/blob/master/algorithms/Java/removeElement.java" target="_blank" rel="external">Java</a></td>
+<td>easy</td>
+</tr>
+<tr>
+<td>28</td>
+<td><a href="">Implement strStr()</a></td>
+<td><a href="https://github.com/codingXiaxw/leetcode/blob/master/algorithms/Java/implementStrStr.java" target="_blank" rel="external">Java</a></td>
+<td>easy</td>
+</tr>
+<tr>
+<td>35</td>
+<td><a href="https://leetcode.com/problems/search-insert-position/" target="_blank" rel="external">Search Insert Position</a></td>
+<td><a href="https://github.com/codingXiaxw/leetcode/blob/master/algorithms/Java/searchInsertPosition.java" target="_blank" rel="external">Java</a></td>
+<td>easy</td>
+</tr>
+<tr>
+<td>38</td>
+<td>＊<a href="https://leetcode.com/problems/count-and-say/" target="_blank" rel="external">Count and Say</a></td>
+<td><a href="https://github.com/codingXiaxw/leetcode/blob/master/algorithms/Java/countAndSay.java" target="_blank" rel="external">Java</a></td>
+<td>easy</td>
+</tr>
+</tbody>
+</table>
+<p>是不是很6？hhh,2016悄然过去，相信小伙伴们在反思过去的同时也一定成长了不少，新的一年，希望大家带着以往的梦想，继续前进!</p>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://od2xrf8gr.bkt.clouddn.com/61591357B4886B1E1F949CBB68322C34.jpg" alt="codingXiaxw WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag">#leetcode</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/14/66-leetcode-find/" rel="next" title="『 LeetCode 』LeetCode之旅——查找算法">
+                <i class="fa fa-chevron-left"></i> 『 LeetCode 』LeetCode之旅——查找算法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/06/67-follow-me-in-leetcode/"
+           data-title="跟我一起刷LeetCode(持续更新)" data-url="http://codingxiaxw.cn/2017/02/06/67-follow-me-in-leetcode/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://od2xrf8gr.bkt.clouddn.com/%E5%A4%B4%E5%83%8F.jpg"
+               alt="codingXiaxw" />
+          <p class="site-author-name" itemprop="name">codingXiaxw</p>
+          <p class="site-description motion-element" itemprop="description">Life is short,just coding.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">61</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/codingXiaxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5023661572?from=hissimilar_home&refer_flag=1005050003_" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com//people/e9f78fa34b8002652811ac348da3f671" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要刷题"><span class="nav-number">1.</span> <span class="nav-text">为什么要刷题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何合理利用LeetCode"><span class="nav-number">2.</span> <span class="nav-text">如何合理利用LeetCode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LeetCode-Algorithm"><span class="nav-number">3.</span> <span class="nav-text">LeetCode Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">4.</span> <span class="nav-text">联系</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">codingXiaxw</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codingXiaxw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("G9m3Gnu7lbpyUM0MJAyJFK9g-gzGzoHsz", "E72YIgigcKXLV4XC5x7GgYDt");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
