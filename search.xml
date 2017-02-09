@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[浅谈LeetCode]]></title>
+      <title><![CDATA[LeetCode浅谈]]></title>
       <url>http://codingxiaxw.cn/2017/02/06/67-follow-me-in-leetcode/</url>
       <content type="html"><![CDATA[<p>许久没更了，新的一年我也将更新我2017的第一篇博客。趁新年放假之际，我又重新将<a href="https://leetcode.com/" target="_blank" rel="external">LeetCode</a>上面的题目刷了一遍，不同于之前的是，这次我详细记录了自己刷题时候的感想心得、被系统accept的答案、自己的思路以及错题反思以供大家参考。<a id="more"></a>为了让大家跟我一个步伐，所以我从难易程度为easy的题目再一次刷起，希望算法能力有所提高的小伙伴来跟我一起同步再刷一次LeetCode吧！</p>
 <p>所做过的题目答案已上传到我的Github, <a href="https://github.com/codingXiaxw/leetcode" target="_blank" rel="external">Click here!</a>  需要收藏的不妨star一下吧。 <!--为了追赶上潮流，github中的README.md采用全英文书写，以后的README.md估计都采用全英文了吧，希望小伙伴们能跟着我一起提高品味hhh。  --></p>
@@ -180,7 +180,7 @@
     <entry>
       <title><![CDATA[『 LeetCode 』LeetCode之旅——查找算法]]></title>
       <url>http://codingxiaxw.cn/2017/01/14/66-leetcode-find/</url>
-      <content type="html"><![CDATA[<p>上周写了一篇有关排序的几种算法实现，有排序当然就有查找咯，所以本篇文章对我们常用的几种查找算法进行介绍。源码请参见<a href="https://github.com/codingXiaxw/leetcode" target="_blank" rel="external">我的github。</a>，欢迎star和fork。<a id="more"></a></p>
+      <content type="html"><![CDATA[<p>上周写了一篇有关排序的几种算法实现，有排序当然就有查找咯，所以本篇文章对我们常用的几种查找算法进行介绍。源码请参见<a href="https://github.com/codingXiaxw/leetcode" target="_blank" rel="external">我的github</a>，欢迎star和fork。<a id="more"></a></p>
 <h2 id="关于查找，你必须要知道的一些概念"><a href="#关于查找，你必须要知道的一些概念" class="headerlink" title="关于查找，你必须要知道的一些概念"></a>关于查找，你必须要知道的一些概念</h2><p>查找是在大量的信息中寻找一个特定的信息元素，在计算机应用中，查找是常用的基本运算，例如编译程序中符号表的查找。本文简单概括性的介绍了常见的七种查找算法，说是七种，其实二分查找、插值查找以及斐波那契查找都可以归为一类——插值查找。插值查找和斐波那契查找是在二分查找的基础上的优化查找算法。  </p>
 <p><strong>查找定义：</strong>根据给定的某个值，在查找表中确定一个其关键字等于给定值的数据元素（或记录）。  </p>
 <p><strong>查找算法分类：</strong></p>
@@ -923,7 +923,8 @@
 <p><code>hadoop fs -mkdir 文件夹路径/文件夹名</code>:在远程主机上创建文件夹</p>
 <h2 id="zsh篇"><a href="#zsh篇" class="headerlink" title="zsh篇"></a>zsh篇</h2><p>输入:<code>cat /etc/shells</code>查看当前系统有几种shell。<br>启动iTerm 2 默认使用bash改用zsh解决方法:<code>chsh -s /bin/zsh</code>，当然这个命令中的<code>/bin/zsh</code>要跟<code>/etc/shells</code>文件中的zsh的路径一致<br>查看当前zsh版本:<code>zsh --version</code>或者 <code>echo $ZSH_VERSION</code>  </p>
 <h2 id="Linux篇"><a href="#Linux篇" class="headerlink" title="Linux篇"></a>Linux篇</h2><p>大家都知道mac OSX系统的前身是Linux(到底是不是的????)，所以在mac上运行linux命令是必不可少啦。我常用到的Linux命令有:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">cd   //切换到根目录下</span><br><span class="line">cd 文件名A  //切换到文件A目录下</span><br><span class="line">cd .. //退回到上一目录</span><br><span class="line">cd ./文件A   //切换到当前目录下的A目录下</span><br><span class="line"></span><br><span class="line">ls  //列出当前文件夹下所有文件(不包括隐藏文件)</span><br><span class="line">ls -a  //列出当前文件夹下所有文件(包括隐藏文件)</span><br><span class="line">ls -l //列出长数据串，包含文件的属性与权限数据等</span><br><span class="line">ls -al  //列出长数据串，包含文件的属性与权限数据等</span><br><span class="line"></span><br><span class="line">mv A文件所在路径 B路径/  //将文件A从A文件所在路径下移动到B路径下</span><br><span class="line">mv A文件所在路径 B路径/C文件名  //将文件A从A文件所在路径下移动到B路径下并改名为C</span><br><span class="line">mv ./A文件名 ./B文件名  //将文件A的文件名改为B文件名</span><br><span class="line">mv既可以移动文件／目录、又可以改名文件／目录</span><br><span class="line"></span><br><span class="line">cp A文件 B文件  //将A文件拷贝一份并以B文件名命名</span><br><span class="line"></span><br><span class="line">mkdir 目录   //创建目录</span><br><span class="line">mkdir -p 目录1/目录2/目录3  //一次性创建这些目录</span><br><span class="line">rmdir 目录  //删除一个空目录</span><br><span class="line">rmdir -r 目录   //删除目录下所有文件及该目录(递归删除)</span><br><span class="line">rm 文件  //删除该文件</span><br><span class="line">rm -r 目录  //递归删除该目录下所有文件及该目录</span><br><span class="line">pwd   //显示目前的目录</span><br><span class="line">touch  文件  // 创建文件</span><br><span class="line"></span><br><span class="line">whereis／find 文件名     //搜索该文件名的完整目录</span><br></pre></td></tr></table></figure></p>
-<p>解压.tgz压缩文件到当前目录:<code>tar -zfx 文件名.tgz</code>或者是:<code>tar zxvf 文件名.tgz</code><br>解压.tgz压缩文件到目标目录:<code>tar 文件名.tgz -C 目标路径</code></p>
+<p>linux删除目录很简单，很多人还是习惯用<code>rmdir</code>，不过一旦目录非空，就陷入深深的苦恼之中，现在使用<code>rm -rf</code>命令即可。<br>直接rm就可以了，不过要加两个参数-rf 即：<code>rm -rf 目录名字</code><br>-r 就是向下递归，不管有多少级目录，一并删除<br>-f 就是直接强行删除，不作任何提示的意思</p>
+<p>解压.tgz压缩文件到当前目录:<code>tar -zfx 文件名.tgz</code>或者是:<code>tar (-)zxvf 文件名.tgz</code><br>解压.tgz压缩文件到目标目录:<code>tar 文件名.tgz -C 目标路径</code></p>
 <p>显示日历:<code>cal [year]</code>或者:<code>cal [month][year]</code>  </p>
 <p>显示时间:<code>date</code></p>
 <p>显示当前终端的语言:<code>locale</code><br>更改当前终端的语言:<code>LANG=en_US.utf8</code>，修改成中文的:<code>LANG=zh_CN.utf8</code>  </p>
@@ -934,9 +935,10 @@
 <p>对于上述命令，若是在只有管理员才能权限操作的文件下，需要在命令前面加上<code>sudo</code> 关键字获取管理员权限然后才能对文件进行更改。</p>
 <p><code>alias</code>，显示系统的所有别名设置</p>
 <p><code>alias 别名=&#39;原来的命令&#39;</code>，进行别名的设置<br><code>unalias 别名</code>，移除别名</p>
-<p><code>ifconfig</code>,mac下查看本机ip地址。<br><code>ipconfig</code>,windows下查看本机ip地址。<br><code>ping 同局域网下另一台机器ip</code>,和同局域网下另一台机器通信。  </p>
+<p><code>ifconfig</code>,mac或者linux系统下查看本机ip地址。<br><code>ipconfig</code>,windows下查看本机ip地址。<br><code>ping 同局域网下另一台机器ip</code>,和同局域网下另一台机器通信。  </p>
 <p><code>passwd (机器用户名)</code>,修改本机(或者另外一台机器)登陆密码。<br><code>passwd -d (机器用户名)</code>,删除本机(或者另外一台机器)登陆密码。</p>
 <p><code>su -</code>,从普通用户切换到root用户。<br><code>exit</code>，从root用户切换到普通用户。</p>
+<p>使用<code>wget</code>命令直接通过命令行从网站下载文件时钥匙出现<code>--no-check-certificate</code>的报错，只需要在wget后面加上<code>--no-check-certificate</code>就可以，即需要一个认证下载指令而已。</p>
 <p>上述Linux命令大家只是看的话估计没有什么效果，照着我的笔记敲效果也很低下，建议买一本&lt;&lt;鸟叔的Linux私房菜&gt;&gt;去学习Linux及其相关命令,博主目前也在恶补学习…</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>博主目前使用到相关软件的命令就这么多，以后用到又觉得比较重要的我会经常更新的，希望对你有所帮助吧。  </p>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
