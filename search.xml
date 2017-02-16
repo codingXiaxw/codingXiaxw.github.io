@@ -5574,7 +5574,7 @@ if(stu!=null) out.println(stu.getName());
 <li>Constructor类：代表类的构造方法。</li>
 <li>Array类：提供了动态创建数组，以及访问数组的元素的静态方法。  </li>
 </ul>
-<h3 id="获得Class对象"><a href="#获得Class对象" class="headerlink" title="获得Class对象"></a>获得Class对象</h3><p>Java中每个类被加载之后，系统就会为该类声称一个对应的Class对象，通过该Class对象就可以访问到JVM中的这个类。在Java程序中获得Class对象通常有如下三种方式。  </p>
+<h3 id="获得Class对象"><a href="#获得Class对象" class="headerlink" title="获得Class对象"></a>获得Class对象</h3><p>Java中每个类被加载之后，系统就会为该类生成一个对应的Class对象，通过该Class对象就可以访问到JVM中的这个类。在Java程序中获得Class对象通常有如下三种方式。  </p>
 <ul>
 <li><p>1.使用Class类的forName(String clazzName)静态方法。该方法需要传入字符串参数，该字符串参数的值是某个类的全限定类名(必须包括完整包名)。  </p>
 <blockquote>
