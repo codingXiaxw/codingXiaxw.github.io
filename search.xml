@@ -888,6 +888,7 @@
 <p>运行maven项目用到一个tamcat插件时或者一个普通web项目启动tomcat时常遇到端口被占用的问题，输入<code>lsof -i:占用端口号</code>，这个命令可以帮助你看到电脑上哪些程序正在占用这个端口号。然后输入<code>kill -9:PID</code>，将占用该端口号的程序杀死即可重新启动tomcat。  </p>
 <p>查看Java版本，在命令行输入:<code>java -version</code></p>
 <p>查看JAVA_HOME环境变量配置的路径:<code>echo $JAVA_HOME</code><br>查看SCALA_HOME(scala语言的环境变量)配置路径:<code>echo $SCALA_HOME</code><br>查看ant环境变量路径:<code>echo $ANT_HOME</code><br>查看系统环境变量:<code>echo $PATH</code></p>
+<h2 id="Redis篇"><a href="#Redis篇" class="headerlink" title="Redis篇"></a>Redis篇</h2><p><code>redis-server</code>:在本地启动redis服务器<br><code>redis-cli</code>:进入redis命令环境，接下来便可以通过redis命令来操作本地redis服务器了<br><code>dbsize</code>:查看redis服务器中存储数据的大小<br><code>keys *</code>:查看redis服务器中存储的数据</p>
 <h2 id="Homebrew篇"><a href="#Homebrew篇" class="headerlink" title="Homebrew篇"></a>Homebrew篇</h2><p>相信很多的人都没有听说过Homebrew吧，我也是刚刚接触。这里先给大家讲讲Homebrew的由来，Homebrew是用来干嘛的?  </p>
 <p>Mac OS X是基于Unix的操作系统，可以安装大部分为Unix/Linux开发的软件。然而，如果只是以使用为目的，对每个软件都进行手工编译不是很方便，也不利于管理已安装的软件，于是出现了类似于Linux中APT、Yum等类似的软件包管理系统，其中最著名的有MacPorts、Fink、Homebrew等。  </p>
 <p>Homebrew的原则是:它尽可能地利用系统自带的各种库，使得软件包的编译时间大为缩短；同时由于几乎不会造成冗余，软件包的管理也清晰、灵活了许多。Homebrew的另一个特点是使用Ruby定义软件包安装配置（叫做formula），定制非常简单。MacPorts、Fink大家自行了解，以上进行了Homebrew的相关知识介绍，下面介绍Homebrew的常用命令。  </p>
@@ -4169,8 +4170,10 @@ public void sessionDidActivate(HttpSessionEvent se):当对象感知被钝化时�
 <li>domain</li>
 </ul>
 <p><strong>3.建表</strong>  </p>
-<p>很多人问我源码怎么没有附上sql语句，我想有必要今天更新一下，因为数据库中的表就是一张用户信息表啊，这么简单我还上传个啥的sql语句脚本呢?看下面的效果图就知道表的字段无非:id(主键，自增长属性)、name、sex、birthday、telephone、mail、description这几个咯，直接在控制台(或者第三方数据库建表工具，我mac上用的就是MySQL Workbench)创建这样包含这些字段的一张表就好咯。  </p>
+<p>很多人问我源码怎么没有附上sql语句，我想有必要今天更新一下，因为数据库中的表就是一张用户信息表啊，这么简单我还上传个啥的sql语句脚本呢?看下面的效果图就知道表的字段无非:id(主键，自增长属性)、name、gender、phone、email、description这几个咯，直接在控制台(或者第三方数据库建表工具，我mac上用的就是MySQL Workbench)创建这样包含这些字段的一张表就好咯。  </p>
 <p>至于如何在表中添加数据，你可以将我的代码在你的电脑上面跑起来之后直接点击”添加客户”就可以在你数据库中的用户表中查到相应的用户信息咯。还有一种方法就是利用sql语句的<code>insert</code>语法自己在控制台中手动插入数据咯。  </p>
+<p><strong>2017.02.17更:</strong>好吧，已经有太多的小伙伴让我给出sql语句了，想着为了减轻你们的负担我还是把sql语句给出来吧。这是我这个项目涉及到表的表结构，如下图,别告诉我把表结构都给你了你还写不出来它的sql语句…  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-17%20%E4%B8%8B%E5%8D%885.29.45.png" alt=""></p>
 <h2 id="3-搭建环境"><a href="#3-搭建环境" class="headerlink" title="3.搭建环境"></a>3.搭建环境</h2><p>IntelliJ IDEA  +  MySQL</p>
 <h2 id="4-使用方法"><a href="#4-使用方法" class="headerlink" title="4.使用方法"></a>4.使用方法</h2><p>1.git clone <a href="https://github.com/codingXiaxw/CustomerManagement.git" target="_blank" rel="external">https://github.com/codingXiaxw/CustomerManagement.git</a>  </p>
 <p>2.使用IntelliJ IDEA导入该项目然后运行tomcat，在浏览器中输入:<code>http://localhost:8080/项目名/页面.jsp</code>即可。  </p>

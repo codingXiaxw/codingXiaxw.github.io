@@ -98,6 +98,7 @@
 查询客户:查询数据库中所有的客户，查询结果将客户信息以列表的形式给出，可以对列表中的客户信息进行编辑及删除
 高级搜索:多条件组合在数据库中进行客户信息的查询，搜索结果以列表的形式给出，可以对列表中的客户信息进行编辑及删除
 10月30日更:新增分页功能，逻辑性很强，具体逻辑请参照源码中相应代码。">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-17%20%E4%B8%8B%E5%8D%885.29.45.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-10%20%E4%B8%8A%E5%8D%8811.25.46.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-10%20%E4%B8%8A%E5%8D%8811.27.56.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/tianjia.png">
@@ -105,7 +106,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/bianji.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/sousuo.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/fenye.png">
-<meta property="og:updated_time" content="2017-01-05T14:20:22.000Z">
+<meta property="og:updated_time" content="2017-02-17T09:34:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb项目之客户管理系统">
 <meta name="twitter:description" content="1.项目介绍1.1功能介绍
@@ -113,7 +114,7 @@
 查询客户:查询数据库中所有的客户，查询结果将客户信息以列表的形式给出，可以对列表中的客户信息进行编辑及删除
 高级搜索:多条件组合在数据库中进行客户信息的查询，搜索结果以列表的形式给出，可以对列表中的客户信息进行编辑及删除
 10月30日更:新增分页功能，逻辑性很强，具体逻辑请参照源码中相应代码。">
-<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-10%20%E4%B8%8A%E5%8D%8811.25.46.png">
+<meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-17%20%E4%B8%8B%E5%8D%885.29.45.png">
 
 
 
@@ -402,8 +403,10 @@
 <li>domain</li>
 </ul>
 <p><strong>3.建表</strong>  </p>
-<p>很多人问我源码怎么没有附上sql语句，我想有必要今天更新一下，因为数据库中的表就是一张用户信息表啊，这么简单我还上传个啥的sql语句脚本呢?看下面的效果图就知道表的字段无非:id(主键，自增长属性)、name、sex、birthday、telephone、mail、description这几个咯，直接在控制台(或者第三方数据库建表工具，我mac上用的就是MySQL Workbench)创建这样包含这些字段的一张表就好咯。  </p>
+<p>很多人问我源码怎么没有附上sql语句，我想有必要今天更新一下，因为数据库中的表就是一张用户信息表啊，这么简单我还上传个啥的sql语句脚本呢?看下面的效果图就知道表的字段无非:id(主键，自增长属性)、name、gender、phone、email、description这几个咯，直接在控制台(或者第三方数据库建表工具，我mac上用的就是MySQL Workbench)创建这样包含这些字段的一张表就好咯。  </p>
 <p>至于如何在表中添加数据，你可以将我的代码在你的电脑上面跑起来之后直接点击”添加客户”就可以在你数据库中的用户表中查到相应的用户信息咯。还有一种方法就是利用sql语句的<code>insert</code>语法自己在控制台中手动插入数据咯。  </p>
+<p><strong>2017.02.17更:</strong>好吧，已经有太多的小伙伴让我给出sql语句了，想着为了减轻你们的负担我还是把sql语句给出来吧。这是我这个项目涉及到表的表结构，如下图,别告诉我把表结构都给你了你还写不出来它的sql语句…  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-17%20%E4%B8%8B%E5%8D%885.29.45.png" alt=""></p>
 <h2 id="3-搭建环境"><a href="#3-搭建环境" class="headerlink" title="3.搭建环境"></a>3.搭建环境</h2><p>IntelliJ IDEA  +  MySQL</p>
 <h2 id="4-使用方法"><a href="#4-使用方法" class="headerlink" title="4.使用方法"></a>4.使用方法</h2><p>1.git clone <a href="https://github.com/codingXiaxw/CustomerManagement.git" target="_blank" rel="external">https://github.com/codingXiaxw/CustomerManagement.git</a>  </p>
 <p>2.使用IntelliJ IDEA导入该项目然后运行tomcat，在浏览器中输入:<code>http://localhost:8080/项目名/页面.jsp</code>即可。  </p>
