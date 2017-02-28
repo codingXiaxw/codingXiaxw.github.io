@@ -91,7 +91,18 @@
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="客户端向服务器发送请求，若服务器每次响应过来的结果都要重新加载整个界面的话这样会给服务器带来很大的压力。所以ajax出现了，它是在不重新加载整个页面的情况下与服务器交换数据并更新部分网页的技术，是一种使用现有标准的新方法。">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ajax.png">
-<meta property="og:updated_time" content="2016-11-02T15:07:37.000Z">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/province.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/city.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/cityservlet.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/provinceservlet.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/provincedao.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ajax1.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ajax2.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ajax3.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/city2.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/province2.png">
+<meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/jiemian.png">
+<meta property="og:updated_time" content="2017-02-28T08:05:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="玩转AJAX">
 <meta name="twitter:description" content="客户端向服务器发送请求，若服务器每次响应过来的结果都要重新加载整个界面的话这样会给服务器带来很大的压力。所以ajax出现了，它是在不重新加载整个页面的情况下与服务器交换数据并更新部分网页的技术，是一种使用现有标准的新方法。">
@@ -386,27 +397,11 @@
 </ul>
 </li>
 </ul>
-<h2 id="如何使用ajax来发送异步请求"><a href="#如何使用ajax来发送异步请求" class="headerlink" title="如何使用ajax来发送异步请求"></a>如何使用ajax来发送异步请求</h2><h3 id="第一步-首先要得到XMLHttpRequest"><a href="#第一步-首先要得到XMLHttpRequest" class="headerlink" title="第一步(首先要得到XMLHttpRequest)"></a>第一步(首先要得到XMLHttpRequest)</h3><p>大多数浏览器都只是得到该对象的方法为:var xmlHttp=new XMLHttpRequest();  </p>
-<p>IE6.0得到的方法为:var xmlHttp = new ActiveXObject(“Msxml2.XMLHTTP”);  </p>
-<p>IE5.0以及更早版本的IE:var xmlHttp=new ActiveXObject(“Microsoft.XMLHTTP”);</p>
-<p>在\<script>中编写创建XMLHttpRequest对象的函数:  </p>
-<pre><code>function createXMLHttpRequest(){
-        try{
-            return new XMLHttpRequest();
-        }catch(e){
-            try{
-                return new ActiveXObject(“Msxml2.XMLHTTP”);
-            }catch(e){
-                try{
-                    return new ActiveXObject(“Microsoft.XMLHTTP”);
-                }catch(e){
-                    alert(“哥们，你用的是什么浏览器啊”);
-                    throw e;
-                }
-            }
-        }
-    }
-</code></pre><h3 id="第二步-打开与服务器的连接"><a href="#第二步-打开与服务器的连接" class="headerlink" title="第二步(打开与服务器的连接)"></a>第二步(打开与服务器的连接)</h3><p>xmlHttp.open(“”,””,boolean):用来打开与服务器的连接，它需要三个参数。1.请求参数，可以是get可以是post。2.请求的url:指定服务器端资源。3.请求是否异步，如果为true表示发送异步请求，否则发送同步请求。例如xmlHttp.open(“GET”,”项目名称/AServlet”,true);</p>
+<h2 id="如何使用ajax来发送异步请求"><a href="#如何使用ajax来发送异步请求" class="headerlink" title="如何使用ajax来发送异步请求"></a>如何使用ajax来发送异步请求</h2><h3 id="第一步-首先要得到XMLHttpRequest"><a href="#第一步-首先要得到XMLHttpRequest" class="headerlink" title="第一步(首先要得到XMLHttpRequest)"></a>第一步(首先要得到XMLHttpRequest)</h3><p>大多数浏览器都只是得到该对象的方法为:<code>var xmlHttp=new XMLHttpRequest();</code>  </p>
+<p>IE6.0得到的方法为:<code>var xmlHttp = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);</code>  </p>
+<p>IE5.0以及更早版本的IE:<code>var xmlHttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</code></p>
+<p>在<code>&lt;script&gt;</code>中编写创建XMLHttpRequest对象的函数:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createXMLHttpRequest</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">		&#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">			<span class="keyword">try</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(“Msxml2.XMLHTTP”);</span><br><span class="line">			&#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">				<span class="keyword">try</span>&#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(“Microsoft.XMLHTTP”);</span><br><span class="line">				&#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">					alert(“哥们，你用的是什么浏览器啊”);</span><br><span class="line">					<span class="keyword">throw</span> e;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="第二步-打开与服务器的连接"><a href="#第二步-打开与服务器的连接" class="headerlink" title="第二步(打开与服务器的连接)"></a>第二步(打开与服务器的连接)</h3><p><code>xmlHttp.open(&quot;&quot;,&quot;&quot;,boolean):</code>用来打开与服务器的连接，它需要三个参数。1.请求参数，可以是get可以是post。2.请求的url:指定服务器端资源。3.请求是否异步，如果为true表示发送异步请求，否则发送同步请求。例如xmlHttp.open(“GET”,”项目名称/AServlet”,true);</p>
 <h3 id="第三步-发送请求"><a href="#第三步-发送请求" class="headerlink" title="第三步(发送请求)"></a>第三步(发送请求)</h3><p>xmlHttp.send(参数):参数为请求体内容。如果请求方式是get，则参数为null(不可以省略null)，因为get请求方式的请求体为空;如果请求方式为post，则参数为请求体，另外还需要在此方法前面增加一个<code>mlHttp.setRequestHeader(“Content-Type”,”application/x-www-form-urlencoded”);</code>设置请求头的方法。</p>
 <h3 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h3><p>给xmlHttp对象注册onreadystatechange监听器，这个方法用于接收从服务器发送过来的响应数据。 在该方法中需要做以下步骤: </p>
 <p>1.获取xmlHttp对象的状态，xmlHttp对象一共有5个状态:  </p>
@@ -421,18 +416,12 @@
 <p>2.得到服务器响应的状态码:通过调用xmlHttp.status得到，例如200，404，500。  </p>
 <p>3.得到服务器响应的内容，由于服务器返回的类型不同，所以得到的内容类型也不同，以下3种类型采用3种方法得到: </p>
 <ul>
-<li>var content=xmlHttp.responseText;//服务器返回的文本为text。</li>
-<li>var content=xmlHttp.responseXML;//服务器响应的文本为xml内容。xmlHttp会自动对xml文本进行解析，得到的content为document对象。</li>
-<li>var content=eval(“(“+xmlHttp.responsetext+”)”);//服务器返回的文本为json数据。  </li>
+<li><code>var content=xmlHttp.responseText;</code>//服务器返回的文本为text。</li>
+<li><code>var content=xmlHttp.responseXML;</code>//服务器响应的文本为xml内容。xmlHttp会自动对xml文本进行解析，得到的content为document对象。</li>
+<li><code>var content=eval(&quot;(&quot;+xmlHttp.responsetext+&quot;)&quot;);</code>//服务器返回的文本为json数据。  </li>
 </ul>
-<p>完成第四步我们需要写的完整代码为:</p>
-<pre><code>xmlHttp.onreadystatechange=function(){//xmlHttp的5种状态都会调用本方法
-    if(xmlHttp.readState==4&amp;&amp;xmlHttp.status==200){//双重判断:判断是否为4状态，而且还要判断是否为200
-        //获取服务器的响应内容
-        var content=xmlHttp.responseText;//或var content= xmlHttp.responseXML;
-    }
-} 
-</code></pre><h2 id="案例-省市联动"><a href="#案例-省市联动" class="headerlink" title="案例:省市联动"></a>案例:省市联动</h2><p>说明，该案例就是在网页上显示两个下拉列表，一个列表用于显示中国所有的省份，一个列表用于显示相应省份下的城市，当然这些数据是存在数据库中的，为了方便展示，我只在数据库中列举了两个省份和部分城市。</p>
+<p>完成第四步我们需要写的完整代码为:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xmlHttp.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//xmlHttp的5种状态都会调用本方法</span></span><br><span class="line">	<span class="keyword">if</span>(xmlHttp.readState==<span class="number">4</span>&amp;&amp;xmlHttp.status==<span class="number">200</span>)&#123;<span class="comment">//双重判断:判断是否为4状态，而且还要判断是否为200</span></span><br><span class="line">		<span class="comment">//获取服务器的响应内容</span></span><br><span class="line">		<span class="keyword">var</span> content=xmlHttp.responseText;<span class="comment">//或var content= xmlHttp.responseXML;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="案例-省市联动"><a href="#案例-省市联动" class="headerlink" title="案例:省市联动"></a>案例:省市联动</h2><p>说明，该案例就是在网页上显示两个下拉列表，一个列表用于显示中国所有的省份，一个列表用于显示相应省份下的城市，当然这些数据是存在数据库中的，为了方便展示，我只在数据库中列举了两个省份和部分城市。</p>
 <p>domain包下的city.java和province.java代码如下:   </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/province.png" alt=""><br><img src="http://od2xrf8gr.bkt.clouddn.com/city.png" alt=""></p>
 <p>servlet包下的CityServlet.java与ProvinceServlet.java，用于向客户端发送响应数据代码如下:   </p>
@@ -450,13 +439,13 @@
 <ul>
 <li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>
-<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_">Weibo@codingXiaxw</a></p>
+<li><p><a href="http://weibo.com/u/5023661572?from=hissimilar_home&amp;refer_flag=1005050003_" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
 </li>
-<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671">Zhihu@codingXiaxw</a>  </p>
+<li><p><a href="http://www.zhihu.com/people/e9f78fa34b8002652811ac348da3f671" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
 </li>
-<li><a href="https://github.com/codingXiaxw">Github@codingXiaxw</a></li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
 </ul>
-</script></p>
+
       
     </div>
 
@@ -660,7 +649,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX是什么"><span class="nav-number">1.</span> <span class="nav-text">AJAX是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器向客户端返回的数据类型"><span class="nav-number">2.</span> <span class="nav-text">服务器向客户端返回的数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解同步交互和异步交互"><span class="nav-number">3.</span> <span class="nav-text">理解同步交互和异步交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax常见应用情景"><span class="nav-number">4.</span> <span class="nav-text">ajax常见应用情景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax的优缺点"><span class="nav-number">5.</span> <span class="nav-text">ajax的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用ajax来发送异步请求"><span class="nav-number">6.</span> <span class="nav-text">如何使用ajax来发送异步请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步-首先要得到XMLHttpRequest"><span class="nav-number">6.1.</span> <span class="nav-text">第一步(首先要得到XMLHttpRequest)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX是什么"><span class="nav-number">1.</span> <span class="nav-text">AJAX是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器向客户端返回的数据类型"><span class="nav-number">2.</span> <span class="nav-text">服务器向客户端返回的数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解同步交互和异步交互"><span class="nav-number">3.</span> <span class="nav-text">理解同步交互和异步交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax常见应用情景"><span class="nav-number">4.</span> <span class="nav-text">ajax常见应用情景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax的优缺点"><span class="nav-number">5.</span> <span class="nav-text">ajax的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用ajax来发送异步请求"><span class="nav-number">6.</span> <span class="nav-text">如何使用ajax来发送异步请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步-首先要得到XMLHttpRequest"><span class="nav-number">6.1.</span> <span class="nav-text">第一步(首先要得到XMLHttpRequest)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步-打开与服务器的连接"><span class="nav-number">6.2.</span> <span class="nav-text">第二步(打开与服务器的连接)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步-发送请求"><span class="nav-number">6.3.</span> <span class="nav-text">第三步(发送请求)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步"><span class="nav-number">6.4.</span> <span class="nav-text">第四步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例-省市联动"><span class="nav-number">7.</span> <span class="nav-text">案例:省市联动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">8.</span> <span class="nav-text">联系</span></a></li></ol></div>
             
           </div>
         </section>
