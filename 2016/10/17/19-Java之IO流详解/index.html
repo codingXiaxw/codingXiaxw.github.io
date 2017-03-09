@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://codingxiaxw.cn/2016/10/17/19-Java之IO流详解/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序的运行结果等。在Java中，将这种通过不同输入输出设备(键盘，内存，显示器，网络等)之间的数据传输抽象表述为”流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的”流”都位于java.io包中，称为IO(输入输出)流。">
-<meta property="og:updated_time" content="2017-02-06T01:03:09.000Z">
+<meta property="og:updated_time" content="2017-03-08T05:30:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java之IO流详解">
 <meta name="twitter:description" content="大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序的运行结果等。在Java中，将这种通过不同输入输出设备(键盘，内存，显示器，网络等)之间的数据传输抽象表述为”流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的”流”都位于java.io包中，称为IO(输入输出)流。">
@@ -365,20 +365,8 @@
 <li>void close();关闭此输入流并释放与该流关联的所有系统资源。</li>
 </ul>
 <p>前三个read()方法都是用来读数据的，其中，第一个read()方法是从输入流中逐个读入字节，而第二个和第三个read()方法则将若干字节以字节数组的形式一次性读入，从而提高读数据的效率。在进行IO流操作时，当前IO流会占用一定的内存，由于系统资源宝贵，因此，在IO流操作结束后，应该调用close()方法关闭流，从而释放当前IO流所占的系统资源。 </p>
-<p><strong>Demo:读取文件text.txt中的内容</strong>  </p>
-<pre><code>import java.io.*;
-public class Example{
-    public static void main(String[] args){
-        FileInputStream in=new FileInputStream(&quot;text.txt&quot;);
-        int b;//定义一个int类型的变量，记住每次读取的一个字节。
-        while((b=in.read())!=-1)
-        {
-            System.out.prinln(b);//逐个打印出读取的每一个字节
-        }
-        in.close();
-    }
-}
-</code></pre><h3 id="1-3字节输出流-OutputStream"><a href="#1-3字节输出流-OutputStream" class="headerlink" title="1.3字节输出流(OutputStream)"></a>1.3字节输出流(OutputStream)</h3><p><strong>常用方法:</strong>  </p>
+<p><strong>Demo:读取文件text.txt中的内容</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		FileInputStream in=<span class="keyword">new</span> FileInputStream(<span class="string">"text.txt"</span>);</span><br><span class="line">		<span class="keyword">int</span> b;<span class="comment">//定义一个int类型的变量，记住每次读取的一个字节。</span></span><br><span class="line">		<span class="keyword">while</span>((b=in.read())!=-<span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.prinln(b);<span class="comment">//逐个打印出读取的每一个字节</span></span><br><span class="line">		&#125;</span><br><span class="line">		in.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="1-3字节输出流-OutputStream"><a href="#1-3字节输出流-OutputStream" class="headerlink" title="1.3字节输出流(OutputStream)"></a>1.3字节输出流(OutputStream)</h3><p><strong>常用方法:</strong>  </p>
 <ul>
 <li>void write(int b);向输出流写入一个字节。</li>
 <li>void write(byte[] b);把参数b指定的字节数组的所有字节写到输出流。</li>
@@ -388,208 +376,24 @@ public class Example{
 </ul>
 <p>前三个是重载的write()方法，都是用于向输出流写入字节，其中，第一个方法逐个写入字节，后两个方法是将若干个字节以字节数组的形式一次性写入，从而提高写数据的效率。flush()方法用来将当前输出流缓冲区(通常是字节数组)中的数据强制写入目标设备，此过程称为刷新。close()方法是用来关闭流并释放与当前IO流相关的系统资源。  </p>
 <p><strong>Demo:将字符串(首先要将字符串转换为字节)写入到文件中</strong>  </p>
-<pre><code>import java.io.*;
-public class Example{
-    public static void main(String[] args){
-        FileOutputStream out=new FileOutputStream(目标文件的路径);
-        String str=&quot;hello world&quot;;
-        byte[] b=str.getBytes();//字符串调用getBytes()方法即可转换成字节数组。
-        for(int i=0;i&lt;b.length;i++)
-        {
-            out.write(b[i]);
-        }
-        out.close();
-    }
-}
-</code></pre><p>InputStream和OutputStream这两个类虽然提供了一系列和读写数据有关的方法，但是这两个类都是抽象类，不能被实例化。因此，针对不同的功能，二者提供了不同的子类。</p>
-<h3 id="1-4代码示例"><a href="#1-4代码示例" class="headerlink" title="1.4代码示例"></a>1.4代码示例</h3><p>下面这个例子通过对文件的复制来讲解InputStream和OutputStream的用法。  </p>
-<pre><code>import java.io.*;
-public class Example{
-     public static void main(String[] args){
-         String fileName=&quot;/Users/codingBoy/Desktop/example1.jpg&quot;;//源文件路径
-         String fileName2=&quot;/Users/codingBoy/Desktop/example2.jpg&quot;;//目标文件路径
-         InputStream in=null;
-         OutputStream out=null;
-         try {
-             in = new FileInputStream(fileName);
-             out = new FileOutputStream(fileName2);
-             int b;
-             while ((b = in.read())!= -1) {
-                 out.write(b);
-             }
-         }catch (Exception e)
-         {
-             throw new RuntimeException(e);
-          }finally {
-             try {
-                 if (in != null) in.close();
-                if (out!=null) out.close();
-             }catch (Exception e)
-             {
-                 throw new RuntimeException(e);
-            }
-         }
-    }
-}
-</code></pre><h3 id="1-5字节缓冲流"><a href="#1-5字节缓冲流" class="headerlink" title="1.5字节缓冲流"></a>1.5字节缓冲流</h3><p>上面的例子实现了对文件的复制，但是一个字节一个字节的读写，需要频繁的操作文件，效率非常低。为了提高效率，需要使用两个带缓冲的字节流，分别是BufferedInputStream和BufferedOutputStream,它们两个同时也属于上文<a href="http://codingxiaxw.cn/2016/10/16/18-JavaWeb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8BJdbc%E4%BA%8C/">JavaWeb学习笔记之Jdbc二</a>中讲到的装饰流。下面通过增加字节缓冲流来对上述例子进行变动:  </p>
-<p><strong>Demo:</strong>  </p>
-<pre><code>import java.io.*;
-public class Example{
-     public static void main(String[] args){
-        String fileName=&quot;/Users/codingBoy/Desktop/example1.jpg&quot;;//源文件路径
-         String fileName2=&quot;/Users/codingBoy/Desktop/example2.jpg&quot;;//目标文件路径
-         InputStream in=null;
-         OutputStream out=null;
-         BufferedInputStream bis=null;
-         BufferedOutputStream bos=null;
-         try {
-             in = new FileInputStream(fileName);
-             bis = new BufferedInputStream(in);//将输入流对象作为参数传递给输入缓冲流
-             out = new FileOutputStream(fileName2);
-             bos = new BufferedOutputStream(out);
-
-             int len;
-             while((len=bis.read())!=-1)                 {
-                 bos.write(len);
-             }
-         catch (Exception e)
-         {
-             throw new RuntimeException(e);
-          }finally {
-             try {
-                 if (in != null) in.close();
-                 if (bis!=null) bis.close();
-                if (out!=null) out.close();
-                if (bos!=null) bos.close();
-             }catch (Exception e)
-             {
-                 throw new RuntimeException(e);
-            }
-         }
-    }
-}
-</code></pre><h2 id="2-字符流"><a href="#2-字符流" class="headerlink" title="2.字符流"></a>2.字符流</h2><h3 id="2-1定义"><a href="#2-1定义" class="headerlink" title="2.1定义"></a>2.1定义</h3><p>前面我们讲过的InputStream和OutputStream类在读写文件时操作的都是字节，如果希望在程序中操作字符，使用这两个类就不太方便，为此JDK提供了字符流。同字节流一样，字符流也有两个抽象的顶级父类，分别是Reader和Writer。其中Reader是字符输入流，用于从某个源设备读取字符，Writer是字符输出流，用于向某个目标设备写入字符。其API跟字节流的类似。  </p>
-<h3 id="2-2输入字符流-Reader"><a href="#2-2输入字符流-Reader" class="headerlink" title="2.2输入字符流(Reader)"></a>2.2输入字符流(Reader)</h3><p><strong>Demo:读取reader.txt中的字符串</strong>  </p>
-<pre><code>import java.io.*;
-public class Example{
-     public static void main(String[] args){
-         FileReader reader=new FileReader(&quot;reader.txt&quot;);
-         int ch;
-         while((ch=reader.read())!=-1)
-         {
-             System.out.println((char)ch);//通过reader()方法读取到的是int类型的值，所以需要进行强制转换。
-         }
-         reader.close();
-     }
-}
-</code></pre><h3 id="2-3输出字符流-Writer"><a href="#2-3输出字符流-Writer" class="headerlink" title="2.3输出字符流(Writer)"></a>2.3输出字符流(Writer)</h3><p><strong>Demo:将字符串输出到目标文件中</strong>  </p>
-<pre><code>import java.io.*;
-public class Example{
-    public static void main(String[] args){
-        FileWrite out=new FileWrite(目标文件的路径);
-        String str=&quot;hello world&quot;;
-
-        out.write(str);
-        out.close();
-    }
-}
-</code></pre><h3 id="2-4字符缓冲流"><a href="#2-4字符缓冲流" class="headerlink" title="2.4字符缓冲流"></a>2.4字符缓冲流</h3><p>字符流同样提供了带缓冲区的包装流，分别是BufferedWriter和BufferedReader,其中BufferedReader用于对字符输入流的包装，BufferedWriter用于对字符输出流的包装。需要注意的是，在BufferedReader中有一个重要的方法readLine()，该方法用于一次读取一行文本。接下来通过一个例子学习如何使用这两个包装流实现文件的复制。  </p>
-<pre><code>import java.io.*;
-public class Example{
-     public static void main(String[] args){
-         String fileName=&quot;/Users/codingBoy/Desktop/example1.jpg&quot;;//源文件路径
-         String fileName2=&quot;/Users/codingBoy/Desktop/example2.jpg&quot;;//目标文件路径
-         Reader reader=null;
-         BufferedReader bf=null;
-         Writer writer=null;
-         BufferedWriter bw=null;
-         try {
-             reader = new Reader(fileName);
-             br=new BufferedReader(reader);
-             writer = new Writer(fileName2);
-             bw=new BufferedWriter(writer);
-             String str;
-             while ((str = bf.readLine())!= null) {
-                 bw.write(str);
-                 bw.newLine();//写入一个换行符，该方法会根据不同的操作系统生成相应的换行符。
-             }
-         }catch (Exception e)
-         {
-             throw new RuntimeException(e);
-          }finally {
-             try {
-                 if (reader != null) reader.close();
-                 if (br !=null) br.close();
-                if (writer!=null) writer.close();
-                if (bw !=null) bw.close();
-             }catch (Exception e)
-             {
-                 throw new RuntimeException(e);
-            }
-         }
-    }
-}
-</code></pre><h2 id="3-转换流"><a href="#3-转换流" class="headerlink" title="3.转换流"></a>3.转换流</h2><p>前面提到IO流可分为字节流和字符流，有时字节流和字符流之间也需要进行转换。在JDK中提供了两个类可以将字节流转换为字符流，它们分别是InputStreamReader和OutputStreamWriter。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		FileOutputStream out=<span class="keyword">new</span> FileOutputStream(目标文件的路径);</span><br><span class="line">		String str=<span class="string">"hello world"</span>;</span><br><span class="line">		<span class="keyword">byte</span>[] b=str.getBytes();<span class="comment">//字符串调用getBytes()方法即可转换成字节数组。</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;b.length;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			out.write(b[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		out.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>InputStream和OutputStream这两个类虽然提供了一系列和读写数据有关的方法，但是这两个类都是抽象类，不能被实例化。因此，针对不同的功能，二者提供了不同的子类。</p>
+<h3 id="1-4代码示例"><a href="#1-4代码示例" class="headerlink" title="1.4代码示例"></a>1.4代码示例</h3><p>下面这个例子通过对文件的复制来讲解InputStream和OutputStream的用法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span></span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">	 	String fileName=<span class="string">"/Users/codingBoy/Desktop/example1.jpg"</span>;<span class="comment">//源文件路径</span></span><br><span class="line">	 	String fileName2=<span class="string">"/Users/codingBoy/Desktop/example2.jpg"</span>;<span class="comment">//目标文件路径</span></span><br><span class="line">	 	InputStream in=<span class="keyword">null</span>;</span><br><span class="line">	 	OutputStream out=<span class="keyword">null</span>;</span><br><span class="line">	 	<span class="keyword">try</span> &#123;</span><br><span class="line">	 		in = <span class="keyword">new</span> FileInputStream(fileName);</span><br><span class="line">	 		out = <span class="keyword">new</span> FileOutputStream(fileName2);</span><br><span class="line">	 		<span class="keyword">int</span> b;</span><br><span class="line">	 		<span class="keyword">while</span> ((b = in.read())!= -<span class="number">1</span>) &#123;</span><br><span class="line">	 			out.write(b);</span><br><span class="line">	 		&#125;</span><br><span class="line">		 &#125;<span class="keyword">catch</span> (Exception e)</span><br><span class="line">		 &#123;</span><br><span class="line">		 	<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line"> 		 &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">		 	<span class="keyword">try</span> &#123;</span><br><span class="line">		 		<span class="keyword">if</span> (in != <span class="keyword">null</span>) in.close();</span><br><span class="line">				<span class="keyword">if</span> (out!=<span class="keyword">null</span>) out.close();</span><br><span class="line"> 			&#125;<span class="keyword">catch</span> (Exception e)</span><br><span class="line"> 			&#123;</span><br><span class="line">	 			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">			&#125;</span><br><span class="line"> 		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="1-5字节缓冲流"><a href="#1-5字节缓冲流" class="headerlink" title="1.5字节缓冲流"></a>1.5字节缓冲流</h3><p>上面的例子实现了对文件的复制，但是一个字节一个字节的读写，需要频繁的操作文件，效率非常低。为了提高效率，需要使用两个带缓冲的字节流，分别是BufferedInputStream和BufferedOutputStream,它们两个同时也属于上文<a href="http://codingxiaxw.cn/2016/10/16/18-JavaWeb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8BJdbc%E4%BA%8C/">JavaWeb学习笔记之Jdbc二</a>中讲到的装饰流。下面通过增加字节缓冲流来对上述例子进行变动:  </p>
+<p><strong>Demo:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span></span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		String fileName=<span class="string">"/Users/codingBoy/Desktop/example1.jpg"</span>;<span class="comment">//源文件路径</span></span><br><span class="line">	 	String fileName2=<span class="string">"/Users/codingBoy/Desktop/example2.jpg"</span>;<span class="comment">//目标文件路径</span></span><br><span class="line">	 	InputStream in=<span class="keyword">null</span>;</span><br><span class="line">	 	OutputStream out=<span class="keyword">null</span>;</span><br><span class="line">	 	BufferedInputStream bis=<span class="keyword">null</span>;</span><br><span class="line">	 	BufferedOutputStream bos=<span class="keyword">null</span>;</span><br><span class="line">	 	<span class="keyword">try</span> &#123;</span><br><span class="line">	 		in = <span class="keyword">new</span> FileInputStream(fileName);</span><br><span class="line">	 		bis = <span class="keyword">new</span> BufferedInputStream(in);<span class="comment">//将输入流对象作为参数传递给输入缓冲流</span></span><br><span class="line">	 		out = <span class="keyword">new</span> FileOutputStream(fileName2);</span><br><span class="line">	 		bos = <span class="keyword">new</span> BufferedOutputStream(out);</span><br><span class="line">	 		</span><br><span class="line">	 		<span class="keyword">int</span> len;</span><br><span class="line">	 		<span class="keyword">while</span>((len=bis.read())!=-<span class="number">1</span>)		 		&#123;</span><br><span class="line">	 			bos.write(len);</span><br><span class="line">	 		&#125;</span><br><span class="line">	 	<span class="keyword">catch</span> (Exception e)</span><br><span class="line">		 &#123;</span><br><span class="line">		 	<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line"> 		 &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">		 	<span class="keyword">try</span> &#123;</span><br><span class="line">		 		<span class="keyword">if</span> (in != <span class="keyword">null</span>) in.close();</span><br><span class="line">		 		<span class="keyword">if</span> (bis!=<span class="keyword">null</span>) bis.close();</span><br><span class="line">				<span class="keyword">if</span> (out!=<span class="keyword">null</span>) out.close();</span><br><span class="line">				<span class="keyword">if</span> (bos!=<span class="keyword">null</span>) bos.close();</span><br><span class="line"> 			&#125;<span class="keyword">catch</span> (Exception e)</span><br><span class="line"> 			&#123;</span><br><span class="line">	 			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">			&#125;</span><br><span class="line"> 		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-字符流"><a href="#2-字符流" class="headerlink" title="2.字符流"></a>2.字符流</h2><h3 id="2-1定义"><a href="#2-1定义" class="headerlink" title="2.1定义"></a>2.1定义</h3><p>前面我们讲过的InputStream和OutputStream类在读写文件时操作的都是字节，如果希望在程序中操作字符，使用这两个类就不太方便，为此JDK提供了字符流。同字节流一样，字符流也有两个抽象的顶级父类，分别是Reader和Writer。其中Reader是字符输入流，用于从某个源设备读取字符，Writer是字符输出流，用于向某个目标设备写入字符。其API跟字节流的类似。  </p>
+<h3 id="2-2输入字符流-Reader"><a href="#2-2输入字符流-Reader" class="headerlink" title="2.2输入字符流(Reader)"></a>2.2输入字符流(Reader)</h3><p><strong>Demo:读取reader.txt中的字符串</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span></span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">	 	FileReader reader=<span class="keyword">new</span> FileReader(<span class="string">"reader.txt"</span>);</span><br><span class="line">	 	<span class="keyword">int</span> ch;</span><br><span class="line">	 	<span class="keyword">while</span>((ch=reader.read())!=-<span class="number">1</span>)</span><br><span class="line">	 	&#123;</span><br><span class="line">	 		System.out.println((<span class="keyword">char</span>)ch);<span class="comment">//通过reader()方法读取到的是int类型的值，所以需要进行强制转换。</span></span><br><span class="line">	 	&#125;</span><br><span class="line">	 	reader.close();</span><br><span class="line">	 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-3输出字符流-Writer"><a href="#2-3输出字符流-Writer" class="headerlink" title="2.3输出字符流(Writer)"></a>2.3输出字符流(Writer)</h3><p><strong>Demo:将字符串输出到目标文件中</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		FileWrite out=<span class="keyword">new</span> FileWrite(目标文件的路径);</span><br><span class="line">		String str=<span class="string">"hello world"</span>;</span><br><span class="line">		</span><br><span class="line">		out.write(str);</span><br><span class="line">		out.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-4字符缓冲流"><a href="#2-4字符缓冲流" class="headerlink" title="2.4字符缓冲流"></a>2.4字符缓冲流</h3><p>字符流同样提供了带缓冲区的包装流，分别是BufferedWriter和BufferedReader,其中BufferedReader用于对字符输入流的包装，BufferedWriter用于对字符输出流的包装。需要注意的是，在BufferedReader中有一个重要的方法readLine()，该方法用于一次读取一行文本。接下来通过一个例子学习如何使用这两个包装流实现文件的复制。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span></span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">	 	String fileName=<span class="string">"/Users/codingBoy/Desktop/example1.jpg"</span>;<span class="comment">//源文件路径</span></span><br><span class="line">	 	String fileName2=<span class="string">"/Users/codingBoy/Desktop/example2.jpg"</span>;<span class="comment">//目标文件路径</span></span><br><span class="line">	 	Reader reader=<span class="keyword">null</span>;</span><br><span class="line">	 	BufferedReader bf=<span class="keyword">null</span>;</span><br><span class="line">	 	Writer writer=<span class="keyword">null</span>;</span><br><span class="line">	 	BufferedWriter bw=<span class="keyword">null</span>;</span><br><span class="line">	 	<span class="keyword">try</span> &#123;</span><br><span class="line">	 		reader = <span class="keyword">new</span> Reader(fileName);</span><br><span class="line">	 		br=<span class="keyword">new</span> BufferedReader(reader);</span><br><span class="line">	 		writer = <span class="keyword">new</span> Writer(fileName2);</span><br><span class="line">	 		bw=<span class="keyword">new</span> BufferedWriter(writer);</span><br><span class="line">	 		String str;</span><br><span class="line">	 		<span class="keyword">while</span> ((str = bf.readLine())!= <span class="keyword">null</span>) &#123;</span><br><span class="line">	 			bw.write(str);</span><br><span class="line">	 			bw.newLine();<span class="comment">//写入一个换行符，该方法会根据不同的操作系统生成相应的换行符。</span></span><br><span class="line">	 		&#125;</span><br><span class="line">		 &#125;<span class="keyword">catch</span> (Exception e)</span><br><span class="line">		 &#123;</span><br><span class="line">		 	<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line"> 		 &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">		 	<span class="keyword">try</span> &#123;</span><br><span class="line">		 		<span class="keyword">if</span> (reader != <span class="keyword">null</span>) reader.close();</span><br><span class="line">		 		<span class="keyword">if</span> (br !=<span class="keyword">null</span>) br.close();</span><br><span class="line">				<span class="keyword">if</span> (writer!=<span class="keyword">null</span>) writer.close();</span><br><span class="line">				<span class="keyword">if</span> (bw !=<span class="keyword">null</span>) bw.close();</span><br><span class="line"> 			&#125;<span class="keyword">catch</span> (Exception e)</span><br><span class="line"> 			&#123;</span><br><span class="line">	 			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">			&#125;</span><br><span class="line"> 		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-转换流"><a href="#3-转换流" class="headerlink" title="3.转换流"></a>3.转换流</h2><p>前面提到IO流可分为字节流和字符流，有时字节流和字符流之间也需要进行转换。在JDK中提供了两个类可以将字节流转换为字符流，它们分别是InputStreamReader和OutputStreamWriter。  </p>
 <p>转换流也是一种包装流，其中OutputStreamWriter是Writer的子类，它可以将一个字节输出流包装成字符输出流，方便直接写入字符，而InputStreamReader是Reader的子类，它可以将一个字节输入流包装成字符输入流，方便直接读取字符。  </p>
-<p><strong>Demo:将字节流转换为字符流</strong>  </p>
-<pre><code>import java.io.*;
-public class Example{
-     public static void main(String[] args){
-         String fileName=&quot;/Users/codingBoy/Desktop/example1.jpg&quot;;//源文件路径
-         String fileName2=&quot;/Users/codingBoy/Desktop/example2.jpg&quot;;//目标文件路径
-         InputStreamReader isr=new InputStreamReader(new FileInputStream(fileName1));
-         BufferedReader br=new BufferedReader(isr);
-
-         OutputStreamWriter osw=new OutputStreamWriter(new FileOutputStream(fileName2));
-         BufferedWriter bw=new BufferedWriter(osw);
-
-         String line;
-         while((line=br.readLine())!=null)
-         {
-             bw.write(line);
-         }
-
-         br.close();
-         bw.close();
-     }
-}
-</code></pre><h2 id="4-其他IO流"><a href="#4-其他IO流" class="headerlink" title="4.其他IO流"></a>4.其他IO流</h2><h4 id="4-1ByteArrayInputStream和ByteArrayOutputStream"><a href="#4-1ByteArrayInputStream和ByteArrayOutputStream" class="headerlink" title="4.1ByteArrayInputStream和ByteArrayOutputStream"></a>4.1ByteArrayInputStream和ByteArrayOutputStream</h4><p>在前面的学习中，都是将文件直接存储到硬盘，但有时候我们希望将文件临时存储到缓冲区，方便以后读取。为此JDK中提供了一个ByteArrayOutputStream类。该类会在创建对象时就创建一个byte型数组的缓冲区，当向数组中写数据时，该对象会把所有的数据先写入缓冲区，最后一次行写入文件。<br><strong>Demo:将数据写入缓冲区</strong>  </p>
-<pre><code>import java.io.*;
-public class Example{
-     public static void main(String[] args){
-         String fileName1=&quot;/Users/codingBoy/Desktop/example1.jpg&quot;;//源文件路径
-         String fileName2=&quot;/Users/codingBoy/Desktop/example2.jpg&quot;;//目标文件路径
-         FileInputStream in=new FileInputStream(fileName1);
-         ByteArrayOutputStream bos=new ByteArrayOutputStream();
-         FileOutputStream out=new FileOutputStream(fileName2);
-
-         int b;
-         while((b=in.read())!=-1)
-         {
-             bos.write(b);//先将数据写入缓冲区，当需要写入目标文件中的时候再调用输出流的write(bos.toByteArray())方法。
-         }
-
-         in.close();
-         bos.close();
-         out.write(bos.toByteArray());
-         out.close();
-}
-</code></pre><p>在该例中，定义了一个ByteArrayOutputStream对象，将从fileName1文件中读取的字节全部写入该对象的缓冲区，通过FileOutputStream对象将缓冲区的数据一次性写入fileName2文件。  </p>
+<p><strong>Demo:将字节流转换为字符流</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span></span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">	 	String fileName=<span class="string">"/Users/codingBoy/Desktop/example1.jpg"</span>;<span class="comment">//源文件路径</span></span><br><span class="line">	 	String fileName2=<span class="string">"/Users/codingBoy/Desktop/example2.jpg"</span>;<span class="comment">//目标文件路径</span></span><br><span class="line">	 	InputStreamReader isr=<span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(fileName1));</span><br><span class="line">	 	BufferedReader br=<span class="keyword">new</span> BufferedReader(isr);</span><br><span class="line">	 	</span><br><span class="line">	 	OutputStreamWriter osw=<span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(fileName2));</span><br><span class="line">	 	BufferedWriter bw=<span class="keyword">new</span> BufferedWriter(osw);</span><br><span class="line">	 	</span><br><span class="line">	 	String line;</span><br><span class="line">	 	<span class="keyword">while</span>((line=br.readLine())!=<span class="keyword">null</span>)</span><br><span class="line">	 	&#123;</span><br><span class="line">	 		bw.write(line);</span><br><span class="line">	 	&#125;</span><br><span class="line">	 	</span><br><span class="line">	 	br.close();</span><br><span class="line">	 	bw.close();</span><br><span class="line">	 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-其他IO流"><a href="#4-其他IO流" class="headerlink" title="4.其他IO流"></a>4.其他IO流</h2><h4 id="4-1ByteArrayInputStream和ByteArrayOutputStream"><a href="#4-1ByteArrayInputStream和ByteArrayOutputStream" class="headerlink" title="4.1ByteArrayInputStream和ByteArrayOutputStream"></a>4.1ByteArrayInputStream和ByteArrayOutputStream</h4><p>在前面的学习中，都是将文件直接存储到硬盘，但有时候我们希望将文件临时存储到缓冲区，方便以后读取。为此JDK中提供了一个ByteArrayOutputStream类。该类会在创建对象时就创建一个byte型数组的缓冲区，当向数组中写数据时，该对象会把所有的数据先写入缓冲区，最后一次行写入文件。<br><strong>Demo:将数据写入缓冲区</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span></span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">	 	String fileName1=<span class="string">"/Users/codingBoy/Desktop/example1.jpg"</span>;<span class="comment">//源文件路径</span></span><br><span class="line">	 	String fileName2=<span class="string">"/Users/codingBoy/Desktop/example2.jpg"</span>;<span class="comment">//目标文件路径</span></span><br><span class="line">	 	FileInputStream in=<span class="keyword">new</span> FileInputStream(fileName1);</span><br><span class="line">	 	ByteArrayOutputStream bos=<span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">	 	FileOutputStream out=<span class="keyword">new</span> FileOutputStream(fileName2);</span><br><span class="line">	 	</span><br><span class="line">	 	<span class="keyword">int</span> b;</span><br><span class="line">	 	<span class="keyword">while</span>((b=in.read())!=-<span class="number">1</span>)</span><br><span class="line">	 	&#123;</span><br><span class="line">	 		bos.write(b);<span class="comment">//先将数据写入缓冲区，当需要写入目标文件中的时候再调用输出流的write(bos.toByteArray())方法。</span></span><br><span class="line">	 	&#125;</span><br><span class="line">	 	</span><br><span class="line">	 	in.close();</span><br><span class="line">	 	bos.close();</span><br><span class="line">	 	out.write(bos.toByteArray());</span><br><span class="line">	 	out.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在该例中，定义了一个ByteArrayOutputStream对象，将从fileName1文件中读取的字节全部写入该对象的缓冲区，通过FileOutputStream对象将缓冲区的数据一次性写入fileName2文件。  </p>
 <p>与ByteArrayOutputStream类似，ByteArrayInputStream是从缓冲区中读取数据，接下来通过一个案例来演示ByteArrayInputStream如何读取缓冲区的数据。  </p>
-<p><strong>Demo:</strong></p>
-<pre><code>import java.io.*;
-public class Example{
-     public static void main(String[] args){
-         byte[] bytes=new byte[]{97,98,99,100};
-         ByteArrayInputStream bis=new ByteArrayInputStream(bytes);
-
-         int b;
-         while((b=bis.read())!=-1)
-         {
-             System.out.println((char)b);
-         }
-}
-</code></pre><h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<p><strong>Demo:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span></span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">	 	<span class="keyword">byte</span>[] bytes=<span class="keyword">new</span> <span class="keyword">byte</span>[]&#123;<span class="number">97</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">100</span>&#125;;</span><br><span class="line">	 	ByteArrayInputStream bis=<span class="keyword">new</span> ByteArrayInputStream(bytes);</span><br><span class="line">	 	</span><br><span class="line">	 	<span class="keyword">int</span> b;</span><br><span class="line">	 	<span class="keyword">while</span>((b=bis.read())!=-<span class="number">1</span>)</span><br><span class="line">	 	&#123;</span><br><span class="line">	 		System.out.println((<span class="keyword">char</span>)b);</span><br><span class="line">	 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5-联系"><a href="#5-联系" class="headerlink" title="5.联系"></a>5.联系</h2><p>If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
 </li>

@@ -84,22 +84,22 @@
 
 
 
-<meta name="description" content="在Spring MVC中涉及到的处理器映射器和处理器适配器氛围注解处理器映射器和处理器适配器与非注解处理器映射器和处理器适配器，这些远远不止上篇文章中介绍到的那几个，本篇文章的目的就是为了介绍更多的处理器映射器和处理器适配器。毕竟我们是革命者，了解更多的知识才是王道。">
+<meta name="description" content="在Spring MVC中涉及到的处理器映射器和处理器适配器分为注解处理器映射器和处理器适配器与非注解处理器映射器和处理器适配器，这些远远不止上篇文章中介绍到的那几个，本篇文章的目的就是为了介绍更多的处理器映射器和处理器适配器。毕竟我们是革命者，了解更多的知识才是王道。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring MVC之注解与非注解映射器和适配器">
 <meta property="og:url" content="http://codingxiaxw.cn/2016/11/14/43-springmvc之注解与非注解处理器/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
-<meta property="og:description" content="在Spring MVC中涉及到的处理器映射器和处理器适配器氛围注解处理器映射器和处理器适配器与非注解处理器映射器和处理器适配器，这些远远不止上篇文章中介绍到的那几个，本篇文章的目的就是为了介绍更多的处理器映射器和处理器适配器。毕竟我们是革命者，了解更多的知识才是王道。">
+<meta property="og:description" content="在Spring MVC中涉及到的处理器映射器和处理器适配器分为注解处理器映射器和处理器适配器与非注解处理器映射器和处理器适配器，这些远远不止上篇文章中介绍到的那几个，本篇文章的目的就是为了介绍更多的处理器映射器和处理器适配器。毕竟我们是革命者，了解更多的知识才是王道。">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%889.18.01.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%889.19.49.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%889.21.19.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%889.24.37.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%889.25.32.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%889.26.09.png">
-<meta property="og:updated_time" content="2016-11-15T07:07:22.000Z">
+<meta property="og:updated_time" content="2017-03-08T04:36:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring MVC之注解与非注解映射器和适配器">
-<meta name="twitter:description" content="在Spring MVC中涉及到的处理器映射器和处理器适配器氛围注解处理器映射器和处理器适配器与非注解处理器映射器和处理器适配器，这些远远不止上篇文章中介绍到的那几个，本篇文章的目的就是为了介绍更多的处理器映射器和处理器适配器。毕竟我们是革命者，了解更多的知识才是王道。">
+<meta name="twitter:description" content="在Spring MVC中涉及到的处理器映射器和处理器适配器分为注解处理器映射器和处理器适配器与非注解处理器映射器和处理器适配器，这些远远不止上篇文章中介绍到的那几个，本篇文章的目的就是为了介绍更多的处理器映射器和处理器适配器。毕竟我们是革命者，了解更多的知识才是王道。">
 <meta name="twitter:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-14%20%E4%B8%8B%E5%8D%889.18.01.png">
 
 
@@ -352,7 +352,7 @@
       
 
       
-        <p>在Spring MVC中涉及到的处理器映射器和处理器适配器氛围注解处理器映射器和处理器适配器与非注解处理器映射器和处理器适配器，这些远远不止上篇文章中介绍到的那几个，本篇文章的目的就是为了介绍更多的处理器映射器和处理器适配器。毕竟我们是革命者，了解更多的知识才是王道。<br><a id="more"></a></p>
+        <p>在Spring MVC中涉及到的处理器映射器和处理器适配器分为注解处理器映射器和处理器适配器与非注解处理器映射器和处理器适配器，这些远远不止上篇文章中介绍到的那几个，本篇文章的目的就是为了介绍更多的处理器映射器和处理器适配器。毕竟我们是革命者，了解更多的知识才是王道。<br><a id="more"></a></p>
 <p><strong>写在前面的话:</strong>本篇文章在前篇文章开发的代码基础上继续进行开发。</p>
 <h2 id="1-非注解映射器和非注解适配器"><a href="#1-非注解映射器和非注解适配器" class="headerlink" title="1.非注解映射器和非注解适配器"></a>1.非注解映射器和非注解适配器</h2><h3 id="1-1BeanNameUrlHandlerMapping-映射器"><a href="#1-1BeanNameUrlHandlerMapping-映射器" class="headerlink" title="1.1BeanNameUrlHandlerMapping(映射器)"></a>1.1BeanNameUrlHandlerMapping(映射器)</h3><p>就是上文中我们用到的处理器映射器，根据请求url（XXXX.action）匹配spring容器bean标签的name属性找到对应的Handler(通过class属性找到程序员编写的那个Handler)，详情配置见上篇文章。</p>
 <h3 id="1-2SimpleUrlHandlerMapping-映射器"><a href="#1-2SimpleUrlHandlerMapping-映射器" class="headerlink" title="1.2SimpleUrlHandlerMapping(映射器)"></a>1.2SimpleUrlHandlerMapping(映射器)</h3><p>简单url映射器，是BeanNameUrlHandlerMapping的增强版，在springmvc.xml配置文件中这样配置SimpleUrlHandlerMapping:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--简单url映射</span><br><span class="line"> 几种配置bean的id对应的url</span><br><span class="line"> key:用户请求的url</span><br><span class="line"> 标签内容:程序员编写的Handler在此配置文件中的id--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappings"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/items1.action"</span>&gt;</span>itemController1<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/items2.action"</span>&gt;</span>itemController1<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>

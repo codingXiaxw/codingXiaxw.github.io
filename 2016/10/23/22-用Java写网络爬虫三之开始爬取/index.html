@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/test.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/lianjie2.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/printi2.png">
-<meta property="og:updated_time" content="2016-11-02T12:20:20.000Z">
+<meta property="og:updated_time" content="2017-03-08T06:53:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用Java实现网络爬虫三之开始爬取">
 <meta name="twitter:description" content="下面的代码用于爬取知乎推荐页面的所有问题、问题描述、地址、回答内容，爬取地址为http://www.zhihu.com/explore/recommendations   
@@ -398,37 +398,8 @@ boolean getRealUrl(String url)
 </li>
 </ul>
 <ul>
-<li><p>2.我们爬取的只是一个页面的相关内容，并没有发挥爬虫的真正强大之处。所以接下来我们就将从该页面爬取到的链接作为二次起始链接。只需在Zhihu.java的构造函数里添加如下方法即可:  </p>
-<pre><code>if (getRealUrl(url))
-{
-    System.out.println(&quot;正在抓取链接&quot;+zhihuUrl);
-
-    String content=Spider.sendGet(zhihuUrl);
-
-    Pattern pattern;
-    Matcher matcher;
-
-    pattern=Pattern.compile(&quot;zh-question-title.+?&lt;h2.+?&gt;(.+?)&lt;/h2&gt;&quot;);
-    matcher=pattern.matcher(content);
-    if (matcher.find()) {
-        title = matcher.group(1);
-    }
-
-    pattern=Pattern.compile(&quot;zh-question-detail.+?&lt;div.+?&gt;(.*?)&lt;/div&gt;&quot;);
-    matcher=pattern.matcher(content);
-    if (matcher.find()) {
-        titleDescription=matcher.group(1);
-    }
-
-    pattern=Pattern.compile(&quot;/answer/content.+?&lt;div.+?&gt;(.*?)&lt;/div&gt;&quot;);
-    matcher=pattern.matcher(content);
-    while (matcher.find())
-    {
-        answers.add(matcher.group(1));
-    }
-
-}
-</code></pre></li>
+<li>2.我们爬取的只是一个页面的相关内容，并没有发挥爬虫的真正强大之处。所以接下来我们就将从该页面爬取到的链接作为二次起始链接。只需在Zhihu.java的构造函数里添加如下方法即可:  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (getRealUrl(url))</span><br><span class="line">      &#123;</span><br><span class="line">          System.out.println(<span class="string">"正在抓取链接"</span>+zhihuUrl);</span><br><span class="line"></span><br><span class="line">          String content=Spider.sendGet(zhihuUrl);</span><br><span class="line"></span><br><span class="line">          Pattern pattern;</span><br><span class="line">          Matcher matcher;</span><br><span class="line"></span><br><span class="line">          pattern=Pattern.compile(<span class="string">"zh-question-title.+?&lt;h2.+?&gt;(.+?)&lt;/h2&gt;"</span>);</span><br><span class="line">          matcher=pattern.matcher(content);</span><br><span class="line">          <span class="keyword">if</span> (matcher.find()) &#123;</span><br><span class="line">              title = matcher.group(<span class="number">1</span>);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          pattern=Pattern.compile(<span class="string">"zh-question-detail.+?&lt;div.+?&gt;(.*?)&lt;/div&gt;"</span>);</span><br><span class="line">          matcher=pattern.matcher(content);</span><br><span class="line">          <span class="keyword">if</span> (matcher.find()) &#123;</span><br><span class="line">              titleDescription=matcher.group(<span class="number">1</span>);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          pattern=Pattern.compile(<span class="string">"/answer/content.+?&lt;div.+?&gt;(.*?)&lt;/div&gt;"</span>);</span><br><span class="line">          matcher=pattern.matcher(content);</span><br><span class="line">          <span class="keyword">while</span> (matcher.find())</span><br><span class="line">          &#123;</span><br><span class="line">              answers.add(matcher.group(<span class="number">1</span>));</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <p>这样当我们在Spider类的regexString()方法里，每当用构造方法创建一个Zhihu对象时就会执行上述代码生成从一个链接爬取到的文章标题、内容、标题描述即回答内容并封装到该Zhihu对象里，然后继续执行Spider后面的代码时将该对象添加至list集合中。  </p>
 <p>最后打印出的内容如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/printi2.png" alt=""></p>
