@@ -4147,7 +4147,7 @@ public void sessionDidActivate(HttpSessionEvent se):当对象感知被钝化时�
 <li>domain</li>
 </ul>
 <p><strong>3.建表</strong>  </p>
-<p>很多人问我源码怎么没有附上sql语句，我想有必要今天更新一下，因为数据库中的表就是一张用户信息表啊，这么简单我还上传个啥的sql语句脚本呢?看下面的效果图就知道表的字段无非:id(主键，自增长属性)、name、gender、phone、email、description这几个咯，直接在控制台(或者第三方数据库建表工具，我mac上用的就是MySQL Workbench)创建这样包含这些字段的一张表就好咯。  </p>
+<p>很多人问我源码怎么没有附上sql语句，我想有必要今天更新一下，因为数据库中的表就是一张用户信息表啊，这么简单我还上传个啥的sql语句脚本呢?看下面的效果图就知道表的字段无非:id(主键，varchar类型，根据UUID类自动生成)、name、gender、phone、email、description这几个咯，直接在控制台(或者第三方数据库建表工具，我mac上用的就是MySQL Workbench)创建这样包含这些字段的一张表就好咯。  </p>
 <p>至于如何在表中添加数据，你可以将我的代码在你的电脑上面跑起来之后直接点击”添加客户”就可以在你数据库中的用户表中查到相应的用户信息咯。还有一种方法就是利用sql语句的<code>insert</code>语法自己在控制台中手动插入数据咯。  </p>
 <p><strong>2017.02.17更:</strong>好吧，已经有太多的小伙伴让我给出sql语句了，想着为了减轻你们的负担我还是把sql语句给出来吧。这是我这个项目涉及到表的表结构，如下图,别告诉我把表结构都给你了你还写不出来它的sql语句…  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-17%20%E4%B8%8B%E5%8D%885.29.45.png" alt=""></p>
