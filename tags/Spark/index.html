@@ -87,7 +87,7 @@
 <meta name="description" content="Life is short,just coding.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="codingXiaxw's blog">
-<meta property="og:url" content="http://codingxiaxw.cn/tags/Spark/index.html">
+<meta property="og:url" content="http://codingxiaxw.cn/tags/spark/index.html">
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="Life is short,just coding.">
 <meta name="twitter:card" content="summary">
@@ -113,10 +113,10 @@
 
 
 
-  <link rel="canonical" href="http://codingxiaxw.cn/tags/Spark/"/>
+  <link rel="canonical" href="http://codingxiaxw.cn/tags/spark/"/>
 
 
-  <title> Tag: Spark | codingXiaxw's blog </title>
+  <title> Tag: spark | codingXiaxw's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -251,7 +251,7 @@
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
       <h2 >
-        Spark
+        spark
         <small>Tag</small>
       </h2>
     </div>
@@ -264,37 +264,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/12/10/61-spark-streaming/" itemprop="url">
+            <a class="post-title-link" href="/2016/12/27/64-Hadoop-Storm-Spark/" itemprop="url">
               
-                <span itemprop="name">『 Spark 』使用Spark Streaming处理流式数据</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-12-10T12:57:11+08:00"
-              content="Dec 10 2016" >
-          12-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/12/07/60-mac-spark/" itemprop="url">
-              
-                <span itemprop="name">『 Spark 』mac下Spark的安装与使用</span>
+                <span itemprop="name">基于Hadoop、Storm和Spark的技术验证</span>
               
             </a>
         
@@ -302,9 +274,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2016-12-07T09:50:29+08:00"
-              content="Dec 7 2016" >
-          12-07
+              datetime="2016-12-27T10:20:26+08:00"
+              content="Dec 27 2016" >
+          12-27
         </time>
       </div>
 
@@ -771,6 +743,39 @@
               success: function(newcounter) {
                 var $element = $(document.getElementById(url));
                 $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
+               $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
               },
               error: function(newcounter, error) {
                 console.log('Failed to create');
