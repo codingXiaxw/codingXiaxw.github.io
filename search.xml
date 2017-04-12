@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title><![CDATA[关于近期博客图片无法显示的一点声明]]></title>
+      <url>http://codingxiaxw.cn/2017/04/12/68-chat/</url>
+      <content type="html"><![CDATA[<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>近两天一直信赖的图床因为欠费导致账户被冻结，所以博客中的图片都无法显示，今天看了小伙伴们的留言才发现，嗯目前为止博客系统都正常恢复了，也对照成不便的小伙伴表示一声抱歉啊嘿～(然而我的评论区被莫名出现的水军轰炸，难道是因为图床欠费了的原因？吓得我赶紧为图床充了30块钱强行续了一命，然后花了20多分钟删除了近300条的垃圾信息</p>
+<a id="more"></a>
+<h2 id="汇报"><a href="#汇报" class="headerlink" title="汇报"></a>汇报</h2><p>消失了近两个月，收到很多一路跟着我的文章走过来的读者的私信，问我最近在研究啥新技术怎么不更新博客了，因为最近确实有点忙，一方面要准备措不及防的春招，另一方面也因为技术一直止步不前，所以看了很多的书籍来突破目前的瓶颈期。待我突破这个瓶颈期，忙过这个春招季，也会写篇干货给伙伴们分享自己的所得所失。</p>
+<h2 id="交流"><a href="#交流" class="headerlink" title="交流"></a>交流</h2><p>与读者经常通过微博、知乎、邮件进行交流，很多我都挑重点的回复了，没收到我回复的也不要怪我，毕竟私信太多真的有时候看不过来～当然次数最多、效率也最高的交流方式当然是通过底下多说的评论区了，然而最近收到一个噩耗:多说公司由于业务调整，将于2017年6月1日停止服务。所以我到时候还要操心考虑如何将目前评论区的数据进行迁移，然后再在博客上安装另一个为评论服务的三方插件，(烦死咯) 不然丧失了这个读者为我指出错误的评论区，我该拿什么去拯救～ 然而，我最想说的一句还是:多说，我欠你一个会员！  </p>
+<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>感觉写的文章多了以后，微博、知乎的粉丝也越来越多了，Github上项目的star数、follow数也越来越多了，谢谢小伙伴们一直的陪伴。人无完人，我也经常犯错，希望日后伙伴们能继续为我的错误提出指正，心里真的十分的感谢大家。</p>
+<p>微信上最近也突然收到很多伙伴们因为看完我的文章与提供的资料然后给予我的打赏，突然觉得当初在每片文章的底下附上一个“打赏”的插件还是挺有用的呢(奸笑脸，嘿嘿)，表示十分感谢哈，其实知道你们跟着我一起进步我就很高兴了，不过也感觉更有动力写更多干货的文章了诶～</p>
+<h2 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h2><p>真的好久没写博客咯，竟然这次还写了一篇没有干货没有代码的博客，(内心os:怎么做开发者的？)，这篇是下午坐在出租屋里一字一字码出来的，凑合着看吧。其实就是想冒个泡(逃</p>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
+<ul>
+<li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
+</li>
+<li><p><a href="http://weibo.com/u/5023661572" target="_blank" rel="external">Weibo@codingXiaxw</a></p>
+</li>
+<li><p><a href="https://www.zhihu.com/people/xia-xun-wu-56/" target="_blank" rel="external">Zhihu@codingXiaxw</a>  </p>
+</li>
+<li><a href="https://github.com/codingXiaxw" target="_blank" rel="external">Github@codingXiaxw</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[LeetCode浅谈]]></title>
       <url>http://codingxiaxw.cn/2017/02/06/67-follow-me-in-leetcode/</url>
       <content type="html"><![CDATA[<p>许久没更了，新的一年我也将更新我2017的第一篇博客。趁新年放假之际，我又重新将<a href="https://leetcode.com/" target="_blank" rel="external">LeetCode</a>上面的题目刷了一遍，不同于之前的是，这次我详细记录了自己刷题时候的感想心得、被系统accept的答案、自己的思路以及错题反思以供大家参考。<a id="more"></a>为了让大家跟我一个步伐，所以我从难易程度为easy的题目再一次刷起，希望算法能力有所提高的小伙伴来跟我一起同步再刷一次LeetCode吧！</p>
