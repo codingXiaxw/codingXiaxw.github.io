@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/java_study.jpeg">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/WechatIMG24.jpeg">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-11-22%20%E4%B8%8A%E5%8D%8812.11.14.png">
-<meta property="og:updated_time" content="2018-03-20T05:48:51.000Z">
+<meta property="og:updated_time" content="2018-03-20T06:25:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="想对大家说的话">
 <meta name="twitter:description" content="一路走来很不容易，刚好收到很多朋友的私信问我最近在忙些什么，趁着现在没事做、时间多，脑子里还有点货，就借这个机会在博客上记录一路走来的历程，很励志，希望能给那些正在或准备走编程行业的人一些正能量。内容有点长，感兴趣的就当做励志小说阅读吧。">
@@ -109,7 +109,7 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 'undefined',
       author: 'Author'
     }
   };
@@ -445,6 +445,7 @@
 <hr>
 <h2 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h2><p>学习是一个漫长的过程，需要大家不断克服路途中遇到的困难，要始终坚持心中的信念。太久没写技术博客都有点生疏了，本篇是一直在我的文件里憋着，这几天熬了几个通宵耐着性子就给大家整理出来了，可能比较杂，这两天想到什么细节了再补充。最后希望大家都能学有所成，祝大家都能收获满意的 offer 。</p>
 <h2 id="交流"><a href="#交流" class="headerlink" title="交流"></a>交流</h2><p><strong>update in 2018.3.19 :</strong>欢迎加入我的JavaWeb交流群:<strong>659957958</strong>。群里目前已有1500人，很活跃，风气和氛围都很好，新手提出的问题基本都有前辈抽出时间及时做出解答。我很感激那些主动拿出自己的时间给新手们解决问题的朋友，为了给这些朋友更大的动力同时也筛选掉那些不怀好意的朋友加进来破坏风气，所以目前入群方式已改成了付费方式，当然得到的收入将以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。来吧，快加入我们吧！</p>
+<p>另外，我把关闭了许久的评论区也开放了，大家还有疑惑的话也请在评论区下方和我交流吧！</p>
 <hr>
 <h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some infos by  clicking these links.</p>
 <ul>
@@ -535,9 +536,44 @@
           
   <div class="comments" id="comments">
     
-       
-         <div onclick="ShowGitment()" id="gitment-display-button">Show comments from Gitment</div>
-         <div id="gitment-container" style="display:none"></div>
+  <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+  <div id="container" style="display:none"></div>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div');
+      container.lang = "en-US";
+      container.className = 'gitment-container gitment-root-container';
+      container.appendChild(instance.renderHeader(state, instance));
+      container.appendChild(instance.renderEditor(state, instance));
+      container.appendChild(instance.renderComments(state, instance));
+      container.appendChild(instance.renderFooter(state, instance));
+      return container;
+    }
+  }
+  function showGitment() {
+    $("#gitment_title").attr("style", "display:none");
+    $("#container").attr("style", "").addClass("gitment_container");
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      theme: myTheme,
+      owner: 'codingXiaxw',
+      repo: 'https://github.com/codingXiaxw/codingXiaxw.github.io',
+      oauth: {
+        client_id: '5877d63c7989e61d8db7',
+        client_secret: '9e415335d4ea7bc25b72f521a3cfa98dfed1b72d'
+      }
+    });
+    gitment.render('container');
+  }
+  </script>
+
+
+
+    
+
        
     
   </div>
