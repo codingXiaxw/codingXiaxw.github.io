@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/hahaha.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/dadada.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.12.42.png">
-<meta property="og:updated_time" content="2016-11-14T06:09:17.000Z">
+<meta property="og:updated_time" content="2018-03-22T09:53:19.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis之优化MyBatis配置文件中的配置">
 <meta name="twitter:description" content="MyBatis配置文件很重要，首先我们来看看MyBatis配置文件中的内容和顺序:">
@@ -372,6 +372,7 @@
 <h2 id="4-lt-typeHandlers-gt-属性"><a href="#4-lt-typeHandlers-gt-属性" class="headerlink" title="4.&lt;typeHandlers&gt;属性"></a>4.<code>&lt;typeHandlers&gt;</code>属性</h2><p>类型处理器将java类型和jdbc类型进行映射，mybatis提供了很多类型处理器，一般情况下够用了。</p>
 <h2 id="5-lt-mapper-gt-映射器属性"><a href="#5-lt-mapper-gt-映射器属性" class="headerlink" title="5.&lt;mapper&gt;映射器属性"></a>5.<code>&lt;mapper&gt;</code>映射器属性</h2><p>之前我们在配置文件中使用的<code>&lt;mapper&gt;</code>标签内容为:<code>&lt;mapper resource=“mapper/UserMapper.xml”/&gt;</code>，接下来我要讲的是另一种在配置文件中映射mapper动态代理的方法。在配置文件中这样配置<code>&lt;mapper class=“mapper.UserMapper”/&gt;</code>，这样的要求需要保证UserMapper.xml文件和UserMapper.java在同一个包下且.xml文件和.java文件名要同名。  </p>
 <p>同上方别名的配置，当包下出现多个Mapper.java和Mapper.xml时我们采用批量配置:<code>&lt;package name=“mapper”/&gt;</code>，代码如下:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-08%20%E4%B8%8B%E5%8D%886.12.42.png" alt="">  </p>
+<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流群:659957958。群里目前已有1600人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
 <h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
@@ -582,7 +583,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-lt-properties-gt-属性定义"><span class="nav-number">1.</span> <span class="nav-text">1.<properties>属性定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-lt-settings-gt-全局参数配置"><span class="nav-number">2.</span> <span class="nav-text">2.<settings>全局参数配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-lt-typeAliases-gt-属性"><span class="nav-number">3.</span> <span class="nav-text">3.<typeAliases>属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-lt-typeHandlers-gt-属性"><span class="nav-number">4.</span> <span class="nav-text">4.<typeHandlers>属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-lt-mapper-gt-映射器属性"><span class="nav-number">5.</span> <span class="nav-text">5.<mapper>映射器属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-联系"><span class="nav-number">6.</span> <span class="nav-text">6.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-lt-properties-gt-属性定义"><span class="nav-number">1.</span> <span class="nav-text">1.<properties>属性定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-lt-settings-gt-全局参数配置"><span class="nav-number">2.</span> <span class="nav-text">2.<settings>全局参数配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-lt-typeAliases-gt-属性"><span class="nav-number">3.</span> <span class="nav-text">3.<typeAliases>属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-lt-typeHandlers-gt-属性"><span class="nav-number">4.</span> <span class="nav-text">4.<typeHandlers>属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-lt-mapper-gt-映射器属性"><span class="nav-number">5.</span> <span class="nav-text">5.<mapper>映射器属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-3-19更"><span class="nav-number">6.</span> <span class="nav-text">2018.3.19更</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-联系"><span class="nav-number">7.</span> <span class="nav-text">6.联系</span></a></li></ol></div>
             
           </div>
         </section>

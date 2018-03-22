@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-15%20%E4%B8%8B%E5%8D%883.13.29.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-15%20%E4%B8%8B%E5%8D%883.27.02.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-15%20%E4%B8%8B%E5%8D%883.27.02.png">
-<meta property="og:updated_time" content="2016-11-22T13:44:14.000Z">
+<meta property="og:updated_time" content="2018-03-22T09:52:23.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="手把手带你实现Spring、Spring MVC与Mybatis整合工程的搭建">
 <meta name="twitter:description" content="系统的学完了Spring、Spring MVC以及Mybatis之后我们就可以进行这三者的整合工作了，其实不难，就是将这三个框架的配置文件提取出来放在一个项目中，然后便可以进行开发(就是这么简单)。此篇文章我们将在前篇文章Mybatis3.x与Spring3.x整合的基础上将Spring MVC的配置引入进来即可(超级简单)。">
@@ -375,6 +375,7 @@
 <p>在src下创建各个包:mapper、po、controller、service，在web包下创建页面包jsp，工程目录如下:</p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-15%20%E4%B8%8B%E5%8D%883.27.02.png" width="50%" height="30%"> </p>
 <p>经过上述步骤，我们便完成了Spring、Spring MVC与Mybatis的整合，是不是很简单?没错就是这么简单。可是整合后又该如何进行web项目的开发呢?接下来我将通过下篇文章<a href="http://codingxiaxw.cn/2016/11/15/45-smm%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">一个案例带你快速入门SSM开发</a>介绍利用Spring、Spring MVC与Mybatis的整合项目进行开发一个案例带你快速学会使用SSM框架开发项目。</p>
+<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流群:659957958。群里目前已有1600人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
@@ -585,7 +586,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-整合的思路"><span class="nav-number">1.</span> <span class="nav-text">1.整合的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-导入jar包"><span class="nav-number">2.</span> <span class="nav-text">2.导入jar包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-工程结构"><span class="nav-number">3.</span> <span class="nav-text">3.工程结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1需要创建的配置文件"><span class="nav-number">3.1.</span> <span class="nav-text">3.1需要创建的配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2各个配置文件的内容"><span class="nav-number">3.2.</span> <span class="nav-text">3.2各个配置文件的内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-整合的思路"><span class="nav-number">1.</span> <span class="nav-text">1.整合的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-导入jar包"><span class="nav-number">2.</span> <span class="nav-text">2.导入jar包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-工程结构"><span class="nav-number">3.</span> <span class="nav-text">3.工程结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1需要创建的配置文件"><span class="nav-number">3.1.</span> <span class="nav-text">3.1需要创建的配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2各个配置文件的内容"><span class="nav-number">3.2.</span> <span class="nav-text">3.2各个配置文件的内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-3-19更"><span class="nav-number">4.</span> <span class="nav-text">2018.3.19更</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">5.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
             
           </div>
         </section>
