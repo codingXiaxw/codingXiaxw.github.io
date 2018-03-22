@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="刚刚在stormzhang的一篇叫    android学到哪种程度可以去找工作中看到张哥提了这么一个观点如果我问你Android中Activity生命周期你还支支吾吾的那我就对你没什么兴趣了。吓得我赶紧在脑海中回顾了下有关activity生命周期的知识，便打算趁热打铁写下自己对activity生命周期的理解。">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/android%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png">
-<meta property="og:updated_time" content="2016-10-17T12:53:26.000Z">
+<meta property="og:updated_time" content="2018-03-22T09:56:28.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中Activity的生命周期">
 <meta name="twitter:description" content="刚刚在stormzhang的一篇叫    android学到哪种程度可以去找工作中看到张哥提了这么一个观点如果我问你Android中Activity生命周期你还支支吾吾的那我就对你没什么兴趣了。吓得我赶紧在脑海中回顾了下有关activity生命周期的知识，便打算趁热打铁写下自己对activity生命周期的理解。">
@@ -365,6 +365,7 @@
 </ol>
 <p>另外，由图可知，从可见到不可见中间一定会经过部分不可见也就是一定会调用onPause()方法，而不能直接从可见跳到完全不可见，可见系统在Activity不可见的时候一定会调用onPause()方法;而当Activity由不可见到可见时，系统会通过顺序依次调用onStoped()–&gt;onRestart()–&gt;onStart()。  </p>
 <p>以上便是我对Android 中Activity生命周期的理解。  </p>
+<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流群:659957958。群里目前已有1600人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
 <hr>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
@@ -576,7 +577,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Activity形态"><span class="nav-number">1.</span> <span class="nav-text">1.Activity形态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Activity生命周期"><span class="nav-number">2.</span> <span class="nav-text">2.Activity生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-总结"><span class="nav-number">3.</span> <span class="nav-text">3.总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">4.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Activity形态"><span class="nav-number">1.</span> <span class="nav-text">1.Activity形态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Activity生命周期"><span class="nav-number">2.</span> <span class="nav-text">2.Activity生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-总结"><span class="nav-number">3.</span> <span class="nav-text">3.总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-3-19更"><span class="nav-number">4.</span> <span class="nav-text">2018.3.19更</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-联系"><span class="nav-number">5.</span> <span class="nav-text">4.联系</span></a></li></ol></div>
             
           </div>
         </section>

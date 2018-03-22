@@ -99,7 +99,7 @@ HttpSession底层">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/login.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/loginservlet.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/succ1.png">
-<meta property="og:updated_time" content="2017-04-08T06:15:49.000Z">
+<meta property="og:updated_time" content="2018-03-22T09:55:53.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Web学习笔记之session入门">
 <meta name="twitter:description" content="1.HttpSession概述
@@ -413,6 +413,7 @@ HttpSession底层">
 <li>void invalidate():让session失效。调用这个方法会被session失效，当session失效后，客户端再次请求，服务器会给客户端创建一个新的session，并在响应中创建一个新的JSESSIONID。</li>
 <li>boolean isNew():查看session是否为新。当客户端第一次请求时，服务器为客户端创建session，并把JSESSIONID存在Cookie中发给客户端，这时调用这个方法返回的就是新session；当再次发起请求时，JSESSIONID放在Cookie中作为请求头发给服务器，这时调用此方法，返回的就是false，即此session不是新的。  </li>
 </ul>
+<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流群:659957958。群里目前已有1600人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
 <hr>
 <h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
@@ -624,7 +625,7 @@ HttpSession底层">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HttpSession概述"><span class="nav-number">1.</span> <span class="nav-text">1.HttpSession概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HttpSession的作用"><span class="nav-number">2.</span> <span class="nav-text">2.HttpSession的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-案例-演示保存用户登录信息"><span class="nav-number">3.</span> <span class="nav-text">3.案例:演示保存用户登录信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各页面代码如下"><span class="nav-number">3.1.</span> <span class="nav-text">各页面代码如下:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-HttpSession的原理-需要理解"><span class="nav-number">4.</span> <span class="nav-text">4.HttpSession的原理(需要理解)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初入HttpSession原理"><span class="nav-number">4.1.</span> <span class="nav-text">初入HttpSession原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入HttpSession原理"><span class="nav-number">4.2.</span> <span class="nav-text">深入HttpSession原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-HttpSession的其它方法"><span class="nav-number">5.</span> <span class="nav-text">5.HttpSession的其它方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-联系"><span class="nav-number">6.</span> <span class="nav-text">6.联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HttpSession概述"><span class="nav-number">1.</span> <span class="nav-text">1.HttpSession概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HttpSession的作用"><span class="nav-number">2.</span> <span class="nav-text">2.HttpSession的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-案例-演示保存用户登录信息"><span class="nav-number">3.</span> <span class="nav-text">3.案例:演示保存用户登录信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各页面代码如下"><span class="nav-number">3.1.</span> <span class="nav-text">各页面代码如下:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-HttpSession的原理-需要理解"><span class="nav-number">4.</span> <span class="nav-text">4.HttpSession的原理(需要理解)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初入HttpSession原理"><span class="nav-number">4.1.</span> <span class="nav-text">初入HttpSession原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入HttpSession原理"><span class="nav-number">4.2.</span> <span class="nav-text">深入HttpSession原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-HttpSession的其它方法"><span class="nav-number">5.</span> <span class="nav-text">5.HttpSession的其它方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-3-19更"><span class="nav-number">6.</span> <span class="nav-text">2018.3.19更</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-联系"><span class="nav-number">7.</span> <span class="nav-text">6.联系</span></a></li></ol></div>
             
           </div>
         </section>
