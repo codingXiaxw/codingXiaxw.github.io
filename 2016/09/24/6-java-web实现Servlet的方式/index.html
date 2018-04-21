@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/httpServlet%E4%B8%AD%E5%AF%B9service%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%A3%E9%87%8A.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0httpservlet%E7%B1%BB.png">
-<meta property="og:updated_time" content="2018-03-22T09:56:17.535Z">
+<meta property="og:updated_time" content="2018-04-21T07:36:28.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Web中实现Servlet的方式">
 <meta name="twitter:description" content="1.Servlet是什么?Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  
@@ -410,7 +410,8 @@
 <p>HttpServlet类中的方法如下图:<br><img src="http://od2xrf8gr.bkt.clouddn.com/httpservlet%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95.png" alt=""><br>方法中值得我们注意的有doGet()、doPost()、还有两个service()方法。其中doGet()和doPost()方法是需要我们重写的，我来解释下两个service()方法的区别。  </p>
 <p>估计你们从方法中的参数就知道他们的区别了吧，其中一个service()方法是Serlvet接口中的生命周期方法，另外一个是跟http协议有关的方法。二者方法的解释见下两站图的说明(图1中指出HttpServlet类是继承自GenderServlet类):<br><img src="http://od2xrf8gr.bkt.clouddn.com/httpServlet%E4%B8%AD%E5%AF%B9service%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%A3%E9%87%8A.png" alt=""><br>uml(时序图)如下:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt=""><br>图中405的含义是说服务器不支持客户端(即浏览器)用此种方法访问。因为HttpServlet类的源代码中的doGet()和doPost()方法体里面就是这样写的，你在定义的xxxservlet中如果不重新重写这两个方法就会出现405的响应状态码。接下来我们看看如何继承HttpServlet类:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0httpservlet%E7%B1%BB.png" alt=""><br>FServlet即为我们自己定义的servlet类，在doGet()方法和doPost()方法中即可写具体要进行的操作。  </p>
 <p>如上三种方式便可实现我们自己定义的Servlet类，但实际开发中我们只需要使用第三种方式即继承HttpServlet类完成我们的自定义xxxServlet就好(另外等学了SSM框架中的Spring MVC框架后，就用不着我们再这样实现Servlet了，哈哈！当然这是后话)。  </p>
-<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流群:659957958。群里目前已有1600人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
+<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流1群:659957958。群里目前已有1800人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
+<p><strong>2018.4.21更:</strong>如果群1已满或者无法加入，请加Java学习交流2群：<strong>305335626</strong> 。群2作为群1的附属群，除了日常的技术交流、资料分享、学习方向指明外，还会在每年互联网的秋春招时节在群内发布大量的互联网内推方式，话不多说，快上车吧！</p>
 <h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>

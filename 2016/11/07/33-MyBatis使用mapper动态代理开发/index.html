@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/namespace.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/danduo.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/ceshissss.png">
-<meta property="og:updated_time" content="2018-03-22T09:53:24.166Z">
+<meta property="og:updated_time" content="2018-04-21T07:33:22.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis之Mapper动态代理开发">
 <meta name="twitter:description" content="1.SqlSession的使用范围1.SqlSessionFactoryBuilderSqlSessionFactoryBuilder是以工具类的方式来使用:需要创建sqlSessionFactory时就new一个 SqlSessionFactoryBuilder">
@@ -386,7 +386,8 @@
 <li>1.返回值的问题:如果方法(即UserMapper.java接口中的方法)调用的statement中返回是多条记录，而mapper.java方法的返回值为pojo，此时代理对象通过selectOne调用，但由于返回的是多条记录所以会报错:<code>Expected one result (for null ) to be returned by selectOne() but found 4</code>;  </li>
 <li>2.输入参数的问题:使用mapper代理的方式开发，mapper接口方法的输入参数只有一个，可扩展性是否很差?答:可扩展性没有问题，因为dao层就是通用的，可以通过扩展pojo(定义pojo包装类型，后面<a href="http://codingxiaxw.cn/2016/11/08/35-mybatis4/">第四篇文章–MyBatis输入输出映射</a>会讲扩展pojo的知识)来将不同的参数(可以是pojo也可以是简单类型)传入进去。</li>
 </ul>
-<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流群:659957958。群里目前已有1600人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
+<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流1群:659957958。群里目前已有1800人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
+<p><strong>2018.4.21更:</strong>如果群1已满或者无法加入，请加Java学习交流2群：<strong>305335626</strong> 。群2作为群1的附属群，除了日常的技术交流、资料分享、学习方向指明外，还会在每年互联网的秋春招时节在群内发布大量的互联网内推方式，话不多说，快上车吧！</p>
 <h2 id="3-联系"><a href="#3-联系" class="headerlink" title="3.联系"></a>3.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>

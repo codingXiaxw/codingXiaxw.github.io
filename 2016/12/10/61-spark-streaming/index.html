@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://cdn2.infoqstatic.com/statics_s1_20161208-0302u1/resource/articles/apache-spark-streaming/zh/resources/0000.png">
 <meta property="og:image" content="http://cdn2.infoqstatic.com/statics_s1_20161208-0302u1/resource/articles/apache-spark-streaming/zh/resources/0001.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/streaming.gif">
-<meta property="og:updated_time" content="2018-03-22T09:50:43.536Z">
+<meta property="og:updated_time" content="2018-04-21T07:30:20.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="『 Spark 』使用Spark Streaming处理流式数据">
 <meta name="twitter:description" content="在上篇文章mac下Spark的安装与使用的一个示例中，我们使用RDD的Map和Reduce操作对一个文本中的文字做了简单的字数检查。本篇文章的目的是讲述Spark 中的流数据处理。结构分为三个部分:第一部分简单对Spark进行介绍，第二部分介绍Spark Streaming，最后一部分通过一个简单的Demo讲讲Spark是如何通过Spark Streaming进行流式数据的处理。">
@@ -444,7 +444,8 @@
 <p>有人就有疑惑了，为什么控制台只输出了当前处理的时间而没有输出对数据源的操作信息(如这里我们是对数据源中的内容进行计数，为什么没有计数信息)呢?因为上述代码中我们没有指定正确的数据源，使用<code>JavaReceiverInputDStream&lt;String&gt; lines= (JavaReceiverInputDStream&lt;String&gt;) jsc.textFileStream(&quot;hdfs://localhost:8020/directory&quot;);</code>代替掉代码<code>JavaReceiverInputDStream&lt;String&gt; lines=jsc.socketTextStream(&quot;localhost&quot;,8020);</code>，括号中输入正确的数据源，这样就能实现实时监听数据源中变化的操作咯。至于数据源，你想用内置数据源，还是外置数据源就看你的实际需要咯！  </p>
 <p>到此，我们便完成了如果通过Spark来处理流式数据的demo。   </p>
 <p>参考:<a href="http://www.infoq.com/cn/articles/apache-spark-streaming" target="_blank" rel="external">用Apache Spark进行大数据处理——第三部分：Spark流</a></p>
-<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流群:659957958。群里目前已有1600人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
+<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流1群:659957958。群里目前已有1800人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
+<p><strong>2018.4.21更:</strong>如果群1无法加入，请加Java学习交流2群：<strong>305335626</strong> 。群2作为群1的附属群，除了日常的技术交流、资料分享、学习方向指明外，还会在每年互联网的秋春招时节在群内发布大量的互联网内推方式，话不多说，快上车吧！</p>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="http://codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
