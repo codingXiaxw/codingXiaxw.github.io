@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%90%8D%E7%A7%B0.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%9B%BE%E6%A0%87.png">
-<meta property="og:updated_time" content="2018-04-21T07:36:52.435Z">
+<meta property="og:updated_time" content="2018-05-14T07:55:34.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac用户如何将自己的代码上传至github托管">
 <meta name="twitter:description" content="楼主刚开始试着想将自己的代码上传至github上的时候真的是个小白，google上面到处搜到处找资源。后来云里雾里的成功上传后，发现网络上介绍的大致有两种方法，一种方法是通过git命令行，另一种方法是通过下载github客户端。两种方法都很简单，也许你觉得我接下来介绍的很繁琐，但这是详细的表现，下面将详细介绍通过git命令行来上传自己的代码。">
@@ -352,26 +352,19 @@
 <li><strong>git push origin master;</strong>(作用:将你的仓库推至github)<br>其实将你的代码上传至github上，按照这四个步骤便可以完成了，是不是很简单呢？  </li>
 </ol>
 <p><strong>请见详细步骤:</strong></p>
-<p>首先，你想使用git总得在网页上下载个git吧？打开终端，输入以下命令并回车:  </p>
-<table width="100%"><tr><td bgcolor="black"><font color="ffffff">ruby -e “$(curl -fsSL   <a href="https://raw.githubusercontent.com/Homebrew/install/master/install" target="_blank" rel="external">https://raw.githubusercontent.com/Homebrew/install/master/install</a>)”<br>brew install git</font></td></tr></table><br>如何看你是否安装好git了呢？打开你的终端，并输入如下命令<br> <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git –version</font></td></tr></table><br>若出现类似下面的代码则代表你的git客户端安装成功。<br><table width="100%"><tr><td bgcolor="black"><font color="ffffff">zjcs-MacBook-Pro:zjc_HexoBlog zjc $ git –version<br>  git version 2.1.3.36.g8e36a6d</font></td></tr></table>   
-
-<p>  接下来分别通过下面两个步骤即可完成将你的代码上传至github上。  </p>
+<p>首先，你想使用git总得在网页上下载个git吧？打开终端，输入以下命令并回车:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ruby -e &quot;$(curl -fsSL   https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;   </span><br><span class="line">brew install git</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">如何看你是否安装好git了呢？打开你的终端，并输入如下命令:</span><br><span class="line"> `git --version`</span><br><span class="line">若出现类似下面的代码则代表你的git客户端安装成功:</span><br></pre></td></tr></table></figure></p>
+<p>git version 2.1.3.36.g8e36a6d<br>```<br>接下来分别通过下面两个步骤即可完成将你的代码上传至github上。  </p>
 <p>  1.克隆你github上面的项目到本地仓库，在命令行输入以下代码：git clone url 然后回车。 这时你就可以看到你的电脑上多了一个以你仓库命名的文件夹啦。（其中url指你github上面仓库的地址，点开你的仓库就可以看到你仓库的地址啦。）<br>  如我的仓库名称是: <img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%90%8D%E7%A7%B0.png" alt=""><br>  我的project仓库的地址是 <img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80.png" alt=""><br>  点击这个图标可以复制你仓库的url<br>  <img src="http://od2xrf8gr.bkt.clouddn.com/%E5%9B%BE%E6%A0%87.png" alt="">   </p>
-<p>  2.首先要将你想上传的代码文件夹拖至这个新出现的仓库文件夹，然后在命令行输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">cd 你的仓库文件夹名称</font></td></tr></table></p>
+<p>  2.首先要将你想上传的代码文件夹拖至这个新出现的仓库文件夹，然后在命令行输入:<br>  <code>cd 你的仓库文件夹名称</code></p>
 <p>  如我的就在命令行中输入:  </p>
-  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">cd projects</font></td></tr></table>
-
-
+<p> <code>cd projects</code></p>
 <p>  这时你命令行中的目录就会出现在你的仓库目录下。  </p>
 <p>  接下来输入:  </p>
-   <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git add 你想上传的代码文件夹名称</font></td></tr></table>
-
-
-<p>  或者是输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git add .</font></td></tr></table><br>(add后面的‘.’代表你仓库中的所有内容)   </p>
+<p>   <code>git add 你想上传的代码文件夹名称</code></p>
+<p>  或者是输入:<br>  <code>git add .</code><br>(add后面的‘.’代表你仓库中的所有内容)   </p>
 <p>  然后输入:  </p>
-   <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git commit -m “你想交代的内容”</font></td></tr></table>
-
-<p>  最后输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git push origin master</font></td></tr></table>  </p>
+<p>   <code>git commit -m &quot;你想交代的内容&quot;</code></p>
+<p>  最后输入:<br>  <code>git push origin master</code></p>
 <p>  一会儿后你就会在你github的仓库中看到你上传的代码文件夹啦。是不是都很简单呢！  </p>
 <h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流1群:659957958。群里目前已有1800人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
 <p><strong>2018.4.21更:</strong>如果群1已满或者无法加入，请加Java学习交流2群：<strong>305335626</strong> 。群2作为群1的附属群，除了日常的技术交流、资料分享、学习方向指明外，还会在每年互联网的秋春招时节在群内发布大量的互联网内推方式，话不多说，快上车吧！</p>

@@ -5532,8 +5532,8 @@ where sal=max(sal);
 </ul>
 <h4 id="3-4-3聚合函数"><a href="#3-4-3聚合函数" class="headerlink" title="3.4.3聚合函数"></a>3.4.3聚合函数</h4><ul>
 <li>1.count:<code>select count(列名) from 表名；</code>,纪录有效行数。</li>
-<li>2.max:<code>select count(列名) from 表名；</code>,列中最大值。</li>
-<li>3.min:<code>select sum(列名) from 表名；</code>,列中最小值。</li>
+<li>2.max:<code>select max(列名) from 表名；</code>,列中最大值。</li>
+<li>3.min:<code>select min(列名) from 表名；</code>,列中最小值。</li>
 <li>4.sum:<code>select sum(列名) from 表名；</code>,求列的总值，null 和字符串默认为0。</li>
 <li>5.avg:<code>select avg(列名) from 表名;</code>,一列的平均值。</li>
 </ul>
@@ -6015,7 +6015,7 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 </ol>
 <p>一般来说我们都选择实现HttpServlet类来完成我们的Servlet，但学习Servlet还要从javax.servlet.Servlet接口来学起。  </p>
 <h3 id="2-1实现javax-servlet-Servlet接口"><a href="#2-1实现javax-servlet-Servlet接口" class="headerlink" title="2.1实现javax.servlet.Servlet接口"></a>2.1实现javax.servlet.Servlet接口</h3><p>实现该接口的代码如下，需要实现该接口中的5个方法(各个方法的作用见注释)。  </p>
-<p>   <img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png" alt="">  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png" alt="">  </p>
 <p>其中只有三个生命周期的方法是由服务器(例如我用的Tomcat)在认为需要调用的时候自动调用的(即我们自己是无法调用的)，另外的两个方法由我们自己需要的时候调用。   </p>
 <h3 id="2-2继承javax-servlet-GenericServlet类"><a href="#2-2继承javax-servlet-GenericServlet类" class="headerlink" title="2.2继承javax.servlet.GenericServlet类"></a>2.2继承javax.servlet.GenericServlet类</h3><p>有人会说，那我每次实现Servlet接口都要重写这5个方法岂不是很麻烦？那肯定麻烦！所以GenericServlet类派上用场了。  </p>
 <p>GenericServlet类实现了Servlet接口，所以在GenericServlet类中实现了Servlet接口中的5个抽象方法，另外在GenerecServlet类中还定义了自己的方法，将其作为我们要定义的xxxServlet类的父类，这样我们在自己定义的xxxServlet类中便可以不用<strong>全部</strong>实现Servlet接口中的方法。  </p>
@@ -6207,26 +6207,19 @@ response.addHeader(&quot;Set-Cookie&quot;,&quot;bbb=BBB&quot;);
 <li><strong>git push origin master;</strong>(作用:将你的仓库推至github)<br>其实将你的代码上传至github上，按照这四个步骤便可以完成了，是不是很简单呢？  </li>
 </ol>
 <p><strong>请见详细步骤:</strong></p>
-<p>首先，你想使用git总得在网页上下载个git吧？打开终端，输入以下命令并回车:  </p>
-<table width="100%"><tr><td bgcolor="black"><font color="ffffff">ruby -e “$(curl -fsSL   <a href="https://raw.githubusercontent.com/Homebrew/install/master/install" target="_blank" rel="external">https://raw.githubusercontent.com/Homebrew/install/master/install</a>)”<br>brew install git</font></td></tr></table><br>如何看你是否安装好git了呢？打开你的终端，并输入如下命令<br> <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git –version</font></td></tr></table><br>若出现类似下面的代码则代表你的git客户端安装成功。<br><table width="100%"><tr><td bgcolor="black"><font color="ffffff">zjcs-MacBook-Pro:zjc_HexoBlog zjc $ git –version<br>  git version 2.1.3.36.g8e36a6d</font></td></tr></table>   
-
-<p>  接下来分别通过下面两个步骤即可完成将你的代码上传至github上。  </p>
+<p>首先，你想使用git总得在网页上下载个git吧？打开终端，输入以下命令并回车:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ruby -e &quot;$(curl -fsSL   https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;   </span><br><span class="line">brew install git</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">如何看你是否安装好git了呢？打开你的终端，并输入如下命令:</span><br><span class="line"> `git --version`</span><br><span class="line">若出现类似下面的代码则代表你的git客户端安装成功:</span><br></pre></td></tr></table></figure></p>
+<p>git version 2.1.3.36.g8e36a6d<br>```<br>接下来分别通过下面两个步骤即可完成将你的代码上传至github上。  </p>
 <p>  1.克隆你github上面的项目到本地仓库，在命令行输入以下代码：git clone url 然后回车。 这时你就可以看到你的电脑上多了一个以你仓库命名的文件夹啦。（其中url指你github上面仓库的地址，点开你的仓库就可以看到你仓库的地址啦。）<br>  如我的仓库名称是: <img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%90%8D%E7%A7%B0.png" alt=""><br>  我的project仓库的地址是 <img src="http://od2xrf8gr.bkt.clouddn.com/%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80.png" alt=""><br>  点击这个图标可以复制你仓库的url<br>  <img src="http://od2xrf8gr.bkt.clouddn.com/%E5%9B%BE%E6%A0%87.png" alt="">   </p>
-<p>  2.首先要将你想上传的代码文件夹拖至这个新出现的仓库文件夹，然后在命令行输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">cd 你的仓库文件夹名称</font></td></tr></table></p>
+<p>  2.首先要将你想上传的代码文件夹拖至这个新出现的仓库文件夹，然后在命令行输入:<br>  <code>cd 你的仓库文件夹名称</code></p>
 <p>  如我的就在命令行中输入:  </p>
-  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">cd projects</font></td></tr></table>
-
-
+<p> <code>cd projects</code></p>
 <p>  这时你命令行中的目录就会出现在你的仓库目录下。  </p>
 <p>  接下来输入:  </p>
-   <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git add 你想上传的代码文件夹名称</font></td></tr></table>
-
-
-<p>  或者是输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git add .</font></td></tr></table><br>(add后面的‘.’代表你仓库中的所有内容)   </p>
+<p>   <code>git add 你想上传的代码文件夹名称</code></p>
+<p>  或者是输入:<br>  <code>git add .</code><br>(add后面的‘.’代表你仓库中的所有内容)   </p>
 <p>  然后输入:  </p>
-   <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git commit -m “你想交代的内容”</font></td></tr></table>
-
-<p>  最后输入:<br>  <table width="100%"><tr><td bgcolor="black"><font color="ffffff">git push origin master</font></td></tr></table>  </p>
+<p>   <code>git commit -m &quot;你想交代的内容&quot;</code></p>
+<p>  最后输入:<br>  <code>git push origin master</code></p>
 <p>  一会儿后你就会在你github的仓库中看到你上传的代码文件夹啦。是不是都很简单呢！  </p>
 <h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流1群:659957958。群里目前已有1800人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
 <p><strong>2018.4.21更:</strong>如果群1已满或者无法加入，请加Java学习交流2群：<strong>305335626</strong> 。群2作为群1的附属群，除了日常的技术交流、资料分享、学习方向指明外，还会在每年互联网的秋春招时节在群内发布大量的互联网内推方式，话不多说，快上车吧！</p>

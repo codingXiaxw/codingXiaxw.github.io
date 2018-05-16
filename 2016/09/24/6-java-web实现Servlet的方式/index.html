@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/httpServlet%E4%B8%AD%E5%AF%B9service%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%A3%E9%87%8A.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0httpservlet%E7%B1%BB.png">
-<meta property="og:updated_time" content="2018-04-21T07:36:28.349Z">
+<meta property="og:updated_time" content="2018-05-14T08:01:01.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Web中实现Servlet的方式">
 <meta name="twitter:description" content="1.Servlet是什么?Servlet是Java Web三大组件之一，它属于动态资源。Servlet的作用是处理请求，服务器会把接收到的请求交给Servlet来处理，在Servlet中通常需要:  
@@ -375,7 +375,7 @@
 </ol>
 <p>一般来说我们都选择实现HttpServlet类来完成我们的Servlet，但学习Servlet还要从javax.servlet.Servlet接口来学起。  </p>
 <h3 id="2-1实现javax-servlet-Servlet接口"><a href="#2-1实现javax-servlet-Servlet接口" class="headerlink" title="2.1实现javax.servlet.Servlet接口"></a>2.1实现javax.servlet.Servlet接口</h3><p>实现该接口的代码如下，需要实现该接口中的5个方法(各个方法的作用见注释)。  </p>
-<p>   <img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png" alt="">  </p>
+<p><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%AE%9E%E7%8E%B0Servlet%E6%8E%A5%E5%8F%A3.png" alt="">  </p>
 <p>其中只有三个生命周期的方法是由服务器(例如我用的Tomcat)在认为需要调用的时候自动调用的(即我们自己是无法调用的)，另外的两个方法由我们自己需要的时候调用。   </p>
 <h3 id="2-2继承javax-servlet-GenericServlet类"><a href="#2-2继承javax-servlet-GenericServlet类" class="headerlink" title="2.2继承javax.servlet.GenericServlet类"></a>2.2继承javax.servlet.GenericServlet类</h3><p>有人会说，那我每次实现Servlet接口都要重写这5个方法岂不是很麻烦？那肯定麻烦！所以GenericServlet类派上用场了。  </p>
 <p>GenericServlet类实现了Servlet接口，所以在GenericServlet类中实现了Servlet接口中的5个抽象方法，另外在GenerecServlet类中还定义了自己的方法，将其作为我们要定义的xxxServlet类的父类，这样我们在自己定义的xxxServlet类中便可以不用<strong>全部</strong>实现Servlet接口中的方法。  </p>
