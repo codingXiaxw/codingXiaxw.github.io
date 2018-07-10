@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/node5.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/node6.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/node7.png">
-<meta property="og:updated_time" content="2018-06-12T03:53:53.216Z">
+<meta property="og:updated_time" content="2018-06-13T06:17:22.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Webstorm调试nodejs项目">
 <meta name="twitter:description" content="俗话说的好，“工欲善其事，必先利其器”，要想使用 Webstorm 更高效率的去开发 nodejs 项目，则必须要清楚如何使用 Webstorm 去调试我们的 nodejs 项目。在讲解如何调试 nodejs 项目之前，有必要先说说如何使用 Webstorm 去启动 nodejs 项目。">
@@ -371,12 +371,14 @@
 <li><code>url</code>：需要调试的 js 文件路径。</li>
 </ol>
 <p>配置好后选择保存，在相关 js 文件中添加断点，然后选择右上角的 js debug 配置服务器，选择甲虫形状的 debug 按钮即可进行调试。<br>相比较起来，个人觉得浏览器中的调试更为方便，相关信息可参考如下链接:<a href="https://www.jianshu.com/p/b25c5b88baf5" target="_blank" rel="external">webstorm下调试javascript总结</a></p>
+<p>我之前入的坑就是：明明是想要调试nodejs程序，结果看了好久的 webstorm 调试 js 的教程…</p>
 <p>好了，说回正题，如何使用 webstorm 进行 nodejs 的相关调试呢？很简单，待完成了上述“ webstorm 启动 nodejs 项目”的配置后则无需再进行相关配置操作。只需在需要调试的地方打下断点，然后运行 webstorm 右上角 nodejs 服务器的甲虫形状的 debug 按钮即可:  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/node6.png" alt="">  </p>
-<p>正下方 debug 控制台出现输出信息，并告知你 <code>local 服务已启动: http://localhost:3000</code> ,然后点进去通过浏览器进入到你的项目内部。待你运行到打断点处的功能时，浏览器会带你自动跳转回 webstorm 的 debug 控制台处，查看控制台的debugger选项，通过控制即可进行代码追踪。</p>
+<p>正下方 debug 控制台出现输出信息，并告知你 <code>local 服务已启动: http://localhost:3000</code> ,然后点进去通过浏览器进入到你的项目内部。待你运行到打断点处的功能时，浏览器会带你自动跳转回 webstorm 的 debug 控制台处，查看控制台的 debugger 选项，通过控制即可进行代码追踪。</p>
 <h2 id="3-心得"><a href="#3-心得" class="headerlink" title="3.心得"></a>3.心得</h2><p>另外想总结下如何通过产品中的某个功能进入到项目的相应代码中。首先对着浏览器右键选择“检查”，进入到 network :  </p>
 <p><img src="http://od2xrf8gr.bkt.clouddn.com/node7.png" alt="">  </p>
 <p>通过点击浏览器界面中的相关操作，下方也会出现对应的请求资源 request 与服务器返回的资源 response ，通过点击出现的相关资源，即可看到请求路径，然后通过请求路径在项目中通过全局搜索即可找到此操作对应在项目中的代码流程操作。</p>
+<p>参考:<a href="https://www.jianshu.com/p/611e7be13655" target="_blank" rel="external">node调试方法1</a>，<a href="https://www.barretlee.com/blog/2015/10/07/debug-nodejs-in-command-line/" target="_blank" rel="external">node调试方法2</a></p>
 
       
     </div>
