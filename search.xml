@@ -263,7 +263,8 @@
 <p>我为什么要在拿出干货前给大家介绍我这么无聊的经历呢？是想告诉大家永远不要嫌晚，你看我大一暑假开始学习编程，从一个编程小白到学完有关 JavaWeb 的所有基础知识点用了多久？真正花在 JavaWeb 上的时间不超过半年，而这半年里我还学了好多好多其他的互联网知识。所以大家永远不要嫌晚，即使你现在都已经大四了面临找工作了，也不要放弃不要急躁，只要下定决心从现在起开始学习，毕业前也一定会收获让你满意的 offer 。</p>
 <p>好了道理扯了这么多了，很多人也该不耐烦了，特此奉上你们想要的干货:(请滑动你的鼠标</p>
 <hr>
-<h2 id="我的JavaWeb学习路线"><a href="#我的JavaWeb学习路线" class="headerlink" title="我的JavaWeb学习路线"></a>我的JavaWeb学习路线</h2><ul>
+<h2 id="我的JavaWeb学习路线"><a href="#我的JavaWeb学习路线" class="headerlink" title="我的JavaWeb学习路线"></a>我的JavaWeb学习路线</h2><p><strong>更：</strong>有人觉得我下面提供的 JavaWeb 自学路线九个阶段还是过于抽象，所以我在文章最下方开了一个“更新”章节，觉得抽象的请将下拉框拉到文章最底部自行进行查看另一种关于“我推荐的JavaWeb学习路线”的说法，仅供参考，有不足还请多多指教。</p>
+<ul>
 <li><strong>第一阶段:</strong> Java 基础，包括 Java 语法，面向对象特征，常见API，集合框架。(基础）</li>
 <li><strong>第二阶段:</strong>Java API：输入输出，多线程，网络编程，反射注解等，Java 的精华部分。(重点)</li>
 <li><strong>第三阶段:</strong>数据库 SQL 基础，包括增删改查操作以及多表查询。Oracle  Mysql 二选一吧。(我的项目都是用的 Mysql</li>
@@ -1117,7 +1118,7 @@
 <p><strong>疑惑:</strong>上篇文章说到可以不学Hadoop直接学习Spark，那为什么还要安装Hadoop?亲，我的意思是不用学习Hadoop的相关知识例如它的API啥的，但是没说不用先搭建Hadoop的环境呀！<br><strong>合理解释:</strong>Spark会用到HDFS与YARN，因此请先安装Hadoop，关于Hadoop的安装请参考我的上篇博文<a href="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/">mac下Hadoop的安装与使用</a>，在此就不再复述。  </p>
 <p><strong>第三步:</strong>安装Scala 2.9.3以上版本。这里介绍下Scala在mac下的安装与环境变量的配置。点击链接进入<a href="http://www.scala-lang.org/download/" target="_blank" rel="external">scala官方网站</a>的下载页，下载2.11.8版本(第一次操作的时候我下载了最新版2.12.1，后来测试spark-shell命令时发现最新版本的scala与1.7版本的jdk不兼容，所以后来换成了2.11.8版本)的Scala:<br><img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%883.27.59.png" alt="">  </p>
 <p>点击图上下载链接会自动将scala下载到Dowmloads目录下，文件名为:<code>scala-2.12.1.tgz</code>，还有一种下载方法就是直接在命令行使用homebrew命令(作为一个Linux开发人员我建议使用这种方式)进行下载:<code>brew install scala</code>，该命令会自动帮你把scala下载到<code>/usr/local</code>目录下。使用在官网点击链接下载的方式的话，我们也要将该scala文件加到<code>/usr/local</code>目录下，你可以直接拷贝过去，当然作为一个Linux开发人员你可以直接使用一条命令完成将该压缩包进行<strong>解压</strong>并<strong>移动</strong>到<code>/usr/local/</code>目录下:<code>sudo tar -zxf ~/downloads/scala-2.12.1.tgz -C /usr/local/</code>，然后使用命令<code>cd /usr/local</code>进入到该目录下，由于解压后的文件名为:<code>scala-2.12.1</code>，所以为了之后配置的方便我们使用命令:<code>sudo mv ./scala-2.12.1 ./scala</code>将文件名修改为scala。因为该目录属于管理员级别的目录所以如果当前用户不是管理员的话应该在命令前面使用<code>sudo</code>关键字表示使用管理员权限。  </p>
-<p>这样scala的安装便完成，但是还要配置scala的环境变量，使用命令:<code>sudo vim ./etc/profile</code>打开系统中配置环境变量的文件，在里面添加如下内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export SCALA_HOME=/usr/local/scala</span><br><span class="line">export PATH=$PATH:$SCALA_HOME/bin</span><br></pre></td></tr></table></figure></p>
+<p>这样scala的安装便完成，但是还要配置scala的环境变量，使用命令:<code>sudo vim /etc/profile</code>打开系统中配置环境变量的文件，在里面添加如下内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export SCALA_HOME=/usr/local/scala</span><br><span class="line">export PATH=$PATH:$SCALA_HOME/bin</span><br></pre></td></tr></table></figure></p>
 <p>然后<code>:wq!</code>保存并退出该文件，输入命令使该文件的内容立刻生效:<code>source /etc/profile</code>，接下来在(根目录下)命令行输入:<code>scala</code>并敲击回车，看到控制台打印如下信息说明我们的scala安装并成功配置了环境变量:<img src="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-07%20%E4%B8%8B%E5%8D%884.50.39.png" alt="">  </p>
 <p>图中信息即表明我们使用的scala版本为2.11.8，jdk版本为1.7.0_79。</p>
 <p>使用命令行快捷键<code>control+c</code>或者<code>:quit</code>退出scala shell环境(网上教程有说使用exit命令可以退出scala shell环境，我试了但貌似不行)。</p>
@@ -1272,7 +1273,7 @@
 <p>住：其实上述命令用webstorm工具可以直接打patch。</p>
 <h2 id="maven篇"><a href="#maven篇" class="headerlink" title="maven篇"></a>maven篇</h2><p>cd到一个有pom.xml文件的项目中，执行:  </p>
 <ul>
-<li><code>mvn install</code>:可以将pom.xml中涉及的jar包都下载到maven的仓库中。  </li>
+<li><code>mvn install</code>:可以将1.pom.xml中涉及的jar包都下载到maven的仓库中;2.将jar包下载到当前文件目录下。</li>
 <li><code>mvn clean package</code>:可以将pom.xml中涉及的jar包都下载到当前目录的jar包中。</li>
 </ul>
 <h2 id="gulp篇"><a href="#gulp篇" class="headerlink" title="gulp篇"></a>gulp篇</h2><p>gulp和grunt的比较。<br>gulp的四个api：</p>
@@ -5590,7 +5591,7 @@ create table stu_tea(
 sid int,
 tid int,
 constraint fk_student foreign key(sid) references student(sid),
-constraint fk_teacher foreign key(tid) references student(tid)
+constraint fk_teacher foreign key(tid) references teacher(tid)
 );
 
 insert into student values(null,’刘德华’);
