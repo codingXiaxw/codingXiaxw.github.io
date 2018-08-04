@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/alistern.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/alistern.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/alistern.png">
-<meta property="og:updated_time" content="2018-04-21T07:34:06.174Z">
+<meta property="og:updated_time" content="2018-08-04T05:09:47.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb三大组件之监听器(Listener)">
 <meta name="twitter:description" content="监听器是一个专门用于对其他对象身上发生的事件或状态改变进行监听和相应处理的对象，当被监视的对象发生情况时，立即采取相应的行动。监听器其实就是一个实现特定接口的普通java程序，这个程序专门用于监听另一个java对象的方法调用或属性改变，当被监听对象发生上述事件后，监听器某个方法立即被执行。">
@@ -358,96 +358,23 @@
 <li>3.感知监听(都与HttpSession域对象有关):监听绑定到HttpSession域中的某个JavaBean对象的状态的监听器。这个监听器需要实现的监听器接口:HttpSessionBindingListener、HttpSessionActiveationListener.</li>
 </ul>
 <h3 id="1-3第一类-域对象的生命周期监听"><a href="#1-3第一类-域对象的生命周期监听" class="headerlink" title="1.3第一类:域对象的生命周期监听"></a>1.3第一类:域对象的生命周期监听</h3><p>事件源为:三大域<br>事件对象为:创建与销毁<br>监听器为:实现了ServletContextListener、HttpSessionListener、ServletRequestListener这三个接口的监听器  </p>
-<h4 id="1-3-1ServletContext的生命周期监听"><a href="#1-3-1ServletContext的生命周期监听" class="headerlink" title="1.3.1ServletContext的生命周期监听"></a>1.3.1ServletContext的生命周期监听</h4><pre><code>public class AListener implements ServletContextListener{
-
-    public void contextInitialized(ServletContextEvent sce)
-    {
-      //在项目启动时调用
-    }
-
-    public void contextDestroyed(ServletContextEvent sce)
-    {
-      //在项目关闭时调用
-    }
-}
-</code></pre><p>在web.xml文件中对该监听器进行配置:<br><img src="http://od2xrf8gr.bkt.clouddn.com/alistern.png" alt=""></p>
-<h4 id="1-3-2HttpSession的生命周期监听"><a href="#1-3-2HttpSession的生命周期监听" class="headerlink" title="1.3.2HttpSession的生命周期监听"></a>1.3.2HttpSession的生命周期监听</h4><p>代码同上述基本一致:  </p>
-<pre><code>public class AListener implements HttpSessionListener{
-
-    public void sessionCreated(HttpSessionEvent sce)
-    {
-      //在会话产生时调用
-    }
-
-    public void sessionDestroyed(HttpSessionEvent sce)
-    {
-      //在会话关闭时调用
-    }
-}
-</code></pre><p>同样需要在web.xml文件中进行配置:<br><img src="http://od2xrf8gr.bkt.clouddn.com/alistern.png" alt=""></p>
+<h4 id="1-3-1ServletContext的生命周期监听"><a href="#1-3-1ServletContext的生命周期监听" class="headerlink" title="1.3.1ServletContext的生命周期监听"></a>1.3.1ServletContext的生命周期监听</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AListener</span> <span class="keyword">implements</span> <span class="title">ServletContextListener</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextInitialized</span><span class="params">(ServletContextEvent sce)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">  	<span class="comment">//在项目启动时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextDestroyed</span><span class="params">(ServletContextEvent sce)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">  	<span class="comment">//在项目关闭时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在web.xml文件中对该监听器进行配置:<br><img src="http://od2xrf8gr.bkt.clouddn.com/alistern.png" alt=""></p>
+<h4 id="1-3-2HttpSession的生命周期监听"><a href="#1-3-2HttpSession的生命周期监听" class="headerlink" title="1.3.2HttpSession的生命周期监听"></a>1.3.2HttpSession的生命周期监听</h4><p>代码同上述基本一致:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AListener</span> <span class="keyword">implements</span> <span class="title">HttpSessionListener</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sessionCreated</span><span class="params">(HttpSessionEvent sce)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">  	<span class="comment">//在会话产生时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sessionDestroyed</span><span class="params">(HttpSessionEvent sce)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line"> 	 <span class="comment">//在会话关闭时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>同样需要在web.xml文件中进行配置:<br><img src="http://od2xrf8gr.bkt.clouddn.com/alistern.png" alt=""></p>
 <h4 id="1-3-3ServletRequest的生命周期"><a href="#1-3-3ServletRequest的生命周期" class="headerlink" title="1.3.3ServletRequest的生命周期"></a>1.3.3ServletRequest的生命周期</h4><p>代码同上述基本一致:  </p>
-<pre><code>public class AListener implements ServletRequestListener{
-
-    public void rquestInitialized(ServletRequestEvent sce)
-    {
-      //在请求产生时调用
-    }
-
-    public void requestDestroyed(ServletRequestEvent sce)
-    {
-      //在请求关闭时调用
-    }
-}
-</code></pre><p>同样需要在web.xml文件中进行配置:<br><img src="http://od2xrf8gr.bkt.clouddn.com/alistern.png" alt="">  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AListener</span> <span class="keyword">implements</span> <span class="title">ServletRequestListener</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rquestInitialized</span><span class="params">(ServletRequestEvent sce)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">  	<span class="comment">//在请求产生时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">requestDestroyed</span><span class="params">(ServletRequestEvent sce)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">  	<span class="comment">//在请求关闭时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样需要在web.xml文件中进行配置:<br><img src="http://od2xrf8gr.bkt.clouddn.com/alistern.png" alt="">  </p>
 <h4 id="1-3-4对各个监听器接口的方法中出现的类介绍"><a href="#1-3-4对各个监听器接口的方法中出现的类介绍" class="headerlink" title="1.3.4对各个监听器接口的方法中出现的类介绍"></a>1.3.4对各个监听器接口的方法中出现的类介绍</h4><p>ServletContextEvent类:类中有一个方法getServletContext(),该方法返回ServletContext对象。</p>
 <p>HttpSessionEvent类:类中有一个方法getSession()，该方法返回一个HttpSession对象。  </p>
 <p>ServletRequestEvent类:类中有两个方法，getServletContext()用于返回一个ServletContext对象，getServletRequest()用于返回一个ServletRequest对象。</p>
 <h3 id="1-4第二类-域对象的属性监听"><a href="#1-4第二类-域对象的属性监听" class="headerlink" title="1.4第二类:域对象的属性监听"></a>1.4第二类:域对象的属性监听</h3><p>事件源:三大域<br>事件对象:属性的增加与删除<br>监听器:实现了ServletContextAttributeListener、HttpSessionAttributeListener、ServletRequestAttributeListener接口的监听器  </p>
-<h4 id="1-4-1ServletContext的属性监听"><a href="#1-4-1ServletContext的属性监听" class="headerlink" title="1.4.1ServletContext的属性监听"></a>1.4.1ServletContext的属性监听</h4><pre><code>public class AListener implements ServletContextAttributeListener{
-
-    public void attributeAdded(ServletcontextAttribute scab){
-      //给ServletContext对象添加属性时调用
-    }
-
-    public void attributeRemoved(ServletContextAttributeEvent scab){
-    //给ServletContext对象删除属性时调用
-    }
-
-    public void attributeReplaced(ServletContextAttributeEvent scab){
-    //给ServletContext对象替换属性值时调用
-    }
-}
-</code></pre><p>同样需要在web.xml文件中对AListener进行配置。</p>
-<h4 id="1-4-2HttpSession的属性监听"><a href="#1-4-2HttpSession的属性监听" class="headerlink" title="1.4.2HttpSession的属性监听"></a>1.4.2HttpSession的属性监听</h4><pre><code>public class AListener implements HttpSessionAttributeListener{
-
-    public void attributeAdded(HttpSessionAttribute scab){
-      //给HttpSession对象添加属性时调用
-    }
-
-    public void attributeRemoved(HttpSessionAttributeEvent scab){
-    //给HttpSession对象删除属性时调用
-    }    
-
-    public void attributeReplaced(HttpSessionAttributeEvent scab){
-    //给HttpSession对象替换属性值时调用
-    }
-}
-</code></pre><p>同样需要在web.xml中对AListener进行配置。</p>
-<h4 id="1-4-3ServletRequest的属性监听"><a href="#1-4-3ServletRequest的属性监听" class="headerlink" title="1.4.3ServletRequest的属性监听"></a>1.4.3ServletRequest的属性监听</h4><pre><code>public class AListener implements ServletRequestAttributeListener{
-
-    public void attributeAdded(ServletRequestAttribute scab){
-      //给ServletRequest对象添加属性时调用
-    }
-
-    public void attributeRemoved(ServletRequestAttributeEvent scab){
-    //给ServletRequest对象删除属性时调用
-    }
-
-    public void attributeReplaced(ServletRequestAttributeEvent scab){
-    //给ServletRequest对象替换属性值时调用
-    }
-}
-</code></pre><p>同样需要在web.xml中对AListener进行配置。</p>
+<h4 id="1-4-1ServletContext的属性监听"><a href="#1-4-1ServletContext的属性监听" class="headerlink" title="1.4.1ServletContext的属性监听"></a>1.4.1ServletContext的属性监听</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AListener</span> <span class="keyword">implements</span> <span class="title">ServletContextAttributeListener</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeAdded</span><span class="params">(ServletcontextAttribute scab)</span></span>&#123;</span><br><span class="line">  	<span class="comment">//给ServletContext对象添加属性时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeRemoved</span><span class="params">(ServletContextAttributeEvent scab)</span></span>&#123;</span><br><span class="line">	<span class="comment">//给ServletContext对象删除属性时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeReplaced</span><span class="params">(ServletContextAttributeEvent scab)</span></span>&#123;</span><br><span class="line">	<span class="comment">//给ServletContext对象替换属性值时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样需要在web.xml文件中对AListener进行配置。</p>
+<h4 id="1-4-2HttpSession的属性监听"><a href="#1-4-2HttpSession的属性监听" class="headerlink" title="1.4.2HttpSession的属性监听"></a>1.4.2HttpSession的属性监听</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AListener</span> <span class="keyword">implements</span> <span class="title">HttpSessionAttributeListener</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeAdded</span><span class="params">(HttpSessionAttribute scab)</span></span>&#123;</span><br><span class="line">  	<span class="comment">//给HttpSession对象添加属性时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeRemoved</span><span class="params">(HttpSessionAttributeEvent scab)</span></span>&#123;</span><br><span class="line">	<span class="comment">//给HttpSession对象删除属性时调用</span></span><br><span class="line">	&#125;	</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeReplaced</span><span class="params">(HttpSessionAttributeEvent scab)</span></span>&#123;</span><br><span class="line">	<span class="comment">//给HttpSession对象替换属性值时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样需要在web.xml中对AListener进行配置。</p>
+<h4 id="1-4-3ServletRequest的属性监听"><a href="#1-4-3ServletRequest的属性监听" class="headerlink" title="1.4.3ServletRequest的属性监听"></a>1.4.3ServletRequest的属性监听</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AListener</span> <span class="keyword">implements</span> <span class="title">ServletRequestAttributeListener</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeAdded</span><span class="params">(ServletRequestAttribute scab)</span></span>&#123;</span><br><span class="line">  	<span class="comment">//给ServletRequest对象添加属性时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeRemoved</span><span class="params">(ServletRequestAttributeEvent scab)</span></span>&#123;</span><br><span class="line">	<span class="comment">//给ServletRequest对象删除属性时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeReplaced</span><span class="params">(ServletRequestAttributeEvent scab)</span></span>&#123;</span><br><span class="line">	<span class="comment">//给ServletRequest对象替换属性值时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样需要在web.xml中对AListener进行配置。</p>
 <h4 id="1-4-4对各个监听器接口的方法中出现的类介绍"><a href="#1-4-4对各个监听器接口的方法中出现的类介绍" class="headerlink" title="1.4.4对各个监听器接口的方法中出现的类介绍"></a>1.4.4对各个监听器接口的方法中出现的类介绍</h4><p>ServletContextAttributeEvent类:该类对象有三个方法，getSevletContext()用于返回一个ServletContext，getName()用于返回属性名，getValue()用于返回属性值。  </p>
 <p>HttpSessionBindingEvent类:该类对象有两个方法，getName()用于获取属性名，getValue()用于获取属性值。  </p>
 <p>ServletRequestAttributeEvent类:该类对象有两个方法，getName()用于获取属性名，getValue()用于获取属性值。  </p>
@@ -455,68 +382,13 @@
 <p>Servlet 规范中定义了两个特殊的监听器接口”HttpSessionBindingListener和HttpSessionActivationListener”来帮助JavaBean 对象了解自己在Session域中的这些状态，实现这两个接口的类不需要 web.xml 文件中进行注册。  </p>
 <h4 id="1-5-1HttpSessionBindingListener接口"><a href="#1-5-1HttpSessionBindingListener接口" class="headerlink" title="1.5.1HttpSessionBindingListener接口"></a>1.5.1HttpSessionBindingListener接口</h4><p>实现了HttpSessionBindingListener接口的JavaBean对象可以感知自己被绑定到Session中和 Session中删除的事件。  </p>
 <p>当对象被绑定到HttpSession对象中时，web服务器调用该对象的void valueBound(HttpSessionBindingEvent event)方法。  </p>
-<p>当对象从HttpSession对象中解除绑定时，web服务器调用该对象的void valueUnbound(HttpSessionBindingEvent event)方法。</p>
-<pre><code>17public class JavaBeanDemo1 implements HttpSessionBindingListener {
-18 
-19     private String name;
-20     
-21     @Override
-22     public void valueBound(HttpSessionBindingEvent event) {
-23         System.out.println(name+&quot;被加到session中了&quot;);
-24     }
-25 
-26     @Override
-27     public void valueUnbound(HttpSessionBindingEvent event) {
-28         System.out.println(name+&quot;被session踢出来了&quot;);
-29     }
-30 
-31     public String getName() {
-32         return name;
-33     }
-34 
-35     public void setName(String name) {
-36         this.name = name;
-37     }
-38 
-39     public JavaBeanDemo1(String name) {
-40         this.name = name;
-41     }
-42 }
-</code></pre><p>上述的JavaBeanDemo1这个javabean实现了HttpSessionBindingListener接口，那么这个JavaBean对象可以感知自己被绑定到Session中和从Session中删除的这两个操作。  </p>
+<p>当对象从HttpSession对象中解除绑定时，web服务器调用该对象的void valueUnbound(HttpSessionBindingEvent event)方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">17</span><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaBeanDemo1</span> <span class="keyword">implements</span> <span class="title">HttpSessionBindingListener</span> </span>&#123;</span><br><span class="line"><span class="number">18</span> </span><br><span class="line"><span class="number">19</span>     <span class="keyword">private</span> String name;</span><br><span class="line"><span class="number">20</span>     </span><br><span class="line"><span class="number">21</span>     <span class="meta">@Override</span></span><br><span class="line"><span class="number">22</span>     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">valueBound</span><span class="params">(HttpSessionBindingEvent event)</span> </span>&#123;</span><br><span class="line"><span class="number">23</span>         System.out.println(name+<span class="string">"被加到session中了"</span>);</span><br><span class="line"><span class="number">24</span>     &#125;</span><br><span class="line"><span class="number">25</span> </span><br><span class="line"><span class="number">26</span>     <span class="meta">@Override</span></span><br><span class="line"><span class="number">27</span>     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">valueUnbound</span><span class="params">(HttpSessionBindingEvent event)</span> </span>&#123;</span><br><span class="line"><span class="number">28</span>         System.out.println(name+<span class="string">"被session踢出来了"</span>);</span><br><span class="line"><span class="number">29</span>     &#125;</span><br><span class="line"><span class="number">30</span> </span><br><span class="line"><span class="number">31</span>     <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="number">32</span>         <span class="keyword">return</span> name;</span><br><span class="line"><span class="number">33</span>     &#125;</span><br><span class="line"><span class="number">34</span> </span><br><span class="line"><span class="number">35</span>     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line"><span class="number">36</span>         <span class="keyword">this</span>.name = name;</span><br><span class="line"><span class="number">37</span>     &#125;</span><br><span class="line"><span class="number">38</span> </span><br><span class="line"><span class="number">39</span>     <span class="function"><span class="keyword">public</span> <span class="title">JavaBeanDemo1</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line"><span class="number">40</span>         <span class="keyword">this</span>.name = name;</span><br><span class="line"><span class="number">41</span>     &#125;</span><br><span class="line"><span class="number">42</span> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述的JavaBeanDemo1这个javabean实现了HttpSessionBindingListener接口，那么这个JavaBean对象可以感知自己被绑定到Session中和从Session中删除的这两个操作。  </p>
 <h4 id="1-5-2HttpSessionActivationListener接口"><a href="#1-5-2HttpSessionActivationListener接口" class="headerlink" title="1.5.2HttpSessionActivationListener接口"></a>1.5.2HttpSessionActivationListener接口</h4><p>实现了HttpSessionActivationListener接口的JavaBean对象可以感知自己被活化(反序列化)和钝化(序列化)的事件。  </p>
 <p>当绑定到HttpSession对象中的javabean对象将要随HttpSession对象被钝化(序列化)之前，web服务器调用该javabean对象的void sessionWillPassivate(HttpSessionEvent event) 方法。这样javabean对象就可以知道自己将要和HttpSession对象一起被序列化(钝化)到硬盘中。  </p>
 <p>当绑定到HttpSession对象中的javabean对象将要随HttpSession对象被活化(反序列化)之后，web服务器调用该javabean对象的void sessionDidActive(HttpSessionEvent event)方法。这样javabean对象就可以知道自己将要和 HttpSession对象一起被反序列化(活化)回到内存中。(javabean随着HttpSession对象一起被活化的前提是该javabean对象除了实现该接口外还应该实现Serialize接口)。  </p>
-<pre><code>27 public class JavaBeanDemo2 implements HttpSessionActivationListener,
-28         Serializable {
-29 
-30      
-31     private static final long serialVersionUID = 7589841135210272124L;
-32     private String name;
-33     
-34     @Override
-35     public void sessionWillPassivate(HttpSessionEvent se) {
-36         
-37         System.out.println(name+&quot;和session一起被序列化(钝化)到硬盘了，session的id是：&quot;+se.getSession().getId());
-38     }
-39 
-40     @Override
-41     public void sessionDidActivate(HttpSessionEvent se) {
-42         System.out.println(name+&quot;和session一起从硬盘反序列化(活化)回到内存了，session的id是：&quot;+se.getSession().getId());
-43     }
-44 
-45     public String getName() {
-46         return name;
-47     }
-48 
-49     public void setName(String name) {
-50         this.name = name;
-51     }
-52 
-53     public JavaBeanDemo2(String name) {
-54         this.name = name;
-55     }
-56 }
-</code></pre><p>既然这里谈到了session的序列化(钝化)，反序列化(活化)那我们就来具体聊聊。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">27</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaBeanDemo2</span> <span class="keyword">implements</span> <span class="title">HttpSessionActivationListener</span>,</span><br><span class="line">28         <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"><span class="number">29</span> </span><br><span class="line"><span class="number">30</span>      </span><br><span class="line"><span class="number">31</span>     <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">7589841135210272124L</span>;</span><br><span class="line"><span class="number">32</span>     <span class="keyword">private</span> String name;</span><br><span class="line"><span class="number">33</span>     </span><br><span class="line"><span class="number">34</span>     <span class="meta">@Override</span></span><br><span class="line"><span class="number">35</span>     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sessionWillPassivate</span><span class="params">(HttpSessionEvent se)</span> </span>&#123;</span><br><span class="line"><span class="number">36</span>         </span><br><span class="line"><span class="number">37</span>         System.out.println(name+<span class="string">"和session一起被序列化(钝化)到硬盘了，session的id是："</span>+se.getSession().getId());</span><br><span class="line"><span class="number">38</span>     &#125;</span><br><span class="line"><span class="number">39</span> </span><br><span class="line"><span class="number">40</span>     <span class="meta">@Override</span></span><br><span class="line"><span class="number">41</span>     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sessionDidActivate</span><span class="params">(HttpSessionEvent se)</span> </span>&#123;</span><br><span class="line"><span class="number">42</span>         System.out.println(name+<span class="string">"和session一起从硬盘反序列化(活化)回到内存了，session的id是："</span>+se.getSession().getId());</span><br><span class="line"><span class="number">43</span>     &#125;</span><br><span class="line"><span class="number">44</span> </span><br><span class="line"><span class="number">45</span>     <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="number">46</span>         <span class="keyword">return</span> name;</span><br><span class="line"><span class="number">47</span>     &#125;</span><br><span class="line"><span class="number">48</span> </span><br><span class="line"><span class="number">49</span>     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line"><span class="number">50</span>         <span class="keyword">this</span>.name = name;</span><br><span class="line"><span class="number">51</span>     &#125;</span><br><span class="line"><span class="number">52</span> </span><br><span class="line"><span class="number">53</span>     <span class="function"><span class="keyword">public</span> <span class="title">JavaBeanDemo2</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line"><span class="number">54</span>         <span class="keyword">this</span>.name = name;</span><br><span class="line"><span class="number">55</span>     &#125;</span><br><span class="line"><span class="number">56</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>既然这里谈到了session的序列化(钝化)，反序列化(活化)那我们就来具体聊聊。</p>
 <h2 id="2-session序列化-钝化"><a href="#2-session序列化-钝化" class="headerlink" title="2.session序列化(钝化)"></a>2.session序列化(钝化)</h2><p>在session上线时，会在<code>tomcat／work／Catalina／localhost／项目名／</code>下生成一个sessions.ser文件，里面存放了所有session的信息，当你正在访问某个网页时若此时服务器关闭(关闭时才生成这个文件)又打开(打开后这个文件会消失)，你依旧能正常访问该网页。(故说session有重生的效果)。<br>若想废掉session的序列化,需要在<code>tomcat／conf／context.xml</code>中添加<code>&lt;Manager pathname=“”/&gt;</code></p>
 <h2 id="3-session的钝化与活化"><a href="#3-session的钝化与活化" class="headerlink" title="3.session的钝化与活化"></a>3.session的钝化与活化</h2><p>Tomcat会在session一段时间内不被使用时钝化session对象，所谓钝化session，就是把session通过序列化的方法保存到硬盘文件中。当用户再使用session时，Tomcat还会把钝化的对象再活化session，所谓活化就是把硬盘文件中的session在反序列化中放回内存。当session被tomcat钝化时，sesseion中存储的对象也被钝化，当session被活化时，也会把session中存储的对象(javabean对象)活化。如果某个类(javabean对象)实现了HttpSessionActiveationListener接口后，当对象随着session被钝化和活化时，下面两个方法就会被调用:</p>
 <pre><code>public void sessionWillPassivate(HttpSessionEvent se):当对象感知被活化时调用本方法。  
