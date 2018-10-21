@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="codingXiaxw's blog">
 <meta property="og:description" content="因为mac上的很多功能都涉及到命令行的工作，然而记性差的我总是一次熟两次生，第三次就要…google，所以下面总结下自己在使用自己电脑上相关软件时涉及到的一些命令，以供自己日后参考。">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-12-27%20%E4%B8%8B%E5%8D%883.58.16.png">
-<meta property="og:updated_time" content="2018-07-25T09:53:43.102Z">
+<meta property="og:updated_time" content="2018-08-22T03:43:24.159Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac下常用软件相关命令(持续更新)">
 <meta name="twitter:description" content="因为mac上的很多功能都涉及到命令行的工作，然而记性差的我总是一次熟两次生，第三次就要…google，所以下面总结下自己在使用自己电脑上相关软件时涉及到的一些命令，以供自己日后参考。">
@@ -392,7 +392,7 @@
 <p>其中涉及一些常用git命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.git status  查看本地库的当前状态</span><br><span class="line">2.git branch  在与远程仓库建立连接后使用该命令查看远程仓库当前分支</span><br><span class="line">3.git branch 分支名;  在远程仓库中创建新分支</span><br><span class="line">4.git checkout;  查看分支状态</span><br><span class="line">5.git checkout 分支名；切换到该分支下</span><br><span class="line">6.git merge 分支名； 将该分支与当前分支合并。</span><br></pre></td></tr></table></figure></p>
 <p>具体git命令参考这片文章:<a href="https://www.w3ctrain.com/2016/06/26/learn-git-in-30-minutes/" target="_blank" rel="external">git 从入门到放弃</a></p>
 <h2 id="eclipse篇"><a href="#eclipse篇" class="headerlink" title="eclipse篇"></a>eclipse篇</h2><p>其实我是IDEA党啦，之前还让eclipse党快点转IDEA的，结果现在我自己又转回到eclipse了。绝对不是因为现在自己又觉得eclipse更好了，大家不要误会！IDEA大法好，只是因为一些社会因素…所以我是不得不转回来呀！说下我在使用eclipse时遇到一些必须使用命令行的坑。  </p>
-<p>运行maven项目用到一个tamcat插件时或者一个普通web项目启动tomcat时常遇到端口被占用的问题，输入<code>lsof -i:占用端口号</code>，这个命令可以帮助你看到电脑上哪些程序正在占用这个端口号。然后输入<code>kill -9:PID</code>或者<code>kill -s 9 PID</code>，将占用该端口号的程序杀死即可重新启动tomcat。对于某个正在运行的进程，如果不知道其占用的端口号，可以使用命令<code>ps aux|grep 进程名</code>或者<code>ps -ef | grep 进程名</code>,如我在服务器上跑了一个python进程，想要杀死这个进程，先在命令行输入<code>ps -ef | grep python</code>查出该python进程的PID，然后使用<code>kill -9 PID</code>或者<code>kill -s 9 PID</code>命令将该进程杀死。  </p>
+<p>运行maven项目用到一个tamcat插件时或者一个普通web项目启动tomcat时常遇到端口被占用的问题，输入<code>lsof -i:占用端口号</code>，这个命令可以帮助你看到电脑上哪些程序正在占用这个端口号。然后输入<code>kill -9:PID</code>或者<code>kill -s 9 PID</code>，将占用该端口号的程序杀死即可重新启动tomcat。对于某个正在运行的进程，如果不知道其占用的端口号，可以使用命令<code>ps aux|grep 进程名</code>或者<code>ps -ef | grep 进程名</code>,如我在服务器上跑了一个python进程，想要杀死这个进程，先在命令行输入<code>ps -ef | grep python</code>查出该python进程的PID，然后使用<code>kill -9 PID</code>或者<code>kill -s 9 PID</code>(中间要加冒号否？) or 直接使用<code>kill PID</code>命令将该进程杀死。  </p>
 <p>查看Java版本，在命令行输入:<code>java -version</code></p>
 <p>查看JAVA_HOME环境变量配置的路径:<code>echo $JAVA_HOME</code><br>查看SCALA_HOME(scala语言的环境变量)配置路径:<code>echo $SCALA_HOME</code><br>查看ant环境变量路径:<code>echo $ANT_HOME</code><br>查看系统环境变量:<code>echo $PATH</code></p>
 <h2 id="Redis篇"><a href="#Redis篇" class="headerlink" title="Redis篇"></a>Redis篇</h2><p><code>redis-server</code>:在本地启动redis服务器<br><code>redis-cli</code>:进入redis命令环境，接下来便可以通过redis命令来操作本地redis服务器了<br><code>dbsize</code>:查看redis服务器中存储数据的大小<br><code>keys *</code>:查看redis服务器中存储的数据</p>
@@ -640,7 +640,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">66</span>
+              <span class="site-state-item-count">65</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -648,7 +648,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -657,7 +657,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

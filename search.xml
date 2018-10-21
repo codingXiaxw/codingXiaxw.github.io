@@ -4,45 +4,6 @@
   
     
     <entry>
-      <title><![CDATA[使用Webstorm调试nodejs项目]]></title>
-      <url>http://codingxiaxw.cn/2018/06/12/71-webstorm-nodejs/</url>
-      <content type="html"><![CDATA[<p>俗话说的好，“工欲善其事，必先利其器”，要想使用 Webstorm 更高效率的去开发 nodejs 项目，则必须要清楚如何使用 Webstorm 去调试我们的 nodejs 项目。在讲解如何调试 nodejs 项目之前，有必要先说说如何使用 Webstorm 去启动 nodejs 项目。</p>
-<a id="more"></a>
-<h2 id="1-启动nodejs项目"><a href="#1-启动nodejs项目" class="headerlink" title="1.启动nodejs项目"></a>1.启动nodejs项目</h2><p>启动一个 nodejs 项目可以直接通过在命令行输入：<code>node ***.js</code> 启动，而下面要介绍的是通过 IDE Webstorm 如何启动一个 nodejs 项目。  </p>
-<p>首先需要配置好相关信息，右上角打开 EditConfiguration :</p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/node1.png" alt=""></p>
-<p>添加一个 node.js:<br><img src="http://od2xrf8gr.bkt.clouddn.com/node2.png" alt="">  </p>
-<p>在界面中输入如下信息：</p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/node3.png" alt="">  </p>
-<ol>
-<li><code>name</code> : 随便取</li>
-<li><code>Node interpreter</code> : 电脑上 node 安装路径</li>
-<li><code>Working directory</code> : 项目路径</li>
-<li><code>Javascript file</code> : 项目启动 js 文件，一般是项目根目录下的 app.js</li>
-</ol>
-<p>保存，然后点击 Webstorm 右上角的三角形符号，会发现在正下方 run 控制台出现输出信息，并告知你<code>服务已启动: http://localhost:3000</code>，表明项目已启动。</p>
-<h2 id="2-调试nodejs项目"><a href="#2-调试nodejs项目" class="headerlink" title="2.调试nodejs项目"></a>2.调试nodejs项目</h2><p>我们往往需要知道项目中的某个 function 可以一直追溯到何处，便可以通过打断点然后运行 debug 的形式追踪下去。这里要说明 webstorm 调试 nodejs 与 webstorm 调试 javascript 是完全不同的两个操作，相关配置也不同。 我们知道调试 javascript 的另一种方式是可以通过浏览器直接调试，例如 chrome 浏览器下直接右键选择工具即可，或者使用键盘快捷键 <code>command + option + i(Mac)</code> 即可打开；而在 webstorm 中调试 javascript ，需要进行相关配置，选择 webstorm 右上角的 EditConfiguration ,在出现的界面中添加一个<code>javascript debug</code>:</p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/node4.png" alt="">  </p>
-<p>配置相关信息:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/node5.png" alt="">  </p>
-<p>需要填写：</p>
-<ol>
-<li><code>name</code>：随便取。</li>
-<li><code>url</code>：需要调试的 js 文件路径。</li>
-</ol>
-<p>配置好后选择保存，在相关 js 文件中添加断点，然后选择右上角的 js debug 配置服务器，选择甲虫形状的 debug 按钮即可进行调试。<br>相比较起来，个人觉得浏览器中的调试更为方便，相关信息可参考如下链接:<a href="https://www.jianshu.com/p/b25c5b88baf5" target="_blank" rel="external">webstorm下调试javascript总结</a></p>
-<p>我之前入的坑就是：明明是想要调试nodejs程序，结果看了好久的 webstorm 调试 js 的教程…</p>
-<p>好了，说回正题，如何使用 webstorm 进行 nodejs 的相关调试呢？很简单，待完成了上述“ webstorm 启动 nodejs 项目”的配置后则无需再进行相关配置操作。只需在需要调试的地方打下断点，然后运行 webstorm 右上角 nodejs 服务器的甲虫形状的 debug 按钮即可:  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/node6.png" alt="">  </p>
-<p>正下方 debug 控制台出现输出信息，并告知你 <code>local 服务已启动: http://localhost:3000</code> ,然后点进去通过浏览器进入到你的项目内部。待你运行到打断点处的功能时，浏览器会带你自动跳转回 webstorm 的 debug 控制台处，查看控制台的 debugger 选项，通过控制即可进行代码追踪。</p>
-<h2 id="3-心得"><a href="#3-心得" class="headerlink" title="3.心得"></a>3.心得</h2><p>另外想总结下如何通过产品中的某个功能进入到项目的相应代码中。首先对着浏览器右键选择“检查”，进入到 network :  </p>
-<p><img src="http://od2xrf8gr.bkt.clouddn.com/node7.png" alt="">  </p>
-<p>通过点击浏览器界面中的相关操作，下方也会出现对应的请求资源 request 与服务器返回的资源 response ，通过点击出现的相关资源，即可看到请求路径，然后通过请求路径在项目中通过全局搜索即可找到此操作对应在项目中的代码流程操作。</p>
-<p>参考:<a href="https://www.jianshu.com/p/611e7be13655" target="_blank" rel="external">node调试方法1</a>，<a href="https://www.barretlee.com/blog/2015/10/07/debug-nodejs-in-command-line/" target="_blank" rel="external">node调试方法2</a></p>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[nodeclub源码学习笔记]]></title>
       <url>http://codingxiaxw.cn/2018/05/23/70-nodeClub-study-notes/</url>
       <content type="html"><![CDATA[<p>正式工作以后才知道，原来系统的去学习一门语言是多么的奢侈。本篇文章通过学习nodeclub项目的源码来学习nodejs的express框架开发。此篇文章建议在了解nodejs基本语法后再来观看，我反正是在菜鸟教程过了一遍nodejs有关的知识再来学习这个项目的。</p>
@@ -1299,7 +1260,7 @@
 <p>其中涉及一些常用git命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.git status  查看本地库的当前状态</span><br><span class="line">2.git branch  在与远程仓库建立连接后使用该命令查看远程仓库当前分支</span><br><span class="line">3.git branch 分支名;  在远程仓库中创建新分支</span><br><span class="line">4.git checkout;  查看分支状态</span><br><span class="line">5.git checkout 分支名；切换到该分支下</span><br><span class="line">6.git merge 分支名； 将该分支与当前分支合并。</span><br></pre></td></tr></table></figure></p>
 <p>具体git命令参考这片文章:<a href="https://www.w3ctrain.com/2016/06/26/learn-git-in-30-minutes/" target="_blank" rel="external">git 从入门到放弃</a></p>
 <h2 id="eclipse篇"><a href="#eclipse篇" class="headerlink" title="eclipse篇"></a>eclipse篇</h2><p>其实我是IDEA党啦，之前还让eclipse党快点转IDEA的，结果现在我自己又转回到eclipse了。绝对不是因为现在自己又觉得eclipse更好了，大家不要误会！IDEA大法好，只是因为一些社会因素…所以我是不得不转回来呀！说下我在使用eclipse时遇到一些必须使用命令行的坑。  </p>
-<p>运行maven项目用到一个tamcat插件时或者一个普通web项目启动tomcat时常遇到端口被占用的问题，输入<code>lsof -i:占用端口号</code>，这个命令可以帮助你看到电脑上哪些程序正在占用这个端口号。然后输入<code>kill -9:PID</code>或者<code>kill -s 9 PID</code>，将占用该端口号的程序杀死即可重新启动tomcat。对于某个正在运行的进程，如果不知道其占用的端口号，可以使用命令<code>ps aux|grep 进程名</code>或者<code>ps -ef | grep 进程名</code>,如我在服务器上跑了一个python进程，想要杀死这个进程，先在命令行输入<code>ps -ef | grep python</code>查出该python进程的PID，然后使用<code>kill -9 PID</code>或者<code>kill -s 9 PID</code>命令将该进程杀死。  </p>
+<p>运行maven项目用到一个tamcat插件时或者一个普通web项目启动tomcat时常遇到端口被占用的问题，输入<code>lsof -i:占用端口号</code>，这个命令可以帮助你看到电脑上哪些程序正在占用这个端口号。然后输入<code>kill -9:PID</code>或者<code>kill -s 9 PID</code>，将占用该端口号的程序杀死即可重新启动tomcat。对于某个正在运行的进程，如果不知道其占用的端口号，可以使用命令<code>ps aux|grep 进程名</code>或者<code>ps -ef | grep 进程名</code>,如我在服务器上跑了一个python进程，想要杀死这个进程，先在命令行输入<code>ps -ef | grep python</code>查出该python进程的PID，然后使用<code>kill -9 PID</code>或者<code>kill -s 9 PID</code>(中间要加冒号否？) or 直接使用<code>kill PID</code>命令将该进程杀死。  </p>
 <p>查看Java版本，在命令行输入:<code>java -version</code></p>
 <p>查看JAVA_HOME环境变量配置的路径:<code>echo $JAVA_HOME</code><br>查看SCALA_HOME(scala语言的环境变量)配置路径:<code>echo $SCALA_HOME</code><br>查看ant环境变量路径:<code>echo $ANT_HOME</code><br>查看系统环境变量:<code>echo $PATH</code></p>
 <h2 id="Redis篇"><a href="#Redis篇" class="headerlink" title="Redis篇"></a>Redis篇</h2><p><code>redis-server</code>:在本地启动redis服务器<br><code>redis-cli</code>:进入redis命令环境，接下来便可以通过redis命令来操作本地redis服务器了<br><code>dbsize</code>:查看redis服务器中存储数据的大小<br><code>keys *</code>:查看redis服务器中存储的数据</p>
@@ -5607,7 +5568,7 @@ where sal=max(sal);
 <p>使用数据库:<code>USE 数据库名;</code>  </p>
 <p>创建数据库并指定编码:<code>CREATE DATABASE [IF NOT EXISTS] 数据库名 [DEFAULT CHARACTER SET UTF8];</code>  </p>
 <p>删除数据库:<code>DROP DATABASE 数据库名;</code>  </p>
-<p>修改数据库的编码:<code>ALTER DATABASE 数据库名 CHARACTER SET UTF-8;</code>  </p>
+<p>修改数据库的编码:<code>ALTER DATABASE 数据库名 CHARACTER SET UTF8;</code>  </p>
 <p><strong>对表结构的操作</strong><br>创建表:  </p>
 <pre><code>CREATE TABLE (IF NOT EXISTS) 表名(
 列名 列类型，
