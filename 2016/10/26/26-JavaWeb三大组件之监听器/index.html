@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/alistern.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/alistern.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/alistern.png">
-<meta property="og:updated_time" content="2018-08-04T05:09:47.081Z">
+<meta property="og:updated_time" content="2018-11-20T02:27:13.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb三大组件之监听器(Listener)">
 <meta name="twitter:description" content="监听器是一个专门用于对其他对象身上发生的事件或状态改变进行监听和相应处理的对象，当被监视的对象发生情况时，立即采取相应的行动。监听器其实就是一个实现特定接口的普通java程序，这个程序专门用于监听另一个java对象的方法调用或属性改变，当被监听对象发生上述事件后，监听器某个方法立即被执行。">
@@ -394,8 +394,8 @@
 <pre><code>public void sessionWillPassivate(HttpSessionEvent se):当对象感知被活化时调用本方法。  
 public void sessionDidActivate(HttpSessionEvent se):当对象感知被钝化时调用本方法。
 </code></pre><p>钝化时会在<code>tomcat/work/Catalina/localhost/项目/mysession／</code>文件下生成一个后缀为.session的文件，网页中一个被钝化的session就对应一个.session文件(而上面的序列化是一个.ser文件存在所有的session)，在活化时此文件也不会消失(不同于上述的.ser文件消失)。<br>当然要看到上述效果，应该先配置tomcat钝化session的参数，在<code>tomcat/conf/catalina/localhost</code>目录下，添加以下配置内容(google一下吧)。</p>
-<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流1群:659957958。群里目前已有1800人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
-<p><strong>2018.4.21更:</strong>如果群1已满或者无法加入，请加Java学习交流2群：<strong>305335626</strong> 。群2作为群1的附属群，除了日常的技术交流、资料分享、学习方向指明外，还会在每年互联网的秋春招时节在群内发布大量的互联网内推方式，话不多说，快上车吧！</p>
+<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流1群:659957958。</strong></p>
+<p><strong>2018.4.21更:</strong>如果群1已满或者无法加入，请加Java学习交流2群：<strong>305335626</strong> 。</p>
 <h2 id="4-联系"><a href="#4-联系" class="headerlink" title="4.联系"></a>4.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>

@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/c3p0%E9%85%8D%E7%BD%AE.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/jdni.png">
 <meta property="og:image" content="http://od2xrf8gr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-17%20%E4%B8%8B%E5%8D%888.43.16.png">
-<meta property="og:updated_time" content="2018-04-21T07:35:02.767Z">
+<meta property="og:updated_time" content="2018-11-20T02:28:06.796Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb学习笔记之Jdbc(二)">
 <meta name="twitter:description" content="1.事务1.1事务的四大特性(ACID)
@@ -494,8 +494,8 @@ class 加盐咖啡 extends 咖啡类 {};
 <p><strong>下面的解释写给自己看的:关于connection是否关闭的问题</strong>  </p>
 <p>在jar包中，QueryRunner类的update(没有connection参数的)方法，在finally中将connection进行了关闭;在update(有connection参数的)方法中，在finally中没有对connection进行关闭(暂时这么记吧，不然要是进行关闭了的话，在传智播客写的小工具封装类TxQueryRunner中将connection传入JdbcUtils的releaseConnecion()方法中对connection进行关闭时会出现报错)。</p>
 <p>在讲到事务时，我们会对QueryRunner进行再次封装。上述写出的QueryRunner的代码只是包中的QueryRunner源码方法的一部分(因为源码中还有很多的重载方法)，我们会通过另一个类TxQueryRunner(较QueryRunner多出的一个功能就是它支持事务)继承该类，在TxQueryrunner类中，对connection进行了判断:若connection为事务中的connection则在TxqueryRunner的update()方法中不对connection进行关闭，而是在commitTransaction()即提交事务时进行关闭;若connection为普通连接，则将connection进行关闭。那么以后我们在DAO中要获取的就不是QueryRunner对象，而是通过<code>QueryRunner qr=new TxQueryRunner();</code>获取TxQueryRunner对象了。</p>
-<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流1群:659957958。群里目前已有1800人，每天都非常活跃，但为了筛选掉那些不怀好意的朋友进来搞破坏，所以目前入群方式已改成了付费方式，你只需要支付9块钱，即可获取到群文件中的所有干货以及群里面各位前辈们的疑惑解答；为了鼓励良好风气的发展，让每个新人提出的问题都得到解决，所以我将得到的入群收费收入都以红包的形式发放到那些主动给新手们解决疑惑的朋友手中。在这里，我们除了谈技术，还谈生活、谈理想；在这里，我们为你的学习方向指明方向，为你以后的求职道路提供指路明灯；在这里，我们把所有好用的干货都与你分享。还在等什么，快加入我们吧！</strong></p>
-<p><strong>2018.4.21更:</strong>如果群1已满或者无法加入，请加Java学习交流2群：<strong>305335626</strong> 。群2作为群1的附属群，除了日常的技术交流、资料分享、学习方向指明外，还会在每年互联网的秋春招时节在群内发布大量的互联网内推方式，话不多说，快上车吧！</p>
+<h2 id="2018-3-19更"><a href="#2018-3-19更" class="headerlink" title="2018.3.19更"></a>2018.3.19更</h2><p><strong>欢迎加入我的Java交流1群:659957958。</strong></p>
+<p><strong>2018.4.21更:</strong>如果群1已满或者无法加入，请加Java学习交流2群：<strong>305335626</strong> 。</p>
 <h2 id="6-联系"><a href="#6-联系" class="headerlink" title="6.联系"></a>6.联系</h2><p>  If you have some questions after you see this article,you can tell your doubts in the comments area or you can find some info by  clicking these links.</p>
 <ul>
 <li><p><a href="codingxiaxw.cn">Blog@codingXiaxw’s blog</a></p>
