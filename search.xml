@@ -4,6 +4,13 @@
   
     
     <entry>
+      <title><![CDATA[2019]]></title>
+      <url>http://codingxiaxw.cn/2019/02/04/71-2019/</url>
+      <content type="html"><![CDATA[<p>hi，大家新年快乐，这次冒泡有点话想说。依旧收到很多朋友的私信说博客图床挂了，还有问最近在做些什么的，本人目前专心专研工作，暂时不打算维护此博客了，希望大家2019事业有成，早点过上自己想要的日子。<br><a id="more"></a></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[nodeclub源码学习笔记]]></title>
       <url>http://codingxiaxw.cn/2018/05/23/70-nodeClub-study-notes/</url>
       <content type="html"><![CDATA[<p>正式工作以后才知道，原来系统的去学习一门语言是多么的奢侈。本篇文章通过学习nodeclub项目的源码来学习nodejs的express框架开发。此篇文章建议在了解nodejs基本语法后再来观看，我反正是在菜鸟教程过了一遍nodejs有关的知识再来学习这个项目的。</p>
